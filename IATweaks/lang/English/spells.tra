@@ -1,0 +1,10 @@
+@6000 = ~Summoning limit has been reached.~
+@6001 = ~Elemental Summoning
+Level: Quest
+Range: 10 yards
+Duration: 10 rounds
+Casting Time: 1 round
+Area of Effect: Special
+Saving Throw: None
+
+Drawing power from the environment, this spell summons 2 16HD elementals randomly chosen from earth, air or fire. The elementals stay for 10 rounds and will obey the caster as long as they remain summoned.~

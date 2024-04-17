@@ -1,0 +1,371 @@
+/// Remove class restrictions from the Gypsy quests and the Limak encounter. The Old Ones quest remains Necromancer-only. ///
+
+SILENT
+
+// Find all creatures with SUMMON gender
+
+COPY_EXISTING_REGEXP ~.*\.cre~ ~override~
+  READ_BYTE 0x0275 gender
+  PATCH_IF (gender = 6 OR gender = 8) THEN BEGIN // gender = SUMMONED or SUMMONED_DEMON
+    SPRINT cre_file ~%SOURCE_RES%~
+    TO_UPPER cre_file
+    SPRINT $summoned_creatures("%cre_file%") "set"
+  END
+  BUT_ONLY
+
+// Increase real summon limit to 100
+
+INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
+
+COPY_EXISTING ~summlimt.2da~  ~override~
+  REPLACE_TEXTUALLY ~NORMAL[ %TAB%]+5~ ~NORMAL 100~
+  PRETTY_PRINT_2DA
+
+// Add lines to splprot.2da
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~SUMMONEDNUM<5~
+    stat                  = ~0x115~
+    value                 = ~5~
+    relation              = ~2~
+  RET
+    less_than_5_summons_row = new_line_number
+  END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~NOTALLIES~
+    stat                  = ~0x10a~
+    value                 = ~30~
+    relation              = ~3~
+  RET
+    not_allies_row = new_line_number
+  END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~CANT_SUMMON_MORE_CREATURES~
+    stat                  = ~0x104~
+    value                 = ~%less_than_5_summons_row%~
+    relation              = ~%not_allies_row%~
+  RET
+    allies_cant_summon_more = new_line_number
+  END
+
+/// Change Animal/Monster Summoning spells to use opcode 67 instead of 127 ///
+
+// Define static creatures that will be summoned
+ACTION_DEFINE_ASSOCIATIVE_ARRAY new_summon_mapping BEGIN
+  "s!anim4"=>"wolfdisu"
+  "s!anim5"=>"bearbrsu"
+  "s!anim6"=>"wolfwwsu"
+  "s!mon1"=>"ogrelesu"
+  "s!mon2"=>"ogresu"
+  "s!mon3"=>"ettercsu"
+END
+
+// Create new .EFF files
+
+ACTION_PHP_EACH new_summon_mapping AS eff_file_name=>summoned_cre_file_name BEGIN
+  COPY_EXISTING ~S!ANIM7.EFF~ ~override/%eff_file_name%.EFF~
+    WRITE_EVALUATED_ASCII 0x30 ~%summoned_cre_file_name%~ #8
+    BUT_ONLY
+END
+
+// Define mapping between spells and effects
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY priest_spell_to_eff_mapping BEGIN
+  "sppr402"=>"s!anim4"
+  "sppr501"=>"s!anim5"
+  "sppr602"=>"s!anim6"
+  "spra304"=>"s!anim4"
+  "spra305"=>"s!anim5"
+  "spra306"=>"s!anim6"
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY wizard_spell_to_eff_mapping BEGIN
+  "spwi309"=>"s!mon1"
+  "spwi407"=>"s!mon2"
+  "spwi504"=>"s!mon3"
+END
+
+// Patch files to use new .eff files
+
+ACTION_PHP_EACH wizard_spell_to_eff_mapping AS spell_file_name=>eff_file_name BEGIN
+  COPY_EXISTING ~%spell_file_name%.spl~ ~override/%spell_file_name%.spl~
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 177
+      STR_VAR
+        resource = EVAL ~%eff_file_name%~
+    END
+    BUT_ONLY
+END
+
+ACTION_PHP_EACH priest_spell_to_eff_mapping AS spell_file_name=>eff_file_name BEGIN
+  COPY_EXISTING ~%spell_file_name%.spl~ ~override/%spell_file_name%.spl~
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 177
+      STR_VAR
+        resource = EVAL ~%eff_file_name%~
+    END
+    LPF ~CLONE_EFFECT~ // Make sure that 2 creatures are summoned
+      INT_VAR
+        match_opcode = 177
+    END
+END
+
+// Update Wand of Summoning
+
+COPY_EXISTING ~wand10.itm~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 127
+      opcode = 67
+    STR_VAR
+      resource = ~gnollsu~
+  END
+  PATCH_FOR_EACH ~cre_file~ IN ~wolfdisu~ ~hobgobsu~ BEGIN
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 67
+        multi_match = 1
+      STR_VAR
+        insert = ~last~
+        resource = EVAL ~%cre_file%~
+    END
+  END
+
+// Update Elemental Summoning spell, remove protection from self and any chance of getting elemental princes
+
+COPY_EXISTING ~sppr723.spl~ ~override~
+  WRITE_LONG 0x50 RESOLVE_STR_REF (@6001)
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 206
+  END
+  PATCH_FOR_EACH ~prince_eff~ IN ~SUMZAAM~ ~SUMCHAN~ ~SUMSUNN~ BEGIN
+    LPF ~DELETE_EFFECT~
+      STR_VAR
+        match_resource = EVAL ~%prince_eff%~
+    END
+  END
+  // Alter the chances to ensure Elementals are summoned
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_probability1 = 22
+      probability1 = 33
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_probability1 = 45
+      match_probability2 = 23
+      probability1 = 66
+      probability2 = 34
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_probability1 = 69
+      match_probability2 = 46
+      probability1 = 100
+      probability2 = 67
+  END
+  BUT_ONLY
+  IF_EXISTS
+
+// Change location of opcode 165 for wizard spells summoning Elementals, as you could get paused without summoning the creature if you cast it already having 5 summons
+
+ACTION_FOR_EACH ~spell_file~ IN ~spwi516~ ~spwi520~ ~spwi521~ ~spwi620~ ~spwi621~ ~spwi622~ BEGIN
+  COPY_EXISTING ~%spell_file%.spl~ ~override~
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 165
+      STR_VAR
+        insert = ~last~
+    END
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = 165
+        multi_match = 1
+    END
+  BUT_ONLY
+END
+
+
+// Deal with all spells/items that summon creatures with gender equal to SUMMON through opcode 177 and .EFF files
+
+COPY ~IATweaks\resources\spl\s!sumlim.spl~ ~override/s!sumlim.spl~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1   = RESOLVE_STR_REF (@6000)
+  END
+
+
+COPY_EXISTING_REGEXP GLOB ~.*\.EFF~ ~override~
+  READ_LONG 0x10 opcode
+  READ_ASCII 0x30 cre_file
+  PATCH_IF (opcode = 67) THEN BEGIN
+    SPRINT source_name "%SOURCE_RES%"
+    TO_UPPER source_name
+    SPRINT $67_effs_to_cre_mapping("%source_name%") "%cre_file%"
+  END
+  BUT_ONLY
+
+ACTION_PHP_EACH 67_effs_to_cre_mapping AS eff_file_name=>cre_file_name BEGIN
+  ACTION_TO_UPPER cre_file_name
+  ACTION_IF VARIABLE_IS_SET $summoned_creatures("%cre_file_name%") BEGIN
+    OUTER_SPRINT $67_effs_to_summ_cre_mapping("%eff_file_name%") "%cre_file_name%"
+  END
+END
+
+COPY_EXISTING_REGEXP GLOB ~.*\.ITM~ ~override~
+  LPF ~S!ITEM_USES_OPCODE~
+    RET is_found opcode_resource
+  END
+  PATCH_IF "%is_found%" STR_EQ ~TRUE~ BEGIN
+    TO_UPPER opcode_resource
+    PATCH_IF VARIABLE_IS_SET $67_effs_to_summ_cre_mapping("%opcode_resource%") BEGIN
+      SPRINT cre_file $67_effs_to_summ_cre_mapping("%opcode_resource%")
+      LPF ~CLONE_EFFECT~ // The easiest way to add protection from the spell right above the summoning effect
+        INT_VAR
+          match_opcode = 177
+          duration = 0
+          opcode = 318
+          parameter1 = 1
+          parameter2 = %allies_cant_summon_more%
+        STR_VAR
+          resource = EVAL ~%SOURCE_RES%~
+      END
+      LPF ~CLONE_EFFECT~ // without Eeex that's the only way to properly inform players that the limit of summons had been reached
+        INT_VAR
+          match_opcode = 318
+          opcode = 326
+        STR_VAR
+          match_resource = EVAL ~%SOURCE_RES%~
+          resource = ~s!sumlim~
+      END
+    END
+  END
+  BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~.*\.SPL~ ~override~
+  LPF ~S!SPELL_USES_OPCODE~
+    RET is_found opcode_resource
+  END
+  PATCH_IF "%is_found%" STR_EQ ~TRUE~ BEGIN
+    TO_UPPER opcode_resource
+    PATCH_IF VARIABLE_IS_SET $67_effs_to_summ_cre_mapping("%opcode_resource%") BEGIN
+      SPRINT cre_file $67_effs_to_summ_cre_mapping("%opcode_resource%")
+      LPF ~CLONE_EFFECT~ // The easiest way to add protection from the spell right above the summoning effect
+        INT_VAR
+          match_opcode = 177
+          duration = 0
+          opcode = 318
+          parameter1 = 1
+          parameter2 = %allies_cant_summon_more%
+          special = RESOLVE_STR_REF (@6000)
+        STR_VAR
+          resource = EVAL ~%SOURCE_RES%~
+      END
+      LPF ~CLONE_EFFECT~ // without Eeex that's the only way to properly inform players that the limit of summons had been reached
+        INT_VAR
+          match_opcode = 318
+          opcode = 326
+        STR_VAR
+          match_resource = EVAL ~%SOURCE_RES%~
+          resource = ~s!sumlim~
+      END
+    END
+  END
+  BUT_ONLY
+
+// Spells and items that directly use opcode 67, not through .EFF files
+
+COPY_EXISTING_REGEXP GLOB ~.*\.ITM~ ~override~
+  LPF ~S!ITEM_USES_OPCODE~
+    INT_VAR
+      match_opcode = 67
+    RET is_found
+  END
+  PATCH_IF "%is_found%" STR_EQ ~TRUE~ BEGIN
+    LPF ~S!GET_ALL_RESOURCES_FOR_GIVEN_OPCODE_OF_ITEM~
+      INT_VAR
+        match_opcode = 67
+      RET_ARRAY all_resources_items = all_resources
+    END
+    PHP_EACH all_resources_items AS cre_file_name => _ BEGIN
+      PATCH_IF VARIABLE_IS_SET $summoned_creatures("%cre_file_name%") BEGIN 
+        LPF ~CLONE_EFFECT~ // The easiest way to add protection from the spell right above the summoning effect
+          INT_VAR
+            match_opcode = 67
+            duration = 0
+            opcode = 318
+            parameter1 = 1
+            parameter2 = %allies_cant_summon_more%
+            special = RESOLVE_STR_REF (@6000)
+          STR_VAR
+            match_resource = EVAL ~%cre_file_name%~
+            resource = EVAL ~%SOURCE_RES%~
+        END
+      END
+    END
+    PATCH_IF VARIABLE_IS_SET $summoned_creatures("%cre_file_name%") BEGIN 
+      LPF ~CLONE_EFFECT~ // without Eeex that's the only way to properly inform players that the limit of summons had been reached
+        INT_VAR
+          match_opcode = 318
+          opcode = 326
+          match_parameter2 = %allies_cant_summon_more%
+        STR_VAR
+          match_resource = EVAL ~%SOURCE_RES%~
+          resource = ~s!sumlim~
+      END
+    END
+  END
+  BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~.*\.SPL~ ~override~
+  LPF ~S!SPELL_USES_OPCODE~
+    INT_VAR
+      match_opcode = 67
+    RET is_found
+  END
+  PATCH_IF "%is_found%" STR_EQ ~TRUE~ BEGIN
+    LPF ~S!GET_ALL_RESOURCES_FOR_GIVEN_OPCODE_OF_SPELL~
+      INT_VAR
+        match_opcode = 67
+      RET_ARRAY all_resources_spells = all_resources
+    END
+    SPRINT counts_to_summon_limit ~FALSE~
+    PHP_EACH all_resources_spells AS cre_file_name => _ BEGIN
+      PATCH_IF VARIABLE_IS_SET $summoned_creatures("%cre_file_name%") BEGIN
+        SPRINT counts_to_summon_limit ~TRUE~
+        LPF ~CLONE_EFFECT~ // The easiest way to add protection from the spell right above the summoning effect
+          INT_VAR
+            match_opcode = 67
+            duration = 0
+            opcode = 318
+            parameter1 = 1
+            parameter2 = %allies_cant_summon_more%
+            special = RESOLVE_STR_REF (@6000)
+          STR_VAR
+            match_resource = EVAL ~%cre_file_name%~
+            resource = EVAL ~%SOURCE_RES%~
+        END
+      END
+    END
+    PATCH_IF VARIABLE_IS_SET $summoned_creatures("%cre_file_name%") AND "%counts_to_summon_limit%" STR_EQ ~TRUE~ BEGIN
+      LPF ~CLONE_EFFECT~ // without Eeex that's the only way to properly inform players that the limit of summons had been reached
+        INT_VAR
+          match_opcode = 318
+          opcode = 326
+          match_parameter2 = %allies_cant_summon_more%
+        STR_VAR
+          match_resource = EVAL ~%SOURCE_RES%~
+          resource = ~s!sumlim~
+      END
+    END
+  END
+  BUT_ONLY

@@ -6,6 +6,8 @@ README ~IATweaks/readme/index.html~
 LANGUAGE "English"
   ~IATweaks/lang/English/~
   ~IATweaks/lang/English/setup.tra~
+  ~IATweaks/lang/English/spells.tra~
+  ~IATweaks/lang/English/items.tra~
 
 /// Reputation patch ///
 
@@ -207,3 +209,12 @@ GROUP @3
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~ImprovedAnvil/Setup-ImprovedAnvil.tp2~ ~0~) @0
 
 INCLUDE "IATweaks/lib/components/bulian/toughest_encounters_ch23.tph"
+
+/// Rework summon limit ///
+
+BEGIN @5001 DESIGNATED 400
+GROUP @5000
+
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~ImprovedAnvil/Setup-ImprovedAnvil.tp2~ ~0~) @0
+
+INCLUDE "IATweaks/lib/components/IA_rebalancing/summon_limit.tph"

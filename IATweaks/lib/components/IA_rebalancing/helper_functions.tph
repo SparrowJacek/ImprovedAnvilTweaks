@@ -1,0 +1,185 @@
+DEFINE_PATCH_FUNCTION ~S!ITMSPL_USES_OPCODE~
+  INT_VAR
+    check_globals  = 1      // check global effects: 0 for no, 1 for yes
+    check_headers  = 1      // check effects on headers; 0 for no, 1 for yes
+    match_opcode   = 177    // opcode at 0x00 to match, use -1 for all
+    header_length = 0x38    // 0x38 for item, 0x28 for spell
+  RET
+    is_found
+    opcode_resource
+BEGIN
+  SPRINT is_found "FALSE"
+  SPRINT opcode_resource ""
+  READ_LONG 0x6a fx_off
+  PATCH_IF (check_globals = 1) BEGIN
+    READ_SHORT 0x70 fx_num
+    FOR (index = 0 ; index < fx_num ; ++index) BEGIN
+      READ_SHORT (fx_off +        (index * 0x30)) opcode_file
+      READ_ASCII (fx_off + 0x14 + (index * 0x30)) res_name
+      PATCH_IF (match_opcode = opcode_file) BEGIN
+        ///PATCH_PRINT ~File uses opcode %match_opcode% with res %res_name% in global effects~///
+        SPRINT is_found "TRUE"
+        SPRINT opcode_resource "%res_name%"
+      END
+    END
+  END
+  PATCH_IF (check_headers = 1) BEGIN
+    READ_LONG   0x64 "abil_off"
+    READ_SHORT  0x68 "abil_num"
+    SET loop_start = 0
+    SET loop_end = abil_num
+    FOR (index2 = loop_start ; index2 < loop_end ; ++index2) BEGIN // looks through headers
+      READ_BYTE (abil_off +        (index2 * header_length)) abil_type
+      READ_SHORT (abil_off + 0x1e + (index2 * header_length)) abil_fx_num
+      READ_SHORT (abil_off + 0x20 + (index2 * header_length)) abil_fx_idx
+      FOR (index = 0 ; index < abil_fx_num ; index = index + 1) BEGIN
+        READ_SHORT (fx_off +        ((abil_fx_idx + index) * 0x30)) opcode_file
+        READ_ASCII (fx_off + 0x14 + ((index + abil_fx_idx) * 0x30)) res_name
+        PATCH_IF (match_opcode = opcode_file) BEGIN
+          SPRINT is_found "TRUE"
+          SPRINT opcode_resource "%res_name%"
+          index=abil_fx_num
+        END
+      END
+    END
+  END
+END
+
+DEFINE_PATCH_FUNCTION ~S!SPELL_USES_OPCODE~
+  INT_VAR
+    check_globals  = 1      // check global effects: 0 for no, 1 for yes
+    check_headers  = 1      // check effects on headers; 0 for no, 1 for yes
+    match_opcode   = 177    // opcode at 0x00 to match, use -1 for all
+  RET
+    is_found
+    opcode_resource
+BEGIN
+  LPF ~S!ITMSPL_USES_OPCODE~
+    INT_VAR
+      check_globals  = 1
+      check_headers  = 1
+      match_opcode   = %match_opcode%
+      header_length = 0x28
+    RET is_found opcode_resource
+  END
+END
+
+DEFINE_PATCH_FUNCTION ~S!ITEM_USES_OPCODE~
+  INT_VAR
+    check_globals  = 1      // check global effects: 0 for no, 1 for yes
+    check_headers  = 1      // check effects on headers; 0 for no, 1 for yes
+    match_opcode   = 177    // opcode at 0x00 to match, use -1 for all
+    header_length = 0x38    // 0x38 for item, 0x28 for spell
+  RET
+    is_found
+    opcode_resource
+BEGIN
+  LPF ~S!ITMSPL_USES_OPCODE~
+    INT_VAR
+      check_globals  = 1
+      check_headers  = 1
+      match_opcode   = %match_opcode%
+      header_length = 0x38
+    RET is_found opcode_resource
+  END
+END
+
+DEFINE_ACTION_FUNCTION ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~~
+    stat                  = ~~
+    value                 = ~~
+    relation              = ~~
+  RET
+    new_line_number
+BEGIN
+  COPY_EXISTING ~splprot.2da~ ~override/splprot.2da~
+    COUNT_2DA_COLS ~colcount~
+    COUNT_2DA_ROWS ~colcount~ ~rowcount~
+
+    SPRINT new_line_number ~%rowcount%~
+    INSERT_2DA_ROW ~rowcount~ ~colcount~ EVAL ~%condition_description% %stat% %value% %relation%~
+    PRETTY_PRINT_2DA
+  OUTER_SPRINT new_line_number ~%rowcount%~
+END
+
+DEFINE_PATCH_FUNCTION ~S!GET_ALL_RESOURCES_FOR_GIVEN_OPCODE_OF_SPLITM~
+  INT_VAR
+    check_globals  = 1      // check global effects: 0 for no, 1 for yes
+    check_headers  = 1      // check effects on headers; 0 for no, 1 for yes
+    match_opcode   = 177    // opcode at 0x00 to match, use -1 for all
+    header_length = 0x38    // 0x38 for item, 0x28 for spell
+  RET_ARRAY
+    all_resources
+BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY all_resources BEGIN
+  END
+  READ_LONG 0x6a fx_off
+  PATCH_IF (check_globals = 1) BEGIN
+    READ_SHORT 0x70 fx_num
+    FOR (index = 0 ; index < fx_num ; ++index) BEGIN
+      READ_SHORT (fx_off +        (index * 0x30)) opcode_file
+      READ_ASCII (fx_off + 0x14 + (index * 0x30)) res_name
+      PATCH_IF (match_opcode = opcode_file) AND NOT VARIABLE_IS_SET $all_resources("%res_name%") BEGIN
+        SPRINT $all_resources("%res_name%") "set"
+      END
+    END
+  END
+  PATCH_IF (check_headers = 1) BEGIN
+    READ_LONG   0x64 "abil_off"
+    READ_SHORT  0x68 "abil_num"
+    SET loop_start = 0
+    SET loop_end = abil_num
+    FOR (index2 = loop_start ; index2 < loop_end ; ++index2) BEGIN // looks through headers
+      READ_BYTE (abil_off +        (index2 * header_length)) abil_type
+      READ_SHORT (abil_off + 0x1e + (index2 * header_length)) abil_fx_num
+      READ_SHORT (abil_off + 0x20 + (index2 * header_length)) abil_fx_idx
+      FOR (index = 0 ; index < abil_fx_num ; index = index + 1) BEGIN
+        READ_SHORT (fx_off +        ((abil_fx_idx + index) * 0x30)) opcode_file
+        READ_ASCII (fx_off + 0x14 + ((index + abil_fx_idx) * 0x30)) res_name
+        PATCH_IF (~%match_opcode%~ = ~%opcode_file%~) AND NOT VARIABLE_IS_SET $all_resources("%res_name%") BEGIN
+          TO_UPPER res_name
+          SPRINT $all_resources("%res_name%") "set"
+        END
+      END
+    END
+  END
+END
+
+DEFINE_PATCH_FUNCTION ~S!GET_ALL_RESOURCES_FOR_GIVEN_OPCODE_OF_ITEM~
+  INT_VAR
+    check_globals  = 1      // check global effects: 0 for no, 1 for yes
+    check_headers  = 1      // check effects on headers; 0 for no, 1 for yes
+    match_opcode   = 177    // opcode at 0x00 to match, use -1 for all
+  RET_ARRAY
+    all_resources
+BEGIN
+  LPF ~S!GET_ALL_RESOURCES_FOR_GIVEN_OPCODE_OF_SPLITM~
+    INT_VAR
+      check_globals  = 1
+      check_headers  = 1
+      match_opcode   = %match_opcode%
+      header_length = 0x38
+    RET_ARRAY 
+      all_resources
+  END
+END
+
+DEFINE_PATCH_FUNCTION ~S!GET_ALL_RESOURCES_FOR_GIVEN_OPCODE_OF_SPELL~
+  INT_VAR
+    check_globals  = 1      // check global effects: 0 for no, 1 for yes
+    check_headers  = 1      // check effects on headers; 0 for no, 1 for yes
+    match_opcode   = 177    // opcode at 0x00 to match, use -1 for all
+  RET_ARRAY
+    all_resources
+BEGIN
+  LPF ~S!GET_ALL_RESOURCES_FOR_GIVEN_OPCODE_OF_SPLITM~
+    INT_VAR
+      check_globals  = 1
+      check_headers  = 1
+      match_opcode   = %match_opcode%
+      header_length = 0x28
+    RET_ARRAY
+      all_resources
+  END
+END

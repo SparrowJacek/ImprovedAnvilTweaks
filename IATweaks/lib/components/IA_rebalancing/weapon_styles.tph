@@ -1,0 +1,62 @@
+
+SILENT
+
+// change weapon style bonus descriptions
+COPY_EXISTING ~weapprof.2da~  ~override/weapprof.2da~
+  COUNT_2DA_COLS ~colcount~
+  // change Two-handed Weapon description
+  SET_2DA_ENTRY 28 3 ~colcount~ RESOLVE_STR_REF (@5005)
+  // change Sword and Shield description
+  SET_2DA_ENTRY 29 3 ~colcount~ RESOLVE_STR_REF (@5003)
+  // change Single Weapon description
+  SET_2DA_ENTRY 30 3 ~colcount~ RESOLVE_STR_REF (@5004)
+  PRETTY_PRINT_2DA
+
+// enable ** in Sword and Shield for Cleric and all kits and *** for Tyr
+COPY_EXISTING ~weapprof.2da~  ~override/weapprof.2da~
+  COUNT_2DA_COLS ~colcount~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 6 ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 13 ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 17 ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 18 ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 20 ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 48 ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 49 ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 50 ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 62 ~2~ // Tyr
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 63 ~2~
+  SET_2DA_ENTRIES_NOW ~_#_#_#weapprof~ ~colcount~
+  PRETTY_PRINT_2DA
+
+COPY_EXISTING ~stylbonu.2da~  ~override/stylbonu.2da~
+  COUNT_2DA_COLS ~colcount~
+  // give all bonuses to Single Weapon Style
+  SET_2DA_ENTRY 5 1 ~colcount~ ~1~
+  SET_2DA_ENTRY 5 3 ~colcount~ ~-1~
+  SET_2DA_ENTRY 5 7 ~colcount~ ~-1~
+  SET_2DA_ENTRY 5 8 ~colcount~ ~1~
+  SET_2DA_ENTRY 9 1 ~colcount~ ~2~
+  SET_2DA_ENTRY 9 3 ~colcount~ ~-2~
+  SET_2DA_ENTRY 9 7 ~colcount~ ~-2~
+  SET_2DA_ENTRY 9 8 ~colcount~ ~2~
+  // give additional AC to Sword and Shield
+  SET_2DA_ENTRY 6 5 ~colcount~ ~-1~
+  SET_2DA_ENTRY 6 6 ~colcount~ ~-1~
+  SET_2DA_ENTRY 10 5 ~colcount~ ~-2~
+  SET_2DA_ENTRY 10 6 ~colcount~ ~-2~
+  // give additional damage to ** in Twohanded Weapon
+  SET_2DA_ENTRY 8 1 ~colcount~ ~3~
+  PRETTY_PRINT_2DA
+
+// add bonuses for *** in Sword and Shield
+COPY_EXISTING ~stylbonu.2da~  ~override/stylbonu.2da~
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SWORDANDSHIELD-3 0                0                0                0                -3               -3               0                0~
+  PRETTY_PRINT_2DA
+
+// update class description for Clerics
+COPY_EXISTING ~clastext.2da~ ~override/clastext.2da~
+  COUNT_2DA_COLS ~colcount~
+  // Pure Cleric class
+  SET_2DA_ENTRY 23 4 ~colcount~ RESOLVE_STR_REF (@5006)

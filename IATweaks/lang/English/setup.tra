@@ -41,3 +41,43 @@
 
 @5000 = ~IA rebalancing~
 @5001 = ~Rework summoning limit to not block casting spells like Wish if you have reached summon limit~
+@5002 = ~Rework weapon style bonuses, improve sword and shield, 2h weapon and single weapon styles~
+@5003 = ~SWORD AND SHIELD: Anyone can pick up a shield and get its basic protection bonuses, but by spending slots on this fighting style, an adventurer can maximize the benefits received.
+
+Proficient (1 slot): The wielder gets a -1 bonus to AC and additional -1 against missile weapons.
+
+Specialized (2 slots): The wielder gets a -2 bonus to AC and additional -2 against missile weapons.
+
+Master (3 slots): The wielder gets a -3 bonus to AC and additional -3 against missile weapons.
+
+NOTE: Despite the name of this style, any one-handed melee weapon in combination with a shield will receive the aforementioned bonuses.~
+
+@5004 = ~SINGLE-WEAPON: This fighting style is for characters who do not wish to use a shield but want some bonus when using a one-handed melee weapon.
+
+Proficient (1 slot): The wielder gets a +1 bonus to their thac0 and damage rolls, -1 bonus to AC, -1 bonus to Speed Factor and inflicts critical damage on an attack roll of 19 or 20.
+
+Specialized (2 slots): The wielder gets a +2 bonus to their thac0 and damage, -2 bonus to AC, -2 bonus to Speed Factor and inflicts critical damage on an attack roll of 18, 19 or 20.~
+
+@5005 = ~TWO-HANDED: This fighting style allows the character to use a two-handed melee weapon and receive special bonuses.
+
+Proficient (1 slot): The wielder gets a +1 bonus to damage rolls, a -2 bonus to Speed Factor, and the ability to score critical hits on a roll of 19 or 20 (instead of just 20) when using a two-handed weapon.
+
+Specialized (2 slots): The wielder gets a further +2 to damage rolls and a -2 bonus to Speed Factor.
+
+NOTE: Magical two-handed weapons are more powerful than their single-handed counterparts. This counterbalances the fact that you can't use a second weapon or shield when using a two-handed weapon. The Holy Avenger and Vorpal Sword are examples of weapons that are two-handed.~
+
+@5006 = ~CLERIC: The Cleric is a generic priest (of any mythos) who tends to the spiritual needs of a community. Though <PRO_HESHE> is both protector and healer, <PRO_HESHE> is not purely defensive—when evil threatens, the Cleric is well suited to seek it out on its own ground and destroy it. The opposite is true of evil Clerics as well, and there are also many variations in between.
+
+CLASS FEATURES:
+
+– May wear helmets.
+– May wear any armor.
+– May only use non-bladed, non-piercing weapons (war hammer, club, flail, mace, quarterstaff, sling).
+– May only become Proficient (one slot) in any weapon class.
+– May become Specialized (two slots) in Sword and Shield fighting style.
+– May only become Proficient (one slot) in any other fighting style.
+– May Turn Undead.
+– May cast priest spells.
+– Hit Die: d8
+
+Prime Requisites For Dual-Classing: Wisdom~

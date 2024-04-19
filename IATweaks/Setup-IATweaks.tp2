@@ -218,3 +218,12 @@ GROUP @5000
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~ImprovedAnvil/Setup-ImprovedAnvil.tp2~ ~0~) @0
 
 INCLUDE "IATweaks/lib/components/IA_rebalancing/summon_limit.tph"
+
+/// Rework weapon style bonuses ///
+
+BEGIN @5002 DESIGNATED 401
+GROUP @5000
+
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~ImprovedAnvil/Setup-ImprovedAnvil.tp2~ ~0~) @0
+
+INCLUDE "IATweaks/lib/components/IA_rebalancing/weapon_styles.tph"

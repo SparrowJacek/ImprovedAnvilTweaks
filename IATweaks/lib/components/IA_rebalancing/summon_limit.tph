@@ -31,7 +31,7 @@ LAF ~S!ADD_SPLPROT_2DA_ENTRY~
     relation              = ~2~
   RET
     less_than_5_summons_row = new_line_number
-  END
+END
 
 LAF ~S!ADD_SPLPROT_2DA_ENTRY~
   STR_VAR
@@ -41,7 +41,7 @@ LAF ~S!ADD_SPLPROT_2DA_ENTRY~
     relation              = ~3~
   RET
     not_allies_row = new_line_number
-  END
+END
 
 LAF ~S!ADD_SPLPROT_2DA_ENTRY~
   STR_VAR
@@ -51,7 +51,7 @@ LAF ~S!ADD_SPLPROT_2DA_ENTRY~
     relation              = ~%not_allies_row%~
   RET
     allies_cant_summon_more = new_line_number
-  END
+END
 
 /// Change Animal/Monster Summoning spells to use opcode 67 instead of 127 ///
 

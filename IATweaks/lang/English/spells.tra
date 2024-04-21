@@ -8,3 +8,64 @@ Area of Effect: Special
 Saving Throw: None
 
 Drawing power from the environment, this spell summons 2 16HD elementals randomly chosen from earth, air or fire. The elementals stay for 10 rounds and will obey the caster as long as they remain summoned.~
+
+@6002 = ~Defensive Harmony
+(Enchantment/Charm)
+
+Level: 4
+Sphere: Law
+Range: 0
+Duration: 6 rounds
+Casting Time: 1
+Area of Effect: 10-ft. radius
+Saving Throw: None
+
+Defensive Harmony grants affected creatures a defensive bonus by bestowing an enchanted coordination on their attacks and defenses. This allows a group of creatures to act as a single unit for a single battle or encounter. The effect is always centered on the caster, but affects all allies within a 10-ft. radius. Every 6 seconds the caster sends a wave of protective energy, which grants a -2 bonus to AC for 6 seconds to all affected. There are 6 waves, with the last one being sent exactly 30 seconds after the spell is finished casting. The bonuses granted by each wave of energy are considered as combat protections and can be dispelled, however the original spell is undispellable.
+
+Clerics who decided to devote their lives to a single deity get additional benefits from this spell. With every wave all affected party members gain additional physical resistance for 6 seconds (non cumulative) and the caster gets the same bonus for each party member affected (cumulative). This bonus is equal to 2% from level 12 and increases to 3 and 4, at levels 18 and 24 respectively.~
+
+@6003 = ~Weaken Undead~
+
+@6004 = ~Weaken Undead
+(Abjuration)
+
+Level: 5
+Range: 0 
+Duration: 6 rounds
+Casting Time: 5 
+Area of Effect: The caster
+Saving Throw: None
+
+This powerful spell creates waves of positive energy that sweep outward from the caster. These waves disrupt any undead that attempt to attack the caster, reducing the physical damage they deal by 10% and decreasing their chance for critical hit by 5% for 6 seconds. There is one wave per round for the duration of the spell, which renews the effects, but does not stack with itself. All undead are affected with no Saving Throw, this spell bypasses Magic Resistance.~
+
+@6005 = ~Protective Chant~
+
+@6006 = ~Protective Chant
+(Abjuration)
+
+Level: 5
+Range: 35 ft.
+Duration: 1 round
+Casting Time: 1
+Area of Effect: 15-ft. radius
+Saving Throw: None
+
+This chant provides means of protection against powerful magics. The caster utters only a few words and directs the spell to any point chosen by <PRO_HIMHER>. Every ally in a 15-ft circle receives a short lasting boost to their Magic Damage Resistance. High level priests can make their whole party survive even the dreaded Abi-Dalzim's Horrid Wilting without sustaining any serious damage.
+
+Initially the spell increases Magic Damage Resistance of all affected by 40%, however at 20'th level of the caster this value is increased to 60%~
+
+@6007 = ~Purify Aura~
+
+@6008 = ~Purify Aura
+(Generalist)
+
+Level: Quest
+Sphere: None
+Duration: Instant
+Casting Time: 0
+Area of Effect: Caster
+Saving Throw: None 
+
+Experienced Clerics can send a vast amount of energy from the Positive Energy Plane as a single impulse emanating from their bodies and minds. By doing so, they can instantly cleanse their aura at any moment they desire. This however is very taxing to the caster, thus only the most powerful Priests can use this skill in a rapid succession. 
+
+The ability is instantaneous but can only be used once every 3 rounds, this time is reduced to 2 rounds and 1 round at levels 20 and 25 and finally at level 30 it has no cooldown.~

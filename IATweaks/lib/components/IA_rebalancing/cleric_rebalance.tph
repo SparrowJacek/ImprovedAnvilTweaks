@@ -1,0 +1,318 @@
+SILENT
+
+INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
+
+// Enable ** in Sword and Shield for Cleric and all kits and *** for Tyr
+COPY_EXISTING ~weapprof.2da~  ~override/weapprof.2da~
+  COUNT_2DA_COLS ~colcount~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 6 ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 13 ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 17 ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 18 ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 20 ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 48 ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 49 ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 50 ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 62 ~2~ // Tyr
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 63 ~2~
+  SET_2DA_ENTRIES_NOW ~_#_#_#weapprof~ ~colcount~
+  PRETTY_PRINT_2DA
+
+// Update class description for Clerics
+COPY_EXISTING ~clastext.2da~ ~override/clastext.2da~
+  COUNT_2DA_COLS ~colcount~
+  // Pure Cleric class
+  SET_2DA_ENTRY 23 4 ~colcount~ RESOLVE_STR_REF (@5006)
+
+// add bonuses for *** in Sword and Shield
+COPY_EXISTING ~stylbonu.2da~  ~override/stylbonu.2da~
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SWORDANDSHIELD-3 0                0                0                0                -3               -3               0                0~
+  PRETTY_PRINT_2DA
+
+// Add new projectiles
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!defha1.pro~
+ADD_PROJECTILE ~IATweaks\resources\pro\s!defha2.pro~
+
+// Add condition for checking specific kit in splprot.2da
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~KIT=n~
+    stat                  = ~152~
+    value                 = ~-1~
+    relation              = ~1~
+  RET
+    kit_equals_row = new_line_number
+END
+
+// Rework Defensive Harmony
+
+COPY_EXISTING ~sppr406.spl~ ~override/sppr406d.spl~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      projectile = %s!defha1% // New projectile with smaller area of effect
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 321 // Shaman aura cleanse
+    STR_VAR
+      match_resource = ~SPPRI25~
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 215 // Play visual effect
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 174 // Play sound
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 321
+    STR_VAR
+      match_resource = ~sppr406~
+      resource = ~sppr406d~
+  END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      duration_high = 6
+  END
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 50
+      target = 2
+      power = 4
+      parameter1 = ~-675892480~
+      parameter2 = 1310720
+      resist_dispel = 3
+  END
+
+COPY ~IATweaks\resources\spl\sppr406e.spl~ ~override\sppr406e.spl~ // Cleric kit only bonus spell
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      projectile = %s!defha2% // New projectile with smaller area of effect
+  END
+
+COPY ~IATweaks\resources\spl\s!defhar.spl~ ~override\sppr406.spl~ // New Defensive Harmony spell
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 146
+    STR_VAR
+      resource = ~sppr406d~
+  END
+  PATCH_FOR_EACH kit_name IN ~OHTYR~ ~GODTALOS~ ~GODHELM~ ~GODLATHANDER~ ~OHTEMPUS~ BEGIN
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 146
+        opcode = 326
+        parameter1 = IDS_OF_SYMBOL (kit ~%kit_name%~)
+        parameter2 = kit_equals_row
+      STR_VAR
+        resource = ~sppr406e~
+        insert = ~below~
+    END
+  END
+
+
+// Weaken Undead
+
+COPY ~IATweaks\resources\eff\S!CRTHDC.EFF~ ~override~
+COPY ~IATweaks\resources\eff\S!CRDMDC.EFF~ ~override~
+COPY ~IATweaks\resources\eff\S!MIDMDC.EFF~ ~override~
+COPY ~IATweaks\resources\eff\S!PIDMDC.EFF~ ~override~
+COPY ~IATweaks\resources\eff\S!SLDMDC.EFF~ ~override~
+
+COPY_EXISTING ~SPPR515.spl~ ~override/SPPR515.spl~
+  SAY NAME1 @6003
+  SAY UNIDENTIFIED_DESC @6004
+
+  // Update duration for all effects
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      check_globals = 0
+      match_opcode = ~-1~
+      duration = 36
+  END
+
+  // Update icon effect to bypass MR
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      check_globals = 0
+      match_opcode = 142
+      resist_dispel = 2
+  END
+
+  // Remove original "cast spell on condition", since it's affected by slow/haste
+  LPF ~DELETE_SPELL_EFFECT~
+    INT_VAR
+      opcode_to_delete = 232
+  END
+
+  // Make the spell apply its effects every 6s like True Sight
+  PATCH_FOR_EACH ~weaken_wave~ IN "0" "1" "2" "3" "4" "5" "6" BEGIN
+    LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~ 
+      INT_VAR
+        opcode = 146
+        target = 1
+        parameter2 = 1
+        resist_dispel = 2
+        timing = 3
+        duration = 6 * %weaken_wave%
+        power = 5
+      STR_VAR
+        resource = ~SPPR515D~
+    END
+  END
+
+// Weaken Undead subspell
+COPY_EXISTING ~SPPR515D.spl~ ~override/SPPR515D.spl~
+  SAY NAME1 @6003
+  SAY UNIDENTIFIED_DESC @6004
+
+  // Update duration for all effects
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      check_globals = 0
+      match_opcode = ~-1~
+      duration = 38
+  END
+
+  // Remove previous instance of this spell to prevent stacking
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 321
+      target = 2
+      insert_point = 0
+      resist_dispel = 3
+    STR_VAR
+      resource = ~SPPR515D~
+  END
+
+  // Delete Wing Buffet effect
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      check_globals = 0
+      match_opcode = 177
+    STR_VAR
+      match_resource = ~REPDEAD~
+  END
+
+  // Modify visual effect
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      check_globals = 0
+      match_opcode = 177
+      duration = 6
+      timing = 0
+      resist_dispel = 3
+    STR_VAR
+      match_resource = ~REPVISU~
+  END
+
+  // Modify sound effect
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      check_globals = 0
+      match_opcode = 177
+      resist_dispel = 3
+      timing = 0
+    STR_VAR
+      match_resource = ~COLDHIT~
+  END
+
+  // Add weakening effects
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 177
+    STR_VAR
+      match_resource = ~COLDHIT~
+      resource = ~S!CRTHDC~
+  END
+
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 177
+    STR_VAR
+      match_resource = ~COLDHIT~
+      resource = ~S!SLDMDC~
+  END
+
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 177
+    STR_VAR
+      match_resource = ~COLDHIT~
+      resource = ~S!CRDMDC~
+  END
+
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 177
+    STR_VAR
+      match_resource = ~COLDHIT~
+      resource = ~S!PIDMDC~
+  END  
+
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 177
+    STR_VAR
+      match_resource = ~COLDHIT~
+      resource = ~S!MIDMDC~
+  END
+
+// Remove immunity to Weaken Undead from enemies
+
+ACTION_FOR_EACH item_with_515_immunity IN ~S!PATRIC.ITM~ ~S!SKEL.ITM~ BEGIN
+  COPY_EXISTING ~%item_with_515_immunity%~ ~override~
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = 206
+      STR_VAR
+        match_resource = ~sppr515d~
+    END
+END
+
+// Protective Chant
+
+COPY ~IATweaks\resources\spl\sppr520.spl~ ~override~
+  SAY NAME1 @6005
+  SAY UNIDENTIFIED_DESC @6006
+
+// BAMs for the file
+
+COPY ~IATweaks\resources\bam\sppr520b.bam~ ~override~
+COPY ~IATweaks\resources\bam\sppr520c.bam~ ~override~
+COPY ~IATweaks\resources\bam\sppr520d.bam~ ~override~
+
+// Add records for the new portrait icons
+COPY_EXISTING ~statdesc.2da~ ~override/statdesc.2da~
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+
+  INSERT_2DA_ROW %rowcount% ~colcount~ ~%rowcount%         0         SPPR520D~
+  SET_2DA_ENTRY %rowcount% 1 ~colcount~ RESOLVE_STR_REF (@6005)
+  PRETTY_PRINT_2DA
+
+// Add custom spells to a list of exclusion from automatically learnable spells
+COPY_EXISTING ~hidespl.2da~ ~override/hidespl.2da~
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  // INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR445 1 0 0~
+  // INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR446 1 0 0~
+  // INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR447 1 0 0~
+  // INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR448 1 0 0~
+  // INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR449 1 0 0~
+  INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR520 1 0 0~
+
+ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR02.2da~ ~CLABPR03.2da~ ~CLABPR04.2da~ ~OHTYR.2da~ ~OHTEMPUS.2da~ BEGIN
+  LAF ~S!ADD_CLAB_ROW~
+    STR_VAR
+      filename = ~%cleric_kit_clab%~
+      row_desc = ~PROTECTIVE_CHANT~
+      level9 = ~GA_SPPR520~
+  END
+END

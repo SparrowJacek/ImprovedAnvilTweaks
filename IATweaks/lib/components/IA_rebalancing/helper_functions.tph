@@ -183,3 +183,64 @@ BEGIN
       all_resources
   END
 END
+
+DEFINE_ACTION_FUNCTION ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~~
+    row_desc = ~~
+    level1   = ~****~
+    level2   = ~****~
+    level3   = ~****~
+    level4   = ~****~
+    level5   = ~****~
+    level6   = ~****~
+    level7   = ~****~
+    level8   = ~****~
+    level9   = ~****~
+    level10  = ~****~
+    level11  = ~****~
+    level12  = ~****~
+    level13  = ~****~
+    level14  = ~****~
+    level15  = ~****~
+    level16  = ~****~
+    level17  = ~****~
+    level18  = ~****~
+    level19  = ~****~
+    level20  = ~****~
+    level21  = ~****~
+    level22  = ~****~
+    level23  = ~****~
+    level24  = ~****~
+    level25  = ~****~
+    level26  = ~****~
+    level27  = ~****~
+    level28  = ~****~
+    level29  = ~****~
+    level30  = ~****~
+    level31  = ~****~
+    level32  = ~****~
+    level33  = ~****~
+    level34  = ~****~
+    level35  = ~****~
+    level36  = ~****~
+    level37  = ~****~
+    level38  = ~****~
+    level39  = ~****~
+    level40  = ~****~
+BEGIN
+  COPY_EXISTING ~%filename%~ ~override~
+    COUNT_2DA_COLS ~colcount~
+    COUNT_2DA_ROWS ~colcount~ ~rowcount~
+    PATCH_IF ~%row_desc%~ STR_EQ ~~ BEGIN
+      new_row_value = %rowcount% + 1
+      SPRINT row_description ~ABILITY%new_row_value%~
+    END
+    ELSE BEGIN
+      SPRINT row_description ~%row_desc%~
+    END
+    INSERT_2DA_ROW ~rowcount~ ~colcount~ ~%row_description% %level1%  %level2%  %level3%  %level4%  %level5%  %level6%  %level7%  %level8%  %level9%  %level10%  %level11%  %level12%  %level13%  %level14%  %level15%  %level16%  %level17%  %level18%  %level19%  %level20%  %level21%  %level22%  %level23%  %level24%  %level25%  %level26%  %level27%  %level28%  %level29%  %level30%  %level31%  %level32%  %level33%  %level34%  %level35%  %level36%  %level37%  %level38%  %level39%  %level40%~
+    PRETTY_PRINT_2DA
+  BUT_ONLY
+  IF_EXISTS
+END

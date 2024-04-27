@@ -2,6 +2,30 @@ SILENT
 
 INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
 
+// Make all Cleric kits use unique files for their HLAs
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY hla_row_to_abbrev_mapping BEGIN
+  45=>"Cl1"
+  46=>"Cl2"
+  47=>"Cl3"
+  60=>"Cl4"
+  61=>"Cl5"
+END
+
+COPY_EXISTING ~luabbr.2da~ ~override~
+  COUNT_2DA_COLS ~colcount~
+  PHP_EACH hla_row_to_abbrev_mapping AS row => abbreviation BEGIN
+    SET_2DA_ENTRY_LATER ~_#_#_#luabbr~ row 1 ~%abbreviation%~
+  END
+  SET_2DA_ENTRIES_NOW ~_#_#_#luabbr~ ~colcount~
+  PRETTY_PRINT_2DA
+
+// Make copies of the original Cleric HLA table
+
+ACTION_PHP_EACH hla_row_to_abbrev_mapping AS _ => abbreviation BEGIN
+  COPY_EXISTING ~lucl0.2da~ ~override/lu%abbreviation%.2da~
+END
+
 // Enable ** in Sword and Shield for Cleric and all kits and *** for Tyr
 COPY_EXISTING ~weapprof.2da~  ~override/weapprof.2da~
   COUNT_2DA_COLS ~colcount~
@@ -116,7 +140,6 @@ COPY ~IATweaks\resources\spl\s!defhar.spl~ ~override\sppr406.spl~ // New Defensi
     END
   END
 
-
 // Weaken Undead
 
 COPY ~IATweaks\resources\eff\S!CRTHDC.EFF~ ~override~
@@ -153,7 +176,7 @@ COPY_EXISTING ~SPPR515.spl~ ~override/SPPR515.spl~
 
   // Make the spell apply its effects every 6s like True Sight
   PATCH_FOR_EACH ~weaken_wave~ IN "0" "1" "2" "3" "4" "5" "6" BEGIN
-    LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~ 
+    LPF ~ADD_SPELL_EFFECT~ 
       INT_VAR
         opcode = 146
         target = 1
@@ -278,24 +301,32 @@ END
 
 // Protective Chant
 
+// Add records for the new portrait icons
+OUTER_SET protective_chant_desc_str_ref = RESOLVE_STR_REF (@6005)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %protective_chant_desc_str_ref%
+  STR_VAR
+    bam_file = ~SPPR520D~
+  RET
+    protective_chant_icon_id = portrait_icon_id
+END
+// Main spell file
+
 COPY ~IATweaks\resources\spl\sppr520.spl~ ~override~
   SAY NAME1 @6005
   SAY UNIDENTIFIED_DESC @6006
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %protective_chant_icon_id%
+  END
 
 // BAMs for the file
 
 COPY ~IATweaks\resources\bam\sppr520b.bam~ ~override~
 COPY ~IATweaks\resources\bam\sppr520c.bam~ ~override~
 COPY ~IATweaks\resources\bam\sppr520d.bam~ ~override~
-
-// Add records for the new portrait icons
-COPY_EXISTING ~statdesc.2da~ ~override/statdesc.2da~
-  COUNT_2DA_COLS ~colcount~
-  COUNT_2DA_ROWS ~colcount~ ~rowcount~
-
-  INSERT_2DA_ROW %rowcount% ~colcount~ ~%rowcount%         0         SPPR520D~
-  SET_2DA_ENTRY %rowcount% 1 ~colcount~ RESOLVE_STR_REF (@6005)
-  PRETTY_PRINT_2DA
 
 // Add custom spells to a list of exclusion from automatically learnable spells
 COPY_EXISTING ~hidespl.2da~ ~override/hidespl.2da~
@@ -316,3 +347,660 @@ ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR02.2da~ ~CLABPR03.2da~ ~CLABPR04.2da~ 
       level9 = ~GA_SPPR520~
   END
 END
+
+// Purify Aura
+
+COPY ~IATweaks\resources\spl\spcl943.spl~ ~override~
+  SAY NAME1 @6007
+  SAY UNIDENTIFIED_DESC @6008
+
+// BAMs for the file
+
+COPY ~IATweaks\resources\bam\spcl943b.bam~ ~override~
+COPY ~IATweaks\resources\bam\spcl943c.bam~ ~override~
+
+// Add HLA entries
+
+ACTION_FOR_EACH cleric_kit_hla_file IN ~lucl1.2da~ ~lucl2.2da~ ~lucl3.2da~ ~lucl4.2da~ ~lucl5.2da~ BEGIN
+  LAF ~S!ADD_HLA_ROW~
+    STR_VAR
+      filename = ~%cleric_kit_hla_file%~
+      row_desc = ~PURIFY_AURA~
+      ability = ~GA_SPCL943~
+      num_allowed = ~3~
+  END
+END
+
+// Add removal of Aura Cleansing spell from Cleric spells
+
+// patch in removal of shaman's innate aura cleansing //
+
+COPY_EXISTING_REGEXP GLOB ~SPPR[1-7][0-5][0-9]+\.spl~ ~override~
+  READ_BYTE 0x21 exc_flags
+
+  PATCH_IF (NOT (exc_flags BAND BIT7) = 0) BEGIN
+    LPF ADD_SPELL_EFFECT
+      INT_VAR
+        opcode = 321
+        target = 1
+        insert_point = 0
+      STR_VAR
+        resource = ~SPPRI25~
+    END
+  END
+
+  BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~SPWI[1-9][0-9][0-9]+\.spl~ ~override~
+                          ~SPDR201.spl~ ~override~
+                          ~SPDR603.spl~ ~override~
+                          ~SPDR702.spl~ ~override~
+                          ~SPDWD02.spl~ ~override~
+                          ~SPCL121.spl~ ~override~
+                          ~SPCL144.spl~ ~override~
+                          ~SPCL152.spl~ ~override~
+                          ~SPCL311.spl~ ~override~
+                          ~SPCL321.spl~ ~override~
+                          ~SPCL342.spl~ ~override~
+                          ~SPCL412.spl~ ~override~
+                          ~SPCL414.spl~ ~override~
+                          ~SPCL417.spl~ ~override~
+                          ~SPCL423.spl~ ~override~
+                          ~SPCL52[12]+\.spl~ ~override~
+                          ~SPCL61[1-3]+\.spl~ ~override~
+                          ~SPCL62[1-5]+\.spl~ ~override~
+                          ~SPCL63[2-4]+\.spl~ ~override~
+                          ~SPCL64[134]+\.spl~ ~override~
+                          ~SPCL72[12]+\.spl~ ~override~
+                          ~SPCL73[12]+\.spl~ ~override~
+                          ~SPCL74[12]+\.spl~ ~override~
+                          ~SPCL90[0-9]+\.spl~ ~override~
+                          ~SPCL91[0-4]+\.spl~ ~override~
+                          ~SPCL91[6-9]+\.spl~ ~override~
+                          ~SPCL92[12]+\.spl~ ~override~
+                          ~SPCL93[6-8]+\.spl~ ~override~
+                          ~SPCL94[0-3]+\.spl~ ~override~
+                          ~SPCLI13.spl~ ~override~
+                          ~SPIN001.spl~ ~override~
+                          ~SPIN1[01][0-9].spl~ ~override~
+                          ~SPIN12[0-7].spl~ ~override~
+                          ~SPIN15[0-7].spl~ ~override~
+                          ~SPIN649.spl~ ~override~
+                          ~SPIN667.spl~ ~override~
+                          ~SPIN71[378].spl~ ~override~
+                          ~SPIN82[6-9].spl~ ~override~
+                          ~SPIN853.spl~ ~override~
+                          ~SPRA30[1-6].spl~ ~override~
+                          ~SPSD02.spl~ ~override~
+                          ~SPINI101.spl~ ~override~
+                          ~SPINI2[67].spl~ ~override~
+                          ~SPINI9[0-2].spl~ ~override~
+                          ~OHTMPS[0-9]+\.spl~ ~override~
+                          ~OHTYR[0-9]+\.spl~ ~override~
+
+  LPF ADD_SPELL_EFFECT
+    INT_VAR
+      opcode = 321
+      target = 1
+      insert_point = 0
+    STR_VAR
+      resource = ~SPPRI25~
+  END
+
+// Heavenly Shield
+
+// Add spellstate shield_equipped
+
+LAF resolve_state STR_VAR new_state_id = ~SHIELD_EQUIPPED~ RET new_state_index END
+OUTER_SET shield_equipped_state = %new_state_index%
+
+// Patch all shields to set shield_equipped state when worn
+
+COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
+  READ_SHORT 0x1c item_category
+  PATCH_IF (item_category = 12)
+    THEN BEGIN
+      LPF ~ADD_ITEM_EQEFFECT~
+        INT_VAR
+          opcode = 335
+          target = 1
+          parameter1 = %shield_equipped_state%
+          timing = 2  
+      END
+    END
+
+// Add needed splprot entries
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~SHIELD_EQUIPPED~
+    stat                  = ~0x112~
+    value                 = ~%shield_equipped_state%~
+    relation              = ~1~
+  RET
+    is_shield_equipped = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~SWORD_SHIELD_STYLE=n~
+    stat                  = ~112~
+    value                 = ~-1~
+    relation              = ~1~
+  RET
+    sw_sh_style = new_line_number
+END
+
+// Add records for the new portrait icons
+
+OUTER_SET heavenly_shield_desc_str_ref = RESOLVE_STR_REF (@6009)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %heavenly_shield_desc_str_ref%
+  STR_VAR
+    bam_file = ~SPPR617D~
+  RET
+    heavenly_shield_icon_id = portrait_icon_id
+END
+
+// BAMs for the file
+
+COPY ~IATweaks\resources\bam\sppr617b.bam~ ~override~
+COPY ~IATweaks\resources\bam\sppr617c.bam~ ~override~
+COPY ~IATweaks\resources\bam\sppr617d.bam~ ~override~
+
+// Main spell file
+
+COPY ~IATweaks\resources\spl\sppr617.spl~ ~override~
+  SAY NAME1 @6009
+  SAY UNIDENTIFIED_DESC @6010
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %heavenly_shield_icon_id%
+  END
+
+COPY ~IATweaks\resources\spl\SPPR617D.spl~ ~override/SPPR617D.spl~
+COPY ~IATweaks\resources\spl\SPPR617E.spl~ ~override/SPPR617E.spl~
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      check_headers = 1
+      match_opcode = 326
+      parameter2 = ~%is_shield_equipped%~
+  END
+
+COPY ~IATweaks\resources\spl\SPPR617F.spl~ ~override/SPPR617F.spl~
+  SAY NAME1 @6011
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      check_headers = 1
+      match_opcode = 326
+      parameter2 = ~%sw_sh_style%~
+  END
+
+COPY ~IATweaks\resources\spl\SPPR617G.spl~ ~override/SPPR617G.spl~
+COPY ~IATweaks\resources\spl\SPPR617H.spl~ ~override/SPPR617H.spl~
+COPY ~IATweaks\resources\spl\SPPR617I.spl~ ~override/SPPR617I.spl~
+COPY ~IATweaks\resources\spl\SPPR617J.spl~ ~override/SPPR617J.spl~
+COPY ~IATweaks\resources\eff\S!hvshld.eff~ ~override/S!hvshld.eff~
+
+// Strength of One
+
+// Add exceptional strength check
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~EXCEPT_STR>n~
+    stat                  = ~37~
+    value                 = ~-1~
+    relation              = ~3~
+  RET
+    except_str_higher_than = new_line_number
+END
+
+COPY_EXISTING ~sppr312.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6012
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 318
+      insert_point = 0
+      target = 2
+      power = 3
+      parameter1 = 19
+      parameter2 = 124
+      duration = 0
+      resist_dispel = 0
+    STR_VAR
+      resource = "SPPR312"
+    END
+
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 318
+        parameter1 = 75
+        parameter2 = %except_str_higher_than%
+      STR_VAR
+        insert = ~last~
+    END
+
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 97
+      STR_VAR
+        insert = ~last~
+    END
+
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = 97
+        multi_match = 1
+    END
+  BUT_ONLY
+
+// Holy Power
+
+COPY_EXISTING ~SPPR412.spl~ ~override/SPPR412.spl~
+  SAY UNIDENTIFIED_DESC @6013
+
+  // Remove original strength bonus
+  LPF ~DELETE_SPELL_EFFECT~
+    INT_VAR
+      opcode_to_delete = 44
+  END
+
+  // Protect from last effect if str > 18
+  LPF ~ADD_SPELL_EFFECT~ 
+    INT_VAR
+      opcode = 318
+      insert_point = ~-1~
+      target = 1
+      power = 4
+      parameter1 = 19
+      parameter2 = 124
+      duration = 1
+      resist_dispel = 0
+    STR_VAR
+      resource = "SPPR412"
+  END
+
+  // Add strength bonus as the last effect
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      check_globals = 0
+      match_opcode = 97
+      opcode = 44
+      parameter1 = 18
+    STR_VAR
+      insert = ~last~
+  END
+  BUT_ONLY
+
+// Remove Summon Animals and Poison from Clerics
+
+COPY_EXISTING ~SPPR402.spl~ ~override/SPPR402.spl~
+              ~SPPR411.spl~ ~override/SPPR411.spl~
+              ~SPPR501.spl~ ~override/SPPR501.spl~
+              ~SPPR602.spl~ ~override/SPPR602.spl~
+              ~SPPR604.spl~ ~override/SPPR604.spl~
+  WRITE_BYTE  0x21      0x40
+  BUT_ONLY
+
+// Remove those spells from known/memorized spells for all non-Druid non-Shaman characters
+
+COPY_EXISTING_REGEXP GLOB ~.+\.cre~ ~override~
+  READ_BYTE 0x0273 char_class
+
+  // Remove summon animals spells
+  PATCH_IF %char_class% != 21 AND %char_class% != 11 AND %char_class% != 16 BEGIN
+    REMOVE_KNOWN_SPELL ~SPPR402~
+    REMOVE_KNOWN_SPELL ~SPPR411~
+    REMOVE_KNOWN_SPELL ~SPPR501~
+    REMOVE_KNOWN_SPELL ~SPPR602~
+    REMOVE_KNOWN_SPELL ~SPPR604~
+    REMOVE_MEMORIZED_SPELL ~SPPR402~
+    REMOVE_MEMORIZED_SPELL ~SPPR411~
+    REMOVE_MEMORIZED_SPELL ~SPPR501~
+    REMOVE_MEMORIZED_SPELL ~SPPR602~
+    REMOVE_MEMORIZED_SPELL ~SPPR604~
+  END
+  BUT_ONLY
+
+// Blade Barrier
+
+// Assign new projectile that hits only enemies
+
+COPY_EXISTING ~sppr603d.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      projectile = 218
+  END
+
+// Prevent haste/slow from making this spell hit more/less often
+
+COPY_EXISTING ~sppr603.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 232
+      opcode = 321
+      target = 1
+      parameter2 = 0
+      duration = 0
+    STR_VAR
+      match_resource = ~sppr603d~
+      insert = ~first~
+      resource = ~sppr603~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 232
+      opcode = 333
+      parameter1 = 11
+  END
+  BUT_ONLY
+
+// Do the same for player version of Globe of Blades
+
+COPY_EXISTING ~sppr725.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 232
+      opcode = 321
+      target = 1
+      parameter2 = 0
+      duration = 0
+    STR_VAR
+      match_resource = ~sppr725d~
+      insert = ~first~
+      resource = ~sppr725~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 232
+      opcode = 333
+      parameter1 = 11
+  END
+  BUT_ONLY
+
+// Cure spells
+
+ACTION_FOR_EACH healing_spell IN ~sppr103.spl~ ~sppr315.spl~ ~sppr401.spl~ ~sppr502.spl~ BEGIN
+  COPY_EXISTING ~%healing_spell%~ ~override~
+    READ_LONG 0x34 spell_level
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 17
+        parameter1 = %spell_level% * 5
+        parameter2 = 2
+    END
+END
+
+// Update spell descriptions
+
+COPY_EXISTING ~sppr103.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6014
+// Update spell descriptions
+
+COPY_EXISTING ~sppr315.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6015
+
+COPY_EXISTING ~sppr401.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6016
+
+COPY_EXISTING ~sppr502.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6017
+
+// Sunray and False Dawn
+
+// Remove immunities to those spells from almost all items
+
+COPY_EXISTING ~s!bodhi.itm~ ~override~
+              ~s!patric.itm~ ~override~
+              ~s!skel.itm~ ~override~
+              ~s!vlord.itm~ ~override~
+              ~gorchr.itm~ ~override~
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 206
+    STR_VAR
+      match_resource = ~sppr609~ // False Dawn
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 206
+    STR_VAR
+      match_resource = ~sppr707~ // Sunray
+  END
+
+// Remove immunities to those spells from almost all creatures
+
+COPY_EXISTING_REGEXP GLOB ~ceskel.cre~ ~override~
+                          ~gorlic01.cre~ ~override~
+                          ~grvlch01.cre~ ~override~
+                          ~hlshade.cre~ ~override~
+                          ~hlshang.cre~ ~override~
+                          ~rngsha04.cre~ ~override~
+                          ~s!bolich.cre~ ~override~
+                          ~s!grlch[1-9].cre~ ~override~
+                          ~s!glchra.cre~ ~override~
+                          ~s!mflich.cre~ ~override~
+                          ~s!roec01.cre~ ~override~
+                          ~s!rozvan.cre~ ~override~
+                          ~s!sandri.cre~ ~override~
+                          ~s!schri.cre~ ~override~
+                          ~s!sfort.cre~ ~override~
+                          ~s!sfran.cre~ ~override~
+                          ~s!shlich.cre~ ~override~
+                          ~s!slawr1.cre~ ~override~
+                          ~s!slesl.cre~ ~override~
+                          ~s!smelb.cre~ ~override~
+                          ~s!sshad[1-3].cre~ ~override~
+                          ~senlich.cre~ ~override~
+                          ~theshal.cre~ ~override~
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 206
+    STR_VAR
+      match_resource = ~sppr609~ // False Dawn
+    END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 206
+    STR_VAR
+      match_resource = ~sppr707~ // Sunray
+  END
+  BUT_ONLY
+  IF_EXISTS
+
+
+// False Dawn
+
+ADD_PROJECTILE ~IATweaks\resources\pro\S!FALSED.PRO~
+COPY ~IATweaks\resources\eff\s!0frres.eff~ ~override~
+
+COPY_EXISTING ~SPPR609.spl~ ~override/SPPR609.spl~
+  SAY UNIDENTIFIED_DESC @6018
+
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~%S!FALSED%~ 
+      speed = 8
+    END
+  
+  // Modify current effects to bypass magic resistance
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      check_globals = 0
+      match_opcode = 177
+      resist_dispel = 2
+      timing = 0
+      parameter1 = 125
+      parameter2 = 4
+  END
+
+  // Add another effect, which sets fire resistance to 0
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      check_globals = 0
+      match_opcode = 177
+      timing = 0
+    STR_VAR
+      match_resource = ~DAWNDAM~
+      resource = ~S!0frres~
+  END
+
+  // Clone all effects and make them work only on Shadows
+  PATCH_FOR_EACH cre_class IN 132 133 134 136 175  BEGIN
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        check_globals = 0
+        match_opcode = 177
+        parameter1 = %cre_class%
+      STR_VAR
+        match_resource = ~S!0frres~
+    END
+
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        check_globals = 0
+        match_opcode = 177
+        parameter1 = %cre_class%
+      STR_VAR
+        match_resource = ~DAWNDAM~
+    END
+
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        check_globals = 0
+        match_opcode = 177
+        parameter1 = %cre_class%
+      STR_VAR
+        match_resource = ~DAWNVIS2~
+    END
+  END
+
+// Sunray
+
+// Add condition for checking specific kit in splprot.2da
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~FIRE_RES>n~
+    stat                  = ~14~
+    value                 = ~-1~
+    relation              = ~3~
+  RET
+    fire_res_higher = new_line_number
+END
+
+COPY ~IATweaks\resources\eff\s!sunray.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!75fres.eff~ ~override~
+
+COPY_EXISTING ~SPPR707.spl~ ~override/SPPR707.spl~
+  SAY UNIDENTIFIED_DESC @6019
+
+  // Remove level progression from the spell
+  PATCH_FOR_EACH ~min_lvl_val~ IN "15" "16" "17" "18" "19" "20" BEGIN
+    LPF ~DELETE_SPELL_HEADER~ 
+      INT_VAR
+        header_type = ~-1~
+        min_level = ~%min_lvl_val%~
+    END
+  END
+
+  // Change damage from magic to fire
+  LPF ~ALTER_SPELL_EFFECT~ 
+    INT_VAR
+      match_opcode  = 12
+      parameter2 = 0x00080000
+  END
+
+  // Remove original effects to undead
+  LPF ~DELETE_SPELL_EFFECT~ 
+    INT_VAR
+      opcode_to_delete = 177
+  END
+
+  // -25% of current fire resistance to Undead
+  LPF ~ADD_SPELL_EFFECT~ 
+    INT_VAR
+      opcode = 177
+      insert_point = 0
+      target = 2
+      power = 7
+      parameter1 = 4
+      parameter2 = 3
+      duration = 0
+      resist_dispel = 0
+    STR_VAR
+      resource = "S!75fres"
+  END
+
+  // Additional damage to undead
+  LPF ~ADD_SPELL_EFFECT~ 
+    INT_VAR
+      opcode = 177
+      insert_point = 1
+      target = 2
+      power = 7
+      parameter1 = 4
+      parameter2 = 3
+      timing = 1
+      duration = 0
+      resist_dispel = 0
+    STR_VAR
+      resource = "S!sunray"
+  END
+
+  // Add immunity to this spell if fire res > 100
+  LPF ~ADD_SPELL_EFFECT~ 
+    INT_VAR
+      opcode = 318
+      insert_point = 0
+      target = 2
+      power = 7
+      parameter1 = 100
+      parameter2 = %fire_res_higher%
+      duration = 0
+      resist_dispel = 0
+    STR_VAR
+      resource = "SPPR707"
+  END
+
+// Disrupt Undead
+
+COPY_EXISTING ~sppr710.spl~ ~override/sppr710.spl~
+  SAY UNIDENTIFIED_DESC @6020
+  WRITE_BYTE  0x27    0xc // secondary type
+  WRITE_BYTE  0x72    2 // change type to ranged
+  LPF ~ALTER_SPELL_HEADER~ INT_VAR
+    header = 1
+    projectile = 209
+    range = 15
+  END
+
+  // Protect from the spell for non-undead creatures
+  LPF ~ADD_SPELL_EFFECT~ 
+    INT_VAR
+      opcode = 318
+      insert_point = ~-1~
+      target = 2
+      power = 7
+      parameter2 = 2
+      duration = 1
+      resist_dispel = 0
+    STR_VAR
+      resource = "sppr710"
+  END
+
+  // Direct damage opcode
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 177
+      opcode = 12
+      parameter1 = 30
+      parameter2 = 0
+      dicenumber = 10
+      dicesize = 6
+    STR_VAR
+      match_resource = ~s!disrup~
+  END

@@ -207,4 +207,75 @@ By means of this powerful spell, the priest uses <PRO_HISHER> divine powers to d
 - Skeleton Grandlords: 6D6 +18
 - Liches, Master Vampires and Vampire Lords: 5D6 +15~
 
-@6021 = ~Shield Bash~
+@6021 = ~Cause Serious Wounds
+(Necromancy)
+
+Level: 4
+Sphere: Healing
+Range: Tpuch
+Duration: Permanent
+Casting Time: 2
+Area of Effect: Creature touched
+Saving Throw: None
+
+This spell is the reverse of Cure Serious Wounds. Instead of healing the creature touched, it causes damage. On a successful touch from the priest, the spell inflicts 17 points of damage upon the target. Each casting of this spell allows for launching two successful strikes, however, <PRO_HESHE> has 1 turn to make the attacks before the spell fizzles. This spell directly affects the nervous system of the touched enemy, bypassing Magic Resistance, though enemies resistant to magical damage will be able to withstand the pain better. Because of the nature of this spell, all non-living creatures, such as undead or constructs are immune to its effects.
+
+The spell covers the priest's hand with magical energies, that provide the following benefits:
+- number of attacks per round set to 2,5
+- +4 bonus to hit
+- bonuses from strength stat are also counted, when determining caster's chance to hit
+- caster can direct the energy through a punch, instead of a touch, thus <PRO_HESHE> deals additional crushing damage, based on <PRO_HISHER> strength stat~
+
+@6022 = ~Cause Critical Wounds
+(Necromancy)
+
+Level: 5
+Sphere: Healing
+Range: Touch
+Duration: Permanent
+Casting Time: 3
+Area of Effect: Creature touched
+Saving Throw: None
+
+This spell is the reverse of Cure Critical Wounds. Instead of healing the creature touched, it causes damage. On a successful touch from the priest, the spell inflicts 27 points of damage upon the target.Each casting of this spell allows for launching two strikes, however, <PRO_HESHE> has 1 turn to make the attack before the spell fizzles. This spell directly affects the nervous system of the touched enemy, bypassing Magic Resistance, though enemies resistant to magical damage will be able to withstand the pain better. Because of the nature of this spell, all non-living creatures, such as undead or constructs are immune to its effects.
+
+The spell covers the priest's hand with magical energies, that provide the following benefits:
+- number of attacks per round set to 2,5
+- +4 bonus to hit
+- bonuses from strength stat are also counted, when determining caster's chance to hit
+- caster can direct the energy through a punch, instead of a touch, thus <PRO_HESHE> deals additional crushing damage, based on <PRO_HISHER> strength stat~
+
+@6023 = ~Slay Living
+(Necromancy)
+
+Level: 5
+Sphere: Combat
+Range: Caster
+Duration: 1 turn
+Casting Time: 1
+Area of Effect: The caster
+Saving Throw: None
+
+Upon casting this spell, the priest temporarily gains power to deal more harm to any humanoidal living creature. For 1 turn he gets +4 damage and +4 thac0 against all humans, elves, halflings and similar creatures of roughly human size. Additionally each melee hit against such creatures has 10% chance to cumulatively curse them, lowering their luck by 1 for 3 rounds.~
+
+@6024 = ~Cursed~
+
+@6025 = ~Harm (Necromancy)
+Level: 6
+Sphere: Healing
+Range: Touch
+Duration: Permanent
+Casting Time: 8
+Area of Effect: Creature touched
+Saving Throw: Special
+
+This spell creates vast amounts of necromantic energies that swirl around the hand of the caster. The next successful attack (with a +4 bonus to hit) that the priest makes will release these energies, however he only has 3 rounds to make the attack before the spell fizzles. Upon contact with the target, a powerful explosion occurs dealing damage to the target and all enemies around. The effects are as follows:
+- the target, who is at the center of this explosion takes 10d6 + 10 magical damage with no save, that ignores magic resistance
+- enemies in 5ft. radius from the target take 6d6 +6 magical damage, but can make a saving throw vs spell with a -2 penalty to take only half of the damage
+- enemies in 10ft. radius from the target take 4d6 magical damage, but can make a saving throws vs spell to avoid this damage altogether
+
+The energies created by this spell are far more volatile than those from Cause Wounds spells, the caster needs more focus to keep them under his control, which is why this spell grants no bonuses attacks per round.~
+
+@6026 = ~Shield Bash~
+
+@6027 = ~Shield Bash~

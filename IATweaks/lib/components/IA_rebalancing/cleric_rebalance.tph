@@ -371,82 +371,6 @@ ACTION_FOR_EACH cleric_kit_hla_file IN ~lucl1.2da~ ~lucl2.2da~ ~lucl3.2da~ ~lucl
   END
 END
 
-// Add removal of Aura Cleansing spell from Cleric spells
-
-// patch in removal of shaman's innate aura cleansing //
-
-COPY_EXISTING_REGEXP GLOB ~SPPR[1-7][0-5][0-9]+\.spl~ ~override~
-  READ_BYTE 0x21 exc_flags
-
-  PATCH_IF (NOT (exc_flags BAND BIT7) = 0) BEGIN
-    LPF ADD_SPELL_EFFECT
-      INT_VAR
-        opcode = 321
-        target = 1
-        insert_point = 0
-      STR_VAR
-        resource = ~SPPRI25~
-    END
-  END
-
-  BUT_ONLY
-
-COPY_EXISTING_REGEXP GLOB ~SPWI[1-9][0-9][0-9]+\.spl~ ~override~
-                          ~SPDR201.spl~ ~override~
-                          ~SPDR603.spl~ ~override~
-                          ~SPDR702.spl~ ~override~
-                          ~SPDWD02.spl~ ~override~
-                          ~SPCL121.spl~ ~override~
-                          ~SPCL144.spl~ ~override~
-                          ~SPCL152.spl~ ~override~
-                          ~SPCL311.spl~ ~override~
-                          ~SPCL321.spl~ ~override~
-                          ~SPCL342.spl~ ~override~
-                          ~SPCL412.spl~ ~override~
-                          ~SPCL414.spl~ ~override~
-                          ~SPCL417.spl~ ~override~
-                          ~SPCL423.spl~ ~override~
-                          ~SPCL52[12]+\.spl~ ~override~
-                          ~SPCL61[1-3]+\.spl~ ~override~
-                          ~SPCL62[1-5]+\.spl~ ~override~
-                          ~SPCL63[2-4]+\.spl~ ~override~
-                          ~SPCL64[134]+\.spl~ ~override~
-                          ~SPCL72[12]+\.spl~ ~override~
-                          ~SPCL73[12]+\.spl~ ~override~
-                          ~SPCL74[12]+\.spl~ ~override~
-                          ~SPCL90[0-9]+\.spl~ ~override~
-                          ~SPCL91[0-4]+\.spl~ ~override~
-                          ~SPCL91[6-9]+\.spl~ ~override~
-                          ~SPCL92[12]+\.spl~ ~override~
-                          ~SPCL93[6-8]+\.spl~ ~override~
-                          ~SPCL94[0-3]+\.spl~ ~override~
-                          ~SPCLI13.spl~ ~override~
-                          ~SPIN001.spl~ ~override~
-                          ~SPIN1[01][0-9].spl~ ~override~
-                          ~SPIN12[0-7].spl~ ~override~
-                          ~SPIN15[0-7].spl~ ~override~
-                          ~SPIN649.spl~ ~override~
-                          ~SPIN667.spl~ ~override~
-                          ~SPIN71[378].spl~ ~override~
-                          ~SPIN82[6-9].spl~ ~override~
-                          ~SPIN853.spl~ ~override~
-                          ~SPRA30[1-6].spl~ ~override~
-                          ~SPSD02.spl~ ~override~
-                          ~SPINI101.spl~ ~override~
-                          ~SPINI2[67].spl~ ~override~
-                          ~SPINI9[0-2].spl~ ~override~
-                          ~OHTMPS[0-9]+\.spl~ ~override~
-                          ~OHTYR[0-9]+\.spl~ ~override~
-
-  LPF ADD_SPELL_EFFECT
-    INT_VAR
-      opcode = 321
-      target = 1
-      insert_point = 0
-    STR_VAR
-      resource = ~SPPRI25~
-  END
-
 // Heavenly Shield
 
 // Add spellstate shield_equipped
@@ -1003,4 +927,304 @@ COPY_EXISTING ~sppr710.spl~ ~override/sppr710.spl~
       dicesize = 6
     STR_VAR
       match_resource = ~s!disrup~
+  END
+
+// Cause Serius Wounds
+
+
+// Cause Serious/Critical Wounds
+COPY ~IATweaks\resources\spl\sppr414d.spl~ ~override~
+COPY ~IATweaks\resources\spl\sppr414e.spl~ ~override~
+COPY ~IATweaks\resources\spl\sppr414f.spl~ ~override~
+COPY ~IATweaks\resources\spl\sppr510d.spl~ ~override~
+COPY ~IATweaks\resources\spl\sppr510e.spl~ ~override~
+COPY ~IATweaks\resources\spl\sppr510f.spl~ ~override~
+
+COPY_EXISTING ~SPPR414.spl~ ~override/SPPR414.spl~
+  SAY UNIDENTIFIED_DESC @6021
+
+  // Update casting speed
+  LPF ~ALTER_SPELL_HEADER~ INT_VAR speed = 2 END
+
+COPY_EXISTING ~SPPR510.spl~ ~override/SPPR510.spl~
+  SAY UNIDENTIFIED_DESC @6022
+
+  // Update casting speed
+  LPF ~ALTER_SPELL_HEADER~ INT_VAR speed = 3 END
+
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY cause_wounds_to_item_mapping BEGIN
+  ~sppr414~=>~serious~
+  ~sppr510~=>~critical~
+END
+
+ACTION_PHP_EACH cause_wounds_to_item_mapping AS spell_file => item_file BEGIN
+  COPY_EXISTING ~%spell_file%.spl~ ~override~
+    // Increase duration to 60s
+    LPF ~ALTER_SPELL_EFFECT~
+      INT_VAR
+        match_opcode = 111
+        duration = 60
+    END
+    // Add protection from item removal
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 111
+        opcode = 146
+        parameter2 = 1
+      STR_VAR
+        resource = EVAL ~%spell_file%e~
+    END
+
+  COPY_EXISTING ~%item_file%.itm~ ~override/%item_file%.itm~
+    WRITE_SHORT 0x94 0 // charges
+    WRITE_SHORT 0x86 4 // thaco bonus
+    // bypass resistance, add strength bonuses
+    LPF ~ALTER_ITEM_HEADER~
+      INT_VAR
+        check_headers = 1
+        dicesize = 1
+        dicenumber = 1
+        flag_strength = 1
+    END
+    LPF ~ALTER_ITEM_EFFECT~
+      INT_VAR
+        check_headers = 1
+        match_opcode = 12
+        resist_dispel = 3
+    END
+    // add immunity to this weapon to undead
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        insert_point = 0
+        header = 1
+        opcode = 324
+        target = 2
+        parameter2 = 1
+        duration = 1
+      STR_VAR
+        resource = EVAL ~%item_file%~
+    END
+    // add immunity to this weapon to elementals
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        insert_point = 0
+        header = 1
+        opcode = 324
+        target = 2
+        parameter2 = 9
+        duration = 1
+      STR_VAR
+        resource = EVAL ~%item_file%~
+    END
+    // add immunity to this weapon to golems
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        insert_point = 0
+        header = 1
+        opcode = 324
+        target = 2
+        parameter2 = 27
+        duration = 1
+      STR_VAR
+        resource = EVAL ~%item_file%~
+    END
+    // set APR to 2,5
+    LPF ~ADD_ITEM_EQEFFECT~
+      INT_VAR
+        type = 1
+        opcode = 1
+        target = 1
+        timing = 2
+        parameter1 = 8
+        parameter2 = 1
+    END
+    // add opcodes for item removal after hit
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        type = 1
+        opcode = 146
+        target = 1
+        parameter2 = 1
+        insert_point = ~-1~
+      STR_VAR
+        resource = EVAL ~%spell_file%d~
+    END
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        type = 1
+        opcode = 146
+        target = 1
+        parameter2 = 1
+        insert_point = ~-1~
+      STR_VAR
+        resource = EVAL ~%spell_file%f~
+    END
+  BUT_ONLY
+  IF_EXISTS
+END
+
+// Slay Living
+
+COPY ~IATweaks\resources\spl\s!slaylv.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6024)
+  END
+COPY ~IATweaks\resources\eff\s!slaylv.eff~ ~override~
+
+COPY_EXISTING ~sppr511.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6023
+  READ_BYTE 0x1e spell_flags
+  WRITE_BYTE 0x1e (%spell_flags% BOR 0b000001100) // disable the spell for non-evil characters
+
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 111
+      opcode = 248
+      duration = 60
+    STR_VAR
+      resource = ~s!slaylv~
+  END
+  
+  PATCH_FOR_EACH ~creature_race~ IN ~DWARF~ ~ELF~ ~GITHYANKI~ ~GNOME~ ~GOBLIN~ ~HALF_ELF~ ~HALFLING~ ~HALFORC~ ~HOBGOBLIN~ ~HUMAN~ ~ORC~ BEGIN
+    SET race_val = IDS_OF_SYMBOL (race ~%creature_race%~)
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        opcode = 178
+        target = 1
+        parameter1 = %race_val%
+        parameter2 = 4
+        resist_dispel = 3
+        duration = 60
+    END
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        opcode = 179
+        target = 1
+        parameter1 = %race_val%
+        parameter2 = 4
+        resist_dispel = 3
+        duration = 60
+    END
+  END
+
+// Harm
+
+// Add new projectiles
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!harm10.pro~
+ADD_PROJECTILE ~IATweaks\resources\pro\s!harm05.pro~
+
+COPY ~IATweaks\resources\bam\s!harm.bam~ ~override~
+COPY ~IATweaks\resources\vvc\s!harmex.vvc~ ~override~
+COPY ~IATweaks\resources\itm\s!harm.itm~ ~override~
+
+COPY ~IATweaks\resources\spl\s!harm10.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      projectile = %s!harm10%
+  END
+
+COPY ~IATweaks\resources\spl\s!harm05.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      projectile = %s!harm05%
+  END
+
+
+COPY_EXISTING ~sppr608.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6025
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 111
+    STR_VAR
+      resource = ~s!harm~
+  END
+
+
+
+
+
+
+
+
+
+// Add removal of Aura Cleansing spell from Cleric spells
+
+// patch in removal of shaman's innate aura cleansing //
+
+COPY_EXISTING_REGEXP GLOB ~SPPR[1-7][0-5][0-9]+\.spl~ ~override~
+  READ_BYTE 0x21 exc_flags
+
+  PATCH_IF (NOT (exc_flags BAND BIT7) = 0) BEGIN
+    LPF ADD_SPELL_EFFECT
+      INT_VAR
+        opcode = 321
+        target = 1
+        insert_point = 0
+      STR_VAR
+        resource = ~SPPRI25~
+    END
+  END
+
+  BUT_ONLY
+
+
+
+COPY_EXISTING_REGEXP GLOB ~SPWI[1-9][0-9][0-9]+\.spl~ ~override~
+                          ~SPDR201.spl~ ~override~
+                          ~SPDR603.spl~ ~override~
+                          ~SPDR702.spl~ ~override~
+                          ~SPDWD02.spl~ ~override~
+                          ~SPCL121.spl~ ~override~
+                          ~SPCL144.spl~ ~override~
+                          ~SPCL152.spl~ ~override~
+                          ~SPCL311.spl~ ~override~
+                          ~SPCL321.spl~ ~override~
+                          ~SPCL342.spl~ ~override~
+                          ~SPCL412.spl~ ~override~
+                          ~SPCL414.spl~ ~override~
+                          ~SPCL417.spl~ ~override~
+                          ~SPCL423.spl~ ~override~
+                          ~SPCL52[12]+\.spl~ ~override~
+                          ~SPCL61[1-3]+\.spl~ ~override~
+                          ~SPCL62[1-5]+\.spl~ ~override~
+                          ~SPCL63[2-4]+\.spl~ ~override~
+                          ~SPCL64[134]+\.spl~ ~override~
+                          ~SPCL72[12]+\.spl~ ~override~
+                          ~SPCL73[12]+\.spl~ ~override~
+                          ~SPCL74[12]+\.spl~ ~override~
+                          ~SPCL90[0-9]+\.spl~ ~override~
+                          ~SPCL91[0-4]+\.spl~ ~override~
+                          ~SPCL91[6-9]+\.spl~ ~override~
+                          ~SPCL92[12]+\.spl~ ~override~
+                          ~SPCL93[6-8]+\.spl~ ~override~
+                          ~SPCL94[0-3]+\.spl~ ~override~
+                          ~SPCLI13.spl~ ~override~
+                          ~SPIN001.spl~ ~override~
+                          ~SPIN1[01][0-9].spl~ ~override~
+                          ~SPIN12[0-7].spl~ ~override~
+                          ~SPIN15[0-7].spl~ ~override~
+                          ~SPIN649.spl~ ~override~
+                          ~SPIN667.spl~ ~override~
+                          ~SPIN71[378].spl~ ~override~
+                          ~SPIN82[6-9].spl~ ~override~
+                          ~SPIN853.spl~ ~override~
+                          ~SPRA30[1-6].spl~ ~override~
+                          ~SPSD02.spl~ ~override~
+                          ~SPINI101.spl~ ~override~
+                          ~SPINI2[67].spl~ ~override~
+                          ~SPINI9[0-2].spl~ ~override~
+                          ~OHTMPS[0-9]+\.spl~ ~override~
+                          ~OHTYR[0-9]+\.spl~ ~override~
+
+  LPF ADD_SPELL_EFFECT
+    INT_VAR
+      opcode = 321
+      target = 1
+      insert_point = 0
+    STR_VAR
+      resource = ~SPPRI25~
   END

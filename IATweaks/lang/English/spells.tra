@@ -276,6 +276,80 @@ This spell creates vast amounts of necromantic energies that swirl around the ha
 
 The energies created by this spell are far more volatile than those from Cause Wounds spells, the caster needs more focus to keep them under his control, which is why this spell grants no bonuses attacks per round.~
 
-@6026 = ~Shield Bash~
+@6026 = ~Demon Hunt
+(Alteration)
 
-@6027 = ~Shield Bash~
+Level: 5
+Range: 0
+Duration: 1 turn
+Casting Time: 5
+Area of Effect: 15 ft. sphere
+Saving Throw: None
+
+This powerful spell was designed specifically to fight against demons from the Abyss. It is centered on the caster, but it affects everyone in the area of 15 feet.
+All affected deal additional 3 magical damage against demons. Additionally, each hit done to demons has a 10% chance to increase the demon's chance for Critical Miss by 5% for 3 rounds, this effect is cumulative.~
+
+@6027 = ~Critical hit chance increased~
+
+@6028 = ~Demon Hunt~
+
+@6029 = ~Magical Stone
+(Enchantment)
+
+Level: 1
+Sphere: Combat
+Range: 50 ft.
+Duration: Instant
+Casting Time: 4
+Area of Effect: Path of projectile
+Saving Throw: None
+
+By casting this spell, the priest conjures a small magical stone that flies out at high speed, striking all creatures in its path. The pebble inflicts 1d4+3 points of damage to whomever it hits. Once put into motion, the priest has no control over the stone, and it can harm both allies and enemies.~
+
+@6030 = ~Aid
+(Necromancy, Conjuration)
+
+Level: 2
+Sphere: Necromantic
+Range: Touch
+Duration: 1 round + 1 round/level
+Casting Time: 5
+Area of Effect: Special
+Saving Throw: None
+
+The recipient of this spell gains the benefits of a Bless spell (+1 to attack rolls and Saving Throws) and a special bonus of 1d8 additional Hit Points for the duration of the spell. The Aid spell enables the recipient to actually have more Hit Points than <PRO_HISHER> current maximum. The bonus Hit Points are lost first when the recipient takes damage and may not be regained by curative magic.
+
+Example: A 1st-level Fighter has 8 Hit Points, suffers 2 points of damage (8 - 2 = 6), then receives an Aid spell that grants <PRO_HIMHER> 5 additional Hit Points. The Fighter now has 11 Hit Points, 3 of which are temporary. If <PRO_HESHE> is then hit for 7 points of damage, 4 normal Hit Points and all 3 temporary Hit Points are lost. The Fighter then receives a Cure Light Wounds spell that heals 4 points of damage, restoring <PRO_HIMHER> to <PRO_HISHER> original 8 Hit Points.
+
+At levels 1 to 14 this spell targets only 1 creature, from level 15 it works on every ally of the caster in 15 ft. radius.~
+
+@6031 = ~Greater Restoration
+(Necromancy)
+
+Level: 7
+Sphere: Necromantic
+Range: Touch
+Duration: Permanent
+Casting Time: 3
+Area of Effect: 1 creature
+Saving Throw: None
+
+When this spell is cast, the life energy level of the recipient is raised. This reverses any previous life energy level drain of the creature by a force or monster. A Greater Restoration spell will also restore the Intelligence score of a creature affected by the Feeblemind spell and negate any form of insanity, such as confusion or berserk. It fully heals the target and cures any diseases or poisons. The casting of this spell is very draining on the priest, and <PRO_HESHE> will suffer a cumulative -2 penalty to luck for the next 3 rounds.~
+
+@6032 = ~Divine Intervention~
+
+@6033 = ~Divine Intervention
+(Necromancy)
+
+Level: Quest
+Sphere: Necromantic
+Duration: Permanent
+Casting Time: 3
+Area of Effect: Party
+Saving Throw: None
+
+This spell connects the caster directly to <PRO_HISHER> god, granting <PRO_HIMHER> and <PRO_HISHER> party a level of healing unlike any other spell. Divine Intervention has similar effect to Greater Restoration, however it is applied to whole party. This spell is extremely taxing to the caster's body and mind, cumulatively lowering <PRO_HISHER> luck by 4 for 5 rounds.~
+
+@6034 = ~Shield Bash~
+
+@6035 = ~Shield Bash~

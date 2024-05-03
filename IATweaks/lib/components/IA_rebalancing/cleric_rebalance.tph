@@ -1143,6 +1143,113 @@ COPY_EXISTING ~sppr608.spl~ ~override~
       resource = ~s!harm~
   END
 
+// Demon Hunt
+
+COPY ~IATweaks\resources\eff\s!demhun.eff~ ~override~
+COPY ~IATweaks\resources\bam\sppr521b.bam~ ~override~
+COPY ~IATweaks\resources\bam\sppr521c.bam~ ~override~
+
+COPY ~IATweaks\resources\spl\sppr521.spl~ ~override~
+  SAY NAME1 @6028
+  SAY UNIDENTIFIED_DESC @6026
+
+COPY ~IATweaks\resources\spl\sppr521.spl~ ~override~
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6027)
+  END
+
+// Magical Stone
+
+COPY_EXISTING ~bullet.pro~ ~override/s!mstone.pro~
+  READ_BYTE 0x2c ext_flags
+  WRITE_BYTE 0x2c (%ext_flags% BOR 0b00000010) // make the spell work on all creatures in its path
+
+ADD_PROJECTILE ~override/s!mstone.pro~
+
+COPY_EXISTING ~sppr106.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6029
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      target = 4 // Any point within range
+      projectile = %s!mstone%
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 12
+      parameter1 = 3
+  END
+
+// Aid
+
+COPY_EXISTING ~SPPR201.spl~ ~override/SPPR201.spl~
+  SAY UNIDENTIFIED_DESC @6030
+
+  // make the spell AoE from lvl 15
+  PATCH_FOR_EACH ~spell_level~ IN "15" "16" "17" "18" "19" "20" BEGIN
+    LPF ~ALTER_SPELL_HEADER~
+      INT_VAR
+        header = %spell_level%
+        projectile = 162
+    END
+  END
+
+// Greater Restoration
+
+COPY_EXISTING ~sppr713.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6031
+  LPF ~ALTER_SPELL_HEADER~ INT_VAR target = 1 END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_target = 6
+      target = 2
+  END
+  // Change fatigue to luck penalty
+  LPF ~S!ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 93
+      opcode = 22
+      parameter1 = ~-2~
+      duration = 18
+  END
+  // Add fatigue icon
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 142
+      target = 1
+      parameter2 = 39
+      duration = 18
+  END
+
+COPY_EXISTING ~sw1h71.itm~ ~override/sw1h71.itm~ // Hindo's Doom +4
+  // Fix targeting for Greater Restoration ability
+  LPF ALTER_ITEM_HEADER INT_VAR "header_type" = 3 "target" = 1 END
+  BUT_ONLY
+
+// Divine Intervention
+
+COPY ~IATweaks\resources\bam\spcl942b.bam~ ~override~
+COPY ~IATweaks\resources\bam\spcl942c.bam~ ~override~
+
+COPY ~IATweaks\resources\spl\spcl942.spl~ ~override~
+  SAY NAME1 @6032
+  SAY UNIDENTIFIED_DESC @6033
+
+ACTION_FOR_EACH cleric_kit_hla_file IN ~lucl0.2da~ ~lucl1.2da~ ~lucl2.2da~ ~lucl3.2da~ ~lucl4.2da~ ~lucl5.2da~ BEGIN
+  LAF ~S!ADD_HLA_ROW~
+    STR_VAR
+      filename = ~%cleric_kit_hla_file%~
+      row_desc = ~DIVINE_INTERVENTION~
+      ability = ~GA_SPCL942~
+      num_allowed = ~2~
+  END
+END
+
+
+
+
+
 
 
 

@@ -75,6 +75,7 @@ END
 // Rework Defensive Harmony
 
 COPY_EXISTING ~sppr406.spl~ ~override/sppr406d.spl~
+  SAY UNIDENTIFIED_DESC @6002
   LPF ~ALTER_SPELL_HEADER~
     INT_VAR
       projectile = %s!defha1% // New projectile with smaller area of effect
@@ -467,6 +468,16 @@ COPY ~IATweaks\resources\spl\SPPR617H.spl~ ~override/SPPR617H.spl~
 COPY ~IATweaks\resources\spl\SPPR617I.spl~ ~override/SPPR617I.spl~
 COPY ~IATweaks\resources\spl\SPPR617J.spl~ ~override/SPPR617J.spl~
 COPY ~IATweaks\resources\eff\S!hvshld.eff~ ~override/S!hvshld.eff~
+
+ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR02.2da~ ~CLABPR03.2da~ ~CLABPR04.2da~ ~OHTYR.2da~ ~OHTEMPUS.2da~ BEGIN
+  LAF ~S!ADD_CLAB_ROW~
+    STR_VAR
+      filename = ~%cleric_kit_clab%~
+      row_desc = ~HEAVENLY_SHIELD~
+      level11 = ~GA_SPPR617~
+  END
+END
+
 
 // Strength of One
 
@@ -929,9 +940,6 @@ COPY_EXISTING ~sppr710.spl~ ~override/sppr710.spl~
       match_resource = ~s!disrup~
   END
 
-// Cause Serius Wounds
-
-
 // Cause Serious/Critical Wounds
 COPY ~IATweaks\resources\spl\sppr414d.spl~ ~override~
 COPY ~IATweaks\resources\spl\sppr414e.spl~ ~override~
@@ -1246,8 +1254,80 @@ ACTION_FOR_EACH cleric_kit_hla_file IN ~lucl0.2da~ ~lucl1.2da~ ~lucl2.2da~ ~lucl
   END
 END
 
+// Spell Duration HLA
+
+COPY ~IATweaks\resources\bam\s!spldur.bam~ ~override~
+COPY ~IATweaks\resources\spl\s!spldur.spl~ ~override~
+  SAY NAME1 @6034
+  SAY UNIDENTIFIED_DESC @6035
 
 
+ACTION_FOR_EACH cleric_kit_hla_file IN ~lucl0.2da~ ~lucl1.2da~ ~lucl2.2da~ ~lucl3.2da~ ~lucl4.2da~ ~lucl5.2da~ BEGIN
+  LAF ~S!ADD_HLA_ROW~
+    STR_VAR
+      filename = ~%cleric_kit_hla_file%~
+      row_desc = ~LONG_SPELL_DURATION~
+      ability = ~AP_s!spldur~
+      num_allowed = ~1~
+  END
+END
+
+// Spare the Dying
+
+COPY ~IATweaks\resources\bam\sppr735b.bam~ ~override~
+COPY ~IATweaks\resources\bam\sppr735c.bam~ ~override~
+COPY ~IATweaks\resources\bam\sppr735d.bam~ ~override~
+
+// Add records for the new portrait icons
+OUTER_SET spare_the_dying_desc_str_ref = RESOLVE_STR_REF (@6036)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %spare_the_dying_desc_str_ref%
+  STR_VAR
+    bam_file = ~SPPR735D~
+  RET
+    spare_the_dying_icon_id = portrait_icon_id
+END
+
+COPY ~IATweaks\resources\spl\sppr735.spl~ ~override~
+  SAY NAME1 @6036
+  SAY UNIDENTIFIED_DESC @6037
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %spare_the_dying_icon_id%
+  END
+
+COPY ~IATweaks\resources\spl\sppr735d.spl~ ~override~
+COPY ~IATweaks\resources\spl\sppr735e.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6038)
+  END
+
+ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR02.2da~ ~CLABPR03.2da~ ~CLABPR04.2da~ ~OHTYR.2da~ ~OHTEMPUS.2da~ BEGIN
+  LAF ~S!ADD_CLAB_ROW~
+    STR_VAR
+      filename = ~%cleric_kit_clab%~
+      row_desc = ~SPARE_THE_DYING~
+      level14 = ~GA_SPPR735~
+  END
+END
+
+// Remove Spare the Dying from resurrected characters
+
+ACTION_FOR_EACH resurrection_spell IN ~spja01.spl~ ~sppr504.spl~ ~sppr550.spl~ ~sppr712.spl~ BEGIN
+  COPY_EXISTING ~%resurrection_spell%~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 172
+      multi_match = 1
+    STR_VAR
+      insert = ~last~
+      resource = ~sppr735~
+  END
+END
 
 
 
@@ -1335,3 +1415,11 @@ COPY_EXISTING_REGEXP GLOB ~SPWI[1-9][0-9][0-9]+\.spl~ ~override~
     STR_VAR
       resource = ~SPPRI25~
   END
+
+// add custom spells to a list of exclusion from automatically learnable spells
+COPY_EXISTING ~hidespl.2da~ ~override/hidespl.2da~
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR617 1 0 0~
+  INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR735 1 0 0~
+  PRETTY_PRINT_2DA

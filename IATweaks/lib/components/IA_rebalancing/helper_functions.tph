@@ -245,35 +245,35 @@ BEGIN
   IF_EXISTS
 END
 
-DEFINE_ACTION_FUNCTION ~S!ADD_HLA_ROW~
-  STR_VAR
-    filename           = ~~
-    row_desc           = ~~
-    ability            = ~*~
-    icon               = ~*~
-    strref             = ~*~
-    min_level          = ~1~
-    max_level          = ~99~
-    num_allowed        = ~1~
-    prerequisite       = ~*~
-    excluded_by        = ~*~
-    alignment_restrict = ~*~
-BEGIN
-  COPY_EXISTING ~%filename%~ ~override~
-    COUNT_2DA_COLS ~colcount~
-    COUNT_2DA_ROWS ~colcount~ ~rowcount~
-    PATCH_IF ~%row_desc%~ STR_EQ ~~ BEGIN
-      new_row_value = %rowcount% + 1
-      SPRINT row_description ~%new_row_value%~
-    END
-    ELSE BEGIN
-      SPRINT row_description ~%row_desc%~
-    END
-    INSERT_2DA_ROW ~rowcount~ ~colcount~ ~%row_description% %ability%  %icon%  %strref%  %min_level%  %max_level%  %num_allowed%  %prerequisite%  %excluded_by%  %alignment_restrict%~
-    PRETTY_PRINT_2DA
-  BUT_ONLY
-  IF_EXISTS
-END
+// DEFINE_ACTION_FUNCTION ~S!ADD_HLA_ROW~
+//   STR_VAR
+//     filename           = ~~
+//     row_desc           = ~~
+//     ability            = ~*~
+//     icon               = ~*~
+//     strref             = ~*~
+//     min_level          = ~1~
+//     max_level          = ~99~
+//     num_allowed        = ~1~
+//     prerequisite       = ~*~
+//     excluded_by        = ~*~
+//     alignment_restrict = ~*~
+// BEGIN
+//   COPY_EXISTING ~%filename%~ ~override~
+//     COUNT_2DA_COLS ~colcount~
+//     COUNT_2DA_ROWS ~colcount~ ~rowcount~
+//     PATCH_IF ~%row_desc%~ STR_EQ ~~ BEGIN
+//       new_row_value = %rowcount% + 1
+//       SPRINT row_description ~%new_row_value%~
+//     END
+//     ELSE BEGIN
+//       SPRINT row_description ~%row_desc%~
+//     END
+//     INSERT_2DA_ROW ~rowcount~ ~colcount~ ~%row_description% %ability%  %icon%  %strref%  %min_level%  %max_level%  %num_allowed%  %prerequisite%  %excluded_by%  %alignment_restrict%~
+//     PRETTY_PRINT_2DA
+//   BUT_ONLY
+//   IF_EXISTS
+// END
 
 DEFINE_ACTION_FUNCTION ~S!ADD_HLA_ROW~
   STR_VAR

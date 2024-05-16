@@ -350,6 +350,29 @@ Saving Throw: None
 
 This spell connects the caster directly to <PRO_HISHER> god, granting <PRO_HIMHER> and <PRO_HISHER> party a level of healing unlike any other spell. Divine Intervention has similar effect to Greater Restoration, however it is applied to whole party. This spell is extremely taxing to the caster's body and mind, cumulatively lowering <PRO_HISHER> luck by 4 for 5 rounds.~
 
-@6034 = ~Shield Bash~
+@6034 = ~Increase Spell Duration~
 
-@6035 = ~Shield Bash~
+@6035 = ~Increase Spell Duration
+
+High-level priests devout to their god can receive a special blessing from their worshipped deity, which causes the magic of their spells to dissipate more slowly than normal. This blessing extends the base duration of all spells that do not apply their effects periodically by 20%.~
+
+@6036 = ~Spare the Dying~
+
+@6037 = ~Spare the Dying
+(Necromancy)
+
+Level: 7
+Sphere: Healing
+Range: 0
+Duration: 5 rounds
+Casting Time: 7
+Area of Effect: 15-ft. radius
+Saving Throw: None
+
+By casting this spell, the priest strengthens the bond between body and soul of all affected allies. For the next 5 rounds, those allies will be able to withstand one hit per round that would normally kill them, leaving them with 1 HP remaining. Spare the Dying only protects from effects that directly deal damage and does not grant immunity to instant death abilities such as vorpal hits or Power Word: Kill. Additionally, for the duration of this spell, all affected allies won't suffer permanent death from normal damage sources (although they can still be petrified, imprisoned, or frozen solid). The spell and all of its effects are undispeallable.~
+
+@6038 = ~Lethal blow averted~
+
+@6039 = ~Shield Bash~
+
+@6040 = ~Shield Bash~

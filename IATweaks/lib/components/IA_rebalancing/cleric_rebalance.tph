@@ -1330,6 +1330,246 @@ ACTION_FOR_EACH resurrection_spell IN ~spja01.spl~ ~sppr504.spl~ ~sppr550.spl~ ~
 END
 
 
+// Hold Undead Lathander ability
+
+COPY ~IATweaks\resources\eff\s!crd-10.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!sld-10.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!mvm0.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!mvm50.eff~ ~override~
+COPY_EXISTING ~SPCL742.spl~ ~override/SPCL742.spl~
+  SAY UNIDENTIFIED_DESC @6039
+
+  // remove all but one spell ability
+  PATCH_FOR_EACH ~min_lvl_val~ IN "2" "3" "4" "5" "6" "7" "8" "9" "10" "11" "12" "13" "14" "15" "16" "17" "18" "19" "20" BEGIN
+    LAUNCH_PATCH_FUNCTION ~DELETE_SPELL_HEADER~ 
+      INT_VAR
+        header_type = ~-1~
+        min_level = ~%min_lvl_val%~
+    END
+  END
+
+  // change projectile to None, to make it single target
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      projectile  = 1
+  END
+
+  // remove Hold EFF
+  LPF ~DELETE_SPELL_EFFECT~
+    INT_VAR
+      opcode_to_delete = 185
+  END
+
+  // make all initial effects bypass MR and allow no saving throw
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      check_globals = 0
+      resist_dispel = 3
+      savingthrow = 0
+  END
+
+  // Add effects slowing movements and reducing physical resistances with no saving throw
+  PATCH_FOR_EACH ~eff_name~ IN "S!SLD-10" "S!CRD-10" "S!MVM50" BEGIN
+    LAUNCH_PATCH_FUNCTION ~CLONE_EFFECT~ 
+      INT_VAR
+        timing = 0
+      STR_VAR
+        match_resource = ~HOLDSND~
+        resource = EVALUATE_BUFFER ~%eff_name%~
+    END
+  END
+
+  // Add effects slowing movements and reducing physical resistances with saving throw
+  PATCH_FOR_EACH ~eff_name~ IN "S!CRD-10" "S!SLD-10" BEGIN
+    LAUNCH_PATCH_FUNCTION ~CLONE_EFFECT~ 
+      INT_VAR
+        timing = 0
+        savingthrow = 1
+        savebonus = ~-2~
+      STR_VAR
+        match_resource = ~HOLDSND~
+        resource = EVALUATE_BUFFER ~%eff_name%~
+    END
+  END
+
+  // Add effects slowing movements with saving throw
+  LAUNCH_PATCH_FUNCTION ~CLONE_EFFECT~ 
+    INT_VAR
+      savingthrow = 1
+      savebonus = ~-2~
+      timing = 0
+    STR_VAR
+      match_resource = ~HOLDSND~
+      resource = "S!MVM0"
+  END
+
+  // prevent stacking
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 206
+      target = 2
+      resist_dispel = 3
+      insert_point = ~-1~
+    STR_VAR
+      resource = ~SPCL742~
+  END  
+
+  // update duration for all effects
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      check_globals = 0
+      match_opcode = ~-1~
+      duration = 18
+  END
+
+// add immunity to Hold Undead to Bodhi
+COPY_EXISTING ~C6BODHI.cre~ ~override~
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 206
+      target = 1
+      timing = 9
+    STR_VAR
+      resource = ~SPCL742~
+  END
+
+// Boon of Lathander
+
+// Rework levels at which the ability is gained
+
+COPY_EXISTING ~CLABPR04.2da~ ~override~
+  REPLACE_EVALUATE
+    ~GA_SPCL741~
+    BEGIN
+    END
+    ~****~
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABPR04.2da~
+    row_desc = ~BOON_OF_LATHANDER~
+    level10 = ~GA_SPCL741~
+    level16 = ~GA_SPCL741~
+    level22 = ~GA_SPCL741~
+    level28 = ~GA_SPCL741~
+    level34 = ~GA_SPCL741~
+    level40 = ~GA_SPCL741~
+END
+
+// Rework the spell itself
+
+COPY_EXISTING ~SPCL741.spl~ ~override~
+  // remove all but one spell ability
+  PATCH_FOR_EACH ~min_lvl_val~ IN "11" "12" "13" "14" "15" "16" "17" "18" "19" "20" BEGIN
+    LAUNCH_PATCH_FUNCTION ~DELETE_SPELL_HEADER~ 
+      INT_VAR
+        header_type = ~-1~
+        min_level = ~%min_lvl_val%~
+    END
+  END
+
+  LAUNCH_PATCH_FUNCTION ~ALTER_EFFECT~ 
+    INT_VAR
+      match_opcode = 54
+      parameter1 = 2
+  END
+
+  LAUNCH_PATCH_FUNCTION ~ALTER_EFFECT~ 
+    INT_VAR
+      match_opcode = 73
+      parameter1 = 2
+  END
+
+  // remove immunity to level drain from the spell and move it to a subspell copy of NPP
+  PATCH_FOR_EACH redundant_opcode IN 101 282 267 169 BEGIN
+    LAUNCH_PATCH_FUNCTION ~DELETE_EFFECT~ 
+      INT_VAR
+        match_opcode = %redundant_opcode%
+    END
+  END
+  
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 146
+      target = 1
+      parameter2 = 1
+      resist_dispel = 3
+      duration = 60
+      power = 4
+      insert_point = 3
+    STR_VAR
+      resource = ~SPCL741D~
+  END
+
+COPY_EXISTING ~SPPR413.spl~ ~override/spcl741d.spl~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_duration = 30
+      duration = 60
+  END
+
+
+// Lathander Draw Upon Holy Might
+COPY_EXISTING ~SPPR214.spl~ ~override/SPPR214D.spl~
+  WRITE_LONG  0x08      ~-1~ // spell name
+  WRITE_BYTE  0x27      0 // secondary type 
+
+  // Remove spell states to avoid AI problems
+  LPF ~DELETE_SPELL_EFFECT~
+    INT_VAR
+      opcode_to_delete = 328
+  END
+
+  // Make undispellable
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      resist_dispel = 0
+  END
+
+  // Increase duration to 90s
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      duration_high = 90
+  END
+
+// Original Draw Upon Holy Might
+COPY_EXISTING ~SPPR214.spl~ ~override/SPPR214.spl~
+  // Protect from original spell if caster is Lathander
+  LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~ 
+    INT_VAR
+      opcode = 318
+      insert_point = ~0~
+      target = 1
+      power = 2
+      parameter1 = 16405
+      parameter2 = %kit_equals_row%
+      duration = 0
+      resist_dispel = 0
+    STR_VAR
+      resource = "SPPR214D"
+  END
+  // Cast improved version if caster is Lathander
+  LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~ 
+    INT_VAR
+      opcode = 326
+      insert_point = ~0~
+      target = 1
+      power = 2
+      parameter1 = 16405
+      parameter2 = %kit_equals_row%
+      duration = 0
+      resist_dispel = 0
+    STR_VAR
+      resource = "SPPR214D"
+  END
+
+
+
+
+
+
 
 
 

@@ -373,6 +373,25 @@ By casting this spell, the priest strengthens the bond between body and soul of 
 
 @6038 = ~Lethal blow averted~
 
-@6039 = ~Shield Bash~
+@6039 = ~Hold Undead
+(Necromancy)
 
-@6040 = ~Shield Bash~
+Level: 3
+Range: 35 ft.
+Duration: 3 rounds
+Casting Time: 3
+Area of Effect: 1 undead creature
+Saving Throw: Special
+
+This spell affects the movements of an undead creature, focusing on the lower parts of its body in an attempt to hold it in place and make it more vulnerable to damage. The target's movement speed is reduced by 100%, and its resistance to slashing and crushing damage is decreased by 20% if the creature fails a Saving Throw against the spell at a -2 penalty. A successful Saving Throw will reduce both of these effects by half. Magic Resistance does not protect against this spell. However, it is still treated as a 3rd-level spell, meaning powerful undead creatures such as Liches and Demiliches are not affected.~
+
+@6040 = ~Boon of Lathander
+This spell lasts for 1 turn. It gives the caster a +1 bonus to all Saving Throws, +2 to damage and thac0, and +1 extra attack per round. It also applies Negative Plane Protection for its duration or until dispelled.~
+
+@6041 = ~Shield Bash~
+
+@6042 = ~Shield Bash~
+
+@6043 = ~Shield Bash~
+
+@6044 = ~Shield Bash~

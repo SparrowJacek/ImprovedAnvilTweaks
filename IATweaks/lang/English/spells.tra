@@ -289,7 +289,7 @@ Saving Throw: None
 This powerful spell was designed specifically to fight against demons from the Abyss. It is centered on the caster, but it affects everyone in the area of 15 feet.
 All affected deal additional 3 magical damage against demons. Additionally, each hit done to demons has a 10% chance to increase the demon's chance for Critical Miss by 5% for 3 rounds, this effect is cumulative.~
 
-@6027 = ~Critical hit chance increased~
+@6027 = ~Critical miss chance increased~
 
 @6028 = ~Demon Hunt~
 

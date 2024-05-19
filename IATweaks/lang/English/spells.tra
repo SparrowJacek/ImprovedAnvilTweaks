@@ -388,10 +388,54 @@ This spell affects the movements of an undead creature, focusing on the lower pa
 @6040 = ~Boon of Lathander
 This spell lasts for 1 turn. It gives the caster a +1 bonus to all Saving Throws, +2 to damage and thac0, and +1 extra attack per round. It also applies Negative Plane Protection for its duration or until dispelled.~
 
-@6041 = ~Shield Bash~
+@6041 = ~Spiritual Link~
 
-@6042 = ~Shield Bash~
+@6042 = ~Spiritual Link
+(Alteration)
 
-@6043 = ~Shield Bash~
+Level: 7
+Range: 0
+Duration: 15 rounds
+Casting Time: 8
+Area of Effect: The caster
+Saving Throw: None
 
-@6044 = ~Shield Bash~
+By opening a direct link between the caster and <PRO_HISHER> god, the caster is able to draw divine energies faster, than normally. This results in <PRO_HIMHER> needing less time to cast spells, which require longer incantations and more focus. The more experience the caster has, the stronger the link and in result, the quicker the casting.
+
+This spell sets casting time of all spells, which have this value higher than 6 to 6. At level 18 this value is reduced to 5, then to 4 and finally to 3 at levels 22 and 26 respectively. Due to direct contact with divine energies, all other means of lowering casting time become useless, however the caster can sever the link at any moment, without wasting <PRO_HISHER> action this round.~
+
+@6043 = ~Break Spiritual Link~
+
+@6044 = ~Lightning Bolt of Talos~
+
+@6045 = ~Lightningbolt of Talos
+(Evocation)
+
+Level: Special
+Range: 70 ft.
+Duration: Instant
+Casting Time: 3
+Area of Effect: Path of bolt
+Saving Throw: 1/2
+
+Upon casting this spell, the priest releases a powerful stroke of electrical energy that inflicts 1d6 points of damage per level of the caster (maximum damage of 10d6) to each creature within its area of effect. A successful Saving Throw vs. Spell reduces this damage to half (round fractions down). If the lightning bolt intersects with a wall, it will bounce until it reaches its full length.
+
+The power and control over this spell increases with the priest's level as follows:
+- at levels 1-12 it's treated as a 3rd level spell and affects both enemies and allies
+- at levels 13-16 it's treated as a 4th level spell
+- at levels 17-20 it's treated as a 5th level spell and only enemies of the caster are affected
+- at levels 21 and above it's treated as a 6th level spell~
+
+@6046 = ~Shield Bash~
+
+@6047 = ~Shield Bash~
+
+@6048 = ~Shield Bash~
+
+@6049 = ~Shield Bash~
+
+@6050 = ~Shield Bash~
+
+@6051 = ~Shield Bash~
+
+@6052 = ~Shield Bash~

@@ -1329,6 +1329,7 @@ ACTION_FOR_EACH resurrection_spell IN ~spja01.spl~ ~sppr504.spl~ ~sppr550.spl~ ~
   END
 END
 
+//////// LATHANDER //////////
 
 // Hold Undead Lathander ability
 
@@ -1508,7 +1509,6 @@ COPY_EXISTING ~SPPR413.spl~ ~override/spcl741d.spl~
       duration = 60
   END
 
-
 // Lathander Draw Upon Holy Might
 COPY_EXISTING ~SPPR214.spl~ ~override/SPPR214D.spl~
   WRITE_LONG  0x08      ~-1~ // spell name
@@ -1564,6 +1564,132 @@ COPY_EXISTING ~SPPR214.spl~ ~override/SPPR214.spl~
     STR_VAR
       resource = "SPPR214D"
   END
+
+//////// TALOS ///////////
+
+// Spiritual Link
+
+COPY ~IATweaks\resources\bam\sppr734b.bam~ ~override~
+COPY ~IATweaks\resources\bam\sppr734c.bam~ ~override~
+COPY ~IATweaks\resources\bam\sppr734d.bam~ ~override~
+
+OUTER_SET spiritual_link_desc_str_ref = RESOLVE_STR_REF (@6041)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %spiritual_link_desc_str_ref%
+  STR_VAR
+    bam_file = ~SPPR734D~
+  RET
+    spiritual_link_icon_id = portrait_icon_id
+END
+
+COPY ~IATweaks\resources\spl\sppr734.spl~ ~override~
+  SAY NAME1 @6041
+  SAY UNIDENTIFIED_DESC @6042
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %spiritual_link_desc_str_ref%
+  END
+
+COPY ~IATweaks\resources\spl\sppr734d.spl~ ~override~
+  SAY NAME1 @6043
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABPR02.2da~
+    row_desc = ~SPIRITUAL_LINK~
+    level14 = ~GA_SPPR734~
+END
+
+// Lightning Bolt of Talos
+
+COPY ~IATweaks\resources\bam\s!ylight.bam~ ~override~
+COPY_EXISTING ~lightb.pro~ ~override/s!light1.pro~
+  WRITE_ASCII 0x104 ~s!ylight~ #8
+
+ADD_PROJECTILE ~override/s!light1.pro~
+
+COPY_EXISTING ~spcl722.spl~ ~override~
+  SAY NAME1 @6044
+  SAY UNIDENTIFIED_DESC @6045
+
+  WRITE_LONG 0x34 1 // Spell Level
+
+  LPF ~S!CLONE_SPELL_HEADER~
+    INT_VAR
+      header_to_copy = 9
+      level_req = 13
+  END
+
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      header = 10
+      match_opcode = ~-1~
+      power = 4
+  END
+
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      projectile = %s!light1% // Yellow Lightning Bolt
+  END
+
+  LPF ~S!CLONE_SPELL_HEADER~
+    INT_VAR
+      header_to_copy = 10
+      level_req = 17
+  END
+
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      header = 11
+      match_opcode = ~-1~
+      power = 5
+  END
+  // Add immunity to the spell for non-enemies
+  LPF ~ADD_SPELL_EFFECT~ 
+    INT_VAR
+      opcode = 318
+      insert_point = ~0~
+      target = 2
+      power = 0
+      parameter2 = 52
+      timing = 10
+      duration = 1
+      resist_dispel = 0
+    STR_VAR
+      resource = "SPCL722"
+  END
+  LPF ~S!CLONE_SPELL_HEADER~
+    INT_VAR
+      header_to_copy = 11
+      level_req = 21
+  END
+
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      header = 12
+      match_opcode = ~-1~
+      power = 6
+  END
+
+  // Add missing save for half damage
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 12
+      special = 256
+  END
+
+// Purify Aura at lvls 5, 15 and 25
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABPR02.2da~
+    row_desc = ~PURIFY_AURA~
+    level5 = ~GA_SPCL943~
+    level15 = ~GA_SPCL943~
+    level25 = ~GA_SPCL943~
+END
+
 
 
 

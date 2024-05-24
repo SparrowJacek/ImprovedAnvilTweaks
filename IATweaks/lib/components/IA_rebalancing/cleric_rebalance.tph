@@ -64,8 +64,7 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
       WRITE_BYTE 0x1e (%usability_flags_1% BAND 0b01111111) // enable daggers for Clerics
       WRITE_BYTE 0x1f (%usability_flags_2% BAND 0b00111000) // enable daggers for Cleric multi combinations
   END
-
-
+  BUT_ONLY
 
 // Update class description for Clerics
 COPY_EXISTING ~clastext.2da~ ~override/clastext.2da~
@@ -417,7 +416,8 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
           parameter1 = %shield_equipped_state%
           timing = 2  
       END
-    END
+  END
+  BUT_ONLY
 
 // Add needed splprot entries
 
@@ -1227,6 +1227,24 @@ COPY_EXISTING ~SPPR201.spl~ ~override/SPPR201.spl~
         projectile = 162
     END
   END
+
+// Draw Upon Holy Might
+
+ACTION_FOR_EACH duhm_spell_file IN ~spin103.spl~ ~sppr214.spl~ BEGIN
+  COPY_EXISTING ~%duhm_spell_file%~ ~override/%duhm_spell_file%~
+    SAY UNIDENTIFIED_DESC @6051
+    // Cap its bonuses to +4 at level 12
+    LPF ~DELETE_SPELL_HEADER~
+      INT_VAR
+        header_type = ~-1~
+        min_level = 15
+    END
+    LPF ~DELETE_SPELL_HEADER~
+      INT_VAR
+        header_type = ~-1~
+        min_level = 18
+    END
+END
 
 // Greater Restoration
 

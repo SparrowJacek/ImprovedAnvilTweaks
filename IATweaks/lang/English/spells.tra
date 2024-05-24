@@ -451,6 +451,15 @@ At levels 5-10, it affects all creatures within a 5-foot radius.
 At levels 11-15, the area is increased to a 10-foot radius.
 From level 16 onward, the area is increased to a 15-foot radius.~
 
-@6051 = ~Shield Bash~
+@6051 = ~Draw Upon Holy Might (Invocation)
+Level: 2
+Sphere: Combat
+Range: 0
+Duration: 1 turn
+Casting Time: 5
+Area of Effect: The caster
+Saving Throw: None
+
+The priest calls upon his god to grant him power for a short period. When he does this, his strength, constitution and dexterity all are raised by 1 point for every 3 levels of the caster up till level 12. A third level caster would have his abilities raised by 1, while a 12th level caster would have all his abilities raised by 4.~
 
 @6052 = ~Shield Bash~

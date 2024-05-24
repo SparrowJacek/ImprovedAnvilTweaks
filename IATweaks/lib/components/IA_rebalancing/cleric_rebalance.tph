@@ -26,9 +26,9 @@ ACTION_PHP_EACH hla_row_to_abbrev_mapping AS _ => abbreviation BEGIN
   COPY_EXISTING ~lucl0.2da~ ~override/lu%abbreviation%.2da~
 END
 
-// Enable ** in Sword and Shield for Cleric and all kits and *** for Tyr
 COPY_EXISTING ~weapprof.2da~  ~override/weapprof.2da~
   COUNT_2DA_COLS ~colcount~
+// Enable ** in Sword and Shield for Cleric and all kits and *** for Tyr
   SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 6 ~2~
   SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 13 ~2~
   SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 17 ~2~
@@ -37,10 +37,35 @@ COPY_EXISTING ~weapprof.2da~  ~override/weapprof.2da~
   SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 48 ~2~
   SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 49 ~2~
   SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 50 ~2~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 62 ~2~ // Tyr
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 62 ~3~ // Tyr
   SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 63 ~2~
   SET_2DA_ENTRIES_NOW ~_#_#_#weapprof~ ~colcount~
+// Enable Clerics to put points into daggers
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 15 6 ~1~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 15 13 ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 15 17 ~1~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 15 18 ~1~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 15 20 ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 15 21 ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 15 48 ~1~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 15 49 ~1~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 15 50 ~1~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 15 62 ~1~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 15 63 ~1~
   PRETTY_PRINT_2DA
+
+// Make all daggers usable by Clerics
+COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
+  READ_SHORT 0x1c item_category
+  PATCH_IF (item_category = 16)
+    THEN BEGIN  
+      READ_BYTE 0x1e usability_flags_1
+      READ_BYTE 0x1f usability_flags_2
+      WRITE_BYTE 0x1e (%usability_flags_1% BOR 0b10000000) // enable daggers for Clerics
+      WRITE_BYTE 0x1f (%usability_flags_2% BOR 0b11000111) // enable daggers for Cleric multi combinations
+      END
+    END
+
 
 // Update class description for Clerics
 COPY_EXISTING ~clastext.2da~ ~override/clastext.2da~
@@ -1690,9 +1715,372 @@ LAF ~S!ADD_CLAB_ROW~
     level25 = ~GA_SPCL943~
 END
 
+/////// HELM ///////
 
+// * in Long Swords
+COPY ~IATweaks\resources\bam\s!loswrd.bam~ ~override~
+COPY ~IATweaks\resources\spl\s!loswrd.spl~ ~override~
+  SAY NAME1 @6047
+  SAY UNIDENTIFIED_DESC @6048
 
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABPR03.2da~
+    row_desc = ~LONG_SWORD_PROF~
+    level1 = ~AP_s!loswrd~
+END
 
+// Seeking Sword
+
+COPY ~IATweaks\resources\itm\s!seek01.itm~ ~override~
+COPY ~IATweaks\resources\itm\s!seek02.itm~ ~override~
+COPY ~IATweaks\resources\itm\s!seek03.itm~ ~override~
+COPY ~IATweaks\resources\itm\s!seek04.itm~ ~override~
+COPY ~IATweaks\resources\itm\s!seek05.itm~ ~override~
+COPY ~IATweaks\resources\itm\s!seek06.itm~ ~override~
+COPY_EXISTING ~SPCL731.spl~ ~override/SPCL731.spl~
+  SAY UNIDENTIFIED_DESC @6046
+
+  // Set proper weapon per level
+  PATCH_FOR_EACH ~ability_num~ IN "1" "2" "3" "4" "5" "6" "7" "8" "9" BEGIN
+    LAUNCH_PATCH_FUNCTION ~ALTER_SPELL_EFFECT~ 
+      INT_VAR
+        header = %ability_num%
+        match_opcode = 111
+      STR_VAR
+        resource = ~S!seek01~
+    END
+  END  
+
+  PATCH_FOR_EACH ~ability_num~ IN "10" "11" BEGIN
+    LAUNCH_PATCH_FUNCTION ~ALTER_SPELL_EFFECT~ 
+      INT_VAR
+        header = %ability_num%
+        match_opcode = 111
+      STR_VAR
+        resource = ~S!seek02~
+    END
+  END  
+
+  PATCH_FOR_EACH ~ability_num~ IN "12" "13" "14" BEGIN
+    LAUNCH_PATCH_FUNCTION ~ALTER_SPELL_EFFECT~ 
+      INT_VAR
+        header = %ability_num%
+        match_opcode = 111
+      STR_VAR
+        resource = ~S!seek03~
+    END
+  END 
+
+  PATCH_FOR_EACH ~ability_num~ IN "15" "16" "17" "18" "19" BEGIN
+    LAUNCH_PATCH_FUNCTION ~ALTER_SPELL_EFFECT~ 
+      INT_VAR
+        header = %ability_num%
+        match_opcode = 111
+      STR_VAR
+        resource = ~S!seek04~
+    END
+  END 
+
+  LAUNCH_PATCH_FUNCTION ~ALTER_SPELL_EFFECT~ 
+    INT_VAR
+      header = 20
+      match_opcode = 111
+    STR_VAR
+      resource = ~S!seek05~
+  END
+
+  LPF ~S!CLONE_SPELL_HEADER~
+    INT_VAR
+      header_to_copy = 19
+      level_req = 25
+  END
+
+  LAUNCH_PATCH_FUNCTION ~ALTER_SPELL_EFFECT~ 
+    INT_VAR
+      header = 21
+      match_opcode = 111
+    STR_VAR
+      resource = ~S!seek06~
+  END
+
+  // Make the spell undispellable
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      resist_dispel = 0
+  END
+
+/////// TYR //////
+
+// Divine Favor
+
+COPY_EXISTING ~OHTYR2.spl~ ~override/OHTYR2.spl~
+  SAY UNIDENTIFIED_DESC @6049  
+  
+  // Extend duration to 36s
+  LPF ALTER_SPELL_EFFECT INT_VAR
+    check_headers = 1
+    duration = 36
+  END
+
+  // Remove previous instance of this spell to prevent stacking
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 321
+      target = 1
+      insert_point = 0
+      resist_dispel = 0
+    STR_VAR
+      resource = ~OHTYR2~
+  END
+  BUT_ONLY
+
+// Tyr Righteous Magic
+
+COPY_EXISTING ~SPPR513.spl~ ~override/SPPR513D.spl~
+  WRITE_LONG  0x08      ~-1~ // spell name
+  WRITE_BYTE  0x27      0 // secondary type 
+
+  // Remove spell states to avoid AI problems
+  LPF ~DELETE_SPELL_EFFECT~
+    INT_VAR
+      opcode_to_delete = 328
+  END
+
+  // Remove self for stacking reasons
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 321
+      multi_match = 1
+    STR_VAR
+      resource = ~SPPR513D~
+  END
+
+  // Make undispellable
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      resist_dispel = 0
+  END
+
+// Original Righteous Magic
+COPY_EXISTING ~SPPR513.spl~ ~override/SPPR513.spl~
+  // Protect from original spell if caster is Tyr
+  LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~ 
+    INT_VAR
+      opcode = 318
+      insert_point = ~0~
+      target = 1
+      power = 2
+      parameter1 = 16424
+      parameter2 = %kit_equals_row%
+      duration = 0
+      resist_dispel = 0
+    STR_VAR
+      resource = "SPPR513D"
+  END
+  // Cast improved version if caster is Tyr
+  LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~ 
+    INT_VAR
+      opcode = 326
+      insert_point = ~0~
+      target = 1
+      power = 2
+      parameter1 = 16424
+      parameter2 = %kit_equals_row%
+      duration = 0
+      resist_dispel = 0
+    STR_VAR
+      resource = "SPPR513D"
+  END
+
+/////// TEMPUS ///////
+
+// Remove special ability Holy Power
+
+COPY_EXISTING ~OHTEMPUS.2da~ ~override~
+  REPLACE_EVALUATE
+    ~GA_OHTMPS1~
+    BEGIN
+    END
+    ~****~
+
+// Tempus Holy Power
+
+COPY_EXISTING ~SPPR412.spl~ ~override/SPPR412D.spl~
+  WRITE_LONG  0x08      ~-1~ // spell name
+  WRITE_BYTE  0x27      0 // secondary type 
+
+  // Remove spell states to avoid AI problems
+  LPF ~DELETE_SPELL_EFFECT~
+    INT_VAR
+      opcode_to_delete = 328
+  END
+
+  // Update resource for protection from setting str to 18 if it is higher already
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+    STR_VAR
+      resource = ~SPPR412D~
+  END
+
+  // Add 1/2 APR from lvl 12
+  PATCH_FOR_EACH header_num IN 5 6 7 8 9 10 11 12 BEGIN
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        header = %header_num%
+        match_opcode = 18
+        opcode = 1
+        parameter1 = 6
+        parameter2 = 0
+    END
+  END
+  // Add 1 APR from lvl 20
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      header = 13
+      match_opcode = 18
+      opcode = 1
+      parameter1 = 1
+      parameter2 = 0
+  END
+
+  // Make undispellable
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      resist_dispel = 0
+  END
+
+// Original Holy Power
+COPY_EXISTING ~SPPR412.spl~ ~override/SPPR412.spl~
+  // Protect from original spell if caster is Tempus
+  LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~ 
+    INT_VAR
+      opcode = 318
+      insert_point = ~0~
+      target = 1
+      power = 2
+      parameter1 = 16425
+      parameter2 = %kit_equals_row%
+      duration = 0
+      resist_dispel = 0
+    STR_VAR
+      resource = "SPPR412D"
+  END
+  // Cast improved version if caster is Tempus
+  LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~ 
+    INT_VAR
+      opcode = 326
+      insert_point = ~0~
+      target = 1
+      power = 2
+      parameter1 = 16425
+      parameter2 = %kit_equals_row%
+      duration = 0
+      resist_dispel = 0
+    STR_VAR
+      resource = "SPPR412D"
+  END
+
+// Chaos of Battle
+
+// Projectiles
+
+COPY_EXISTING ~ohvrnp.pro~ ~override/s!cobe05.pro~
+  WRITE_SHORT 0x204 85
+  WRITE_SHORT 0x206 85
+ADD_PROJECTILE ~override/s!cobe05.pro~
+
+COPY_EXISTING ~ohvrnp.pro~ ~override/s!cobe10.pro~
+  WRITE_SHORT 0x204 170
+  WRITE_SHORT 0x206 170
+ADD_PROJECTILE ~override/s!cobe10.pro~
+
+COPY_EXISTING ~ohvrnp.pro~ ~override/s!cobe15.pro~
+  WRITE_SHORT 0x204 255
+  WRITE_SHORT 0x206 255
+ADD_PROJECTILE ~override/s!cobe15.pro~
+
+COPY_EXISTING ~ohvrpo.pro~ ~override/s!coba05.pro~
+  WRITE_SHORT 0x204 85
+  WRITE_SHORT 0x206 85
+ADD_PROJECTILE ~override/s!coba05.pro~
+
+COPY_EXISTING ~ohvrpo.pro~ ~override/s!coba10.pro~
+  WRITE_SHORT 0x204 170
+  WRITE_SHORT 0x206 170
+ADD_PROJECTILE ~override/s!coba10.pro~
+
+COPY_EXISTING ~ohvrpo.pro~ ~override/s!coba15.pro~
+  WRITE_SHORT 0x204 255
+  WRITE_SHORT 0x206 255
+ADD_PROJECTILE ~override/s!coba15.pro~
+
+COPY_EXISTING ~ohtmps2.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6050
+
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      target = 4
+  END
+
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 146
+      opcode = 148
+    STR_VAR
+      match_resource = ~ohtmps2d~
+      resource = ~s!cobfri~
+  END
+
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 146
+      opcode = 148
+    STR_VAR
+      match_resource = ~ohtmps2e~
+      resource = ~s!cobfoe~
+  END
+
+COPY ~IATweaks\resources\spl\s!cobfri.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      header = 1
+      projectile = %s!coba05%
+  END
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      header = 2
+      projectile = %s!coba10%
+  END
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      header = 3
+      projectile = %s!coba15%
+  END
+
+COPY ~IATweaks\resources\spl\s!cobfoe.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      header = 1
+      projectile = %s!cobe05%
+  END
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      header = 2
+      projectile = %s!cobe10%
+  END
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      header = 3
+      projectile = %s!cobe15%
+  END
+
+COPY ~IATweaks\resources\spl\s!cobdsp.spl~ ~override~
+COPY ~IATweaks\resources\eff\s!cobdsp.eff~ ~override~
 
 
 

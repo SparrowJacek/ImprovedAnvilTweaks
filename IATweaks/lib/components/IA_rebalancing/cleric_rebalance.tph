@@ -595,13 +595,14 @@ COPY_EXISTING ~SPPR412.spl~ ~override/SPPR412.spl~
   END
   BUT_ONLY
 
-// Remove Summon Animals and Poison from Clerics
+// Remove Summon Animals, Barkskin, Earthquake and Poison from Clerics
 
-COPY_EXISTING ~SPPR402.spl~ ~override/SPPR402.spl~
+COPY_EXISTING ~SPPR202.spl~ ~override/SPPR202.spl~
+              ~SPPR402.spl~ ~override/SPPR402.spl~
               ~SPPR411.spl~ ~override/SPPR411.spl~
               ~SPPR501.spl~ ~override/SPPR501.spl~
               ~SPPR602.spl~ ~override/SPPR602.spl~
-              ~SPPR604.spl~ ~override/SPPR604.spl~
+              ~SPPR720.spl~ ~override/SPPR720.spl~
   WRITE_BYTE  0x21      0x40
   BUT_ONLY
 
@@ -612,16 +613,20 @@ COPY_EXISTING_REGEXP GLOB ~.+\.cre~ ~override~
 
   // Remove summon animals spells
   PATCH_IF %char_class% != 21 AND %char_class% != 11 AND %char_class% != 16 BEGIN
+    REMOVE_KNOWN_SPELL ~SPPE202~
     REMOVE_KNOWN_SPELL ~SPPR402~
     REMOVE_KNOWN_SPELL ~SPPR411~
     REMOVE_KNOWN_SPELL ~SPPR501~
     REMOVE_KNOWN_SPELL ~SPPR602~
     REMOVE_KNOWN_SPELL ~SPPR604~
+    REMOVE_KNOWN_SPELL ~SPPR720~
+    REMOVE_MEMORIZED_SPELL ~SPPR202~
     REMOVE_MEMORIZED_SPELL ~SPPR402~
     REMOVE_MEMORIZED_SPELL ~SPPR411~
     REMOVE_MEMORIZED_SPELL ~SPPR501~
     REMOVE_MEMORIZED_SPELL ~SPPR602~
     REMOVE_MEMORIZED_SPELL ~SPPR604~
+    REMOVE_MEMORIZED_SPELL ~SPPR720~
   END
   BUT_ONLY
 
@@ -1214,6 +1219,14 @@ COPY_EXISTING ~sppr106.spl~ ~override~
       parameter1 = 3
   END
 
+// Wisdom of the Ages
+
+COPY ~IATweaks\resources\bam\sppr117b.bam~ ~override~
+COPY ~IATweaks\resources\bam\sppr117c.bam~ ~override~
+COPY ~IATweaks\resources\spl\sppr117.spl~ ~override~
+  SAY NAME1 @6052
+  SAY UNIDENTIFIED_DESC @6053
+
 // Aid
 
 COPY_EXISTING ~SPPR201.spl~ ~override/SPPR201.spl~
@@ -1371,6 +1384,24 @@ ACTION_FOR_EACH resurrection_spell IN ~spja01.spl~ ~sppr504.spl~ ~sppr550.spl~ ~
       resource = ~sppr735~
   END
 END
+
+// Storm of Vengeance
+
+COPY_EXISTING ~sppr722.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6054
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_savingthrow = 1
+      savingthrow = 16777217 // add bypass Mirror Image
+      savebonus = ~-4~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_savingthrow = 4
+      savingthrow = 16777220 // add bypass Mirror Image
+      savebonus = ~-4~
+  END
+
 
 //////// LATHANDER //////////
 

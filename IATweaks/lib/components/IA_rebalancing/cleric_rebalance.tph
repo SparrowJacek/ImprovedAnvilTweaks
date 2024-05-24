@@ -61,10 +61,10 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
     THEN BEGIN  
       READ_BYTE 0x1e usability_flags_1
       READ_BYTE 0x1f usability_flags_2
-      WRITE_BYTE 0x1e (%usability_flags_1% BOR 0b10000000) // enable daggers for Clerics
-      WRITE_BYTE 0x1f (%usability_flags_2% BOR 0b11000111) // enable daggers for Cleric multi combinations
-      END
-    END
+      WRITE_BYTE 0x1e (%usability_flags_1% BAND 0b01111111) // enable daggers for Clerics
+      WRITE_BYTE 0x1f (%usability_flags_2% BAND 0b00111000) // enable daggers for Cleric multi combinations
+  END
+
 
 
 // Update class description for Clerics

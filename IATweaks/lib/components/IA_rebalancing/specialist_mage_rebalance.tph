@@ -1,0 +1,349 @@
+SILENT
+
+INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
+
+// Add condition for checking specific kit in splprot.2da
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~KIT=n~
+    stat                  = ~152~
+    value                 = ~-1~
+    relation              = ~1~
+  RET
+    kit_equals_row = new_line_number
+END
+
+// Add proper CLAB file if it does not exist
+
+ACTION_FOR_EACH mage_kit_clab_file IN ~CLABMA01.2da~ ~CLABMA02.2da~ ~CLABMA03.2da~ ~CLABMA04.2da~ ~CLABMA05.2da~ ~CLABMA06.2da~ ~CLABMA07.2da~ ~CLABMA08.2da~ ~CLABMA09.2da~ BEGIN
+  ACTION_IF NOT FILE_EXISTS_IN_GAME ~%mage_kit_clab_file%~ THEN BEGIN
+    COPY ~IATweaks\resources\2da\clabtemp.2da~ ~override/%mage_kit_clab_file%~
+  END
+END
+
+// Web
+
+COPY_EXISTING ~spwi215.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6056
+  READ_BYTE 0x1f spell_flags
+  WRITE_BYTE 0x1f (%spell_flags% BOR 0b00000001) // disable the spell for Diviners
+  WRITE_BYTE 0x1f (%spell_flags% BAND 0b11111101) // enable the spell for Conjurers
+  WRITE_SHORT 0x22 14 // Casting animation
+  WRITE_BYTE 0x27 2 // School
+
+//////// CONJURER //////////
+
+// Create more powerful versions of summons for Conjurer
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY conjurer_new_summons_mapping BEGIN
+  "s!minosu"=>"s!monsu4"
+  "s!salasu"=>"s!monsu5"
+  "s!trolsu"=>"s!monsu6"
+  "s!yuansu"=>"s!monsu7"
+END
+
+ACTION_PHP_EACH conjurer_new_summons_mapping AS orig_cre=>new_cre BEGIN
+  COPY_EXISTING ~%orig_cre%.cre~ ~override/%new_cre%.cre~
+    LPF ~ADD_CRE_EFFECT~ // +20% HP
+      INT_VAR
+        opcode = 18
+        target = 1
+        power = 0
+        parameter1 = 120
+        parameter2 = 2
+        timing = 9
+        resist_dispel = 0
+    END
+    LPF ~ADD_CRE_EFFECT~ // +20% HP
+      INT_VAR
+        opcode = 17
+        target = 1
+        power = 0
+        parameter1 = 120
+        parameter2 = 2
+        timing = 9
+        resist_dispel = 0
+    END
+    LPF ~ADD_CRE_EFFECT~ // + 2 AC
+      INT_VAR
+        opcode = 0
+        target = 1
+        power = 0
+        parameter1 = 2
+        parameter2 = 0
+        timing = 9
+        resist_dispel = 0
+    END
+    LPF ~ADD_CRE_EFFECT~ // + 2 Str
+      INT_VAR
+        opcode = 44
+        target = 1
+        power = 0
+        parameter1 = 2
+        parameter2 = 0
+        timing = 9
+        resist_dispel = 0
+    END
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY old_to_new_eff_mapping BEGIN
+  "s!mon4"=>"s!monsu4"
+  "s!mon5"=>"s!monsu5"
+  "s!mon6"=>"s!monsu6"
+  "s!mon7"=>"s!monsu7"
+END
+
+ACTION_PHP_EACH old_to_new_eff_mapping AS orig_eff=>new_eff BEGIN
+  COPY_EXISTING ~%orig_eff%.eff~ ~override/%new_eff%.eff~
+    WRITE_EVALUATED_ASCII 0x30 ~%new_eff%~ #8
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY spell_to_eff_mapping BEGIN
+  "spwi618"=>"s!monsu4"
+  "spwi712"=>"s!monsu5"
+  "spwi815"=>"s!monsu6"
+  "spwi902"=>"s!monsu7"
+END
+
+ACTION_PHP_EACH spell_to_eff_mapping AS summ_spell=>summ_eff BEGIN
+  COPY_EXISTING ~%summ_spell%.spl~ ~override/%summ_spell%d.spl~
+    WRITE_LONG 0x08 ~-1~ // Remove spell name
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 177
+      STR_VAR
+        resource = EVALUATE_BUFFER ~%summ_eff%~
+    END
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 318
+      STR_VAR
+        parameter1 = 6
+        parameter2 = 134
+        resource = EVALUATE_BUFFER ~%summ_spell%d~
+    END
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 326
+        parameter1 = 6
+        parameter2 = 134
+    END
+END
+
+ACTION_FOR_EACH orig_summ_spell IN ~spwi618~ ~spwi712~ ~spwi815~ ~spwi902~ BEGIN
+  COPY_EXISTING ~%orig_summ_spell%.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter1 = 128
+      parameter2 = %kit_equals_row% 
+    STR_VAR
+      resource = EVALUATE_BUFFER ~%orig_summ_spell%~
+      insert = ~first~
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 326
+      parameter1 = 128
+      parameter2 = %kit_equals_row% 
+    STR_VAR
+      resource = EVALUATE_BUFFER ~%orig_summ_spell%d~
+      insert = ~first~
+  END
+END
+
+//////// TRANSMUTER //////////
+
+// Stoneskin that can be cast at others
+
+COPY_EXISTING ~spwi408.spl~ ~override/s!stonsk.spl~
+  WRITE_SHORT 0x1c 4 // Innate
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      location = 4
+      target = 1
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      target = 2
+  END
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABMA04.2da~
+    row_desc = ~ALLY_STONESKIN~
+    level5 = ~GA_S!STONSK~
+    level15 = ~GA_S!STONSK~
+    level25 = ~GA_S!STONSK~
+    level35 = ~GA_S!STONSK~
+END
+
+
+// Tenser's Transformation
+
+COPY ~IATweaks\resources\eff\s!1_2apr.eff~ ~override~
+COPY ~IATweaks\resources\spl\spwi603d.spl~ ~override~
+COPY_EXISTING ~spwi603.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      multi_match = 1
+      match_opcode = 206
+      opcode = 326
+      parameter1 = 8192
+      parameter2 = %kit_equals_row%
+    STR_VAR
+      resource = ~spwi603d~
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 145
+      match_parameter2 = 2
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      multi_match = 1
+      match_opcode = 206
+      opcode = 318
+      parameter1 = 8192
+      parameter2 = %kit_equals_row%
+    STR_VAR
+      resource = ~spwi804~
+  END  
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      multi_match = 1
+      match_opcode = 206
+      opcode = 318
+      parameter1 = 8192
+      parameter2 = %kit_equals_row%
+    STR_VAR
+      resource = ~spwi603~
+  END  
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      multi_match = 1
+      match_opcode = 206
+      opcode = 145
+      parameter2 = 2
+  END  
+
+// Tenser's Partial Transformation
+
+COPY ~IATweaks\resources\spl\spwi804d.spl~ ~override~
+COPY_EXISTING ~spwi804.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      multi_match = 1
+      match_opcode = 206
+      opcode = 326
+      parameter1 = 8192
+      parameter2 = %kit_equals_row%
+    STR_VAR
+      resource = ~spwi804d~
+  END
+
+// Dragon Strength
+
+COPY ~IATweaks\resources\bam\s!dragsb.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!dragsd.bam~ ~override~
+
+OUTER_SET dragon_str_desc_str_ref = RESOLVE_STR_REF (@6057)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %dragon_str_desc_str_ref%
+  STR_VAR
+    bam_file = ~s!dragsd~
+  RET
+    dragon_str_icon_id = portrait_icon_id
+END
+
+COPY ~IATweaks\resources\spl\s!drgstr.spl~ ~override~
+  SAY NAME1 @6057
+  SAY UNIDENTIFIED_DESC @6058
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %dragon_str_icon_id%
+  END
+
+LAF ~S!ADD_HLA_ROW~
+  STR_VAR
+    filename = ~s!drgstr~
+    row_desc = ~DRAGON_STRENGTH~
+    ability = ~GA_s!drgstr~
+    num_allowed = ~1~
+END
+
+// Blinding Speed
+
+COPY ~IATweaks\resources\bam\s!blspdb.bam~ ~override~
+COPY ~IATweaks\resources\spl\s!bldspd.spl~ ~override~
+  SAY NAME1 @6059
+  SAY UNIDENTIFIED_DESC @6060
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABMA04.2da~
+    row_desc = ~BLINDING_SPEED~
+    level14 = ~GA_S!BLDSPD~
+    level21 = ~GA_S!BLDSPD~
+    level28 = ~GA_S!BLDSPD~
+    level35 = ~GA_S!BLDSPD~
+END
+
+//////// ABJURER ////////
+
+// Chain Sequencer
+
+COPY_EXISTING ~inarea.pro~ ~override/s!wij01.pro~
+  // READ_BYTE 0x200 pro_flags
+  // WRITE_BYTE 0x200 (%pro_flags% BOR 0b00000010) // make it affect only enemies
+  WRITE_SHORT 0x214 0 // No secondary projectile
+
+ADD_PROJECTILE ~override\s!wij01.pro~
+
+COPY ~IATweaks\resources\bam\spwij01b.bam~ ~override~
+COPY ~IATweaks\resources\spl\spwij01.spl~ ~override~
+  SAY NAME1 @6061
+  SAY UNIDENTIFIED_DESC @6062
+COPY ~IATweaks\resources\spl\spwij01d.spl~ ~override~
+  SAY NAME1 @6063
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      projectile = %s!wij01%
+  END
+
+COPY ~IATweaks\resources\spl\spwij01e.spl~ ~override~
+COPY ~IATweaks\resources\spl\spwij01p.spl~ ~override~
+  SAY NAME1 @6063
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      projectile = %s!wij01%
+  END
+
+COPY_EXISTING ~bgee.lua~ ~override~
+	REPLACE_TEXTUALLY EXACT_MATCH ~mageBookStrings = {~ ~mageBookStrings = {
+	SPWIJ01 = {tip = 60420, title = 'MINOR_SEQUENCER_TITLE', action = "ADD_SPELLS_SEQUENCER_LABEL"},~
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABMA07.2da~
+    row_desc = ~CHAIN_SEQUENCER~
+    level15 = ~GA_SPWIJ01~
+    level25 = ~GA_SPWIJ01~
+END
+
+// +5% elemental damage per 10 levels
+
+COPY ~IATweaks\resources\spl\s!+5eled.spl~ ~override~
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABMA07.2da~
+    row_desc = ~5%_ELEM_DAMAGE~
+    level10 = ~GA_S!+5ELED~
+    level20 = ~GA_S!+5ELED~
+    level30 = ~GA_S!+5ELED~
+END

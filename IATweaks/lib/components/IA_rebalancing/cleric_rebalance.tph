@@ -1259,6 +1259,40 @@ ACTION_FOR_EACH duhm_spell_file IN ~spin103.spl~ ~sppr214.spl~ BEGIN
     END
 END
 
+// Champion's Strength
+
+COPY ~IATweaks\resources\spl\sppr507d.spl~ ~override~
+COPY_EXISTING ~sppr507.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6055
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_target = 2
+  END
+  // Cast subspell
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 145
+      multi_match = 1
+      opcode = 146
+      target = 2
+      parameter2 = 1
+      resist_dispel = 0
+    STR_VAR
+      resource = ~sppr507d~
+  END
+  // Make Priest of Tempus able to cast spells
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 145
+      multi_match = 1
+      opcode = 318
+      parameter1 = 16425
+      parameter2 = %kit_equals_row%
+      resist_dispel = 0
+    STR_VAR
+      resource = ~sppr507~
+  END
+
 // Greater Restoration
 
 COPY_EXISTING ~sppr713.spl~ ~override~
@@ -1391,6 +1425,11 @@ COPY_EXISTING ~sppr722.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6054
   LPF ~ALTER_EFFECT~
     INT_VAR
+      match_savingthrow = 0
+      savingthrow = 16777216 // add bypass Mirror Image
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
       match_savingthrow = 1
       savingthrow = 16777217 // add bypass Mirror Image
       savebonus = ~-4~
@@ -1401,7 +1440,6 @@ COPY_EXISTING ~sppr722.spl~ ~override~
       savingthrow = 16777220 // add bypass Mirror Image
       savebonus = ~-4~
   END
-
 
 //////// LATHANDER //////////
 
@@ -1663,7 +1701,7 @@ COPY ~IATweaks\resources\spl\sppr734.spl~ ~override~
   LPF ~ALTER_EFFECT~
     INT_VAR
       match_opcode = 142
-      parameter2 = %spiritual_link_desc_str_ref%
+      parameter2 = %spiritual_link_icon_id%
   END
 
 COPY ~IATweaks\resources\spl\sppr734d.spl~ ~override~

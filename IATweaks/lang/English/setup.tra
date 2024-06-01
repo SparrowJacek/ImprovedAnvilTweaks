@@ -72,7 +72,7 @@ CLASS FEATURES:
 
 – May wear helmets.
 – May wear any armor.
-– May only use non-bladed, non-piercing weapons apart from daggers (war hammer, club, flail, mace, quarterstaff, sling).
+– May only use blunt weapons (war hammer, club, flail, mace, quarterstaff, sling) and daggers.
 – May only become Proficient (one slot) in any weapon class.
 – May become Specialized (two slots) in Sword and Shield fighting style.
 – May only become Proficient (one slot) in any other fighting style.
@@ -83,3 +83,5 @@ CLASS FEATURES:
 Prime Requisites For Dual-Classing: Wisdom~
 
 @5007 = ~Rebalance Clerics and their kits~
+
+@5008 = ~Rebalance specialist Mage kits~

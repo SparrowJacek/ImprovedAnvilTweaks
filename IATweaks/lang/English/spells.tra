@@ -544,7 +544,7 @@ This is a far more dangerous form of standard Sequencer spell. The caster first 
 
 @6064 = ~Non-Detection (Abjuration)
 Level: 3
-Range: Touch
+Range: Visual range of the caster
 Duration: 2 turns
 Casting Time: 3
 Area of Effect: 1 creature or item
@@ -552,14 +552,45 @@ Saving Throw: None
 
 By casting this spell, the wizard makes the creature or object touched immune to the first effect that would dispel invisibility from that creature, be it from magical means like True Sight or through Detect Illusions ability.~
 
-@6065 = ~Shield Bash~
+@6065 = ~Non-Detection absorbed~
 
-@6066 = ~Shield Bash~
+@6066 = ~Target is already under the effects of Improved Invisibility~
 
-@6067 = ~Shield Bash~
+@6067 = ~Simulacrum:
+This spell creates a duplicate of the caster, which closely resembles the original and acts as a powerful ally. The clone can be controlled freely and can cast spells just like the caster, it will serve the caster for 2 turns. The clone cannot engage in physical combat or use weapons. The spell does not replicate any items the caster is using or wearing. The clone's level depends on the caster's level:
 
-@6068 = ~Shield Bash~
+At caster level 16, the clone is level 10.
+At caster level 20, the clone is level 12.
+At caster level 24, the clone is level 14.
+At caster level 28, the clone is level 16 and will not improve any further.~
 
-@6069 = ~Shield Bash~
+@6068 = ~Focused Mind Blast~
+
+@6069 = ~Focused Mind Blast:
+Expertise with mind-affecting spells and creativity can make for a deadly combination. Enchanters can usurp control over enemy minds by force, or guide and join the minds of those who willingly allow them access. By casting this spell, an enchanter connects with companions from the same party and momentarily focuses on a small area within their vision. Through the enchanter's guidance, a powerful blast of cumulative telepathic energy is sent towards that point, exploding suddenly. Any creature in that area will be severely damaged, regardless of whether it has a mind or not.
+
+The caster can achieve a similar effect alone, but the more party members join forces, the more spectacular the attack will be. At level 10, the blast deals 4d6 magical damage plus an additional 2d6 for each party member. This damage increases by 2d6 for the caster and by 1d6 for party members at caster levels 16, 22, 28, 34 and 40, and it bypasses magical resistance. A party member has to be within 50 feet from the center of the spell to contribute in the damage.~
 
 @6070 = ~Shield Bash~
+
+@6071 = ~Shield Bash~
+
+@6072 = ~Shield Bash~
+
+@6073 = ~Shield Bash~
+
+@6074 = ~Shield Bash~
+
+@6075 = ~Shield Bash~
+
+@6076 = ~Shield Bash~
+
+@6077 = ~Shield Bash~
+
+@6078 = ~Shield Bash~
+
+@6079 = ~Shield Bash~
+
+@6080 = ~Shield Bash~
+
+@6081 = ~Shield Bash~

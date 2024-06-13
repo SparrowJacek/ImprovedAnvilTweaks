@@ -789,7 +789,7 @@ COPY_EXISTING ~SPPR609.spl~ ~override/SPPR609.spl~
     INT_VAR 
       projectile = ~%S!FALSED%~ 
       speed = 8
-    END
+  END
   
   // Modify current effects to bypass magic resistance
   LPF ~ALTER_SPELL_EFFECT~

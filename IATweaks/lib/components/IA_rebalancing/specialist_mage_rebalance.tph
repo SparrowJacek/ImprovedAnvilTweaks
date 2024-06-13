@@ -32,6 +32,19 @@ COPY_EXISTING ~spwi215.spl~ ~override~
   WRITE_SHORT 0x22 14 // Casting animation
   WRITE_BYTE 0x27 2 // School
 
+// RVE
+
+COPY_EXISTING ~spwi905.spl~ ~override~
+  // Remove removal of Illusion spells from party
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 47
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 221
+  END
+
 //////// CONJURER //////////
 
 // Create more powerful versions of summons for Conjurer
@@ -254,7 +267,7 @@ LAF ~S!ADD_PORTRAIT_ICON~
   INT_VAR
     description_str_ref = %dragon_str_desc_str_ref%
   STR_VAR
-    bam_file = ~s!dragsd~
+    bam_file = ~S!DRAGSD~
   RET
     dragon_str_icon_id = portrait_icon_id
 END
@@ -347,3 +360,260 @@ LAF ~S!ADD_CLAB_ROW~
     level20 = ~GA_S!+5ELED~
     level30 = ~GA_S!+5ELED~
 END
+
+////// Illusionist ////////
+
+// Non-detection
+
+// Add spellstate shield_equipped
+
+LAF resolve_state STR_VAR new_state_id = ~NON_DETECTION~ RET new_state_index END
+OUTER_SET non_detection_state = %new_state_index%
+
+// Add 7eyes.2da file if it does not exist
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~7EYES.2da~ THEN BEGIN
+  COPY ~IATweaks\resources\2da\7eyestempl.2da~ ~override/7EYES.2da~
+END
+
+LAF ~S!ADD_7EYES_ROW~
+  INT_VAR
+    strref        = RESOLVE_STR_REF (@6065)
+  STR_VAR
+    row_desc      = ~NON_DETECTION~
+    spellstate    = EVAL ~%non_detection_state%~
+    eff1          = ~136~ // Force visible
+    eff2          = ~116~ // Cure invisibility
+    eff3          = ~47~ // Another cure invisibility
+    eff4          = ~220*5~ // Remove spell school protection (ILLUSIONIST)
+    eff5          = ~221*3~ // Remove spell type protection (ILLUSIONARYPROTECTIONS)
+    eff6          = ~*~
+    eff7          = ~*~
+    eff8          = ~*~
+    eff9          = ~*~
+  RET non_detect_row_id = new_row_id 
+END
+
+COPY_EXISTING ~spwi310.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6064
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      range = 60 //Visual range of the caster
+  END
+
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 69
+      opcode = 335
+      parameter1 = %non_detection_state%
+      parameter2 = %non_detect_row_id%
+  END
+
+// Create a list of all spells that grant Improved Invisibility
+COPY_EXISTING_REGEXP GLOB ~.*\.SPL~ ~override~
+  LPF ~S!SPELL_USES_OPCODE~
+    INT_VAR
+      match_opcode   = 20 // Invisibility
+      match_param2   = 1  // Improved
+    RET is_found opcode_resource
+  END
+  PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+    SPRINT source_name ~%SOURCE_RES%~
+    TO_UPPER source_name
+    SPRINT $imp_inv_spells("%source_name%") "irrelevant"
+  END
+  BUT_ONLY
+
+ACTION_PHP_EACH imp_inv_spells AS ii_spell=>irrelevant BEGIN
+  OUTER_SET immune_to_ii_strref = RESOLVE_STR_REF (@6066)
+  // Apply -4 penalty to Saving Throws, since Improved Invisibility grants a +4 bonus
+  COPY_EXISTING ~%ii_spell%.spl~ ~override~
+    LPF ~S!CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 20
+        match_parameter2 = 1
+        opcode = 325
+        parameter1 = ~-4~
+        parameter2 = 0
+    END
+    // Remove all vanilla protections from II spells
+    PATCH_PHP_EACH imp_inv_spells AS ii_spell_inner=>irrelevant BEGIN
+      LPF ~DELETE_EFFECT~
+        INT_VAR
+          match_opcode = 206
+        STR_VAR
+          match_resource = EVAL ~%ii_spell_inner%~
+      END
+    // Make all II spells protect against all other such spells for their duration
+      PATCH_IF ~%SOURCE_RES%~ STRING_COMPARE_CASE ~%ii_spell_inner%~ != 0 BEGIN
+        LPF ~CLONE_EFFECT~
+          INT_VAR
+            match_opcode = 20
+            opcode = 206
+            multi_match = 1
+            parameter1 = %immune_to_ii_strref%
+            parameter2 = 0
+          STR_VAR
+            resource = EVAL ~%ii_spell_inner%~
+            insert = ~last~
+        END
+      END
+    END
+    // Ensure that protection from self is applied as the last effect
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 20
+        opcode = 206
+        multi_match = 1
+        parameter1 = %immune_to_ii_strref%
+        parameter2 = 0
+      STR_VAR
+        resource = EVAL ~%SOURCE_RES%~
+        insert = ~last~
+    END
+    BUT_ONLY
+  // Make spells that remove Invisibility also dispel all such spells to ensure that -4 ST penalty is not duplicated
+  ACTION_FOR_EACH spell_removing_invisibility IN ~spwi203.spl~ ~sppr309.spl~ BEGIN
+    COPY_EXISTING ~%spell_removing_invisibility%~ ~override~
+      LPF ~CLONE_EFFECT~
+        INT_VAR
+          match_opcode = 116
+          opcode = 321
+        STR_VAR
+          resource = EVAL ~%SOURCE_RES%~
+      END
+    BUT_ONLY
+  END
+END
+
+// Add permanent sequencers for single and multi target Non-detection to Illusionist
+
+COPY ~IATweaks\resources\eff\s!stillu.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!mtillu.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!mtillu.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!stillu.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!illu01.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!illu02.spl~ ~override~
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABMA08.2da~
+    row_desc = ~CONTINGENCY_NONDETECTION_SINGLE~
+    level15 = ~AP_S!ILLU01~
+END
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABMA08.2da~
+    row_desc = ~CONTINGENCY_NONDETECTION_MULTI~
+    level15 = ~AP_S!ILLU02~
+END
+
+// Add sequencer triggers to Improved and Mass Invisibility
+
+COPY_EXISTING ~spwi405.spl~ ~override~
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 258
+      target = 1
+      parameter1 = 0
+      parameter2 = 0
+      resist_dispel = 0
+      duration = 0
+    STR_VAR
+      resource = ~S!STILLU~
+  END      
+
+COPY_EXISTING ~spwi721.spl~ ~override~
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 260
+      target = 1
+      parameter1 = 0
+      parameter2 = 0
+      resist_dispel = 0
+      duration = 0
+    STR_VAR
+      resource = ~S!MTILLU~
+  END
+      
+// Simulacrum
+
+COPY ~IATweaks\resources\bam\s!simulb.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!simulc.bam~ ~override~
+COPY ~IATweaks\resources\spl\s!simorg.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6067
+COPY ~IATweaks\resources\spl\s!simuli.spl~ ~override~
+
+COPY_EXISTING ~simulacr.spl~ ~override~
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 146
+      target = 1
+      parameter1 = 0
+      parameter2 = 0
+      resist_dispel = 0
+      duration = 0
+    STR_VAR
+      resource = ~S!SIMULI~
+  END
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABMA08.2da~
+    row_desc = ~SIMULACRUM~
+    level16 = ~GA_S!SIMORG~
+END
+
+// TODO:
+// - set number of attacks to 0
+// - address level properly
+// - remove opcode 177 to prevent non-detection? maybe through a wizard spell that removes it if spell level < 14
+//   as the 1st class can be Fighter, not Illusionist
+// Add some bonuses to HiS and Detect Illusions
+
+//////// Enchanter /////////
+
+// Bonus Saving Throws against enchantment
+
+COPY ~IATweaks\resources\spl\s!+1ench.spl~ ~override~
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABMA09.2da~
+    row_desc = ~SAVE_VS_ENCHANTMENT~
+    level6  = ~AP_S!+1ENCH~
+    level12 = ~AP_S!+1ENCH~
+    level18 = ~AP_S!+1ENCH~
+    level24 = ~AP_S!+1ENCH~
+    level30 = ~AP_S!+1ENCH~
+    level36 = ~AP_S!+1ENCH~
+END
+
+// Focused Mind Blast
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!mindbl.pro~
+COPY ~IATweaks\resources\bam\s!mindbl.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!mblasb.bam~ ~override~
+COPY ~IATweaks\resources\spl\s!mindbl.spl~ ~override~
+  SAY NAME1 @6068
+  SAY UNIDENTIFIED_DESC @6069
+
+COPY ~IATweaks\resources\spl\s!mblast.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~%s!mindbl%~
+  END
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABMA09.2da~
+    row_desc = ~FOCUSED_MIND_BLAST~
+    level10 = ~GA_S!MINDBL~
+    level20 = ~GA_S!MINDBL~
+    level30 = ~GA_S!MINDBL~
+END
+
+// TODO:
+// - decide what to do with godslaying enchantment
+// - probably rename it to High Enchantment or something
+// - potentially grant some bonuses to thac0/damage

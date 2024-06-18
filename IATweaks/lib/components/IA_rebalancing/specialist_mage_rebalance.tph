@@ -281,13 +281,16 @@ COPY ~IATweaks\resources\spl\s!drgstr.spl~ ~override~
       parameter2 = %dragon_str_icon_id%
   END
 
-LAF ~S!ADD_HLA_ROW~
+LAF ~S!ADD_CLAB_ROW~
   STR_VAR
-    filename = ~s!drgstr~
+    filename = ~CLABMA04.2da~
     row_desc = ~DRAGON_STRENGTH~
-    ability = ~GA_s!drgstr~
-    num_allowed = ~1~
+    level18 = ~GA_S!DRGSTR~
+    level24 = ~GA_S!DRGSTR~
+    level30 = ~GA_S!DRGSTR~
+    level36 = ~GA_S!DRGSTR~
 END
+
 
 // Blinding Speed
 
@@ -617,3 +620,90 @@ END
 // - decide what to do with godslaying enchantment
 // - probably rename it to High Enchantment or something
 // - potentially grant some bonuses to thac0/damage
+
+/////// Diviner /////////
+
+// Automatically learn Foreknowledge at lvl 16
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABMA05.2da~
+    row_desc = ~FOREKNOWLEDGE~
+    level16 = ~GA_SPWI807~
+END
+
+// See Invisible
+
+COPY ~IATweaks\resources\bam\s!seeinb.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!seeind.bam~ ~override~
+
+OUTER_SET see_invisible_desc_str_ref = RESOLVE_STR_REF (@6070)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %see_invisible_desc_str_ref%
+  STR_VAR
+    bam_file = ~S!SEEIND~
+  RET
+    see_invisible_icon_id = portrait_icon_id
+END
+
+COPY ~IATweaks\resources\spl\s!seeinv.spl~ ~override~
+  SAY NAME1 @6070
+  SAY UNIDENTIFIED_DESC @6071
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %see_invisible_icon_id%
+  END
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABMA05.2da~
+    row_desc = ~SEE_INVISIBLE~
+    level18 = ~GA_S!SEEINV~
+    level25 = ~GA_S!SEEINV~
+    level32 = ~GA_S!SEEINV~
+END
+
+// Glimpse of the Future
+
+COPY ~IATweaks\resources\2da\s!glimp1.2da~ ~override~
+COPY ~IATweaks\resources\bam\s!glimpb.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!glimpd.bam~ ~override~
+
+OUTER_SET glimpse_of_future_desc_str_ref = RESOLVE_STR_REF (@6072)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %glimpse_of_future_desc_str_ref%
+  STR_VAR
+    bam_file = ~S!GLIMPD~
+  RET
+    glimpse_of_future_icon_id = portrait_icon_id
+END
+
+COPY ~IATweaks\resources\spl\s!glimp1.spl~ ~override~
+  SAY NAME1 @6072
+  SAY UNIDENTIFIED_DESC @6073
+
+COPY ~IATweaks\resources\spl\s!glimp2.spl~ ~override~
+  SAY NAME1 @6072
+  SAY UNIDENTIFIED_DESC @6073
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %glimpse_of_future_icon_id%
+  END
+
+COPY ~IATweaks\resources\spl\s!glimp3.spl~ ~override~
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABMA05.2da~
+    row_desc = ~GLIMPSE_OF_FUTURE~
+    level1  = ~GA_S!GLIMP1~
+    level8  = ~GA_S!GLIMP1~
+    level16 = ~GA_S!GLIMP1~
+    level24 = ~GA_S!GLIMP1~
+    level32 = ~GA_S!GLIMP1~
+    level40 = ~GA_S!GLIMP1~
+END

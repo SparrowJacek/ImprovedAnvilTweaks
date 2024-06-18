@@ -569,15 +569,19 @@ At caster level 28, the clone is level 16 and will not improve any further.~
 @6069 = ~Focused Mind Blast:
 Expertise with mind-affecting spells and creativity can make for a deadly combination. Enchanters can usurp control over enemy minds by force, or guide and join the minds of those who willingly allow them access. By casting this spell, an enchanter connects with companions from the same party and momentarily focuses on a small area within their vision. Through the enchanter's guidance, a powerful blast of cumulative telepathic energy is sent towards that point, exploding suddenly. Any creature in that area will be severely damaged, regardless of whether it has a mind or not.
 
-The caster can achieve a similar effect alone, but the more party members join forces, the more spectacular the attack will be. At level 10, the blast deals 4d6 magical damage plus an additional 2d6 for each party member. This damage increases by 2d6 for the caster and by 1d6 for party members at caster levels 16, 22, 28, 34 and 40, and it bypasses magical resistance. A party member has to be within 50 feet from the center of the spell to contribute in the damage.~
+The caster can achieve a similar effect alone, but the more party members join forces, the more deadly the attack will be. At level 10, the blast deals 4d6 magical damage plus an additional 2d6 for each party member. This damage increases by 2d6 for the caster and by 1d6 for party members at caster levels 16, 22, 28, 34 and 40, and it bypasses magical resistance. A party member has to be within 50 feet from the center of the spell to contribute in the damage.~
 
-@6070 = ~Shield Bash~
+@6070 = ~See Invisible~
 
-@6071 = ~Shield Bash~
+@6071 = ~See Invisible
+By concentrating intensely, Diviners can pierce through any illusion, allowing them to see things as they truly are for the next 5 rounds. This ability can't be dispelled and it enables the caster to target creatures under the effects of Improved Invisibility and negates any penalties from attacking such creatures with weapons.
 
-@6072 = ~Shield Bash~
+Due to the intense focus required, this ability cannot be used in combination with Improved Alacrity and will remove its effects when cast.~
 
-@6073 = ~Shield Bash~
+@6072 = ~Glimpse of the Future~
+
+@6073 = ~Glimpse of the Future
+This ability targets any single friendly creature without requiring the caster's aura to be cleansed. It sends visions of numerous potential futures to the target, providing insight on how to avoid or mitigate impending danger. The target gains a +20 bonus to all saving throws for 3 seconds or until hit by any spell or physical attack.~
 
 @6074 = ~Shield Bash~
 

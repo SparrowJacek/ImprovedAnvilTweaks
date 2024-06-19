@@ -707,3 +707,48 @@ LAF ~S!ADD_CLAB_ROW~
     level32 = ~GA_S!GLIMP1~
     level40 = ~GA_S!GLIMP1~
 END
+
+//////// Abjurer /////////
+
+// Abjuration Mastery
+
+// 2DA lists of Abjuration spells
+COPY ~IATweaks\resources\2da\abjurmasttempl.2da~ ~override\s!abjur4.2da~
+COPY_EXISTING_REGEXP GLOB ~SPWI[1-4][0-5][0-9].SPL~ ~override~
+  READ_BYTE 0x25 spell_school
+  INNER_ACTION BEGIN
+    ACTION_IF %spell_school% = 1 AND NOT ~%SOURCE_RES%~ STR_EQ ~SPWI222~ THEN BEGIN // Abjurer, No Chaos Shield
+      APPEND ~s!abjur4.2da~ ~%SOURCE_RES% %SOURCE_RES% 4~
+    END
+  END
+  BUT_ONLY
+
+ACTION_FOR_EACH spl_level IN 5 6 7 8 9 BEGIN
+  OUTER_SET lower_level = %spl_level% - 1
+  COPY_EXISTING ~s!abjur%lower_level%.2da~ ~override\s!abjur%spl_level%.2da~
+  COPY_EXISTING_REGEXP GLOB ~SPWI%spl_level%[0-5][0-9].SPL~ ~override~
+    READ_BYTE 0x25 spell_school
+    INNER_ACTION BEGIN
+      ACTION_IF %spell_school% = 1 AND NOT ~%SOURCE_RES%~ STR_EQ ~SPWI723~ THEN BEGIN // Abjurer, No Improved Chaos Shield
+        APPEND ~s!abjur%spl_level%.2da~ ~%SOURCE_RES% %SOURCE_RES% 4~
+      END
+    END
+    BUT_ONLY
+END
+
+COPY ~IATweaks\resources\bam\s!abjmab.bam~ ~override~
+COPY ~IATweaks\resources\spl\s!abjmas.spl~ ~override~
+  SAY NAME1 @6074
+  SAY UNIDENTIFIED_DESC @6075
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABMA02.2da~
+    row_desc = ~ABJUR_MASTERY~
+    level12 = ~GA_S!ABJMAS~
+    level18 = ~GA_S!ABJMAS~
+    level24 = ~GA_S!ABJMAS~
+    level30 = ~GA_S!ABJMAS~
+    level36 = ~GA_S!ABJMAS~
+END
+

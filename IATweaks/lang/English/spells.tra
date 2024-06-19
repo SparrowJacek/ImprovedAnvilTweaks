@@ -583,9 +583,19 @@ Due to the intense focus required, this ability cannot be used in combination wi
 @6073 = ~Glimpse of the Future
 This ability targets any single friendly creature without requiring the caster's aura to be cleansed. It sends visions of numerous potential futures to the target, providing insight on how to avoid or mitigate impending danger. The target gains a +20 bonus to all saving throws for 3 seconds or until hit by any spell or physical attack.~
 
-@6074 = ~Shield Bash~
+@6074 = ~Abjuration Mastery~
 
-@6075 = ~Shield Bash~
+@6075 = ~Abjuration Mastery
+With this power skilled Abjurers can cast any spell of their favored school bypassing the need to cleanse their aura. The chosen spell is uninterruptible and does not need to be prepared in advance. This grants Abjurers an unparalleled edge in battle, allowing them to summon protective and dispelling magic at a moment's notice.
+
+The potency of this ability grows with the caster's experience:
+
+At level 12: Cast spells up to 4th level
+At level 14: Cast spells up to 5th level
+At level 16: Cast spells up to 6th level
+At level 18: Cast spells up to 7th level
+At level 20: Cast spells up to 8th level
+At level 22 and above: Cast any mage abjuration spell~
 
 @6076 = ~Shield Bash~
 

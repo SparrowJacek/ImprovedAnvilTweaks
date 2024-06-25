@@ -597,7 +597,15 @@ At level 18: Cast spells up to 7th level
 At level 20: Cast spells up to 8th level
 At level 22 and above: Cast any mage abjuration spell~
 
-@6076 = ~Shield Bash~
+@6076 = ~Animal Rage (Enchantment)
+Level: 3
+Range: Visual range of the caster
+Duration: 2 turns
+Casting Time: 5
+Area of Effect: Special
+Saving Throw: None
+
+By casting this spell Beast Masters can turn on an animal's most feral side in a guided way, without the risk of it going berserk or attacking its allies in fury. The animal becomes enraged for 1 turn. While enraged, it gains a bonus of +2 to its attack and damage rolls as well as to its Armor Class, and becomes immune to charm, confusion, fear, feeblemind, hold, stun, sleep, level drain. From level 20 Beast Master can choose two animals that will have this effect applied with a single cast. This spell works only on animals.~
 
 @6077 = ~Shield Bash~
 

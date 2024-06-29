@@ -1,0 +1,383 @@
+
+DEFINE_ACTION_FUNCTION ~S!EXTRACT_LUA_TABLE_FROM_2DA~
+  INT_VAR
+    first_meaningful_column = 2
+  STR_VAR
+    filename           = ~~
+    var_name           = ~~
+  RET
+    var_declaration_string
+BEGIN
+  COPY_EXISTING ~%filename%~ ~override~
+    SPRINT var_declaration_string ~%var_name% = {
+~
+    COUNT_2DA_COLS ~colcount~
+    COUNT_2DA_ROWS ~colcount~ ~rowcount~
+    SET current_id = 1
+    FOR (current_column = %first_meaningful_column%; current_column <= %colcount%; ++current_column) BEGIN
+        SET cur_col_id = %current_column% - 1
+        SPRINT var_declaration_string ~%var_declaration_string% {~
+        FOR (current_row = 1; current_row <= %rowcount%; ++current_row) BEGIN
+            SET cur_row_id = %current_row% - 1
+            READ_2DA_ENTRY %cur_row_id% %cur_col_id% %colcount% current_val
+            SPRINT var_declaration_string ~%var_declaration_string% %current_val%, ~
+        END
+        SPRINT var_declaration_string ~%var_declaration_string% },
+~
+    END
+    SPRINT var_declaration_string ~%var_declaration_string% }~
+    BUT_ONLY
+END
+
+DEFINE_ACTION_FUNCTION ~S!CREATE_LUA_KEY_VAL_TABLE_FROM_2DA~
+  INT_VAR
+    key_column_id = 1
+    val_column_id = 2
+  STR_VAR
+    2da_filename             = ~~
+    table_variable_name      = ~~
+    change_key_strref_to_str = ~FALSE~
+    change_val_strref_to_str = ~FALSE~
+    add_quotations_to_key    = ~FALSE~
+    add_quotations_to_val    = ~FALSE~
+  RET
+    var_declaration_string
+BEGIN
+  COPY_EXISTING ~%2da_filename%~ ~override~
+    SPRINT var_declaration_string ~%table_variable_name% = {
+~
+    COUNT_2DA_COLS ~colcount~
+    COUNT_2DA_ROWS ~colcount~ ~rowcount~
+    FOR (current_row_id = 0; current_row_id < %rowcount%; ++current_row_id) BEGIN
+        READ_2DA_ENTRY %current_row_id% %key_column_id% %colcount% current_key
+        READ_2DA_ENTRY %current_row_id% %val_column_id% %colcount% current_val
+        PATCH_IF ~%change_key_strref_to_str%~ STR_EQ ~TRUE~ BEGIN
+            GET_STRREF %current_key% current_key
+        END
+        PATCH_IF ~%change_val_strref_to_str%~ STR_EQ ~TRUE~ BEGIN
+            GET_STRREF %current_val% current_val
+        END
+        PATCH_IF ~%add_quotations_to_key%~ STR_EQ ~TRUE~ BEGIN
+            SPRINT current_key ~"%current_key%"~
+        END
+        PATCH_IF ~%add_quotations_to_val%~ STR_EQ ~TRUE~ BEGIN
+            SPRINT current_val ~"%current_val%"~
+        END
+        SPRINT var_declaration_string ~%var_declaration_string% [%current_key%] = %current_val%,
+~
+    END
+    SPRINT var_declaration_string ~%var_declaration_string% }~
+    PATCH_PRINT ~%var_declaration_string%~
+    PATCH_PRINT ~%var_declaration_string%~
+    BUT_ONLY
+END
+
+DEFINE_PATCH_FUNCTION ~S!GENERATE_AND_INSERT_THIEVING_BUTTON_FUNCTIONS~
+BEGIN
+    INNER_ACTION BEGIN
+        LAF ~S!EXTRACT_LUA_TABLE_FROM_2DA~
+        STR_VAR
+            filename           = ~skillrac.2da~
+            var_name           = ~race_thief_bonus_table~
+        RET
+            race_thief_bonus_table = var_declaration_string
+        END
+
+        LAF ~S!EXTRACT_LUA_TABLE_FROM_2DA~
+        STR_VAR
+            filename           = ~skilldex.2da~
+            var_name           = ~dex_thief_bonus_table~
+        RET
+            dex_thief_bonus_table = var_declaration_string
+        END
+    END
+    TEXT_SPRINT functions_code ~
+chargen_gui_to_2da_race_mapping = {1, 3, 5, 2, 6, 4, 7}
+character_gui_to_2da_race_mapping = {
+                                    [1096] = 1},
+                                    [1097] = 2},
+                                    [1098] = 3},
+                                    [1100] = 4},
+                                    [1101] = 5},
+                                    [1099] = 6},
+                                    [53212] = 7},
+                                    }
+%race_thief_bonus_table%
+%dex_thief_bonus_table%
+
+-- pickpocket, open_locks, find_traps, stealth_strike, hide_in_shadows, det_illusions, set_traps 
+kit_starting_bonuses = {
+                        [10] = {  0,   0,   0,  30,  10,   0,   0}, -- Assassin
+                        [11] = {  0,   0,  20,   0,   0,   0,  20}, -- Bounty Hunter - bonus from CLASISKL
+                        [33] = {  0,   0,   0,   0,  30,  10,   0}, -- Shadowdancer
+                        }
+
+kit_max_values =       {
+                        [10] = {100, 100,  75, 200, 200, 100,  50}, -- Assassin
+                        [11] = { 75, 100, 200,  75, 100, 100, 200}, -- Bounty Hunter
+                        [12] = {150, 100, 100,   0, 100, 100,   0}, -- Swashbuckler
+                        [33] = {100, 100, 100, 100, 200, 200,   0}, -- Shadowdancer
+                        }
+
+default_values = {150, 100, 100, 100, 100, 100, 100}
+
+function _calculateStartingBonus(thief_ability_id)
+    kit = chargen.kit[currentChargenKit]
+    if chargen.levelingUp then
+        return 0
+    elseif not kit then
+        return 0
+    elseif not kit_starting_bonuses[kit.id] then
+        return 0
+    else
+        return kit_starting_bonuses[kit.id][thief_ability_id]
+    end
+    return 1
+end
+
+function _calculateMaxValue(thief_ability_id)
+    kit = chargen.kit[currentChargenKit]
+    if not kit then
+        return default_values[thief_ability_id]
+    elseif not kit_starting_bonuses[kit.id] then
+        return default_values[thief_ability_id]
+    else
+        return kit_max_values[kit.id][thief_ability_id]
+    end
+end
+
+function _calculateRaceBonus(thief_ability_id)
+    race_gui = tonumber(chargen.races[currentChargenRace].id)
+    if race_gui == nil then
+        race_gui = character_gui_to_2da_race_mapping[tonumber(characters[currentID].race)]
+    end
+    race_2da = chargen_gui_to_2da_race_mapping[race_gui]
+    race_bonus = race_thief_bonus_table[thief_ability_id][race_2da]
+    return race_bonus
+end
+
+function _calculateDexBonus(thief_ability_id)
+    dex = tonumber(chargen.ability[2].roll == nil and chargen.ability[2].roll or characters[currentID].attr.dex.current)
+    dex_bonus = dex_thief_bonus_table[thief_ability_id][dex]
+    return dex_bonus
+end
+
+function calculateRealBonus(thief_ability_row)
+    current_value = chargen.thief_skill[thief_ability_row].value
+    thief_ability_id = tonumber(chargen.thief_skill[thief_ability_row].id) + 1
+
+    starting_bonus = _calculateStartingBonus(thief_ability_id)
+    race_bonus = _calculateRaceBonus(thief_ability_id)
+    dex_bonus = _calculateDexBonus(thief_ability_id)
+
+    return current_value - race_bonus - dex_bonus + starting_bonus
+end
+
+function canInvestInCurrentThievingAbility(thief_ability_id)
+    current_base = calculateRealBonus(thief_ability_id)
+    max_for_kit = _calculateMaxValue(thief_ability_id)
+    return current_base < max_for_kit
+end
+
+~
+    SET ofs = INDEX_BUFFER(~function[ %TAB%]isChargenProficienciesBackButtonClickable()~)
+    PATCH_IF %ofs% >= 0 BEGIN
+        SET strlen = STRING_LENGTH ~%functions_code%~
+        INSERT_BYTES ofs strlen
+        WRITE_ASCIIE ofs ~%functions_code%~ (strlen)
+    END
+END
+
+
+DEFINE_PATCH_FUNCTION ~S!APPLY_IA_LOGIC_TO_THIEVING_ABILITIES~
+BEGIN
+    SET ofs = INDEX_BUFFER(~chargen\.thief_skill\[rowNumber\]\.value~)
+    PATCH_IF %ofs% >= 0 BEGIN
+        SPRINT base_value ~calculateRealBonus(rowNumber)~
+        REPLACE_EVALUATE
+        ~chargen\.thief_skill\[rowNumber\]\.value~
+        BEGIN
+        END
+        ~%base_value%~
+    END  
+    SET ofs = INDEX_BUFFER(~[ %TAB%]*if[ %TAB%]cellNumber[ %TAB%]==[ %TAB%]3[ %TAB%]then[ %TAB%]*[%WNL%%LNL%%MNL%]+[ %TAB%]*createCharScreen:OnThiefSkillPlusMinusButtonClick~)
+    PATCH_IF %ofs% >= 0 BEGIN
+        REPLACE_EVALUATE
+        ~\([ %TAB%]*if[ %TAB%]cellNumber[ %TAB%]==[ %TAB%]3\)\([ %TAB%]then[ %TAB%]*[%WNL%%LNL%%MNL%]+[ %TAB%]*createCharScreen:OnThiefSkillPlusMinusButtonClick\)~
+        BEGIN
+          SPRINT val ~%MATCH1% and canInvestInCurrentThievingAbility(currentChargenThiefSkill)%MATCH2%~
+        END
+        ~%val%~
+       
+    END  
+END
+
+DEFINE_PATCH_FUNCTION ~S!5POINTS_PER_CLICK_THIEVING_ABILITIES~
+BEGIN
+    SET ofs = INDEX_BUFFER(~createCharScreen:OnThiefSkillPlusMinusButtonClick~)
+    PATCH_IF %ofs% >= 0 BEGIN
+        REPLACE_EVALUATE
+        ~\([ %TAB%]*\)\(createCharScreen:OnThiefSkillPlusMinusButtonClick\)\(.*[%WNL%%LNL%%MNL%]+\)~
+        BEGIN
+          SPRINT val ~%MATCH1%%MATCH2%%MATCH3%%MATCH1%%MATCH2%%MATCH3%%MATCH1%%MATCH2%%MATCH3%%MATCH1%%MATCH2%%MATCH3%%MATCH1%%MATCH2%%MATCH3%~
+        END
+        ~%val%~
+       
+    END  
+END
+
+DEFINE_PATCH_FUNCTION ~S!GENERATE_AND_INSERT_STEALTH_BUTTON_FUNCTIONS~
+    INT_VAR
+        stealth_active_icon_id = 0
+        stealth_disabled_icon_id = 0
+BEGIN
+    TEXT_SPRINT stealth_button_functions_code ~~~~~
+	-- Function to split a string into lines
+	function splitLines(input)
+		local lines = {}
+		for line in input:gmatch("[^\r\n]+") do
+			table.insert(lines, line)
+		end
+		return lines
+	end
+	
+	-- Function to check if a character is alive based on their portrait tooltip
+	function isCharacterAlive(char_id)
+		local tooltip_info = Infinity_GetPortraitTooltip(char_id)
+		local tooltip_info_lines = splitLines(tooltip_info)
+		local lastLine = tooltip_info_lines[#tooltip_info_lines]
+		local number1 = lastLine:match("(%d+)/%d+")
+		return tonumber(number1) > 0
+	end
+	
+	-- Function to get the current character portrait ID
+	function getCurrentCharPortraitId()
+		local idMapping = {}
+		Infinity_UpdateLuaStats()
+		local curCharId = id
+		for i = 0, Infinity_GetNumCharacters() - 1 do
+			if isCharacterAlive(i) then
+				Infinity_OnPortraitLClick(i)
+				Infinity_UpdateLuaStats()
+				idMapping[id] = i
+			end
+		end
+		Infinity_OnPortraitLClick(idMapping[curCharId])
+		return idMapping[curCharId]
+	end
+	
+	-- Function to get the selection sound values
+	function getSelectionSoundsValues()
+		local panelID = 7
+		local soundOptions = {}
+		soundOptions[5] = Infinity_GetOption(5, panelID)
+		for i = 58, 60 do
+			local optionVal = Infinity_GetOption(i, panelID)
+			if optionVal == 1 then
+				soundOptions[i] = optionVal
+			end
+		end
+		return soundOptions
+	end
+	
+	-- Function to set option values
+	function setOptionsValues(valuesTable, panel)
+		for k, v in pairs(valuesTable) do
+			Infinity_ChangeOption(k, v, panel)
+		end
+	end
+	
+	-- Function to silently get the current character portrait ID
+	function silentlyGetCurrentCharPortraitId()
+		local initialSoundOptions = getSelectionSoundsValues()
+		local noSoundOptions = {[5] = 0, [60] = 1}
+		setOptionsValues(noSoundOptions, 7)
+		local currentCharPortraitId = getCurrentCharPortraitId()
+		setOptionsValues(initialSoundOptions, 7)
+		return currentCharPortraitId
+	end
+	
+	-- Function to check if a button is stealth
+	function isButtonStealth(button_number)
+		local button_type = buttonArray:GetButtonType(button_number)
+		return button_type == 11
+	end
+	
+	-- Function to check if a portrait icon is present
+	function isPortraitIconPresent(icon_id)
+		icon_id = tostring(icon_id)
+		return characters[currentID].statusEffects[icon_id] ~= nil
+	end
+	
+	-- Function to check if stealth is active
+	function isStealthActive()
+		local stealth_active_icon_id = %stealth_active_icon_id%
+		return isPortraitIconPresent(stealth_active_icon_id)
+	end
+	
+	-- Function to check if stealth is disabled
+	function isStealthDisabled()
+		local stealth_disabled_icon_id = %stealth_disabled_icon_id%
+		return isPortraitIconPresent(stealth_disabled_icon_id)
+	end  
+	
+	-- Default spell string template
+	local spell_default_string = 'ReallyForceSpellRES("RESOURCE", Myself)'
+	
+	-- Main function for Stealth logic
+	function onNewStealthButtonPressed()
+		local charPortraitId = silentlyGetCurrentCharPortraitId()
+		local party_slot = tostring(charPortraitId + 1)
+		
+		if isStealthDisabled() then
+			-- Do nothing if stealth is disabled
+		elseif isStealthActive() then
+			local command = spell_default_string:gsub('RESOURCE', 'S!HISREM')
+			local override_command = "'ActionOverride(" .. "PartySlot" .. party_slot .. "," .. command .. ")'"
+			C:Eval(override_command)
+		else 
+			local command = spell_default_string:gsub('RESOURCE', 'S!HISBAS')
+			local override_command = "'ActionOverride(" .. "PartySlot" .. party_slot .. "," .. command .. ")'"
+			C:Eval(override_command)
+		end
+	end
+
+~~~~~
+    SET ofs = INDEX_BUFFER(~[ %TAB%]*actionBarTooltip[ %TAB%]*=[ %TAB%]*{}~)
+    PATCH_IF %ofs% >= 0 BEGIN
+        SET strlen = STRING_LENGTH ~%stealth_button_functions_code%~
+        INSERT_BYTES ofs strlen
+        WRITE_ASCIIE ofs ~%stealth_button_functions_code%~ (strlen)
+    END
+END
+
+DEFINE_PATCH_FUNCTION ~S!CREATE_NEW_STEALTH_BUTTONS~
+BEGIN
+    FOR (current_button_id = 4; current_button_id <= 7; ++current_button_id) BEGIN
+        SPRINT EVAL current_button_regex ~\([ %TAB%]*\)\(button[%WNL%%LNL%%MNL%]+[ %TAB%]*{[%WNL%%LNL%%MNL%]+\)\([ %TAB%]*\)\(area[ %TAB%]*[0-9]+[ %TAB%]*[0-9]+[ %TAB%]*[0-9]+[ %TAB%]*[0-9]+\)\([%WNL%%LNL%%MNL%]+[ %TAB%]*actionBar %current_button_id%[%WNL%%LNL%%MNL%]+[ %TAB%]*enabled "buttonArray:GetButtonEnabled(%current_button_id%)"[%WNL%%LNL%%MNL%]+[ %TAB%]*tooltip lua "actionBarTooltip\[%current_button_id%\]"[%WNL%%LNL%%MNL%]+[ %TAB%]*action "buttonArray:OnLButtonPressed(%current_button_id%)"[%WNL%%LNL%%MNL%]+[ %TAB%]*actionAlt "buttonArray:OnRButtonPressed(%current_button_id%)"[%WNL%%LNL%%MNL%]+[ %TAB%]*}\)~
+        SET ofs = INDEX_BUFFER(~%current_button_regex%~)
+        PATCH_IF %ofs% >= 0 BEGIN
+            REPLACE_EVALUATE
+            ~%current_button_regex%~
+            BEGIN
+                SPRINT full_matched_string ~%MATCH1%%MATCH2%%MATCH3%%MATCH4%%MATCH5%~
+                SET strlen_original = STRING_LENGTH ~%full_matched_string%~
+                SPRINT val ~
+%MATCH1%button
+%MATCH1%{
+%MATCH3%%MATCH4%
+%MATCH3%bam "GUIBTACT"
+%MATCH3%frame 30
+%MATCH3%enabled "isButtonStealth(%current_button_id%)"
+%MATCH3%tooltip lua "actionBarTooltip[%current_button_id%]"
+%MATCH3%action "onNewStealthButtonPressed()"
+%MATCH1%}~
+
+            END
+            ~%MATCH1%%MATCH2%%MATCH3%%MATCH4%%MATCH5%~
+            SET strlen = STRING_LENGTH ~%val%~
+            INSERT_BYTES ofs + strlen_original strlen
+            WRITE_ASCIIE ofs + strlen_original ~%val%~ (strlen)
+        END
+    END  
+END

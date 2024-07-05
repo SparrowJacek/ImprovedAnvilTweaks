@@ -240,7 +240,11 @@ BEGIN @5008 DESIGNATED 403
 
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~ImprovedAnvil/Setup-ImprovedAnvil.tp2~ ~0~) @0
 
-INCLUDE "IATweaks/lib/components/IA_rebalancing/summon_limit.tph"
-INCLUDE "IATweaks/lib/components/IA_rebalancing/specialist_mage_rebalance.tph"
+// INCLUDE "IATweaks/lib/components/IA_rebalancing/summon_limit.tph"
+// INCLUDE "IATweaks/lib/components/IA_rebalancing/cleric_rebalance.tph"
+// INCLUDE "IATweaks/lib/components/IA_rebalancing/specialist_mage_rebalance.tph"
+// INCLUDE "IATweaks/lib/components/IA_rebalancing/beast_master_rebalance.tph"
+INCLUDE "IATweaks/lib/components/IA_rebalancing/thief_rebalance.tph"
+// INCLUDE "IATweaks/lib/components/IA_rebalancing/scriptingstate_removal.tph"
 
 // MOVE STUFF LIKE NEW ROWS IN SPLPROT TO A NEW COMPONENT INSTALLED FIRST

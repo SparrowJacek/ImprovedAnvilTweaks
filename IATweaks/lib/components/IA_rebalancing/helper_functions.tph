@@ -3,6 +3,7 @@ DEFINE_PATCH_FUNCTION ~S!ITMSPL_USES_OPCODE~
     check_globals  = 1      // check global effects: 0 for no, 1 for yes
     check_headers  = 1      // check effects on headers; 0 for no, 1 for yes
     match_opcode   = 177    // opcode at 0x00 to match, use -1 for all
+    match_param1   = ~-999~ // param1, use -999 for all
     match_param2   = ~-999~ // param2, use -999 for all
     header_length = 0x38    // 0x38 for item, 0x28 for spell
   RET
@@ -16,8 +17,10 @@ BEGIN
     READ_SHORT 0x70 fx_num
     FOR (index = 0 ; index < fx_num ; ++index) BEGIN
       READ_SHORT (fx_off +        (index * 0x30)) opcode_file
+      READ_LONG  (fx_off + 0x04 + (index * 0x30)) param1
+      READ_LONG  (fx_off + 0x08 + (index * 0x30)) param2
       READ_ASCII (fx_off + 0x14 + (index * 0x30)) res_name
-      PATCH_IF (match_opcode = opcode_file) BEGIN
+      PATCH_IF (match_opcode = opcode_file AND (match_param1 = ~-999~ OR match_param1 = param1) AND (match_param2 = ~-999~ OR match_param2 = param2)) BEGIN
         ///PATCH_PRINT ~File uses opcode %match_opcode% with res %res_name% in global effects~///
         SPRINT is_found "TRUE"
         SPRINT opcode_resource "%res_name%"
@@ -35,9 +38,10 @@ BEGIN
       READ_SHORT (abil_off + 0x20 + (index2 * header_length)) abil_fx_idx
       FOR (index = 0 ; index < abil_fx_num ; index = index + 1) BEGIN
         READ_SHORT (fx_off +        ((abil_fx_idx + index) * 0x30)) opcode_file
+        READ_LONG  (fx_off + 0x04 + ((abil_fx_idx + index) * 0x30)) param1
         READ_LONG  (fx_off + 0x08 + ((abil_fx_idx + index) * 0x30)) param2
         READ_ASCII (fx_off + 0x14 + ((index + abil_fx_idx) * 0x30)) res_name
-        PATCH_IF (match_opcode = opcode_file AND (match_param2 = ~-999~ OR match_param2 = param2)) BEGIN
+        PATCH_IF (match_opcode = opcode_file AND (match_param1 = ~-999~ OR match_param1 = param1) AND (match_param2 = ~-999~ OR match_param2 = param2)) BEGIN
           SPRINT is_found "TRUE"
           SPRINT opcode_resource "%res_name%"
           index=abil_fx_num
@@ -52,6 +56,7 @@ DEFINE_PATCH_FUNCTION ~S!SPELL_USES_OPCODE~
     check_globals  = 1      // check global effects: 0 for no, 1 for yes
     check_headers  = 1      // check effects on headers; 0 for no, 1 for yes
     match_opcode   = 177    // opcode at 0x00 to match, use -1 for all
+    match_param1   = ~-999~ // param1, use -999 for all
     match_param2   = ~-999~ // param2, use -999 for all
   RET
     is_found
@@ -62,6 +67,7 @@ BEGIN
       check_globals  = 1
       check_headers  = 1
       match_opcode   = %match_opcode%
+      match_param1   = %match_param1%
       match_param2   = %match_param2%
       header_length = 0x28
     RET is_found opcode_resource
@@ -73,6 +79,7 @@ DEFINE_PATCH_FUNCTION ~S!ITEM_USES_OPCODE~
     check_globals  = 1      // check global effects: 0 for no, 1 for yes
     check_headers  = 1      // check effects on headers; 0 for no, 1 for yes
     match_opcode   = 177    // opcode at 0x00 to match, use -1 for all
+    match_param1   = ~-999~ // param1, use -999 for all
     match_param2   = ~-999~ // param2, use -999 for all
     header_length = 0x38    // 0x38 for item, 0x28 for spell
   RET
@@ -84,6 +91,7 @@ BEGIN
       check_globals  = 1
       check_headers  = 1
       match_opcode   = %match_opcode%
+      match_param1   = %match_param1%
       match_param2   = %match_param2%
       header_length = 0x38
     RET is_found opcode_resource
@@ -1181,5 +1189,41 @@ BEGIN
     END
     PATCH_PRINT "              ~%SOURCE_FILE%~   ~override~ // %name%, %new_fx% effect(s) added"
   END
+END
 
+DEFINE_ACTION_FUNCTION ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~~
+  RET_ARRAY
+    2da_columns_to_ids_mapping
+BEGIN
+  COPY_EXISTING ~%2da_table_name%~ ~override~
+    DEFINE_ASSOCIATIVE_ARRAY 2da_columns_to_ids_mapping BEGIN
+    END
+    COUNT_2DA_COLS ~colcount~
+    COUNT_2DA_ROWS ~colcount~ ~rowcount~
+    SET new_colcount = %colcount% - 1
+    FOR (current_column = 0 ; current_column < %new_colcount% ; ++current_column) BEGIN
+      READ_2DA_ENTRY 0 %current_column% %new_colcount% current_val
+      SET $2da_columns_to_ids_mapping("%current_val%") = %current_column% + 1
+    END
+  BUT_ONLY
+END
+
+DEFINE_ACTION_FUNCTION ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~~
+  RET_ARRAY
+    2da_rows_to_ids_mapping
+BEGIN
+  COPY_EXISTING ~%2da_table_name%~ ~override~
+    DEFINE_ASSOCIATIVE_ARRAY 2da_rows_to_ids_mapping BEGIN
+    END
+    COUNT_2DA_COLS ~colcount~
+    COUNT_2DA_ROWS ~colcount~ ~rowcount~
+    FOR (current_row = 0 ; current_row < %rowcount% ; ++current_row) BEGIN
+      READ_2DA_ENTRY %current_row% 0 %colcount% current_val
+      SET $2da_rows_to_ids_mapping("%current_val%") = %current_row%
+    END
+  BUT_ONLY
 END

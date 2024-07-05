@@ -2000,6 +2000,7 @@ COPY_EXISTING ~OHTEMPUS.2da~ ~override~
     BEGIN
     END
     ~****~
+  PRETTY_PRINT_2DA
 
 // Tempus Holy Power
 

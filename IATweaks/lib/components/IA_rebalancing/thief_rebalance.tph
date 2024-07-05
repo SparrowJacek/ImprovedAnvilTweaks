@@ -1,0 +1,871 @@
+SILENT
+
+INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
+INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions_GUI.tph"
+
+// Required checks for Thieving Ability values
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~PICKPOCKET<n~
+    stat                  = ~29~
+    value                 = ~-1~
+    relation              = ~2~
+  RET
+    pickpocket_lower_than_row = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~SET_TRAPS<n~
+    stat                  = ~137~
+    value                 = ~-1~
+    relation              = ~2~
+  RET
+    set_traps_lower_than_row = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~DETECT_ILLUSIONS<n~
+    stat                  = ~136~
+    value                 = ~-1~
+    relation              = ~2~
+  RET
+    detect_illusions_lower_than_row = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~HIDE_IN_SHADOWS<n~
+    stat                  = ~135~
+    value                 = ~-1~
+    relation              = ~2~
+  RET
+    hide_in_shadows_lower_than_row = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~FIND_TRAPS<n~
+    stat                  = ~28~
+    value                 = ~-1~
+    relation              = ~2~
+  RET
+    find_traps_lower_than_row = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~STEALTH_STRIKE<n~
+    stat                  = ~27~
+    value                 = ~-1~
+    relation              = ~2~
+  RET
+    stealth_strike_lower_than_row = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~HIDE_IN_SHADOWS>n~
+    stat                  = ~135~
+    value                 = ~-1~
+    relation              = ~3~
+  RET
+    hide_in_shadows_higher_than_row = new_line_number
+END
+
+// Required Spellstates
+// Add spellstate shield_equipped
+
+LAF resolve_state STR_VAR new_state_id = ~HIDE_IN_SHADOWS_SUCCESS~ RET new_state_index END
+OUTER_SET hide_in_shadows_success_state = %new_state_index%
+// Add spellstate shield_equipped
+
+LAF resolve_state STR_VAR new_state_id = ~HIDE_IN_SHADOWS_FAIL~ RET new_state_index END
+OUTER_SET hide_in_shadows_fail_state = %new_state_index%
+
+// Disable backstab for Staves
+
+COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
+  READ_SHORT 0x1c item_category
+  PATCH_IF (item_category = 26) THEN BEGIN  
+    READ_BYTE 0x18 item_flags_1
+    PATCH_IF (%item_flags_1% BAND 0b01000000) > 0 BEGIN // If weapon is twohanded
+      LPF ~ADD_ITEM_EQEFFECT~
+        INT_VAR
+          opcode = 263
+          target = 1
+          timing = 2
+          parameter1 = ~-5~
+          parameter2 = 0
+      END
+    END
+  END
+  BUT_ONLY
+
+// Update Quarterstaff description to inform that they can't backstab
+
+COPY_EXISTING ~weapprof.2da~ ~override~
+  SET quarterstaff_weapontype_desc = RESOLVE_STR_REF (@5010)
+  REPLACE_TEXTUALLY ~34161~ ~%quarterstaff_weapontype_desc%~
+  PRETTY_PRINT_2DA
+
+COPY ~IATweaks\resources\2da\skilldex.2da~ ~override~
+
+// Race thieving bonuses
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY race_to_thieving_bonuses_mapping BEGIN
+  //                       PICK_POCKETS    OPEN_LOCKS      FIND_TRAPS      STEALTH_STRIKE  HIDE_IN_SHADOWS   DETECT_ILLUSION   SET_TRAPS
+  ~HUMAN~   =>~HUMAN       15              10              5               5               5                 0                 5~
+  ~DWARF~   =>~DWARF       10              10              20              0               0                 5                 10~
+  ~ELF~     =>~ELF         20              15              5               5               15                10                0~
+  ~GNOME~   =>~GNOME       15              15              15              5               10                20                5~
+  ~HALF_ELF~=>~HALF_ELF    25              15              5               10              10                5                 0~
+  ~HALFLING~=>~HALFLING    20              20              10              20              20                0                 0~
+  ~HALFORC~ =>~HALFORC     10              5               5               5               0                 0                 0~
+END
+
+COPY_EXISTING ~skillrac.2da~ ~override~
+  PHP_EACH race_to_thieving_bonuses_mapping AS race => race_thieving_bonuses BEGIN
+    REPLACE_EVALUATE ~%race%.*~ BEGIN END ~%race_thieving_bonuses%~
+  END
+  PRETTY_PRINT_2DA
+
+// Lower backstab modifiers to x2
+
+COPY_EXISTING ~backstab.2da~ ~override~
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  FOR (current_column = 2; current_column < %colcount%; ++current_column) BEGIN
+    FOR (current_row = 0; current_row < %rowcount%; ++current_row) BEGIN
+      READ_2DA_ENTRY %current_row% %current_column% %colcount% current_val
+      PATCH_IF %current_val% > 2 BEGIN
+        SET_2DA_ENTRY %current_row% %current_column% %colcount% 2
+      END
+    END
+  END
+  BUT_ONLY
+
+// Remove starting bonuses from all Thieves, the bonuses will be granted in another form
+
+LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~clasiskl.2da~
+  RET_ARRAY
+    clasiskl_columns = 2da_columns_to_ids_mapping
+END
+
+COPY_EXISTING ~clasiskl.2da~ ~override~
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  PATCH_FOR_EACH class_kit_name IN ~THIEF~ ~FIGHTER_THIEF~ ~FIGHTER_MAGE_THIEF~ ~MAGE_THIEF~ ~CLERIC_THIEF~ ~ASSASIN~ ~BOUNTY_HUNTER~ ~SWASHBUCKLER~ ~SHADOWDANCER~ BEGIN
+    FOR (current_row = 0; current_row < %rowcount%; ++current_row) BEGIN
+      SPRINT class_kit_id $clasiskl_columns("%class_kit_name%")
+      SET_2DA_ENTRY %current_row% ~%class_kit_id%~ %colcount% 0
+    END
+  END
+  // Increase Dark Moon's Detect Illusions
+  SET_2DA_ENTRY 5 $clasiskl_columns("DARK_MOON") %colcount% 20
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+
+// Rework thieving ability scaling to be either 100 or 0 for all
+
+LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~thiefscl.2da~
+  RET_ARRAY
+    thiefscl_columns = 2da_columns_to_ids_mapping
+END
+
+COPY_EXISTING ~thiefscl.2da~ ~override~
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  SET pickpocket_row = 0
+  SET stealth_strike_row = 3
+  SET detect_illusions_row = 5
+  SET set_traps_row = 6
+  PATCH_FOR_EACH class_kit_name IN ~RANGER~ ~CLERIC_RANGER~ ~FERALAN~ ~BEASTMASTER~ ~SWASHBUCKLER~ ~MONK~ ~DARK_MOON~ ~SUN_SOUL~ ~VAGRANT~ ~PROTECTOR~ BEGIN
+    SET_2DA_ENTRY %stealth_strike_row% $thiefscl_columns("%class_kit_name%") %colcount% 0
+  END
+  PATCH_FOR_EACH class_kit_name IN ~BARD~ ~BLADE~ ~JESTER~ ~SKALD~ BEGIN
+    SET_2DA_ENTRY %pickpocket_row% $thiefscl_columns("%class_kit_name%") %colcount% 100
+  END
+  SET_2DA_ENTRY %set_traps_row% $thiefscl_columns("SWASHBUCKLER") %colcount% 0
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+
+// Rework starting and per-level thieving ability points
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~thiefskl.2da~
+  RET_ARRAY
+    thiefskl_rows = 2da_rows_to_ids_mapping
+END
+
+COPY_EXISTING ~thiefskl.2da~ ~override~
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  SET starting_points_column = 1
+  SET per_level_points_column = 2
+  PATCH_FOR_EACH class_kit_name IN ~THIEF~ ~FIGHTER_THIEF~ ~MAGE_THIEF~ ~CLERIC_THIEF~ ~FIGHTER_MAGE_THIEF~ BEGIN
+    SET_2DA_ENTRY $thiefskl_rows("%class_kit_name%") %starting_points_column% %colcount% 40
+    SET_2DA_ENTRY $thiefskl_rows("%class_kit_name%") %per_level_points_column% %colcount% 10
+  END
+  PATCH_FOR_EACH class_kit_name IN ~SHADOWDANCER~ ~ASSASIN~ ~BOUNTY_HUNTER~ BEGIN
+    SET_2DA_ENTRY $thiefskl_rows("%class_kit_name%") %starting_points_column% %colcount% 10
+    SET_2DA_ENTRY $thiefskl_rows("%class_kit_name%") %per_level_points_column% %colcount% 10
+  END
+  PATCH_FOR_EACH class_kit_name IN ~MONK~ ~DARK_MOON~ ~SUN_SOUL~ BEGIN
+    SET_2DA_ENTRY $thiefskl_rows("%class_kit_name%") %starting_points_column% %colcount% 0
+    SET_2DA_ENTRY $thiefskl_rows("%class_kit_name%") %per_level_points_column% %colcount% 5
+  END
+  SET_2DA_ENTRY $thiefskl_rows("SWASHBUCKLER") %starting_points_column% %colcount% 20
+  SET_2DA_ENTRY $thiefskl_rows("SWASHBUCKLER") %per_level_points_column% %colcount% 10
+  BUT_ONLY
+
+// Per level bonuses for Rangers, Shamans and Bards
+
+COPY ~IATweaks\resources\spl\s!0ss.spl~ ~override~
+
+ACTION_FOR_EACH kit_that_can_hide_but_not_backstab IN ~CLABRN01~ ~CLABRN03~ ~CLABRN04~ ~VAGRAN~ ~PROTEC~ ~CLABMO01~ ~CLABMO02~ ~CLABMO03~ ~CLABTH04~ BEGIN
+  // All kits/classes that can't backstab will get -250 to Stealth Strike at lvl1 to prevent them from gaining bonuses from it
+  LAF ~S!ADD_CLAB_ROW~
+    STR_VAR
+      filename = ~%kit_that_can_hide_but_not_backstab%.2da~
+      row_desc = ~NO_STEALTH_STRIKE~
+      level1 = ~AP_S!0SS~
+  END
+END
+
+COPY ~IATweaks\resources\2da\skillbrd.2da~ ~override~
+COPY ~IATweaks\resources\2da\skillrng.2da~ ~override~
+
+// Block real Stealth for every character, so that they can't access vanilla Stealth through some quick button
+
+COPY ~IATweaks\resources\spl\s!disste.spl~ ~override~
+
+ACTION_FOR_EACH kit_that_can_hide IN ~CLABRN01~ ~CLABRN02~ ~CLABRN03~ ~CLABRN04~ ~VAGRAN~ ~PROTEC~ ~CLABMO01~ ~CLABMO02~ ~CLABMO03~ ~CLABTH01~ ~CLABTH02~ ~CLABTH03~ ~CLABTH04~ ~CLABTH05~ BEGIN
+  LAF ~S!ADD_CLAB_ROW~
+    STR_VAR
+      filename = ~%kit_that_can_hide%.2da~
+      row_desc = ~NO_REAL_STEALTH_BUTTON~
+      level1 = ~AP_S!DISSTE~
+  END
+END
+
+// Base thieving stat increasing spells for thief kits
+
+COPY ~IATweaks\resources\spl\s!25his.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!25di.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!25ss.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!25st.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!25ft.spl~ ~override~
+
+////// Thief ///////
+
+////// Swashbuckler ///////
+
+// Remove traps
+
+COPY_EXISTING ~CLABTH04.2da~ ~override~
+  REPLACE_EVALUATE
+    ~GA_SPCL412~
+    BEGIN
+    END
+    ~****~
+  PRETTY_PRINT_2DA
+
+////// Assassin ///////
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABTH02~
+    row_desc = ~STEALTH_STRIKE_BONUS~
+    level1 = ~AP_S!25SS~
+END
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABTH02~
+    row_desc = ~HIDE_IN_SHADOWS_BONUS~
+    level1 = ~AP_S!25HIS~
+END
+
+////// Bounty Hunter ///////
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABTH03~
+    row_desc = ~SET_TRAPS_BONUS~
+    level1 = ~AP_S!25ST~
+END
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABTH03~
+    row_desc = ~FIND_TRAPS_BONUS~
+    level1 = ~AP_S!25FT~
+END
+
+////// Shadowdancer ///////
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABTH05~
+    row_desc = ~DETECT_ILLUSIONS_BONUS~
+    level1 = ~AP_S!25DI~
+END
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABTH05~
+    row_desc = ~HIDE_IN_SHADOWS_BONUS~
+    level1 = ~AP_S!25HIS~
+END
+
+////// Pick Pockets ///////
+
+COPY ~IATweaks\resources\spl\s!ppbase.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!ppthac.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter2 = %pickpocket_lower_than_row%
+      duration = 5
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 54
+      opcode = 284
+  END
+COPY ~IATweaks\resources\spl\s!ppacli.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter2 = %pickpocket_lower_than_row%
+      duration = 1
+  END
+COPY ~IATweaks\resources\spl\s!ppache.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter2 = %pickpocket_lower_than_row%
+      duration = 1
+  END
+COPY ~IATweaks\resources\spl\s!ppcrit.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter2 = %pickpocket_lower_than_row%
+      duration = 5
+  END 
+COPY ~IATweaks\resources\eff\s!ppthac.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!ppacli.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!ppache.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!ppcrit.eff~ ~override~
+
+// Add this ability to every class and kit that can use pickpocket at lvl 1
+
+ACTION_FOR_EACH class_kit_which_can_pickpocket IN ~CLABTH01.2da~ ~CLABTH02.2da~ ~CLABTH03.2da~ ~CLABTH04.2da~ ~CLABTH05.2da~ ~CLABBA01~ ~CLABBA02~ ~CLABBA03~ ~CLABBA04~ BEGIN
+  LAF ~S!ADD_CLAB_ROW~
+    STR_VAR
+      filename = ~%class_kit_which_can_pickpocket%~
+      row_desc = ~PICKPOCKET_FIGHTING~
+      level1 = ~AP_S!PPBASE~
+  END
+END
+
+//////// HIDE IN SHADOWS ///////
+
+COPY ~IATweaks\resources\bam\s!hisact.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!hisdea.bam~ ~override~
+
+OUTER_SET stealth_active_icon_desc_str_ref = RESOLVE_STR_REF (@6077)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %stealth_active_icon_desc_str_ref%
+  STR_VAR
+    bam_file = ~S!HISACT~
+  RET
+    stealth_active_icon_id = portrait_icon_id
+END
+
+OUTER_SET stealth_disabled_icon_desc_str_ref = RESOLVE_STR_REF (@6078)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %stealth_disabled_icon_desc_str_ref%
+  STR_VAR
+    bam_file = ~S!HISDEA~
+  RET
+    stealth_disabled_icon_id = portrait_icon_id
+END
+
+COPY ~IATweaks\resources\eff\s!hisvis.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!hisbas.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %stealth_active_icon_id%
+  END
+COPY ~IATweaks\resources\spl\s!histry.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!his100.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter2 = %hide_in_shadows_higher_than_row%
+  END
+
+COPY ~IATweaks\resources\spl\s!his101.spl~ ~override/s!his101.spl~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter2 = %hide_in_shadows_higher_than_row%
+  END
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!hisfoe.pro~
+COPY ~IATweaks\resources\spl\s!hisfoe.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      projectile = %s!hisfoe%
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 326
+      parameter1 = %hide_in_shadows_success_state%
+      parameter2 = 76 // SPLSTATE = n
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 328
+      parameter2 = %hide_in_shadows_success_state%
+  END
+
+COPY ~IATweaks\resources\spl\s!hisen1.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter2 = %hide_in_shadows_higher_than_row%
+  END
+// TODO: ADD INFO ON FAILURE
+
+COPY ~IATweaks\resources\spl\s!hisen2.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter2 = %hide_in_shadows_higher_than_row%
+  END
+COPY ~IATweaks\resources\spl\s!hissnd.spl~ ~override~
+// TODO: ADD INFO ON FAILURE, consider changing lower probability to higher probability +1 from s!hisen1 to avoid overlapping
+
+// Main spell with Stealth bonuses
+ADD_PROJECTILE ~IATweaks\resources\pro\s!hisinv.pro~
+COPY ~IATweaks\resources\spl\s!hisinv.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      projectile = %s!hisinv%
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter2 = %stealth_strike_lower_than_row%
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 328
+      parameter2 = %hide_in_shadows_success_state%
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 146
+      opcode = 272
+      parameter1 = 1
+      parameter2 = 0
+      timing = 1
+      duration = 119
+      multi_match = 1
+    STR_VAR
+      insert = ~above~
+      resource = ~S!HISREM~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %stealth_active_icon_id%
+  END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY hide_in_shadows_value_to_cooldown_mapping BEGIN
+  120 => 87
+  140 => 84
+  160 => 81
+  180 => 78
+  200 => 75
+  210 => 72
+  220 => 69
+  230 => 66
+  240 => 63
+  250 => 60
+  260 => 57
+  270 => 54
+  280 => 51
+  290 => 48
+  300 => 45
+  310 => 42
+  320 => 39
+  330 => 36
+  340 => 33
+  350 => 30
+END
+
+COPY ~IATweaks\resources\eff\s!hisrem.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!hisrem.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %stealth_disabled_icon_id%
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 328
+      parameter2 = %hide_in_shadows_fail_state%
+  END
+  PHP_EACH hide_in_shadows_value_to_cooldown_mapping AS his_value=>cooldown_in_ticks BEGIN
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        opcode = 318
+        target = 1
+        parameter1 = %his_value%
+        parameter2 = %hide_in_shadows_higher_than_row%
+        insert_point = 0
+      STR_VAR
+        resource = ~S!HISREM~
+    END
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 328
+        duration = %cooldown_in_ticks%
+        multi_match = 1
+      STR_VAR
+        insert = ~first~
+    END
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 142
+        duration = %cooldown_in_ticks%
+        multi_match = 1
+      STR_VAR
+        insert = ~first~
+    END
+  END
+  PATCH_FOR_EACH spell_to_remove IN ~S!HISINV~ ~S!HIS101~ ~S!HIS100~ ~S!HISFOE~ ~S!HISTRY~ ~S!HISBAS~ BEGIN
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        opcode = 321
+        target = 1
+        insert_point = 0
+      STR_VAR
+        resource = EVAL ~%spell_to_remove%~
+    END
+  END
+
+// Ensure that Hide in Shadows sound ID is present in .IDS file
+
+LOOKUP_IDS_SYMBOL_OF_INT test ~SOUNDOFF~ 70
+ACTION_IF ~%test%~ STR_EQ ~70~ BEGIN
+  APPEND ~SOUNDOFF.ids~ ~70 HIDDEN_IN_SHADOWS~
+END
+
+// Ensure that Hide in Shadows character sound is said only once
+
+<<<<<<<<.../IATweaks-inlined/hide_in_shadows_sound.baf
+IF
+    NextTriggerObject(Player1)
+	Global("S!HISSND","LOCALS",1)
+THEN
+	RESPONSE #100
+		VerbalConstant(Player1,HIDDEN_IN_SHADOWS)
+		ReallyForceSpellRES("S!HISSND",Player1)
+END
+
+IF
+    NextTriggerObject(Player2)
+	Global("S!HISSND","LOCALS",1)
+THEN
+	RESPONSE #100
+		VerbalConstant(Player2,HIDDEN_IN_SHADOWS)
+		ReallyForceSpellRES("S!HISSND",Player2)
+END
+
+IF
+    NextTriggerObject(Player3)
+	Global("S!HISSND","LOCALS",1)
+THEN
+	RESPONSE #100
+		VerbalConstant(Player3,HIDDEN_IN_SHADOWS)
+		ReallyForceSpellRES("S!HISSND",Player3)
+END
+
+IF
+    NextTriggerObject(Player4)
+	Global("S!HISSND","LOCALS",1)
+THEN
+	RESPONSE #100
+		VerbalConstant(Player4,HIDDEN_IN_SHADOWS)
+		ReallyForceSpellRES("S!HISSND",Player4)
+END
+
+IF
+    NextTriggerObject(Player5)
+	Global("S!HISSND","LOCALS",1)
+THEN
+	RESPONSE #100
+		VerbalConstant(Player5,HIDDEN_IN_SHADOWS)
+		ReallyForceSpellRES("S!HISSND",Player5)
+END
+
+IF
+    NextTriggerObject(Player6)
+	Global("S!HISSND","LOCALS",1)
+THEN
+	RESPONSE #100
+		VerbalConstant(Player6,HIDDEN_IN_SHADOWS)
+		ReallyForceSpellRES("S!HISSND",Player6)
+END
+>>>>>>>>
+
+EXTEND_TOP "baldur.bcs" ".../IATweaks-inlined/hide_in_shadows_sound.baf"
+EXTEND_TOP "baldur25.bcs" ".../IATweaks-inlined/hide_in_shadows_sound.baf"
+
+// Rework Thieving Skills for companions
+
+COPY_EXISTING ~jan8.cre~ ~override~
+  READ_BYTE 0x273 current_class
+  PATCH_IF %current_class% == 13 BEGIN // If Mage-Thief
+    // 110 points to distribute
+    WRITE_BYTE 0x45 0 // Hide in Shadows
+    WRITE_BYTE 0x64 25 // Detect Illusions
+    WRITE_BYTE 0x65 15 // Set Traps
+    WRITE_BYTE 0x67 30 // Open Locks
+    WRITE_BYTE 0x68 0 // Stealth Strike
+    WRITE_BYTE 0x69 40 // Find Traps
+    WRITE_BYTE 0x6a 0 // Pick Pockets
+  END
+
+COPY_EXISTING ~jan8.cre~ ~override/jan10.cre~
+COPY_EXISTING ~jan8.cre~ ~override/jan11.cre~
+COPY_EXISTING ~jan8.cre~ ~override/jan12.cre~
+
+COPY_EXISTING ~jan15.cre~ ~override~
+  READ_BYTE 0x273 current_class
+  PATCH_IF %current_class% == 13 BEGIN // If Mage-Thief
+    // 150 points to distribute
+    WRITE_BYTE 0x45 0 // Hide in Shadows
+    WRITE_BYTE 0x64 35 // Detect Illusions
+    WRITE_BYTE 0x65 25 // Set Traps
+    WRITE_BYTE 0x67 40 // Open Locks
+    WRITE_BYTE 0x68 0 // Stealth Strike
+    WRITE_BYTE 0x69 50 // Find Traps
+    WRITE_BYTE 0x6a 0 // Pick Pockets
+  END
+
+COPY_EXISTING ~nalia8.cre~ ~override~
+  READ_BYTE 0x273 current_class
+  PATCH_IF %current_class% == 13 BEGIN // If Mage-Thief
+    // 70 points to distribute
+    WRITE_BYTE 0x45 0 // Hide in Shadows
+    WRITE_BYTE 0x64 0 // Detect Illusions
+    WRITE_BYTE 0x65 0 // Set Traps
+    WRITE_BYTE 0x67 20 // Open Locks
+    WRITE_BYTE 0x68 0 // Stealth Strike
+    WRITE_BYTE 0x69 50 // Find Traps
+    WRITE_BYTE 0x6a 0 // Pick Pockets
+  END
+
+COPY_EXISTING ~nalia8.cre~ ~override/nalia10.cre~
+COPY_EXISTING ~nalia8.cre~ ~override/nalia11.cre~
+COPY_EXISTING ~nalia8.cre~ ~override/nalia13.cre~
+COPY_EXISTING ~nalia8.cre~ ~override/nalia15.cre~
+
+COPY_EXISTING ~nalia18.cre~ ~override~
+  READ_BYTE 0x273 current_class
+  PATCH_IF %current_class% == 13 BEGIN // If Mage-Thief
+    // 70 points to distribute
+    WRITE_BYTE 0x45 0 // Hide in Shadows
+    WRITE_BYTE 0x64 0 // Detect Illusions
+    WRITE_BYTE 0x65 0 // Set Traps
+    WRITE_BYTE 0x67 20 // Open Locks
+    WRITE_BYTE 0x68 0 // Stealth Strike
+    WRITE_BYTE 0x69 50 // Find Traps
+    WRITE_BYTE 0x6a 0 // Pick Pockets
+  END
+
+COPY_EXISTING ~yoshi7.cre~ ~override~
+  READ_BYTE 0x273 current_class
+  PATCH_IF %current_class% == 4 BEGIN // If Thief
+    // 100 points to distribute
+    WRITE_BYTE 0x45 0 // Hide in Shadows
+    WRITE_BYTE 0x64 0 // Detect Illusions
+    WRITE_BYTE 0x65 50 // Set Traps
+    WRITE_BYTE 0x67 0 // Open Locks
+    WRITE_BYTE 0x68 0 // Stealth Strike
+    WRITE_BYTE 0x69 50 // Find Traps
+    WRITE_BYTE 0x6a 0 // Pick Pockets
+  END
+
+COPY_EXISTING ~yoshi7.cre~ ~override/yoshi8.cre~
+COPY_EXISTING ~yoshi7.cre~ ~override/yoshi10.cre~
+COPY_EXISTING ~yoshi7.cre~ ~override/yoshi11.cre~
+COPY_EXISTING ~yoshi7.cre~ ~override/yoshi12.cre~
+
+COPY_EXISTING ~ohhex8.cre~ ~override~
+  READ_BYTE 0x273 current_class
+  PATCH_IF %current_class% == 4 BEGIN // If Thief
+    // 90 points to distribute
+    WRITE_BYTE 0x45 0 // Hide in Shadows
+    WRITE_BYTE 0x64 0 // Detect Illusions
+    WRITE_BYTE 0x65 0 // Set Traps
+    WRITE_BYTE 0x67 40 // Open Locks
+    WRITE_BYTE 0x68 0 // Stealth Strike
+    WRITE_BYTE 0x69 50 // Find Traps
+    WRITE_BYTE 0x6a 0 // Pick Pockets
+  END
+
+COPY_EXISTING ~ohhex8.cre~ ~override/ohhex9.cre~
+COPY_EXISTING ~ohhex8.cre~ ~override/ohhex10.cre~
+COPY_EXISTING ~ohhex8.cre~ ~override/ohhex11.cre~
+COPY_EXISTING ~ohhex8.cre~ ~override/ohhex13.cre~
+COPY_EXISTING ~ohhex8.cre~ ~override/ohhex15.cre~
+
+COPY_EXISTING ~ohhex25.cre~ ~override~
+  READ_BYTE 0x273 current_class
+  PATCH_IF %current_class% == 4 BEGIN // If Thief
+    // 160 points to distribute
+    WRITE_BYTE 0x45 0 // Hide in Shadows
+    WRITE_BYTE 0x64 0 // Detect Illusions
+    WRITE_BYTE 0x65 0 // Set Traps
+    WRITE_BYTE 0x67 70 // Open Locks
+    WRITE_BYTE 0x68 0 // Stealth Strike
+    WRITE_BYTE 0x69 70 // Find Traps
+    WRITE_BYTE 0x6a 20 // Pick Pockets
+  END
+
+COPY_EXISTING ~ohhfak8.cre~ ~override~
+  READ_BYTE 0x273 current_class
+  PATCH_IF %current_class% == 4 BEGIN // If Thief
+    // 110 points to distribute
+    WRITE_BYTE 0x45 0 // Hide in Shadows
+    WRITE_BYTE 0x64 0 // Detect Illusions
+    WRITE_BYTE 0x65 0 // Set Traps
+    WRITE_BYTE 0x67 50 // Open Locks
+    WRITE_BYTE 0x68 0 // Stealth Strike
+    WRITE_BYTE 0x69 60 // Find Traps
+    WRITE_BYTE 0x6a 0 // Pick Pockets
+  END
+
+COPY_EXISTING ~ohhfak8.cre~ ~override/ohhfak9.cre~
+COPY_EXISTING ~ohhfak8.cre~ ~override/ohhfak10.cre~
+COPY_EXISTING ~ohhfak8.cre~ ~override/ohhfak11.cre~
+COPY_EXISTING ~ohhfak8.cre~ ~override/ohhfak13.cre~
+COPY_EXISTING ~ohhfak8.cre~ ~override/ohhfak15.cre~
+
+//////// GUI part of the mod /////////
+
+COPY ~IATweaks\resources\lua\M_thief.lua~ ~override~
+
+// New name for Move Silently
+
+COPY_EXISTING ~enginest.2da~ ~override~
+  SET silent_strike_gui_strref = RESOLVE_STR_REF (@5011)
+  REPLACE_TEXTUALLY ~STRREF_GUI_MIXED_MOVE_SILENTLY[ %TAB%]*[0-9]+~ ~STRREF_GUI_MIXED_MOVE_SILENTLY %silent_strike_gui_strref%~
+  PRETTY_PRINT_2DA
+
+// New descriptions for Thieving Abilities
+
+COPY_EXISTING ~enginest.2da~ ~override~
+  SET pick_pocket_desc_gui_strref = RESOLVE_STR_REF (@5012)
+  SET hide_in_shadows_desc_gui_strref = RESOLVE_STR_REF (@5013)
+  SET silent_strike_desc_gui_strref = RESOLVE_STR_REF (@5014)
+  SET detect_illusions_desc_gui_strref = RESOLVE_STR_REF (@5015)
+  SET find_traps_desc_gui_strref = RESOLVE_STR_REF (@5016)
+  SET set_traps_desc_gui_strref = RESOLVE_STR_REF (@5017)
+  REPLACE_TEXTUALLY ~STRREF_GUI_HELP_PICK_POCKETS[ %TAB%]*[0-9]+~ ~STRREF_GUI_HELP_PICK_POCKETS %pick_pocket_desc_gui_strref%~
+  REPLACE_TEXTUALLY ~STRREF_GUI_HELP_HIDE_IN_SHADOWS[ %TAB%]*[0-9]+~ ~STRREF_GUI_HELP_HIDE_IN_SHADOWS %hide_in_shadows_desc_gui_strref%~
+  REPLACE_TEXTUALLY ~STRREF_GUI_HELP_MOVE_SILENTLY[ %TAB%]*[0-9]+~ ~STRREF_GUI_HELP_MOVE_SILENTLY %silent_strike_desc_gui_strref%~
+  REPLACE_TEXTUALLY ~STRREF_GUI_HELP_DETECT_ILLUSION[ %TAB%]*[0-9]+~ ~STRREF_GUI_HELP_DETECT_ILLUSION %detect_illusions_desc_gui_strref%~
+  REPLACE_TEXTUALLY ~STRREF_GUI_HELP_DETECT_TRAPS[ %TAB%]*[0-9]+~ ~STRREF_GUI_HELP_DETECT_TRAPS %find_traps_desc_gui_strref%~
+  REPLACE_TEXTUALLY ~STRREF_GUI_HELP_SET_TRAPS[ %TAB%]*[0-9]+~ ~STRREF_GUI_HELP_SET_TRAPS %set_traps_desc_gui_strref%~
+  PRETTY_PRINT_2DA
+
+// New UI functionalities
+
+COPY_EXISTING ~UI.MENU~ ~override~
+  LPF ~S!GENERATE_AND_INSERT_THIEVING_BUTTON_FUNCTIONS~
+  END
+  LPF ~S!APPLY_IA_LOGIC_TO_THIEVING_ABILITIES~
+  END
+  LPF ~S!5POINTS_PER_CLICK_THIEVING_ABILITIES~
+  END
+  LPF ~S!GENERATE_AND_INSERT_STEALTH_BUTTON_FUNCTIONS~
+    INT_VAR
+      stealth_active_icon_id = %stealth_active_icon_id%
+      stealth_disabled_icon_id = %stealth_disabled_icon_id%
+  END
+  LPF ~S!CREATE_NEW_STEALTH_BUTTONS~
+  END
+  LPF ~S!READ_AND_PUT_NEEDED_VARIABLES_IN_M_THIEVING_LUA~
+  END
+  LPF ~S!SHOW_BASE_THIEVING_ABILITIES_ON_CHARGEN_SCREEN~
+  END
+
+// Make all armors that disable Thieving abilities protect from new stuff
+
+COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
+  READ_SHORT 0x1c item_category
+  PATCH_IF (item_category = 2) OR (item_category = 60) OR (item_category = 61) OR (item_category = 62) OR (item_category = 63) OR (item_category = 64) OR (item_category = 65) OR (item_category = 66)
+    THEN BEGIN
+      LPF ~S!ITEM_USES_OPCODE~
+        INT_VAR
+          check_globals  = 1
+          check_headers  = 0
+          match_opcode   = 144
+          match_param2   = 0
+        RET
+          is_found
+      END
+      PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+        LPF ~ADD_ITEM_EQEFFECT~
+          INT_VAR
+            opcode = 206
+            target = 1
+            timing = 2
+          STR_VAR
+            resource = ~S!PPACHE~
+        END
+        LPF ~ADD_ITEM_EQEFFECT~
+          INT_VAR
+            opcode = 206
+            target = 1
+            timing = 2
+          STR_VAR
+            resource = ~S!HISBAS~
+        END
+        LPF ~ADD_ITEM_EQEFFECT~
+          INT_VAR
+            opcode = 142
+            target = 1
+            timing = 2
+            parameter2 = %stealth_disabled_icon_id%
+        END
+        LPF ~ADD_ITEM_EQEFFECT~
+          INT_VAR
+            opcode = 328
+            target = 1
+            timing = 2
+            parameter2 = %hide_in_shadows_fail_state%
+            special = 1
+        END
+      END
+  END
+  BUT_ONLY

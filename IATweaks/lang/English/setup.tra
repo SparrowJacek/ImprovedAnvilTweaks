@@ -89,3 +89,77 @@ Prime Requisites For Dual-Classing: Wisdom~
 @5007 = ~Rebalance Clerics and their kits~
 
 @5008 = ~Rebalance specialist Mage kits~
+
+@5009 = ~Base ~ // Used to inform players that the value of Thieving Abilities they see during character creation does not include dex or race bonuses: "Base Hide in Shadows" etc.
+
+@5010 = ~QUARTERSTAFF: A simple weapon, but in the hands of a skilled warrior, whether Mage or Paladin, the quarterstaff can lay flat any foe. Although everyone, even Thieves can use staves, they are cumbersome to use and are not suitable for backstabbing enemies.
+
+<DOTS1>
+
+<DOTS2>
+
+<DOTS3>
+
+<DOTS4>
+
+<DOTS5>~
+
+@5011 = ~Stealth Strike~
+
+@5012 = ~PICK POCKETS: The rogue uses this ability when filching small items from other people's pockets, sleeves, girdles, packs, and so on. With greater skill, a talented rogue can even snatch larger items, including weapons and certain articles of clothing.
+
+This skill requires not only nimble fingers but also keen observational abilities. True masters of pickpocketing can anticipate their target's movements, ensuring they aren't caught red-handed when the target suddenly turns around. This skill can also be used offensively, allowing rogues to identify weak points in an enemy's defenses, and defensively, enabling them to evade the trajectory of an enemy's sword.
+
+-Each 50 points invested in pickpocketing increases rogue's AC vs melee attacks by 1 while he's wearing light armor or no armor at all.
+-Each 100 points invested in pickpocketing increases rogue's AC vs melee attacks by 1 while he's wearing heavier armors.
+-Each 25 points invested in pickpocketing increases the THAC0 of each first successful melee attack per round by 1.
+-When above 100 points, each additional 25 points increase the chance of a critical hit on each first successful melee attack per round by 1.
+-When above 200 points, each additional 12.5 points (rounded up) increase the chance of a critical hit on each first successful melee attack per round by 1."~
+
+@5013 = ~HIDE IN SHADOWS: Using this ability, a character can disappear into shadows or any other type of concealment—bushes, curtains, crannies, etc.
+
+A Thief who dedicates themselves to mastering the Hide in Shadows skill can achieve results that seem almost magical. With enough training, they can blend seamlessly into the darkness, moving unseen and unheard. Perhaps Shar, the Mistress of the Night, truly does favor those who walk the path of shadows, granting them the ability to vanish from sight with ease.
+
+-The rogue might attempt to Hide in Shadows once per round
+-Each 5 points give the user 5% chance to hide when no enemies are around up to 100% when the rogue reaches 100 points.
+-When above 50 points, each 10 points put into this skill give 5% chance to hide when a single enemy is around, hiding around a larger group of enemies is harder, though at 250 points there is 100% chance for success.
+-When above 100 points, each 20 points put into this skill lowers the time needed to use this ability by 0,2s.
+-When above 200 points, the previous bonus is applied for every 10 points instead of 20.~
+
+@5014 = ~STEALTH STRIKE: This ability allows a rogue to unleash devastating attacks from the shadows, catching their enemies completely off guard. Striking with precision and force, the rogue can deal significantly increased damage to their unsuspecting foes.
+
+The bonuses this skill grants are only applied when the rogue succeeds at hiding in shadows.
+
+-Up till 100 points invested, each 20 points grant +1 melee damage bonus that is multipied by backstab.
+-When above 100 points, each 12,5 points invested (rounded up) grant +1 melee damage.
+-When above 200 points, each 8 points invested grant +1 melee damage.~
+
+@5015 = ~DETECT ILLUSION: While an adventurer searches for traps, <PRO_HISHER> well-trained eyes also allow <PRO_HIMHER> to detect the minor inconsistencies caused by illusion spells. This skill is the percentage chance per round of dispelling a nonfriendly illusion spell within 30 ft.
+
+At high skill levels, the user's vision becomes so sharp that they can perceive the flow of magic and the movements of the Weave, allowing them to evade danger or at least reduce the impact of incoming spells.
+
+-Each point gives the user 1% chance to dispel the illusions while consciously using this ability.
+-When above 100 points the rogue gets a chance to passively dispel any illusion even when not using the ability, each 10 points increase this chance by 5% up to 100% at 300 points.
+-When above 100 points, each 50 points put into this skill increase the character's saving throws by 1.
+-When above 100 points, each 20 points put into this skill increase the character's magic resistance by 3%.
+-When above 200 points the previous bonus is improved, granting additional 3% magic resistance for every 10 points invested.~
+
+@5016 = ~FIND TRAPS: A character uses this ability to find small traps, pit traps, and alarms. It does not find large mechanical traps. Thieves may also use this ability to disarm any traps they find.
+
+This ability increases thieves' knowledge on mechanisms and tools used to create and set traps, enabling them to apply more sophisticated designs in their own traps.
+
+-Each point increases the rogue's chance to spot traps and to disarm them.
+-When above 100 points, each 20 points invested in this skill make the traps set by the thief operate 1 second longer before breaking.
+-When above 200 points, each 10 points invested in this skill make the traps set by the thief operate 1 second longer before breaking.~
+
+@5017 = ~SET TRAPS: A Thief's skill in disarming traps allows <PRO_HIMHER> to create snares of <PRO_HISHER> own
+
+At higher levels the mechanisms used in traps become more precise and deadly, dealing more damage and making it harder to avoid them.
+
+-Each 5 points five the user 5% chance to successfully set any trap, when the thief reaches 100 points in this skill he has 100% chance of success.
+-When above 100 points, each 5 points invested in this skill makes all traps deal 5% more damage.
+-When abobe 200 points, each 5 points invested in this skill make the traps deal 10% more damage.~
+
+@5018 = ~~
+
+@5019 = ~~

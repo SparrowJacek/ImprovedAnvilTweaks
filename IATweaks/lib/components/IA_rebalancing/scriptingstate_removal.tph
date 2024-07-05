@@ -1,0 +1,204 @@
+LAF resolve_state STR_VAR new_state_id = ~BREACH_TRIGGERING_PHYSICAL_PROTECTION~ RET new_state_index END
+OUTER_SET breach_triggering_physical_protection = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~DISPELLABLE_INCREASED_FIRE_RESISTANCE~ RET new_state_index END
+OUTER_SET dispellable_increased_fire_resistance = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~BARB_ESSENCE_USED~ RET new_state_index END
+OUTER_SET barb_essence_used = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~DISPELLABLE_PROT_FROM_LEVEL_DRAIN~ RET new_state_index END
+OUTER_SET dispellable_prot_from_level_drain = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~UNDISPELLABLE_PROT_FROM_LEVEL_DRAIN~ RET new_state_index END
+OUTER_SET undispellable_prot_from_level_drain = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~MISSILE_IMMUNITY~ RET new_state_index END
+OUTER_SET missile_immunity = %new_state_index%
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY spellstate_symbol_to_id_mapping BEGIN
+  "BREACH_TRIGGERING_PHYSICAL_PROTECTION"=>~%breach_triggering_physical_protection%~
+  "DISPELLABLE_INCREASED_FIRE_RESISTANCE"=>~%dispellable_increased_fire_resistance%~
+  "BARB_ESSENCE_USED"=>~%barb_essence_used%~
+  "DISPELLABLE_PROT_FROM_LEVEL_DRAIN"=>~%dispellable_prot_from_level_drain%~
+  "MISSILE_IMMUNITY"=>~%missile_immunity%~
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY spellstate_symbol_to_scriptingstate_id BEGIN
+  "BREACH_TRIGGERING_PHYSICAL_PROTECTION"=>10
+  "DISPELLABLE_INCREASED_FIRE_RESISTANCE"=>14
+  "BARB_ESSENCE_USED"=>12
+  "DISPELLABLE_PROT_FROM_LEVEL_DRAIN"=>19
+  "MISSILE_IMMUNITY"=>9
+END
+
+// Only for scriptingstates with the following syntax: (!)CheckStat(ABC,1,SCRIPTINGSTATEX)
+ACTION_DEFINE_ASSOCIATIVE_ARRAY spellstate_symbol_to_scriptingstate BEGIN
+  "BREACH_TRIGGERING_PHYSICAL_PROTECTION"=>"SCRIPTINGSTATE11"
+  "DISPELLABLE_INCREASED_FIRE_RESISTANCE"=>"SCRIPTINGSTATE15"
+  "BARB_ESSENCE_USED"=>"SCRIPTINGSTATE13"
+  "DISPELLABLE_PROT_FROM_LEVEL_DRAIN"=>"SCRIPTINGSTATE19"
+END
+
+
+COPY_EXISTING_REGEXP GLOB ~.+\.spl~ ~override~
+  LPF ~S!SPELL_USES_OPCODE~
+  INT_VAR
+    check_globals  = 1
+    check_headers  = 1
+    match_opcode   = 282
+  RET
+    is_found
+  END
+  PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+    PHP_EACH spellstate_symbol_to_id_mapping AS spellstate_symbol=>spellstate_id BEGIN
+      SPRINT pies $spellstate_symbol_to_scriptingstate_id("%spellstate_symbol%")
+      LPF ~S!SPELL_USES_OPCODE~
+      INT_VAR
+        check_globals  = 1
+        check_headers  = 1
+        match_opcode   = 282
+        match_param1   = 1
+        match_param2   = $spellstate_symbol_to_scriptingstate_id("%spellstate_symbol%")
+      RET
+        is_found
+      END
+      PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+        LPF ~ALTER_EFFECT~
+          INT_VAR
+            match_opcode = 282
+            match_parameter1 = 1
+            match_parameter2 = $spellstate_symbol_to_scriptingstate_id("%spellstate_symbol%")
+            opcode = 328
+            parameter1 = 0
+            parameter2 = %spellstate_id%
+            special = 1
+        END
+      END
+    END
+  END
+  LPF ~S!SPELL_USES_OPCODE~
+    INT_VAR
+      check_globals  = 1
+      check_headers  = 1
+      match_opcode   = 282
+      match_param2   = 11
+    RET
+      is_found
+  END
+  PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 282
+        match_parameter2 = 11
+        parameter2 = 9
+    END
+  END
+  BUT_ONLY
+
+
+COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
+  LPF ~S!ITEM_USES_OPCODE~
+  INT_VAR
+    check_globals  = 1
+    check_headers  = 1
+    match_opcode   = 282
+  RET
+    is_found
+  END
+  PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+    PHP_EACH spellstate_symbol_to_id_mapping AS spellstate_symbol=>spellstate_id BEGIN
+      SPRINT pies $spellstate_symbol_to_scriptingstate_id("%spellstate_symbol%")
+      LPF ~S!ITEM_USES_OPCODE~
+      INT_VAR
+        check_globals  = 1
+        check_headers  = 1
+        match_opcode   = 282
+        match_param1   = 1
+        match_param2   = $spellstate_symbol_to_scriptingstate_id("%spellstate_symbol%")
+      RET
+        is_found
+      END
+      PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+        LPF ~ALTER_EFFECT~
+          INT_VAR
+            match_opcode = 282
+            match_parameter1 = 1
+            match_parameter2 = $spellstate_symbol_to_scriptingstate_id("%spellstate_symbol%")
+            opcode = 328
+            parameter1 = 0
+            parameter2 = %spellstate_id%
+            special = 1
+        END
+      END
+    END
+  END
+  LPF ~S!ITEM_USES_OPCODE~
+    INT_VAR
+      check_globals  = 1
+      check_headers  = 1
+      match_opcode   = 282
+      match_param2   = 11
+    RET
+      is_found
+  END
+  PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 282
+        match_parameter2 = 11
+        parameter2 = 9
+    END
+  END
+  BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~.+\.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    PHP_EACH spellstate_symbol_to_scriptingstate AS spellstate_symbol=>scriptingstate BEGIN
+      SET ofs = INDEX_BUFFER(~.*%scriptingstate%.*~)
+      PATCH_IF %ofs% >= 0 BEGIN
+        // PATCH_PRINT ~%ofs%~
+        REPLACE_EVALUATE
+        ~\(.*\)CheckStat\((.*\),1,%scriptingstate%~
+        BEGIN
+          SPRINT val ~%MATCH1%CheckSpellState%MATCH2%,%spellstate_symbol%~
+        END
+        ~%val%~
+      END
+    END
+    SET ofs = INDEX_BUFFER(~SCRIPTINGSTATE19~)
+    PATCH_IF %ofs% >= 0 BEGIN
+      REPLACE_EVALUATE
+      ~\(.*\)CheckStat\((.*\),2,SCRIPTINGSTATE19~
+      BEGIN
+        SPRINT val ~%MATCH1%CheckSpellState%MATCH2%,UNDISPELLABLE_PROT_FROM_LEVEL_DRAIN~
+      END
+      ~%val%~
+      REPLACE_EVALUATE
+      ~\(.*\)!CheckStatGT\((.*\),0,SCRIPTINGSTATE19)~
+      BEGIN
+        SPRINT val ~%MATCH1%!CheckSpellState%MATCH2%,UNDISPELLABLE_PROT_FROM_LEVEL_DRAIN)
+%MATCH1%!CheckSpellState%MATCH2%,DISPELLABLE_PROT_FROM_LEVEL_DRAIN)~
+      END
+      ~%val%~
+    END
+    SET ofs = INDEX_BUFFER(~SCRIPTINGSTATE10~)
+    PATCH_IF %ofs% >= 0 BEGIN
+      REPLACE_EVALUATE
+      ~\(.*\)CheckStatGT\(.*\),0,SCRIPTINGSTATE10~
+      BEGIN
+        SPRINT val ~%MATCH1%CheckSpellState%MATCH2%,MISSILE_IMMUNITY~
+      END
+      ~%val%~
+    END
+    SET ofs = INDEX_BUFFER(~SCRIPTINGSTATE12~)
+    PATCH_IF %ofs% >= 0 BEGIN
+      REPLACE_EVALUATE
+      ~SCRIPTINGSTATE12~
+      BEGIN
+        SPRINT val ~SCRIPTINGSTATE10~
+      END
+      ~%val%~
+    END
+  END
+  BUT_ONLY

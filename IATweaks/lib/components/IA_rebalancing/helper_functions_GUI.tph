@@ -63,119 +63,189 @@ BEGIN
         PATCH_IF ~%add_quotations_to_val%~ STR_EQ ~TRUE~ BEGIN
             SPRINT current_val ~"%current_val%"~
         END
-        SPRINT var_declaration_string ~%var_declaration_string% [%current_key%] = %current_val%,
+        SPRINT var_declaration_string ~%var_declaration_string%[%current_key%] = %current_val%,
 ~
     END
     SPRINT var_declaration_string ~%var_declaration_string% }~
-    PATCH_PRINT ~%var_declaration_string%~
-    PATCH_PRINT ~%var_declaration_string%~
     BUT_ONLY
 END
 
-DEFINE_PATCH_FUNCTION ~S!GENERATE_AND_INSERT_THIEVING_BUTTON_FUNCTIONS~
+DEFINE_ACTION_FUNCTION ~S!CREATE_LUA_KEY_VAL_TABLE_FROM_2DA~
+    INT_VAR
+        key_column_id = 5
+        val_column_id = 2
+    STR_VAR
+        2da_filename             = ~~
+        table_variable_name      = ~~
+        change_key_strref_to_str = ~FALSE~
+        change_val_strref_to_str = ~FALSE~
+        add_quotations_to_key    = ~FALSE~
+        add_quotations_to_val    = ~FALSE~
+    RET
+        var_declaration_string
+BEGIN
+  COPY_EXISTING ~%2da_filename%~ ~override~
+    SPRINT var_declaration_string ~%table_variable_name% = {
+~
+    COUNT_2DA_COLS ~colcount~
+    COUNT_2DA_ROWS ~colcount~ ~rowcount~
+    FOR (current_row_id = 0; current_row_id < %rowcount%; ++current_row_id) BEGIN
+        READ_2DA_ENTRY %current_row_id% %key_column_id% %colcount% current_key
+        READ_2DA_ENTRY %current_row_id% %val_column_id% %colcount% current_val
+        PATCH_IF ~%change_key_strref_to_str%~ STR_EQ ~TRUE~ BEGIN
+            GET_STRREF %current_key% current_key
+        END
+        PATCH_IF ~%change_val_strref_to_str%~ STR_EQ ~TRUE~ BEGIN
+            GET_STRREF %current_val% current_val
+        END
+        PATCH_IF ~%add_quotations_to_key%~ STR_EQ ~TRUE~ BEGIN
+            SPRINT current_key ~"%current_key%"~
+        END
+        PATCH_IF ~%add_quotations_to_val%~ STR_EQ ~TRUE~ BEGIN
+            SPRINT current_val ~"%current_val%"~
+        END
+        SPRINT var_declaration_string ~%var_declaration_string%[%current_key%] = %current_val%,
+~
+    END
+    SPRINT var_declaration_string ~%var_declaration_string% }~
+    BUT_ONLY
+END
+
+DEFINE_PATCH_FUNCTION ~S!READ_AND_PUT_NEEDED_VARIABLES_IN_M_THIEVING_LUA~
 BEGIN
     INNER_ACTION BEGIN
         LAF ~S!EXTRACT_LUA_TABLE_FROM_2DA~
         STR_VAR
             filename           = ~skillrac.2da~
-            var_name           = ~race_thief_bonus_table~
+            var_name           = ~anvil_race_thief_bonus_table~
         RET
-            race_thief_bonus_table = var_declaration_string
+            anvil_race_thief_bonus_table = var_declaration_string
         END
 
         LAF ~S!EXTRACT_LUA_TABLE_FROM_2DA~
         STR_VAR
             filename           = ~skilldex.2da~
-            var_name           = ~dex_thief_bonus_table~
+            var_name           = ~anvil_dex_thief_bonus_table~
         RET
-            dex_thief_bonus_table = var_declaration_string
+            anvil_dex_thief_bonus_table = var_declaration_string
         END
+
+        LAF ~S!CREATE_LUA_KEY_VAL_TABLE_FROM_2DA~
+            INT_VAR
+                key_column_id = 5
+                val_column_id = 2
+            STR_VAR
+                2da_filename             = ~clastext.2da~
+                table_variable_name      = ~anvil_kit_name_to_id_mapping~
+                change_key_strref_to_str = ~TRUE~
+                add_quotations_to_key    = ~TRUE~
+            RET
+               anvil_kit_name_to_id_mapping = var_declaration_string
+        END
+
+        LAF ~S!CREATE_LUA_KEY_VAL_TABLE_FROM_2DA~
+            INT_VAR
+                key_column_id = 4
+                val_column_id = 1
+            STR_VAR
+                2da_filename             = ~racetext.2da~
+                table_variable_name      = ~anvil_race_name_to_id_mapping~
+            RET
+               anvil_race_name_to_id_mapping = var_declaration_string
+        END
+        OUTER_SPRINT all_new_variables ~
+%anvil_race_thief_bonus_table%
+
+%anvil_dex_thief_bonus_table%
+
+%anvil_kit_name_to_id_mapping%
+
+%anvil_race_name_to_id_mapping%
+~
+    APPEND ~M_thief.lua~ ~%all_new_variables%~
     END
+END
+
+DEFINE_PATCH_FUNCTION ~S!GENERATE_AND_INSERT_THIEVING_BUTTON_FUNCTIONS~
+BEGIN
     TEXT_SPRINT functions_code ~
-chargen_gui_to_2da_race_mapping = {1, 3, 5, 2, 6, 4, 7}
-character_gui_to_2da_race_mapping = {
-                                    [1096] = 1},
-                                    [1097] = 2},
-                                    [1098] = 3},
-                                    [1100] = 4},
-                                    [1101] = 5},
-                                    [1099] = 6},
-                                    [53212] = 7},
-                                    }
-%race_thief_bonus_table%
-%dex_thief_bonus_table%
-
--- pickpocket, open_locks, find_traps, stealth_strike, hide_in_shadows, det_illusions, set_traps 
-kit_starting_bonuses = {
-                        [10] = {  0,   0,   0,  30,  10,   0,   0}, -- Assassin
-                        [11] = {  0,   0,  20,   0,   0,   0,  20}, -- Bounty Hunter - bonus from CLASISKL
-                        [33] = {  0,   0,   0,   0,  30,  10,   0}, -- Shadowdancer
-                        }
-
-kit_max_values =       {
-                        [10] = {100, 100,  75, 200, 200, 100,  50}, -- Assassin
-                        [11] = { 75, 100, 200,  75, 100, 100, 200}, -- Bounty Hunter
-                        [12] = {150, 100, 100,   0, 100, 100,   0}, -- Swashbuckler
-                        [33] = {100, 100, 100, 100, 200, 200,   0}, -- Shadowdancer
-                        }
-
-default_values = {150, 100, 100, 100, 100, 100, 100}
 
 function _calculateStartingBonus(thief_ability_id)
-    kit = chargen.kit[currentChargenKit]
     if chargen.levelingUp then
         return 0
-    elseif not kit then
+    end
+    local kit = chargen.kit[currentChargenKit]
+    if not kit then
         return 0
-    elseif not kit_starting_bonuses[kit.id] then
+    elseif not anvil_kit_starting_thieving_bonuses[kit.id] then
         return 0
     else
-        return kit_starting_bonuses[kit.id][thief_ability_id]
+        return anvil_kit_starting_thieving_bonuses[kit.id][thief_ability_id]
     end
-    return 1
 end
 
 function _calculateMaxValue(thief_ability_id)
-    kit = chargen.kit[currentChargenKit]
-    if not kit then
-        return default_values[thief_ability_id]
-    elseif not kit_starting_bonuses[kit.id] then
-        return default_values[thief_ability_id]
+	local thief_ability_id = tonumber(chargen.thief_skill[thief_ability_id].id) + 1
+    if chargen.levelingUp then
+        local kit_id = anvil_kit_name_to_id_mapping[characters[currentID].class]
+        if anvil_kit_max_thieving_values[kit_id] == nil then
+            return anvil_default_max_thieving_values[thief_ability_id]
+        else
+            return anvil_kit_max_thieving_values[kit_id][thief_ability_id]
+        end
     else
-        return kit_max_values[kit.id][thief_ability_id]
+        local kit = chargen.kit[currentChargenKit]
+        if not kit then
+            return anvil_default_max_thieving_values[thief_ability_id]
+        elseif not anvil_kit_max_thieving_values[kit.id] then
+            return anvil_default_max_thieving_values[thief_ability_id]
+        else
+            return anvil_kit_max_thieving_values[kit.id][thief_ability_id]
+        end
     end
 end
 
 function _calculateRaceBonus(thief_ability_id)
-    race_gui = tonumber(chargen.races[currentChargenRace].id)
-    if race_gui == nil then
-        race_gui = character_gui_to_2da_race_mapping[tonumber(characters[currentID].race)]
+	local race_gui = 0
+    if chargen.levelingUp then
+        race_gui = anvil_race_name_to_id_mapping[characters[currentID].race]
+    else
+        race_gui = tonumber(chargen.races[currentChargenRace].id)
     end
-    race_2da = chargen_gui_to_2da_race_mapping[race_gui]
-    race_bonus = race_thief_bonus_table[thief_ability_id][race_2da]
+    local race_2da = anvil_chargen_gui_to_2da_race_mapping[race_gui]
+    local race_bonus = anvil_race_thief_bonus_table[thief_ability_id][race_2da]
+    if race_bonus == nil then
+        return 0
+    end
     return race_bonus
 end
 
 function _calculateDexBonus(thief_ability_id)
-    dex = tonumber(chargen.ability[2].roll == nil and chargen.ability[2].roll or characters[currentID].attr.dex.current)
-    dex_bonus = dex_thief_bonus_table[thief_ability_id][dex]
+	local dex
+    if chargen.levelingUp then
+        dex = characters[currentID].attr.dex.current
+    else
+        dex = chargen.ability[2].roll or characters[currentID].attr.dex.current
+        dex = tonumber(dex)
+    end
+    local dex_bonus = anvil_dex_thief_bonus_table[thief_ability_id][dex]
     return dex_bonus
 end
 
 function calculateRealBonus(thief_ability_row)
-    current_value = chargen.thief_skill[thief_ability_row].value
-    thief_ability_id = tonumber(chargen.thief_skill[thief_ability_row].id) + 1
+    local current_value = chargen.thief_skill[thief_ability_row].value
+    local thief_ability_id = tonumber(chargen.thief_skill[thief_ability_row].id) + 1
 
-    starting_bonus = _calculateStartingBonus(thief_ability_id)
-    race_bonus = _calculateRaceBonus(thief_ability_id)
-    dex_bonus = _calculateDexBonus(thief_ability_id)
+    local starting_bonus = _calculateStartingBonus(thief_ability_id)
+    local race_bonus = _calculateRaceBonus(thief_ability_id)
+    local dex_bonus = _calculateDexBonus(thief_ability_id)
 
     return current_value - race_bonus - dex_bonus + starting_bonus
 end
 
 function canInvestInCurrentThievingAbility(thief_ability_id)
-    current_base = calculateRealBonus(thief_ability_id)
-    max_for_kit = _calculateMaxValue(thief_ability_id)
+    local current_base = calculateRealBonus(thief_ability_id)
+    local max_for_kit = _calculateMaxValue(thief_ability_id)
     return current_base < max_for_kit
 end
 
@@ -186,8 +256,10 @@ end
         INSERT_BYTES ofs strlen
         WRITE_ASCIIE ofs ~%functions_code%~ (strlen)
     END
+    ELSE BEGIN
+        PATCH_FAIL ~FAIL: Thieving Ability +/- button functions not installed properly.~
+    END
 END
-
 
 DEFINE_PATCH_FUNCTION ~S!APPLY_IA_LOGIC_TO_THIEVING_ABILITIES~
 BEGIN
@@ -199,7 +271,10 @@ BEGIN
         BEGIN
         END
         ~%base_value%~
-    END  
+    END
+    ELSE BEGIN
+        PATCH_FAIL ~FAIL: Base Thieving Abilities values not showing beside +/- buttons.~
+    END
     SET ofs = INDEX_BUFFER(~[ %TAB%]*if[ %TAB%]cellNumber[ %TAB%]==[ %TAB%]3[ %TAB%]then[ %TAB%]*[%WNL%%LNL%%MNL%]+[ %TAB%]*createCharScreen:OnThiefSkillPlusMinusButtonClick~)
     PATCH_IF %ofs% >= 0 BEGIN
         REPLACE_EVALUATE
@@ -208,7 +283,9 @@ BEGIN
           SPRINT val ~%MATCH1% and canInvestInCurrentThievingAbility(currentChargenThiefSkill)%MATCH2%~
         END
         ~%val%~
-       
+    END
+    ELSE BEGIN
+        PATCH_FAIL ~FAIL: Logic for max Thieving Abilities values enforcing not installed.~
     END  
 END
 
@@ -222,8 +299,10 @@ BEGIN
           SPRINT val ~%MATCH1%%MATCH2%%MATCH3%%MATCH1%%MATCH2%%MATCH3%%MATCH1%%MATCH2%%MATCH3%%MATCH1%%MATCH2%%MATCH3%%MATCH1%%MATCH2%%MATCH3%~
         END
         ~%val%~
-       
-    END  
+    END 
+    ELSE BEGIN
+        PATCH_WARN ~WARNING: Changes for +/- buttons for Thieving Skills not installed properly.~
+    END 
 END
 
 DEFINE_PATCH_FUNCTION ~S!GENERATE_AND_INSERT_STEALTH_BUTTON_FUNCTIONS~
@@ -349,6 +428,9 @@ BEGIN
         INSERT_BYTES ofs strlen
         WRITE_ASCIIE ofs ~%stealth_button_functions_code%~ (strlen)
     END
+    ELSE BEGIN
+        PATCH_FAIL ~FAIL: Stealth button functions not installed properly.~
+    END
 END
 
 DEFINE_PATCH_FUNCTION ~S!CREATE_NEW_STEALTH_BUTTONS~
@@ -379,5 +461,53 @@ BEGIN
             INSERT_BYTES ofs + strlen_original strlen
             WRITE_ASCIIE ofs + strlen_original ~%val%~ (strlen)
         END
-    END  
+        ELSE BEGIN
+            PATCH_FAIL ~FAIL: Stealth buttons not created.~
+        END
+    END
+END
+
+DEFINE_PATCH_FUNCTION ~S!SHOW_BASE_THIEVING_ABILITIES_ON_CHARGEN_SCREEN~
+BEGIN
+    SET base_prefix_strref = RESOLVE_STR_REF (@5009)
+    SET silent_strike_gui_strref = RESOLVE_STR_REF (@5011)
+    TEXT_SPRINT chargen_show_base_thieving_skills_function ~~~~~
+function getCharInfoChangeThievingSkillsToBase()
+	local char_info = chargen.information
+	for thieving_ability_strref, thieving_ability_id in pairs{[9463]=1, [9460]=2, [9462]=3, [%silent_strike_gui_strref%]=4, [34120]=5, [34121]=6, [34122]=7} do
+		local thieving_ability_name = Infinity_FetchString(thieving_ability_strref)
+		local base_prefix = Infinity_FetchString(%base_prefix_strref%)
+		if string.find(char_info, thieving_ability_name .. ': (%d+)') then
+			local thieving_ability_value = char_info:match(thieving_ability_name .. ': (%d+)')
+			local starting_bonus = _calculateStartingBonus(thieving_ability_id)
+			local race_bonus = _calculateRaceBonus(thieving_ability_id)
+			local dex_bonus = _calculateDexBonus(thieving_ability_id)
+			local new_thieving_ability_value = tonumber(thieving_ability_value) - race_bonus - dex_bonus + starting_bonus
+			char_info = char_info:gsub(thieving_ability_name .. ': (%d+)', base_prefix .. thieving_ability_name .. ': ' .. new_thieving_ability_value)
+		end
+	end
+	return char_info
+end
+~~~~~
+    SET ofs = INDEX_BUFFER(~[ %TAB%]*function[ %TAB%]*chargenAcceptOrExport()~)
+    PATCH_IF %ofs% >= 0 BEGIN
+        SET strlen = STRING_LENGTH ~%chargen_show_base_thieving_skills_function%~
+        INSERT_BYTES ofs strlen
+        WRITE_ASCIIE ofs ~%chargen_show_base_thieving_skills_function%~ (strlen)
+        SET ofs2 = INDEX_BUFFER(~[ %TAB%]*text[ %TAB%]*lua[ %TAB%]*"chargen.information"~)
+        PATCH_IF %ofs2% >= 0 THEN BEGIN
+            REPLACE_EVALUATE
+            ~\([ %TAB%]*text[ %TAB%]*lua[ %TAB%]*\)"chargen.information"~
+            BEGIN
+            SPRINT val ~%MATCH1%"getCharInfoChangeThievingSkillsToBase()"~
+            END
+            ~%val%~
+        END
+        ELSE BEGIN
+            PATCH_WARN ~WARNING: Chargen thieving skills will not show base values.~
+        END
+    END
+    ELSE BEGIN
+        PATCH_WARN ~WARNING: Chargen thieving skills will not show base values.~
+    END
 END

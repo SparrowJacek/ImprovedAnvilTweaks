@@ -7,6 +7,14 @@ anvil_kit_starting_thieving_bonuses = {
 [33] = {  0,   0,   0,   0,  25,  25,   0}, -- Shadowdancer
 }
 
+anvil_class_starting_thieving_bonuses = {
+[4] = {  25,   25,   0,  0,  0,   0,   0}, -- Thief
+[9] = {  25,   25,   0,  0,  0,   0,   0}, -- Fighter-Thief
+[10] = {  25,   25,   0,  0,  0,   0,   0}, -- Fighter-Mage-Thief
+[13] = {  25,   25,   0,  0,  0,   0,   0}, -- Mage-Thief
+[15] = {  25,   25,   0,  0,  0,   0,   0}, -- Cleric-Thief
+}
+
 anvil_kit_max_thieving_values = {
 [10] = {100, 100,  75, 200, 200, 100,  50}, -- Assassin
 [11] = { 75, 100, 200,  75, 100, 100, 200}, -- Bounty Hunter

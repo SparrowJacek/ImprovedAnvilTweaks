@@ -263,8 +263,24 @@ COPY ~IATweaks\resources\spl\s!25di.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!25ss.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!25st.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!25ft.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!25pp.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!25ol.spl~ ~override~
 
 ////// Thief ///////
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABTH01~
+    row_desc = ~PICK_POCKETS_BONUS~
+    level1 = ~AP_S!25PP~
+END
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABTH01~
+    row_desc = ~OPEN_LOCKS_BONUS~
+    level1 = ~AP_S!25OL~
+END
 
 ////// Swashbuckler ///////
 
@@ -458,7 +474,7 @@ COPY ~IATweaks\resources\spl\s!hisen2.spl~ ~override~
       parameter2 = %hide_in_shadows_higher_than_row%
   END
 COPY ~IATweaks\resources\spl\s!hissnd.spl~ ~override~
-// TODO: ADD INFO ON FAILURE, consider changing lower probability to higher probability +1 from s!hisen1 to avoid overlapping
+// TODO: consider changing lower probability to higher probability +1 from s!hisen1 to avoid overlapping
 
 // Main spell with Stealth bonuses
 ADD_PROJECTILE ~IATweaks\resources\pro\s!hisinv.pro~
@@ -638,6 +654,43 @@ END
 EXTEND_TOP "baldur.bcs" ".../IATweaks-inlined/hide_in_shadows_sound.baf"
 EXTEND_TOP "baldur25.bcs" ".../IATweaks-inlined/hide_in_shadows_sound.baf"
 
+///////// DETECT ILLUSIONS ///////////
+
+COPY ~IATweaks\resources\spl\s!dibase.spl~ ~override~
+COPY ~IATweaks\resources\eff\s!dinorm.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!dinorm.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter2 = %detect_illusions_lower_than_row%
+  END
+COPY ~IATweaks\resources\eff\s!disavt.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!disavt.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter2 = %detect_illusions_lower_than_row%
+  END
+COPY ~IATweaks\resources\eff\s!dimres.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!dimres.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter2 = %detect_illusions_lower_than_row%
+  END
+
+// Add this ability to every class and kit that can use detect illusions at lvl 1
+
+ACTION_FOR_EACH class_kit_which_can_detect_illusions IN ~CLABTH01.2da~ ~CLABTH02.2da~ ~CLABTH03.2da~ ~CLABTH04.2da~ ~CLABTH05.2da~ ~CLABMO02~ ~CLABSH01~ BEGIN
+  LAF ~S!ADD_CLAB_ROW~
+    STR_VAR
+      filename = ~%class_kit_which_can_detect_illusions%~
+      row_desc = ~PASSIVE_DETECT_ILLUSIONS~
+      level1 = ~AP_S!DIBASE~
+  END
+END
+
+
 // Rework Thieving Skills for companions
 
 COPY_EXISTING ~jan8.cre~ ~override~
@@ -645,11 +698,11 @@ COPY_EXISTING ~jan8.cre~ ~override~
   PATCH_IF %current_class% == 13 BEGIN // If Mage-Thief
     // 110 points to distribute
     WRITE_BYTE 0x45 0 // Hide in Shadows
-    WRITE_BYTE 0x64 25 // Detect Illusions
+    WRITE_BYTE 0x64 30 // Detect Illusions
     WRITE_BYTE 0x65 15 // Set Traps
-    WRITE_BYTE 0x67 30 // Open Locks
+    WRITE_BYTE 0x67 20 // Open Locks
     WRITE_BYTE 0x68 0 // Stealth Strike
-    WRITE_BYTE 0x69 40 // Find Traps
+    WRITE_BYTE 0x69 45 // Find Traps
     WRITE_BYTE 0x6a 0 // Pick Pockets
   END
 
@@ -770,6 +823,32 @@ COPY_EXISTING ~ohhfak8.cre~ ~override/ohhfak11.cre~
 COPY_EXISTING ~ohhfak8.cre~ ~override/ohhfak13.cre~
 COPY_EXISTING ~ohhfak8.cre~ ~override/ohhfak15.cre~
 
+COPY_EXISTING ~s!sibel.cre~ ~override~
+  READ_BYTE 0x273 current_class
+  PATCH_IF %current_class% == 4 BEGIN // If Thief
+    // 100 points to distribute
+    WRITE_BYTE 0x45 0 // Hide in Shadows
+    WRITE_BYTE 0x64 0 // Detect Illusions
+    WRITE_BYTE 0x65 0 // Set Traps
+    WRITE_BYTE 0x67 40 // Open Locks
+    WRITE_BYTE 0x68 0 // Stealth Strike
+    WRITE_BYTE 0x69 60 // Find Traps
+    WRITE_BYTE 0x6a 0 // Pick Pockets
+  END
+  IF_EXISTS
+
+COPY_EXISTING ~s!sibe25.cre~ ~override~
+  READ_BYTE 0x273 current_class
+  // 100 points to distribute
+  WRITE_BYTE 0x45 0 // Hide in Shadows
+  WRITE_BYTE 0x64 0 // Detect Illusions
+  WRITE_BYTE 0x65 0 // Set Traps
+  WRITE_BYTE 0x67 40 // Open Locks
+  WRITE_BYTE 0x68 0 // Stealth Strike
+  WRITE_BYTE 0x69 60 // Find Traps
+  WRITE_BYTE 0x6a 0 // Pick Pockets
+  IF_EXISTS
+
 //////// GUI part of the mod /////////
 
 COPY ~IATweaks\resources\lua\M_thief.lua~ ~override~
@@ -869,3 +948,45 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
       END
   END
   BUT_ONLY
+
+/////// AREAS ////////
+
+// Lower lock and trap difficulty in Chateau Irenicus
+
+COPY_EXISTING_REGEXP GLOB ~AR060[1-3]\.are$~ ~override~
+
+  // process triggers //
+
+  GET_OFFSET_ARRAY regions ARE_V10_REGIONS
+
+  PHP_EACH regions AS int1 => region_off BEGIN
+    READ_SHORT region_off + 0x68 trap_det_diff // trap detection difficulty
+    READ_SHORT region_off + 0x6a trap_rem_diff // trap removal difficulty
+
+    PATCH_IF ((trap_rem_diff > 40) AND (trap_det_diff < 100)) BEGIN
+      WRITE_SHORT  region_off + 0x68 30 // trap detection difficulty
+      WRITE_SHORT  region_off + 0x6a 40 // trap detection difficulty
+    END
+  END
+
+  // process containers //
+
+  GET_OFFSET_ARRAY containers ARE_V10_CONTAINERS
+
+  PHP_EACH containers AS int2 => cont_off BEGIN
+    READ_ASCII cont_off + 0x78 key // key item
+    READ_SHORT cont_off + 0x26 lock_diff // lock difficulty
+    READ_SHORT cont_off + 0x2c trap_det_diff // trap detection difficulty
+    READ_SHORT cont_off + 0x2e trap_rem_diff // trap removal difficulty
+
+    PATCH_IF (("%key%" STRING_COMPARE_CASE "" = 0) OR ("%key%" STRING_COMPARE_CASE "None" = 0)) BEGIN
+      PATCH_IF (lock_diff > 25 AND lock_diff < 100) BEGIN
+        WRITE_SHORT cont_off + 0x26 25 // lock difficulty
+      END
+    END
+
+    PATCH_IF ((trap_det_diff < 100) AND (trap_rem_diff > 40)) BEGIN
+      WRITE_SHORT  cont_off + 0x2c 30 // trap detection difficulty
+      WRITE_SHORT  cont_off + 0x2e 40 // trap detection difficulty
+    END
+  END

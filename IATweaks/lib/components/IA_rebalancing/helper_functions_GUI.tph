@@ -175,7 +175,14 @@ function _calculateStartingBonus(thief_ability_id)
         return 0
     end
     local kit = chargen.kit[currentChargenKit]
-    if not kit then
+	local class = chargen.class[currentChargenClass]
+    if kit == nil or kit.id == 0 then
+        if not class then
+            return 0
+        end
+        if anvil_class_starting_thieving_bonuses[class.id] then
+            return anvil_class_starting_thieving_bonuses[class.id][thief_ability_id]
+        end
         return 0
     elseif not anvil_kit_starting_thieving_bonuses[kit.id] then
         return 0
@@ -407,7 +414,17 @@ BEGIN
 	function onNewStealthButtonPressed()
 		local charPortraitId = silentlyGetCurrentCharPortraitId()
 		local party_slot = tostring(charPortraitId + 1)
-		
+		for button_index = 1, 10, 1 do
+            local button_type = buttonArray:GetButtonType(button_index)
+            -- Check if character has Stealth button
+            if button_type == 11 then
+                break
+            end
+            -- If not, then do nothing
+            if button_index == 10 then
+                return
+            end
+        end
 		if isStealthDisabled() then
 			-- Do nothing if stealth is disabled
 		elseif isStealthActive() then

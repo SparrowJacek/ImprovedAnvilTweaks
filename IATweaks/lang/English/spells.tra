@@ -212,7 +212,7 @@ By means of this powerful spell, the priest uses <PRO_HISHER> divine powers to d
 
 Level: 4
 Sphere: Healing
-Range: Tpuch
+Range: Touch
 Duration: Permanent
 Casting Time: 2
 Area of Effect: Creature touched
@@ -386,7 +386,7 @@ Saving Throw: Special
 This spell affects the movements of an undead creature, focusing on the lower parts of its body in an attempt to hold it in place and make it more vulnerable to damage. The target's movement speed is reduced by 100%, and its resistance to slashing and crushing damage is decreased by 20% if the creature fails a Saving Throw against the spell at a -2 penalty. A successful Saving Throw will reduce both of these effects by half. Magic Resistance does not protect against this spell. However, it is still treated as a 3rd-level spell, meaning powerful undead creatures such as Liches and Demiliches are not affected.~
 
 @6040 = ~Boon of Lathander
-This spell lasts for 1 turn. It gives the caster a +1 bonus to all Saving Throws, +2 to damage and thac0, and +1 extra attack per round. It also applies Negative Plane Protection for its duration or until dispelled.~
+This spell lasts for 1 turn. It gives the caster a +1 bonus to all Saving Throws, +2 to damage and thac0, and +1 extra attack per round.~
 
 @6041 = ~Spiritual Link~
 
@@ -489,20 +489,20 @@ Casting this spell causes the earth to shake and the heavens to boil with blood 
 
 All enemies of 8th level or lower are slain instantly. The survivors are struck by acidic, poisonous rain and lightning. The storm lasts for 3 rounds. Each round, the victims suffer 1d6 electrical damage, 1d6 fire damage, and 1d6 acid damage (Save vs. Spell with a -4 penalty for half damage). They also have a chance to be poisoned (Save vs. Death with a -4 penalty negates) in the first round.~
 
-@6055 = ~Champion's Strength
+@6055 = ~Champion's Might
 (Alteration)
 
-Level: 5
+Level: 6
 Sphere: Law
 Range: Visual range of the caster
-Duration: 3 rounds/level
+Duration: 15 rounds
 Casting Time: 2
 Area of Effect: 1 creature
 Saving Throw: None
 
-When this spells is cast, the priest effectively draws on the strength of <PRO_HISHER> god and lends it to the target creature, in effect creating a champion. The target gains a bonus to <PRO_HISHER> THAC0 at a rate of 1 for every 3 levels of the caster. So a 9th level priest would confer a THAC0 bonus of 3 to the target, and so on. Also the target's Strength is set to 18/00 for the duration of the spell and receives all the bonuses to hit and damage rolls that this Strength confers.If the target's strength is already above 18, the spell will not set it to 18, though exceptional strength boost will be provided.
+When this spells is cast, the priest effectively draws on the power of <PRO_HISHER> god and lends it to the target creature, in effect creating a champion. The target gains a bonus to <PRO_HISHER> THAC0 at a rate of 1 for every 5 levels of the caster up till +4 at level 20. The target's number of attacks per round is also doubled as if Improved Haste was cast.
 
-The drawback to this is that the priest must concentrate on the connection between the target and <PRO_HISHER> god for the duration of the spell, hence losing the ability to cast any spells during this time. The effect lasts for 3 rounds for every level of the caster or until dispelled.~
+The spell applies its effects every 6 seconds for its duration and the effects last for the same amount of time. The target has to be in the caster's range for each pulse of the spell, otherwise he'll have to wait for another pulse to get the benefits. Champion's Might requires intense concentration to maintain the divine connection, so the priest can have only one instance of this spell active.~
 
 @6056 = ~Web
 (Conjuration)
@@ -690,6 +690,38 @@ Saving Throw: None
 
 When this spell is placed upon a creature by a priest, the creature's body is toughened to withstand heat and cold. The recipient can resist intense heat or cold (whether natural or magical in origin), such as: red-hot charcoal, a large amount of burning oil, flaming swords, fire storms, fireballs, meteor swarms, red dragon's breath, frostbrand swords, ice storms, wands of frost, or white dragon's breath. In all of these cases, the temperature affects the creature to some extent. This spell sets cold and fire resistance of the target to 75%.~
 
+@6102 = ~Negative Plane Protection
+(Abjuration)
+
+Level: 4
+Sphere: Protection, Necromantic
+Range: Touch
+Duration: 2 turns
+Casting Time: 3
+Area of Effect: 1 creature
+Saving Throw: None
+
+This spell affords the caster or the touched creature partial protection from undead monsters with Negative Energy Plane connections (such as vampires), and certain weapons and spells that drain energy levels. The Negative Plane Protection spell opens a channel to the Positive Energy Plane, possibly offsetting the effects of the negative energy attack. A protected creature struck by a negative energy attack is protected against any form of level draining for the duration of the spell. The protected creature suffers only normal Hit Point damage from the attack and does not suffer any drain of experience. This spell cannot be cast on the Negative Energy Plane.~
+
+@6103 = ~Disable Trap~
+
+@6104 = ~Trap Disabled~
+
+@6105 = ~Champion's Might~
+
+@6106 = ~Too many instances of Champion's Might, the spell is broken.~
+
+@6107 = ~Protection From Fire (Abjuration)
+Level: 3
+Sphere: Protection, Elemental (Fire)
+Range: Touch
+Duration: 5 turns
+Casting Time: 3
+Area of Effect: Creature touched
+Saving Throw: None
+
+When this spell is cast, it sets the target's fire resistance to 75% for its duration which is no longer than five turns or 50 rounds.~
+
 @6108 = ~Protection From Fire (Abjuration)
 Level: 3
 Range: Touch
@@ -819,5 +851,40 @@ Area of Effect: 1 creature
 Saving Throw: None
 
 The recipient of this spell gains extraordinary luck for the next 2 turns, receiving a +1 bonus to <PRO_HISHER> Saving Throws, attack rolls, and minimum damage/healing rolls as well as +5% to all thieving skills. Furthermore, damage dice for all effects outside a weapon's base damage is reduced by 1. For example, a 6d6 fireball will do 6d5 damage, and a flaming long sword that deals 1d8+2 slashing plus 1d3 fire damage will deal 1d8+2 slashing plus 1d2 fire damage instead. Multiple casts of Luck do not stack with each other.~
+
 @6120 = ~You can use Hunter's Mark again.~
 
+@6121 = ~Life Link~
+
+@6122 = ~Life Link
+(Necromancy)
+
+Level: 6
+Sphere: Healing
+Range: 30 ft.
+Duration: 10 rounds
+Casting Time: 7
+Area of Effect: targetted creature
+Saving Throw: None
+
+By casting this spell, the priest links his or her own life force with that of an ally. Each time that ally is dealt damage that would not result in his death, a check is made. If the target's HP is lower than the caster's, then their HP values are immediately swapped. Swapped HP can not exceed the character's max HP value, so it is highly advised to use this spell on a target that has higher max HP than the caster.
+
+From level 16 each time the target of this spell is hurt, the cleric regenerates 1d4 HP, this value is increased to 1d8 at level 20.~
+
+@6123 = ~Shield Bash~
+
+@6124 = ~Shield Bash~
+
+@6125 = ~Shield Bash~
+
+@6126 = ~Shield Bash~
+
+@6127 = ~Shield Bash~
+
+@6128 = ~Shield Bash~
+
+@6129 = ~Shield Bash~
+
+@6130 = ~Shield Bash~
+
+@6131 = ~Shield Bash~

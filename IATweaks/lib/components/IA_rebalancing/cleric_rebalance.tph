@@ -26,32 +26,49 @@ ACTION_PHP_EACH hla_row_to_abbrev_mapping AS _ => abbreviation BEGIN
   COPY_EXISTING ~lucl0.2da~ ~override/lu%abbreviation%.2da~
 END
 
+LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~weapprof.2da~
+  RET_ARRAY
+    weapprof_cols = 2da_columns_to_ids_mapping
+END
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~weapprof.2da~
+  RET_ARRAY
+    weapprof_rows = 2da_rows_to_ids_mapping
+END
+
 COPY_EXISTING ~weapprof.2da~  ~override/weapprof.2da~
   COUNT_2DA_COLS ~colcount~
+  SET dagger_row = $weapprof_rows("DAGGER")
+  SET sw_and_sh_row = $weapprof_rows("SWORDANDSHIELD")
 // Enable ** in Sword and Shield for Cleric and all kits and *** for Tyr
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 6 ~2~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 13 ~2~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 17 ~2~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 18 ~2~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 20 ~2~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 48 ~2~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 49 ~2~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 50 ~2~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 62 ~3~ // Tyr
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 29 63 ~2~
-  SET_2DA_ENTRIES_NOW ~_#_#_#weapprof~ ~colcount~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ sw_and_sh_row $weapprof_cols("CLERIC") ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ sw_and_sh_row $weapprof_cols("FIGHTER_CLERIC") ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ sw_and_sh_row $weapprof_cols("CLERIC_MAGE") ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ sw_and_sh_row $weapprof_cols("CLERIC_THIEF") ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ sw_and_sh_row $weapprof_cols("FIGHTER_MAGE_CLERIC") ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ sw_and_sh_row $weapprof_cols("CLERIC_RANGER") ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ sw_and_sh_row $weapprof_cols("TALOS") ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ sw_and_sh_row $weapprof_cols("HELM") ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ sw_and_sh_row $weapprof_cols("LATHANDER") ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ sw_and_sh_row $weapprof_cols("OHTYR") ~3~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ sw_and_sh_row $weapprof_cols("OHTEMPUS") ~2~
 // Enable Clerics to put points into daggers
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 15 6 ~1~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 15 13 ~2~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 15 17 ~1~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 15 18 ~1~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 15 20 ~2~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 15 21 ~2~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 15 48 ~1~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 15 49 ~1~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 15 50 ~1~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 15 62 ~1~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 15 63 ~1~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ dagger_row $weapprof_cols("CLERIC") ~1~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ dagger_row $weapprof_cols("FIGHTER_CLERIC") ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ dagger_row $weapprof_cols("CLERIC_MAGE") ~1~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ dagger_row $weapprof_cols("CLERIC_THIEF") ~1~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ dagger_row $weapprof_cols("FIGHTER_MAGE_CLERIC") ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ dagger_row $weapprof_cols("CLERIC_RANGER") ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ dagger_row $weapprof_cols("TALOS") ~1~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ dagger_row $weapprof_cols("HELM") ~1~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ dagger_row $weapprof_cols("LATHANDER") ~1~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ dagger_row $weapprof_cols("OHTYR") ~1~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ dagger_row $weapprof_cols("OHTEMPUS") ~1~
+  SET_2DA_ENTRIES_NOW ~_#_#_#weapprof~ ~colcount~
   PRETTY_PRINT_2DA
 
 // Make all daggers usable by Clerics
@@ -65,12 +82,6 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
       WRITE_BYTE 0x1f (%usability_flags_2% BAND 0b00111000) // enable daggers for Cleric multi combinations
   END
   BUT_ONLY
-
-// Update class description for Clerics
-COPY_EXISTING ~clastext.2da~ ~override/clastext.2da~
-  COUNT_2DA_COLS ~colcount~
-  // Pure Cleric class
-  SET_2DA_ENTRY 23 4 ~colcount~ RESOLVE_STR_REF (@5006)
 
 // add bonuses for *** in Sword and Shield
 COPY_EXISTING ~stylbonu.2da~  ~override/stylbonu.2da~
@@ -97,6 +108,7 @@ LAF ~S!ADD_SPLPROT_2DA_ENTRY~
 END
 
 // Rework Defensive Harmony
+
 
 COPY_EXISTING ~sppr406.spl~ ~override/sppr406d.spl~
   SAY UNIDENTIFIED_DESC @6002
@@ -146,6 +158,7 @@ COPY ~IATweaks\resources\spl\sppr406e.spl~ ~override\sppr406e.spl~ // Cleric kit
   END
 
 COPY ~IATweaks\resources\spl\s!defhar.spl~ ~override\sppr406.spl~ // New Defensive Harmony spell
+  SAY UNIDENTIFIED_DESC @6002
   LPF ~ALTER_EFFECT~
     INT_VAR
       match_opcode = 146
@@ -353,23 +366,50 @@ COPY ~IATweaks\resources\bam\sppr520b.bam~ ~override~
 COPY ~IATweaks\resources\bam\sppr520c.bam~ ~override~
 COPY ~IATweaks\resources\bam\sppr520d.bam~ ~override~
 
-// Add custom spells to a list of exclusion from automatically learnable spells
-COPY_EXISTING ~hidespl.2da~ ~override/hidespl.2da~
-  COUNT_2DA_COLS ~colcount~
-  COUNT_2DA_ROWS ~colcount~ ~rowcount~
-  // INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR445 1 0 0~
-  // INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR446 1 0 0~
-  // INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR447 1 0 0~
-  // INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR448 1 0 0~
-  // INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR449 1 0 0~
-  INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR520 1 0 0~
-
 ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR02.2da~ ~CLABPR03.2da~ ~CLABPR04.2da~ ~OHTYR.2da~ ~OHTEMPUS.2da~ BEGIN
   LAF ~S!ADD_CLAB_ROW~
     STR_VAR
       filename = ~%cleric_kit_clab%~
       row_desc = ~PROTECTIVE_CHANT~
       level9 = ~GA_SPPR520~
+  END
+END
+
+// Life Link
+
+// Add records for the new portrait icons
+OUTER_SET life_link_desc_str_ref = RESOLVE_STR_REF (@6121)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %life_link_desc_str_ref%
+  STR_VAR
+    bam_file = ~S!LIFELD~
+  RET
+    life_link_icon_id = portrait_icon_id
+END
+// Main spell file
+
+COPY ~IATweaks\resources\spl\s!lifeli.spl~ ~override~
+  SAY NAME1 @6121
+  SAY UNIDENTIFIED_DESC @6122
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %life_link_icon_id%
+  END
+
+COPY ~IATweaks\resources\eff\s!lifeli.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!lifel2.spl~ ~override~
+COPY ~IATweaks\resources\bam\s!lifelb.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!lifelc.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!lifeld.bam~ ~override~
+
+ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR02.2da~ ~CLABPR03.2da~ ~CLABPR04.2da~ ~OHTYR.2da~ ~OHTEMPUS.2da~ BEGIN
+  LAF ~S!ADD_CLAB_ROW~
+    STR_VAR
+      filename = ~%cleric_kit_clab%~
+      row_desc = ~LIFE_LINK~
+      level11 = ~GA_S!LIFELI~
   END
 END
 
@@ -503,7 +543,6 @@ ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR02.2da~ ~CLABPR03.2da~ ~CLABPR04.2da~ 
   END
 END
 
-
 // Strength of One
 
 // Add exceptional strength check
@@ -595,6 +634,16 @@ COPY_EXISTING ~SPPR412.spl~ ~override/SPPR412.spl~
   END
   BUT_ONLY
 
+// Negative Plane Protection
+
+COPY_EXISTING ~SPPR413.spl~ ~override/SPPR413.spl~
+  SAY UNIDENTIFIED_DESC @6102
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_duration = 30
+      duration = 120
+  END
+
 // Remove Summon Animals, Barkskin, Earthquake and Poison from Clerics
 
 COPY_EXISTING ~SPPR202.spl~ ~override/SPPR202.spl~
@@ -642,49 +691,49 @@ COPY_EXISTING ~sppr603d.spl~ ~override~
 
 // Prevent haste/slow from making this spell hit more/less often
 
-COPY_EXISTING ~sppr603.spl~ ~override~
-  LPF ~CLONE_EFFECT~
-    INT_VAR
-      match_opcode = 232
-      opcode = 321
-      target = 1
-      parameter2 = 0
-      duration = 0
-    STR_VAR
-      match_resource = ~sppr603d~
-      insert = ~first~
-      resource = ~sppr603~
-  END
-  LPF ~ALTER_EFFECT~
-    INT_VAR
-      match_opcode = 232
-      opcode = 333
-      parameter1 = 11
-  END
-  BUT_ONLY
+// COPY_EXISTING ~sppr603.spl~ ~override~
+//   LPF ~CLONE_EFFECT~
+//     INT_VAR
+//       match_opcode = 232
+//       opcode = 321
+//       target = 1
+//       parameter2 = 0
+//       duration = 0
+//     STR_VAR
+//       match_resource = ~sppr603d~
+//       insert = ~first~
+//       resource = ~sppr603~
+//   END
+//   LPF ~ALTER_EFFECT~
+//     INT_VAR
+//       match_opcode = 232
+//       opcode = 333
+//       parameter1 = 11
+//   END
+//   BUT_ONLY
 
-// Do the same for player version of Globe of Blades
+// // Do the same for player version of Globe of Blades
 
-COPY_EXISTING ~sppr725.spl~ ~override~
-  LPF ~CLONE_EFFECT~
-    INT_VAR
-      match_opcode = 232
-      opcode = 321
-      target = 1
-      parameter2 = 0
-      duration = 0
-    STR_VAR
-      match_resource = ~sppr725d~
-      insert = ~first~
-      resource = ~sppr725~
-  END
-  LPF ~ALTER_EFFECT~
-    INT_VAR
-      match_opcode = 232
-      opcode = 333
-      parameter1 = 11
-  END
-  BUT_ONLY
+// COPY_EXISTING ~sppr725.spl~ ~override~
+//   LPF ~CLONE_EFFECT~
+//     INT_VAR
+//       match_opcode = 232
+//       opcode = 321
+//       target = 1
+//       parameter2 = 0
+//       duration = 0
+//     STR_VAR
+//       match_resource = ~sppr725d~
+//       insert = ~first~
+//       resource = ~sppr725~
+//   END
+//   LPF ~ALTER_EFFECT~
+//     INT_VAR
+//       match_opcode = 232
+//       opcode = 333
+//       parameter1 = 11
+//   END
+//   BUT_ONLY
 
 // Cure spells
 
@@ -1261,37 +1310,106 @@ END
 
 // Champion's Strength
 
-COPY ~IATweaks\resources\spl\sppr507d.spl~ ~override~
-COPY_EXISTING ~sppr507.spl~ ~override~
+ADD_PROJECTILE ~IATweaks\resources\pro\s!chmpml.pro~
+COPY ~IATweaks\resources\spl\s!chmpmc.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_power = 5
+      power = 6
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      resist_dispel = 3
+  END
+  
+COPY ~IATweaks\resources\spl\s!chmpmd.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!chmpme.spl~ ~override~
+COPY ~IATweaks\resources\eff\s!chmpme.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!chmpmf.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!chmpmg.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!chmpmh.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!chmpmi.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6106)
+  END
+COPY ~IATweaks\resources\spl\s!chmpmj.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!chmpmk.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!chmpml.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      projectile = %s!chmpml%
+  END
+
+COPY_EXISTING ~sppr507.spl~ ~override/sppr618.spl~
+  SAY NAME1 @6105
   SAY UNIDENTIFIED_DESC @6055
-  LPF ~DELETE_EFFECT~
-    INT_VAR
-      match_target = 2
+  WRITE_BYTE 0x34 6 // Level
+
+  PATCH_FOR_EACH ~min_lvl_val~ IN "10" "11" "12" "13" "14" "15" "16" "17" "18" "19" "20" BEGIN
+    LPF ~DELETE_SPELL_HEADER~ 
+      INT_VAR
+        header_type = ~-1~
+        min_level = ~%min_lvl_val%~
+    END
   END
-  // Cast subspell
+
+  PATCH_FOR_EACH opcode_to_delete IN 44 50 54 97 142 145 174 215 BEGIN
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = opcode_to_delete
+    END
+  END
+
   LPF ~CLONE_EFFECT~
     INT_VAR
-      match_opcode = 145
+      match_opcode = 206
       multi_match = 1
+      opcode = 321
+      target = 1
+      duration = 0
+    STR_VAR
+      insert = ~first~
+      resource = ~SPPR618~
+  END
+  
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 321
+      multi_match = 1
+      timing = 3
+      duration = 90
+    STR_VAR
+      resource = ~S!CHMPMC~
+      insert = ~last~
+  END
+
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 206
       opcode = 146
-      target = 2
       parameter2 = 1
-      resist_dispel = 0
+      duration = 0
     STR_VAR
-      resource = ~sppr507d~
+      resource = ~S!CHMPMC~
   END
-  // Make Priest of Tempus able to cast spells
-  LPF ~CLONE_EFFECT~
-    INT_VAR
-      match_opcode = 145
-      multi_match = 1
-      opcode = 318
-      parameter1 = 16425
-      parameter2 = %kit_equals_row%
-      resist_dispel = 0
-    STR_VAR
-      resource = ~sppr507~
-  END
+
+COPY_EXISTING ~hidespl.2da~ ~override~
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR507 1 0 0~
+  PRETTY_PRINT_2DA
+
+COPY_EXISTING ~spell.ids~ ~override~
+  REPLACE_EVALUATE ~1507[ %TAB%]*CLERIC_CHAMPIONS_STRENGTH~ BEGIN
+  END ~1618 CLERIC_CHAMPIONS_STRENGTH~
+
+COPY_EXISTING_REGEXP GLOB ~.+\.cre~ ~override~
+  REMOVE_KNOWN_SPELL ~SPPR507~
+  REMOVE_MEMORIZED_SPELL ~SPPR507~
+  BUT_ONLY
 
 // Greater Restoration
 
@@ -1407,16 +1525,29 @@ END
 
 // Remove Spare the Dying from resurrected characters
 
-ACTION_FOR_EACH resurrection_spell IN ~spja01.spl~ ~sppr504.spl~ ~sppr550.spl~ ~sppr712.spl~ BEGIN
-  COPY_EXISTING ~%resurrection_spell%~ ~override~
-  LPF ~CLONE_EFFECT~
-    INT_VAR
-      match_opcode = 172
-      multi_match = 1
-    STR_VAR
-      insert = ~last~
-      resource = ~sppr735~
+ACTION_IF (NOT FILE_EXISTS_IN_GAME ~#RDREMOV.spl~) BEGIN
+  ACTION_FOR_EACH resurrection_spell IN ~spja01.spl~ ~sppr504.spl~ ~sppr550.spl~ ~sppr712.spl~ BEGIN
+    COPY_EXISTING ~%resurrection_spell%~ ~override~
+      LPF ~CLONE_EFFECT~
+        INT_VAR
+          match_opcode = 172
+          multi_match = 1
+        STR_VAR
+          insert = ~last~
+          resource = ~sppr735~
+      END
   END
+END
+ACTION_IF (FILE_EXISTS_IN_GAME ~#RDREMOV.spl~) BEGIN
+  COPY_EXISTING ~#RDREMOV.spl~ ~override~
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 172
+        multi_match = 1
+      STR_VAR
+        insert = ~last~
+        resource = ~sppr735~
+    END
 END
 
 // Storm of Vengeance
@@ -1593,32 +1724,12 @@ COPY_EXISTING ~SPCL741.spl~ ~override~
       parameter1 = 2
   END
 
-  // remove immunity to level drain from the spell and move it to a subspell copy of NPP
+  // remove immunity to level drain from the spell
   PATCH_FOR_EACH redundant_opcode IN 101 282 267 169 BEGIN
     LAUNCH_PATCH_FUNCTION ~DELETE_EFFECT~ 
       INT_VAR
         match_opcode = %redundant_opcode%
     END
-  END
-  
-  LPF ~ADD_SPELL_EFFECT~
-    INT_VAR
-      opcode = 146
-      target = 1
-      parameter2 = 1
-      resist_dispel = 3
-      duration = 60
-      power = 4
-      insert_point = 3
-    STR_VAR
-      resource = ~SPCL741D~
-  END
-
-COPY_EXISTING ~SPPR413.spl~ ~override/spcl741d.spl~
-  LPF ~ALTER_EFFECT~
-    INT_VAR
-      match_duration = 30
-      duration = 60
   END
 
 // Lathander Draw Upon Holy Might
@@ -1751,7 +1862,7 @@ COPY_EXISTING ~spcl722.spl~ ~override~
 
   LPF ~ALTER_SPELL_HEADER~
     INT_VAR
-      projectile = %s!light1% // Yellow Lightning Bolt
+      projectile = %s!light1%
   END
 
   LPF ~S!CLONE_SPELL_HEADER~
@@ -1808,6 +1919,7 @@ LAF ~S!ADD_CLAB_ROW~
     level5 = ~GA_SPCL943~
     level15 = ~GA_SPCL943~
     level25 = ~GA_SPCL943~
+    level35 = ~GA_SPCL943~
 END
 
 /////// HELM ///////
@@ -2178,15 +2290,61 @@ COPY ~IATweaks\resources\spl\s!cobfoe.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!cobdsp.spl~ ~override~
 COPY ~IATweaks\resources\eff\s!cobdsp.eff~ ~override~
 
+// // Cleric Descriptions
 
+LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~clastext.2da~
+  RET_ARRAY
+    clastext_cols = 2da_columns_to_ids_mapping
+END
 
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~clastext.2da~
+  RET_ARRAY
+    clastext_rows = 2da_rows_to_ids_mapping
+END
 
+// update class description for Clerics
+COPY_EXISTING ~clastext.2da~ ~override/clastext.2da~
+  COUNT_2DA_COLS ~colcount~
+  SET description_col = $clastext_cols("DESCSTR")
+  SET_2DA_ENTRY_LATER ~s!cleric_desc~ $clastext_rows("CLERIC") description_col RESOLVE_STR_REF (@5006)
+  SET_2DA_ENTRY_LATER ~s!cleric_desc~ $clastext_rows("GODLATHANDER") description_col RESOLVE_STR_REF (@5018)
+  SET_2DA_ENTRY_LATER ~s!cleric_desc~ $clastext_rows("GODTALOS") description_col RESOLVE_STR_REF (@5019)
+  SET_2DA_ENTRY_LATER ~s!cleric_desc~ $clastext_rows("GODHELM") description_col RESOLVE_STR_REF (@5020)
+  SET_2DA_ENTRY_LATER ~s!cleric_desc~ $clastext_rows("OHTYR") description_col RESOLVE_STR_REF (@5021)
+  SET_2DA_ENTRY_LATER ~s!cleric_desc~ $clastext_rows("OHTEMPUS") description_col RESOLVE_STR_REF (@5022)
+  SET_2DA_ENTRIES_NOW ~s!cleric_desc~ ~colcount~
+  PRETTY_PRINT_2DA
 
+LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~kitlist.2da~
+  RET_ARRAY
+    kitlist_cols = 2da_columns_to_ids_mapping
+END
 
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  INT_VAR
+    col_with_names = 1
+  STR_VAR
+    2da_table_name = ~kitlist.2da~
+  RET_ARRAY
+    kitlist_rows = 2da_rows_to_ids_mapping
+END
 
-
-
-
+COPY_EXISTING ~kitlist.2da~ ~override/kitlist.2da~
+  COUNT_2DA_COLS ~colcount~
+  SET description_col = $kitlist_cols("HELP")
+  SET_2DA_ENTRY_LATER ~s!cleric_desc~ $kitlist_rows("LATHANDER") description_col RESOLVE_STR_REF (@5018)  
+  SET_2DA_ENTRY_LATER ~s!cleric_desc~ $kitlist_rows("TALOS") description_col RESOLVE_STR_REF (@5019)
+  SET_2DA_ENTRY_LATER ~s!cleric_desc~ $kitlist_rows("HELM") description_col RESOLVE_STR_REF (@5020)
+  SET_2DA_ENTRY_LATER ~s!cleric_desc~ $kitlist_rows("OHTYR") description_col RESOLVE_STR_REF (@5021)
+  SET_2DA_ENTRY_LATER ~s!cleric_desc~ $kitlist_rows("OHTEMPUS") description_col RESOLVE_STR_REF (@5022)
+  SET_2DA_ENTRIES_NOW ~s!cleric_desc~ ~colcount~
+  PRETTY_PRINT_2DA
 
 // Add removal of Aura Cleansing spell from Cleric spells
 
@@ -2207,8 +2365,6 @@ COPY_EXISTING_REGEXP GLOB ~SPPR[1-7][0-5][0-9]+\.spl~ ~override~
   END
 
   BUT_ONLY
-
-
 
 COPY_EXISTING_REGEXP GLOB ~SPWI[1-9][0-9][0-9]+\.spl~ ~override~
                           ~SPDR201.spl~ ~override~
@@ -2267,9 +2423,21 @@ COPY_EXISTING_REGEXP GLOB ~SPWI[1-9][0-9][0-9]+\.spl~ ~override~
   END
 
 // add custom spells to a list of exclusion from automatically learnable spells
-COPY_EXISTING ~hidespl.2da~ ~override/hidespl.2da~
+COPY_EXISTING ~hidespl.2da~ ~hidespl.2da~
   COUNT_2DA_COLS ~colcount~
   COUNT_2DA_ROWS ~colcount~ ~rowcount~
-  INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR617 1 0 0~
+  INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR520 1 0 0~
   INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR735 1 0 0~
   PRETTY_PRINT_2DA
+
+
+///////// Creatures //////////
+
+// Suna Seni Cleric + 2nd ambush Cleric
+ACTION_FOR_EACH cleric_thug_cre IN ~RECLER01.cre~ ~RETHUG03.cre~ BEGIN
+  COPY_EXISTING ~%cleric_thug_cre%~ ~override~
+    WRITE_LONG 0x244 0x4013 // Kit = Talos
+    ADD_MEMORIZED_SPELL ~SPCL943~ #0 ~innate~ (1)
+END
+
+COMPILE ~IATweaks\scripts\creatures\s!recler.baf~

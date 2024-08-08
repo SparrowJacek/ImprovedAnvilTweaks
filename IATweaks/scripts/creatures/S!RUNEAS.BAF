@@ -1,0 +1,452 @@
+IF
+	See(NearestEnemyOf(Myself))
+	Global("EnemySeen","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("EnemySeen","LOCALS",1)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	Global("partyfled","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("partyfled","LOCALS",0)
+END
+
+IF
+	Global("Iapcastts","GLOBAL",1)
+	Global("Iatsinvulner","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",1)
+		ApplySpellRES("SPINI70",Myself)  // No such index
+END
+
+IF
+	Global("Iapcastts","GLOBAL",0)
+	Global("Iatsinvulner","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",0)
+		ApplySpellRES("SPINI71",Myself)  // No such index
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	Global("Iapcastts","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+END
+
+IF
+	!CheckSpellState(Myself,HIDE_IN_SHADOWS_SUCCESS)
+	!CheckSpellState(Myself,HIDE_IN_SHADOWS_FAIL)
+	!StateCheck(Myself,STATE_INVISIBLE)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	See(NearestEnemyOf(Myself))
+	OR(2)
+		ObjectActionListEmpty(Myself)
+		Global("s!interruptibleaction","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",0)
+		ActionOverride(Myself, ForceSpellRES("S!HISBAS",Myself))
+END
+
+IF
+	ObjectActionListEmpty(Myself)
+	Global("s!interruptibleaction","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",0)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("PoisonWeapon","LOCALS")
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	GlobalLT("Iapweapon","LOCALS",4)
+	See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+	CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!HasItemEquiped("immune2",LastSeenBy(Myself))  // No such index
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iapweapon","LOCALS",1)
+		SetGlobalTimer("PoisonWeapon","LOCALS",FOUR_MINUTES)
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		ForceSpellRES("SPCL423",Myself)  // Poison Weapon
+END
+
+IF
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	HPPercentLT(Myself,50)
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	HasItem("potn52",Myself)  // Potion of Extra Healing
+THEN
+	RESPONSE #100
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("potn52",Myself)  // Potion of Extra Healing
+END
+
+IF
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	!StateCheck(Myself,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Myself,STATE_INVISIBLE)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	HasItem("potn10",Myself)  // Potion of Invisibility
+	See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw04",LastSeenBy(Myself))  // Judgement Day +5
+	!HasItemEquiped("immune2",LastSeenBy(Myself))  // No such index
+	!CheckSpellState(LastSeenBy(Myself),BARB_ESSENCE_USED)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("potn10",Myself)  // Potion of Invisibility
+END
+
+IF
+	!AreaCheck("AR0503")  // Tanner's Hideout Dock
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	!StateCheck(Myself,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Myself,STATE_INVISIBLE)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	HasItem("potn10",Myself)  // Potion of Invisibility
+	See(SecondNearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw04",LastSeenBy(Myself))  // Judgement Day +5
+	!HasItemEquiped("immune2",LastSeenBy(Myself))  // No such index
+	!CheckSpellState(LastSeenBy(Myself),BARB_ESSENCE_USED)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("potn10",Myself)  // Potion of Invisibility
+END
+
+IF
+	!AreaCheck("AR0503")  // Tanner's Hideout Dock
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	!StateCheck(Myself,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Myself,STATE_INVISIBLE)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	HasItem("potn10",Myself)  // Potion of Invisibility
+	See(ThirdNearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw04",LastSeenBy(Myself))  // Judgement Day +5
+	!HasItemEquiped("immune2",LastSeenBy(Myself))  // No such index
+	!CheckSpellState(LastSeenBy(Myself),BARB_ESSENCE_USED)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("potn10",Myself)  // Potion of Invisibility
+END
+
+IF
+	AreaCheck("AR0503")  // Tanner's Hideout Dock
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	!StateCheck(Myself,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Myself,STATE_INVISIBLE)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	HasItem("potn10",Myself)  // Potion of Invisibility
+	See(SecondNearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw04",LastSeenBy(Myself))  // Judgement Day +5
+	!HasItemEquiped("immune2",LastSeenBy(Myself))  // No such index
+	!CheckSpellState(LastSeenBy(Myself),BARB_ESSENCE_USED)
+	Range(LastSeenBy(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("potn10",Myself)  // Potion of Invisibility
+END
+
+IF
+	AreaCheck("AR0503")  // Tanner's Hideout Dock
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	!StateCheck(Myself,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Myself,STATE_INVISIBLE)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	HasItem("potn10",Myself)  // Potion of Invisibility
+	See(ThirdNearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw04",LastSeenBy(Myself))  // Judgement Day +5
+	!HasItemEquiped("immune2",LastSeenBy(Myself))  // No such index
+	!CheckSpellState(LastSeenBy(Myself),BARB_ESSENCE_USED)
+	Range(LastSeenBy(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("potn10",Myself)  // Potion of Invisibility
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	StateCheck(Myself,STATE_INVISIBLE)
+	See([PC])
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw04",LastSeenBy(Myself))  // Judgement Day +5
+	!CheckSpellState(LastSeenBy(Myself),BARB_ESSENCE_USED)
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!AreaCheck("AR0503")  // Tanner's Hideout Dock
+	StateCheck(Myself,STATE_INVISIBLE)
+	See(SecondNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw04",LastSeenBy(Myself))  // Judgement Day +5
+	!CheckSpellState(LastSeenBy(Myself),BARB_ESSENCE_USED)
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!AreaCheck("AR0503")  // Tanner's Hideout Dock
+	StateCheck(Myself,STATE_INVISIBLE)
+	See(ThirdNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw04",LastSeenBy(Myself))  // Judgement Day +5
+	!CheckSpellState(LastSeenBy(Myself),BARB_ESSENCE_USED)
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	AreaCheck("AR0503")  // Tanner's Hideout Dock
+	StateCheck(Myself,STATE_INVISIBLE)
+	See(SecondNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw04",LastSeenBy(Myself))  // Judgement Day +5
+	!CheckSpellState(LastSeenBy(Myself),BARB_ESSENCE_USED)
+	Range(LastSeenBy(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	AreaCheck("AR0503")  // Tanner's Hideout Dock
+	StateCheck(Myself,STATE_INVISIBLE)
+	See(ThirdNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw04",LastSeenBy(Myself))  // Judgement Day +5
+	!CheckSpellState(LastSeenBy(Myself),BARB_ESSENCE_USED)
+	Range(LastSeenBy(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	Range(LastSeenBy(Myself),2)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	!Gender(LastSeenBy(Myself),SUMMONED)
+	!Race(LastSeenBy(Myself),PLANATAR)
+	!Race(LastSeenBy(Myself),DARKPLANATAR)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!HasItemEquiped("immune2",LastSeenBy(Myself))  // No such index
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	!Gender(LastSeenBy(Myself),SUMMONED)
+	!Race(LastSeenBy(Myself),PLANATAR)
+	!Race(LastSeenBy(Myself),DARKPLANATAR)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!HasItemEquiped("immune2",LastSeenBy(Myself))  // No such index
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	!Race(LastSeenBy(Myself),PLANATAR)
+	!Race(LastSeenBy(Myself),DARKPLANATAR)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!HasItemEquiped("immune2",LastSeenBy(Myself))  // No such index
+THEN
+	RESPONSE #100
+		AttackOneRound(NearestEnemyOf(Myself))
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	!Race(LastSeenBy(Myself),PLANATAR)
+	!Race(LastSeenBy(Myself),DARKPLANATAR)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!HasItemEquiped("immune2",LastSeenBy(Myself))  // No such index
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOf(Myself))
+	!Race(LastSeenBy(Myself),PLANATAR)
+	!Race(LastSeenBy(Myself),DARKPLANATAR)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!HasItemEquiped("immune2",LastSeenBy(Myself))  // No such index
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Global("EnemySeen","LOCALS",1)
+	Global("partyfled","LOCALS",0)
+	!See([GOODCUTOFF])
+	!See([PC])
+THEN
+	RESPONSE #100
+		SetGlobalTimer("chase","LOCALS",EIGHTEEN_MINUTES)
+		SetGlobal("partyfled","LOCALS",1)
+END
+
+IF
+	!See([PC])
+	!See([GOODCUTOFF])
+	Global("partyfled","LOCALS",1)
+	GlobalTimerNotExpired("chase","LOCALS")
+	InMyArea(Player1)
+	Global("EnemySeen","LOCALS",1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	!See([PC])
+	!See([GOODCUTOFF])
+	Global("EnemySeen","LOCALS",1)
+	GlobalTimerExpired("chase","LOCALS")
+	Global("partyfled","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("EnemySeen","LOCALS",0)
+		SetGlobal("Iapweapon","LOCALS",0)
+		ReallyForceSpellRES("SPWII07",Myself)  // No such index
+END
+

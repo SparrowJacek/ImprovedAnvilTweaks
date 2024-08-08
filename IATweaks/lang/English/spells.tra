@@ -819,3 +819,5 @@ Area of Effect: 1 creature
 Saving Throw: None
 
 The recipient of this spell gains extraordinary luck for the next 2 turns, receiving a +1 bonus to <PRO_HISHER> Saving Throws, attack rolls, and minimum damage/healing rolls as well as +5% to all thieving skills. Furthermore, damage dice for all effects outside a weapon's base damage is reduced by 1. For example, a 6d6 fireball will do 6d5 damage, and a flaming long sword that deals 1d8+2 slashing plus 1d3 fire damage will deal 1d8+2 slashing plus 1d2 fire damage instead. Multiple casts of Luck do not stack with each other.~
+@6120 = ~You can use Hunter's Mark again.~
+

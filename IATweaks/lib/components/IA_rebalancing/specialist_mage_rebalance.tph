@@ -22,15 +22,40 @@ ACTION_FOR_EACH mage_kit_clab_file IN ~CLABMA01.2da~ ~CLABMA02.2da~ ~CLABMA03.2d
   END
 END
 
+// Luck
+
+COPY_EXISTING ~spwi209.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6119
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 133
+      opcode = 22
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      match_duration = 18
+      duration = 120
+  END
+
+// Mirror Image
+
+COPY_EXISTING ~spwi212.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 119
+      opcode = 159
+  END
+
 // Web
 
 COPY_EXISTING ~spwi215.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6056
   READ_BYTE 0x1f spell_flags
+  WRITE_BYTE 0x1f (%spell_flags% BAND 0b00000000) // enable the spell for Conjurers
   WRITE_BYTE 0x1f (%spell_flags% BOR 0b00000001) // disable the spell for Diviners
-  WRITE_BYTE 0x1f (%spell_flags% BAND 0b11111101) // enable the spell for Conjurers
   WRITE_SHORT 0x22 14 // Casting animation
-  WRITE_BYTE 0x27 2 // School
+  WRITE_BYTE 0x25 2 // School
 
 // RVE
 

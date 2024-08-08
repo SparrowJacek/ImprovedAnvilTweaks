@@ -130,8 +130,6 @@ A Thief who dedicates themselves to mastering the Hide in Shadows skill can achi
 
 The bonuses this skill grants are only applied when the rogue succeeds at hiding in shadows.
 
--Up till 100 points invested, each 20 points grant +1 melee damage bonus that is multipied by backstab.
--When above 100 points, each 12,5 points invested (rounded up) grant +1 melee damage.
 -Up till 200 points invested, each 12,5 points invested (rounded up) grant +1 melee damage bonus that is multipied by backstab.
 -When above 200 points, each 8 points invested grant +1 melee damage.~
 
@@ -163,7 +161,6 @@ At higher levels the mechanisms used in traps become more precise and deadly, de
 
 @5018 = ~~
 
-@5019 = ~~@5024 = ~THIEF: To accomplish <PRO_HISHER> goals, for good or ill, the Thief is a skilled pilferer. Cunning, nimbleness, and stealth are <PRO_HISHER> hallmarks. Whether <PRO_HESHE> turns <PRO_HISHER> talent against innocent passersby and wealthy merchants or oppressors and monsters is a choice for the Thief to make.
 
 CLASS FEATURES:
 
@@ -259,3 +256,26 @@ Disadvantages:
 - May not invest any points into Set Traps.
 
 Prime Requisites For Dual-Classing: Strength, Dexterity, Charisma~
+@5029 = ~BEAST MASTER: This Ranger is a wanderer and is not comfortable in civilized lands. Therefore, <PRO_HESHE> maintains a natural affinity for animals; they are <PRO_HISHER> friends and comrades-in-arms, and the Beast Master has a limited form of telepathic communication with them.
+
+Advantages:
+– Can reach Mastery (three slots) in all weapons that he can use.
+– Can use Hunter's Mark ability unlimited number of times.
+– Gains access to two additional spells, a 2nd level spell Animal Fortitude and a 3rd level spell Animal Rage.
+– Can cast a special version of Animal Summoning I, which lasts for 15 rounds and can be cast unlimited number of times, but only once per 15 rounds.
+– At levels 10, 12 and 14 gains analogous versions of Animal Summoning II, III and IV respectively.
+- Can pick Animal Summoning V as a HLA.
+- At level 10, gains one use of the Unified Minds ability. Gains an additional use of this skill for every 10 levels thereafter.
+
+Disadvantages:
+– May only use simple non-bladed weapons.
+– May not wear armor heavier than studded leather.
+- Cannot dual class.
+
+HUNTER'S MARK:
+When using this ability, the Beast Master places a mystical mark on a single enemy. For the next 15 rounds the marked enemy suffers a -2 penalty to their THAC0 and damage against the Beast Master and any animals. The Beast Master and all animals within a 15-foot radius gain a +2 bonus to their damage and THAC0 against the marked enemy. Additionally, all attacks from affected animals against that target will be treated as if made with a +4 weapon for determining if the target can be damaged. All thac0 and damage bonuses/penalties increase by 1 for every 5 levels of the caster.
+
+The Beast Master can use this ability again after 15 rounds or if the target dies.
+
+UNIFIED MINDS:
+By using this ability, the Beast Master opens his mind to one animal, allowing their senses and thoughts to bond almost as if they were a single organism. For the next turn, whenever the Beast Master and the targeted animal stand within 5 feet from each other, they can protect each other. This includes things like blocking an attack directed at one of them, alerting each other of an incoming arrow, or redirecting a hit targeted at a vital point. This ability grants a -5 bonus to AC and +10% damage reduction against all weapon types. Additionally, their connected minds protect each other from mental manipulation, granting both the Beast Master and the animal a +3 bonus to saving throws against enchantment spells. The effects from multiple uses of this ability are not cumulative. If either the Beast Master or the target animal become feared, held, charmed or disabled in any other way, the effects of this spell will be nullified.~

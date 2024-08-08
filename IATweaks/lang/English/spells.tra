@@ -600,12 +600,12 @@ At level 22 and above: Cast any mage abjuration spell~
 @6076 = ~Animal Rage (Enchantment)
 Level: 3
 Range: Visual range of the caster
-Duration: 2 turns
+Duration: 1 turn
 Casting Time: 5
 Area of Effect: Special
 Saving Throw: None
 
-By casting this spell Beast Masters can turn on an animal's most feral side in a guided way, without the risk of it going berserk or attacking its allies in fury. The animal becomes enraged for 1 turn. While enraged, it gains a bonus of +2 to its attack and damage rolls as well as to its Armor Class, and becomes immune to charm, confusion, fear, feeblemind, hold, stun, sleep, level drain. From level 20 Beast Master can choose two animals that will have this effect applied with a single cast. This spell works only on animals.~
+By casting this spell Beast Masters can turn on an animal's most feral side in a guided way, without the risk of it going berserk or attacking its allies in fury. The animal becomes enraged for 1 turn. While enraged, it gains an additional attack per round, a bonus of +2 to its attack and damage rolls as well as to its Armor Class, and becomes immune to charm, confusion, fear, feeblemind, hold, stun, sleep, level drain. From level 20 Beast Master can choose two animals that will have this effect applied with a single cast. This spell works only on animals.~
 
 @6077 = ~Hide in Shadows active~
 
@@ -638,6 +638,46 @@ This ability allows a rogue to create special versions of low--level spell scrol
 3) Blur
 4) Mirror Image
 
-@6080 = ~Shield Bash~
+Those scrolls allow rogues to cast spells at level 10 to determine their power and duration.~
+
+@6087 = ~Animal Fortitude~
+
+@6088 = ~Animal Fortitude (Alteration)
+Level: 2
+Range: Visual range of the caster
+Duration: 1 turn
+Casting Time: 4
+Area of Effect: Special
+Saving Throw: None
+
+By casting this spell the Beast Master fortifies an animal's natural defenses and amplifies its endurance. For the next turn the target will have maximum HP increased by 50% and resistance to physical damage by 15%, additionally the creature will be immune to spells and effects that would unsummon it. From level 18 Beast Master can choose two animals that will have this effect applied with a single cast. This spell works only on animals.~
+
+@6089 = ~You can cast Animal Summoning I again~
+
+@6090 = ~You can cast Animal Summoning II again~
+
+@6091 = ~You can cast Animal Summoning III again~
+
+@6092 = ~You can cast Animal Summoning IV again~
+
+@6093 = ~By means of this spell, the caster calls 2 Dire Wolves. They will remain under the caster's control for 15 rounds or until slain. The Beast Master can use this ability once per 15 rounds.~
+
+@6094 = ~By means of this spell, the caster calls 2 Brown Bears. They will remain under the caster's control for 15 rounds or until slain. The Beast Master can use this ability once per 15 rounds.~
+
+@6095 = ~By means of this spell, the caster calls 2 Winter Wolves. They will remain under the caster's control for 15 rounds or until slain. The Beast Master can use this ability once per 15 rounds.~
+
+@6096 = ~By means of this spell, the caster calls a powerful Anaconda. The creature will remain under the caster's control for 15 rounds or until slain. The Beast Master can use this ability once per 15 rounds.~
+
+@6097 = ~Hunter's Mark~
+
+@6098 = ~Hunter's Mark:
+When using this ability, the Beast Master places a mystical mark on a single enemy. For the next turn, the marked enemy suffers a -2 penalty to their THAC0 and damage against the Beast Master and any animals. The Beast Master and all animals within a 15-foot radius gain a +2 bonus to their damage and THAC0 against the marked enemy. Additionally, all attacks from affected animals against that target will be treated as if made with a +4 weapon for determining if the target can be damaged. All thac0 and damage bonuses/penalties increase by 1 for every 5 levels of the caster.
+
+The Beast Master can use this ability again after 15 rounds or if the target dies.~
+
+@6099 = ~Unified Minds~
+
+@6100 = ~Unified Minds
+By using this ability, the Beast Master opens his mind to one animal, allowing their senses and thoughts to bond almost as if they were a single organism. For the next turn, whenever the Beast Master and the targeted animal stand within 5 feet from each other, they can protect each other. This includes things like blocking an attack directed at one of them, alerting each other of an incoming arrow, or redirecting a hit targeted at a vital point. This ability grants a -5 bonus to AC and +10% damage reduction against all weapon types. Additionally, their connected minds protect each other from mental manipulation, granting both the Beast Master and the animal a +3 bonus to saving throws against enchantment spells. The effects from multiple uses of this ability are not cumulative. If either the Beast Master or the target animal become feared, held, charmed or disabled in any other way, the effects of this spell will be nullified.~
 
 @6081 = ~Shield Bash~

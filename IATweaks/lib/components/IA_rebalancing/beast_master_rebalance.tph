@@ -2,41 +2,56 @@ SILENT
 
 INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
 
+// Remove Dualclassing possibility from Beastmaster kit
+
+COPY_EXISTING ~DUALCLAS.2da~ ~override~
+  REPLACE_EVALUATE
+    ~BEASTMASTER.*~
+    BEGIN
+    END
+    ~BEASTMASTER 0 0 0 0 0 0~
+  PRETTY_PRINT_2DA
+
 // Make Beast Masters able to put *** points into all weapons they can use
+
+LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~weapprof.2da~
+  RET_ARRAY
+    weapprof_cols = 2da_columns_to_ids_mapping
+END
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~weapprof.2da~
+  RET_ARRAY
+    weapprof_rows = 2da_rows_to_ids_mapping
+END
 
 COPY_EXISTING ~weapprof.2da~  ~override/weapprof.2da~
   COUNT_2DA_COLS ~colcount~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 2 38 ~3~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 3 38 ~3~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 4 38 ~3~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 7 38 ~3~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 17 38 ~3~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 18 38 ~3~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 21 38 ~3~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 22 38 ~3~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 23 38 ~0~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 24 38 ~3~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 25 38 ~3~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 26 38 ~0~
-  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ 27 38 ~3~
+  SET BM_column = $weapprof_cols("BEASTMASTER")
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ $weapprof_rows("CLUB") %BM_column% ~3~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ $weapprof_rows("SPEAR") %BM_column% ~3~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ $weapprof_rows("MACE") %BM_column% ~3~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ $weapprof_rows("QUARTERSTAFF") %BM_column% ~3~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ $weapprof_rows("CROSSBOW") %BM_column% ~0~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ $weapprof_rows("LONGBOW") %BM_column% ~3~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ $weapprof_rows("SHORTBOW") %BM_column% ~3~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ $weapprof_rows("DART") %BM_column% ~0~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ $weapprof_rows("SLING") %BM_column% ~3~
   SET_2DA_ENTRIES_NOW ~_#_#_#weapprof~ ~colcount~
   PRETTY_PRINT_2DA
 
-// Make all spears usable by Beast Masters
-
 COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
   READ_SHORT 0x1c item_category
-  PATCH_IF (item_category = 29)
+  // Make all spears and maces usable by Beast Masters
+  PATCH_IF (item_category = 29 OR item_category = 17)
     THEN BEGIN  
       READ_BYTE 0x2b usability_flags_2
       WRITE_BYTE 0x2b (%usability_flags_2% BAND 0b11111101)
   END
-  BUT_ONLY
-
-// Make all crossbows, bolts and darts unusable by Beast Masters
-
-COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
-  READ_SHORT 0x1c item_category
+  // Make all crossbows, bolts and darts unusable by Beast Masters
   PATCH_IF (item_category = 27 OR item_category = 31 OR item_category = 24)
     THEN BEGIN  
       READ_BYTE 0x2b usability_flags_2
@@ -44,16 +59,47 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
   END
   BUT_ONLY
 
+// Remove old abilities
+
+COPY_EXISTING ~CLABRN04.2da~ ~override~
+  REPLACE_EVALUATE
+    ~AP_SPCL341~
+    BEGIN
+    END
+    ~****~
+  REPLACE_EVALUATE
+    ~GA_SPCL342~
+    BEGIN
+    END
+    ~****~
+  REPLACE_EVALUATE
+    ~GA_SPRA30[4-6]~
+    BEGIN
+    END
+    ~****~
+  PRETTY_PRINT_2DA
+
+// Animal Fortitude
+
+COPY ~IATweaks\resources\bam\s!anforb.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!anforc.bam~ ~override~
+COPY ~IATweaks\resources\spl\s!anfort.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!anifor.spl~ ~override~
+  SAY NAME1 @6087
+  SAY UNIDENTIFIED_DESC @6088
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABRN04.2da~
+    row_desc = ~ANIMAL_FORTITUDE~
+    level10 = ~GA_S!ANIFOR~
+END
+
 // Animal Rage
 
 COPY ~IATweaks\resources\bam\s!anragb.bam~ ~override~
 COPY ~IATweaks\resources\bam\s!anragc.bam~ ~override~
 COPY ~IATweaks\resources\spl\s!anrage.spl~ ~override~
-  LPF ~ALTER_EFFECT~
-    INT_VAR
-      match_target = 1
-      target = 2
-  END
 COPY ~IATweaks\resources\spl\s!anirag.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6076
 
@@ -64,6 +110,276 @@ LAF ~S!ADD_CLAB_ROW~
     level12 = ~GA_S!ANIRAG~
 END
 
+// Animal Summoning as abilities
 
-// s!hunter.vvc must be duplicated for different enemy height
+COPY ~IATweaks\resources\spl\s!bmsum1.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6093
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6089)
+  END
 
+COPY ~IATweaks\resources\spl\s!bmsum2.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6094
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6090)
+  END
+
+COPY ~IATweaks\resources\spl\s!bmsum3.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6095
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6091)
+  END
+
+COPY ~IATweaks\resources\spl\s!bmsum4.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6096
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6092)
+  END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY old_to_new_animal_summ_mapping BEGIN
+  "SPPR402"=>"S!BMSUMA"
+  "SPPR501"=>"S!BMSUMB"
+  "SPPR602"=>"S!BMSUMC"
+  "SPPR703"=>"S!BMSUMD"
+END
+
+ACTION_PHP_EACH old_to_new_animal_summ_mapping AS old_spell => new_spell BEGIN
+  COPY_EXISTING ~%old_spell%.spl~ ~override/%new_spell%.spl~
+    WRITE_LONG 0x08 ~-1~ // Remove name
+    WRITE_SHORT 0x22 0 // Remove casting animation
+    WRITE_LONG 0x50 ~-1~ // Remove description
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 177
+        duration = 90
+    END
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = ~-1~
+      STR_VAR
+        match_resource = EVAL ~%old_spell%~
+        resource = EVAL ~%new_spell%~
+    END
+END
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABRN04.2da~
+    row_desc = ~ANIMAL_SUMMONING~
+    level1 = ~GA_S!BMSUM1~
+    level10 = ~GA_S!BMSUM2~
+    level12 = ~GA_S!BMSUM3~
+    level14 = ~GA_S!BMSUM4~
+END
+
+// Hunter's Mark
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!hunfri.pro~
+
+COPY ~IATweaks\resources\vvc\s!hunte1.VVC~ ~override~
+COPY ~IATweaks\resources\vvc\s!hunte2.VVC~ ~override~
+COPY ~IATweaks\resources\vvc\s!hunte3.VVC~ ~override~
+COPY ~IATweaks\resources\bam\s!hunter.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!hunmab.bam~ ~override~
+COPY ~IATweaks\resources\spl\s!hmani2.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!hmani3.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!hunmar.spl~ ~override~
+  SAY NAME1 @6097
+  SAY UNIDENTIFIED_DESC @6098
+COPY ~IATweaks\resources\spl\s!hunfoe.spl~ ~override~
+  PATCH_FOR_EACH header_num IN 1 2 3 4 5 6 7 8 BEGIN
+    SET min_level = %header_num% * 5
+    SET new_val = 0 - 2 - %header_num%
+    LPF ~S!CLONE_SPELL_HEADER~
+      INT_VAR
+        level_req = %min_level%
+    END
+    LPF ~S!ALTER_EFFECT~
+      INT_VAR
+        header = %header_num%
+        match_opcode = 178
+        special = %new_val%
+    END
+    LPF ~S!ALTER_EFFECT~
+      INT_VAR
+        header = %header_num%
+        match_opcode = 179
+        special = %new_val%
+    END
+  END
+
+COPY ~IATweaks\resources\eff\s!hunfoe.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!hunfri.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      projectile = %s!hunfri%
+  END
+  PATCH_FOR_EACH header_num IN 1 2 3 4 5 6 7 8 BEGIN
+    SET min_level = %header_num% * 5
+    SET new_val = 2 + %header_num%
+    LPF ~S!CLONE_SPELL_HEADER~
+      INT_VAR
+        level_req = %min_level%
+    END
+    LPF ~S!ALTER_EFFECT~
+      INT_VAR
+        header = %header_num%
+        match_opcode = 178
+        special = %new_val%
+    END
+    LPF ~S!ALTER_EFFECT~
+      INT_VAR
+        header = %header_num%
+        match_opcode = 179
+        special = %new_val%
+    END
+  END
+
+COPY ~IATweaks\resources\eff\s!hunfri.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!hmkill.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6120)
+  END
+COPY ~IATweaks\resources\eff\s!hmkill.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!hmbase.spl~ ~override~ 
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABRN04.2da~
+    row_desc = ~HUNTER'S_MARK~
+    level1 = ~AP_S!HMBASE~
+END
+
+// Unified Minds
+
+COPY ~IATweaks\resources\bam\s!unminb.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!unmind.bam~ ~override~
+
+OUTER_SET unified_minds_desc_str_ref = RESOLVE_STR_REF (@6099)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %unified_minds_desc_str_ref%
+  STR_VAR
+    bam_file = ~S!UNMIND~
+  RET
+    unified_mind_icon_id = portrait_icon_id
+END
+
+COPY ~IATweaks\resources\eff\s!umbase.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!umbase.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!unmin0.spl~ ~override~
+  SAY NAME1 @6099
+  SAY UNIDENTIFIED_DESC @6100
+COPY ~IATweaks\resources\eff\s!unmin1.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!unmin1.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %unified_mind_icon_id%
+  END
+COPY ~IATweaks\resources\spl\s!unmin2.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!unmin3.spl~ ~override~
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABRN04.2da~
+    row_desc = ~UNIFIED_MIND_BASE~
+    level10 = ~AP_S!UMBASE~
+END
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABRN04.2da~
+    row_desc = ~UNIFIED_MIND~
+    level10 = ~GA_S!UNMIN0~
+    level20 = ~GA_S!UNMIN0~
+    level30 = ~GA_S!UNMIN0~
+    level40 = ~GA_S!UNMIN0~
+END
+
+// HLA
+
+// Check if Beastmaster has his own HLA table, if not add it
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~luabbr.2da~
+  RET_ARRAY
+    hla_mapping_rows = 2da_rows_to_ids_mapping
+END
+
+COPY_EXISTING ~luabbr.2da~ ~override~
+  COUNT_2DA_COLS ~colcount~
+  READ_2DA_ENTRY $hla_mapping_rows("BEASTMASTER") 1 %colcount% beastmaster_hla_suffix
+  PATCH_IF ~%beastmaster_hla_suffix%~ STR_EQ ~Ra0~ BEGIN
+    INNER_ACTION BEGIN
+      COPY_EXISTING ~LURA0.2DA~ ~override/LURA4.2DA~
+    END
+    SET_2DA_ENTRY $hla_mapping_rows("BEASTMASTER") 1 %colcount% ~Ra4~
+    SPRINT beastmaster_hla_suffix ~Ra4~
+  END
+
+// Add Smilodon HLA
+
+LAF ~S!ADD_HLA_ROW~
+  STR_VAR
+    filename = ~LU%beastmaster_hla_suffix%.2DA~
+    row_desc = ~SMILODON~
+    ability = ~GA_SPCLI12~
+    num_allowed = ~1~
+END
+
+// Update kit description
+
+
+LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~clastext.2da~
+  RET_ARRAY
+    clastext_cols = 2da_columns_to_ids_mapping
+END
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~clastext.2da~
+  RET_ARRAY
+    clastext_rows = 2da_rows_to_ids_mapping
+END
+
+COPY_EXISTING ~clastext.2da~ ~override/clastext.2da~
+  COUNT_2DA_COLS ~colcount~
+  SET_2DA_ENTRY_LATER ~s!bm_desc~ $clastext_rows("BEAST_MASTER") $clastext_cols("DESCSTR") RESOLVE_STR_REF (@5029)
+  SET_2DA_ENTRIES_NOW ~s!bm_desc~ ~colcount~
+  PRETTY_PRINT_2DA
+
+LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~kitlist.2da~
+  RET_ARRAY
+    kitlist_cols = 2da_columns_to_ids_mapping
+END
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  INT_VAR
+    col_with_names = 1
+  STR_VAR
+    2da_table_name = ~kitlist.2da~
+  RET_ARRAY
+    kitlist_rows = 2da_rows_to_ids_mapping
+END
+
+COPY_EXISTING ~kitlist.2da~ ~override/kitlist.2da~
+  COUNT_2DA_COLS ~colcount~
+  SET_2DA_ENTRY_LATER ~s!bm_desc~ $kitlist_rows("BEASTMASTER") $kitlist_cols("HELP") RESOLVE_STR_REF (@5029)
+  SET_2DA_ENTRIES_NOW ~s!bm_desc~ ~colcount~
+  PRETTY_PRINT_2DA

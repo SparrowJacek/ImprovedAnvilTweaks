@@ -1211,6 +1211,8 @@ BEGIN
 END
 
 DEFINE_ACTION_FUNCTION ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  INT_VAR
+    col_with_names = 0
   STR_VAR
     2da_table_name = ~~
   RET_ARRAY

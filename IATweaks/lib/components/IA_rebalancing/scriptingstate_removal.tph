@@ -202,3 +202,13 @@ COPY_EXISTING_REGEXP GLOB ~.+\.bcs~ ~override~
     END
   END
   BUT_ONLY
+
+// Remove redundant bonus from Hardiness
+
+ACTION_FOR_EACH hardiness_spell IN ~SPCL907.spl~ ~SPWISH12.spl~ BEGIN
+  COPY_EXISTING ~%hardiness_spell%~ ~override~
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = 278
+    END
+END

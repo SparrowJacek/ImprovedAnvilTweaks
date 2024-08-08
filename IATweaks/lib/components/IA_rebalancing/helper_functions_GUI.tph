@@ -327,13 +327,14 @@ BEGIN
 		return lines
 	end
 	
-	-- Function to check if a character is alive based on their portrait tooltip
-	function isCharacterAlive(char_id)
+	-- Function to check if a character is active based on comparison of characters[id] to character tooltip
+	function isCharacterActive(char_id)
 		local tooltip_info = Infinity_GetPortraitTooltip(char_id)
 		local tooltip_info_lines = splitLines(tooltip_info)
 		local lastLine = tooltip_info_lines[#tooltip_info_lines]
-		local number1 = lastLine:match("(%d+)/%d+")
-		return tonumber(number1) > 0
+		local cur_hp, max_hp = lastLine:match("(%d+)/(%d+)")
+		found = string.find(characters[id].name, tooltip_info_lines[1])
+		return found and (characters[id].HP.current == tonumber(cur_hp)) and (characters[id].HP.max == tonumber(max_hp)) and tonumber(cur_hp) > 0
 	end
 	
 	-- Function to get the current character portrait ID
@@ -342,7 +343,7 @@ BEGIN
 		Infinity_UpdateLuaStats()
 		local curCharId = id
 		for i = 0, Infinity_GetNumCharacters() - 1 do
-			if isCharacterAlive(i) then
+			if isCharacterActive(i) then
 				Infinity_OnPortraitLClick(i)
 				Infinity_UpdateLuaStats()
 				idMapping[id] = i
@@ -392,7 +393,7 @@ BEGIN
 	-- Function to check if a portrait icon is present
 	function isPortraitIconPresent(icon_id)
 		icon_id = tostring(icon_id)
-		return characters[currentID].statusEffects[icon_id] ~= nil
+		return characters[id].statusEffects[icon_id] ~= nil
 	end
 	
 	-- Function to check if stealth is active
@@ -428,7 +429,7 @@ BEGIN
 		if isStealthDisabled() then
 			-- Do nothing if stealth is disabled
 		elseif isStealthActive() then
-			local command = spell_default_string:gsub('RESOURCE', 'S!HISREM')
+			local command = spell_default_string:gsub('RESOURCE', 'S!HISRE2')
 			local override_command = "'ActionOverride(" .. "PartySlot" .. party_slot .. "," .. command .. ")'"
 			C:Eval(override_command)
 		else 

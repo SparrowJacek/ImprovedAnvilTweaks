@@ -1222,7 +1222,7 @@ BEGIN
     COUNT_2DA_COLS ~colcount~
     COUNT_2DA_ROWS ~colcount~ ~rowcount~
     FOR (current_row = 0 ; current_row < %rowcount% ; ++current_row) BEGIN
-      READ_2DA_ENTRY %current_row% 0 %colcount% current_val
+      READ_2DA_ENTRY %current_row% col_with_names %colcount% current_val
       SET $2da_rows_to_ids_mapping("%current_val%") = %current_row%
     END
   BUT_ONLY

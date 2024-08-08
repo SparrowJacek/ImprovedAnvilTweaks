@@ -612,6 +612,31 @@ By casting this spell Beast Masters can turn on an animal's most feral side in a
 @6078 = ~Hide in Shadows disabled~
 
 @6079 = ~Shield Bash~
+@6079 = ~Avoid Death
+With extraordinary effort, a high-level rogue can avoid almost certain death. The effect lasts for 1 turn, and during this time, the rogue's Save vs. Death receives a bonus of 5, Hit Points are increased by 20, and the rogue becomes immune to death magic.~
+
+@6080 = ~Evasion
+A rogue's natural sense of preservation becomes heightened with the use of the Evasion ability. Evasion gives a bonus of 4 to AC and 2 to all Saving Throws. The effect lasts for 6 rounds.~
+
+@6081 = ~Greater Evasion
+A more powerful version of Evasion, this ability improves Armor Class by 6 and Saving Throws by 3. In addition, Greater Evasion allows the rogue to move so quickly that <PRO_HISHER> movement rate is increased by 2 (base is 9) and normal missiles have no chance of striking <PRO_HIMHER>. Greater Evasion lasts for 1 turn.
+
+Requires: Evasion~
+
+@6082 = ~Scribe Shield Scroll~
+
+@6083 = ~Scribe Armor Scroll~
+
+@6084 = ~Scribe Blur Scroll~
+
+@6085 = ~Scribe Mirror Image Scroll~
+
+@6086 = ~Scribe Scrolls
+This ability allows a rogue to create special versions of low--level spell scrolls that only rogues can use. The scrolls that the rogue can create are chosen from the following list:
+1) Armor
+2) Shield
+3) Blur
+4) Mirror Image
 
 @6080 = ~Shield Bash~
 

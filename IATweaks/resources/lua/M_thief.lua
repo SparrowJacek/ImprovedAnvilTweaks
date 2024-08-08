@@ -8,11 +8,11 @@ anvil_kit_starting_thieving_bonuses = {
 }
 
 anvil_class_starting_thieving_bonuses = {
-[4] = {  25,   25,   0,  0,  0,   0,   0}, -- Thief
-[9] = {  25,   25,   0,  0,  0,   0,   0}, -- Fighter-Thief
-[10] = {  25,   25,   0,  0,  0,   0,   0}, -- Fighter-Mage-Thief
-[13] = {  25,   25,   0,  0,  0,   0,   0}, -- Mage-Thief
-[15] = {  25,   25,   0,  0,  0,   0,   0}, -- Cleric-Thief
+[4] =  {  25,   25,   25,  0,  0,   0,   0}, -- Thief
+[9] =  {  25,   25,   25,  0,  0,   0,   0}, -- Fighter-Thief
+[10] = {  25,   25,   25,  0,  0,   0,   0}, -- Fighter-Mage-Thief
+[13] = {  25,   25,   25,  0,  0,   0,   0}, -- Mage-Thief
+[15] = {  25,   25,   25,  0,  0,   0,   0}, -- Cleric-Thief
 }
 
 anvil_kit_max_thieving_values = {

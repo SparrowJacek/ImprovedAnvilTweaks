@@ -1,0 +1,157 @@
+SILENT
+
+INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
+
+///////// Change elemental bonuses to 75 ////////////
+
+// Resist Fire/Cold
+
+COPY_EXISTING ~sppr210.spl~ ~override/sppr420.spl~
+  SAY UNIDENTIFIED_DESC @6101
+  WRITE_BYTE 0x34 4 // Level
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      match_power = 2
+      power = 4
+  END
+
+COPY_EXISTING ~hidespl.2da~ ~override~
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR210 1 0 0~
+  PRETTY_PRINT_2DA
+
+COPY_EXISTING ~spell.ids~ ~override~
+  REPLACE_EVALUATE ~1210[ %TAB%]*CLERIC_RESIST_FIRE~ BEGIN
+  END ~1420 CLERIC_RESIST_FIRE~
+
+COPY_EXISTING_REGEXP GLOB ~.+\.cre~ ~override~
+  REMOVE_KNOWN_SPELL ~SPPR210~
+  REMOVE_MEMORIZED_SPELL ~SPPR210~
+  BUT_ONLY
+
+// Patch all spells that grant resistances
+
+ACTION_FOR_EACH res_spell IN ~sppr306.spl~ ~spwi319.spl~ ~spdr302.spl~ ~spwi320.spl~ ~sppr420.spl~ ~sppr407.spl~ ~spwi512.spl~ ~sppri12.spl~ ~spwi517.spl~ ~spwi606.spl~ ~spdr702.spl~ ~spwi702.spl~ ~spwii02.spl~ ~spwi803.spl~ ~spwish10.spl~ ~spcl721.spl~ BEGIN
+  COPY_EXISTING ~%res_spell%~ ~override~
+    PATCH_FOR_EACH res_opcode IN 27 28 29 30 31 84 85 BEGIN
+      LPF ~S!SPELL_USES_OPCODE~
+        INT_VAR
+          match_opcode = %res_opcode%
+        RET
+          is_found
+      END
+      PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+        LPF ~ALTER_EFFECT~
+          INT_VAR
+            match_opcode = %res_opcode%
+            parameter1 = 75
+            parameter2 = 1
+        END
+      END
+    END
+END
+
+COPY_EXISTING ~sppr306.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6107
+
+COPY_EXISTING ~spwi319.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6108
+
+COPY_EXISTING ~spwi320.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6109
+
+COPY_EXISTING ~spdr302.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6110
+
+COPY_EXISTING ~sppr407.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6111
+
+COPY_EXISTING ~spwi512.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6112
+
+COPY_EXISTING ~sppri12.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6113
+
+COPY_EXISTING ~spwi517.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6114
+
+COPY_EXISTING ~spwi606.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6115
+
+COPY_EXISTING ~spdr702.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6116
+
+COPY_EXISTING ~spwi702.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6116
+
+COPY_EXISTING ~spwii02.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6115
+
+COPY_EXISTING ~spwi803.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6117
+
+COPY_EXISTING ~spwish10.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6115
+
+COPY_EXISTING ~spcl721.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6118
+
+// Change description for Talos
+
+LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~clastext.2da~
+  RET_ARRAY
+    clastext_cols = 2da_columns_to_ids_mapping
+END
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~clastext.2da~
+  RET_ARRAY
+    clastext_rows = 2da_rows_to_ids_mapping
+END
+
+// update class description for Clerics
+COPY_EXISTING ~clastext.2da~ ~override/clastext.2da~
+  COUNT_2DA_COLS ~colcount~
+  SET_2DA_ENTRY_LATER ~s!cleric_desc~ $clastext_rows("GODTALOS") $clastext_cols("DESCSTR") RESOLVE_STR_REF (@5023)
+  SET_2DA_ENTRIES_NOW ~s!cleric_desc~ ~colcount~
+  PRETTY_PRINT_2DA
+
+LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~kitlist.2da~
+  RET_ARRAY
+    kitlist_cols = 2da_columns_to_ids_mapping
+END
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  INT_VAR
+    col_with_names = 1
+  STR_VAR
+    2da_table_name = ~kitlist.2da~
+  RET_ARRAY
+    kitlist_rows = 2da_rows_to_ids_mapping
+END
+
+COPY_EXISTING ~kitlist.2da~ ~override/kitlist.2da~
+  COUNT_2DA_COLS ~colcount~
+  SET_2DA_ENTRY_LATER ~s!cleric_desc~ $kitlist_rows("TALOS") $kitlist_cols("HELP")  RESOLVE_STR_REF (@5023)
+  SET_2DA_ENTRIES_NOW ~s!cleric_desc~ ~colcount~
+  PRETTY_PRINT_2DA
+
+// Robe of Elemental Resistance
+
+COPY_EXISTING ~s!robe02.itm~ ~override~
+  SAY IDENTIFIED_DESC @7000
+  PATCH_FOR_EACH res_opcode IN 28 29 30 BEGIN
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = %res_opcode%
+        parameter1 = 75
+        parameter2 = 1
+    END
+  END

@@ -752,7 +752,6 @@ END
 
 COPY_EXISTING ~sppr103.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6014
-// Update spell descriptions
 
 COPY_EXISTING ~sppr315.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6015
@@ -760,8 +759,38 @@ COPY_EXISTING ~sppr315.spl~ ~override~
 COPY_EXISTING ~sppr401.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6016
 
+COPY_EXISTING ~s!scrl11.itm~ ~override~
+  SAY IDENTIFIED_DESC @6016
+
+COPY_EXISTING ~scrl56.itm~ ~override~
+  SAY IDENTIFIED_DESC @6016
+
 COPY_EXISTING ~sppr502.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6017
+
+COPY_EXISTING ~s!scrl12.itm~ ~override~
+  SAY IDENTIFIED_DESC @6017
+
+COPY_EXISTING ~scrl61.itm~ ~override~
+  SAY IDENTIFIED_DESC @6017
+
+// Update Temple descriptions
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~speldesc.2da~
+  RET_ARRAY
+    speldesc_rows = 2da_rows_to_ids_mapping
+END
+
+COPY_EXISTING ~speldesc.2da~  ~override~
+  COUNT_2DA_COLS ~colcount~
+  SET_2DA_ENTRY_LATER ~_#_#_#speldesc~ $speldesc_rows("SPPR103") 1 RESOLVE_STR_REF (@6133)
+  SET_2DA_ENTRY_LATER ~_#_#_#speldesc~ $speldesc_rows("SPPR315") 1 RESOLVE_STR_REF (@6134)
+  SET_2DA_ENTRY_LATER ~_#_#_#speldesc~ $speldesc_rows("SPPR401") 1 RESOLVE_STR_REF (@6135)
+  SET_2DA_ENTRY_LATER ~_#_#_#speldesc~ $speldesc_rows("SPPR502") 1 RESOLVE_STR_REF (@6136)
+  SET_2DA_ENTRIES_NOW ~_#_#_#speldesc~ ~colcount~
+  PRETTY_PRINT_2DA
 
 // Sunray and False Dawn
 

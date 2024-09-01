@@ -303,13 +303,13 @@ END
 
 // Base thieving stat increasing spells for thief kits
 
-COPY ~IATweaks\resources\spl\s!25his.spl~ ~override~
-COPY ~IATweaks\resources\spl\s!25di.spl~ ~override~
-COPY ~IATweaks\resources\spl\s!25ss.spl~ ~override~
-COPY ~IATweaks\resources\spl\s!25st.spl~ ~override~
-COPY ~IATweaks\resources\spl\s!25ft.spl~ ~override~
-COPY ~IATweaks\resources\spl\s!25pp.spl~ ~override~
-COPY ~IATweaks\resources\spl\s!25ol.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!40his.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!40di.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!40ss.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!40st.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!40ft.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!40pp.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!40ol.spl~ ~override~
 
 ////// Thief ///////
 
@@ -317,21 +317,21 @@ LAF ~S!ADD_CLAB_ROW~
   STR_VAR
     filename = ~CLABTH01.2da~
     row_desc = ~PICK_POCKETS_BONUS~
-    level1 = ~AP_S!25PP~
+    level1 = ~AP_S!40PP~
 END
 
 LAF ~S!ADD_CLAB_ROW~
   STR_VAR
     filename = ~CLABTH01.2da~
     row_desc = ~OPEN_LOCKS_BONUS~
-    level1 = ~AP_S!25OL~
+    level1 = ~AP_S!40OL~
 END
 
 LAF ~S!ADD_CLAB_ROW~
   STR_VAR
     filename = ~CLABTH03.2da~
     row_desc = ~FIND_TRAPS_BONUS~
-    level1 = ~AP_S!25FT~
+    level1 = ~AP_S!40FT~
 END
 
 ////// Swashbuckler ///////
@@ -352,14 +352,14 @@ LAF ~S!ADD_CLAB_ROW~
   STR_VAR
     filename = ~CLABTH02.2da~
     row_desc = ~STEALTH_STRIKE_BONUS~
-    level1 = ~AP_S!25SS~
+    level1 = ~AP_S!40SS~
 END
 
 LAF ~S!ADD_CLAB_ROW~
   STR_VAR
     filename = ~CLABTH02.2da~
     row_desc = ~HIDE_IN_SHADOWS_BONUS~
-    level1 = ~AP_S!25HIS~
+    level1 = ~AP_S!40HIS~
 END
 
 ////// Bounty Hunter ///////
@@ -368,14 +368,14 @@ LAF ~S!ADD_CLAB_ROW~
   STR_VAR
     filename = ~CLABTH03.2da~
     row_desc = ~SET_TRAPS_BONUS~
-    level1 = ~AP_S!25ST~
+    level1 = ~AP_S!40ST~
 END
 
 LAF ~S!ADD_CLAB_ROW~
   STR_VAR
     filename = ~CLABTH03.2da~
     row_desc = ~FIND_TRAPS_BONUS~
-    level1 = ~AP_S!25FT~
+    level1 = ~AP_S!40FT~
 END
 
 ////// Shadowdancer ///////
@@ -384,14 +384,14 @@ LAF ~S!ADD_CLAB_ROW~
   STR_VAR
     filename = ~CLABTH05.2da~
     row_desc = ~DETECT_ILLUSIONS_BONUS~
-    level1 = ~AP_S!25DI~
+    level1 = ~AP_S!40DI~
 END
 
 LAF ~S!ADD_CLAB_ROW~
   STR_VAR
     filename = ~CLABTH05.2da~
     row_desc = ~HIDE_IN_SHADOWS_BONUS~
-    level1 = ~AP_S!25HIS~
+    level1 = ~AP_S!40HIS~
 END
 
 ////// Pick Pockets ///////
@@ -522,34 +522,27 @@ COPY ~IATweaks\resources\spl\s!hisfoe.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!hisen1.spl~ ~override~
   LPF ~ALTER_EFFECT~
     INT_VAR
-      match_opcode = 206
-      opcode = 146
-      parameter2 = 1
-    STR_VAR
-      resource = ~S!HISREM~
+      match_opcode = 326
+      parameter2 = %hide_in_shadows_lower_than_row%
   END
   LPF ~ALTER_EFFECT~
     INT_VAR
       match_opcode = 318
-      parameter2 = %hide_in_shadows_higher_than_row%
-      duration = 1
+      parameter2 = %hide_in_shadows_lower_than_row%
   END
 
 COPY ~IATweaks\resources\spl\s!hisen2.spl~ ~override~
   LPF ~ALTER_EFFECT~
     INT_VAR
-      match_opcode = 206
-      opcode = 146
-      parameter2 = 1
-    STR_VAR
-      resource = ~S!HISREM~
+      match_opcode = 326
+      parameter2 = %hide_in_shadows_lower_than_row%
   END
   LPF ~ALTER_EFFECT~
     INT_VAR
       match_opcode = 318
-      parameter2 = %hide_in_shadows_higher_than_row%
-      duration = 1
+      parameter2 = %hide_in_shadows_lower_than_row%
   END
+
 COPY ~IATweaks\resources\spl\s!hissnd.spl~ ~override~
 // TODO: consider changing lower probability to higher probability +1 from s!hisen1 to avoid overlapping
 
@@ -560,6 +553,11 @@ COPY ~IATweaks\resources\spl\s!hisin1.spl~ ~override~
       projectile = %s!hisinv%
   END
 COPY ~IATweaks\resources\spl\s!hisin2.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      projectile = %s!hisinv%
+  END
+COPY ~IATweaks\resources\spl\s!hisin3.spl~ ~override~
   LPF ~ALTER_SPELL_HEADER~
     INT_VAR
       projectile = %s!hisinv%
@@ -606,6 +604,15 @@ COPY ~IATweaks\resources\spl\s!hisdmg.spl~ ~override~
       STR_VAR
         insert = ~last~
     END
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      multi_match = 1
+      match_opcode = 318
+      parameter1 = 0
+      parameter2 = 143
+    STR_VAR
+      insert = ~first~
   END
   //////////////////////// TO BE REMOVED ////////////////////////////////
   LPF ~CLONE_EFFECT~
@@ -705,6 +712,14 @@ COPY ~IATweaks\resources\spl\s!hisrem.spl~ ~override~
       insert_point = 0
     STR_VAR
       resource = ~S!HISINV~
+  END
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 267
+      target = 1
+      duration = 1
+      parameter1 = 17120 // HiS Failed
+      insert_point = 0
   END
   LPF ~ADD_SPELL_EFFECT~
     INT_VAR
@@ -912,9 +927,9 @@ COPY_EXISTING ~jan15.cre~ ~override~
   PATCH_IF %current_class% == 13 BEGIN // If Mage-Thief
     // 150 points to distribute
     WRITE_BYTE 0x45 0 // Hide in Shadows
-    WRITE_BYTE 0x64 35 // Detect Illusions
+    WRITE_BYTE 0x64 55 // Detect Illusions
     WRITE_BYTE 0x65 25 // Set Traps
-    WRITE_BYTE 0x67 40 // Open Locks
+    WRITE_BYTE 0x67 20 // Open Locks
     WRITE_BYTE 0x68 0 // Stealth Strike
     WRITE_BYTE 0x69 50 // Find Traps
     WRITE_BYTE 0x6a 0 // Pick Pockets
@@ -927,9 +942,9 @@ COPY_EXISTING ~nalia8.cre~ ~override~
     WRITE_BYTE 0x45 0 // Hide in Shadows
     WRITE_BYTE 0x64 0 // Detect Illusions
     WRITE_BYTE 0x65 0 // Set Traps
-    WRITE_BYTE 0x67 20 // Open Locks
+    WRITE_BYTE 0x67 30 // Open Locks
     WRITE_BYTE 0x68 0 // Stealth Strike
-    WRITE_BYTE 0x69 50 // Find Traps
+    WRITE_BYTE 0x69 40 // Find Traps
     WRITE_BYTE 0x6a 0 // Pick Pockets
   END
 
@@ -945,9 +960,9 @@ COPY_EXISTING ~nalia18.cre~ ~override~
     WRITE_BYTE 0x45 0 // Hide in Shadows
     WRITE_BYTE 0x64 0 // Detect Illusions
     WRITE_BYTE 0x65 0 // Set Traps
-    WRITE_BYTE 0x67 20 // Open Locks
+    WRITE_BYTE 0x67 30 // Open Locks
     WRITE_BYTE 0x68 0 // Stealth Strike
-    WRITE_BYTE 0x69 50 // Find Traps
+    WRITE_BYTE 0x69 40 // Find Traps
     WRITE_BYTE 0x6a 0 // Pick Pockets
   END
 
@@ -976,9 +991,9 @@ COPY_EXISTING ~ohhex8.cre~ ~override~
     WRITE_BYTE 0x45 0 // Hide in Shadows
     WRITE_BYTE 0x64 0 // Detect Illusions
     WRITE_BYTE 0x65 0 // Set Traps
-    WRITE_BYTE 0x67 40 // Open Locks
+    WRITE_BYTE 0x67 30 // Open Locks
     WRITE_BYTE 0x68 0 // Stealth Strike
-    WRITE_BYTE 0x69 50 // Find Traps
+    WRITE_BYTE 0x69 60 // Find Traps
     WRITE_BYTE 0x6a 0 // Pick Pockets
   END
 
@@ -995,10 +1010,10 @@ COPY_EXISTING ~ohhex25.cre~ ~override~
     WRITE_BYTE 0x45 0 // Hide in Shadows
     WRITE_BYTE 0x64 0 // Detect Illusions
     WRITE_BYTE 0x65 0 // Set Traps
-    WRITE_BYTE 0x67 70 // Open Locks
+    WRITE_BYTE 0x67 40 // Open Locks
     WRITE_BYTE 0x68 0 // Stealth Strike
-    WRITE_BYTE 0x69 70 // Find Traps
-    WRITE_BYTE 0x6a 20 // Pick Pockets
+    WRITE_BYTE 0x69 40 // Find Traps
+    WRITE_BYTE 0x6a 80 // Pick Pockets
   END
 
 COPY_EXISTING ~ohhfak8.cre~ ~override~
@@ -1027,10 +1042,10 @@ COPY_EXISTING ~s!sibel.cre~ ~override~
     WRITE_BYTE 0x45 0 // Hide in Shadows
     WRITE_BYTE 0x64 0 // Detect Illusions
     WRITE_BYTE 0x65 0 // Set Traps
-    WRITE_BYTE 0x67 40 // Open Locks
+    WRITE_BYTE 0x67 45 // Open Locks
     WRITE_BYTE 0x68 0 // Stealth Strike
-    WRITE_BYTE 0x69 60 // Find Traps
-    WRITE_BYTE 0x6a 0 // Pick Pockets
+    WRITE_BYTE 0x69 45 // Find Traps
+    WRITE_BYTE 0x6a 10 // Pick Pockets
   END
   IF_EXISTS
 
@@ -1040,10 +1055,10 @@ COPY_EXISTING ~s!sibe25.cre~ ~override~
   WRITE_BYTE 0x45 0 // Hide in Shadows
   WRITE_BYTE 0x64 0 // Detect Illusions
   WRITE_BYTE 0x65 0 // Set Traps
-  WRITE_BYTE 0x67 40 // Open Locks
+  WRITE_BYTE 0x67 45 // Open Locks
   WRITE_BYTE 0x68 0 // Stealth Strike
-  WRITE_BYTE 0x69 60 // Find Traps
-  WRITE_BYTE 0x6a 0 // Pick Pockets
+  WRITE_BYTE 0x69 45 // Find Traps
+  WRITE_BYTE 0x6a 10 // Pick Pockets
   IF_EXISTS
 
 //////// GUI part of the mod /////////
@@ -1090,7 +1105,7 @@ COPY_EXISTING ~UI.MENU~ ~override~
   END
   LPF ~S!CREATE_NEW_STEALTH_BUTTONS~
   END
-  LPF ~S!READ_AND_PUT_NEEDED_VARIABLES_IN_M_THIEVING_LUA~
+  LPF ~S!READ_AND_PUT_NEEDED_VARIABLES_IN_M_THIEF_LUA~
   END
   LPF ~S!SHOW_BASE_THIEVING_ABILITIES_ON_CHARGEN_SCREEN~
   END
@@ -1341,7 +1356,7 @@ COPY_EXISTING ~TANTHF01.cre~ ~override~
   WRITE_BYTE 0x6a 0 // Pick Pockets
   WRITE_BYTE 0x234 15 // 1st Class Level
   WRITE_BYTE 0x235 16 // 2nd Class Level
-  WRITE_LONG 0x244 0x400a // Kit = Assassin
+  WRITE_LONG 0x244 0x400a0000 // Kit = Assassin
 
   LPF ~ALTER_EFFECT~
     INT_VAR
@@ -1376,22 +1391,22 @@ COPY_EXISTING ~TANTHF01.cre~ ~override~
     INT_VAR
       opcode = 59
       target = 1
-      parameter1 = 25
+      parameter1 = 40
       parameter2 = 0
       timing = 9
     STR_VAR
-      effsource = ~S!25SS~
+      effsource = ~S!40SS~
   END
 
   LPF ~ADD_CRE_EFFECT~
     INT_VAR
       opcode = 275
       target = 1
-      parameter1 = 25
+      parameter1 = 40
       parameter2 = 0
       timing = 9
     STR_VAR
-      effsource = ~S!25HIS~
+      effsource = ~S!40HIS~
   END
 
   LPF ~ADD_CRE_EFFECT~
@@ -1422,33 +1437,33 @@ ACTION_FOR_EACH low_level_thief_cre IN ~ISHADTH1.cre~ ~ISHADMT1.cre~ ~ISHADFT1.c
       INT_VAR
         opcode = 90
         target = 1
-        parameter1 = 25
+        parameter1 = 40
         parameter2 = 0
         timing = 9
       STR_VAR
-        effsource = ~S!25OL~
+        effsource = ~S!40OL~
     END
 
     LPF ~ADD_CRE_EFFECT~
       INT_VAR
         opcode = 91
         target = 1
-        parameter1 = 25
+        parameter1 = 40
         parameter2 = 0
         timing = 9
       STR_VAR
-        effsource = ~S!25FT~
+        effsource = ~S!40FT~
     END
 
     LPF ~ADD_CRE_EFFECT~
       INT_VAR
         opcode = 92
         target = 1
-        parameter1 = 25
+        parameter1 = 40
         parameter2 = 0
         timing = 9
       STR_VAR
-        effsource = ~S!25PP~
+        effsource = ~S!40PP~
     END
 
     LPF ~ADD_CRE_EFFECT~
@@ -1478,7 +1493,7 @@ ACTION_FOR_EACH thief_thug_cre IN ~RETHIE01.cre~ ~RETHUG04.cre~ BEGIN
     WRITE_BYTE 0x68 0 // Stealth Strike
     WRITE_BYTE 0x69 0 // Find Traps
     WRITE_BYTE 0x6a 0 // Pick Pockets
-    WRITE_LONG 0x244 0x400a // Kit = Assassin
+    WRITE_LONG 0x244 0x400a0000 // Kit = Assassin
 
     LPF ~ALTER_EFFECT~
       INT_VAR
@@ -1509,22 +1524,22 @@ ACTION_FOR_EACH thief_thug_cre IN ~RETHIE01.cre~ ~RETHUG04.cre~ BEGIN
       INT_VAR
         opcode = 59
         target = 1
-        parameter1 = 25
+        parameter1 = 40
         parameter2 = 0
         timing = 9
       STR_VAR
-        effsource = ~S!25SS~
+        effsource = ~S!40SS~
     END
 
     LPF ~ADD_CRE_EFFECT~
       INT_VAR
         opcode = 275
         target = 1
-        parameter1 = 25
+        parameter1 = 40
         parameter2 = 0
         timing = 9
       STR_VAR
-        effsource = ~S!25HIS~
+        effsource = ~S!40HIS~
     END
 
     LPF ~ADD_CRE_EFFECT~

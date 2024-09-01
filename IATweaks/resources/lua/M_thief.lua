@@ -2,17 +2,17 @@ anvil_chargen_gui_to_2da_race_mapping = {1, 3, 5, 2, 6, 4, 7} -- for some reason
 
 -- pickpocket, open_locks, find_traps, stealth_strike, hide_in_shadows, det_illusions, set_traps 
 anvil_kit_starting_thieving_bonuses = {
-[10] = {  0,   0,   0,  25,  25,   0,   0}, -- Assassin
-[11] = {  0,   0,  25,   0,   0,   0,  25}, -- Bounty Hunter
-[33] = {  0,   0,   0,   0,  25,  25,   0}, -- Shadowdancer
+[10] = {  0,   0,   0,  40,  40,   0,   0}, -- Assassin
+[11] = {  0,   0,  40,   0,   0,   0,  40}, -- Bounty Hunter
+[33] = {  0,   0,   0,   0,  40,  40,   0}, -- Shadowdancer
 }
 
 anvil_class_starting_thieving_bonuses = {
-[4] =  {  25,   25,   25,  0,  0,   0,   0}, -- Thief
-[9] =  {  25,   25,   25,  0,  0,   0,   0}, -- Fighter-Thief
-[10] = {  25,   25,   25,  0,  0,   0,   0}, -- Fighter-Mage-Thief
-[13] = {  25,   25,   25,  0,  0,   0,   0}, -- Mage-Thief
-[15] = {  25,   25,   25,  0,  0,   0,   0}, -- Cleric-Thief
+[4] =  {  40,   40,   40,  0,  0,   0,   0}, -- Thief
+[9] =  {  40,   40,   40,  0,  0,   0,   0}, -- Fighter-Thief
+[10] = {  40,   40,   40,  0,  0,   0,   0}, -- Fighter-Mage-Thief
+[13] = {  40,   40,   40,  0,  0,   0,   0}, -- Mage-Thief
+[15] = {  40,   40,   40,  0,  0,   0,   0}, -- Cleric-Thief
 }
 
 anvil_kit_max_thieving_values = {

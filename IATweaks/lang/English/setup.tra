@@ -266,7 +266,7 @@ CLASS FEATURES:
 – May only become Proficient (one slot) in any fighting style.
 – May distribute 10 points per level (40 at level 1) in thieving abilities: Open Locks, Pick Pockets, Find Traps, Stealth Strike, Hide In Shadows, Detect Illusion, Set Traps.
 - May put up to 100 points into any Thieving Ability and up to 150 into Pick Pockets.
-– Starts with base scores of 25% in Open Locks, Find Traps and Pick Pockets.
+– Starts with base scores of 40% in Open Locks, Find Traps and Pick Pockets.
 – May backstab for 2x damage.
 – May use the Set Snare ability once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
 
@@ -286,7 +286,7 @@ Prime Requisites For Dual-Classing: Dexterity~
 Advantages:
 - May coat his weapon in poison once per day per 4 levels. The next hit with that weapon will inject the poison into the target, dealing out 2 damage per second for 12 seconds. A saving throw vs. poison limits damage to 12 total. The weapon will remain poisoned for 3 rounds.
 - Bonus +1 to hit and +1 damage.
-- Starts with base score of 25% in Stealth Strike and Hide in Shadows.
+- Starts with base score of 40% in Stealth Strike and Hide in Shadows.
 - May put up to 200 points into Stealth Strike and Hide in Shadows.
 - May become Specialized (two slots) in Short Sword, Dagger and Single Weapon Style.
 
@@ -298,7 +298,7 @@ Disadvantages:
 @5026 = ~BOUNTY HUNTER: This is a hunter of men, skilled in tracking quarry and bringing them back alive—whether for lawful authorities or underworld masters. Bounty Hunters are specially trained at their task and make fearsome opponents. They have honed their trap-making abilities well beyond that of the average Thief.
 
 Advantages:
-– +25% bonus to Find Traps and Set Traps.
+– +40% bonus to Find Traps and Set Traps.
 - May put up to 200 points into Find Traps and Set Traps.
 – May use the Set Special Snare ability once per day in addition to the normal Thief's Set Snare. Gains one use at level 1 and an additional use every 5 levels thereafter.
 
@@ -323,7 +323,7 @@ Advantages:
 - May place 3 slots into the proficiency 'two weapon fighting style'.
 - At level 14 and above, every successful melee hit will have a 10% chance to apply a random effect picked from the following pool: "Mirrored Blade" (+3 AC bonus vs. all weapon types and 5% Magic Resistance for 6 rounds with unlimited stacking), "Life Pick" (heals the swashbuckler for 15 hp).
 - At level 20 and above, every successful melee hit will also have 10% chance to apply a random effect picked from the following pool: "Bloodlet" (4D10 additional Piercing damage), "Maim Target" (4D10 additional crushing damage).
-– Starts with base scores of 25% in Open Locks and Pick Pockets.
+– Starts with base scores of 40% in Open Locks and Pick Pockets.
 
 Disadvantages:
 - No backstab multiplier.
@@ -335,7 +335,7 @@ Disadvantages:
 @5028 = ~SHADOWDANCER: Shadowdancers can harness the power of magic to increase their stealth abilities. Enigmatic and dangerous, these uniquely skilled Thieves are able to blend seamlessly into the shadows in ways that a normal Thief cannot, striking without warning—sometimes with supernatural speed.
 
 Advantages:
-– +25% bonus to Hide In Shadows and Detect Illusions.
+– +40% bonus to Hide In Shadows and Detect Illusions.
 – May cast Shadowstep once per day. Gains one use at level 5 and an additional use every 5 levels thereafter.
 
 SHADOWSTEP: Step into the Shadow Plane and move for 7 seconds while others are frozen in time. The Shadowdancer cannot attack or cast spells while in the Shadow Plane.

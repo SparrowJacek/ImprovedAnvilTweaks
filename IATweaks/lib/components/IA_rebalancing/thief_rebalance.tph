@@ -1896,6 +1896,29 @@ ACTION_FOR_EACH perception_potion_item IN ~POTN39.itm~ ~s!potn09.itm~ BEGIN
     END
 END
 
+// Worn Whispers
+
+COPY_EXISTING ~boot02.itm~ ~override~
+  SAY IDENTIFIED_DESC @7005
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 59
+      parameter1 = 5
+  END
+
+// Short Sword of Backstabbing
+
+COPY_EXISTING ~sw1h10.itm~ ~override~
+  SAY IDENTIFIED_DESC @7008
+  LPF ~ADD_ITEM_EQEFFECT~
+    INT_VAR
+      insert_point = 0
+      opcode = 59
+      target = 1
+      parameter1 = 20
+      timing = 2
+  END
+
 // //////// Spells /////////
 
 // Detect Traps //

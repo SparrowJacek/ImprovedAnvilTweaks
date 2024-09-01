@@ -40,6 +40,16 @@ Weight: 0~
 
 @7004 = ~Wings~
 
+@7005 = ~Boots of Stealth: Worn Whispers
+In ages past, a king named Rhigaerd was renowned for the spies he kept. So skillful were they that no nook or cranny escaped their eyes, and maps were held for entire castles and towns. Eventually betrayed from within, the tools of their trade were taken and dispersed, ensuring that none could amass such a band again.
+
+STATISTICS:
+
+Equipped abilities:
+– Stealth Strike: +5%
+– Hide In Shadows: +15%
+
+Weight: 4~
 
 @7006 = ~Deep Red Ioun Stone~
 
@@ -53,6 +63,24 @@ Equipped abilities:
 - Dexterity +1
 
 Weight: 0~
+
+@7008 = ~Short Sword of Backstabbing: The Shadow's Blade 
+The Shadow's Blade was created to be the perfect assassin's tool. It is highly sought after by any who settle differences with a blade, and many that possess it do not do so for long.
+
+STATISTICS:
+
+Equipped abilities:
+– Stealth Strike +20%
+
+THAC0: +3
+Damage: 1d6+3 (piercing)
+Speed Factor: 0
+Proficiency Type: Short Sword
+Type: One-handed
+Requires:
+ 5 Strength
+
+Weight: 3~
 
 @7009 = ~Symbol of Sehanine Moonbow~
 

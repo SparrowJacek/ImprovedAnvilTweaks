@@ -1,0 +1,26 @@
+// Add Wings to Swanmays
+
+COPY ~IATweaks\resources\bam\WQMZWA1.bam~ ~override~
+COPY ~IATweaks\resources\bam\WQMZWA2.bam~ ~override~
+COPY ~IATweaks\resources\bam\WQMZWA3.bam~ ~override~
+COPY ~IATweaks\resources\bam\WQMZWA4.bam~ ~override~
+COPY ~IATweaks\resources\bam\WQMZWA5.bam~ ~override~
+COPY ~IATweaks\resources\bam\WQMZWA6.bam~ ~override~
+COPY ~IATweaks\resources\bam\WQMZWA7.bam~ ~override~
+COPY ~IATweaks\resources\bam\WQMZWA8.bam~ ~override~
+COPY ~IATweaks\resources\bam\WQMZWA9.bam~ ~override~
+COPY ~IATweaks\resources\bam\WQMZWCA.bam~ ~override~
+COPY ~IATweaks\resources\bam\WQMZWG1.bam~ ~override~
+COPY ~IATweaks\resources\bam\WQMZWSA.bam~ ~override~
+COPY ~IATweaks\resources\bam\WQMZWSS.bam~ ~override~
+COPY ~IATweaks\resources\bam\WQMZWSX.bam~ ~override~
+
+COPY ~IATweaks\resources\itm\s!wings.itm~ ~override~
+  SAY NAME2 @7004
+
+ACTION_FOR_EACH swanmay_cre IN ~s!swansu~ ~s!gswan~ ~s!edeswa~ ~s!swanfa~ ~s!swanq~ ~s!swanme~ BEGIN
+  COPY_EXISTING ~%swanmay_cre%.cre~ ~override~
+    ADD_CRE_ITEM ~s!wings~ #0 #0 #0 ~IDENTIFIED~ ~HELMET~
+    WRITE_BYTE 0x32 105 // Change hair color to white (the same color will be set for the wings)
+  IF_EXISTS
+END

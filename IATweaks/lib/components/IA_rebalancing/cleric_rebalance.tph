@@ -1199,7 +1199,7 @@ COPY_EXISTING ~sppr511.spl~ ~override~
     INT_VAR
       match_opcode = 111
       opcode = 248
-      duration = 60
+      duration = 90
     STR_VAR
       resource = ~s!slaylv~
   END
@@ -1213,7 +1213,7 @@ COPY_EXISTING ~sppr511.spl~ ~override~
         parameter1 = %race_val%
         parameter2 = 4
         resist_dispel = 3
-        duration = 60
+        duration = 90
     END
     LPF ~ADD_SPELL_EFFECT~
       INT_VAR
@@ -1222,7 +1222,7 @@ COPY_EXISTING ~sppr511.spl~ ~override~
         parameter1 = %race_val%
         parameter2 = 4
         resist_dispel = 3
-        duration = 60
+        duration = 90
     END
   END
 
@@ -1249,9 +1249,12 @@ COPY ~IATweaks\resources\spl\s!harm05.spl~ ~override~
       projectile = %s!harm05%
   END
 
-
 COPY_EXISTING ~sppr608.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6025
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      speed = 4
+  END
   LPF ~ALTER_EFFECT~
     INT_VAR
       match_opcode = 111

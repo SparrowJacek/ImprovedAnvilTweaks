@@ -1,0 +1,44 @@
+/////////// Wardring (+1 AC) ////////////
+
+COPY ~IATweaks\resources\bam\s!ring20.bam~ ~override~
+COPY ~IATweaks\resources\itm\s!ring20.itm~ ~override~
+  SAY NAME2 @7002
+  SAY IDENTIFIED_DESC @7003
+
+// Kalah
+
+COPY_EXISTING ~KALAH.cre~ ~override~
+  ADD_CRE_ITEM ~s!ring20~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~LRING~
+
+COPY_EXISTING ~KALAH2.cre~ ~override~
+  ADD_CRE_ITEM ~s!ring20~ #0 #0 #0 ~NONE~ ~LRING~
+
+//////////// Blood Red Ioun Stone
+
+COPY ~IATweaks\resources\bam\s!ioun01.bam~ ~override~
+COPY ~IATweaks\resources\itm\s!ioun01.itm~ ~override~
+  SAY NAME2 @7006
+  SAY IDENTIFIED_DESC @7007
+
+// Mae'Var
+
+COPY_EXISTING ~MAEVAR.cre~ ~override~
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~HELMNOAN~
+  END
+     
+  ADD_CRE_ITEM ~s!ioun01~ #0 #0 #0 ~NONE~ ~HELMET~
+
+//////////// Symbol of Sehanine Moonbow
+
+ACTION_IF(FILE_EXISTS_IN_GAME ~SPPR205.2da~) BEGIN
+  COPY ~IATweaks\resources\bam\s!amul20.bam~ ~override~
+  COPY ~IATweaks\resources\itm\s!amul20.itm~ ~override~
+    SAY NAME2 @7009
+    SAY IDENTIFIED_DESC @7010
+
+  // Slaver Ship Priest of Cyric
+  COPY_EXISTING ~SLAPRI.cre~ ~override~
+    ADD_CRE_ITEM ~S!AMUL20~ #2 #2 #0 ~NONE~ ~INV12~
+END

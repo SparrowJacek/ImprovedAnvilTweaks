@@ -189,6 +189,7 @@ COPY ~IATweaks\resources\vvc\s!hunte2.VVC~ ~override~
 COPY ~IATweaks\resources\vvc\s!hunte3.VVC~ ~override~
 COPY ~IATweaks\resources\bam\s!hunter.bam~ ~override~
 COPY ~IATweaks\resources\bam\s!hunmab.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!hunmad.bam~ ~override~
 COPY ~IATweaks\resources\spl\s!hmani2.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!hmani3.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!hunmar.spl~ ~override~
@@ -217,10 +218,25 @@ COPY ~IATweaks\resources\spl\s!hunfoe.spl~ ~override~
   END
 
 COPY ~IATweaks\resources\eff\s!hunfoe.eff~ ~override~
+
+OUTER_SET hunters_mark_desc_str_ref = RESOLVE_STR_REF (@6097)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %hunters_mark_desc_str_ref%
+  STR_VAR
+    bam_file = ~S!HUNMAD~
+  RET
+    hunters_mark_icon_id = portrait_icon_id
+END
 COPY ~IATweaks\resources\spl\s!hunfri.spl~ ~override~
   LPF ~ALTER_SPELL_HEADER~
     INT_VAR
       projectile = %s!hunfri%
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %hunters_mark_icon_id%
   END
   PATCH_FOR_EACH header_num IN 1 2 3 4 5 6 7 8 BEGIN
     SET min_level = %header_num% * 5
@@ -241,6 +257,12 @@ COPY ~IATweaks\resources\spl\s!hunfri.spl~ ~override~
         match_opcode = 179
         special = %new_val%
     END
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      match_dicesize = ~-1~
+      dicesize = 0
   END
 
 COPY ~IATweaks\resources\eff\s!hunfri.eff~ ~override~

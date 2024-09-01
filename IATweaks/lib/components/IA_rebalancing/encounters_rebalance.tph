@@ -1,0 +1,416 @@
+/////// Suna Seni encounter ///////
+
+COPY_EXISTING ~RESUNA.cre~ ~override~
+  WRITE_SHORT 0x24 99 // HP
+  WRITE_SHORT 0x26 99 // HP
+
+COPY_EXISTING ~REELDAR.cre~ ~override~
+  WRITE_SHORT 0x24 96 // HP
+  WRITE_SHORT 0x26 96 // HP
+    
+  LPF ~ALTER_EFFECT~ // ** in Sword and Shield
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 112
+      parameter1 = 2
+  END
+
+COPY_EXISTING ~REMAGE01.cre~ ~override~
+  WRITE_SHORT 0x24 40 // HP
+  WRITE_SHORT 0x26 40 // HP
+  WRITE_SHORT 0x46 10 // AC
+  WRITE_SHORT 0x48 10 // AC
+
+COPY_EXISTING ~RETHUG02.cre~ ~override~
+  WRITE_SHORT 0x24 40 // HP
+  WRITE_SHORT 0x26 40 // HP
+  WRITE_SHORT 0x46 10 // AC
+  WRITE_SHORT 0x48 10 // AC
+
+COPY_EXISTING ~REFIGH01.cre~ ~override~
+  WRITE_BYTE 0x54 8  // Saves
+  WRITE_BYTE 0x55 10 // Saves
+  WRITE_BYTE 0x56 9  // Saves
+  WRITE_BYTE 0x57 9  // Saves
+  WRITE_BYTE 0x58 11 // Saves
+    
+  LPF ~ALTER_EFFECT~ // ***** in 2h Sword
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 93
+      parameter1 = 5
+  END
+
+// Postpone Suna Seni till PC has 250000 exp
+
+ACTION_FOR_EACH suna_seni_area_script IN ~AR0041.BCS~ ~AR0045.BCS~ ~AR0046.BCS~ BEGIN
+  COPY_EXISTING ~%suna_seni_area_script%~ ~override~
+    DECOMPILE_AND_PATCH BEGIN
+      REPLACE_EVALUATE
+        ~\([ %TAB%]+\)\(Global("RandomEncounters","GLOBAL",0)\)\([ %TAB%%LNL%%MNL%%WNL%]+\)~
+      BEGIN
+      END
+      ~%MATCH1%%MATCH2%%MATCH3%%MATCH1%XPGT(Player1,249999)%MATCH3%~
+    END
+END
+
+/////////// Rework Vampires ///////////
+
+ACTION_FOR_EACH vampire_weapon IN ~VAMP~ ~VAMP1~ ~VAMP2~ ~VAMP3~ ~S!VLORD~ ~S!BODHI~ BEGIN
+  COPY_EXISTING ~%vampire_weapon%.itm~ ~override~
+    READ_LONG 0x64 headers_offset
+    WRITE_BYTE (headers_offset + 0x18) (THIS - 1)
+    WRITE_BYTE (headers_offset + 0x1a) (THIS + 1)
+    PATCH_FOR_EACH spl_to_dispel IN ~SPPR413~ ~SPIN738~ ~SPPR508~ BEGIN
+      LPF ~CLONE_EFFECT~
+        INT_VAR
+          match_opcode = 221
+          opcode = 321
+          parameter1 = 0
+          parameter2 = 0
+        STR_VAR
+          insert = ~above~
+          resource = EVAL ~%spl_to_dispel%~
+      END
+    END
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = 221
+        match_parameter2 = 2
+    END
+    LPF ~ADD_ITEM_EFFECT~
+      INT_VAR
+        type = 1
+        opcode = 12
+        insert_point = 0
+        target = 2
+        timing = 9
+        dicenumber = 1
+        dicesize = 6
+        special = 1 // Drain HP
+    END
+END
+
+// Vampiric Mist
+
+COPY_EXISTING ~MISTVA.itm~ ~override~
+  READ_LONG 0x64 headers_offset
+  WRITE_BYTE (headers_offset + 0x18) (THIS - 1)
+  WRITE_BYTE (headers_offset + 0x1a) (THIS + 1)
+  PATCH_FOR_EACH spl_to_dispel IN ~SPPR413~ ~SPIN738~ ~SPPR403~ BEGIN
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 221
+        opcode = 321
+        parameter1 = 0
+        parameter2 = 0
+      STR_VAR
+        insert = ~above~
+        resource = EVAL ~%spl_to_dispel%~
+    END
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 221
+      match_parameter2 = 2
+  END
+  LPF ~ADD_ITEM_EFFECT~
+    INT_VAR
+      type = 1
+      opcode = 12
+      insert_point = 0
+      target = 2
+      timing = 9
+      dicenumber = 1
+      dicesize = 8
+      special = 1 // Drain HP
+  END
+
+/////////// Rayic (Cowled Wizard that Edwin orders us to kill) ////////////
+
+COPY_EXISTING ~DCOWL1.CRE~ ~override~
+  WRITE_SHORT 0x24 43 // HP
+  WRITE_SHORT 0x26 43 // HP
+  WRITE_BYTE  0x23d 16 // Constitution
+  REMOVE_MEMORIZED_SPELL ~spwi609~ ~spwi899~ ~spwi601~
+  REMOVE_KNOWN_SPELL ~spwi609~
+
+COPY_EXISTING ~rayic.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    REPLACE_EVALUATE
+      ~\([ %TAB%]+\)\(ReallyForceSpellRES("SPWII41",Myself)\)\([ %TAB%%LNL%%MNL%%WNL%]+\)~
+    BEGIN
+    END
+    ~%MATCH1%%MATCH2%%MATCH3%%MATCH1%ReallyForceSpellRES("SPWI618",Myself)%MATCH3%~
+  END
+
+////////// Galvery encounter /////////////
+
+COPY_EXISTING ~JAGA4.cre~ ~override~ // Iko
+  WRITE_BYTE 0x56 10  // Save vs Poly
+  WRITE_BYTE 0x57 14  // Save vs Breath
+  WRITE_LONG 0x244 0 // Kit = None (was some unknown value)
+
+  LPF ~ADD_CRE_EFFECT~ // * in Single Weapon
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 1
+      parameter2 = 113
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // * in Short Sword
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 1
+      parameter2 = 91
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // * in Crossbow
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 1
+      parameter2 = 103
+      resist_dispel = 0
+      timing = 9
+  END
+    
+  LPF ~DELETE_CRE_EFFECT~ // Unknown AC bonus
+    INT_VAR
+      opcode_to_delete = 0
+  END
+    
+  LPF ~DELETE_CRE_EFFECT~ // Unknown thac0 bonus
+    INT_VAR
+      opcode_to_delete = 54
+  END
+
+COPY_EXISTING ~JAGALVAR.cre~ ~override~ // Galvarey
+  WRITE_BYTE 0x53 1  // APR
+  WRITE_BYTE 0x54 5  // Saves
+  WRITE_BYTE 0x55 7  // Saves
+  WRITE_BYTE 0x56 6  // Saves
+  WRITE_BYTE 0x57 5  // Saves
+  WRITE_BYTE 0x58 8  // Saves
+  WRITE_LONG 0x244 0 // Kit = None
+    
+  LPF ~ADD_CRE_EFFECT~ // * in 2h Weapon
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 1
+      parameter2 = 111
+      resist_dispel = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // ***** in 2h Sword
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 5
+      parameter2 = 93
+      resist_dispel = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // ** in Long Bow
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 2
+      parameter2 = 104
+      resist_dispel = 0
+      timing = 9
+  END
+
+COPY_EXISTING ~JAGA2.cre~ ~override~ // Kail
+  WRITE_BYTE 0x53 1  // APR
+  WRITE_SHORT 0x46 10 // AC
+  WRITE_SHORT 0x48 10 // AC
+  WRITE_BYTE 0x52 11 // Thac0
+  WRITE_BYTE 0x54 8  // Saves
+  WRITE_BYTE 0x55 10 // Saves
+  WRITE_BYTE 0x56 9  // Saves
+  WRITE_BYTE 0x57 9  // Saves
+  WRITE_BYTE 0x58 11 // Saves
+    
+  LPF ~ADD_CRE_EFFECT~ // ** in Single Weapon
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 2
+      parameter2 = 113
+      resist_dispel = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // ***** in Katanas
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 5
+      parameter2 = 94
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Melee thac0 bonus
+    INT_VAR
+      opcode = 284
+      target = 1
+      parameter1 = 3
+      parameter2 = 0
+      resist_dispel = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL141~
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Melee damage bonus
+    INT_VAR
+      opcode = 285
+      target = 1
+      parameter1 = 3
+      parameter2 = 0
+      resist_dispel = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL141~
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // AC
+    INT_VAR
+      opcode = 0
+      target = 1
+      parameter1 = 2
+      parameter2 = 0
+      resist_dispel = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL142~
+  END
+
+COPY_EXISTING ~JAGA1.cre~ ~override~ // Bessen
+  WRITE_SHORT 0x24 73 // HP
+  WRITE_SHORT 0x26 73 // HP
+  WRITE_BYTE 0x52 7 // Thac0
+  WRITE_BYTE 0x234 14 // Level 1
+  WRITE_BYTE 0x235 14 // Level 2
+  WRITE_BYTE 0x23d 16 // constitution
+  WRITE_LONG 0x244 0 // Kit = None (was Invoker but still used Enchantment spells)
+
+////////// Greater Crawler //////////
+
+COPY_EXISTING ~SEWCC.cre~ ~override~
+  WRITE_BYTE 0x5a 50  // Cold Resistance
+  WRITE_BYTE 0x5a 75  // Electricity Resistance
+  WRITE_BYTE 0x5f 50  // Magic Cold Resistance
+
+////////// Shadow Lover //////////
+
+COPY_EXISTING ~S!SHADOS.cre~ ~override~
+  WRITE_BYTE 0x5c 75  // Acid Resistance
+
+///////// Haegan ///////////
+
+COPY_EXISTING ~HAEGAN.cre~ ~override~
+  WRITE_SHORT 0x24 111 // HP
+  WRITE_SHORT 0x26 111 // HP
+  WRITE_BYTE 0x60 0 // Resist Slashing
+  WRITE_BYTE 0x61 0 // Resist Crushing
+  WRITE_BYTE 0x62 0 // Resist Piercing
+  WRITE_BYTE 0x63 0 // Resist Missile
+  WRITE_BYTE 0x23d 19 // Constitution
+  WRITE_LONG 0x244 0x40010000 // Kit = Berserker
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!IMMUNE~
+  END
+
+  PATCH_IF(FILE_EXISTS_IN_GAME ~POTN11.spl~) BEGIN
+    ADD_CRE_ITEM ~POTN11~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV15~
+  END
+
+  PATCH_IF(FILE_EXISTS_IN_GAME ~POTN56.spl~) BEGIN
+    ADD_CRE_ITEM ~POTN56~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV14~
+  END
+
+COPY_EXISTING ~s!haegan.itm~ ~override~
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 101
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 106
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 267
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 92
+      parameter1 = 2
+  END
+
+COMPILE ~IATweaks\scripts\creatures\HAEGAN.BAF~
+
+///////// Slaver Wizard ///////////
+
+COPY_EXISTING ~SLMAGE1.cre~ ~override~
+  WRITE_SHORT 0x24 44 // HP
+  WRITE_SHORT 0x26 44 // HP
+  WRITE_BYTE 0x60 0 // Resist Slashing
+  WRITE_BYTE 0x61 0 // Resist Crushing
+  WRITE_BYTE 0x62 0 // Resist Piercing
+  WRITE_BYTE 0x63 0 // Resist Missile
+  WRITE_BYTE 0x23d 16 // Constitution
+
+  PATCH_IF(FILE_EXISTS_IN_GAME ~POTN33.spl~) BEGIN
+    ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV14~
+    ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV15~
+  END
+
+COMPILE ~IATweaks\scripts\creatures\S!SLMAGE.BAF~
+
+////////// Guild Contact ///////////
+
+COPY_EXISTING ~BODFGT03.cre~ ~override~ // Gracen
+  WRITE_SHORT 0x24 123 // HP
+  WRITE_SHORT 0x26 123 // HP
+    
+  LPF ~ADD_CRE_EFFECT~ // ***** in 2h Sword
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 5
+      parameter2 = 93
+      resist_dispel = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // ** in 2h Weapon Style
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 2
+      parameter2 = 111
+      resist_dispel = 0
+      timing = 9
+  END
+
+COPY_EXISTING ~s!gracen.itm~ ~override~
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 233
+  END

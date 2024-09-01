@@ -2498,3 +2498,85 @@ ACTION_FOR_EACH cleric_thug_cre IN ~RECLER01.cre~ ~RETHUG03.cre~ BEGIN
 END
 
 COMPILE ~IATweaks\scripts\creatures\s!recler.baf~
+
+// Mae'Var's Cleric
+COPY_EXISTING ~MVPRIES.cre~ ~override~
+  WRITE_SHORT 0x24 78 // HP
+  WRITE_SHORT 0x26 78 // HP
+  WRITE_BYTE 0x52 12 // Thac0
+  WRITE_BYTE 0x234 12 // 1st Class Level
+  WRITE_BYTE 0x23b 18 // Wisdom
+
+COMPILE ~IATweaks\scripts\creatures\s!mvprie.baf~
+
+// Remove unneeded Mae'Var's immunity ring
+COPY_EXISTING ~MAEVAR.cre~ ~override~
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~DRAGRING~
+  END
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~MINHP1~
+  END
+  
+// Slaver Ship Priest of Cyric
+COPY_EXISTING ~SLAPRI.cre~ ~override~
+  WRITE_SHORT 0x24 86 // HP
+  WRITE_SHORT 0x26 86 // HP
+  WRITE_BYTE 0x52 10 // Thac0
+  WRITE_BYTE 0x54 4  // Saves
+  WRITE_BYTE 0x55 8 // Saves
+  WRITE_BYTE 0x56 7  // Saves
+  WRITE_BYTE 0x57 10  // Saves
+  WRITE_BYTE 0x58 9 // Saves
+  WRITE_BYTE 0x59 25 // Resist Fire
+  WRITE_BYTE 0x5d 0 // Resist Magic
+  WRITE_BYTE 0x5e 25 // Resist Magic Fire
+  WRITE_BYTE 0x60 0 // Resist Slashing
+  WRITE_BYTE 0x61 0 // Resist Crushing
+  WRITE_BYTE 0x62 0 // Resist Piercing
+  WRITE_BYTE 0x63 0 // Resist Missile
+  WRITE_BYTE 0x234 16 // Level 1
+  WRITE_BYTE 0x23d 16 // Strength
+  WRITE_BYTE 0x23d 12 // Constitution
+
+  LPF ~ADD_CRE_EFFECT~ // ** in Sword and Shield
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 2
+      parameter2 = 112
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // * in Flails
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 1
+      parameter2 = 100
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // * in Slings
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 1
+      parameter2 = 107
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!IMMUNE~
+  END
+
+  ADD_CRE_ITEM ~HELM02~ #0 #0 #0 ~NONE~ ~HELMET~
+  ADD_CRE_ITEM ~POTN34~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV15~
+
+COMPILE ~IATweaks\scripts\creatures\S!SLAPRI.BAF~

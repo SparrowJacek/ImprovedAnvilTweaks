@@ -1554,6 +1554,292 @@ END
 
 COMPILE ~IATweaks\scripts\creatures\s!rethie.baf~
 
+// Iko from Galvarey's party
+COPY_EXISTING ~JAGA4.cre~ ~override~
+  WRITE_BYTE 0x45 0 // Hide in Shadows
+  WRITE_BYTE 0x52 14 // Thac0
+  WRITE_BYTE 0x64 0 // Detect Illusions
+  WRITE_BYTE 0x65 0 // Set Traps
+  WRITE_BYTE 0x67 20 // Pick Locks
+  WRITE_BYTE 0x68 0 // Stealth Strike
+  WRITE_BYTE 0x69 0 // Find Traps
+  WRITE_BYTE 0x6a 110 // Pick Pockets
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 90
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40OL~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 91
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40FT~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 92
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40PP~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 144
+      target = 1
+      timing = 9
+    STR_VAR
+      effsource = ~S!DISSTE~
+  END
+
+// Mae'Var
+COPY_EXISTING ~MAEVAR.cre~ ~override~
+  WRITE_BYTE 0x10 64 // Original class = Thief
+  WRITE_SHORT 0x24 73 // HP
+  WRITE_SHORT 0x26 73 // HP
+  WRITE_BYTE 0x45 150 // Hide in Shadows
+  WRITE_BYTE 0x52 5 // Thac0
+  WRITE_BYTE 0x54 4 // Saves
+  WRITE_BYTE 0x55 6 // Saves
+  WRITE_BYTE 0x56 5 // Saves
+  WRITE_BYTE 0x57 4 // Saves
+  WRITE_BYTE 0x58 7 // Saves
+  WRITE_BYTE 0x64 0 // Detect Illusions
+  WRITE_BYTE 0x65 0 // Set Traps
+  WRITE_BYTE 0x67 0 // Pick Locks
+  WRITE_BYTE 0x68 0 // Stealth Strike
+  WRITE_BYTE 0x69 0 // Find Traps
+  WRITE_BYTE 0x6a 0 // Pick Pockets
+  WRITE_BYTE 0x234 15 // 1st Class Level
+  WRITE_BYTE 0x235 16 // 2nd Class Level
+  WRITE_BYTE 0x23d 16 // Strength
+  WRITE_LONG 0x244 0x400a0000 // Kit = Assassin
+
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 91
+      parameter1 = 5
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 73
+      target = 1
+      parameter1 = 1
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL421~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 278
+      target = 1
+      parameter1 = 1
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL421~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 59
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40SS~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 275
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40HIS~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 144
+      target = 1
+      timing = 9
+    STR_VAR
+      effsource = ~S!DISSTE~
+  END
+
+// Smuggler from Fallen Paladins quest
+
+COPY_EXISTING ~KAYSMG01.cre~ ~override~ // Rindus
+  WRITE_SHORT 0x24 64 // HP
+  WRITE_SHORT 0x26 64 // HP
+  WRITE_BYTE 0x45 0 // Hide in Shadows
+  WRITE_BYTE 0x52 12 // Thac0
+  WRITE_BYTE 0x53 1  // APR
+  WRITE_BYTE 0x64 40 // Detect Illusions
+  WRITE_BYTE 0x65 0 // Set Traps
+  WRITE_BYTE 0x67 0 // Pick Locks
+  WRITE_BYTE 0x68 0 // Stealth Strike
+  WRITE_BYTE 0x69 0 // Find Traps
+  WRITE_BYTE 0x6a 110 // Pick Pockets
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 90
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40OL~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 91
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40FT~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 92
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40PP~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 144
+      target = 1
+      timing = 9
+    STR_VAR
+      effsource = ~S!DISSTE~
+  END
+
+// Assassins from Slaver Ship
+COPY_EXISTING ~s!slassa.cre~ ~override~
+  WRITE_SHORT 0x24 80 // HP
+  WRITE_SHORT 0x26 80 // HP
+  WRITE_BYTE 0x45 120 // Hide in Shadows
+  WRITE_BYTE 0x52 10 // Thac0
+  WRITE_BYTE 0x64 0 // Detect Illusions
+  WRITE_BYTE 0x65 0 // Set Traps
+  WRITE_BYTE 0x67 0 // Pick Locks
+  WRITE_BYTE 0x68 0 // Stealth Strike
+  WRITE_BYTE 0x69 0 // Find Traps
+  WRITE_BYTE 0x6a 30 // Pick Pockets
+  WRITE_LONG 0x244 0x400a0000 // Kit = Assassin
+
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 91
+      parameter1 = 2
+  END
+
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 113
+      parameter1 = 2
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 73
+      target = 1
+      parameter1 = 1
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL421~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 278
+      target = 1
+      parameter1 = 1
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL421~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 59
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40SS~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 275
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40HIS~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 144
+      target = 1
+      timing = 9
+    STR_VAR
+      effsource = ~S!DISSTE~
+  END
+
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 193
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~RING95~
+  END
+
+COMPILE ~IATweaks\scripts\creatures\S!SLASSA.baf~
+
 /////////// Items ////////////
 
 COPY_EXISTING ~potn36.itm~ ~override~

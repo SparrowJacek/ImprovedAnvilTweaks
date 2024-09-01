@@ -4,7 +4,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("prep","LOCALS",1)
-		ReallyForceSpell(Myself,TALOS_STORMSHIELD)  // SPPR111.SPL (Armor of Faith)
+		ReallyForceSpell(Myself,TALOS_STORMSHIELD)  // SPCL721.SPL (Storm Shield)
 		ReallyForceSpell(Myself,CLERIC_ARMOR_OF_FAITH)  // SPPR111.SPL (Armor of Faith)
 		ReallyForceSpell(Myself,CLERIC_AID)  // SPPR201.SPL (Aid)
 		ReallyForceSpell(Myself,CLERIC_STRENGTH_OF_ONE)  // SPPR312.SPL (Strength of One)
@@ -24,9 +24,7 @@ END
 
 IF
 	Allegiance(Myself,ENEMY)
-	OR(2)
-		!GlobalTimerNotExpired("Iaspell","LOCALS")
-		CheckStat(Myself,1,AURACLEANSING)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	StateCheck(Myself,STATE_SILENCED)
 THEN
 	RESPONSE #100
@@ -45,6 +43,106 @@ IF
 THEN
 	RESPONSE #100
 		NoAction()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!See(NearestAllyOf(Myself))
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(NearestEnemyOf(Myself))
+	InParty(NearestEnemyOf(Myself))
+	!StateCheck(NearestEnemyOf(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(NearestEnemyOf(Myself),STATE_INVISIBLE)
+	CheckStatLT(NearestEnemyOf(Myself),100,RESISTELECTRICITY)
+	!CheckStatGT(NearestEnemyOf(Myself),0,MINORGLOBE)
+	!CheckStat(NearestEnemyOf(Myself),4,SCRIPTINGSTATE7)
+	!StateCheck(NearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	GlobalLT("s!talosbolt","LOCALS",3)
+THEN
+	RESPONSE #100
+		IncrementGlobal("s!talosbolt","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SpellNoDec(NearestEnemyOf(Myself),TALOS_LIGHTNING_BOLT)  // SPCL722.SPL (Lightning Bolt of Talos)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!See(NearestAllyOf(Myself))
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SecondNearestEnemyOf(Myself))
+	InParty(SecondNearestEnemyOf(Myself))
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_INVISIBLE)
+	CheckStatLT(SecondNearestEnemyOf(Myself),100,RESISTELECTRICITY)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,MINORGLOBE)
+	!CheckStat(SecondNearestEnemyOf(Myself),4,SCRIPTINGSTATE7)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	GlobalLT("s!talosbolt","LOCALS",3)
+THEN
+	RESPONSE #100
+		IncrementGlobal("s!talosbolt","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SpellNoDec(SecondNearestEnemyOf(Myself),TALOS_LIGHTNING_BOLT)  // SPCL722.SPL (Lightning Bolt of Talos)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!See(NearestAllyOf(Myself))
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(ThirdNearestEnemyOf(Myself))
+	InParty(ThirdNearestEnemyOf(Myself))
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_INVISIBLE)
+	CheckStatLT(ThirdNearestEnemyOf(Myself),100,RESISTELECTRICITY)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,MINORGLOBE)
+	!CheckStat(ThirdNearestEnemyOf(Myself),4,SCRIPTINGSTATE7)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	GlobalLT("s!talosbolt","LOCALS",3)
+THEN
+	RESPONSE #100
+		IncrementGlobal("s!talosbolt","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SpellNoDec(ThirdNearestEnemyOf(Myself),TALOS_LIGHTNING_BOLT)  // SPCL722.SPL (Lightning Bolt of Talos)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!See(NearestAllyOf(Myself))
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FourthNearestEnemyOf(Myself))
+	InParty(FourthNearestEnemyOf(Myself))
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_INVISIBLE)
+	CheckStatLT(FourthNearestEnemyOf(Myself),100,RESISTELECTRICITY)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,MINORGLOBE)
+	!CheckStat(FourthNearestEnemyOf(Myself),4,SCRIPTINGSTATE7)
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	GlobalLT("s!talosbolt","LOCALS",3)
+THEN
+	RESPONSE #100
+		IncrementGlobal("s!talosbolt","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SpellNoDec(FourthNearestEnemyOf(Myself),TALOS_LIGHTNING_BOLT)  // SPCL722.SPL (Lightning Bolt of Talos)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!See(NearestAllyOf(Myself))
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FifthNearestEnemyOf(Myself))
+	InParty(FifthNearestEnemyOf(Myself))
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_INVISIBLE)
+	CheckStatLT(FifthNearestEnemyOf(Myself),100,RESISTELECTRICITY)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,MINORGLOBE)
+	!CheckStat(FifthNearestEnemyOf(Myself),4,SCRIPTINGSTATE7)
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	GlobalLT("s!talosbolt","LOCALS",3)
+THEN
+	RESPONSE #100
+		IncrementGlobal("s!talosbolt","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SpellNoDec(FifthNearestEnemyOf(Myself),TALOS_LIGHTNING_BOLT)  // SPCL722.SPL (Lightning Bolt of Talos)
 END
 
 IF
@@ -684,6 +782,8 @@ END
 IF
 	HaveSpellRES("SPCL943")  // Purify Aura
 	GlobalLT("s!purifyaura","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(Myself,STATE_SILENCED)
 THEN
 	RESPONSE #100
 		ForceSpellRES("SPCL943",Myself)  // Purify Aura
@@ -739,6 +839,7 @@ THEN
 		SetGlobal("Iacure","LOCALS",0)
 		SetGlobal("Iadoom","LOCALS",0)
 		SetGlobal("s!purifyaura","LOCALS",0)
+		SetGlobal("s!talosbolt","LOCALS",0)
 		ReallyForceSpellRES("SPWII07",Myself)  // No such index
 END
 

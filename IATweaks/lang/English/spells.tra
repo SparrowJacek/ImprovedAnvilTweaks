@@ -213,7 +213,7 @@ By means of this powerful spell, the priest uses <PRO_HISHER> divine powers to d
 Level: 4
 Sphere: Healing
 Range: Touch
-Duration: Permanent
+Duration: Special
 Casting Time: 2
 Area of Effect: Creature touched
 Saving Throw: None
@@ -232,7 +232,7 @@ The spell covers the priest's hand with magical energies, that provide the follo
 Level: 5
 Sphere: Healing
 Range: Touch
-Duration: Permanent
+Duration: Special
 Casting Time: 3
 Area of Effect: Creature touched
 Saving Throw: None
@@ -885,19 +885,42 @@ This spell is similar to Invisibility, but the recipient is able to attack by mi
 
 Note: After making an attack, the wizard is no longer completely invisible. Opponents can target the wizard.~
 
+@6129 = ~Trap Ward
+(Divination)
 
-@6124 = ~Shield Bash~
+Level: 3
+Sphere: Divination
+Range: 0
+Duration: Special
+Casting Time: 5
+Area of Effect: Special
+Saving Throw: None 
 
-@6125 = ~Shield Bash~
+When a Mage casts a Trap Ward spell, he or she can choose one of two subspells:
+- Deactivate Traps - this spell targets the caster and allows it to deactivate any one-time trap without getting harmed. For the next 6 seconds the caster can safely enter a trapped region or open a trapped chest and the spell will disable the trap instead of triggering it.
+- Find Traps - this spell reveals all traps in the caster's vicinity every 6 seconds for the next 3 turns.
 
-@6126 = ~Shield Bash~
+A trap is any device or magical ward that meets three criteria: it can inflict a sudden or unexpected result; the spellcaster would view the result as undesirable or harmful; and the creator specifically intended the harmful or undesirable result as such. Thus traps include glyphs and similar spells or devices.~
 
-@6127 = ~Shield Bash~
 
-@6128 = ~Shield Bash~
+@6130 = ~Remove Area Trap~
 
-@6129 = ~Shield Bash~
+@6131 = ~Deactivate Traps~
 
-@6130 = ~Shield Bash~
+@6132 = ~Protection from traps ended.~
 
-@6131 = ~Shield Bash~
+@6133 = ~This spell heals the character by 8 + 5% of his max Hit Points.~
+
+@6134 = ~This spell heals the character by 14 + 15% of his max  Hit Points.~
+
+@6135 = ~This spell heals the character by 17 + 20% of his max  Hit Points.~
+
+@6136 = ~This spell heals the character by 27 + 25% of his max  Hit Points.~
+
+@6137 = ~Shield Bash~
+
+@6138 = ~Shield Bash~
+
+@6139 = ~Shield Bash~
+
+@6140 = ~Shield Bash~

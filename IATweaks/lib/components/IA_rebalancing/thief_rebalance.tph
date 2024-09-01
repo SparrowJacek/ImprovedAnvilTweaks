@@ -1612,80 +1612,147 @@ END
 
 // //////// Spells /////////
 
-// // Detect Traps //
+// Detect Traps //
 
-// COPY_EXISTING_REGEXP GLOB ~.*\.are$~ ~override~
-//   // process triggers //
+LAF resolve_state STR_VAR new_state_id = ~TRAP_IMMUNITY~ RET new_state_index END
+OUTER_SET trap_immunity_state = %new_state_index%
 
-//   GET_OFFSET_ARRAY regions ARE_V10_REGIONS
+COPY ~IATweaks\resources\2da\sppr205.2da~ ~override~
+COPY ~IATweaks\resources\spl\sppr205f.spl~ ~override~
+  SAY NAME1 @6131
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6132)
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 328
+      parameter2 = %trap_immunity_state%
+  END
 
-//   PHP_EACH regions AS int1 => region_off BEGIN
-//     READ_SHORT region_off + 0x68 trap_det_diff // trap detection difficulty
-//     READ_SHORT region_off + 0x6a trap_dis_diff
-//     READ_SHORT region_off + 0x6c is_trapped
-//     READ_ASCII region_off + 0x7c script_file
-//     TO_UPPER script_file
+COPY_EXISTING ~spwi313.spl~ ~override/sppr205e.spl~
 
-//     PATCH_IF ((is_trapped == 1) AND (trap_det_diff < 100) AND (trap_dis_diff > 0)) BEGIN
-//       SPRINT $trap_removable_scripts("%script_file%") "OK"
-//     END
+COPY_EXISTING ~spwi313.spl~ ~override~
+  SAY NAME1 @6127
+  SAY UNIDENTIFIED_DESC @6129
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      target = 7
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+  END
+  LPF ~ADD_SPELL_EFFECT~ 
+    INT_VAR
+      opcode = 214
+      target = 1
+      resist_dispel = 2
+      timing = 1
+      power = 3
+    STR_VAR
+      resource = ~SPPR205~
+  END
 
-//     PATCH_IF ((is_trapped == 1) AND (trap_det_diff >= 100)) BEGIN
-//       SPRINT $trap_nonremovable_scripts("%script_file%") "OK"
-//     END
-//   END
+COPY_EXISTING ~sppr205.spl~ ~override~
+  SAY NAME1 @6127
+  SAY UNIDENTIFIED_DESC @6128
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      target = 7
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+  END
+  LPF ~ADD_SPELL_EFFECT~ 
+    INT_VAR
+      opcode = 214
+      target = 1
+      resist_dispel = 2
+      timing = 1
+      power = 3
+    STR_VAR
+      resource = ~SPPR205~
+  END
 
-//   // process containers //
+COPY_EXISTING_REGEXP GLOB ~.*\.are$~ ~override~
+  // process triggers //
 
-//   GET_OFFSET_ARRAY containers ARE_V10_CONTAINERS
+  GET_OFFSET_ARRAY regions ARE_V10_REGIONS
 
-//   PHP_EACH containers AS int2 => cont_off BEGIN
-//     READ_SHORT cont_off + 0x2c trap_det_diff // trap detection difficulty
-//     READ_SHORT cont_off + 0x2e trap_dis_diff // trap detection difficulty
-//     READ_SHORT cont_off + 0x30 is_trapped
-//     READ_ASCII cont_off + 0x48 script_file
-//     TO_UPPER script_file
+  PHP_EACH regions AS int1 => region_off BEGIN
+    READ_SHORT region_off + 0x68 trap_det_diff // trap detection difficulty
+    READ_SHORT region_off + 0x6a trap_dis_diff
+    READ_SHORT region_off + 0x6c is_trapped
+    READ_ASCII region_off + 0x7c script_file
+    TO_UPPER script_file
 
-//     PATCH_IF ((is_trapped == 1) AND (trap_det_diff < 100) AND (trap_dis_diff > 0)) BEGIN
-//       SPRINT $trap_removable_scripts("%script_file%") "OK"
-//     END
+    PATCH_IF ((is_trapped == 1) AND (trap_det_diff < 100) AND (trap_dis_diff > 0)) BEGIN
+      SPRINT $trigger_area_trap_scripts("%script_file%") "OK"
+    END
+  END
 
-//     PATCH_IF ((is_trapped == 1) AND (trap_det_diff >= 100)) BEGIN
-//       SPRINT $trap_nonremovable_scripts("%script_file%") "OK"
-//     END
-//   END
-//   IF_EXISTS
+  // process containers //
 
+  GET_OFFSET_ARRAY containers ARE_V10_CONTAINERS
 
-// <<<<<<<<.../IATweaks-inlined/spell_remove_traps.baf
-// IF
-// 	SpellCastOnMeRES("SPPR205E",[ANYONE])
-// THEN
-// 	RESPONSE #100
-// 		StartTimer(1,6)
-//     SetGlobal("s!wasdisabled","LOCALS",1)
-//     DisplayStringHead(Myself,@6104)
-// END
-// >>>>>>>>
+  PHP_EACH containers AS int2 => cont_off BEGIN
+    READ_SHORT cont_off + 0x2c trap_det_diff // trap detection difficulty
+    READ_SHORT cont_off + 0x2e trap_dis_diff // trap disarm difficulty
+    READ_SHORT cont_off + 0x30 is_trapped
+    READ_ASCII cont_off + 0x48 script_file
+    TO_UPPER script_file
 
-// ACTION_PHP_EACH trap_removable_scripts AS trap_script => _ BEGIN
+    PATCH_IF ((is_trapped == 1) AND (trap_det_diff < 100) AND (trap_dis_diff > 0)) BEGIN
+      SPRINT $container_trap_scripts("%script_file%") "OK"
+    END
+
+  END
+  IF_EXISTS
+
+<<<<<<<<.../IATweaks-inlined/trap_immunity_and_removal.baf
+IF
+  OR(2)
+	  Opened([ANYONE])
+	  Entered([ANYONE])
+  CheckSpellState(LastTrigger,%state%)
+THEN
+	RESPONSE #100
+		DisplayString(LastTrigger,%strref%)
+    TriggerActivation(Myself,FALSE)
+    RemoveTraps(Myself)
+END
+
+>>>>>>>>
+
+ACTION_PHP_EACH container_trap_scripts AS trap_script => _ BEGIN
+  EXTEND_TOP "%trap_script%.bcs" ".../IATweaks-inlined/trap_immunity_and_removal.baf"
+    SET strref = RESOLVE_STR_REF (@5031)
+    SET state = trap_immunity_state
+    EVALUATE_BUFFER
+END
+
+ACTION_PHP_EACH trigger_area_trap_scripts AS trap_script => _ BEGIN
+  EXTEND_TOP "%trap_script%.bcs" ".../IATweaks-inlined/trap_immunity_and_removal.baf"
+    SET strref = RESOLVE_STR_REF (@5031)
+    SET state = trap_immunity_state
+    EVALUATE_BUFFER
+END
+
+// ACTION_PHP_EACH container_trap_scripts AS trap_script => _ BEGIN
 //   COPY_EXISTING ~%trap_script%.bcs~ ~override~
 //     DECOMPILE_AND_PATCH BEGIN
-//       SET ofs = INDEX_BUFFER(~\(Entered(\[ANYONE\])\|Opened(\[ANYONE\])\)~)
+//       SET ofs = INDEX_BUFFER(~CheckSpellState(Player\(\d\),\.*)~)
 //       PATCH_IF ofs >= 0 BEGIN
 //         REPLACE_EVALUATE
-//           "IF\([ -~%TAB%%WNL%%LNL%%MNL%]*?\)\(Entered(\[ANYONE\])\|Opened(\[ANYONE\])\)\([ -~%TAB%%WNL%%LNL%%MNL%]*\)THEN\([ %TAB%]*[%WNL%%LNL%%MNL%]\)"
+//           ~CheckSpellState(Player\(\d\),\.*)~
 //           BEGIN
-//             SPRINT val ~IF%MATCH1%%MATCH2%%MATCH3%  OR(2)%MATCH4%    TimerExpired(1)%MATCH4%    !Global("s!wasdisabled","LOCALS",1)%MATCH4%THEN%MATCH4%~
-//             // PATCH_PRINT ~%val%~
 //           END
-//           ~%val%~
+//           ~CheckSpellState(Player%MATCH1%,%trap_immunity_state%)~
 //       END
 //     END
-//     IF_EXISTS
-//   ACTION_IF VARIABLE_IS_SET ofs AND ofs >= 0 BEGIN
-//     EXTEND_TOP "%trap_script%.bcs" ".../IATweaks-inlined/spell_remove_traps.baf"
-//   END
 // END
 
 // COPY_EXISTING ~GSLIME.bcs~ ~override~

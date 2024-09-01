@@ -405,3 +405,28 @@ COPY_EXISTING ~kitlist.2da~ ~override/kitlist.2da~
   SET_2DA_ENTRY_LATER ~s!bm_desc~ $kitlist_rows("BEASTMASTER") $kitlist_cols("HELP") RESOLVE_STR_REF (@5029)
   SET_2DA_ENTRIES_NOW ~s!bm_desc~ ~colcount~
   PRETTY_PRINT_2DA
+
+/////////// Creatures /////////////
+
+// Brown Bears from Animal Summoning II
+
+COPY_EXISTING ~B1-8M1.itm~ ~override/s!bear01.itm~ // Bessen
+  WRITE_LONG 0x60 2 // Enchantment
+  LPF ~ALTER_ITEM_HEADER~
+    INT_VAR
+      thac0_bonus = 2
+      damage_bonus = 2
+  END
+
+COPY_EXISTING ~BEARBRSU.cre~ ~override~ // Bessen
+  WRITE_SHORT 0x24 48 // HP
+  WRITE_SHORT 0x26 48 // HP
+  WRITE_BYTE  0x53 2  // APR
+  WRITE_BYTE  0x238 18 // Strength
+  WRITE_BYTE  0x239 75 // Exceptional Strength
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~B1-8M1~
+  END
+
+  ADD_CRE_ITEM ~s!bear01~ #0 #0 #0 ~NONE~ ~WEAPON1~

@@ -1,3 +1,26 @@
+// Change Kensai bonuses to only apply to melee weapons
+
+COPY_EXISTING ~SPCL141.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 278
+      opcode = 284
+  END 
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 73
+      opcode = 285
+  END 
+
+// Change Riskbreaker crit bonuses to only apply to melee weapons
+
+COPY_EXISTING ~SPCLI05.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 301
+      special = 1
+  END 
+
 // Add Wings to Swanmays
 
 COPY ~IATweaks\resources\bam\WQMZWA1.bam~ ~override~

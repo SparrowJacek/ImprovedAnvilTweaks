@@ -155,3 +155,95 @@ COPY_EXISTING ~s!robe02.itm~ ~override~
         parameter2 = 1
     END
   END
+
+////////// Reworked Improved Haste and Whirlwind Attack ////////////
+
+ACTION_FOR_EACH improved_haste_spell IN ~SPINI33~ ~SPINI88~ ~SPWI613~ ~S!CHMPMZ~ ~SPWISH36~ ~SPWISH37~ ~SPWISH40~ BEGIN
+  COPY_EXISTING ~%improved_haste_spell%.spl~ ~override~
+    LPF ~S!SPELL_USES_OPCODE~
+      INT_VAR
+        match_opcode = 16
+      RET
+        opcode_target
+    END
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 16
+        parameter2 = 0
+        silent = 1
+    END
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 317
+        parameter2 = 0
+        silent = 1
+    END
+    LPF ~CLONE_EFFECT~ 
+      INT_VAR
+        match_opcode = 16
+        opcode = 1
+        parameter1 = 1
+        parameter2 = 0
+        silent = 1
+    END
+    LPF ~CLONE_EFFECT~ 
+      INT_VAR
+        match_opcode = 317
+        opcode = 1
+        parameter1 = 1
+        parameter2 = 0
+        silent = 1
+    END
+    PATCH_FOR_EACH improved_haste_spell_to_delete IN ~SPINI33~ ~SPINI88~ ~SPWI613~ ~S!CHMPMZ~ ~SPWISH36~ ~SPWISH37~ ~SPWISH40~ BEGIN
+      LPF ~ADD_SPELL_EFFECT~ 
+        INT_VAR
+          opcode = 321
+          insert_point = 0
+          target = EVAL ~%opcode_target%~
+          resist_dispel = 0
+        STR_VAR
+          resource = EVAL ~%improved_haste_spell_to_delete%~
+      END
+    END
+  BUT_ONLY
+  IF_EXISTS
+END
+
+COPY_EXISTING ~SPPR618.spl~ ~override~ // Champion's Might
+  SAY UNIDENTIFIED_DESC @6124
+
+COPY_EXISTING ~SPWI613.spl~ ~override~ // Improved Haste
+  SAY UNIDENTIFIED_DESC @6125
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      target_count = 2
+  END
+
+COPY_EXISTING ~SPINI33.spl~ ~override~ // Improved Haste for Riskbreaker
+  SAY UNIDENTIFIED_DESC @6125
+
+COPY_EXISTING ~SPINI88.spl~ ~override~ // Flurry of Blows
+  SAY UNIDENTIFIED_DESC @6125
+
+// update Flurry of Blows description in class description for Monk
+
+LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~clastext.2da~
+  RET_ARRAY
+    clastext_cols = 2da_columns_to_ids_mapping
+END
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~clastext.2da~
+  RET_ARRAY
+    clastext_rows = 2da_rows_to_ids_mapping
+END
+
+COPY_EXISTING ~clastext.2da~ ~override/clastext.2da~
+  COUNT_2DA_COLS ~colcount~
+  SET_2DA_ENTRY_LATER ~s!monk_desc~ $clastext_rows("MONK") $clastext_cols("DESCSTR") RESOLVE_STR_REF (@5030)
+  SET_2DA_ENTRIES_NOW ~s!monk_desc~ ~colcount~
+  PRETTY_PRINT_2DA
+

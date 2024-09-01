@@ -376,4 +376,66 @@ The Beast Master can use this ability again after 15 rounds or if the target die
 UNIFIED MINDS:
 By using this ability, the Beast Master opens his mind to one animal, allowing their senses and thoughts to bond almost as if they were a single organism. For the next turn, whenever the Beast Master and the targeted animal stand within 5 feet from each other, they can protect each other. This includes things like blocking an attack directed at one of them, alerting each other of an incoming arrow, or redirecting a hit targeted at a vital point. This ability grants a -5 bonus to AC and +10% damage reduction against all weapon types. Additionally, their connected minds protect each other from mental manipulation, granting both the Beast Master and the animal a +3 bonus to saving throws against enchantment spells. The effects from multiple uses of this ability are not cumulative. If either the Beast Master or the target animal become feared, held, charmed or disabled in any other way, the effects of this spell will be nullified.~
 
-@5030 = ~~
+@5030 = ~MONK: Monks are warriors who pursue perfection through contemplation as well as action. They are versatile fighters, especially skilled in combat without weapons or armor. Though Monks cannot cast spells, they have a unique magic of their own: they channel a subtle energy, called ki, which allows them to perform amazing feats. The Monk's best known feat is their ability to stun an opponent with an unarmed blow.
+
+CLASS FEATURES:
+
+- May not wear any armor.
+- May only use weapons available to the Thief class (except two-handed).
+- May only become Proficient (one slot) in any weapon class.
+- May only become Proficient (one slot) in Single-Weapon Style and may not put slots into any other style.
+- Moves 2 points faster than other characters. Movement rate further improves by 1 every 5 levels.
+- May make 1 unarmed attack per round. An additional 1/2 attack per round is gained every 3 levels. Damage dealt by unarmed attacks increases with level as follows:
+  Level 1-2: 1d6
+  Level 3-5: 1d8
+  Level 6-8: 1d10
+  Level 9-14: 2d6
+  Level 15-20: 2d8
+  Level 21-28: 2d10
+  Level 29+: 3d8
+- At level 6, unarmed attacks are treated as a +1 magical weapon and gain a +1 bonus to hit and damage rolls. This enchantment improves to +2 at level 9, +3 at level 12, +4 at level 18, and +5 at level 25.
+- Receives a +2 bonus to Saving Throws vs. Spell.
+- Deflect Missiles: +1 bonus to AC vs. missile attacks every 3 levels.
+- Starts with an Armor Class of 9 at 1st level and gains an additional +1 bonus every 2 levels.
+- May use the Stunning Blow ability once per day. Gains one use at level 1 and an additional use every 4 levels thereafter.
+- May use the Flurry of Blows ability once per day. Gains one use at level 11, 16 and 21.
+- May use the Diamond Body ability once per day. Gains one use at levels 17, 22 and 27.
+- 5th level: Becomes immune to all diseases and cannot be slowed or hasted.
+- 7th level: May use the Lay On Hands ability on <PRO_HIMHER>self to heal 2 Hit Points per level.
+- 8th level: Gains a -1 bonus to Speed Factor.
+- 9th level: Gains a +1 bonus to all Saving Throws and becomes immune to charm.
+- 11th level: Becomes immune to poison.
+- 12th level: Gains another -1 bonus to Speed Factor.
+- 13th level: May use the Quivering Palm ability once per day.
+- 14th level: Gains 3% Magic Resistance per level (starting with 42% at 14th level).
+- 20th level: Becomes immune to non-magical weapons.
+- Alignment restricted to lawful.
+- Hit Die: d8
+
+STUNNING BLOW: All successful attacks within the next round force the victim to save vs. Spell or be stunned. This special ability automatically modifies normal attacks; no targeting needs to be done.
+
+FLURRY OF BLOWS: Agility and prowess are key factors that allow a master of hand-to-hand combat survive in a fight against heavily armed bandits and spell-wielding sorcerers. Trained monks are capable of engaging their opponent with extraordinary speed, making them hasted and increasing their number of attacks per round by 1. This ability lasts for 3 rounds + 1 round / level and can not be dispelled by any external sources.
+
+DIAMOND BODY: Experienced monk channels his inner energy to induce a restorative state that heals the wounds and protects the self. For 5 rounds, the character receives 20% resistance to physical damage, regenerates 6 Hit Points per round and acquires immunity to Level Drain, Petrification and Imprisonment.
+
+QUIVERING PALM: The next successful attack forces the opponent to save vs. Spell or die. This special ability automatically modifies normal attacks; no targeting needs to be done.~
+
+@5031 = ~Trap mechanism deactivated.~
+
+@5032 = ~~
+
+@5033 = ~~
+
+@5034 = ~~
+
+@5035 = ~~
+
+@5036 = ~~
+
+@5037 = ~~
+
+@5038 = ~~
+
+@5039 = ~~
+
+@5040 = ~~

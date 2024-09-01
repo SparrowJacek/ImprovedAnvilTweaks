@@ -885,6 +885,25 @@ This spell is similar to Invisibility, but the recipient is able to attack by mi
 
 Note: After making an attack, the wizard is no longer completely invisible. Opponents can target the wizard.~
 
+@6127 = ~Trap Ward~
+
+@6128 = ~Trap Ward
+(Divination)
+
+Level: 2
+Sphere: Divination
+Range: 0
+Duration: Special
+Casting Time: 5
+Area of Effect: Special
+Saving Throw: None 
+
+When a priest casts a Trap Ward spell, he or she can choose one of two subspells:
+- Deactivate Traps - this spell targets the caster and allows it to deactivate any removable trap without getting harmed. For the next 6 seconds the caster can safely enter a trapped region or open a trapped chest and the spell will disable the trap instead of triggering it.
+- Find Traps - this spell reveals all traps in the caster's vicinity every 6 seconds for the next 3 turns.
+
+A trap is any device or magical ward that meets three criteria: it can inflict a sudden or unexpected result; the spellcaster would view the result as undesirable or harmful; and the creator specifically intended the harmful or undesirable result as such. Thus traps include glyphs and similar spells or devices.~
+
 @6129 = ~Trap Ward
 (Divination)
 

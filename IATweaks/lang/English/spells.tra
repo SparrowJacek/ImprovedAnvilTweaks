@@ -871,7 +871,20 @@ By casting this spell, the priest links his or her own life force with that of a
 
 From level 16 each time the target of this spell is hurt, the cleric regenerates 1d4 HP, this value is increased to 1d8 at level 20.~
 
-@6123 = ~Shield Bash~
+@6123 = ~Improved Invisibility
+(Illusion/Phantasm)
+
+Level: 4
+Range: Touch
+Duration: 3 rounds + 1 round/level
+Casting Time: 4
+Area of Effect: 1 creature
+Saving Throw: None
+
+This spell is similar to Invisibility, but the recipient is able to attack by missile discharge, melee combat, or spellcasting while remaining unseen. However, telltale traces—a shimmering—allow an observant opponent to attack the invisible spell recipient. These traces are only noticeable when specifically looked for (after the invisible character has made <PRO_HISHER> presence known). Attacks against the invisible character suffer a -4 penalty to attack rolls.
+
+Note: After making an attack, the wizard is no longer completely invisible. Opponents can target the wizard.~
+
 
 @6124 = ~Shield Bash~
 

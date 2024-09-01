@@ -247,3 +247,66 @@ COPY_EXISTING ~clastext.2da~ ~override/clastext.2da~
   SET_2DA_ENTRIES_NOW ~s!monk_desc~ ~colcount~
   PRETTY_PRINT_2DA
 
+////////// Non-stackable bonuses from rings and cloaks ////////////
+
+COPY ~IATweaks\resources\spl\s!ac_st1.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!ac_st2.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!ac_st3.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!ac_st4.spl~ ~override~
+
+COPY ~IATweaks\resources\eff\s!ac_st1.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!ac_st2.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!ac_st3.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!ac_st4.eff~ ~override~
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY item_to_enchantment_mapping BEGIN
+  "CLCK01"=>1
+  "CLCK02"=>2
+  "CLCK06"=>1
+  // "CLCK32" - +1 all, can be made +2
+  "NPCLCK"=>1
+  "s!clck01"=>4
+  "s!clck02"=>3
+  // "s!clck07" - +3 all 
+  // "s!clck08"=>3 - probably make it a pure +1AC
+  // "s!clck09"=>3 - probably make it a pure +2AC
+  "s!clck11"=>1
+  "s!clck12"=>2
+  // "s!clck12" - +3 all
+  "RING06"=>1
+  "RING07"=>2
+  "RING25"=>1
+  "RING39"=>2
+  "RING41"=>3
+  "s!ring01"=>4
+  "s!ring03"=>3
+  "s!ring05"=>1
+  // Samara Fruit
+  // Holy Symbol of Lathander
+  // 
+END
+
+ACTION_PHP_EACH item_to_enchantment_mapping AS item_file => enchantment BEGIN
+  COPY_EXISTING ~%item_file%.itm~ ~override~
+    PATCH_FOR_EACH opcode_to_delete IN 0 33 34 35 36 37 325 BEGIN
+      LPF ~DELETE_EFFECT~
+        INT_VAR
+          match_opcode = opcode_to_delete
+      END
+    END
+    FOR (i = 1; i <= enchantment; ++i) BEGIN
+      LPF ~ADD_ITEM_EQEFFECT~
+        INT_VAR
+          insert_point = 0
+          opcode = 272
+          target = 1
+          parameter1 = 1
+          parameter2 = 0
+          timing = 2
+        STR_VAR
+          resource = EVAL ~S!AC_ST%i%~
+      END
+    END
+  BUT_ONLY
+  IF_EXISTS
+END

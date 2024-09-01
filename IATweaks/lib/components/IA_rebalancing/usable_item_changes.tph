@@ -1,0 +1,195 @@
+////////// Potions using spell levels ///////////
+
+// Define potion - level mapping
+ACTION_DEFINE_ASSOCIATIVE_ARRAY potion_to_level_mapping BEGIN
+	"POTN02"=>10
+	"POTN03"=>10
+	"POTN04"=>14
+	"POTN05"=>16
+	"POTN06"=>18
+	"POTN07"=>20
+	"POTN09"=>15
+	"POTN10"=>10
+	"POTN11"=>15
+	"POTN12"=>12
+	"POTN14"=>10
+	"POTN15"=>10
+	"POTN16"=>10
+	"POTN18"=>10
+	"POTN19"=>10
+	"POTN21"=>10
+	"POTN22"=>10
+	"POTN23"=>10
+	"POTN24"=>10
+	"POTN28"=>10
+	"POTN29"=>10
+	"POTN30"=>10
+	"POTN31"=>10
+	"POTN33"=>30
+	"POTN34"=>12
+	"POTN35"=>20
+	"POTN36"=>12
+	"POTN37"=>16
+	"POTN38"=>10
+	"POTN39"=>10
+	"POTN40"=>15
+	"POTN41"=>20
+	"POTN42"=>10
+	"POTN44"=>10
+	"POTN45"=>10
+	"POTN46"=>10
+	"POTN56"=>14
+	"S!POTN04"=>10
+	"S!POTN07"=>10
+	"S!POTN08"=>10
+	"S!POTN09"=>10
+	"S!POTN10"=>10
+	"S!POTN11"=>10
+	"S!POTN12"=>10
+	"S!POTN12"=>10
+	"S!POTN15"=>10
+	"S!POTN16"=>10
+	"S!POTN19"=>10
+	"S!POTN20"=>10
+	"S!POTN22"=>10
+END
+
+ACTION_PHP_EACH potion_to_level_mapping AS potion_filename => potion_level BEGIN
+  COPY ~IATweaks\resources\spl\spell_template_for_itm_effects.spl~ ~override\%potion_filename%.spl~
+  COPY_EXISTING ~%potion_filename%.itm~ ~override~
+    LPF ~ITEM_EFFECT_TO_SPELL~
+      INT_VAR
+        type = 99
+        header = 99
+      STR_VAR
+        new_itm_spl = EVAL ~%potion_filename%.spl~
+    END
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = ~-1~
+    END
+    LPF ~ADD_ITEM_EFFECT~
+      INT_VAR
+        opcode = 146
+        target = 1
+        parameter1 = potion_level
+        parameter2 = 2
+      STR_VAR
+        resource = EVAL ~%potion_filename%~
+    END
+    SET len = STRING_LENGTH ~%potion_filename%~
+    LPF ~SUBSTRING~
+      INT_VAR
+        start = len - 2
+        length = 2
+      STR_VAR
+        string = EVAL ~%potion_filename%~
+      RET
+        num = substring
+    END
+    LPF ~SUBSTRING~
+      INT_VAR
+        start = 0
+        length = 2
+      STR_VAR
+        string = EVAL ~%potion_filename%~
+      RET
+        first_2_letters = substring
+    END
+    PATCH_IF (~%first_2_letters%~ STR_EQ ~S!~) BEGIN
+      SPRINT spl_filename ~S!PTN%num%X~
+    END
+    ELSE BEGIN
+      SPRINT spl_filename ~PTN%num%X~
+    END
+    INNER_ACTION BEGIN
+      COPY ~IATweaks\resources\spl\spell_template_for_itm_effects.spl~ ~override\%spl_filename%.spl~
+    END
+    LPF ~ITEM_EFFECT_TO_SPELL~
+      INT_VAR
+        type = 99
+        header = 99
+      STR_VAR
+        new_itm_spl = EVAL ~%spl_filename%.spl~
+    END    
+END
+
+//////////// Scrolls and Wands not being able to target invisible + not usable when silenced //////////////
+
+COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
+  READ_SHORT 0x1c item_category
+  PATCH_IF (item_category = 11 OR item_category = 35) BEGIN
+
+    GET_OFFSET_ARRAY itm_headers ITM_V10_HEADERS
+
+    PHP_EACH itm_headers AS int1 => header_off BEGIN
+      READ_BYTE header_off + 0x0c target
+      PATCH_IF (target != 5 AND target != 7) BEGIN // not caster
+        READ_BYTE header_off + 0x29 flags_4
+        WRITE_BYTE header_off + 0x29 (flags_4 BOR 0b00000100)
+      END
+    END
+  END
+  PATCH_IF (item_category = 11) BEGIN
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 146
+        opcode = 318
+        target = 1
+        parameter1 = 0x00001000 // Silenced
+        parameter2 = 138
+        timing = 10
+        resist_dispel = 0
+        duration = 2
+        silent = 1
+      STR_VAR
+        insert = ~above~
+        resource = EVAL ~%SOURCE_RES%~
+    END
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 148
+        opcode = 318
+        target = 1
+        parameter1 = 0x00001000 // Silenced
+        parameter2 = 138
+        timing = 10
+        resist_dispel = 0
+        duration = 2
+        silent = 1
+      STR_VAR
+        insert = ~above~
+        resource = EVAL ~%SOURCE_RES%~
+    END
+  END
+
+  BUT_ONLY
+
+// Make Breach from Wish spell unusable on invisible characters
+
+COPY_EXISTING ~SPWISH38.spl~ ~override~
+  LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        insert_point = 0
+        opcode = 318
+        power = 5
+        target = 5
+        parameter2 = 142
+        timing = 10
+        resist_dispel = 0
+        duration = 2
+      STR_VAR
+        resource = ~SPWISH38~
+    END
+
+// Make enemy Improved Invisibility spell act as standard II
+
+COPY_EXISTING ~SPWI405.spl~ ~override\SPWII41.spl~
+
+// Make the spell that disables a few buttons when a character is silenced do nothing (ideally the script for casting it should be removed)
+
+COPY_EXISTING ~SPWII44.spl~ ~override~
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 144
+  END

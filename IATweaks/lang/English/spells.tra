@@ -885,6 +885,21 @@ This spell is similar to Invisibility, but the recipient is able to attack by mi
 
 Note: After making an attack, the wizard is no longer completely invisible. Opponents can target the wizard.~
 
+@6124 = ~Champion's Might
+(Alteration)
+
+Level: 6
+Sphere: Law
+Range: Visual range of the caster
+Duration: 15 rounds
+Casting Time: 2
+Area of Effect: 1 creature
+Saving Throw: None
+
+When this spells is cast, the priest effectively draws on the power of <PRO_HISHER> god and lends it to the target creature, in effect creating a champion. The target gains a bonus to <PRO_HISHER> THAC0 at a rate of 1 for every 5 levels of the caster up till +4 at level 20. The target also becomes hasted and his number of attacks per round is increased by one as if Improved Haste was cast on him.
+
+The spell applies its effects every 6 seconds for its duration and the effects last for the same amount of time. The target has to be in the caster's range for each pulse of the spell, otherwise he'll have to wait for another pulse to get the benefits. Champion's Might requires intense concentration to maintain the divine connection, so the priest can have only one instance of this spell active.~
+
 @6127 = ~Trap Ward~
 
 @6128 = ~Trap Ward

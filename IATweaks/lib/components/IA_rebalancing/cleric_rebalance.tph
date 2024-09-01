@@ -1359,6 +1359,13 @@ COPY ~IATweaks\resources\spl\s!chmpmd.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!chmpme.spl~ ~override~
 COPY ~IATweaks\resources\eff\s!chmpme.eff~ ~override~
 COPY ~IATweaks\resources\spl\s!chmpmf.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      multi_match = 1
+      match_opcode = 326
+      parameter1 = 8192 // Tempus
+      parameter2 = %kit_equals_row%
+  END
 COPY ~IATweaks\resources\spl\s!chmpmg.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!chmpmh.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!chmpmi.spl~ ~override~
@@ -1374,7 +1381,16 @@ COPY ~IATweaks\resources\spl\s!chmpml.spl~ ~override~
     INT_VAR
       projectile = %s!chmpml%
   END
-
+COPY ~IATweaks\resources\spl\s!chmpmu.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      projectile = %s!chmpml%
+  END
+COPY ~IATweaks\resources\spl\s!chmpmw.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      projectile = %s!chmpml%
+  END
 COPY_EXISTING ~sppr507.spl~ ~override/sppr618.spl~
   SAY NAME1 @6105
   SAY UNIDENTIFIED_DESC @6055
@@ -1427,6 +1443,8 @@ COPY_EXISTING ~sppr507.spl~ ~override/sppr618.spl~
     STR_VAR
       resource = ~S!CHMPMC~
   END
+
+COPY ~IATweaks\resources\spl\s!chmpmz.spl~ ~override~
 
 COPY_EXISTING ~hidespl.2da~ ~override~
   COUNT_2DA_COLS ~colcount~
@@ -2468,8 +2486,15 @@ COPY_EXISTING ~hidespl.2da~ ~hidespl.2da~
 // Suna Seni Cleric + 2nd ambush Cleric
 ACTION_FOR_EACH cleric_thug_cre IN ~RECLER01.cre~ ~RETHUG03.cre~ BEGIN
   COPY_EXISTING ~%cleric_thug_cre%~ ~override~
-    WRITE_LONG 0x244 0x4013 // Kit = Talos
+    WRITE_LONG 0x244 0x40130000 // Kit = Talos
     ADD_MEMORIZED_SPELL ~SPCL943~ #0 ~innate~ (1)
+  
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 112
+      parameter1 = 2
+  END
 END
 
 COMPILE ~IATweaks\scripts\creatures\s!recler.baf~

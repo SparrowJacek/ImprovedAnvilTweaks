@@ -38,6 +38,11 @@ COPY_EXISTING ~spwi209.spl~ ~override~
       duration = 120
   END
 
+ACTION_FOR_EACH luck_scroll IN ~s!scrl18.itm~ ~scrl93.itm~ BEGIN
+  COPY_EXISTING ~%luck_scroll%~ ~override~
+    SAY IDENTIFIED_DESC @6119
+END
+
 // Mirror Image
 
 COPY_EXISTING ~spwi212.spl~ ~override~
@@ -56,6 +61,9 @@ COPY_EXISTING ~spwi215.spl~ ~override~
   WRITE_BYTE 0x1f (%spell_flags% BOR 0b00000001) // disable the spell for Diviners
   WRITE_SHORT 0x22 14 // Casting animation
   WRITE_BYTE 0x25 2 // School
+
+COPY_EXISTING ~SCRL99.itm~ ~override~
+  SAY IDENTIFIED_DESC @6056
 
 // RVE
 
@@ -218,7 +226,6 @@ LAF ~S!ADD_CLAB_ROW~
     level35 = ~GA_S!STONSK~
 END
 
-
 // Tenser's Transformation
 
 COPY ~IATweaks\resources\eff\s!1_2apr.eff~ ~override~
@@ -316,7 +323,6 @@ LAF ~S!ADD_CLAB_ROW~
     level36 = ~GA_S!DRGSTR~
 END
 
-
 // Blinding Speed
 
 COPY ~IATweaks\resources\bam\s!blspdb.bam~ ~override~
@@ -339,8 +345,9 @@ END
 // Chain Sequencer
 
 COPY_EXISTING ~inarea.pro~ ~override/s!wij01.pro~
-  // READ_BYTE 0x200 pro_flags
-  // WRITE_BYTE 0x200 (%pro_flags% BOR 0b00000010) // make it affect only enemies
+  READ_BYTE 0x2f ext_flags_4
+  WRITE_BYTE 0x2f (%ext_flags_4% BOR 0b01000000) // Activate IWD style checks
+  WRITE_SHORT 0x3e 142 // Do not affect invisible creatures
   WRITE_SHORT 0x214 0 // No secondary projectile
 
 ADD_PROJECTILE ~override\s!wij01.pro~
@@ -513,6 +520,12 @@ ACTION_PHP_EACH imp_inv_spells AS ii_spell=>irrelevant BEGIN
     BUT_ONLY
   END
 END
+
+COPY_EXISTING ~SPWI405.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6123
+
+COPY_EXISTING ~SCRL1Y.itm~ ~override~
+  SAY IDENTIFIED_DESC @6123
 
 // Add permanent sequencers for single and multi target Non-detection to Illusionist
 

@@ -29,7 +29,7 @@ Weight: 1~
 
 This simple silver ring features a small, polished green gem set in its band. While unassuming at first glance, the ring is enchanted with a modest protective magic that enhances the wearer's defenses, making them slightly harder to hit in combat. The green gem is said to channel the ring's protective energies, subtly deflecting incoming attacks.
 
-Though it doesn’t boast the powerful magic of more elaborate items, the Wardring is a reliable choice for adventurers seeking dependable protection in the face of danger.
+Though it doesn't boast the powerful magic of more elaborate items, the Wardring is a reliable choice for adventurers seeking dependable protection in the face of danger.
 
 STATISTICS:
 
@@ -46,8 +46,8 @@ In ages past, a king named Rhigaerd was renowned for the spies he kept. So skill
 STATISTICS:
 
 Equipped abilities:
-– Stealth Strike: +5%
-– Hide In Shadows: +15%
+- Stealth Strike: +5%
+- Hide In Shadows: +15%
 
 Weight: 4~
 
@@ -70,7 +70,7 @@ The Shadow's Blade was created to be the perfect assassin's tool. It is highly s
 STATISTICS:
 
 Equipped abilities:
-– Stealth Strike +20%
+- Stealth Strike +20%
 
 THAC0: +3
 Damage: 1d6+3 (piercing)
@@ -92,7 +92,15 @@ STATISTICS:
 Charge abilities: Trap Ward, twice per day
                   Know Alignment, twice per day~
 
-@7011 = ~~
+@7011 = ~The Mercykillers are a powerful faction based out of the planar city of Sigil. This ring is given out to Mercykiller assassins when they are sent out to punish those who have broken the laws of Sigil. Often these assassins will roam as far as the Prime Material Plane.
+
+STATISTICS:
+
+Equipped abilities:
+- Hide In Shadows: +5%
+- Stealth Strike: +15%
+
+Weight: 0~
 
 @7012 = ~~
 

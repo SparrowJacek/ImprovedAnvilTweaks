@@ -651,6 +651,8 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY hide_in_shadows_value_to_cooldown_mapping BEGIN
   330 => 36
   340 => 33
   350 => 30
+  360 => 27
+  370 => 24
 END
 
 COPY ~IATweaks\resources\eff\s!hisrem.eff~ ~override~
@@ -1917,6 +1919,20 @@ COPY_EXISTING ~sw1h10.itm~ ~override~
       target = 1
       parameter1 = 20
       timing = 2
+  END
+
+// Mercykiller Ring
+
+COPY_EXISTING ~wa2ring.itm~ ~override~
+  SAY IDENTIFIED_DESC @7011
+  WRITE_LONG 0x34 25000
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 275
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 277
   END
 
 // //////// Spells /////////

@@ -434,3 +434,71 @@ ACTION_FOR_EACH mutated_spider_cre_file IN ~s!spidr2.cre~ ~spidsm02.cre~ BEGIN
     WRITE_BYTE 0x23d 18 // Strength
 END
 
+//////////// Mencar's Party /////////////
+
+COPY_EXISTING ~SEVPAT01.cre~ ~override~ // Mencar
+  WRITE_SHORT 0x24 123 // HP
+  WRITE_SHORT 0x26 123 // HP
+    
+  LPF ~ADD_CRE_EFFECT~ // ***** in Warhammers
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 5
+      parameter2 = 97
+      resist_dispel = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // ** in Single Weapon Style
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 2
+      parameter2 = 113
+      resist_dispel = 0
+      timing = 9
+  END
+
+COPY_EXISTING ~SEVPAT04.cre~ ~override~ // Smaeluv
+  WRITE_SHORT 0x24 138 // HP
+  WRITE_SHORT 0x26 138 // HP
+  WRITE_BYTE 0x60 20 // Resist Slashing
+  WRITE_BYTE 0x61 20 // Resist Crushing
+  WRITE_BYTE 0x62 20 // Resist Piercing
+  WRITE_BYTE 0x63 20 // Resist Missile
+  WRITE_LONG 0x244 0x40000000 // Kit = Barbarian
+    
+  LPF ~ADD_CRE_EFFECT~ // ** in 2h Sword
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 2
+      parameter2 = 93
+      resist_dispel = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // ** in 2h Weapon Style
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 2
+      parameter2 = 111
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 0
+  END
+  
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!TRAP~
+  END
+
+  ADD_CRE_ITEM ~POTN11~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV14~
+  
+COMPILE ~IATweaks\scripts\creatures\SEVPAT04.BAF~

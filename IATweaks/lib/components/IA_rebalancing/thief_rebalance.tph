@@ -1865,6 +1865,72 @@ COPY_EXISTING ~s!slassa.cre~ ~override~
 
 COMPILE ~IATweaks\scripts\creatures\S!SLASSA.baf~
 
+// Thief from Mencar's party
+COPY_EXISTING ~SEVPAT05.cre~ ~override~
+  WRITE_BYTE 0x45 0 // Hide in Shadows
+  WRITE_BYTE 0x64 0 // Detect Illusions
+  WRITE_BYTE 0x65 45 // Set Traps
+  WRITE_BYTE 0x67 0 // Pick Locks
+  WRITE_BYTE 0x68 0 // Stealth Strike
+  WRITE_BYTE 0x69 45 // Find Traps
+  WRITE_BYTE 0x6a 110 // Pick Pockets
+    
+  LPF ~ALTER_EFFECT~ // ***** in Short Sword
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 91
+      parameter1 = 5
+  END
+    
+  LPF ~ALTER_EFFECT~ // ** in Sword & Shield
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 113
+      parameter2 = 112
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 90
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40OL~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 91
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40FT~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 92
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40PP~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 144
+      target = 1
+      timing = 9
+    STR_VAR
+      effsource = ~S!DISSTE~
+  END
+
 /////////// Items ////////////
 
 COPY_EXISTING ~potn36.itm~ ~override~

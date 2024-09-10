@@ -35,12 +35,13 @@ COPY_EXISTING_REGEXP GLOB ~.+\.cre~ ~override~
 
 ACTION_FOR_EACH res_spell IN ~sppr306.spl~ ~spwi319.spl~ ~spdr302.spl~ ~spwi320.spl~ ~sppr420.spl~ ~sppr407.spl~ ~spwi512.spl~ ~sppri12.spl~ ~spwi517.spl~ ~spwi606.spl~ ~spdr702.spl~ ~spwi702.spl~ ~spwii02.spl~ ~spwi803.spl~ ~spwish10.spl~ ~spcl721.spl~ BEGIN
   COPY_EXISTING ~%res_spell%~ ~override~
+    SET is_ally_only_opcode_added = 0
     PATCH_FOR_EACH res_opcode IN 27 28 29 30 31 84 85 BEGIN
       LPF ~S!SPELL_USES_OPCODE~
         INT_VAR
           match_opcode = %res_opcode%
         RET
-          is_found
+          is_found opcode_target
       END
       PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
         LPF ~ALTER_EFFECT~
@@ -48,6 +49,20 @@ ACTION_FOR_EACH res_spell IN ~sppr306.spl~ ~spwi319.spl~ ~spdr302.spl~ ~spwi320.
             match_opcode = %res_opcode%
             parameter1 = 75
             parameter2 = 1
+        END
+      END
+      PATCH_IF (~%is_found%~ STR_EQ ~TRUE~ AND is_ally_only_opcode_added == 0) BEGIN
+        is_ally_only_opcode_added = is_ally_only_opcode_added + 1
+        LPF ~ADD_SPELL_EFFECT~
+          INT_VAR
+            insert_point = 0
+            opcode = 318
+            parameter2 = 50
+            target = opcode_target
+            timing = 10
+            duration = 5
+          STR_VAR
+            resource = EVAL ~%SOURCE_RES%~
         END
       END
     END
@@ -59,41 +74,189 @@ COPY_EXISTING ~sppr306.spl~ ~override~
 COPY_EXISTING ~spwi319.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6108
 
+COPY_EXISTING ~scrl6h.itm~ ~override~
+  SAY IDENTIFIED_DESC @6108
+
 COPY_EXISTING ~spwi320.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6109
+
+COPY_EXISTING ~scrl6i.itm~ ~override~
+  SAY IDENTIFIED_DESC @6109
 
 COPY_EXISTING ~spdr302.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6110
 
 COPY_EXISTING ~sppr407.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6111
+    // Remove level progression from the spell
+  PATCH_FOR_EACH min_lvl_val IN 8 9 10 11 12 13 14 15 16 17 18 BEGIN
+    LPF ~DELETE_SPELL_HEADER~ 
+      INT_VAR
+        header_type = ~-1~
+        min_level = min_lvl_val
+    END
+  END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      duration_high = 300
+  END
 
 COPY_EXISTING ~spwi512.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6112
+    // Remove level progression from the spell
+  PATCH_FOR_EACH min_lvl_val IN 10 11 12 13 14 15 16 17 18 19 20 BEGIN
+    LPF ~DELETE_SPELL_HEADER~ 
+      INT_VAR
+        header_type = ~-1~
+        min_level = min_lvl_val
+    END
+  END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      duration_high = 300
+  END
+
+COPY_EXISTING ~scrl5t.itm~ ~override~
+  SAY IDENTIFIED_DESC @6112
 
 COPY_EXISTING ~sppri12.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6113
+    // Remove level progression from the spell
+  PATCH_FOR_EACH min_lvl_val IN 10 11 12 13 14 15 16 17 18 19 20 BEGIN
+    LPF ~DELETE_SPELL_HEADER~ 
+      INT_VAR
+        header_type = ~-1~
+        min_level = min_lvl_val
+    END
+  END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      duration_high = 300
+  END
 
 COPY_EXISTING ~spwi517.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6114
+    // Remove level progression from the spell
+  PATCH_FOR_EACH min_lvl_val IN 10 11 12 13 14 15 16 17 18 19 20 BEGIN
+    LPF ~DELETE_SPELL_HEADER~ 
+      INT_VAR
+        header_type = ~-1~
+        min_level = min_lvl_val
+    END
+  END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      duration_high = 300
+  END
+
+COPY_EXISTING ~scrl6y.itm~ ~override~
+  SAY IDENTIFIED_DESC @6114
 
 COPY_EXISTING ~spwi606.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6115
+    // Remove level progression from the spell
+  PATCH_FOR_EACH min_lvl_val IN 13 14 15 16 17 18 19 20 BEGIN
+    LPF ~DELETE_SPELL_HEADER~ 
+      INT_VAR
+        header_type = ~-1~
+        min_level = min_lvl_val
+    END
+  END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      duration_high = 300
+  END
+
+COPY_EXISTING ~scrl7j.itm~ ~override~
+  SAY IDENTIFIED_DESC @6115
 
 COPY_EXISTING ~spdr702.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6116
+    // Remove level progression from the spell
+  PATCH_FOR_EACH min_lvl_val IN 15 16 17 18 19 20 BEGIN
+    LPF ~DELETE_SPELL_HEADER~ 
+      INT_VAR
+        header_type = ~-1~
+        min_level = min_lvl_val
+    END
+  END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      duration_high = 300
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 28
+      opcode = 27
+  END
 
 COPY_EXISTING ~spwi702.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6116
+    // Remove level progression from the spell
+  PATCH_FOR_EACH min_lvl_val IN 15 16 17 18 19 20 BEGIN
+    LPF ~DELETE_SPELL_HEADER~ 
+      INT_VAR
+        header_type = ~-1~
+        min_level = min_lvl_val
+    END
+  END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      duration_high = 300
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 28
+      opcode = 27
+  END
+
+COPY_EXISTING ~scrl8e.itm~ ~override~
+  SAY IDENTIFIED_DESC @6116
 
 COPY_EXISTING ~spwii02.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6115
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      duration_high = 300
+  END
 
 COPY_EXISTING ~spwi803.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6117
+    // Remove level progression from the spell
+  PATCH_FOR_EACH min_lvl_val IN 17 18 19 20 BEGIN
+    LPF ~DELETE_SPELL_HEADER~ 
+      INT_VAR
+        header_type = ~-1~
+        min_level = min_lvl_val
+    END
+  END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      duration_high = 300
+  END
+
+COPY_EXISTING ~scrl8y.itm~ ~override~
+  SAY IDENTIFIED_DESC @6117
+  
+COPY_EXISTING ~scrl9b.itm~ ~override~
+  SAY IDENTIFIED_DESC @6117
 
 COPY_EXISTING ~spwish10.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6115
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      duration_high = 300
+  END
 
 COPY_EXISTING ~spcl721.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6118

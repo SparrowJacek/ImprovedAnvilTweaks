@@ -683,7 +683,7 @@ By using this ability, the Beast Master opens his mind to one animal, allowing t
 Level: 4
 Sphere: Protection
 Range: Touch
-Duration: 2 turns
+Duration: 5 turns
 Casting Time: 5
 Area of Effect: Creature touched
 Saving Throw: None
@@ -758,7 +758,7 @@ When this spell is cast, it sets the target's cold resistance to 75% for its dur
 Level: 4
 Sphere: Protection, Weather
 Range: Touch
-Duration: 5 rounds/level
+Duration: 5 turns
 Casting Time: 7 
 Area of Effect: 1 creature
 Saving Throw: None 
@@ -770,7 +770,7 @@ When the spell is cast, it sets the target's electricity resistance to 75%, part
 
 Level: 5
 Range: Touch
-Duration: 1 turn/level
+Duration: 5 turns
 Casting Time: 5
 Area of Effect: 1 creature
 Saving Throw: None
@@ -782,7 +782,7 @@ When the spell is cast, it sets the target's electricity resistance to 75%, part
 
 Level: 5
 Range: Touch
-Duration: 1 turn/level
+Duration: 5 turns
 Casting Time: 6
 Area of Effect: 1 creature 
 Saving Throw: None
@@ -794,7 +794,7 @@ When the spell is cast, it sets the target's acid resistance to 75%, partially p
 
 Level: 5
 Range: Touch
-Duration: 1 turn/level
+Duration: 5 turns
 Casting Time: 6
 Area of Effect: 1 creature 
 Saving Throw: None
@@ -806,7 +806,7 @@ When the spell is cast, it sets the target's acid resistance to 75%, partially p
 
 Level: 6
 Range: Touch
-Duration: 1 turn/level
+Duration: 5 turns
 Casting Time: 6
 Area of Effect: 1 creature
 Saving Throw: None
@@ -818,7 +818,7 @@ When the spell is cast, it sets the target's magical damage resistance to 75%, p
 
 Level: 7
 Range: Touch
-Duration: 1 round/level
+Duration: 5 turns
 Casting Time: 7
 Area of Effect: 1 creature
 Saving Throw: None
@@ -830,7 +830,7 @@ When the spell is cast, it sets the target's elemental resistance to 75%, partia
 
 Level: 8
 Range: Touch
-Duration: 1 round/level
+Duration: 5 turns
 Casting Time: 8
 Area of Effect: 1 creature
 Saving Throw: None

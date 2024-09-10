@@ -875,32 +875,55 @@ COPY_EXISTING_REGEXP GLOB ~.+\.cre~ ~override~
   READ_BYTE 0x273 cre_class
   // Pickpocket
   PATCH_IF %cre_class% == 4 OR %cre_class% == 5 OR %cre_class% == 9 OR %cre_class% == 10 OR %cre_class% == 13 OR %cre_class% == 15 BEGIN
-    PATCH_FOR_EACH pickpocket_subspell IN ~S!PPTHAC~ ~S!PPCRIT~ ~S!PPACLI~ ~S!PPACHE~ BEGIN
-      LPF ~ADD_CRE_EFFECT~
-        INT_VAR
-          opcode = 177
-          target = 1
-          parameter2 = 2
-          timing = 9
-        STR_VAR
-          resource = EVAL ~%pickpocket_subspell%~
-          effsource = ~S!PPBASE~
-      END
+    // PATCH_FOR_EACH pickpocket_subspell IN ~S!PPTHAC~ ~S!PPCRIT~ ~S!PPACLI~ ~S!PPACHE~ BEGIN
+    //   LPF ~ADD_CRE_EFFECT~
+    //     INT_VAR
+    //       opcode = 177
+    //       target = 1
+    //       parameter2 = 2
+    //       timing = 9
+    //       resist_dispel = 10
+    //     STR_VAR
+    //       resource = EVAL ~%pickpocket_subspell%~
+    //       effsource = ~S!PPBASE~
+    //   END
+    // END
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 146
+        target = 1
+        parameter2 = 1
+        timing = 9
+        resist_dispel = 10
+      STR_VAR
+        resource = ~S!PPBASE~
+        effsource = ~S!PPBASE~
     END
   END
   // Detect Illusionsx
   PATCH_IF %cre_class% == 4 OR %cre_class% == 9 OR %cre_class% == 10 OR %cre_class% == 13 OR %cre_class% == 15 OR %cre_class% == 21 OR %cre_kit% == 1076101120 BEGIN
-    PATCH_FOR_EACH detect_illusion_subspell IN ~S!DINORM~ ~S!DISAVT~ ~S!DIMRES~ BEGIN
-      LPF ~ADD_CRE_EFFECT~
-        INT_VAR
-          opcode = 177
-          target = 1
-          parameter2 = 2
-          timing = 9
-        STR_VAR
-          resource = EVAL ~%detect_illusion_subspell%~
-          effsource = ~S!DIBASE~
-      END
+    // PATCH_FOR_EACH detect_illusion_subspell IN ~S!DINORM~ ~S!DISAVT~ ~S!DIMRES~ BEGIN
+    //   LPF ~ADD_CRE_EFFECT~
+    //     INT_VAR
+    //       opcode = 177
+    //       target = 1
+    //       parameter2 = 2
+    //       timing = 9
+    //     STR_VAR
+    //       resource = EVAL ~%detect_illusion_subspell%~
+    //       effsource = ~S!DIBASE~
+    //   END
+    // END
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 146
+        target = 1
+        parameter2 = 1
+        timing = 9
+        resist_dispel = 10
+      STR_VAR
+        resource = ~S!DIBASE~
+        effsource = ~S!DIBASE~
     END
   END
   BUT_ONLY
@@ -1880,11 +1903,6 @@ ACTION_FOR_EACH perception_potion_item IN ~POTN39.itm~ ~s!potn09.itm~ BEGIN
         power = 4
       STR_VAR
         resource = "S!POTN09"
-    END
-    LPF ~ALTER_EFFECT~
-      INT_VAR
-        match_opcode = 59
-        parameter1 = 10
     END
     LPF ~CLONE_EFFECT~
       INT_VAR

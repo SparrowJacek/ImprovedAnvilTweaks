@@ -196,6 +196,19 @@ COPY ~IATweaks\resources\spl\s!hunmar.spl~ ~override~
   SAY NAME1 @6097
   SAY UNIDENTIFIED_DESC @6098
 COPY ~IATweaks\resources\spl\s!hunfoe.spl~ ~override~
+  FOR (i = 0; i <= 13; ++i) BEGIN
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        insert_point = ~-1~
+        opcode = 146
+        parameter2 = 1
+        target = 2
+        duration = 4 + (i * 6)
+        timing = 3
+      STR_VAR
+        resource = EVAL ~S!HUNPRT~
+    END
+  END
   PATCH_FOR_EACH header_num IN 1 2 3 4 5 6 7 8 BEGIN
     SET min_level = %header_num% * 5
     SET new_val = 0 - 2 - %header_num%
@@ -218,6 +231,8 @@ COPY ~IATweaks\resources\spl\s!hunfoe.spl~ ~override~
   END
 
 COPY ~IATweaks\resources\eff\s!hunfoe.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!hunvis.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!hunprt.spl~ ~override~
 
 OUTER_SET hunters_mark_desc_str_ref = RESOLVE_STR_REF (@6097)
 LAF ~S!ADD_PORTRAIT_ICON~
@@ -237,6 +252,19 @@ COPY ~IATweaks\resources\spl\s!hunfri.spl~ ~override~
     INT_VAR
       match_opcode = 142
       parameter2 = %hunters_mark_icon_id%
+  END
+  FOR (i = 1; i <= 14; ++i) BEGIN
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        insert_point = ~-1~
+        opcode = 146
+        parameter2 = 1
+        target = 1
+        duration = 6 * i
+        timing = 3
+      STR_VAR
+        resource = EVAL ~S!HUNREM~
+    END
   END
   PATCH_FOR_EACH header_num IN 1 2 3 4 5 6 7 8 BEGIN
     SET min_level = %header_num% * 5
@@ -273,6 +301,7 @@ COPY ~IATweaks\resources\spl\s!hmkill.spl~ ~override~
       parameter1 = RESOLVE_STR_REF (@6120)
   END
 COPY ~IATweaks\resources\eff\s!hmkill.eff~ ~override~
+COPY_EXISTING ~s!hmkill.spl~ ~override/s!hunrem.spl~
 COPY ~IATweaks\resources\spl\s!hmbase.spl~ ~override~ 
 
 LAF ~S!ADD_CLAB_ROW~

@@ -1,0 +1,191 @@
+IF
+	Global("RiatavinFight","GLOBAL",1)
+	Allegiance(Myself,NEUTRAL)
+THEN
+	RESPONSE #100
+		Enemy()
+END
+
+IF
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	!GlobalTimerNotExpired("Iarage","LOCALS")
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!CheckStat(Myself,1,SCRIPTINGSTATE4)
+	See(NearestEnemyOf(Myself))
+	GlobalLT("berserk","LOCALS",4)
+THEN
+	RESPONSE #100
+		IncrementGlobal("berserk","LOCALS",1)
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		SetGlobalTimer("Iarage","LOCALS",32)
+		ForceSpell(Myself,BARBARIAN_RAGE)  // SPCL152.SPL (Barbarian Rage)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	HasItem("POTN11",Myself)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("POTN11",Myself)  // Potion of Superior Healing
+END
+
+IF
+	Global("RiatavinFight","GLOBAL",0)
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		SetGlobal("RiatavinFight","GLOBAL",1)
+END
+
+IF
+	InMyArea(Player1)
+	Global("Iapcastts","GLOBAL",1)
+	Global("Iatsinvulner","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",1)
+		ApplySpellRES("SPINI70",Myself)  // No such index
+END
+
+IF
+	Global("Iapcastts","GLOBAL",0)
+	Global("Iatsinvulner","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",0)
+		ApplySpellRES("SPINI71",Myself)  // No such index
+END
+
+IF
+	Global("Iatreasure","LOCALS",0)
+	Allegiance(Myself,ENEMY)
+	Alignment(Player1,MASK_GOOD)
+	Class(Player1,MAGE_ALL)
+	!Class(Player1,DRUID_ALL)
+	!Class(Player1,SHAMAN)
+	!Class(Player1,FIGHTER_ALL)
+	!Class(Player1,THIEF_ALL)
+	!Class(Player1,CLERIC_ALL)
+	Kit(Player1,MAGESCHOOL_NECROMANCER)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatreasure","LOCALS",1)
+		GiveItemCreate("S!misc52",Myself,0,0,0)  // Blood of A Barbarian Warrior
+END
+
+IF
+	Global("Iatreasure","LOCALS",0)
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatreasure","LOCALS",1)
+END
+
+IF
+	Allegiance(Myself,NEUTRAL)
+	OR(8)
+		HPPercentLT(Myself,100)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		HitBy([GOODCUTOFF],CRUSHING)
+		SpellCastOnMe([GOODCUTOFF],0)
+		SpellCastOnMe([PC],0)
+		TookDamage()
+		SpellCastInnate([GOODCUTOFF],THIEF_SET_SNARE)  // SPCL412.SPL (Set Snare)
+		SpellCastInnate([GOODCUTOFF],THIEF_SET_SPECIAL_SNARE)  // SPCL414.SPL (Set Special Snare)
+	Global("RiatavinFight","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("RiatavinFight","GLOBAL",1)
+		Enemy()
+		Shout(151)
+END
+
+IF
+	Heard([EVILCUTOFF],151)
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		Enemy()
+END
+
+IF
+	InMyArea(Player1)
+	!Detect([GOODCUTOFF])
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	Global("Iapcastts","GLOBAL",0)
+	HPPercentLT(Myself,50)
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	HasItem("POTN55",Myself)  // Potion of Superior Healing
+THEN
+	RESPONSE #100
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("POTN55",Myself)  // Potion of Superior Healing
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	CheckStatLT(LastSeenBy(Myself),90,RESISTSLASHING)
+	!CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+	RandomNumGT(6,4)
+	Range(LastSeenBy(Myself),4)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	See(SecondNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(ThirdNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+

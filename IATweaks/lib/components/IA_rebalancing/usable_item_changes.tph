@@ -57,6 +57,13 @@ END
 ACTION_PHP_EACH potion_to_level_mapping AS potion_filename => potion_level BEGIN
   COPY ~IATweaks\resources\spl\spell_template_for_itm_effects.spl~ ~override\%potion_filename%.spl~
   COPY_EXISTING ~%potion_filename%.itm~ ~override~
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = ~-1~
+        match_resist_dispel = 1
+        resist_dispel = 3
+        silent = 1
+    END
     LPF ~ITEM_EFFECT_TO_SPELL~
       INT_VAR
         type = 99

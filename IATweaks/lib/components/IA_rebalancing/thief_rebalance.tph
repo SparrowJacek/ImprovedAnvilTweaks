@@ -2100,6 +2100,12 @@ COPY_EXISTING ~sppr205.spl~ ~override~
       resource = ~SPPR205~
   END
 
+COPY_EXISTING ~scrl1p.itm~ ~override~
+  SAY NAME2 @6127
+  SAY IDENTIFIED_DESC @6129
+
+OUTER_SET trap_script_id = 0
+
 COPY_EXISTING_REGEXP GLOB ~.*\.are$~ ~override~
   // process triggers //
 
@@ -2114,6 +2120,13 @@ COPY_EXISTING_REGEXP GLOB ~.*\.are$~ ~override~
 
     PATCH_IF ((is_trapped == 1) AND (trap_det_diff < 100) AND (trap_dis_diff > 0)) BEGIN
       SPRINT $trigger_area_trap_scripts("%script_file%") "OK"
+    END
+    PATCH_IF ((is_trapped == 1) AND (trap_det_diff >= 100)) BEGIN
+      INNER_ACTION BEGIN
+        COPY_EXISTING ~%script_file%.bcs~ ~override/S!TRP%trap_script_id%.bcs~
+      END
+      WRITE_ASCIIE region_off + 0x7c ~S!TRP%trap_script_id%~ #8
+      trap_script_id = trap_script_id + 1
     END
   END
 
@@ -2131,7 +2144,13 @@ COPY_EXISTING_REGEXP GLOB ~.*\.are$~ ~override~
     PATCH_IF ((is_trapped == 1) AND (trap_det_diff < 100) AND (trap_dis_diff > 0)) BEGIN
       SPRINT $container_trap_scripts("%script_file%") "OK"
     END
-
+    PATCH_IF ((is_trapped == 1) AND (trap_det_diff >= 100)) BEGIN
+      INNER_ACTION BEGIN
+        COPY_EXISTING ~%script_file%.bcs~ ~override/S!TRP%trap_script_id%.bcs~
+      END
+      WRITE_ASCIIE cont_off + 0x48  ~S!TRP%trap_script_id%~ #8
+      trap_script_id = trap_script_id + 1
+    END
   END
   IF_EXISTS
 

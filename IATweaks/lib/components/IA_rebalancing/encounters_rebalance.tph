@@ -414,3 +414,23 @@ COPY_EXISTING ~s!gracen.itm~ ~override~
     INT_VAR
       match_opcode = 233
   END
+  
+////////// Keep Viper ///////////
+
+COPY_EXISTING ~S!KPVIPE.cre~ ~override~
+  WRITE_BYTE 0x5a 60  // Electricity Resistance
+
+////////// Mutated Spider ///////////
+
+ACTION_FOR_EACH mutated_spider_cre_file IN ~s!spidr2.cre~ ~spidsm02.cre~ BEGIN
+  COPY_EXISTING ~%mutated_spider_cre_file%~ ~override~
+    WRITE_BYTE 0x59 75  // Fire Resistance
+    WRITE_BYTE 0x5a 75  // Cold Resistance
+    WRITE_BYTE 0x5b 75  // Electricity Resistance
+    WRITE_BYTE 0x5e 75  // Magic Fire Resistance
+    WRITE_BYTE 0x5f 75  // Magic Cold Resistance
+    WRITE_BYTE 0x62 80 // Resist Piercing
+    WRITE_BYTE 0x63 80 // Resist Missile
+    WRITE_BYTE 0x23d 18 // Strength
+END
+

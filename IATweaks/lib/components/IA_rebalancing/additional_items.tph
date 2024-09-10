@@ -20,14 +20,9 @@ COPY ~IATweaks\resources\itm\s!ioun01.itm~ ~override~
   SAY NAME2 @7006
   SAY IDENTIFIED_DESC @7007
 
-// Mae'Var
+// Thief from Mencar's party
 
-COPY_EXISTING ~MAEVAR.cre~ ~override~
-  LPF ~DELETE_CRE_ITEM~
-    STR_VAR
-      item_to_delete = ~HELMNOAN~
-  END
-     
+COPY_EXISTING ~SEVPAT05.cre~ ~override~     
   ADD_CRE_ITEM ~s!ioun01~ #0 #0 #0 ~NONE~ ~HELMET~
 
 //////////// Symbol of Sehanine Moonbow

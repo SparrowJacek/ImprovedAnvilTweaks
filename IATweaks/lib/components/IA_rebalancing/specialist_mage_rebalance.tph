@@ -340,15 +340,16 @@ LAF ~S!ADD_CLAB_ROW~
     level35 = ~GA_S!BLDSPD~
 END
 
-//////// ABJURER ////////
+//////// INVOKER ////////
 
 // Chain Sequencer
 
-COPY_EXISTING ~inarea.pro~ ~override/s!wij01.pro~
+COPY_EXISTING ~inareanp.pro~ ~override/s!wij01.pro~
   READ_BYTE 0x2f ext_flags_4
   WRITE_BYTE 0x2f (%ext_flags_4% BOR 0b01000000) // Activate IWD style checks
   WRITE_SHORT 0x3e 142 // Do not affect invisible creatures
   WRITE_SHORT 0x214 0 // No secondary projectile
+  WRITE_SHORT 0x21a 0 // No explosion projectile
 
 ADD_PROJECTILE ~override\s!wij01.pro~
 
@@ -394,6 +395,7 @@ LAF ~S!ADD_CLAB_ROW~
     level10 = ~GA_S!+5ELED~
     level20 = ~GA_S!+5ELED~
     level30 = ~GA_S!+5ELED~
+    level40 = ~GA_S!+5ELED~
 END
 
 ////// Illusionist ////////
@@ -790,3 +792,34 @@ LAF ~S!ADD_CLAB_ROW~
     level36 = ~GA_S!ABJMAS~
 END
 
+///////////////// Creatures ////////////////////
+
+// Sorcerous Amon
+COPY_EXISTING ~SEVPAT02.cre~ ~override~
+  WRITE_SHORT 0x24 47 // HP
+  WRITE_SHORT 0x26 47 // HP
+  WRITE_SHORT 0x46 10 // AC
+  WRITE_SHORT 0x48 10 // AC
+  WRITE_BYTE 0x60 0 // Resist Slashing
+  WRITE_BYTE 0x61 0 // Resist Crushing
+  WRITE_BYTE 0x62 0 // Resist Piercing
+  WRITE_BYTE 0x63 0 // Resist Missile
+  WRITE_LONG 0x244 0x00000800 // Kit = Invoker
+
+  LPF ~ADD_CRE_EFFECT~ // Sequencer with Flame Arrow
+    INT_VAR
+      opcode = 256
+      target = 1
+      resist_dispel = 0
+      timing = 9
+      parameter3 = 0
+    STR_VAR
+      effsource = ~SPWIJ01~
+      resource = ~SPWI303~
+  END
+
+  PATCH_IF(FILE_EXISTS_IN_GAME ~POTN33.spl~) BEGIN
+    ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV14~
+  END
+
+COMPILE ~IATweaks\scripts\creatures\SEVPAT02.BAF~

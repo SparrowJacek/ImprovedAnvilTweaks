@@ -966,10 +966,42 @@ A trap is any device or magical ward that meets three criteria: it can inflict a
 
 @6136 = ~This spell heals the character by 27 + 25% of his max  Hit Points.~
 
-@6137 = ~Shield Bash~
+@6137 = ~Shield Mind and Body~
 
-@6138 = ~Shield Bash~
+@6138 = ~Shield Mind~
 
-@6139 = ~Shield Bash~
+@6139 = ~Shield Body~
 
-@6140 = ~Shield Bash~
+@6140 = ~Shield Mind and Body
+(Abjuration)
+
+Level: 7
+Range: 0
+Duration: 2 turns
+Casting Time: 7
+Area of Effect: The caster
+Saving Throw: None
+
+Upon casting, the spell envelops the caster in two distinct layers of shielding energy.
+The Shield Body layer fortifies the caster’s physical form, granting immunity to poisons, blindness, and deafness, while also clearing the air that the caster inhales, protecting from poisonous and acidic cloud effects.
+The Shield Mind layer grants mental clarity and protects from all forms of fear, sleep, berserk, mind control and any similar effects.~
+
+@6141 = ~Shield Bash~
+
+@6142 = ~Shield Bash~
+
+@6143 = ~Shield Bash~
+
+@6144 = ~Shield Bash~
+
+@6145 = ~Shield Bash~
+
+@6146 = ~Shield Bash~
+
+@6147 = ~Shield Bash~
+
+@6148 = ~Shield Bash~
+
+@6149 = ~Shield Bash~
+
+@6150 = ~Shield Bash~

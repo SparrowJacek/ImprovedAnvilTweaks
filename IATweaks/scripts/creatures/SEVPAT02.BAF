@@ -130,6 +130,7 @@ THEN
 		ReallyForceSpell(Myself,WIZARD_PROTECTION_FROM_ELECTRICITY)  // SPWI512.SPL (Protection From Electricity)
 		ReallyForceSpellRES("SPWI522",Myself)  // Soul Armor
 		ReallyForceSpell(Myself,WIZARD_SPELL_IMMUNITY_DIVINATION)  // SPWI592.SPL (Immunity: Divination)
+		ReallyForceSpellRES("SPWI725",Myself)
 END
 
 IF
@@ -2474,7 +2475,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
 	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-	GlobalLT("Iaamon03","LOCALS",2)
+	GlobalLT("Iaamon03","LOCALS",3)
 THEN
 	RESPONSE #100
 		IncrementGlobal("Iaamon03","LOCALS",1)
@@ -2491,7 +2492,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
 	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-	GlobalLT("Iaamon03","LOCALS",2)
+	GlobalLT("Iaamon03","LOCALS",3)
 THEN
 	RESPONSE #100
 		IncrementGlobal("Iaamon03","LOCALS",1)
@@ -2508,7 +2509,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
 	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-	GlobalLT("Iaamon03","LOCALS",2)
+	GlobalLT("Iaamon03","LOCALS",3)
 THEN
 	RESPONSE #100
 		IncrementGlobal("Iaamon03","LOCALS",1)

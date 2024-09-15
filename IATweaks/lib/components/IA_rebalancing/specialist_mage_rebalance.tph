@@ -65,6 +65,56 @@ COPY_EXISTING ~spwi215.spl~ ~override~
 COPY_EXISTING ~SCRL99.itm~ ~override~
   SAY IDENTIFIED_DESC @6056
 
+// Shield Mind and Body
+
+COPY_EXISTING ~sppr112a.bam~ ~override\spwi725a.bam~
+COPY_EXISTING ~sppr112b.bam~ ~override\spwi725b.bam~
+COPY_EXISTING ~sppr112c.bam~ ~override\spwi725c.bam~
+COPY ~IATweaks\resources\bam\spwi725d.bam~ ~override~
+COPY ~IATweaks\resources\bam\spwi725e.bam~ ~override~
+
+OUTER_SET shield_mind_desc_str_ref = RESOLVE_STR_REF (@6138)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %shield_mind_desc_str_ref%
+  STR_VAR
+    bam_file = ~SPWI725D~
+  RET
+    shield_mind_icon_id = portrait_icon_id
+END
+
+OUTER_SET shield_body_desc_str_ref = RESOLVE_STR_REF (@6139)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %shield_body_desc_str_ref%
+  STR_VAR
+    bam_file = ~SPWI725E~
+  RET
+    shield_body_icon_id = portrait_icon_id
+END
+
+COPY ~IATweaks\resources\spl\spwi725.spl~ ~override~
+  SAY NAME1 @6137
+  SAY UNIDENTIFIED_DESC @6140
+COPY ~IATweaks\resources\spl\spwi725d.spl~ ~override~
+  SAY NAME1 @6139
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %shield_body_icon_id%
+  END
+COPY ~IATweaks\resources\spl\spwi725e.spl~ ~override~
+  SAY NAME1 @6138
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %shield_mind_icon_id%
+  END
+
+COPY ~IATweaks\resources\itm\spwi725.itm~ ~override~
+  SAY NAME2 @6137
+  SAY IDENTIFIED_DESC @6140
+
 // RVE
 
 COPY_EXISTING ~spwi905.spl~ ~override~
@@ -818,8 +868,18 @@ COPY_EXISTING ~SEVPAT02.cre~ ~override~
       resource = ~SPWI303~
   END
 
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!IMMUNE~
+  END
+
   PATCH_IF(FILE_EXISTS_IN_GAME ~POTN33.spl~) BEGIN
     ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV14~
   END
 
-COMPILE ~IATweaks\scripts\creatures\SEVPAT02.BAF~
+// Random Encounter Bandit Mage
+COPY_EXISTING ~REBAND04.cre~ ~override~
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!IMMUNE~
+  END

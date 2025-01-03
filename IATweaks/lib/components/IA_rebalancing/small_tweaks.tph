@@ -47,3 +47,70 @@ ACTION_FOR_EACH swanmay_cre IN ~s!swansu~ ~s!gswan~ ~s!edeswa~ ~s!swanfa~ ~s!swa
     WRITE_BYTE 0x32 105 // Change hair color to white (the same color will be set for the wings)
   IF_EXISTS
 END
+
+// Remove immunity to "remove item" from s!immune.itm
+COPY_EXISTING ~S!IMMUNE.ITM~ ~override~
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 101
+      match_parameter2 = 112
+  END
+
+// Change Cavalier resistance bonus from "set" to "increment"
+COPY_EXISTING ~SPCL221.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 27
+      parameter2 = 0
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 30
+      parameter2 = 0
+  END
+
+// Give Improved Alacrity to C/M
+
+LAF ~S!ADD_HLA_ROW~
+  STR_VAR
+    filename = ~LUCM0.2DA~
+    row_desc = ~ALACRITY~
+    ability = ~GA_SPWI921~
+    num_allowed = ~1~
+END
+
+// Make Energy Blades ignore enemy Magic Resistance
+
+COPY_EXISTING ~ENEBLADE.itm~ ~override~
+  SAY IDENTIFIED_DESC @7012
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 12
+      resist_dispel = 0
+  END
+
+// Rework spells for summoned Nymph
+
+COPY_EXISTING ~SPPR410.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6146
+
+COPY_EXISTING ~NYMPHSU.cre~ ~override~
+  ADD_MEMORIZED_SPELL ~SPPR202~ #1 ~priest~ ( 1 )
+  ADD_MEMORIZED_SPELL ~SPPR208~ #1 ~priest~ ( 1 )
+
+// Remove immunity to Haste and IH from invincibility ring
+
+COPY_EXISTING ~SUREHP1.itm~ ~override~
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 206
+    STR_VAR
+      match_resource = ~SPWI613~
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 206
+    STR_VAR
+      match_resource = ~SPWI305~
+  END
+  BUT_ONLY

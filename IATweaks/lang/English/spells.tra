@@ -174,10 +174,10 @@ Level: 6
 Range: 0
 Duration: Instant
 Casting Time: 8
-Area of Effect: 10-ft. radius sphere
+Area of Effect: 12-ft. radius sphere
 Saving Throw: None
 
-False dawn calls into existence a bright reddish light, as if a sunrise were occurring, within the area of effect. All vampires, wraiths, spectral undead, mists and shadows within a false dawn suffer 6d6 points of fire damage. There is no saving throw against this damage. This spell bypasses both Magic Resistance and Fire Resistance (innate or magical) of the affected creatures.~
+False dawn calls into existence a bright reddish light, as if a sunrise were occurring, within the area of effect. All vampires, wraiths, spectral undead, mists and shadows within a false dawn suffer 10d4 + 4 points of fire damage. There is no saving throw against this damage. This spell bypasses both Magic Resistance and base Fire Resistance (innate or magical) of the affected creatures.~
 
 @6019 = ~Sunray
 (Evocation, Alteration)
@@ -190,7 +190,7 @@ Casting Time: 4
 Area of Effect: 15-ft. radius
 Saving Throw: Special
 
-When this spell is cast, it causes a ray of sunlight to beam down upon the caster and everyone within a 15-ft. radius. All creatures within the area of effect take 3d6 points of damage and must save vs. Spell or be blinded for 1 turn. Undead that are hit by the sunray take additional 8d6 damage, which bypasses Magic Resistance and during the impact their Fire Resistance is reduced by 25% of their current value. Creatures that by some means achieved values of Fire Resistance higher than 100 are completely immune to the effects of this spell.~
+When this spell is cast, it causes a ray of sunlight to beam down upon the caster and everyone within a 15-ft. radius. All creatures within the area of effect take 3d6 points of damage and must save vs. Spell or be blinded for 1 turn. Undead that are hit by the sunray take additional 8d6 damage, which bypasses Magic Resistance and during the impact their base Fire Resistance is reduced by 50% of their current value. Creatures that by some means achieved values of Fire Resistance higher than 100 are completely immune to the effects of this spell.~
 
 @6020 = ~Disrupt Undead (Necromancy)
 Level: 7

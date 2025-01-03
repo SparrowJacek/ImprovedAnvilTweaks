@@ -377,6 +377,9 @@ END
 
 // Life Link
 
+LAF resolve_state STR_VAR new_state_id = ~LIFE_LINK~ RET new_state_index END
+OUTER_SET life_link_state = %new_state_index%
+
 // Add records for the new portrait icons
 OUTER_SET life_link_desc_str_ref = RESOLVE_STR_REF (@6121)
 LAF ~S!ADD_PORTRAIT_ICON~
@@ -397,9 +400,39 @@ COPY ~IATweaks\resources\spl\s!lifeli.spl~ ~override~
       match_opcode = 142
       parameter2 = %life_link_icon_id%
   END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 328
+      parameter2 = %life_link_state%
+  END
+  FOR (i = 29; i > 0; --i) BEGIN
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        multi_match = 1
+        match_opcode = 146
+        match_duration = 0
+        timing = 3
+        duration = i * 2
+      STR_VAR
+        insert = ~below~
+    END
+  END
 
 COPY ~IATweaks\resources\eff\s!lifeli.eff~ ~override~
 COPY ~IATweaks\resources\spl\s!lifel2.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!lifel3.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter1 = %life_link_state%
+  END
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!lifel4.pro~
+COPY ~IATweaks\resources\spl\s!lifel4.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~%s!lifel4%~
+  END
 COPY ~IATweaks\resources\bam\s!lifelb.bam~ ~override~
 COPY ~IATweaks\resources\bam\s!lifelc.bam~ ~override~
 COPY ~IATweaks\resources\bam\s!lifeld.bam~ ~override~

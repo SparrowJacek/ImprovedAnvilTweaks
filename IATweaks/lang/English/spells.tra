@@ -896,9 +896,8 @@ Casting Time: 2
 Area of Effect: 1 creature
 Saving Throw: None
 
-When this spells is cast, the priest effectively draws on the power of <PRO_HISHER> god and lends it to the target creature, in effect creating a champion. The target gains a bonus to <PRO_HISHER> THAC0 at a rate of 1 for every 5 levels of the caster up till +4 at level 20. The target also becomes hasted and his number of attacks per round is increased by one as if Improved Haste was cast on him.
 
-The spell applies its effects every 6 seconds for its duration and the effects last for the same amount of time. The target has to be in the caster's range for each pulse of the spell, otherwise he'll have to wait for another pulse to get the benefits. Champion's Might requires intense concentration to maintain the divine connection, so the priest can have only one instance of this spell active.~
+The spell applies its effects every 6 seconds to the nearest marked character for its duration and the effects last for the same amount of time. The target has to be in the caster's range for each pulse of the spell, otherwise he'll have to wait for another pulse to get the benefits.~
 
 @6125 = ~Improved Haste
 (Alteration)
@@ -986,7 +985,6 @@ Upon casting, the spell envelops the caster in two distinct layers of shielding 
 The Shield Body layer fortifies the caster’s physical form, granting immunity to poisons, blindness, and deafness, while also clearing the air that the caster inhales, protecting from poisonous and acidic cloud effects.
 The Shield Mind layer grants mental clarity and protects from all forms of fear, sleep, berserk, mind control and any similar effects.~
 
-@6141 = ~Shield Bash~
 @6141 = ~Ray of Fragmentation (Evocation)
 Level: 4
 Range: Visual range of the caster
@@ -1006,13 +1004,41 @@ Other types of golems cannot be affected by the spell and will take no damage.~
 @6142 = ~Poison
 (Necromancy)
 
-@6142 = ~Shield Bash~
+Level: 4
+Range: 15 ft.
+Duration: 1 turn
+Casting Time: 4
+Area of Effect: 1 creature
+Saving Throw: Special
 
-@6143 = ~Shield Bash~
+Through this spell, the caster can inject strong poison into the body of his target. The damage inflicted depends on the level of the caster as detailed below:
+ 7–9th level: 2d8 + 2/round
+ 10–12th level: 3d8 + 3/round
+ 13–14th level: 4d8 + 4/round
+ 15–16th level: 6d8 + 5/round
+ 17+ level: 8d8 + 6/round
+Those who make their Saving Throws against Poison only suffer the initial portion of the damage.~
 
-@6144 = ~Shield Bash~
+@6143 = ~Earthquake
+(Alteration)
 
-@6145 = ~Shield Bash~
+Level: 7
+Sphere: Elemental (Earth)
+Range: 40 ft.
+Duration: Instant
+Casting Time: 8
+Area of Effect: Special
+Saving Throw: Special
+
+
+When casting this spell, the caster selects 3 points in his range of vision as the epicenters of small yet powerful tremors, each with an 12-foot diameter. All creatures in the area suffer 2d6 crushing damage that bypasses Magic Resistance and drop to the ground for 1 round. A successful Saving Throw vs. Spell negates the fall.
+
+As the caster gains experience, the spell becomes more potent: at level 17, the number of tremor areas increases to 4, and at level 20, it rises to 5.
+
+This spell will affect both enemies and friends of the caster's, so care must be taken in its use. Tremor areas can overlap to increase the damage output to a smaller group of creatures.~
+
+@6144 = ~Blessing of Talos~
+
 @6145 = ~Hand of Undoing (Necromancy)
 Level: 7
 Range: Touch

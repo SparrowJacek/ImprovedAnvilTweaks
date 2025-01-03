@@ -1342,55 +1342,16 @@ END
 
 // Champion's Strength
 
-ADD_PROJECTILE ~IATweaks\resources\pro\s!chmpml.pro~
-COPY ~IATweaks\resources\spl\s!chmpmc.spl~ ~override~
-  LPF ~ALTER_EFFECT~
-    INT_VAR
-      match_power = 5
-      power = 6
-  END
-  LPF ~ALTER_EFFECT~
-    INT_VAR
-      match_opcode = ~-1~
-      resist_dispel = 3
-  END
-  
-COPY ~IATweaks\resources\spl\s!chmpmd.spl~ ~override~
-COPY ~IATweaks\resources\spl\s!chmpme.spl~ ~override~
-COPY ~IATweaks\resources\eff\s!chmpme.eff~ ~override~
-COPY ~IATweaks\resources\spl\s!chmpmf.spl~ ~override~
-  LPF ~ALTER_EFFECT~
-    INT_VAR
-      multi_match = 1
-      match_opcode = 326
-      parameter1 = 8192 // Tempus
-      parameter2 = %kit_equals_row%
-  END
-COPY ~IATweaks\resources\spl\s!chmpmg.spl~ ~override~
-COPY ~IATweaks\resources\spl\s!chmpmh.spl~ ~override~
-COPY ~IATweaks\resources\spl\s!chmpmi.spl~ ~override~
-  LPF ~ALTER_EFFECT~
-    INT_VAR
-      match_opcode = 139
-      parameter1 = RESOLVE_STR_REF (@6106)
-  END
-COPY ~IATweaks\resources\spl\s!chmpmj.spl~ ~override~
-COPY ~IATweaks\resources\spl\s!chmpmk.spl~ ~override~
-COPY ~IATweaks\resources\spl\s!chmpml.spl~ ~override~
-  LPF ~ALTER_SPELL_HEADER~
-    INT_VAR
-      projectile = %s!chmpml%
-  END
-COPY ~IATweaks\resources\spl\s!chmpmu.spl~ ~override~
-  LPF ~ALTER_SPELL_HEADER~
-    INT_VAR
-      projectile = %s!chmpml%
-  END
-COPY ~IATweaks\resources\spl\s!chmpmw.spl~ ~override~
-  LPF ~ALTER_SPELL_HEADER~
-    INT_VAR
-      projectile = %s!chmpml%
-  END
+LAF resolve_state STR_VAR new_state_id = ~CHAMPIONS_MIGHT~ RET new_state_index END
+OUTER_SET champions_might_state = %new_state_index%
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!chmpmf.pro~
+COPY_EXISTING ~s!chmpmf.pro~ ~override~
+  WRITE_SHORT 0x3c champions_might_state
+ADD_PROJECTILE ~IATweaks\resources\pro\s!chmpmg.pro~
+COPY_EXISTING ~s!chmpmg.pro~ ~override~
+  WRITE_SHORT 0x3c champions_might_state
+
 COPY_EXISTING ~sppr507.spl~ ~override/sppr618.spl~
   SAY NAME1 @6105
   SAY UNIDENTIFIED_DESC @6055
@@ -1415,23 +1376,25 @@ COPY_EXISTING ~sppr507.spl~ ~override/sppr618.spl~
     INT_VAR
       match_opcode = 206
       multi_match = 1
+      opcode = 328
+      parameter2 = champions_might_state
+      duration = 90
+      special = 1
+    STR_VAR
+      insert = ~first~
+      resource = ~~
+  END
+  
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 206
+      multi_match = 1
       opcode = 321
       target = 1
       duration = 0
     STR_VAR
       insert = ~first~
-      resource = ~SPPR618~
-  END
-  
-  LPF ~CLONE_EFFECT~
-    INT_VAR
-      match_opcode = 321
-      multi_match = 1
-      timing = 3
-      duration = 90
-    STR_VAR
-      resource = ~S!CHMPMC~
-      insert = ~last~
+      resource = ~S!CHMPME~
   END
 
   LPF ~ALTER_EFFECT~
@@ -1439,9 +1402,43 @@ COPY_EXISTING ~sppr507.spl~ ~override/sppr618.spl~
       match_opcode = 206
       opcode = 146
       parameter2 = 1
+      target = 1
       duration = 0
     STR_VAR
-      resource = ~S!CHMPMC~
+      resource = ~S!CHMPME~
+  END
+
+COPY ~IATweaks\resources\spl\s!chmpmd.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!chmpme.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      power = 6
+  END
+
+COPY ~IATweaks\resources\spl\s!chmpmf.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      projectile = %s!chmpmf%
+  END
+COPY ~IATweaks\resources\spl\s!chmpmg.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      projectile = %s!chmpmg%
+  END
+
+COPY ~IATweaks\resources\spl\s!chmpmh.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 326
+      parameter2 = %kit_equals_row%
+    STR_VAR
+      match_resource = ~S!CHMPMG~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter2 = %kit_equals_row%
   END
 
 COPY ~IATweaks\resources\spl\s!chmpmz.spl~ ~override~

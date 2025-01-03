@@ -747,7 +747,7 @@ COPY_EXISTING ~SEVPAT02.cre~ ~override~
   WRITE_BYTE 0x61 0 // Resist Crushing
   WRITE_BYTE 0x62 0 // Resist Piercing
   WRITE_BYTE 0x63 0 // Resist Missile
-  WRITE_LONG 0x244 0x00000800 // Kit = Invoker
+  WRITE_LONG 0x244 0x08000000 // Kit = Invoker
 
   LPF ~ADD_CRE_EFFECT~ // Sequencer with Flame Arrow
     INT_VAR
@@ -765,6 +765,85 @@ COPY_EXISTING ~SEVPAT02.cre~ ~override~
     STR_VAR
       item_to_delete = ~S!IMMUNE~
   END
+
+  ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV14~
+
+COMPILE ~IATweaks\scripts\creatures\SEVPAT02.BAF~
+
+// Random Encounter Bandit Mage
+COPY_EXISTING ~REBAND04.cre~ ~override~
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!IMMUNE~
+  END
+
+// Conster
+
+COPY_EXISTING ~FIRMAG01.cre~ ~override~
+  WRITE_SHORT 0x24 51 // HP
+  WRITE_SHORT 0x26 51 // HP
+  WRITE_BYTE 0x60 0 // Resist Slashing
+  WRITE_BYTE 0x61 0 // Resist Crushing
+  WRITE_BYTE 0x62 0 // Resist Piercing
+  WRITE_BYTE 0x63 0 // Resist Missile
+  WRITE_BYTE 0x23d 16 // Constitution
+
+  ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV13~
+  ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV14~
+  ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV15~
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!IMMUNE~
+  END
+
+COMPILE ~IATweaks\scripts\creatures\S!FIRMAG.BAF~
+
+// Pirate Coordinator
+
+COPY_EXISTING ~PIRSEA03.cre~ ~override~
+  WRITE_SHORT 0x24 52 // HP
+  WRITE_SHORT 0x26 52 // HP
+  WRITE_SHORT 0x46 10 // AC
+  WRITE_SHORT 0x48 10 // AC
+  WRITE_BYTE 0x59 0 // Resist Fire
+  WRITE_BYTE 0x5a 0 // Resist Cold
+  WRITE_BYTE 0x5c 0 // Resist Acid
+  WRITE_BYTE 0x5d 0 // Resist Magic
+  WRITE_BYTE 0x5e 0 // Resist Magic Fire
+  WRITE_BYTE 0x5e 0 // Resist Magic Cold
+  WRITE_BYTE 0x60 0 // Resist Slashing
+  WRITE_BYTE 0x61 0 // Resist Crushing
+  WRITE_BYTE 0x62 0 // Resist Piercing
+  WRITE_BYTE 0x63 0 // Resist Missile
+  WRITE_BYTE 0x23b 18 // Wisdom
+  WRITE_LONG 0x244 0x01000000 // Kit = Diviner
+
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 0
+  END
+
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 278
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!IMMUNE~
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~DRAGRING~
+  END
+
+  ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV15~
+  ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV16~
+
+COMPILE ~IATweaks\scripts\creatures\S!PIRCOO.BAF~
+
 // Gaius
 
 COPY_EXISTING ~GAIUS.cre~ ~override~
@@ -802,13 +881,3 @@ COPY_EXISTING ~GAIUS.cre~ ~override~
   ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~~ ~INV15~
 
 COMPILE ~IATweaks\scripts\creatures\S!GAIUS.BAF~
-  PATCH_IF(FILE_EXISTS_IN_GAME ~POTN33.spl~) BEGIN
-    ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV14~
-  END
-
-// Random Encounter Bandit Mage
-COPY_EXISTING ~REBAND04.cre~ ~override~
-  LPF ~DELETE_CRE_ITEM~
-    STR_VAR
-      item_to_delete = ~S!IMMUNE~
-  END

@@ -2114,6 +2114,42 @@ COPY_EXISTING ~boot02.itm~ ~override~
       parameter1 = 5
   END
 
+//////////////// Weapons for backstabs ///////////////
+
+COPY ~IATweaks\resources\eff\s!ss-20.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!ss-30.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!ss-40.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!ss-50.eff~ ~override~
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY weapon_to_stealth_strike_bonus_mapping BEGIN
+  "sw1h10"=>20 // Short sword of backstabbing
+END
+
+ACTION_PHP_EACH weapon_to_stealth_strike_bonus_mapping AS weapon => bonus BEGIN
+  COPY_EXISTING ~%weapon%.itm~ ~override~
+    WRITE_SHORT 0x1c 0x45	// item_type = bastard sword to prevent using in offhand
+    LPF ~ADD_ITEM_EQEFFECT~
+      INT_VAR
+        insert_point = 0
+        opcode = 59
+        target = 1
+        parameter1 = bonus
+        timing = 2
+    END  
+    PATCH_FOR_EACH weapon_type IN 0x10 0x11 0x13 0x14 0x15 0x16 0x17 0x19 0x1a BEGIN
+      LPF ~ADD_ITEM_EQEFFECT~
+        INT_VAR
+          insert_point = ~-1~
+          opcode = 183
+          target = 1
+          parameter2 = weapon_type
+          timing = 2
+        STR_VAR
+          resource = EVAL ~S!SS-%bonus%~
+      END  
+    END
+END
+
 // Short Sword of Backstabbing
 
 COPY_EXISTING ~sw1h10.itm~ ~override~

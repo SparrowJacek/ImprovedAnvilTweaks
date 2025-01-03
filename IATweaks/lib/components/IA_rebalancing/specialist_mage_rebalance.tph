@@ -316,8 +316,10 @@ COPY ~IATweaks\resources\spl\spwij01p.spl~ ~override~
   END
 
 COPY_EXISTING ~bgee.lua~ ~override~
+  SET chain_sequencer_strref = RESOLVE_STR_REF (@6061)
+  GET_STRREF chain_sequencer_strref chain_sequencer_str
 	REPLACE_TEXTUALLY EXACT_MATCH ~mageBookStrings = {~ ~mageBookStrings = {
-	SPWIJ01 = {tip = 60420, title = 'MINOR_SEQUENCER_TITLE', action = "ADD_SPELLS_SEQUENCER_LABEL"},~
+	SPWIJ01 = {tip = 60420, title = '%chain_sequencer_str%', action = "ADD_SPELLS_SEQUENCER_LABEL"},~
 
 LAF ~S!ADD_CLAB_ROW~
   STR_VAR

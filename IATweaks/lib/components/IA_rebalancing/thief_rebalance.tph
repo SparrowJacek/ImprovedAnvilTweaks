@@ -1972,6 +1972,73 @@ COPY_EXISTING ~SEVPAT05.cre~ ~override~
       effsource = ~S!DISSTE~
   END
 
+// Borinall
+
+COPY ~IATweaks\resources\spl\s!talbls.spl~ ~override~
+  SAY NAME1 @6144
+
+COPY_EXISTING ~BORINALL.cre~ ~override~
+  WRITE_SHORT 0x24 100 // HP
+  WRITE_SHORT 0x26 100 // HP
+  WRITE_BYTE 0x45 100 // Hide in Shadows
+  WRITE_BYTE 0x64 0 // Detect Illusions
+  WRITE_BYTE 0x65 0 // Set Traps
+  WRITE_BYTE 0x67 0 // Pick Locks
+  WRITE_BYTE 0x68 60 // Stealth Strike
+  WRITE_BYTE 0x69 0 // Find Traps
+  WRITE_BYTE 0x6a 110 // Pick Pockets
+  WRITE_BYTE 0x23d 18 // constitution
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 90
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40OL~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 91
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40FT~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 92
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40PP~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 144
+      target = 1
+      timing = 9
+    STR_VAR
+      effsource = ~S!DISSTE~
+  END
+
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 0
+      parameter1 = 3
+  END
+
+COMPILE ~IATweaks\scripts\creatures\S!BORINA.baf~
+
 /////////// Items ////////////
 
 COPY_EXISTING ~potn36.itm~ ~override~

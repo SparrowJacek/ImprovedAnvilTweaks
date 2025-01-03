@@ -1,0 +1,644 @@
+IF
+	InMyArea(Player1)
+	Global("Iapcastts","GLOBAL",1)
+	Global("Iatsinvulner","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",1)
+		ApplySpellRES("SPINI70",Myself)  // No such index
+END
+
+IF
+	Global("Iapcastts","GLOBAL",0)
+	Global("Iatsinvulner","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",0)
+		ApplySpellRES("SPINI71",Myself)  // No such index
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("Iaexit","AR0417",0)  // Living Room
+THEN
+	RESPONSE #100
+		SetGlobal("Iaexit","AR0417",1)  // Living Room
+		CreateCreatureObjectDoor("S!amber4",Player1,0,0,0)  // Amber Golem
+		ApplySpellRES("S!TALBLS",Myself)  // No such index	
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	GlobalLT("Iacreature","LOCALS",3)
+	!GlobalTimerNotExpired("Iasummon","LOCALS")
+	!HPLT(Myself,1)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iacreature","LOCALS",1)
+		SetGlobalTimer("Iasummon","LOCALS",FOUR_ROUNDS)
+		CreateCreatureObject("tanthf01",Myself,0,0,0)  // Rune Assassin
+		CreateCreatureObject("tanthf01",LastSeenBy(Myself),0,0,0)  // Rune Assassin
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	InMyArea(Player1)
+	OR(3)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		SpellCastOnMe([GOODCUTOFF],0)
+		HPPercentLT(Myself,100)
+THEN
+	RESPONSE #100
+		Enemy()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+		Detect([GOODCUTOFF])
+		Detect([PC])
+	Global("partyfled","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("partyfled","LOCALS",0)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iainnate","LOCALS")
+	Global("Iapcastts","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iainnate","LOCALS",ONE_ROUND)
+END
+
+IF
+	!CheckSpellState(Myself,HIDE_IN_SHADOWS_SUCCESS)
+	!CheckSpellState(Myself,HIDE_IN_SHADOWS_FAIL)
+	!StateCheck(Myself,STATE_INVISIBLE)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	See(NearestEnemyOf(Myself))
+	OR(2)
+		ObjectActionListEmpty(Myself)
+		Global("s!interruptibleaction","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",0)
+		ActionOverride(Myself,ForceSpellRES("S!HISBAS",Myself))  // No such index
+END
+
+IF
+	ObjectActionListEmpty(Myself)
+	Global("s!interruptibleaction","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",0)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	Global("Iaborina01","LOCALS",0)
+	!GlobalTimerNotExpired("Iainnate","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("Iaborina01","LOCALS",1)
+		SetGlobalTimer("Iainnate","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,ROGUE_GREATER_EVASION)  // SPCL914.SPL (Greater Evasion)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	GlobalLT("Iaborina06","LOCALS",4)
+	CheckStatLT(Myself,70,RESISTSLASHING)
+	!GlobalTimerNotExpired("Iainnate","LOCALS")
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaborina06","LOCALS",1)
+		SetGlobalTimer("Iainnate","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_HARDINESS)  // SPCL907.SPL (Hardiness)
+END
+
+IF
+	HPPercentLT(Myself,50)
+	!GlobalTimerNotExpired("Iainnate","LOCALS")
+	HasItem("POTN55",Myself)  // Potion of Superior Healing
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iainnate","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("POTN55",Myself)  // Potion of Superior Healing
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	AreaCheck("AR0417")  // Living Room
+	Detect([PC])
+	Global("Iatreasure","LOCALS",0)
+	Global("Iaring35place","GLOBAL",2)
+	Global("Iapcastts","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iaring35place","GLOBAL",5)
+		SetGlobal("Iatreasure","LOCALS",1)
+		GiveItemCreate("ring35",Myself,0,0,0)  // Ring of Lock Picks
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	AreaCheck("AR0417")  // Living Room
+	Detect([PC])
+	Global("Iatreasure2","LOCALS",0)
+	Global("Iasw1h52place","GLOBAL",1)
+	Global("Iapcastts","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iasw1h52place","GLOBAL",4)
+		SetGlobal("Iatreasure2","LOCALS",1)
+		GiveItemCreate("sw1h52",Myself,0,0,0)  // Water's Edge +3
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	Range(LastSeenBy(Myself),5)
+	Global("Iaborina03","LOCALS",0)
+	!GlobalTimerNotExpired("Iainnate","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("Iaborina03","LOCALS",1)
+		SetGlobalTimer("Iainnate","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_GREATER_WHIRLWIND)  // SPCL901.SPL (Greater Whirlwind Attack)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_INVISIBLE)
+	See([PC])
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	Range(LastSeenBy(Myself),4)
+	Global("Iaborina02","LOCALS",0)
+	!GlobalTimerNotExpired("Iainnate","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("Iaborina02","LOCALS",1)
+		SetGlobalTimer("Iabackstabbing","LOCALS",7)
+		SetGlobalTimer("Iainnate","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,ROGUE_ASSASINATION)  // SPCL916.SPL (Assassination)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_INVISIBLE)
+	See(SecondNearest([PC]))
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	Range(LastSeenBy(Myself),4)
+	Global("Iaborina02","LOCALS",0)
+	!GlobalTimerNotExpired("Iainnate","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("Iaborina02","LOCALS",1)
+		SetGlobalTimer("Iabackstabbing","LOCALS",7)
+		SetGlobalTimer("Iainnate","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,ROGUE_ASSASINATION)  // SPCL916.SPL (Assassination)
+END
+
+IF
+	Global("Iaborina02","LOCALS",1)
+	!StateCheck(Myself,STATE_INVISIBLE)
+	!GlobalTimerNotExpired("Iainnate","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	HasItem("POTN10",Myself)  // Potion of Invisibility
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iainnate","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("POTN10",Myself)  // Potion of Invisibility
+END
+
+IF
+	Global("Iaborina02","LOCALS",1)
+	!StateCheck(Myself,STATE_INVISIBLE)
+	!GlobalTimerNotExpired("Iainnate","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	HasItem("POTN10",Myself)  // Potion of Invisibility
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iainnate","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("POTN10",Myself)  // Potion of Invisibility
+END
+
+IF
+	Global("Iaborina02","LOCALS",1)
+	!StateCheck(Myself,STATE_INVISIBLE)
+	!GlobalTimerNotExpired("Iainnate","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	HasItem("POTN10",Myself)  // Potion of Invisibility
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iainnate","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("POTN10",Myself)  // Potion of Invisibility
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	Range(LastSeenBy(Myself),5)
+	Global("Iaborina04","LOCALS",0)
+	!GlobalTimerNotExpired("Iainnate","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("Iaborina04","LOCALS",1)
+		SetGlobalTimer("Iainnate","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_CRITICAL_STRIKE)  // SPCL905.SPL (Critical Strike)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	Range(LastSeenBy(Myself),5)
+	Global("Iaborina02","LOCALS",1)
+	!GlobalTimerNotExpired("Iainnate","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("Iaborina02","LOCALS",2)
+		SetGlobalTimer("Iainnate","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_GREATER_WHIRLWIND)  // SPCL901.SPL (Greater Whirlwind Attack)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	Range(LastSeenBy(Myself),5)
+	Global("Iaborina04","LOCALS",1)
+	!GlobalTimerNotExpired("Iainnate","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("Iaborina04","LOCALS",2)
+		SetGlobalTimer("Iainnate","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_CRITICAL_STRIKE)  // SPCL905.SPL (Critical Strike)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	Range(LastSeenBy(Myself),5)
+	Global("Iaborina03","LOCALS",1)
+	!GlobalTimerNotExpired("Iainnate","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("Iaborina03","LOCALS",2)
+		SetGlobalTimer("Iainnate","LOCALS",7)
+		ForceSpell(Myself,WARRIOR_GREATER_WHIRLWIND)  // SPCL901.SPL (Greater Whirlwind Attack)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	Range(LastSeenBy(Myself),5)
+	Global("Iaborina05","LOCALS",0)
+	!GlobalTimerNotExpired("Iainnate","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("Iaborina05","LOCALS",1)
+		SetGlobalTimer("Iainnate","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_WHIRLWIND)  // SPCL900.SPL (Whirlwind Attack)
+END
+
+IF
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Global("partyfled","LOCALS",0)
+	Allegiance(Myself,ENEMY)
+	Global("Iaborina01","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("chase","LOCALS",TEN_ROUNDS)
+		SetGlobal("partyfled","LOCALS",1)
+END
+
+IF
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_CHARMED)
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Global("partyfled","LOCALS",1)
+	GlobalTimerNotExpired("chase","LOCALS")
+	InMyArea(Player1)
+	Allegiance(Myself,ENEMY)
+	Global("Iaborina01","LOCALS",1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Allegiance(Myself,ENEMY)
+	Global("Iaborina01","LOCALS",1)
+	GlobalTimerExpired("chase","LOCALS")
+	Global("partyfled","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iaborina01","LOCALS",0)
+		SetGlobal("Iaborina02","LOCALS",0)
+		SetGlobal("Iaborina03","LOCALS",0)
+		SetGlobal("Iaborina04","LOCALS",0)
+		SetGlobal("Iaborina05","LOCALS",0)
+		SetGlobal("Iaborina06","LOCALS",0)
+		ReallyForceSpellRES("SPWII07",Myself)  // No such index
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	GlobalGT("Iaborina02","LOCALS",0)
+	GlobalTimerNotExpired("Iabackstabbing","LOCALS")
+	See([PC])
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	GlobalGT("Iaborina02","LOCALS",0)
+	GlobalTimerNotExpired("Iabackstabbing","LOCALS")
+	See(SecondNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	GlobalGT("Iaborina02","LOCALS",0)
+	GlobalTimerNotExpired("Iabackstabbing","LOCALS")
+	See(ThirdNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	GlobalGT("Iaborina02","LOCALS",0)
+	GlobalTimerNotExpired("Iabackstabbing","LOCALS")
+	See([PC])
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	OR(2)
+		!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+		CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	GlobalGT("Iaborina02","LOCALS",0)
+	GlobalTimerNotExpired("Iabackstabbing","LOCALS")
+	See(SecondNearest([PC]))
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	OR(2)
+		!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+		CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	GlobalGT("Iaborina02","LOCALS",0)
+	GlobalTimerNotExpired("Iabackstabbing","LOCALS")
+	See(ThirdNearest([PC]))
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	OR(2)
+		!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+		CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	StateCheck(Myself,STATE_INVISIBLE)
+	See([PC])
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	StateCheck(Myself,STATE_INVISIBLE)
+	See(SecondNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	StateCheck(Myself,STATE_INVISIBLE)
+	See(ThirdNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	StateCheck(Myself,STATE_INVISIBLE)
+	See([PC])
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	OR(2)
+		!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+		CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	StateCheck(Myself,STATE_INVISIBLE)
+	See(SecondNearest([PC]))
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	OR(2)
+		!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+		CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	StateCheck(Myself,STATE_INVISIBLE)
+	See(ThirdNearest([PC]))
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!Kit(LastSeenBy(Myself),BARBARIAN)
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	OR(2)
+		!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+		CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	Range(LastSeenBy(Myself),2)
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	CheckStatLT(LastSeenBy(Myself),95,RESISTPIERCING)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	RandomNumGT(6,4)
+	Range(LastSeenBy(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("s!interruptibleaction","LOCALS",1)
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+

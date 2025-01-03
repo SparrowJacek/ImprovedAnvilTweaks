@@ -24,7 +24,7 @@ THEN
 	RESPONSE #100
 		SetGlobal("Iaexit","AR0417",1)  // Living Room
 		CreateCreatureObjectDoor("S!amber4",Player1,0,0,0)  // Amber Golem
-		ApplySpellRES("S!TALBLS",Myself)  // No such index	
+		ReallyForceSpellRES("S!TALBLS",Myself)  // No such index	
 END
 
 IF

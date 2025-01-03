@@ -473,3 +473,161 @@ ACTION_PHP_EACH item_to_enchantment_mapping AS item_file => enchantment BEGIN
   BUT_ONLY
   IF_EXISTS
 END
+
+// Ray of Fragmentation
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!roffra.pro~
+
+COPY_EXISTING ~spwi413.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6141
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~%s!roffra%~
+  END
+
+COPY_EXISTING ~S!SCRL01.itm~ ~override~
+  SAY IDENTIFIED_DESC @6141
+
+// Change APR and dmg for Gem, Coin and Amber Golems
+
+ACTION_FOR_EACH lesser_golem_weapon IN ~S!GEM.itm~ ~S!AMBER.itm~ BEGIN
+  COPY_EXISTING ~%lesser_golem_weapon%~ ~override~
+    LPF ~ALTER_ITEM_HEADER~
+      INT_VAR
+        dicesize = 8
+        dicenumber = 3
+        damage_bonus = 2
+    END
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = 221
+        match_parameter2 = 3
+    END
+    LPF ~ADD_ITEM_EQEFFECT~
+      INT_VAR
+        target = 1
+        timing = 2
+        opcode = 1
+        parameter1 = 1
+        parameter2 = 0
+    END 
+END 
+
+// Make Gem, Coin and Amber Golems polymorphable
+
+ACTION_FOR_EACH lesser_golem_weapon IN ~S!GEM.itm~ ~S!AMBER.itm~ BEGIN
+  COPY_EXISTING ~%lesser_golem_weapon%~ ~override~
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = 101
+        match_parameter2 = 135
+    END
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = 101
+        match_parameter2 = 111
+    END
+    LPF ~ADD_ITEM_EQEFFECT~
+      INT_VAR
+        target = 1
+        timing = 2
+        opcode = 325
+        parameter1 = 1
+        parameter2 = 0
+    END 
+END
+
+// Hand of Undoing
+
+ACTION_FOR_EACH golem_cre IN ~S!ELEGOA~ ~S!ELEGOS~ ~S!GELEGO~ ~S!GELEGS~ ~S!GELEM1~ ~S!GEMPP~ BEGIN
+  COPY_EXISTING ~%golem_cre%.cre~ ~override~
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = 206
+      STR_VAR
+        match_resource = ~SPWI703~
+    END
+  BUT_ONLY
+END
+
+ACTION_FOR_EACH golem_weapon IN ~S!GTWIST~ ~S!MITGOL~ ~S!SUPGOL~ ~S!TWIST~ ~S!TWIST1~ ~S!ULTGOL~ ~S!WEBGOL~ BEGIN
+  COPY_EXISTING ~%golem_weapon%.itm~ ~override~
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = 206
+      STR_VAR
+        match_resource = ~SPWI703~
+    END
+  BUT_ONLY
+END
+
+COPY ~IATweaks\resources\spl\spwi703d.spl~ ~override~
+COPY ~IATweaks\resources\spl\spwi703e.spl~ ~override~
+
+COPY_EXISTING ~s!golem4.eff~ ~override~
+  WRITE_LONG 0x1c 100 // 100 flat dmg
+
+COPY_EXISTING ~S!SCRL02.itm~ ~override~
+  SAY IDENTIFIED_DESC @6145
+
+COPY_EXISTING ~SPWI703.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6145
+
+  // Immunity to Golems when start casting
+  LPF ~ADD_SPELL_CFEFFECT~
+    INT_VAR
+      opcode = 100
+      target = 1
+      parameter1 = 144
+      parameter2 = 4
+      duration = 4
+      resist_dispel = 0
+  END
+  
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 318
+      insert_point = ~0~
+      target = 2
+      power = 7
+      parameter1 = 0
+      parameter2 = 28
+      duration = 1
+      resist_dispel = 0
+    STR_VAR
+      resource = "SPWI703"
+  END
+
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 326
+      insert_point = ~-1~
+      target = 2
+      power = 7
+      parameter1 = 90
+      parameter2 = %magic_damage_res_greater_equal_than_row%
+      duration = 1
+      resist_dispel = 0
+    STR_VAR
+      resource = "SPWI703D"
+  END
+
+// Remove immunity to Comet and Dragon's Breath from Ice Golems
+
+ACTION_FOR_EACH golem_cre IN ~S!ICEGO1~ ~S!ICEGO2~ ~S!ICEGOA~ ~S!ICEGOL~ ~S!ICEGOR~ BEGIN
+  COPY_EXISTING ~%golem_cre%.cre~ ~override~
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = 206
+      STR_VAR
+        match_resource = ~SPWI922~
+    END
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = 206
+      STR_VAR
+        match_resource = ~SPWI925~
+    END
+  BUT_ONLY
+END
+

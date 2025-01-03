@@ -2,6 +2,18 @@ SILENT
 
 INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
 
+// Add condition for checking if magic damage resistance is less than n
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~MAGIC_DAMAGE_RES>=n~
+    stat                  = ~73~
+    value                 = ~-1~
+    relation              = ~4~
+  RET
+    magic_damage_res_greater_equal_than_row = new_line_number
+END
+
 ///////// Change elemental bonuses to 75 ////////////
 
 // Resist Fire/Cold
@@ -375,6 +387,9 @@ END
 COPY_EXISTING ~SPPR618.spl~ ~override~ // Champion's Might
   SAY UNIDENTIFIED_DESC @6124
 
+COPY_EXISTING ~SCRL7Q.itm~ ~override~ // Improved Haste
+  SAY IDENTIFIED_DESC @6125
+
 COPY_EXISTING ~SPWI613.spl~ ~override~ // Improved Haste
   SAY UNIDENTIFIED_DESC @6125
   LPF ~ALTER_SPELL_HEADER~
@@ -631,3 +646,33 @@ ACTION_FOR_EACH golem_cre IN ~S!ICEGO1~ ~S!ICEGO2~ ~S!ICEGOA~ ~S!ICEGOL~ ~S!ICEG
   BUT_ONLY
 END
 
+///////////// Make elemental damage from weapons not bypass magic resistances //////////////
+
+COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
+  GET_OFFSET_ARRAY headers ITM_V10_HEADERS
+  READ_SHORT 0x1c category
+  PATCH_IF ((category != 0) AND (category != 28)) BEGIN // claws, 1-hit attacks etc
+    READ_LONG 0x6a effects_offset
+    PHP_EACH headers AS int => header_off BEGIN
+      // READ_ASCII cont_off + 0x78 key // key item
+      READ_BYTE header_off + 0x2 location
+      READ_SHORT header_off + 0x1e num_effects
+      READ_SHORT header_off + 0x20 effect_index
+      PATCH_IF (location = 1) BEGIN // 1 == weapon
+        FOR (current_eff_index = effect_index; current_eff_index < effect_index + num_effects; ++current_eff_index) BEGIN
+          SET current_effect_offset = (effects_offset + current_eff_index * 0x30)
+          READ_SHORT current_effect_offset opcode
+          PATCH_IF (opcode = 12) BEGIN // damage
+            READ_SHORT (current_effect_offset + 0x0a) damage_type
+            READ_SHORT (current_effect_offset + 0x12) probab_1
+            READ_SHORT (current_effect_offset + 0x13) probab_2
+            PATCH_IF (((damage_type BAND 0b11001001111) > 0) AND (probab_1 < 100 OR probab_2 > 0)) BEGIN // Any form of elemental non-poison damage
+              WRITE_BYTE (current_effect_offset + 0x0d) 1 // Does not break through resistances
+            END
+          END
+        END
+      END
+    END
+  END
+
+  BUT_ONLY

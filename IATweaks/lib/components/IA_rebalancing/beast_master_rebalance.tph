@@ -449,7 +449,7 @@ COPY_EXISTING ~kitlist.2da~ ~override/kitlist.2da~
 
 // Brown Bears from Animal Summoning II
 
-COPY_EXISTING ~B1-8M1.itm~ ~override/s!bear01.itm~ // Bessen
+COPY_EXISTING ~B1-8M1.itm~ ~override/s!bear01.itm~
   WRITE_LONG 0x60 2 // Enchantment
   LPF ~ALTER_ITEM_HEADER~
     INT_VAR
@@ -457,7 +457,7 @@ COPY_EXISTING ~B1-8M1.itm~ ~override/s!bear01.itm~ // Bessen
       damage_bonus = 2
   END
 
-COPY_EXISTING ~BEARBRSU.cre~ ~override~ // Bessen
+COPY_EXISTING ~BEARBRSU.cre~ ~override~
   WRITE_SHORT 0x24 48 // HP
   WRITE_SHORT 0x26 48 // HP
   WRITE_BYTE  0x53 2  // APR
@@ -469,3 +469,53 @@ COPY_EXISTING ~BEARBRSU.cre~ ~override~ // Bessen
   END
 
   ADD_CRE_ITEM ~s!bear01~ #0 #0 #0 ~NONE~ ~WEAPON1~
+
+// Winter Wolf from Animal Summoning III
+
+COPY_EXISTING ~WOLFWI1.itm~ ~override~ // Ranged
+  WRITE_BYTE 0x18 (THIS BOR 0b01000000) // Add Magical flag
+  WRITE_LONG 0x60 3 // Enchantment
+  LPF ~ALTER_ITEM_HEADER~
+    INT_VAR
+      dicesize = 1
+      dicenumber = 1
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 12
+      special = 320 // Should prevent cold chunking
+  END
+
+COPY_EXISTING ~WOLFWI2.itm~ ~override~ // Melee
+  WRITE_LONG 0x60 3 // Enchantment
+  LPF ~ALTER_ITEM_HEADER~
+    INT_VAR
+      dicesize = 6
+      dicenumber = 2
+      damage_bonus = 3
+      thac0_bonus = 3
+      flag_strength = 1
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 12
+      special = 64 // Should prevent cold chunking
+  END
+
+// Mountain Bear from Conjure Animals
+
+COPY_EXISTING ~B1-12M3.itm~ ~override/s!bear02.itm~
+  WRITE_LONG 0x60 2 // Enchantment
+  LPF ~ALTER_ITEM_HEADER~
+    INT_VAR
+      thac0_bonus = 3
+      damage_bonus = 3
+  END
+
+COPY_EXISTING ~BEARPOSU.cre~ ~override~
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~B1-12M3~
+  END
+
+  ADD_CRE_ITEM ~s!bear02~ #0 #0 #0 ~NONE~ ~WEAPON1~

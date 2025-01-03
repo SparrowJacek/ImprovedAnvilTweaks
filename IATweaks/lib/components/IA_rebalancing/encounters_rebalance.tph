@@ -61,7 +61,6 @@ ACTION_FOR_EACH vampire_weapon IN ~VAMP~ ~VAMP1~ ~VAMP2~ ~VAMP3~ ~S!VLORD~ ~S!BO
     READ_LONG 0x64 headers_offset
     WRITE_BYTE (headers_offset + 0x18) (THIS - 1)
     WRITE_BYTE (headers_offset + 0x1a) (THIS + 1)
-    PATCH_FOR_EACH spl_to_dispel IN ~SPPR413~ ~SPIN738~ ~SPPR508~ BEGIN
     PATCH_FOR_EACH spl_to_dispel IN ~SPPR413~ ~SPIN738~ ~SPPR508~ ~SPWI725E~ BEGIN
       LPF ~CLONE_EFFECT~
         INT_VAR
@@ -386,10 +385,8 @@ COPY_EXISTING ~SLMAGE1.cre~ ~override~
   WRITE_BYTE 0x63 0 // Resist Missile
   WRITE_BYTE 0x23d 16 // Constitution
 
-  PATCH_IF(FILE_EXISTS_IN_GAME ~POTN33.spl~) BEGIN
-    ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV14~
-    ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV15~
-  END
+  ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV14~
+  ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV15~
 
 COMPILE ~IATweaks\scripts\creatures\S!SLMAGE.BAF~
 
@@ -512,7 +509,9 @@ COPY_EXISTING ~SEVPAT04.cre~ ~override~ // Smaeluv
   ADD_CRE_ITEM ~POTN11~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV14~
   ADD_CRE_ITEM ~CHAN05~ #0 #0 #0 ~NONE~ ~ARMOR~
   
-COMPILE ~IATweaks\scripts\creatures\SEVPAT04.BAF~//////////////// Planar Hounds ///////////////
+COMPILE ~IATweaks\scripts\creatures\SEVPAT04.BAF~
+
+//////////////// Planar Hounds ///////////////
 
 COPY ~IATweaks\resources\spl\s!-resho.spl~ ~override~
 
@@ -529,4 +528,12 @@ ACTION_FOR_EACH planar_hound_cre IN ~s!phound~ ~s!phounr~ ~s!phoun3~ ~s!phoun2~ 
       resource = ~S!-RESHO~
   END
 END
+
+//////////////// Planar Warden ///////////////////
+
+COPY_EXISTING ~PWARDEN.cre~ ~override~
+  WRITE_BYTE 0x5b 50 // Resist Electricity
+  WRITE_BYTE 0x5c 25 // Resist Acid
+
+COMPILE ~IATweaks\scripts\creatures\s!warden.baf~
 

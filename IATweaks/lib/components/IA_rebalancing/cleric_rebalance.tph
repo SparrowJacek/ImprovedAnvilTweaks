@@ -2636,7 +2636,52 @@ COPY_EXISTING ~SLAPRI.cre~ ~override~
   ADD_CRE_ITEM ~HELM02~ #0 #0 #0 ~NONE~ ~HELMET~
   ADD_CRE_ITEM ~POTN34~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV15~
 
-COMPILE ~IATweaks\scripts\creatures\S!SLAPRI.BAF~// Zorl from Tarnor's party
+COMPILE ~IATweaks\scripts\creatures\S!SLAPRI.BAF~
+  
+// Torgal
+COPY_EXISTING ~TORGAL.cre~ ~override~
+  WRITE_SHORT 0x46 ~-3~ // AC
+  WRITE_SHORT 0x48 ~-3~ // AC
+  WRITE_BYTE 0x52 6 // Thac0
+  WRITE_BYTE 0x59 25 // Resist Fire
+  WRITE_BYTE 0x5e 25 // Resist Magic Fire
+
+COMPILE ~IATweaks\scripts\creatures\S!TORGAL.BAF~
+
+// Elite Bounty Huntress
+COPY_EXISTING ~PBHUNT03.cre~ ~override~
+  WRITE_SHORT 0x24 84 // HP
+  WRITE_SHORT 0x26 84 // HP
+  WRITE_SHORT 0x46 10 // AC
+  WRITE_SHORT 0x48 10 // AC
+  WRITE_BYTE 0x52 5 // Thac0
+  WRITE_BYTE 0x59 0 // Resist Fire
+  WRITE_BYTE 0x5d 0 // Resist Magic
+  WRITE_BYTE 0x5e 0 // Resist Magic Fire
+  WRITE_BYTE 0x234 16 // 1st Class Level
+  WRITE_BYTE 0x23d 16 // Constitution
+
+  LPF ~DELETE_CRE_EFFECT~
+    INT_VAR
+      opcode_to_delete = 0
+  END
+  LPF ~DELETE_CRE_EFFECT~
+    INT_VAR
+      opcode_to_delete = 16
+  END
+  LPF ~DELETE_CRE_EFFECT~
+    INT_VAR
+      opcode_to_delete = 101
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!IMMUNE~
+  END
+
+COMPILE ~IATweaks\scripts\creatures\s!bounty.baf~
+
+// Zorl from Tarnor's party
 
 COPY_EXISTING ~BERKREF.cre~ ~override~
   WRITE_SHORT 0x24 95 // HP

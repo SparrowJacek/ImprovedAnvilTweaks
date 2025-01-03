@@ -409,6 +409,10 @@ COPY ~IATweaks\resources\spl\s!ppthac.spl~ ~override~
       match_opcode = 54
       opcode = 284
   END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      duration_high = 12
+  END
 COPY ~IATweaks\resources\spl\s!ppacli.spl~ ~override~
   LPF ~ALTER_EFFECT~
     INT_VAR
@@ -429,7 +433,11 @@ COPY ~IATweaks\resources\spl\s!ppcrit.spl~ ~override~
       match_opcode = 318
       parameter2 = %pickpocket_lower_than_row%
       duration = 5
-  END 
+  END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      duration_high = 12
+  END
 COPY ~IATweaks\resources\eff\s!ppthac.eff~ ~override~
 COPY ~IATweaks\resources\eff\s!ppacli.eff~ ~override~
 COPY ~IATweaks\resources\eff\s!ppache.eff~ ~override~
@@ -529,6 +537,7 @@ COPY ~IATweaks\resources\spl\s!hisen1.spl~ ~override~
     INT_VAR
       match_opcode = 318
       parameter2 = %hide_in_shadows_lower_than_row%
+      probability1 = 100
   END
 
 COPY ~IATweaks\resources\spl\s!hisen2.spl~ ~override~
@@ -541,6 +550,8 @@ COPY ~IATweaks\resources\spl\s!hisen2.spl~ ~override~
     INT_VAR
       match_opcode = 318
       parameter2 = %hide_in_shadows_lower_than_row%
+      probability1 = 100
+      probability2 = 0
   END
 
 COPY ~IATweaks\resources\spl\s!hissnd.spl~ ~override~
@@ -833,6 +844,7 @@ EXTEND_TOP "baldur25.bcs" ".../IATweaks-inlined/hide_in_shadows_sound.baf"
 ///////// DETECT ILLUSIONS ///////////
 
 COPY ~IATweaks\resources\spl\s!dibase.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!diillu.spl~ ~override~
 COPY ~IATweaks\resources\eff\s!dinorm.eff~ ~override~
 COPY ~IATweaks\resources\spl\s!dinorm.spl~ ~override~
   LPF ~ALTER_EFFECT~
@@ -875,26 +887,13 @@ COPY_EXISTING_REGEXP GLOB ~.+\.cre~ ~override~
   READ_BYTE 0x273 cre_class
   // Pickpocket
   PATCH_IF %cre_class% == 4 OR %cre_class% == 5 OR %cre_class% == 9 OR %cre_class% == 10 OR %cre_class% == 13 OR %cre_class% == 15 BEGIN
-    // PATCH_FOR_EACH pickpocket_subspell IN ~S!PPTHAC~ ~S!PPCRIT~ ~S!PPACLI~ ~S!PPACHE~ BEGIN
-    //   LPF ~ADD_CRE_EFFECT~
-    //     INT_VAR
-    //       opcode = 177
-    //       target = 1
-    //       parameter2 = 2
-    //       timing = 9
-    //       resist_dispel = 10
-    //     STR_VAR
-    //       resource = EVAL ~%pickpocket_subspell%~
-    //       effsource = ~S!PPBASE~
-    //   END
-    // END
     LPF ~ADD_CRE_EFFECT~
       INT_VAR
         opcode = 146
         target = 1
         parameter2 = 1
         timing = 9
-        resist_dispel = 10
+        resist_dispel = 0
       STR_VAR
         resource = ~S!PPBASE~
         effsource = ~S!PPBASE~
@@ -902,25 +901,13 @@ COPY_EXISTING_REGEXP GLOB ~.+\.cre~ ~override~
   END
   // Detect Illusionsx
   PATCH_IF %cre_class% == 4 OR %cre_class% == 9 OR %cre_class% == 10 OR %cre_class% == 13 OR %cre_class% == 15 OR %cre_class% == 21 OR %cre_kit% == 1076101120 BEGIN
-    // PATCH_FOR_EACH detect_illusion_subspell IN ~S!DINORM~ ~S!DISAVT~ ~S!DIMRES~ BEGIN
-    //   LPF ~ADD_CRE_EFFECT~
-    //     INT_VAR
-    //       opcode = 177
-    //       target = 1
-    //       parameter2 = 2
-    //       timing = 9
-    //     STR_VAR
-    //       resource = EVAL ~%detect_illusion_subspell%~
-    //       effsource = ~S!DIBASE~
-    //   END
-    // END
     LPF ~ADD_CRE_EFFECT~
       INT_VAR
         opcode = 146
         target = 1
         parameter2 = 1
         timing = 9
-        resist_dispel = 10
+        resist_dispel = 0
       STR_VAR
         resource = ~S!DIBASE~
         effsource = ~S!DIBASE~
@@ -1104,8 +1091,8 @@ COPY_EXISTING ~enginest.2da~ ~override~
   SET hide_in_shadows_desc_gui_strref = RESOLVE_STR_REF (@5013)
   SET silent_strike_desc_gui_strref = RESOLVE_STR_REF (@5014)
   SET detect_illusions_desc_gui_strref = RESOLVE_STR_REF (@5015)
-  SET find_traps_desc_gui_strref = RESOLVE_STR_REF (@5016)
-  SET set_traps_desc_gui_strref = RESOLVE_STR_REF (@5017)
+  // SET find_traps_desc_gui_strref = RESOLVE_STR_REF (@5016)
+  // SET set_traps_desc_gui_strref = RESOLVE_STR_REF (@5017)
   REPLACE_TEXTUALLY ~STRREF_GUI_HELP_PICK_POCKETS[ %TAB%]*[0-9]+~ ~STRREF_GUI_HELP_PICK_POCKETS %pick_pocket_desc_gui_strref%~
   REPLACE_TEXTUALLY ~STRREF_GUI_HELP_HIDE_IN_SHADOWS[ %TAB%]*[0-9]+~ ~STRREF_GUI_HELP_HIDE_IN_SHADOWS %hide_in_shadows_desc_gui_strref%~
   REPLACE_TEXTUALLY ~STRREF_GUI_HELP_MOVE_SILENTLY[ %TAB%]*[0-9]+~ ~STRREF_GUI_HELP_MOVE_SILENTLY %silent_strike_desc_gui_strref%~

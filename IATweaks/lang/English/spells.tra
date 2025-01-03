@@ -500,9 +500,9 @@ Casting Time: 2
 Area of Effect: 1 creature
 Saving Throw: None
 
-When this spells is cast, the priest effectively draws on the power of <PRO_HISHER> god and lends it to the target creature, in effect creating a champion. The target gains a bonus to <PRO_HISHER> THAC0 at a rate of 1 for every 5 levels of the caster up till +4 at level 20. The target's number of attacks per round is also doubled as if Improved Haste was cast.
+When this spell is cast, the priest places a divine mark on the target, which lasts for 15 rounds. A moment later a surge of godly energy flows from the priest's body to the nearest party member with said mark active. This energy greatly enhances combat abilities of the target, granting +1 bonus to THAC0 per 5 levels of the caster (up to +4 at level 20) and doubling the number of attacks as if Improved Haste was cast.
 
-The spell applies its effects every 6 seconds for its duration and the effects last for the same amount of time. The target has to be in the caster's range for each pulse of the spell, otherwise he'll have to wait for another pulse to get the benefits. Champion's Might requires intense concentration to maintain the divine connection, so the priest can have only one instance of this spell active.~
+The spell applies its effects every 6 seconds to the nearest marked character for its duration and the effects last for the same amount of time. The target has to be in the caster's range for each pulse of the spell, otherwise he'll have to wait for another pulse to get the benefits.~
 
 @6056 = ~Web
 (Conjuration)
@@ -867,9 +867,9 @@ Casting Time: 7
 Area of Effect: targetted creature
 Saving Throw: None
 
-By casting this spell, the priest links his or her own life force with that of an ally. Each time that ally is dealt damage that would not result in his death, a check is made. If the target's HP is lower than the caster's, then their HP values are immediately swapped. Swapped HP can not exceed the character's max HP value, so it is highly advised to use this spell on a target that has higher max HP than the caster.
+By casting this spell, the priest links his or her own life force with that of an ally. Each time that ally is dealt damage that would not result in his death, a check is made. If the target's HP is lower than the caster's, then their HP values are immediately swapped. Swapped HP can not exceed the character's max HP value, so it is highly advised to use this spell on a target that has higher max HP than the caster. When more clerics from the same party use this spell, their life threads can become entangled, leading to unforeseen results.
 
-From level 16 each time the target of this spell is hurt, the cleric regenerates 1d4 HP, this value is increased to 1d8 at level 20.~
+From level 16 each time the target of this spell is hurt, the cleric regenerates 1d4 HP one second later, this value is increased to 1d8 at level 20.~
 
 @6123 = ~Improved Invisibility
 (Illusion/Phantasm)
@@ -896,6 +896,7 @@ Casting Time: 2
 Area of Effect: 1 creature
 Saving Throw: None
 
+When this spell is cast, the priest places a divine mark on the target, which lasts for 15 rounds. A moment later a surge of godly energy flows from the priest's body to the nearest party member with said mark active. This energy greatly enhances combat abilities of the target, granting +1 bonus to THAC0 per 5 levels of the caster (up to +4 at level 20). The target also becomes hasted and his number of attacks per round is increased by one as if Improved Haste was cast on him.
 
 The spell applies its effects every 6 seconds to the nearest marked character for its duration and the effects last for the same amount of time. The target has to be in the caster's range for each pulse of the spell, otherwise he'll have to wait for another pulse to get the benefits.~
 

@@ -62,6 +62,7 @@ ACTION_FOR_EACH vampire_weapon IN ~VAMP~ ~VAMP1~ ~VAMP2~ ~VAMP3~ ~S!VLORD~ ~S!BO
     WRITE_BYTE (headers_offset + 0x18) (THIS - 1)
     WRITE_BYTE (headers_offset + 0x1a) (THIS + 1)
     PATCH_FOR_EACH spl_to_dispel IN ~SPPR413~ ~SPIN738~ ~SPPR508~ BEGIN
+    PATCH_FOR_EACH spl_to_dispel IN ~SPPR413~ ~SPIN738~ ~SPPR508~ ~SPWI725E~ BEGIN
       LPF ~CLONE_EFFECT~
         INT_VAR
           match_opcode = 221
@@ -125,6 +126,15 @@ COPY_EXISTING ~MISTVA.itm~ ~override~
       dicesize = 8
       special = 1 // Drain HP
   END
+
+// Eminent Vampires //
+
+ACTION_FOR_EACH eminent_vamp_cre IN ~s!vamemi~ ~s!vamemr~ ~VAMEMI01~ ~VAMPAT01~ ~VAMPIF01~ ~VAMPIM01~ BEGIN
+  COPY_EXISTING ~%eminent_vamp_cre%.cre~ ~override~
+    WRITE_BYTE 0x59 25  // Fire Resistance
+    WRITE_BYTE 0x5c 25  // Acid Resistance
+    WRITE_BYTE 0x5e 25  // Magic Fire Resistance
+END
 
 /////////// Rayic (Cowled Wizard that Edwin orders us to kill) ////////////
 
@@ -502,4 +512,21 @@ COPY_EXISTING ~SEVPAT04.cre~ ~override~ // Smaeluv
   ADD_CRE_ITEM ~POTN11~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV14~
   ADD_CRE_ITEM ~CHAN05~ #0 #0 #0 ~NONE~ ~ARMOR~
   
-COMPILE ~IATweaks\scripts\creatures\SEVPAT04.BAF~
+COMPILE ~IATweaks\scripts\creatures\SEVPAT04.BAF~//////////////// Planar Hounds ///////////////
+
+COPY ~IATweaks\resources\spl\s!-resho.spl~ ~override~
+
+ACTION_FOR_EACH planar_hound_cre IN ~s!phound~ ~s!phounr~ ~s!phoun3~ ~s!phoun2~ BEGIN
+  COPY_EXISTING ~%planar_hound_cre%.cre~ ~override~
+    LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 146
+      target = 1
+      parameter2 = 1
+      timing = 9
+      resist_dispel = 0
+    STR_VAR
+      resource = ~S!-RESHO~
+  END
+END
+

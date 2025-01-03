@@ -1,0 +1,228 @@
+IF
+	OR(2)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		TookDamage()
+	Allegiance(Myself,NEUTRAL)
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		Enemy()
+		Shout(99)
+		MoveToObject(Player1)
+END
+
+IF
+	Exists("tarnor")  // Tarnor the Hatchetman
+	!Dead("tarnor")  // Tarnor the Hatchetman
+	Allegiance("tarnor",NEUTRAL)  // Tarnor the Hatchetman
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		Shout(99)
+		ActionOverride("tarnor",Enemy())
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("Iapcastts","GLOBAL",0)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_PANIC)
+	See([PC])
+	HasItem("potn35",Myself)  // Potion of Magic Shielding
+	Global("Iashielding","LOCALS",0)
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("Iashielding","LOCALS",1)
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("potn35",Myself)  // Potion of Magic Shielding
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("Iapcastts","GLOBAL",0)
+	Global("Iashielding","LOCALS",1)
+	HasItem("S!minhp1",Myself)  // No such index
+THEN
+	RESPONSE #100
+		DestroyItem("S!minhp1")  // No such index
+END
+
+IF
+	!HasItem("S!minhp1",Myself)  // No such index
+	Global("Iapcastts","GLOBAL",1)
+	Global("Iatsinvulner","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",1)
+		ApplySpellRES("SPINI70",Myself)  // No such index
+END
+
+IF
+	Global("Iapcastts","GLOBAL",0)
+	Global("Iatsinvulner","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",0)
+		ApplySpellRES("SPINI71",Myself)  // No such index
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("Iapcastts","GLOBAL",0)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_PANIC)
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),15)
+	GlobalLT("Iahla","LOCALS",1)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iahla","LOCALS",1)
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_HARDINESS)  // SPCL907.SPL (Hardiness)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("Iapcastts","GLOBAL",0)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_PANIC)
+	!CheckSpellState(Myself,DEFENSIVE_STANCE)
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+	GlobalLT("Iadefstance","LOCALS",5)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iadefstance","LOCALS",1)
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		ForceSpellRES("SPDWD02",Myself)  // Defensive Stance
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_PANIC)
+	See([PC])
+	HasItem("potn14",Myself)  // Oil of Speed
+	Global("Iaspeed","LOCALS",0)
+	Global("Iapcastts","GLOBAL",0)
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	OR(2)
+		StateCheck(Myself,STATE_SLOWED)
+		!StateCheck(Myself,STATE_HASTED)
+THEN
+	RESPONSE #100
+		SetGlobal("Iaspeed","LOCALS",1)
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("potn14",Myself)  // Oil of Speed
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	See(NearestEnemyOf(Myself))
+	HPPercentLT(Myself,60)
+	HasItem("potn52",Myself)  // Potion of Extra Healing
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("potn52",Myself)  // Potion of Extra Healing
+END
+
+IF
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_CHARMED)
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	InMyArea(Player1)
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(NearestEnemyOf(Myself))
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	Range(LastSeenBy(Myself),4)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	Range(LastSeenBy(Myself),4)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Exists("tarnor")  // Tarnor the Hatchetman
+	!Dead("tarnor")  // Tarnor the Hatchetman
+	Allegiance("tarnor",ENEMY)  // Tarnor the Hatchetman
+	Allegiance(Myself,NEUTRAL)
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		Enemy()
+		Shout(99)
+		MoveToObject(Player1)
+END
+
+IF
+	Exists("gaius")  // Gaius
+	!Dead("gaius")  // Gaius
+	Allegiance("gaius",ENEMY)  // Gaius
+	Allegiance(Myself,NEUTRAL)
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		Enemy()
+		Shout(99)
+		MoveToObject(Player1)
+END
+

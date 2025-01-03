@@ -1097,8 +1097,54 @@ COPY_EXISTING ~enginest.2da~ ~override~
   REPLACE_TEXTUALLY ~STRREF_GUI_HELP_HIDE_IN_SHADOWS[ %TAB%]*[0-9]+~ ~STRREF_GUI_HELP_HIDE_IN_SHADOWS %hide_in_shadows_desc_gui_strref%~
   REPLACE_TEXTUALLY ~STRREF_GUI_HELP_MOVE_SILENTLY[ %TAB%]*[0-9]+~ ~STRREF_GUI_HELP_MOVE_SILENTLY %silent_strike_desc_gui_strref%~
   REPLACE_TEXTUALLY ~STRREF_GUI_HELP_DETECT_ILLUSION[ %TAB%]*[0-9]+~ ~STRREF_GUI_HELP_DETECT_ILLUSION %detect_illusions_desc_gui_strref%~
-  REPLACE_TEXTUALLY ~STRREF_GUI_HELP_DETECT_TRAPS[ %TAB%]*[0-9]+~ ~STRREF_GUI_HELP_DETECT_TRAPS %find_traps_desc_gui_strref%~
-  REPLACE_TEXTUALLY ~STRREF_GUI_HELP_SET_TRAPS[ %TAB%]*[0-9]+~ ~STRREF_GUI_HELP_SET_TRAPS %set_traps_desc_gui_strref%~
+  // REPLACE_TEXTUALLY ~STRREF_GUI_HELP_DETECT_TRAPS[ %TAB%]*[0-9]+~ ~STRREF_GUI_HELP_DETECT_TRAPS %find_traps_desc_gui_strref%~
+  // REPLACE_TEXTUALLY ~STRREF_GUI_HELP_SET_TRAPS[ %TAB%]*[0-9]+~ ~STRREF_GUI_HELP_SET_TRAPS %set_traps_desc_gui_strref%~
+  PRETTY_PRINT_2DA
+
+// Update race description
+
+LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~racetext.2da~
+  RET_ARRAY
+    racetext_cols = 2da_columns_to_ids_mapping
+END
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~racetext.2da~
+  RET_ARRAY
+    racetext_rows = 2da_rows_to_ids_mapping
+END
+
+COPY_EXISTING ~racetext.2da~ ~override~
+  COUNT_2DA_COLS ~colcount~
+  SET description_col = $racetext_cols("DESCSTR")
+  SET_2DA_ENTRY_LATER ~s!race_desc~ $racetext_rows("HUMAN") description_col RESOLVE_STR_REF (@5032)
+  SET_2DA_ENTRY_LATER ~s!race_desc~ $racetext_rows("DWARF") description_col RESOLVE_STR_REF (@5033)
+  SET_2DA_ENTRY_LATER ~s!race_desc~ $racetext_rows("ELF") description_col RESOLVE_STR_REF (@5034)
+  SET_2DA_ENTRY_LATER ~s!race_desc~ $racetext_rows("GNOME") description_col RESOLVE_STR_REF (@5035)
+  SET_2DA_ENTRY_LATER ~s!race_desc~ $racetext_rows("HALFLING") description_col RESOLVE_STR_REF (@5036)
+  SET_2DA_ENTRY_LATER ~s!race_desc~ $racetext_rows("HALF_ELF") description_col RESOLVE_STR_REF (@5037)
+  SET_2DA_ENTRY_LATER ~s!race_desc~ $racetext_rows("HALF_ORC") description_col RESOLVE_STR_REF (@5038)
+  SET_2DA_ENTRIES_NOW ~s!race_desc~ ~colcount~
+  PRETTY_PRINT_2DA
+
+COPY_EXISTING ~enginest.2da~ ~override~
+  SET human_race_desc_gui_strref = RESOLVE_STR_REF (@5032)
+  SET dwarf_race_desc_gui_strref = RESOLVE_STR_REF (@5033)
+  SET elf_race_desc_gui_strref = RESOLVE_STR_REF (@5034)
+  SET gnome_race_desc_gui_strref = RESOLVE_STR_REF (@5035)
+  SET halfling_race_desc_gui_strref = RESOLVE_STR_REF (@5036)
+  SET half_elf_race_desc_gui_strref = RESOLVE_STR_REF (@5037)
+  SET half_orc_race_desc_gui_strref = RESOLVE_STR_REF (@5038)
+  REPLACE_TEXTUALLY ~STRREF_GUI_HELP_HUMAN[ %TAB%]*[0-9]+~ ~STRREF_GUI_HELP_HUMAN %human_race_desc_gui_strref%~
+  REPLACE_TEXTUALLY ~STRREF_GUI_HELP_DWARF[ %TAB%]*[0-9]+~ ~STRREF_GUI_HELP_DWARF %dwarf_race_desc_gui_strref%~
+  REPLACE_TEXTUALLY ~STRREF_GUI_HELP_ELF[ %TAB%]*[0-9]+~ ~STRREF_GUI_HELP_ELF %elf_race_desc_gui_strref%~
+  REPLACE_TEXTUALLY ~STRREF_GUI_HELP_GNOME[ %TAB%]*[0-9]+~ ~STRREF_GUI_HELP_GNOME %gnome_race_desc_gui_strref%~
+  REPLACE_TEXTUALLY ~STRREF_GUI_HELP_HALFLING[ %TAB%]*[0-9]+~ ~STRREF_GUI_HELP_HALFLING %halfling_race_desc_gui_strref%~
+  REPLACE_TEXTUALLY ~STRREF_GUI_HELP_HALF_ELF[ %TAB%]*[0-9]+~ ~STRREF_GUI_HELP_HALF_ELF %half_elf_race_desc_gui_strref%~
+  REPLACE_TEXTUALLY ~STRREF_GUI_HELP_HALFORC[ %TAB%]*[0-9]+~ ~STRREF_GUI_HELP_HALFORC %half_orc_race_desc_gui_strref%~
   PRETTY_PRINT_2DA
 
 // New UI functionalities

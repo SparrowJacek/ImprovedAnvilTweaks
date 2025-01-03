@@ -130,123 +130,16 @@ COPY_EXISTING ~spwi905.spl~ ~override~
 
 //////// CONJURER //////////
 
-// Create more powerful versions of summons for Conjurer
+// More powerful versions of summons for Conjurer
 
-ACTION_DEFINE_ASSOCIATIVE_ARRAY conjurer_new_summons_mapping BEGIN
-  "s!minosu"=>"s!monsu4"
-  "s!salasu"=>"s!monsu5"
-  "s!trolsu"=>"s!monsu6"
-  "s!yuansu"=>"s!monsu7"
-END
+COMPILE ~IATweaks\scripts\creatures\S!MONSUM.baf~
 
-ACTION_PHP_EACH conjurer_new_summons_mapping AS orig_cre=>new_cre BEGIN
-  COPY_EXISTING ~%orig_cre%.cre~ ~override/%new_cre%.cre~
-    LPF ~ADD_CRE_EFFECT~ // +20% HP
-      INT_VAR
-        opcode = 18
-        target = 1
-        power = 0
-        parameter1 = 120
-        parameter2 = 2
-        timing = 9
-        resist_dispel = 0
-    END
-    LPF ~ADD_CRE_EFFECT~ // +20% HP
-      INT_VAR
-        opcode = 17
-        target = 1
-        power = 0
-        parameter1 = 120
-        parameter2 = 2
-        timing = 9
-        resist_dispel = 0
-    END
-    LPF ~ADD_CRE_EFFECT~ // + 2 AC
-      INT_VAR
-        opcode = 0
-        target = 1
-        power = 0
-        parameter1 = 2
-        parameter2 = 0
-        timing = 9
-        resist_dispel = 0
-    END
-    LPF ~ADD_CRE_EFFECT~ // + 2 Str
-      INT_VAR
-        opcode = 44
-        target = 1
-        power = 0
-        parameter1 = 2
-        parameter2 = 0
-        timing = 9
-        resist_dispel = 0
-    END
-END
+COPY ~IATweaks\resources\spl\s!smbuf1.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!smbuf2.spl~ ~override~
 
-ACTION_DEFINE_ASSOCIATIVE_ARRAY old_to_new_eff_mapping BEGIN
-  "s!mon4"=>"s!monsu4"
-  "s!mon5"=>"s!monsu5"
-  "s!mon6"=>"s!monsu6"
-  "s!mon7"=>"s!monsu7"
-END
-
-ACTION_PHP_EACH old_to_new_eff_mapping AS orig_eff=>new_eff BEGIN
-  COPY_EXISTING ~%orig_eff%.eff~ ~override/%new_eff%.eff~
-    WRITE_EVALUATED_ASCII 0x30 ~%new_eff%~ #8
-END
-
-ACTION_DEFINE_ASSOCIATIVE_ARRAY spell_to_eff_mapping BEGIN
-  "spwi618"=>"s!monsu4"
-  "spwi712"=>"s!monsu5"
-  "spwi815"=>"s!monsu6"
-  "spwi902"=>"s!monsu7"
-END
-
-ACTION_PHP_EACH spell_to_eff_mapping AS summ_spell=>summ_eff BEGIN
-  COPY_EXISTING ~%summ_spell%.spl~ ~override/%summ_spell%d.spl~
-    WRITE_LONG 0x08 ~-1~ // Remove spell name
-    LPF ~ALTER_EFFECT~
-      INT_VAR
-        match_opcode = 177
-      STR_VAR
-        resource = EVALUATE_BUFFER ~%summ_eff%~
-    END
-    LPF ~ALTER_EFFECT~
-      INT_VAR
-        match_opcode = 318
-      STR_VAR
-        parameter1 = 6
-        parameter2 = 134
-        resource = EVALUATE_BUFFER ~%summ_spell%d~
-    END
-    LPF ~ALTER_EFFECT~
-      INT_VAR
-        match_opcode = 326
-        parameter1 = 6
-        parameter2 = 134
-    END
-END
-
-ACTION_FOR_EACH orig_summ_spell IN ~spwi618~ ~spwi712~ ~spwi815~ ~spwi902~ BEGIN
-  COPY_EXISTING ~%orig_summ_spell%.spl~ ~override~
-  LPF ~CLONE_EFFECT~
-    INT_VAR
-      match_opcode = 318
-      parameter1 = 128
-      parameter2 = %kit_equals_row% 
-    STR_VAR
-      resource = EVALUATE_BUFFER ~%orig_summ_spell%~
-      insert = ~first~
-  END
-  LPF ~CLONE_EFFECT~
-    INT_VAR
-      match_opcode = 326
-      parameter1 = 128
-      parameter2 = %kit_equals_row% 
-    STR_VAR
-      resource = EVALUATE_BUFFER ~%orig_summ_spell%d~
-      insert = ~first~
-  END
+ACTION_FOR_EACH summoned_monster IN ~OGRELESU~ ~OGRESU~ ~ETTERCSU~ ~S!MINOSU~ ~S!SALASU~ ~S!TROLSU~ ~S!YUANSU~ BEGIN
+  COPY_EXISTING ~%summoned_monster%.cre~ ~override~
+    WRITE_ASCII 0x258 ~S!MONSUM~ #8
 END
 
 //////// TRANSMUTER //////////

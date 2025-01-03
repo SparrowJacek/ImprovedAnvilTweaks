@@ -2114,6 +2114,16 @@ COPY_EXISTING ~boot02.itm~ ~override~
       parameter1 = 5
   END
 
+// Night Club
+
+COPY ~IATweaks\resources\spl\s!clubni.spl~ ~override~
+COPY ~IATweaks\resources\bam\s!clubni.bam~ ~override~
+COPY ~IATweaks\resources\itm\s!clubni.itm~ ~override~
+  SAY NAME2 @7014 
+  SAY IDENTIFIED_DESC @7013 
+// TODO ADD THIS ITEM SOMEWHERE!
+
+
 //////////////// Weapons for backstabs ///////////////
 
 COPY ~IATweaks\resources\eff\s!ss-20.eff~ ~override~

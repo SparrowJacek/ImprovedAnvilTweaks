@@ -1,0 +1,295 @@
+IF
+	Allegiance(Myself,NEUTRAL)
+	NumberOfTimesTalkedTo(0)
+	Global("Iapcastts","GLOBAL",0)
+	Detect([PC])
+THEN
+	RESPONSE #100
+		StartDialogueNoSet([PC])
+END
+
+IF
+	OR(2)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		TookDamage()
+	Allegiance(Myself,NEUTRAL)
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		Enemy()
+		ActionOverride("Gall",Enemy())
+		ActionOverride("Draug",Enemy())
+		ActionOverride("Gaius",Enemy())
+		ActionOverride("Berkref",Enemy())
+		ActionOverride("Rengaa",Enemy())
+		Shout(99)
+		MoveToObject(Player1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Detect([PC])
+	Global("Iaprep","LOCALS",0)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaprep","LOCALS",1)
+		ReallyForceSpell(Myself,WARRIOR_HARDINESS)  // SPCL907.SPL (Hardiness)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Detect([PC])
+	Global("Iatreasure","LOCALS",0)
+	Global("Iashld23place","GLOBAL",1)
+	Global("Iapcastts","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iashld23place","GLOBAL",4)
+		SetGlobal("Iatreasure","LOCALS",1)
+		GiveItemCreate("shld23",Myself,0,0,0)  // Fortress Shield +3
+END
+
+IF
+	HasItem("shld23", Myself)
+	!HasItemEquiped("shld23", Myself)
+THEN
+	RESPONSE #100
+		DestroyItem("shld28")
+		XEquipItem("shld23",Myself,SLOT_SHIELD,EQUIP)  // Fortress Shield +3
+		GiveItemCreate("shld28",Myself,0,0,0)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	Global("Iapcastts","GLOBAL",0)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_PANIC)
+	See([PC])
+	HasItem("potn35",Myself)  // Potion of Magic Shielding
+	Global("Iashielding","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iashielding","LOCALS",1)
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("potn35",Myself)  // Potion of Magic Shielding
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("Iapcastts","GLOBAL",0)
+	Global("Iashielding","LOCALS",1)
+	HasItem("S!minhp1",Myself)  // No such index
+THEN
+	RESPONSE #100
+		DestroyItem("S!minhp1")  // No such index
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("Iapcastts","GLOBAL",0)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_PANIC)
+	!CheckSpellState(Myself,DEFENSIVE_STANCE)
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	See(NearestEnemyOf(Myself))
+	GlobalLT("Iadefstance","LOCALS",6)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iadefstance","LOCALS",1)
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		ForceSpellRES("SPDWD02",Myself)  // Defensive Stance
+END
+
+IF
+	!HasItem("S!minhp1",Myself)  // No such index
+	Global("Iapcastts","GLOBAL",1)
+	Global("Iatsinvulner","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",1)
+		ApplySpellRES("SPINI70",Myself)  // No such index
+END
+
+IF
+	Global("Iapcastts","GLOBAL",0)
+	Global("Iatsinvulner","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",0)
+		ApplySpellRES("SPINI71",Myself)  // No such index
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("Iaexit","AR0701",0)  // The Sewers
+THEN
+	RESPONSE #100
+		SetGlobal("Iaexit","AR0701",1)  // The Sewers
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("Iapcastts","GLOBAL",0)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,51,RESISTCRUSHING)
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+	HPPercentLT(Myself,80)
+	GlobalLT("Iahla","LOCALS",4)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iahla","LOCALS",1)
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_HARDINESS)  // SPCL907.SPL (Hardiness)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("Iapcastts","GLOBAL",0)
+	GlobalGT("Iahla","LOCALS",0)
+	Detect([PC])
+	Global("Iatreasure","LOCALS",0)
+	XPLT(Player1,2350000)
+	GlobalLT("Chapter","GLOBAL",4)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatreasure","LOCALS",1)
+		GiveItemCreate("S!misc41",Myself,0,0,0)  // Diamond Necklace
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("Iapcastts","GLOBAL",0)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_PANIC)
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	OR(2)
+		StateCheck(Myself,STATE_SLOWED)
+		!StateCheck(Myself,STATE_HASTED)
+	See([PC])
+	HasItem("potn14",Myself)  // Oil of Speed
+	GlobalLT("Iaspeed","LOCALS",4)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaspeed","LOCALS",1)
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("potn14",Myself)  // Oil of Speed
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("Iapcastts","GLOBAL",0)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_PANIC)
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	See(NearestEnemyOf(Myself))
+	HPPercentLT(Myself,60)
+	HasItem("potn55",Myself)  // Potion of Superior Healing
+THEN
+	RESPONSE #100
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("potn55",Myself)  // Potion of Superior Healing
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("Iapcastts","GLOBAL",0)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_PANIC)
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	See(NearestEnemyOf(Myself))
+	HasItem("potn06",Myself)  // Potion of Cloud Giant Strength
+THEN
+	RESPONSE #100
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("potn06",Myself)  // Potion of Cloud Giant Strength
+END
+
+IF
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_CHARMED)
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	InMyArea(Player1)
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Exists("gall")  // Gallchobhair
+	!Dead("gall")  // Gallchobhair
+	Allegiance("gall",ENEMY)  // Gallchobhair
+	Allegiance(Myself,NEUTRAL)
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		Enemy()
+		Shout(99)
+		MoveToObject(Player1)
+END
+
+IF
+	Exists("gaius")  // Gaius
+	!Dead("gaius")  // Gaius
+	Allegiance("gaius",ENEMY)  // Gaius
+	Allegiance(Myself,NEUTRAL)
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		Enemy()
+		Shout(99)
+		MoveToObject(Player1)
+END
+

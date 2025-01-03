@@ -544,3 +544,121 @@ COPY_EXISTING ~TAZOK.cre~ ~override~
 
 COMPILE ~IATweaks\scripts\creatures\s!tazok.baf~
 
+///////////////// Tarnor's Sewer Party ////////////////
+
+// Tarnor
+
+COPY_EXISTING ~TARNOR.cre~ ~override~
+  WRITE_SHORT 0x24 150 // HP
+  WRITE_SHORT 0x26 150 // HP
+  WRITE_BYTE 0x52 0 // Thac0
+  WRITE_BYTE 0x59 0 // Resist Fire
+  WRITE_BYTE 0x5a 0 // Resist Cold
+  WRITE_BYTE 0x5b 0 // Resist Electricity
+  WRITE_BYTE 0x5c 0 // Resist Acid
+  WRITE_BYTE 0x5d 0 // Resist Magic
+  WRITE_BYTE 0x5e 0 // Resist Magic Fire
+  WRITE_BYTE 0x5e 0 // Resist Magic Cold
+  WRITE_BYTE 0x60 20 // Resist Slashing
+  WRITE_BYTE 0x61 20 // Resist Crushing
+  WRITE_BYTE 0x62 20 // Resist Piercing
+  WRITE_BYTE 0x63 20 // Resist Missile
+  WRITE_SHORT 0x246 0x4022 // Kit = Dwarven Defender
+
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 0
+  END
+
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 31
+  END
+
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 193
+  END
+
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 233
+      match_parameter1 = 5
+      parameter1 = 4
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!PASHA2~
+  END
+
+  ADD_CRE_ITEM ~POTN06~ #0 #0 #0 ~~ ~INV15~
+
+COMPILE ~IATweaks\scripts\creatures\S!TARNOR.BAF~
+
+// Draug Fea
+
+COPY_EXISTING ~DRAUG.cre~ ~override~
+  WRITE_SHORT 0x24 127 // HP
+  WRITE_SHORT 0x26 127 // HP
+  WRITE_BYTE 0x52 1 // Thac0
+  WRITE_BYTE 0x59 0 // Resist Fire
+  WRITE_BYTE 0x5a 0 // Resist Cold
+  WRITE_BYTE 0x5b 0 // Resist Electricity
+  WRITE_BYTE 0x5c 0 // Resist Acid
+  WRITE_BYTE 0x5d 0 // Resist Magic
+  WRITE_BYTE 0x5e 0 // Resist Magic Fire
+  WRITE_BYTE 0x5e 0 // Resist Magic Cold
+  WRITE_BYTE 0x60 15 // Resist Slashing
+  WRITE_BYTE 0x61 15 // Resist Crushing
+  WRITE_BYTE 0x62 15 // Resist Piercing
+  WRITE_BYTE 0x63 15 // Resist Missile
+  WRITE_BYTE 0x234 20 // Level 1
+  WRITE_BYTE 0x23d 19 // Constitution
+  WRITE_SHORT 0x246 0x4022 // Kit = Dwarven Defender
+  WRITE_ASCII 0x248 ~S!DRAUG~ #8
+
+  LPF ~ADD_CRE_EFFECT~ INT_VAR
+    opcode = 233
+    timing = 9
+    target = 1
+    parameter1 = 2
+    parameter2 = 112 // Sword and Shield
+  END
+
+  LPF ~ADD_CRE_EFFECT~ INT_VAR
+    opcode = 233
+    timing = 9
+    target = 1
+    parameter1 = 4
+    parameter2 = 100 // Flails
+  END
+
+COMPILE ~IATweaks\scripts\creatures\S!DRAUG.BAF~
+
+// Gallchobhair
+
+COPY_EXISTING ~GALL.cre~ ~override~
+  WRITE_SHORT 0x24 123 // HP
+  WRITE_SHORT 0x26 123 // HP
+  WRITE_BYTE 0x52 1 // Thac0
+  WRITE_BYTE 0x59 0 // Resist Fire
+  WRITE_BYTE 0x5a 0 // Resist Cold
+  WRITE_BYTE 0x5b 0 // Resist Electricity
+  WRITE_BYTE 0x5c 0 // Resist Acid
+  WRITE_BYTE 0x5d 0 // Resist Magic
+  WRITE_BYTE 0x5e 0 // Resist Magic Fire
+  WRITE_BYTE 0x5e 0 // Resist Magic Cold
+  WRITE_BYTE 0x60 0 // Resist Slashing
+  WRITE_BYTE 0x61 0 // Resist Crushing
+  WRITE_BYTE 0x62 0 // Resist Piercing
+  WRITE_BYTE 0x63 0 // Resist Missile
+  WRITE_BYTE 0x234 20 // Level 1
+  WRITE_LONG 0x244 0x40010000 // Kit = Berserker
+
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 31
+  END
+
+COMPILE ~IATweaks\scripts\creatures\S!GALL.BAF~

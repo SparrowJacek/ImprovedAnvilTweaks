@@ -2603,4 +2603,52 @@ COPY_EXISTING ~SLAPRI.cre~ ~override~
   ADD_CRE_ITEM ~HELM02~ #0 #0 #0 ~NONE~ ~HELMET~
   ADD_CRE_ITEM ~POTN34~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV15~
 
-COMPILE ~IATweaks\scripts\creatures\S!SLAPRI.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!SLAPRI.BAF~// Zorl from Tarnor's party
+
+COPY_EXISTING ~BERKREF.cre~ ~override~
+  WRITE_SHORT 0x24 95 // HP
+  WRITE_SHORT 0x26 95 // HP
+  WRITE_BYTE 0x59 0 // Resist Fire
+  WRITE_BYTE 0x5a 0 // Resist Cold
+  WRITE_BYTE 0x5e 0 // Resist Magic Fire
+  WRITE_BYTE 0x5e 0 // Resist Magic Cold
+
+  LPF ~ADD_CRE_EFFECT~ INT_VAR
+    opcode = 233
+    timing = 9
+    target = 1
+    parameter1 = 2
+    parameter2 = 112 // Sword and Shield
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!IMMUNE~
+  END
+
+COMPILE ~IATweaks\scripts\creatures\S!ZORL.BAF~
+
+// Rengaard from Tarnor's party
+
+COPY_EXISTING ~RENGAA.cre~ ~override~
+  WRITE_SHORT 0x24 95 // HP
+  WRITE_SHORT 0x26 95 // HP
+  WRITE_BYTE 0x59 0 // Resist Fire
+  WRITE_BYTE 0x5a 0 // Resist Cold
+  WRITE_BYTE 0x5e 0 // Resist Magic Fire
+  WRITE_BYTE 0x5e 0 // Resist Magic Cold
+
+  LPF ~ADD_CRE_EFFECT~ INT_VAR
+    opcode = 233
+    timing = 9
+    target = 1
+    parameter1 = 2
+    parameter2 = 112 // Sword and Shield
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!IMMUNE~
+  END
+
+COMPILE ~IATweaks\scripts\creatures\S!RENGAA.BAF~

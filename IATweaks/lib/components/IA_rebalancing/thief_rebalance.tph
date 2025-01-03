@@ -1170,6 +1170,9 @@ COPY_EXISTING ~UI.MENU~ ~override~
 
 // Make all armors that disable Thieving abilities protect from new stuff
 
+COPY ~IATweaks\resources\eff\s!icsdis.eff~ ~override~
+  WRITE_LONG 0x20 %stealth_disabled_icon_id%
+
 COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
   READ_SHORT 0x1c item_category
   PATCH_IF (item_category = 2) OR (item_category = 60) OR (item_category = 61) OR (item_category = 62) OR (item_category = 63) OR (item_category = 64) OR (item_category = 65) OR (item_category = 66)
@@ -1200,12 +1203,17 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
           STR_VAR
             resource = ~S!HISBAS~
         END
-        LPF ~ADD_ITEM_EQEFFECT~
-          INT_VAR
-            opcode = 142
-            target = 1
-            timing = 2
-            parameter2 = %stealth_disabled_icon_id%
+        PATCH_FOR_EACH thief_class IN 4 9 10 13 15 BEGIN
+          LPF ~ADD_ITEM_EQEFFECT~
+            INT_VAR
+              opcode = 177 
+              target = 1
+              timing = 2
+              parameter1 = thief_class
+              parameter2 = 5
+            STR_VAR
+              resource = ~S!ICSDIS~
+          END
         END
         LPF ~ADD_ITEM_EQEFFECT~
           INT_VAR

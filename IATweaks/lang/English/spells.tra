@@ -1056,8 +1056,18 @@ This powerful spell enables the caster to focus his life energy towards a golem 
 
 Additionally when the mage starts casting this spell, he or she becomes completely invisible to any golem for 4 seconds, which makes this spell easier to cast without interruption.~
 
+@6146 = ~Call Woodland Beings
+(Conjuration/Summoning)
 
-@6146 = ~Shield Bash~
+Level: 4
+Sphere: Animal, Summoning 
+Range: 25 ft.
+Duration: 3 turns
+Casting Time: 7 
+Area of Effect: Special 
+Saving Throw: None 
+
+This spell summons forth a nymph to assist the party. The nymph has several priest spells at her disposal and will use them in the best interests of the party (these include Barkskin, Hold Person and a few healing spells). She will remain under the caster's control until slain or the spell's duration expires.~
 
 @6147 = ~Shield Bash~
 

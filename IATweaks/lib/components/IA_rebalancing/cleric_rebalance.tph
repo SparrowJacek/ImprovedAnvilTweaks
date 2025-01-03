@@ -596,7 +596,20 @@ COPY_EXISTING ~sppr312.spl~ ~override~
     END
   BUT_ONLY
 
-// Holy Power
+// Poison
+
+COPY_EXISTING ~SPPR411.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6142
+
+  // Remove original strength bonus
+  PATCH_FOR_EACH no_save_opcode IN 12 61 215 BEGIN
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = %no_save_opcode%
+        savingthrow = 0
+    END
+  END
+  BUT_ONLY
 
 COPY_EXISTING ~SPPR412.spl~ ~override/SPPR412.spl~
   SAY UNIDENTIFIED_DESC @6013
@@ -734,6 +747,60 @@ COPY_EXISTING ~sppr603d.spl~ ~override~
 //       parameter1 = 11
 //   END
 //   BUT_ONLY
+
+// Earthquake
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!equake.PRO~
+
+COPY_EXISTING ~SPPR720.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6143
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      target_count = 3
+      speed = 8
+      projectile = ~%s!equake%~
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_timing = 4
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 272
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 12
+      dicenumber = 2
+      savingthrow = 16777216 // Bypass Mirror Image
+      savebonus = 0
+      special = 0
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 39
+      duration = 6
+      resist_dispel = 0
+      savebonus = 0
+  END
+  LPF ~S!CLONE_SPELL_HEADER~
+    INT_VAR
+      level_req = 17
+  END
+  LPF ~S!CLONE_SPELL_HEADER~
+    INT_VAR
+      level_req = 20
+  END
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      header = 2
+      target_count = 4
+  END
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      header = 3
+      target_count = 5
+  END
 
 // Cure spells
 

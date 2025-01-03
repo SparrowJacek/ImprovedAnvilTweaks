@@ -537,3 +537,10 @@ COPY_EXISTING ~PWARDEN.cre~ ~override~
 
 COMPILE ~IATweaks\scripts\creatures\s!warden.baf~
 
+//////////////// Tazok //////////////////
+
+COPY_EXISTING ~TAZOK.cre~ ~override~
+  WRITE_LONG 0x244 0x40010000 // Kit = Berserker
+
+COMPILE ~IATweaks\scripts\creatures\s!tazok.baf~
+

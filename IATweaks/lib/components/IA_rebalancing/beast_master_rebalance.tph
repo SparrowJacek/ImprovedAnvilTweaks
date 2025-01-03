@@ -313,6 +313,15 @@ END
 
 // Unified Minds
 
+// Add spellstate
+
+LAF resolve_state STR_VAR new_state_id = ~UNIFIED_MINDS~ RET new_state_index END
+OUTER_SET unified_minds_state = %new_state_index%
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!unmind.pro~
+COPY_EXISTING ~s!unmind.pro~ ~override~
+  WRITE_SHORT 0x3c unified_minds_state
+
 COPY ~IATweaks\resources\bam\s!unminb.bam~ ~override~
 COPY ~IATweaks\resources\bam\s!unmind.bam~ ~override~
 
@@ -326,8 +335,6 @@ LAF ~S!ADD_PORTRAIT_ICON~
     unified_mind_icon_id = portrait_icon_id
 END
 
-COPY ~IATweaks\resources\eff\s!umbase.eff~ ~override~
-COPY ~IATweaks\resources\spl\s!umbase.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!unmin0.spl~ ~override~
   SAY NAME1 @6099
   SAY UNIDENTIFIED_DESC @6100
@@ -338,15 +345,18 @@ COPY ~IATweaks\resources\spl\s!unmin1.spl~ ~override~
       match_opcode = 142
       parameter2 = %unified_mind_icon_id%
   END
-COPY ~IATweaks\resources\spl\s!unmin2.spl~ ~override~
-COPY ~IATweaks\resources\spl\s!unmin3.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 328
+      parameter2 = %unified_minds_state%
+  END
 
-LAF ~S!ADD_CLAB_ROW~
-  STR_VAR
-    filename = ~CLABRN04.2da~
-    row_desc = ~UNIFIED_MIND_BASE~
-    level10 = ~AP_S!UMBASE~
-END
+COPY ~IATweaks\resources\spl\s!unmin2.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~%s!unmind%~
+  END
+COPY ~IATweaks\resources\spl\s!unmin3.spl~ ~override~
 
 LAF ~S!ADD_CLAB_ROW~
   STR_VAR

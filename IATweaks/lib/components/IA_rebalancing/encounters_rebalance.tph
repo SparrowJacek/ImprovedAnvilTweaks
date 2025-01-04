@@ -609,10 +609,10 @@ COPY_EXISTING ~DRAUG.cre~ ~override~
   WRITE_BYTE 0x5d 0 // Resist Magic
   WRITE_BYTE 0x5e 0 // Resist Magic Fire
   WRITE_BYTE 0x5e 0 // Resist Magic Cold
-  WRITE_BYTE 0x60 15 // Resist Slashing
-  WRITE_BYTE 0x61 15 // Resist Crushing
-  WRITE_BYTE 0x62 15 // Resist Piercing
-  WRITE_BYTE 0x63 15 // Resist Missile
+  WRITE_BYTE 0x60 20 // Resist Slashing
+  WRITE_BYTE 0x61 20 // Resist Crushing
+  WRITE_BYTE 0x62 20 // Resist Piercing
+  WRITE_BYTE 0x63 20 // Resist Missile
   WRITE_BYTE 0x234 20 // Level 1
   WRITE_BYTE 0x23d 19 // Constitution
   WRITE_SHORT 0x246 0x4022 // Kit = Dwarven Defender

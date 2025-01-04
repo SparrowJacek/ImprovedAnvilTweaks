@@ -2136,9 +2136,9 @@ COPY_EXISTING ~RENGAA.cre~ ~override~
 
 // Backwhacker
 
-COPY ~IATweaks\resources\spl\s!clubni.spl~ ~override~
-COPY ~IATweaks\resources\bam\s!clubni.bam~ ~override~
-COPY ~IATweaks\resources\itm\s!clubni.itm~ ~override~
+COPY ~IATweaks\resources\spl\s!backwh.spl~ ~override~
+COPY ~IATweaks\resources\bam\s!backwh.bam~ ~override~
+COPY ~IATweaks\resources\itm\s!backwh.itm~ ~override~
   SAY NAME2 @7015
   SAY IDENTIFIED_DESC @7016
 // TODO ADD THIS ITEM SOMEWHERE!

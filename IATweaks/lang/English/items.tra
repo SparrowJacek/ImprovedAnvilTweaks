@@ -68,9 +68,10 @@ Weight: 0~
 The Shadow's Blade was created to be the perfect assassin's tool. It is highly sought after by any who settle differences with a blade, and many that possess it do not do so for long.
 
 STATISTICS:
+- Can only be wielded in main hand
 
 Equipped abilities:
-- Stealth Strike +20%
+- Stealth Strike +20% when used as a single weapon or with a shield
 
 THAC0: +3
 Damage: 1d6+3 (piercing)
@@ -102,19 +103,68 @@ Equipped abilities:
 
 Weight: 0~
 
-@7012 = ~~
+@7012 = ~Created by the Energy Blades spell. When thrown at an opponent, it causes 1d4+5 points of missile damage as well as an additional 1d10 points of electrical damage.
 
-@7013 = ~~
+STATISTICS:
 
-@7014 = ~~
+THAC0: +10
+Damage: 1d4+5, +1d10 electrical damage
+Damage type: Slashing
 
-@7015 = ~~
+Weight: 0~
 
-@7016 = ~~
+@7013 = ~This darkwood shaft surrounds a core of lead, giving it both stealth and heft. Its enchantment connects the club to the Shadow Weave, lending it greater power under cloak of night.
 
-@7017 = ~~
+STATISTICS:
 
-@7018 = ~~
+THAC0: +1, +2 at night
+Damage: 1d6+1 (crushing)
+Speed Factor: 3
+Proficiency Type: Club
+Type: One-handed
+Requires:
+ 5 Strength
+
+Weight: 3~
+
+@7014 = ~Night Club +1~
+
+@7015 = ~Backwhacker +3~
+
+@7016 = ~Most thieves favor bladed weapons when striking from the shadows, but not all. Whether due to religious convictions, personal preference, or anti-establishment tendencies, some thieves prefer to backstab their enemies with a blunt instrument.
+
+STATISTICS:
+
+Combat abilities: 
+– Applies -1 penalty to melee damage dealt, AC and thac0 for 1 round when successful backstab is performed (Save vs. Death negates)
+
+THAC0: +3 
+Damage: 1d6+3 (crushing) 
+Speed Factor: 1
+Proficiency Type: Club 
+Type: One-handed 
+Requires: 
+ 5 Strength
+
+Weight: 3~
+
+@7017 = ~Sure Strike Club~
+
+@7018 = ~This plain-looking club holds a powerful enchantment. Though simple in appearance, it strikes with the force of a +5 weapon, capable of harming creatures impervious to lesser arms. Its magic is subtle but invaluable to those who understand its true worth.
+
+STATISTICS:
+
+Combat abilities: 
+– Weapon is treated as having a +5 enchantment for the purpose of hitting creatures that require magical weapons to hit
+
+Damage: 1d6 (crushing) 
+Speed Factor: 4
+Proficiency Type: Club 
+Type: One-handed 
+Requires: 
+ 5 Strength
+
+Weight: 3~
 
 @7019 = ~~
 

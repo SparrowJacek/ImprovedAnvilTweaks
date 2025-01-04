@@ -3234,11 +3234,12 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("morsword",LastSeenBy(Myself))  // Mordenkainen's Sword
 	CheckStatLT(LastSeenBy(Myself),90,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
 	Global("IaMinorSequencer","LOCALS",0)
 THEN
 	RESPONSE #100
 		SetGlobal("IaMinorSequencer","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
 		DisplayString(Myself,8635)  // Minor Sequencer Activated
 		ForceSpell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)
 		ForceSpell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)  // SPWI112.SPL (Magic Missile)
@@ -3254,11 +3255,12 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("morsword",LastSeenBy(Myself))  // Mordenkainen's Sword
 	CheckStatLT(LastSeenBy(Myself),90,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
 	Global("IaMinorSequencer","LOCALS",0)
 THEN
 	RESPONSE #100
 		SetGlobal("IaMinorSequencer","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
 		DisplayString(Myself,8635)  // Minor Sequencer Activated
 		ForceSpell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)
 		ForceSpell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)  // SPWI112.SPL (Magic Missile)
@@ -3274,11 +3276,12 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("morsword",LastSeenBy(Myself))  // Mordenkainen's Sword
 	CheckStatLT(LastSeenBy(Myself),90,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
 	Global("IaMinorSequencer","LOCALS",0)
 THEN
 	RESPONSE #100
 		SetGlobal("IaMinorSequencer","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
 		DisplayString(Myself,8635)  // Minor Sequencer Activated
 		ForceSpell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)
 		ForceSpell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)  // SPWI112.SPL (Magic Missile)
@@ -3294,11 +3297,12 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("morsword",LastSeenBy(Myself))  // Mordenkainen's Sword
 	CheckStatLT(LastSeenBy(Myself),90,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
 	Global("IaMinorSequencer","LOCALS",0)
 THEN
 	RESPONSE #100
 		SetGlobal("IaMinorSequencer","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
 		DisplayString(Myself,8635)  // Minor Sequencer Activated
 		ForceSpell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)
 		ForceSpell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)  // SPWI112.SPL (Magic Missile)
@@ -3314,11 +3318,12 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("morsword",LastSeenBy(Myself))  // Mordenkainen's Sword
 	CheckStatLT(LastSeenBy(Myself),90,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
 	Global("IaMinorSequencer","LOCALS",0)
 THEN
 	RESPONSE #100
 		SetGlobal("IaMinorSequencer","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
 		DisplayString(Myself,8635)  // Minor Sequencer Activated
 		ForceSpell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)
 		ForceSpell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)  // SPWI112.SPL (Magic Missile)
@@ -3334,11 +3339,12 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("morsword",LastSeenBy(Myself))  // Mordenkainen's Sword
 	CheckStatLT(LastSeenBy(Myself),90,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
 	Global("IaMinorSequencer","LOCALS",0)
 THEN
 	RESPONSE #100
 		SetGlobal("IaMinorSequencer","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
 		DisplayString(Myself,8635)  // Minor Sequencer Activated
 		ForceSpell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)
 		ForceSpell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)  // SPWI112.SPL (Magic Missile)
@@ -3354,7 +3360,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("morsword",LastSeenBy(Myself))  // Mordenkainen's Sword
 	CheckStatLT(LastSeenBy(Myself),90,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
 	GlobalLT("Iapirsm24","LOCALS",5)
 THEN
 	RESPONSE #100
@@ -3373,7 +3379,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("morsword",LastSeenBy(Myself))  // Mordenkainen's Sword
 	CheckStatLT(LastSeenBy(Myself),90,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
 	GlobalLT("Iapirsm24","LOCALS",5)
 THEN
 	RESPONSE #100
@@ -3392,7 +3398,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("morsword",LastSeenBy(Myself))  // Mordenkainen's Sword
 	CheckStatLT(LastSeenBy(Myself),90,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
 	GlobalLT("Iapirsm24","LOCALS",5)
 THEN
 	RESPONSE #100

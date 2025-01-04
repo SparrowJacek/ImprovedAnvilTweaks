@@ -823,7 +823,7 @@ Casting Time: 7
 Area of Effect: 1 creature
 Saving Throw: None
 
-When the spell is cast, it sets the target's elemental resistance to 75%, partially protecting from all elemental attacks—such as fire, cold, and electricity, whether magical or non magical—from spells, weapons, wands, breath weapons, etc. The effect of a Protection From The Elements spell lasts 1 round per level of the caster or until dispelled.~
+When the spell is cast, it sets the target's elemental resistance to 75%, partially protecting from all elemental attacks—such as fire, cold, acid and electricity, whether magical or non magical—from spells, weapons, wands, breath weapons, etc. The effect of a Protection From The Elements spell lasts 1 round per level of the caster or until dispelled.~
 
 @6117 = ~Protection From Energy
 (Abjuration)

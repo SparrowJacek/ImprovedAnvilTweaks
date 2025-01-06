@@ -369,7 +369,7 @@ Casting Time: 7
 Area of Effect: 15-ft. radius
 Saving Throw: None
 
-By casting this spell, the priest strengthens the bond between body and soul of all affected allies. For the next 5 rounds, those allies will be able to withstand one hit per round that would normally kill them, leaving them with 1 HP remaining. Spare the Dying only protects from effects that directly deal damage and does not grant immunity to instant death abilities such as vorpal hits or Power Word: Kill. Additionally, for the duration of this spell, all affected allies won't suffer permanent death from normal damage sources (although they can still be petrified, imprisoned, or frozen solid). The spell and all of its effects are undispeallable.~
+By casting this spell, the priest strengthens the bond between body and soul of all affected allies. For the next 5 rounds, those allies will be able to withstand one hit per round that would normally kill them, leaving them with 1 HP remaining and immediately healing them for 10HP. Spare the Dying only protects from effects that directly deal damage and does not grant immunity to instant death abilities such as vorpal hits or Power Word: Kill. Additionally, for the duration of this spell, all affected allies won't suffer permanent death from normal damage sources (although they can still be petrified, imprisoned, or frozen solid). The spell and all of its effects are undispeallable.~
 
 @6038 = ~Lethal blow averted~
 

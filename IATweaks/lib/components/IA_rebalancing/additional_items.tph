@@ -62,6 +62,37 @@ COPY ~IATweaks\resources\itm\s!amul21.itm~ ~override~
   SAY NAME2 @7021
   SAY IDENTIFIED_DESC @7022
 
+
+//////////// Night Club
+
+COPY ~IATweaks\resources\spl\s!clubni.spl~ ~override~
+COPY ~IATweaks\resources\bam\s!clubni.bam~ ~override~
+COPY ~IATweaks\resources\itm\s!clubni.itm~ ~override~
+  SAY NAME2 @7014 
+  SAY IDENTIFIED_DESC @7013 
+// TODO ADD THIS ITEM SOMEWHERE!
+
+//////////// Sure Strike Club
+
+COPY ~IATweaks\resources\bam\s!surehi.bam~ ~override~
+COPY ~IATweaks\resources\itm\s!surehi.itm~ ~override~
+  SAY NAME2 @7017 
+  SAY IDENTIFIED_DESC @7018 
+
+// Rengaard from Tarnor's party
+
+COPY_EXISTING ~RENGAA.cre~ ~override~
+  ADD_CRE_ITEM ~s!surehi~ #0 #0 #0 ~NONE~ ~INV12~
+
+//////////// Backwhacker
+
+COPY ~IATweaks\resources\spl\s!backwh.spl~ ~override~
+COPY ~IATweaks\resources\bam\s!backwh.bam~ ~override~
+COPY ~IATweaks\resources\itm\s!backwh.itm~ ~override~
+  SAY NAME2 @7015
+  SAY IDENTIFIED_DESC @7016
+// TODO ADD THIS ITEM SOMEWHERE!
+
 /////////////// New Recipes
 
 COMPILE ~IATweaks/resources/dlg/crom_new_items.d~

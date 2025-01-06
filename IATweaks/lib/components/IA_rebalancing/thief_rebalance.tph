@@ -2039,6 +2039,82 @@ COPY_EXISTING ~BORINALL.cre~ ~override~
 
 COMPILE ~IATweaks\scripts\creatures\S!BORINA.baf~
 
+// Turmish Thief
+
+COPY_EXISTING ~BDTURM02.cre~ ~override~
+  WRITE_SHORT 0x24 93 // HP
+  WRITE_SHORT 0x26 93 // HP
+  WRITE_BYTE 0x45 0 // Hide in Shadows
+  WRITE_BYTE 0x59 0 // Resist Fire
+  WRITE_BYTE 0x5e 0 // Resist Magic Fire
+  WRITE_BYTE 0x60 20 // Resist Slashing
+  WRITE_BYTE 0x61 20 // Resist Crushing
+  WRITE_BYTE 0x62 20 // Resist Piercing
+  WRITE_BYTE 0x63 20 // Resist Missile
+  WRITE_BYTE 0x64 100 // Detect Illusions
+  WRITE_BYTE 0x65 0 // Set Traps
+  WRITE_BYTE 0x67 20 // Pick Locks
+  WRITE_BYTE 0x68 0 // Stealth Strike
+  WRITE_BYTE 0x69 0 // Find Traps
+  WRITE_BYTE 0x6a 110 // Pick Pockets
+  WRITE_BYTE 0x23d 17 // Constitution
+
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 101
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 90
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40OL~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 91
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40FT~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 92
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40PP~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 144
+      target = 1
+      timing = 9
+    STR_VAR
+      effsource = ~S!DISSTE~
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!IMMUNE~
+  END
+
+  ADD_CRE_ITEM ~POTN36~ #0 #0 #0 ~~ ~INV15~
+
+COMPILE ~IATweaks\scripts\creatures\S!TURM02.BAF~
+
 /////////// Items ////////////
 
 // Move Grave Binder to Founder of Trademeet

@@ -933,3 +933,34 @@ COPY_EXISTING ~TOLMAG02.cre~ ~override~
   END
 
 COMPILE ~IATweaks\scripts\creatures\S!TOLMAG.BAF~
+
+// Turmish Sorceress
+
+COPY_EXISTING ~BDTURM03.cre~ ~override~
+  WRITE_SHORT 0x24 50 // HP
+  WRITE_SHORT 0x26 50 // HP
+  WRITE_BYTE 0x59 0 // Resist Fire
+  WRITE_BYTE 0x5d 0 // Resist Magic
+  WRITE_BYTE 0x5e 0 // Resist Magic Fire
+  WRITE_BYTE 0x60 20 // Resist Slashing
+  WRITE_BYTE 0x61 20 // Resist Crushing
+  WRITE_BYTE 0x62 20 // Resist Piercing
+  WRITE_BYTE 0x63 20 // Resist Missile
+  WRITE_BYTE 0x23d 16 // Constitution
+  WRITE_LONG 0x244 0 // Kit = None
+  WRITE_BYTE 0x273 19 // Class = Sorcerer
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!IMMUNE~
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!MISS6~
+  END
+
+  ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~~ ~INV15~
+  ADD_CRE_ITEM ~POTN34~ #0 #0 #0 ~~ ~INV16~
+
+COMPILE ~IATweaks\scripts\creatures\S!TURM03.BAF~

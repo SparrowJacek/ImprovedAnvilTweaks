@@ -81,7 +81,6 @@ THEN
 		ApplySpellRES("SPINI71",Myself)  // No such index
 END
 
-
 IF
 	Global("Iaenrage","LOCALS",0)
 	!StateCheck(Myself,STATE_CONFUSED)
@@ -91,6 +90,7 @@ IF
 	See(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
 		SetGlobal("Iaenrage","LOCALS",1)
 		ForceSpellRES("SPCL321",Myself)  // Enrage
 END

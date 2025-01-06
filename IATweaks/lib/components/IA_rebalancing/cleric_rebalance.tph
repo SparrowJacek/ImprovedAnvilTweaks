@@ -2730,3 +2730,36 @@ COPY_EXISTING ~RENGAA.cre~ ~override~
   END
 
 COMPILE ~IATweaks\scripts\creatures\S!RENGAA.BAF~
+
+// Turmish Battlepriest
+
+COPY_EXISTING ~BDTURM04.cre~ ~override~
+  WRITE_SHORT 0x24 105 // HP
+  WRITE_SHORT 0x26 105 // HP
+  WRITE_BYTE 0x52 3 // Thac0
+  WRITE_BYTE 0x59 0 // Resist Fire
+  WRITE_BYTE 0x5d 0 // Resist Magic
+  WRITE_BYTE 0x5e 0 // Resist Magic Fire
+  WRITE_BYTE 0x60 20 // Resist Slashing
+  WRITE_BYTE 0x61 20 // Resist Crushing
+  WRITE_BYTE 0x62 20 // Resist Piercing
+  WRITE_BYTE 0x63 20 // Resist Missile
+  WRITE_BYTE 0x234 18 // Level 1
+
+  LPF ~DELETE_CRE_EFFECT~
+    INT_VAR
+      opcode_to_delete = 173
+  END
+
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 101
+      match_parameter2 = 25
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!IMMUNE~
+  END
+
+COMPILE ~IATweaks\scripts\creatures\S!TURM04.BAF~

@@ -150,3 +150,18 @@ THEN
 		Shout(ALERT)
 END
 
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		AttackOneRound(NearestEnemyOf(Myself))
+END

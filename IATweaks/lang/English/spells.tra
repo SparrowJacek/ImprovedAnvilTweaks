@@ -602,10 +602,10 @@ Level: 3
 Range: Visual range of the caster
 Duration: 1 turn
 Casting Time: 5
-Area of Effect: Special
+Area of Effect: 2 animals
 Saving Throw: None
 
-By casting this spell Beast Masters can turn on an animal's most feral side in a guided way, without the risk of it going berserk or attacking its allies in fury. The animal becomes enraged for 1 turn. While enraged, it gains an additional attack per round, a bonus of +2 to its attack and damage rolls as well as to its Armor Class, and becomes immune to charm, confusion, fear, feeblemind, hold, stun, sleep, level drain. From level 20 Beast Master can choose two animals that will have this effect applied with a single cast. This spell works only on animals.~
+By casting this spell Beast Masters targets two animals and turns on their most feral side in a guided way, without the risk of them going berserk or attacking their allies in fury. The animals becomes enraged for 2 turns. While enraged, they gains an additional attack per round, a bonus of +2 to their attack and damage rolls as well as to Armor Class, and become immune to charm, confusion, fear, feeblemind, hold, stun, sleep, level drain. This spell works only on animals.~
 
 @6077 = ~Hide in Shadows active~
 
@@ -644,12 +644,12 @@ Those scrolls allow rogues to cast spells at level 10 to determine their power a
 @6088 = ~Animal Fortitude (Alteration)
 Level: 2
 Range: Visual range of the caster
-Duration: 1 turn
+Duration: 2 turns
 Casting Time: 4
-Area of Effect: Special
+Area of Effect: 2 animals
 Saving Throw: None
 
-By casting this spell the Beast Master fortifies an animal's natural defenses and amplifies its endurance. For the next turn the target will have maximum HP increased by 50% and resistance to physical damage by 15%, additionally the creature will be immune to spells and effects that would unsummon it. From level 18 Beast Master can choose two animals that will have this effect applied with a single cast. This spell works only on animals.~
+By casting this spell the Beast Master targets two animals, fortifies their natural defenses and amplifies their endurance. For the next two turns the targets will have maximum HP increased by 50% and resistance to physical damage by 15%, additionally the creatures will be immune to spells and effects that would unsummon them. This spell works only on animals.~
 
 @6089 = ~You can cast Animal Summoning I again~
 

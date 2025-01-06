@@ -84,6 +84,10 @@ COPY_EXISTING ~CLABRN04.2da~ ~override~
 COPY ~IATweaks\resources\bam\s!anforb.bam~ ~override~
 COPY ~IATweaks\resources\bam\s!anforc.bam~ ~override~
 COPY ~IATweaks\resources\spl\s!anfort.spl~ ~override~
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      duration_high = 120
+  END
 COPY ~IATweaks\resources\spl\s!anifor.spl~ ~override~
   SAY NAME1 @6087
   SAY UNIDENTIFIED_DESC @6088
@@ -100,6 +104,10 @@ END
 COPY ~IATweaks\resources\bam\s!anragb.bam~ ~override~
 COPY ~IATweaks\resources\bam\s!anragc.bam~ ~override~
 COPY ~IATweaks\resources\spl\s!anrage.spl~ ~override~
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      duration_high = 120
+  END
 COPY ~IATweaks\resources\spl\s!anirag.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6076
 

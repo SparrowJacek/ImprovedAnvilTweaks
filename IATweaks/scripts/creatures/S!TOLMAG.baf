@@ -153,55 +153,7 @@ THEN
 	RESPONSE #100
 		SetGlobal("Iatolmag03","LOCALS",1)
 		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
-		SpellNoDec(Myself,WIZARD_MORDENKAINENS_SWORD)  // SPWI716.SPL (Mordenkainen's Sword)
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	See(SecondNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
-	CheckStatLT(LastSeenBy(Myself),25,RESISTMAGIC)
-	CheckStat(LastSeenBy(Myself),0,SCRIPTINGSTATE3)
-	Global("Iatolmag03","LOCALS",1)
-THEN
-	RESPONSE #100
-		SetGlobal("Iatolmag03","LOCALS",2)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
-		SpellNoDec(LastSeenBy(Myself),WIZARD_GREATER_MALISON)  // SPWI412.SPL (Greater Malison)
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	See([PC])
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
-	CheckStatLT(LastSeenBy(Myself),25,RESISTMAGIC)
-	CheckStat(LastSeenBy(Myself),0,SCRIPTINGSTATE3)
-	Global("Iatolmag03","LOCALS",1)
-THEN
-	RESPONSE #100
-		SetGlobal("Iatolmag03","LOCALS",2)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
-		SpellNoDec(LastSeenBy(Myself),WIZARD_GREATER_MALISON)  // SPWI412.SPL (Greater Malison)
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	See(ThirdNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
-	CheckStatLT(LastSeenBy(Myself),25,RESISTMAGIC)
-	CheckStat(LastSeenBy(Myself),0,SCRIPTINGSTATE3)
-	Global("Iatolmag03","LOCALS",1)
-THEN
-	RESPONSE #100
-		SetGlobal("Iatolmag03","LOCALS",2)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
-		SpellNoDec(LastSeenBy(Myself),WIZARD_GREATER_MALISON)  // SPWI412.SPL (Greater Malison)
+		ForceSpellRES("SPWI712", Myself)
 END
 
 IF
@@ -214,7 +166,7 @@ THEN
 	RESPONSE #100
 		SetGlobal("Iatolmag02","LOCALS",1)
 		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
-		SpellNoDec(LastSeenBy(Myself),WIZARD_CARRION)  // SPWI623.SPL (Carrion Summons)
+		ForceSpellRES("SPWI618", Myself)
 END
 
 IF

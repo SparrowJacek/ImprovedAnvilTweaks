@@ -2143,6 +2143,14 @@ COPY ~IATweaks\resources\itm\s!backwh.itm~ ~override~
   SAY IDENTIFIED_DESC @7016
 // TODO ADD THIS ITEM SOMEWHERE!
 
+// Assassin's Dream +4
+
+COPY ~IATweaks\resources\bam\s!dag01d.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!dagg01.bam~ ~override~
+COPY ~IATweaks\resources\itm\s!dagg01.itm~ ~override~
+  SAY NAME2 @7023
+  SAY IDENTIFIED_DESC @7024
+
 //////////////// Weapons for backstabs ///////////////
 
 COPY ~IATweaks\resources\eff\s!ss-20.eff~ ~override~
@@ -2152,6 +2160,7 @@ COPY ~IATweaks\resources\eff\s!ss-50.eff~ ~override~
 
 ACTION_DEFINE_ASSOCIATIVE_ARRAY weapon_to_stealth_strike_bonus_mapping BEGIN
   "sw1h10"=>20 // Short sword of backstabbing
+  "s!dagg01"=>40 // Assassin's Dream +4
 END
 
 ACTION_PHP_EACH weapon_to_stealth_strike_bonus_mapping AS weapon => bonus BEGIN

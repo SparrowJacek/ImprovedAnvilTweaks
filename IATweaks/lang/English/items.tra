@@ -165,6 +165,73 @@ Requires:
 
 Weight: 3~
 
-@7019 = ~~
+@7019 = ~Snow Leopard Charm~
 
-@7020 = ~~
+@7020 = ~Shamans of many barbarian clans have long looked upon the snow leopard as one of the most graceful and swift hunters of the frozen lands. Many times, the warriors of these clans mimic the movements of the large, white cats during fierce combat. In addition, the barbarian shamans would sometimes create spells that would temporarily imbue the warriors with the dexterity of the snow leopards. However, since these spells were temporary, oftentimes the spell would wear off at inopportune times.
+
+It is said, however, that a group of barbarian shamans once congregated deep within the Dales to find a way to better harness the swift agility of the snow leopard. For nearly a year, the shamans remained out of sight from their home clans, busily focusing their attentions on the magic of the snow leopard. Then one day, the shamans returned to their respective clans, each holding a small necklace made of silver, with a pendant that resembled a snow leopard's paw. The shamans gave this pendant to the strongest warrior of each clan. Once placed around the neck of the warrior, the dexterity of the snow leopard filled their powerful bodies. From then on, the Snow Leopard Charm, as it became known, became one of the most prized artifacts within barbarian clans. Only the mightiest warriors wore the amulet, and it became the goal of all young warriors to one day be adorned with the Snow Leopard Charm.
+
+Over time, the legend of these pendants spread beyond the barbarian clans, catching the attention of thieves and treasure hunters across the Realms. Many such amulets have since disappeared, stolen from barbarian warriors by cunning rogues seeking to profit from their power. As a result, few Snow Leopard Charms remain in the possession of the clans.
+   
+STATISTICS:
+
+Equipped abilities:
+- Dexterity +2
+
+Weight: 1~
+
+@7021 = ~Improved Snow Leopard Charm~
+
+@7022 = ~Improved Snow Leopard Charm
+
+By combining all powers of the original Snow Leopard Charm with Deep Red Ioun Stone and Amulet of Protection +1 Cromwell was able to enhance the item's magical abilities even more.
+
+STATISTICS:
+
+Equipped abilities:
+- Dexterity +3
+- Armor Class: +1
+- Saving Throws: +1~
+
+@7023 = ~Assassin's Dream +4~
+
+@7024 = ~Assassin's Dream +4
+
+Stories tell of daggers wielded by the most infamous thieves and assassins of the Realms, each imbued with a fragment of their wielder's cunning, precision, and malice. Over decades, these weapons absorbed the essence of their masters, carrying echoes of their infamous deeds.
+
+With the help of the Manual of Elaboration, master craftsman was able to extract and weave their lingering magical auras into a single blade. The result is this dagger, a creation not of steel and shards but of pure essence. When held, the weapon seems to move with a will of its own, subtly guiding its owner’s hand with the wisdom of long-dead assassins.
+
+To wield this blade is to carry the weight of countless lives taken and to feel the shadows of its former masters at your side. It is said that those who hold it too long may find their own spirit overshadowed by the whispers of the past.
+
+STATISTICS:
+- Can only be wielded in main hand
+
+Equipped abilities:
+- Stealth Strike +40% when used as a single weapon or with a shield
+- Immunity to Poison and Backstab
+
+Special ability:
+Assassination: Once per day
+
+THAC0: +4 bonus
+Damage: 1D6 +4
+Damage type: piercing
+Weight: 1
+Speed Factor: 0
+Proficiency Type: Dagger
+Type: 1-handed
+Require: 3 Strength~
+
+@7025 = ~~
+
+@7026 = ~~
+
+@7027 = ~~
+
+@7028 = ~~
+
+@7029 = ~~
+
+@7030 = ~~
+
+@7031 = ~~

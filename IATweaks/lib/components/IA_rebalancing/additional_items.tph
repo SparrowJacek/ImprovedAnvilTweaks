@@ -37,3 +37,30 @@ ACTION_IF(FILE_EXISTS_IN_GAME ~SPPR205.2da~) BEGIN
   COPY_EXISTING ~SLAPRI.cre~ ~override~
     ADD_CRE_ITEM ~S!AMUL20~ #2 #2 #0 ~NONE~ ~INV12~
 END
+
+//////////// Snow Leopard Charm
+
+COPY ~IATweaks\resources\bam\s!leopar.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!leopab.bam~ ~override~
+COPY ~IATweaks\resources\itm\s!leopar.itm~ ~override~
+  SAY NAME2 @7019
+  SAY IDENTIFIED_DESC @7020
+
+// Thax
+
+COPY_EXISTING ~SHADRA01.cre~ ~override~     
+  ADD_CRE_ITEM ~s!leopar~ #0 #0 #0 ~NONE~ ~INV16~
+
+//////////// Improved Snow Leopard Charm
+
+COPY ~IATweaks\resources\itm\s!amul21.itm~ ~override~
+  SAY NAME2 @7021
+  SAY IDENTIFIED_DESC @7022
+
+/////////////// New Recipes
+
+COMPILE ~IATweaks/resources/dlg/crom_new_items.d~
+  USING ~%LANGUAGE%crom_new_items.tra~
+
+COMPILE ~IATweaks/resources/dlg/cespy_new_items.d~
+  USING ~%LANGUAGE%crom_new_items.tra~ ~%LANGUAGE%cespy_new_items.tra~

@@ -599,7 +599,7 @@ COPY ~IATweaks\resources\spl\s!hisdmg.spl~ ~override~
       parameter1 = 13
       parameter2 = %stealth_strike_lower_than_row%
   END
-  PATCH_FOR_EACH stealth_strike_value IN 25 38 50 63 75 88 100 113 125 138 150 163 175 188 200 208 216 224 232 240 248 256 264 272 280 288 296 304 312 320 328 336 344 352 360 BEGIN
+  PATCH_FOR_EACH stealth_strike_value IN 25 38 50 63 75 88 100 110 120 130 140 150 160 170 180 190 200 208 216 224 232 240 248 256 264 272 280 288 296 304 312 320 328 336 344 352 360 BEGIN
     LPF ~CLONE_EFFECT~
       INT_VAR
         multi_match = 1

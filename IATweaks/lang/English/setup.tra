@@ -130,7 +130,8 @@ A Thief who dedicates themselves to mastering the Hide in Shadows skill can achi
 
 The bonuses this skill grants are only applied when the rogue succeeds at hiding in shadows.
 
--Up till 200 points invested, each 12,5 points invested (rounded up) grant +1 melee damage bonus that is multipied by backstab.
+-Up till 100 points invested, each 12,5 points invested (rounded up) grant +1 melee damage bonus that is multipied by backstab.
+-When above 100 points, each 10 points invested grant +1 melee damage
 -When above 200 points, each 8 points invested grant +1 melee damage.~
 
 @5015 = ~DETECT ILLUSION: While an adventurer searches for traps, <PRO_HISHER> well-trained eyes also allow <PRO_HIMHER> to detect the minor inconsistencies caused by illusion spells. This skill is the percentage chance per round of dispelling a nonfriendly illusion spell within 30 ft.

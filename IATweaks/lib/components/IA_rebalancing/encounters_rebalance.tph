@@ -699,3 +699,51 @@ COPY_EXISTING ~BDTURM01.cre~ ~override~
   END
 
 COMPILE ~IATweaks\scripts\creatures\S!TURM01.BAF~
+
+/////////////////////// Galvena ////////////////////
+
+COPY_EXISTING ~PIRMUR01.cre~ ~override~
+  WRITE_BYTE 0x53 1 // APR
+  WRITE_BYTE 0x5d 0 // Resist Magic
+  WRITE_BYTE 0x60 0 // Resist Slashing
+  WRITE_BYTE 0x61 0 // Resist Crushing
+  WRITE_BYTE 0x62 0 // Resist Piercing
+  WRITE_BYTE 0x63 0 // Resist Missile
+
+  ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~~ ~INV14~
+  ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~~ ~INV15~
+  ADD_CRE_ITEM ~POTN34~ #0 #0 #0 ~~ ~INV16~
+
+  LPF ~ADD_CRE_EFFECT~ INT_VAR
+    opcode = 233
+    timing = 9
+    target = 1
+    parameter1 = 2
+    parameter2 = 112 // Sword and Shield
+  END
+
+  LPF ~ADD_CRE_EFFECT~ INT_VAR
+    opcode = 233
+    timing = 9
+    target = 1
+    parameter1 = 2
+    parameter2 = 100 // Flails
+  END
+
+COMPILE ~IATweaks\scripts\creatures\PIRMUR01.BAF~
+
+////////////////////// Cat O'Nine Lives /////////////////////
+
+COPY_EXISTING_REGEXP GLOB ~s\!cat[1-9]\.cre~ ~override~
+  READ_BYTE 0x60 phys_res // Resist Slashing
+  WRITE_BYTE 0x5b phys_res + 5 // Resist Electricity
+  WRITE_BYTE 0x5c phys_res + 5 // Resist Acid
+  WRITE_SHORT 0x24 125 // HP
+  WRITE_SHORT 0x26 125 // HP
+
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 101
+      match_parameter2 = 166
+  END
+  BUT_ONLY

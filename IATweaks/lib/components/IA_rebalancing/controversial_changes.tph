@@ -489,6 +489,17 @@ ACTION_PHP_EACH item_to_enchantment_mapping AS item_file => enchantment BEGIN
   IF_EXISTS
 END
 
+// Allow all items to be used at the same time
+
+COPY_EXISTING ~itemexcl.2da~  ~override~
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  FOR (i = 1; i <=rowcount; ++i) BEGIN
+    SET_2DA_ENTRY_LATER ~_#_#_#itemexcl~ i 1 ~0~
+  END
+  SET_2DA_ENTRIES_NOW ~_#_#_#itemexcl~ ~colcount~
+  PRETTY_PRINT_2DA
+
 // Ray of Fragmentation
 
 ADD_PROJECTILE ~IATweaks\resources\pro\s!roffra.pro~

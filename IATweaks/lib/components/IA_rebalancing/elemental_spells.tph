@@ -21,3 +21,17 @@ COPY ~IATweaks\resources\bam\spells\whirlwind\WHIRLWX.BAM~ ~override~
 COPY ~IATweaks\resources\bam\spells\whirlwind\S!WHIRLB.BAM~ ~override~
 COPY ~IATweaks\resources\bam\spells\whirlwind\S!WHIRLC.BAM~ ~override~
 COPY ~IATweaks\resources\wav\iwd_whirlwind\EFF_P105.WAV~ ~override~
+
+// Ice Spikes
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!spike.pro~
+COPY ~IATweaks\resources\spl\s!spike.spl~ ~override~
+  SAY NAME1 @6149
+  SAY UNIDENTIFIED_DESC @6150
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~s!spike~
+  END
+
+COPY ~IATweaks\resources\bam\spells\ice_spike\s!spike.BAM~ ~override~
+COPY ~IATweaks\resources\bam\spells\ice_spike\s!spikeb.BAM~ ~override~

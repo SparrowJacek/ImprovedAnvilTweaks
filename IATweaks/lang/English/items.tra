@@ -222,13 +222,28 @@ Proficiency Type: Dagger
 Type: 1-handed
 Require: 3 Strength~
 
-@7025 = ~~
+@7025 = ~Girdle of Beatification~
 
-@7026 = ~~
+@7026 = ~Girdle of Beatification
+Priests of Helm in Berdusk consecrated this belt and gave it to the warrior Thom Wainwright, who had performed a number of great services for the church, including the destruction of the Unseeing Eye and the cult that followed him, the Blinded Acolytes. Thom wore the girdle proudly until he fell into severe debt in his later years. To his undying regret, he auctioned it off to a well-known priest of Mask.
 
-@7027 = ~~
+STATISTICS:
 
-@7028 = ~~
+Equipped abilities:
+- wearer is constantly under the effects of Bless and Protection from Evil spells
+
+Weight: 2~
+
+@7027 = ~Insulated Arcs of Disredain~
+
+@7028 = ~Insulated Arcs of Disredain
+Disredain was an eccentric wizard who became enthralled with the manipulation of electricity. In addition to the wands he created, Disredain made a number of experimental magic items during a fifteen-year period of frenzied research.  This belt was one of the items he did not think highly of. Consisting of large, crescent-shaped slices of mottled copper sitting back to back, the belt is quite thick and unique in appearance. A cleric of Talos named Ylkath wore the Arcs for three decades before he died of old age. His companion, the Umberlant priestess Ashalla of the Jade Tide, kept the belt for barely three years before she was shot dead by pirates that survived one of her nautical attacks. The pirates sold the belt to a fence. Its history past that point is unknown.
+
+STATISTICS:
+
+Equipped abilities:
+- Electrical Damage: +10% bonus
+- Electricity Resistance: +30%
 
 @7029 = ~~
 

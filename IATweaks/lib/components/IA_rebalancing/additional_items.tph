@@ -93,6 +93,27 @@ COPY ~IATweaks\resources\itm\s!backwh.itm~ ~override~
   SAY IDENTIFIED_DESC @7016
 // TODO ADD THIS ITEM SOMEWHERE!
 
+//////////// Girdle of Beatification
+
+COPY ~IATweaks\resources\bam\s!belt10.bam~ ~override~
+COPY ~IATweaks\resources\itm\s!belt10.itm~ ~override~
+  SAY NAME2 @7025
+  SAY IDENTIFIED_DESC @7026
+// TODO ADD THIS ITEM SOMEWHERE!
+
+//////////// Insulated Arcs of Disredain
+
+COPY ~IATweaks\resources\bam\s!bel11b.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!belt11.bam~ ~override~
+COPY ~IATweaks\resources\itm\s!belt11.itm~ ~override~
+  SAY NAME2 @7027
+  SAY IDENTIFIED_DESC @7028
+
+// Librarian
+
+COPY_EXISTING ~S!BOLICH.cre~ ~override~     
+  ADD_CRE_ITEM ~s!belt11~ #0 #0 #0 ~NONE~ ~INV16~
+
 /////////////// New Recipes
 
 COMPILE ~IATweaks/resources/dlg/crom_new_items.d~

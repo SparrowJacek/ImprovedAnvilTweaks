@@ -1069,10 +1069,37 @@ Saving Throw: None
 
 This spell summons forth a nymph to assist the party. The nymph has several priest spells at her disposal and will use them in the best interests of the party (these include Barkskin, Hold Person and a few healing spells). She will remain under the caster's control until slain or the spell's duration expires.~
 
-@6147 = ~Shield Bash~
+@6147 = ~Whirlwind~
 
-@6148 = ~Shield Bash~
+@6148 = ~Level: Quest
+Range: 5 ft.
+Duration: Special
+Casting Time: 5
+Area of Effect: Special
+Saving Throw: Special
+
+This spell creates a small whirlwind near the caster. The caster has no control over the whirlwind and it will fly around randomly, harming friend and foe alike. The caster is immune to his/her own spell. Elementals and Golems are also unaffected. Large creatures take only electrical portion of the damage and are immune to all other effects of this spell. If a creature is caught in the path of the whirlwind, it takes 4d8+4 electrical damage that grants no saving throw, 4d8+4 slashing damage which allows a saving throw, and must make a successful save vs breath or be stunned for 2 rounds. The whirlwind can't hit the same creature more often than once per 3 seconds. All effects of this spell bypass magic resistance.~
 
 @6149 = ~Shield Bash~
 
 @6150 = ~Shield Bash~
+
+@6151 = ~Shield Bash~
+
+@6152 = ~Shield Bash~
+
+@6153 = ~Shield Bash~
+
+@6154 = ~Shield Bash~
+
+@6155 = ~Shield Bash~
+
+@6156 = ~Shield Bash~
+
+@6157 = ~Shield Bash~
+
+@6158 = ~Shield Bash~
+
+@6159 = ~Shield Bash~
+
+@6160 = ~Shield Bash~

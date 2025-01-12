@@ -1,0 +1,23 @@
+/// Add elemental spells
+
+SILENT
+
+// Whirlwind
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!whirlw.pro~
+COPY ~IATweaks\resources\spl\s!whirlw.spl~ ~override~
+  SAY NAME1 @6147
+  SAY UNIDENTIFIED_DESC @6148
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~s!whirlw~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      power = 7
+  END
+
+COPY ~IATweaks\resources\bam\spells\whirlwind\WHIRLWX.BAM~ ~override~
+COPY ~IATweaks\resources\bam\spells\whirlwind\S!WHIRLB.BAM~ ~override~
+COPY ~IATweaks\resources\bam\spells\whirlwind\S!WHIRLC.BAM~ ~override~
+COPY ~IATweaks\resources\wav\iwd_whirlwind\EFF_P105.WAV~ ~override~

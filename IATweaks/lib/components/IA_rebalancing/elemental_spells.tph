@@ -49,3 +49,34 @@ COPY ~IATweaks\resources\spl\s!fissur.spl~ ~override~
 
 COPY ~IATweaks\resources\bam\spells\magma_fissure\s!fissur.BAM~ ~override~
 COPY ~IATweaks\resources\bam\spells\magma_fissure\s!fissub.BAM~ ~override~
+
+// Acid Wave
+
+COPY ~IATweaks\resources\wav\iwd_wave\#FF_P110.WAV~ ~override~
+COPY ~IATweaks\resources\wav\iwd_wave\TRA_56.WAV~ ~override~
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!awave.pro~
+COPY_EXISTING ~s!awave.pro~ ~override~
+  SET acid_wave_ini = IDS_OF_SYMBOL (~animate~ ~ANVIL_ACID_WAVE~)
+  WRITE_SHORT 0x134 acid_wave_ini // ID of .ini file with acid wave
+ADD_PROJECTILE ~IATweaks\resources\pro\s!awavet.pro~
+COPY_EXISTING ~s!awavet.pro~ ~override~
+  WRITE_SHORT 0x21a ~%s!awave%~ // explosion projectile
+
+COPY ~IATweaks\resources\spl\s!awave.spl~ ~override~
+  SAY NAME1 @6153
+  SAY UNIDENTIFIED_DESC @6154
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~s!awavet~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      power = 7
+      resist_dispel = 0
+  END
+
+COPY ~IATweaks\resources\vvc\S!WAVEH.VVC~ ~override~
+COPY ~IATweaks\resources\bam\spells\acid_wave\s!awaveb.bam~ ~override~
+COPY ~IATweaks\resources\bam\spells\acid_wave\s!awaveh.bam~ ~override~
+COPY ~IATweaks\resources\bam\spells\acid_wave\s!awavex.bam~ ~override~

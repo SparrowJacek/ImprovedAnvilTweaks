@@ -1071,7 +1071,10 @@ This spell summons forth a nymph to assist the party. The nymph has several prie
 
 @6147 = ~Whirlwind~
 
-@6148 = ~Level: Quest
+@6148 = ~Whirlwind
+(Conjuration)
+
+Level: Quest
 Range: 5 ft.
 Duration: Special
 Casting Time: 5
@@ -1110,9 +1113,19 @@ When this spell is cast, the ground beneath each enemy in a 10-foot radius of a 
 
 The fissures are precise and magically controlled, targeting only enemies while leaving allies unharmed.~
 
-@6153 = ~Shield Bash~
+@6153 = ~Acid Wave~
 
-@6154 = ~Shield Bash~
+@6154 = ~Acid Wave
+(Conjuration)
+
+Level: Quest
+Range: 40 feet
+Duration: Instant
+Casting Time: 5
+Area of Effect: 5-foot wide wave
+Saving Throw: Special
+
+This spell summons a wave of acidic substances that moves in the direction willed by the caster, striking all in its path with massive force. The wave deals 12d6 crushing  and acid damage, in addition, there is a 25% chance a creature struck is stunned for one round. If the creature struck makes a successful save vs breath with a -4 penalty, the damage is reduced by half and the creature avoids being stunned. This spell ignores enemy magic resistance.~
 
 @6155 = ~Shield Bash~
 

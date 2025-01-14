@@ -1078,7 +1078,7 @@ Casting Time: 5
 Area of Effect: Special
 Saving Throw: Special
 
-This spell creates a small whirlwind near the caster. The caster has no control over the whirlwind and it will fly around randomly, harming friend and foe alike. The caster is immune to his/her own spell. Elementals and Golems are also unaffected. Large creatures take only electrical portion of the damage and are immune to all other effects of this spell. If a creature is caught in the path of the whirlwind, it takes 4d8+4 electrical damage that grants no saving throw, 4d8+4 slashing damage which allows a saving throw, and must make a successful save vs breath or be stunned for 2 rounds. The whirlwind can't hit the same creature more often than once per 3 seconds. All effects of this spell bypass magic resistance.~
+This spell creates a small whirlwind near the caster. The caster has no control over the whirlwind and it will fly around randomly, harming friend and foe alike. The caster is immune to his/her own spell, and elementals and other huge creatures are also unaffected. If a creature is caught in the path of the whirlwind, it takes 4d8+4 electrical damage that grants no saving throw, 4d8+4 slashing damage which allows a saving throw, and must make a successful save vs breath or be stunned for 2 rounds. The whirlwind can't hit the same creature more often than once per 3 seconds. All effects of this spell bypass magic resistance.~
 
 @6149 = ~Ice Spikes~
 
@@ -1094,9 +1094,21 @@ Saving Throw: 1/2
 
 When this spell is cast, sharp, jagged ice spikes erupt from the ground in a cone-shaped area originating from the caster's hand and extending outward 25 feet in a 90-degree arc. The ice spikes pierce through enemies within the area, dealing 10d6+10 points of piercing and cold damage. Creatures who successfully save vs breath with a -6 penalty take half damage. The caster can control the area where the spikes grow ensuring that only enemies are affected. This spell ignores enemy magic resistance.~
 
-@6151 = ~Shield Bash~
+@6151 = ~Fissure~
 
-@6152 = ~Shield Bash~
+@6152 = ~Fissure
+(Evocation)
+
+Level: Quest
+Range: 40 ft.
+Duration: Instant
+Casting Time: 6
+Area of Effect: 10-ft. radius
+Saving Throw: None
+
+When this spell is cast, the ground beneath each enemy in a 10-foot radius of a point chosen by the caster splits open, creating small fissures that spew magma and acidic gases. Each affected enemy suffers 10d6 fire damage and 4d6 acid damage that ignores magic resistance. The spell also reduces fire resistance of all creatures that have fire resistance lower than 100% by 5% for 2 rounds. This effect is noncumulative.
+
+The fissures are precise and magically controlled, targeting only enemies while leaving allies unharmed.~
 
 @6153 = ~Shield Bash~
 

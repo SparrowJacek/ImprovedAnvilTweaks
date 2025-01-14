@@ -35,3 +35,17 @@ COPY ~IATweaks\resources\spl\s!spike.spl~ ~override~
 
 COPY ~IATweaks\resources\bam\spells\ice_spike\s!spike.BAM~ ~override~
 COPY ~IATweaks\resources\bam\spells\ice_spike\s!spikeb.BAM~ ~override~
+
+// Fissure
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!fissur.pro~
+COPY ~IATweaks\resources\spl\s!fissur.spl~ ~override~
+  SAY NAME1 @6151
+  SAY UNIDENTIFIED_DESC @6152
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~s!fissur~
+  END
+
+COPY ~IATweaks\resources\bam\spells\magma_fissure\s!fissur.BAM~ ~override~
+COPY ~IATweaks\resources\bam\spells\magma_fissure\s!fissub.BAM~ ~override~

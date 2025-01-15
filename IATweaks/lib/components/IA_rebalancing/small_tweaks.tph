@@ -114,3 +114,11 @@ COPY_EXISTING ~SUREHP1.itm~ ~override~
       match_resource = ~SPWI305~
   END
   BUT_ONLY
+
+// Make Improved Chain Lightning an Evocation spell and increase its casting time
+
+COPY_EXISTING ~SPWII13.spl~ ~override~
+  WRITE_BYTE 0x25 6
+  
+  // Update casting speed
+  LPF ~ALTER_SPELL_HEADER~ INT_VAR speed = 4 END

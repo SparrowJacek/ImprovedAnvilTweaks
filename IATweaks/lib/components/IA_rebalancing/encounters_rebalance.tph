@@ -747,3 +747,7 @@ COPY_EXISTING_REGEXP GLOB ~s\!cat[1-9]\.cre~ ~override~
       match_parameter2 = 166
   END
   BUT_ONLY
+
+/////////////////////// Kobold from Crystal fight in Spellhold ////////////////
+
+COMPILE ~IATweaks\scripts\creatures\S!KOBOLD.BAF~

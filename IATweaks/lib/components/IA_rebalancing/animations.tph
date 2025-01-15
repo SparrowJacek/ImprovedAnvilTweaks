@@ -153,7 +153,7 @@ END
 // resref: S!AWAVET
 // requires patching during mod install because of dynamic allocation
 
-LAF FIND_FREE_ANIM_SLOT INT_VAR slotMin = 0x0000 slotMax = 0x0fff RET slot END
+LAF FIND_FREE_ANIM_SLOT INT_VAR slotMin = 0x0001 slotMax = 0x0fff RET slot END
 ACTION_IF (slot <= 0) BEGIN
   FAIL ~No free creature animation slot found.~
 END
@@ -163,3 +163,85 @@ APPEND ~animate.ids~ ~0x%hexNumber% ANVIL_ACID_WAVE~ UNLESS ~ANVIL_ACID_WAVE~
 CLEAR_IDS_MAP
 
 COPY ~IATweaks\resources\ini\acid_wave.INI~ ~override\%hexNumber%.ini~
+
+// Fire Elemental (IWD)
+// uses IWD slot 0xE24C
+// INI included in BG2EE
+// don't overwrite assets if already included by other mods
+
+ACTION_IF (NOT FILE_EXISTS_IN_GAME ~MELFA1.BAM~) BEGIN
+	COPY ~IATweaks\resources\bam\animations\iwd_fire_elem~ ~override~
+END
+
+COPY ~IATweaks\resources\wav\iwd_fire_elem~ ~override~
+
+// Ooze Elemental (recolored Water Elemental from IWD)
+// uses IWD slot allocated dynamically
+// INI not included in BG2EE
+// resref: S!OE
+// requires patching during mod install because of dynamic allocation
+// WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_OOZE_ELEMENTAL~))
+
+
+LAF FIND_FREE_ANIM_SLOT INT_VAR slotMin = 0xe000 slotMax = 0xefff RET slot END
+ACTION_IF (slot <= 0) BEGIN
+  FAIL ~No free creature animation slot found.~
+END
+
+LAF TO_HEX_NUMBER INT_VAR value = slot minDigits = 4 RET hexNumber END
+APPEND ~animate.ids~ ~0x%hexNumber% ANVIL_OOZE_ELEMENTAL~ UNLESS ~ANVIL_OOZE_ELEMENTAL~
+CLEAR_IDS_MAP
+
+COPY ~IATweaks\resources\ini\ooze_elemental.INI~ ~override\%hexNumber%.ini~
+
+ACTION_IF (NOT FILE_EXISTS_IN_GAME ~S!OEA1.BAM~) BEGIN
+	COPY ~IATweaks\resources\bam\animations\ooze_elem~ ~override~
+END
+
+COPY ~IATweaks\resources\wav\iwd_water_elem~ ~override~
+
+// Ice Elemental (recolored Ice Elemental from IWD)
+// uses IWD slot allocated dynamically
+// INI not included in BG2EE
+// resref: S!IE
+// requires patching during mod install because of dynamic allocation
+// WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_ICE_ELEMENTAL~))
+
+
+LAF FIND_FREE_ANIM_SLOT INT_VAR slotMin = 0xe000 slotMax = 0xefff RET slot END
+ACTION_IF (slot <= 0) BEGIN
+  FAIL ~No free creature animation slot found.~
+END
+
+LAF TO_HEX_NUMBER INT_VAR value = slot minDigits = 4 RET hexNumber END
+APPEND ~animate.ids~ ~0x%hexNumber% ANVIL_ICE_ELEMENTAL~ UNLESS ~ANVIL_ICE_ELEMENTAL~
+CLEAR_IDS_MAP
+
+COPY ~IATweaks\resources\ini\ice_elemental.INI~ ~override\%hexNumber%.ini~
+
+ACTION_IF (NOT FILE_EXISTS_IN_GAME ~S!IEA1.BAM~) BEGIN
+	COPY ~IATweaks\resources\bam\animations\ice_elem~ ~override~
+END
+
+// Smoke Elemental (recolored Air Elemental from BG2)
+// uses IWD slot allocated dynamically
+// INI not included in BG2EE
+// resref: S!SE
+// requires patching during mod install because of dynamic allocation
+// WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_SMOKE_ELEMENTAL~))
+
+
+LAF FIND_FREE_ANIM_SLOT INT_VAR slotMin = 0x7000 slotMax = 0x7fff RET slot END
+ACTION_IF (slot <= 0) BEGIN
+  FAIL ~No free creature animation slot found.~
+END
+
+LAF TO_HEX_NUMBER INT_VAR value = slot minDigits = 4 RET hexNumber END
+APPEND ~animate.ids~ ~0x%hexNumber% ANVIL_SMOKE_ELEMENTAL~ UNLESS ~ANVIL_SMOKE_ELEMENTAL~
+CLEAR_IDS_MAP
+
+COPY ~IATweaks\resources\ini\smoke_elemental.INI~ ~override\%hexNumber%.ini~
+
+ACTION_IF (NOT FILE_EXISTS_IN_GAME ~S!SEG2.BAM~) BEGIN
+	COPY ~IATweaks\resources\bam\animations\smoke_elem~ ~override~
+END

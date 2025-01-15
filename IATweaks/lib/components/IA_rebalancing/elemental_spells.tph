@@ -80,3 +80,16 @@ COPY ~IATweaks\resources\vvc\S!WAVEH.VVC~ ~override~
 COPY ~IATweaks\resources\bam\spells\acid_wave\s!awaveb.bam~ ~override~
 COPY ~IATweaks\resources\bam\spells\acid_wave\s!awaveh.bam~ ~override~
 COPY ~IATweaks\resources\bam\spells\acid_wave\s!awavex.bam~ ~override~
+
+// Ice Explosion
+
+COPY ~IATweaks\resources\pro\s!harm05.pro~ ~override/s!iceex5.pro~
+ADD_PROJECTILE ~IATweaks\resources\pro\s!iceex5.pro~
+
+COPY ~IATweaks\resources\spl\s!iceexb.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~s!iceex5~
+  END
+
+COPY ~IATweaks\resources\bam\spells\ice_explosion\s!iceexp.bam~ ~override~

@@ -834,3 +834,7 @@ COMPILE ~IATweaks\scripts\creatures\S!ELEGOA.BAF~
 COMPILE ~IATweaks\scripts\creatures\S!ELEGOS.BAF~
 COMPILE ~IATweaks\scripts\creatures\S!GELEGO.BAF~
 COMPILE ~IATweaks\scripts\creatures\S!GELEGS.BAF~
+
+/////////////////// Asylum Tome //////////////////////
+
+COMPILE ~IATweaks\scripts\others\PPBOOK.BAF~

@@ -1092,10 +1092,10 @@ Level: Quest
 Range: 0
 Duration: Instant
 Casting Time: 5
-Area of Effect: 25-ft. cone with 90-deg. arc
+Area of Effect: 18-ft. cone with 90-deg. arc
 Saving Throw: 1/2
 
-When this spell is cast, sharp, jagged ice spikes erupt from the ground in a cone-shaped area originating from the caster's hand and extending outward 25 feet in a 90-degree arc. The ice spikes pierce through enemies within the area, dealing 10d6+10 points of piercing and cold damage. Creatures who successfully save vs breath with a -6 penalty take half damage. The caster can control the area where the spikes grow ensuring that only enemies are affected. This spell ignores enemy magic resistance.~
+When this spell is cast, sharp, jagged ice spikes erupt from the ground in a cone-shaped area originating from the caster's hand and extending outward 18 feet in a 90-degree arc. The ice spikes pierce through enemies within the area, dealing 10d6+10 points of piercing and cold damage. Creatures who successfully save vs breath with a -2 penalty take half damage. The caster can control the area where the spikes grow ensuring that only enemies are affected. This spell ignores enemy magic resistance.~
 
 @6151 = ~Fissure~
 
@@ -1109,7 +1109,7 @@ Casting Time: 6
 Area of Effect: 10-ft. radius
 Saving Throw: None
 
-When this spell is cast, the ground beneath each enemy in a 10-foot radius of a point chosen by the caster splits open, creating small fissures that spew magma and acidic gases. Each affected enemy suffers 10d6 fire damage and 4d6 acid damage that ignores magic resistance. The spell also reduces fire resistance of all creatures that have fire resistance lower than 100% by 5% for 2 rounds. This effect is noncumulative.
+When this spell is cast, the ground beneath each enemy in a 10-foot radius of a point chosen by the caster splits open, creating small fissures that spew magma and acidic gases. Each affected enemy suffers 10d6 fire damage and 4d6 acid damage that ignores magic resistance. The spell also reduces fire resistance of all creatures that have fire resistance lower than 100% by 5% for 2 rounds.
 
 The fissures are precise and magically controlled, targeting only enemies while leaving allies unharmed.~
 

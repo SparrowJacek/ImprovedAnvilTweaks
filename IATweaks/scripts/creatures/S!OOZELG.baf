@@ -1,0 +1,581 @@
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	GlobalGT("Iaepicbattle","AR4500",2)  // Pocket Plane
+	Global("Iasuicide","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iasuicide","LOCALS",1)
+		DestroySelf()
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	Global("EnemySeen","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("EnemySeen","LOCALS",1)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	Global("partyfled","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("partyfled","LOCALS",0)
+END
+
+IF
+	Global("Iapcastts","GLOBAL",1)
+	Global("Iatsinvulner","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",1)
+		ApplySpellRES("SPINI70",Myself)  // No such index
+END
+
+IF
+	Global("Iapcastts","GLOBAL",0)
+	Global("Iatsinvulner","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",0)
+		ApplySpellRES("SPINI71",Myself)  // No such index
+END
+
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	GlobalGT("Iapasha","AR4500",0)  // Pocket Plane
+	Exists("S!pasha2")  // Pasha Mahmoud
+	!Dead("S!pasha2")  // Pasha Mahmoud
+	OR(2)
+		See("S!pasha2")  // Pasha Mahmoud
+		See(NearestEnemyOf(Myself))
+	Global("partyfled","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("partyfled","LOCALS",0)
+END
+
+IF
+	Detect([PC])
+	Global("Iatimer","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobal("Iatimer","LOCALS",1)
+END
+
+IF
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("Iaacidcircle","LOCALS",0)
+		Continue()
+END
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Range(Player1, 12)
+	CheckStatLT(Player1,100,RESISTACID)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaacidcircle","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Range(Player2, 12)
+	CheckStatLT(Player2,100,RESISTACID)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaacidcircle","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Range(Player3, 12)
+	CheckStatLT(Player3,100,RESISTACID)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaacidcircle","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Range(Player4, 12)
+	CheckStatLT(Player4,100,RESISTACID)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaacidcircle","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Range(Player5, 12)
+	CheckStatLT(Player5,100,RESISTACID)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaacidcircle","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Range(Player6, 12)
+	CheckStatLT(Player6,100,RESISTACID)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaacidcircle","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	GlobalGT("Iaacidcircle","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!ACIDCI",Myself)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!See(NearestAllyOf(Myself))
+	See(Player1)
+	CheckStatLT(Player1,50,RESISTACID)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!AWAVE",Player1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!See(NearestAllyOf(Myself))
+	See(Player2)
+	CheckStatLT(Player2,50,RESISTACID)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!AWAVE",Player2)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!See(NearestAllyOf(Myself))
+	See(Player3)
+	CheckStatLT(Player3,50,RESISTACID)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!AWAVE",Player3)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!See(NearestAllyOf(Myself))
+	See(Player4)
+	CheckStatLT(Player4,50,RESISTACID)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!AWAVE",Player4)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!See(NearestAllyOf(Myself))
+	See(Player5)
+	CheckStatLT(Player5,50,RESISTACID)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!AWAVE",Player5)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!See(NearestAllyOf(Myself))
+	See(Player6)
+	CheckStatLT(Player6,50,RESISTACID)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!AWAVE",Player6)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!See(NearestAllyOf(Myself))
+	See(Player1)
+	CheckStatLT(Player1,100,RESISTACID)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!AWAVE",Player1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!See(NearestAllyOf(Myself))
+	See(Player2)
+	CheckStatLT(Player2,100,RESISTACID)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!AWAVE",Player2)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!See(NearestAllyOf(Myself))
+	See(Player3)
+	CheckStatLT(Player3,100,RESISTACID)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!AWAVE",Player3)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!See(NearestAllyOf(Myself))
+	See(Player4)
+	CheckStatLT(Player4,100,RESISTACID)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!AWAVE",Player4)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!See(NearestAllyOf(Myself))
+	See(Player5)
+	CheckStatLT(Player5,100,RESISTACID)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!AWAVE",Player5)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!See(NearestAllyOf(Myself))
+	See(Player6)
+	CheckStatLT(Player6,100,RESISTACID)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!AWAVE",Player6)
+END
+
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	GlobalGT("Iapasha","AR4500",0)  // Pocket Plane
+	See([PC])
+	Exists("S!pasha2")  // Pasha Mahmoud
+	!Dead("S!pasha2")  // Pasha Mahmoud
+	See("S!pasha2")  // Pasha Mahmoud
+	Range("S!pasha2",2)  // Pasha Mahmoud
+	RandomNumLT(6,2)
+THEN
+	RESPONSE #100
+		AttackOneRound("S!pasha2")  // Pasha Mahmoud
+		AttackOneRound("S!pasha2")  // Pasha Mahmoud
+END
+
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	GlobalGT("Iapasha","AR4500",0)  // Pocket Plane
+	!See([PC])
+	Exists("S!pasha2")  // Pasha Mahmoud
+	!Dead("S!pasha2")  // Pasha Mahmoud
+	See("S!pasha2")  // Pasha Mahmoud
+	RandomNumGT(6,5)
+THEN
+	RESPONSE #100
+		AttackOneRound("S!pasha2")  // Pasha Mahmoud
+		AttackOneRound("S!pasha2")  // Pasha Mahmoud
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	CheckStatLT(LastSeenBy(Myself),90,RESISTCRUSHING)
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	RandomNumGT(6,3)
+	Range(LastSeenBy(Myself),2)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(NearestEnemyOf(Myself))
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	See(SecondNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	Range(LastSeenBy(Myself),2)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(ThirdNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	Range(LastSeenBy(Myself),2)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(SecondNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	Range(LastSeenBy(Myself),3)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(ThirdNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	Range(LastSeenBy(Myself),3)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(SecondNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	Range(LastSeenBy(Myself),4)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(ThirdNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	Range(LastSeenBy(Myself),4)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(SecondNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(ThirdNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	GlobalGT("Iapasha","AR4500",0)  // Pocket Plane
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Exists("S!pasha2")  // Pasha Mahmoud
+	!Dead("S!pasha2")  // Pasha Mahmoud
+	!See("S!pasha2")  // Pasha Mahmoud
+	Global("partyfled","LOCALS",0)
+	Global("EnemySeen","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("chase","LOCALS",EIGHTEEN_MINUTES)
+		SetGlobal("partyfled","LOCALS",1)
+END
+
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	GlobalGT("Iapasha","AR4500",0)  // Pocket Plane
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Exists("S!pasha2")  // Pasha Mahmoud
+	!Dead("S!pasha2")  // Pasha Mahmoud
+	!See("S!pasha2")  // Pasha Mahmoud
+	Global("partyfled","LOCALS",1)
+	GlobalTimerNotExpired("chase","LOCALS")
+	InMyArea(Player1)
+	Global("EnemySeen","LOCALS",1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	GlobalGT("Iapasha","AR4500",0)  // Pocket Plane
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Exists("S!pasha2")  // Pasha Mahmoud
+	!Dead("S!pasha2")  // Pasha Mahmoud
+	!See("S!pasha2")  // Pasha Mahmoud
+	GlobalTimerExpired("chase","LOCALS")
+	Global("partyfled","LOCALS",1)
+	Global("EnemySeen","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("EnemySeen","LOCALS",0)
+		ReallyForceSpellRES("SPWII07",Myself)  // No such index
+END
+
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	GlobalGT("Iapasha","AR4500",0)  // Pocket Plane
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Dead("S!pasha2")  // Pasha Mahmoud
+	Global("partyfled","LOCALS",0)
+	Global("EnemySeen","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("chase","LOCALS",EIGHTEEN_MINUTES)
+		SetGlobal("partyfled","LOCALS",1)
+END
+
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	GlobalGT("Iapasha","AR4500",0)  // Pocket Plane
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Dead("S!pasha2")  // Pasha Mahmoud
+	Global("partyfled","LOCALS",1)
+	GlobalTimerNotExpired("chase","LOCALS")
+	InMyArea(Player1)
+	Global("EnemySeen","LOCALS",1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	GlobalGT("Iapasha","AR4500",0)  // Pocket Plane
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Dead("S!pasha2")  // Pasha Mahmoud
+	GlobalTimerExpired("chase","LOCALS")
+	Global("partyfled","LOCALS",1)
+	Global("EnemySeen","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("EnemySeen","LOCALS",0)
+		ReallyForceSpellRES("SPWII07",Myself)  // No such index
+END
+
+IF
+	Global("Iapasha","AR4500",0)  // Pocket Plane
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Global("partyfled","LOCALS",0)
+	Global("EnemySeen","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("chase","LOCALS",EIGHTEEN_MINUTES)
+		SetGlobal("partyfled","LOCALS",1)
+END
+
+IF
+	Global("Iapasha","AR4500",0)  // Pocket Plane
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Global("partyfled","LOCALS",1)
+	GlobalTimerNotExpired("chase","LOCALS")
+	InMyArea(Player1)
+	Global("EnemySeen","LOCALS",1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	Global("Iapasha","AR4500",0)  // Pocket Plane
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	GlobalTimerExpired("chase","LOCALS")
+	Global("partyfled","LOCALS",1)
+	Global("EnemySeen","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("EnemySeen","LOCALS",0)
+		ReallyForceSpellRES("SPWII07",Myself)  // No such index
+END
+
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	GlobalGT("Iapasha","AR4500",0)  // Pocket Plane
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Exists("S!pasha2")  // Pasha Mahmoud
+	!Dead("S!pasha2")  // Pasha Mahmoud
+	!See("S!pasha2")  // Pasha Mahmoud
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	Global("Iapasha","AR4500",0)  // Pocket Plane
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+

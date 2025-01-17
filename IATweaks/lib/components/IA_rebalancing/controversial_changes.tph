@@ -745,6 +745,23 @@ COMPILE ~IATweaks\scripts\creatures\S!SMOELE.BAF~
 
 /////////////////// Elemental Golems //////////////////////
 
+ACTION_FOR_EACH elemental_golem_cre_file IN ~S!ELEGO1~ ~S!ELEGO2~ ~S!ELEGO3~ ~S!ELEGO4~ ~S!ELEGO5~~S!ELEGO6~ ~S!ELEGO7~ ~S!ELEGOB~ ~S!ELEGOE~ ~S!ELEGOG~ ~S!ELEGOH~ ~S!ELEGOL~ ~S!ELEGOW~ ~S!ELERND~ BEGIN
+  COPY_EXISTING ~%elemental_golem_cre_file%.cre~ ~override~
+    WRITE_LONG 0x1c 4000
+    WRITE_BYTE 0x59 105  // Fire Resistance
+    WRITE_BYTE 0x5a 105  // Cold Resistance
+    WRITE_BYTE 0x5b 105  // Electricity Resistance
+    WRITE_BYTE 0x5c 105  // Acid Resistance
+END
+
+ACTION_FOR_EACH no_exp_elemental_golem_cre_file IN ~S!ELEGWI~ ~S!ELEGRA~ BEGIN
+  COPY_EXISTING ~%no_exp_elemental_golem_cre_file%.cre~ ~override~
+    WRITE_BYTE 0x59 105  // Fire Resistance
+    WRITE_BYTE 0x5a 105  // Cold Resistance
+    WRITE_BYTE 0x5b 105  // Electricity Resistance
+    WRITE_BYTE 0x5c 105  // Acid Resistance
+END
+
 COPY ~IATweaks\resources\spl\s!fire-5.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!elec-5.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!cold-5.spl~ ~override~
@@ -752,6 +769,68 @@ COPY ~IATweaks\resources\spl\s!acid-5.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!eleinf.spl~ ~override~
   LPF ~ALTER_EFFECT~
     INT_VAR
-      match_opcode = 139
+      match_opcode = 330
       parameter1 = RESOLVE_STR_REF (@5044)
   END
+
+COMPILE ~IATweaks\scripts\creatures\S!ELEGO1.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!ELEGO2.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!ELEGO3.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!MAGEL3.BAF~
+COPY_EXISTING ~s!magel1.cre~ ~override/s!magel3.cre~
+  WRITE_ASCII 0x248 ~S!MAGEL3~
+COMPILE ~IATweaks\scripts\creatures\S!ICEEL3.BAF~
+COPY_EXISTING ~s!iceel1.cre~ ~override/s!iceel3.cre~
+  WRITE_ASCII 0x248 ~S!ICEEL3~
+COMPILE ~IATweaks\scripts\creatures\S!OOZEL3.BAF~
+COPY_EXISTING ~s!oozel1.cre~ ~override/s!oozel3.cre~
+  WRITE_ASCII 0x248 ~S!OOZEL3~
+COMPILE ~IATweaks\scripts\creatures\S!SMOEL3.BAF~
+COPY_EXISTING ~s!smoel1.cre~ ~override/s!smoel3.cre~
+  WRITE_ASCII 0x248 ~S!SMOEL3~
+
+COMPILE ~IATweaks\scripts\creatures\S!ELEGOB.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!ELEGOE.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!ELEGOG.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!MAGELG.BAF~
+COPY_EXISTING ~s!magel1.cre~ ~override/s!magelg.cre~
+  WRITE_ASCII 0x248 ~S!MAGELG~
+COMPILE ~IATweaks\scripts\creatures\S!MAGELG.BAF~
+COPY_EXISTING ~s!iceel1.cre~ ~override/s!iceelg.cre~
+  WRITE_ASCII 0x248 ~S!ICEELG~
+COMPILE ~IATweaks\scripts\creatures\S!OOZELG.BAF~
+COPY_EXISTING ~s!oozel1.cre~ ~override/s!oozelg.cre~
+  WRITE_ASCII 0x248 ~S!OOZELG~
+COMPILE ~IATweaks\scripts\creatures\S!SMOELG.BAF~
+COPY_EXISTING ~s!smoel1.cre~ ~override/s!smoelg.cre~
+  WRITE_ASCII 0x248 ~S!SMOELG~
+
+COMPILE ~IATweaks\scripts\creatures\S!ELEGOL.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!ELERND.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!ELEGOH.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!ELEGOW.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!ELEGRA.BAF~
+COPY_EXISTING ~s!magel1.cre~ ~override/s!magelr.cre~
+  WRITE_LONG 0x14 0
+COPY_EXISTING ~s!iceel1.cre~ ~override/s!iceelr.cre~
+  WRITE_LONG 0x14 0
+COPY_EXISTING ~s!oozel1.cre~ ~override/s!oozelr.cre~
+  WRITE_LONG 0x14 0
+COPY_EXISTING ~s!smoel1.cre~ ~override/s!smoelr.cre~
+  WRITE_LONG 0x14 0
+
+/////////////////// Greater Elemental Golems //////////////////////
+
+ACTION_FOR_EACH geg_cre_file IN ~S!ELEGOA~ ~S!ELEGOS~ ~S!GELEGO~ ~S!GELEGS~ BEGIN
+  COPY_EXISTING ~%geg_cre_file%.cre~ ~override~
+    WRITE_LONG 0x1c 7500
+    WRITE_BYTE 0x59 110  // Fire Resistance
+    WRITE_BYTE 0x5a 110  // Cold Resistance
+    WRITE_BYTE 0x5b 110  // Electricity Resistance
+    WRITE_BYTE 0x5c 110  // Acid Resistance
+END
+
+COMPILE ~IATweaks\scripts\creatures\S!ELEGOA.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!ELEGOS.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!GELEGO.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!GELEGS.BAF~

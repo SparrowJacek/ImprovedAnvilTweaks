@@ -1,0 +1,4911 @@
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	GlobalGT("Iaepicbattle","AR4500",2)  // Pocket Plane
+	Global("Iasuicide","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iasuicide","LOCALS",1)
+		DestroySelf()
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	Global("EnemySeen","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("EnemySeen","LOCALS",1)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	Global("partyfled","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("partyfled","LOCALS",0)
+END
+
+IF
+	Global("Iapcastts","GLOBAL",1)
+	Global("Iatsinvulner","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",1)
+		ApplySpellRES("SPINI70",Myself)  // No such index
+END
+
+IF
+	Global("Iapcastts","GLOBAL",0)
+	Global("Iatsinvulner","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",0)
+		ApplySpellRES("SPINI71",Myself)  // No such index
+END
+
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	GlobalGT("Iapasha","AR4500",0)  // Pocket Plane
+	Exists("S!pasha2")  // Pasha Mahmoud
+	!Dead("S!pasha2")  // Pasha Mahmoud
+	OR(2)
+		See("S!pasha2")  // Pasha Mahmoud
+		See(NearestEnemyOf(Myself))
+	Global("partyfled","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("partyfled","LOCALS",0)
+END
+
+IF
+	Detect([PC])
+	Global("Iatimer","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobal("Iatimer","LOCALS",1)
+END
+
+IF
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("Iaicespikesplayer1","LOCALS",0)
+		SetGlobal("Iaicespikesplayer2","LOCALS",0)
+		SetGlobal("Iaicespikesplayer3","LOCALS",0)
+		SetGlobal("Iaicespikesplayer4","LOCALS",0)
+		SetGlobal("Iaicespikesplayer5","LOCALS",0)
+		SetGlobal("Iaicespikesplayer6","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_1_2","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_1_3","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_1_4","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_1_5","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_1_6","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_2_1","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_2_3","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_2_4","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_2_5","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_2_6","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_3_1","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_3_2","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_3_4","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_3_5","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_3_6","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_4_1","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_4_2","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_4_3","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_4_5","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_4_6","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_5_1","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_5_2","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_5_3","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_5_4","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_5_6","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_6_1","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_6_2","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_6_3","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_6_4","LOCALS",0)
+		SetGlobal("Iaicespikesplayer_6_5","LOCALS",0)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player1,18)
+	!Range(Player2,15)
+	TriggerOverride(Player1,Range(Player2,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player1,15)
+	!Range(Player2,12)
+	TriggerOverride(Player1,Range(Player2,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player1,12)
+	!Range(Player2,9)
+	TriggerOverride(Player1,Range(Player2,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player1,9)
+	!Range(Player2,6)
+	TriggerOverride(Player1,Range(Player2,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player1,6)
+	!Range(Player1,3)
+	TriggerOverride(Player1,Range(Player2,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player1,3)
+	TriggerOverride(Player1,Range(Player2,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player1,18)
+	!Range(Player3,15)
+	TriggerOverride(Player1,Range(Player3,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player1,15)
+	!Range(Player3,12)
+	TriggerOverride(Player1,Range(Player3,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player1,12)
+	!Range(Player3,9)
+	TriggerOverride(Player1,Range(Player3,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player1,9)
+	!Range(Player3,6)
+	TriggerOverride(Player1,Range(Player3,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player1,6)
+	!Range(Player1,3)
+	TriggerOverride(Player1,Range(Player3,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player1,3)
+	TriggerOverride(Player1,Range(Player3,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player1,18)
+	!Range(Player4,15)
+	TriggerOverride(Player1,Range(Player4,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player1,15)
+	!Range(Player4,12)
+	TriggerOverride(Player1,Range(Player4,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player1,12)
+	!Range(Player4,9)
+	TriggerOverride(Player1,Range(Player4,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player1,9)
+	!Range(Player4,6)
+	TriggerOverride(Player1,Range(Player4,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player1,6)
+	!Range(Player1,3)
+	TriggerOverride(Player1,Range(Player4,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player1,3)
+	TriggerOverride(Player1,Range(Player4,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player1,18)
+	!Range(Player5,15)
+	TriggerOverride(Player1,Range(Player5,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player1,15)
+	!Range(Player5,12)
+	TriggerOverride(Player1,Range(Player5,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player1,12)
+	!Range(Player5,9)
+	TriggerOverride(Player1,Range(Player5,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player1,9)
+	!Range(Player5,6)
+	TriggerOverride(Player1,Range(Player5,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player1,6)
+	!Range(Player1,3)
+	TriggerOverride(Player1,Range(Player5,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player1,3)
+	TriggerOverride(Player1,Range(Player5,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player1,18)
+	!Range(Player6,15)
+	TriggerOverride(Player1,Range(Player6,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player1,15)
+	!Range(Player6,12)
+	TriggerOverride(Player1,Range(Player6,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player1,12)
+	!Range(Player6,9)
+	TriggerOverride(Player1,Range(Player6,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player1,9)
+	!Range(Player6,6)
+	TriggerOverride(Player1,Range(Player6,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player1,6)
+	!Range(Player1,3)
+	TriggerOverride(Player1,Range(Player6,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_1_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player1)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player1,3)
+	TriggerOverride(Player1,Range(Player6,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer1","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_1_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player2,18)
+	!Range(Player1,15)
+	TriggerOverride(Player2,Range(Player1,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player2,15)
+	!Range(Player1,12)
+	TriggerOverride(Player2,Range(Player1,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player2,12)
+	!Range(Player1,9)
+	TriggerOverride(Player2,Range(Player1,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player2,9)
+	!Range(Player1,6)
+	TriggerOverride(Player2,Range(Player1,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player2,6)
+	!Range(Player2,3)
+	TriggerOverride(Player2,Range(Player1,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player2,3)
+	TriggerOverride(Player2,Range(Player1,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player2,18)
+	!Range(Player3,15)
+	TriggerOverride(Player2,Range(Player3,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player2,15)
+	!Range(Player3,12)
+	TriggerOverride(Player2,Range(Player3,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player2,12)
+	!Range(Player3,9)
+	TriggerOverride(Player2,Range(Player3,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player2,9)
+	!Range(Player3,6)
+	TriggerOverride(Player2,Range(Player3,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player2,6)
+	!Range(Player2,3)
+	TriggerOverride(Player2,Range(Player3,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player2,3)
+	TriggerOverride(Player2,Range(Player3,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player2,18)
+	!Range(Player4,15)
+	TriggerOverride(Player2,Range(Player4,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player2,15)
+	!Range(Player4,12)
+	TriggerOverride(Player2,Range(Player4,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player2,12)
+	!Range(Player4,9)
+	TriggerOverride(Player2,Range(Player4,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player2,9)
+	!Range(Player4,6)
+	TriggerOverride(Player2,Range(Player4,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player2,6)
+	!Range(Player2,3)
+	TriggerOverride(Player2,Range(Player4,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player2,3)
+	TriggerOverride(Player2,Range(Player4,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player2,18)
+	!Range(Player5,15)
+	TriggerOverride(Player2,Range(Player5,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player2,15)
+	!Range(Player5,12)
+	TriggerOverride(Player2,Range(Player5,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player2,12)
+	!Range(Player5,9)
+	TriggerOverride(Player2,Range(Player5,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player2,9)
+	!Range(Player5,6)
+	TriggerOverride(Player2,Range(Player5,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player2,6)
+	!Range(Player2,3)
+	TriggerOverride(Player2,Range(Player5,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player2,3)
+	TriggerOverride(Player2,Range(Player5,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player2,18)
+	!Range(Player6,15)
+	TriggerOverride(Player2,Range(Player6,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player2,15)
+	!Range(Player6,12)
+	TriggerOverride(Player2,Range(Player6,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player2,12)
+	!Range(Player6,9)
+	TriggerOverride(Player2,Range(Player6,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player2,9)
+	!Range(Player6,6)
+	TriggerOverride(Player2,Range(Player6,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player2,6)
+	!Range(Player2,3)
+	TriggerOverride(Player2,Range(Player6,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_2_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player2)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player2,3)
+	TriggerOverride(Player2,Range(Player6,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer2","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_2_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player3,18)
+	!Range(Player1,15)
+	TriggerOverride(Player3,Range(Player1,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player3,15)
+	!Range(Player1,12)
+	TriggerOverride(Player3,Range(Player1,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player3,12)
+	!Range(Player1,9)
+	TriggerOverride(Player3,Range(Player1,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player3,9)
+	!Range(Player1,6)
+	TriggerOverride(Player3,Range(Player1,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player3,6)
+	!Range(Player3,3)
+	TriggerOverride(Player3,Range(Player1,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player3,3)
+	TriggerOverride(Player3,Range(Player1,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player3,18)
+	!Range(Player2,15)
+	TriggerOverride(Player3,Range(Player2,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player3,15)
+	!Range(Player2,12)
+	TriggerOverride(Player3,Range(Player2,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player3,12)
+	!Range(Player2,9)
+	TriggerOverride(Player3,Range(Player2,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player3,9)
+	!Range(Player2,6)
+	TriggerOverride(Player3,Range(Player2,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player3,6)
+	!Range(Player3,3)
+	TriggerOverride(Player3,Range(Player2,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player3,3)
+	TriggerOverride(Player3,Range(Player2,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player3,18)
+	!Range(Player4,15)
+	TriggerOverride(Player3,Range(Player4,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player3,15)
+	!Range(Player4,12)
+	TriggerOverride(Player3,Range(Player4,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player3,12)
+	!Range(Player4,9)
+	TriggerOverride(Player3,Range(Player4,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player3,9)
+	!Range(Player4,6)
+	TriggerOverride(Player3,Range(Player4,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player3,6)
+	!Range(Player3,3)
+	TriggerOverride(Player3,Range(Player4,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player3,3)
+	TriggerOverride(Player3,Range(Player4,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player3,18)
+	!Range(Player5,15)
+	TriggerOverride(Player3,Range(Player5,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player3,15)
+	!Range(Player5,12)
+	TriggerOverride(Player3,Range(Player5,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player3,12)
+	!Range(Player5,9)
+	TriggerOverride(Player3,Range(Player5,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player3,9)
+	!Range(Player5,6)
+	TriggerOverride(Player3,Range(Player5,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player3,6)
+	!Range(Player3,3)
+	TriggerOverride(Player3,Range(Player5,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player3,3)
+	TriggerOverride(Player3,Range(Player5,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player3,18)
+	!Range(Player6,15)
+	TriggerOverride(Player3,Range(Player6,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player3,15)
+	!Range(Player6,12)
+	TriggerOverride(Player3,Range(Player6,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player3,12)
+	!Range(Player6,9)
+	TriggerOverride(Player3,Range(Player6,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player3,9)
+	!Range(Player6,6)
+	TriggerOverride(Player3,Range(Player6,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player3,6)
+	!Range(Player3,3)
+	TriggerOverride(Player3,Range(Player6,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_3_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player3)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player3,3)
+	TriggerOverride(Player3,Range(Player6,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer3","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_3_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player4,18)
+	!Range(Player1,15)
+	TriggerOverride(Player4,Range(Player1,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player4,15)
+	!Range(Player1,12)
+	TriggerOverride(Player4,Range(Player1,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player4,12)
+	!Range(Player1,9)
+	TriggerOverride(Player4,Range(Player1,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player4,9)
+	!Range(Player1,6)
+	TriggerOverride(Player4,Range(Player1,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player4,6)
+	!Range(Player4,3)
+	TriggerOverride(Player4,Range(Player1,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player4,3)
+	TriggerOverride(Player4,Range(Player1,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player4,18)
+	!Range(Player2,15)
+	TriggerOverride(Player4,Range(Player2,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player4,15)
+	!Range(Player2,12)
+	TriggerOverride(Player4,Range(Player2,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player4,12)
+	!Range(Player2,9)
+	TriggerOverride(Player4,Range(Player2,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player4,9)
+	!Range(Player2,6)
+	TriggerOverride(Player4,Range(Player2,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player4,6)
+	!Range(Player4,3)
+	TriggerOverride(Player4,Range(Player2,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player4,3)
+	TriggerOverride(Player4,Range(Player2,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player4,18)
+	!Range(Player3,15)
+	TriggerOverride(Player4,Range(Player3,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player4,15)
+	!Range(Player3,12)
+	TriggerOverride(Player4,Range(Player3,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player4,12)
+	!Range(Player3,9)
+	TriggerOverride(Player4,Range(Player3,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player4,9)
+	!Range(Player3,6)
+	TriggerOverride(Player4,Range(Player3,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player4,6)
+	!Range(Player4,3)
+	TriggerOverride(Player4,Range(Player3,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player4,3)
+	TriggerOverride(Player4,Range(Player3,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player4,18)
+	!Range(Player5,15)
+	TriggerOverride(Player4,Range(Player5,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player4,15)
+	!Range(Player5,12)
+	TriggerOverride(Player4,Range(Player5,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player4,12)
+	!Range(Player5,9)
+	TriggerOverride(Player4,Range(Player5,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player4,9)
+	!Range(Player5,6)
+	TriggerOverride(Player4,Range(Player5,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player4,6)
+	!Range(Player4,3)
+	TriggerOverride(Player4,Range(Player5,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player4,3)
+	TriggerOverride(Player4,Range(Player5,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player4,18)
+	!Range(Player6,15)
+	TriggerOverride(Player4,Range(Player6,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player4,15)
+	!Range(Player6,12)
+	TriggerOverride(Player4,Range(Player6,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player4,12)
+	!Range(Player6,9)
+	TriggerOverride(Player4,Range(Player6,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player4,9)
+	!Range(Player6,6)
+	TriggerOverride(Player4,Range(Player6,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player4,6)
+	!Range(Player4,3)
+	TriggerOverride(Player4,Range(Player6,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_4_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player4)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player4,3)
+	TriggerOverride(Player4,Range(Player6,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer4","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_4_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player5,18)
+	!Range(Player1,15)
+	TriggerOverride(Player5,Range(Player1,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player5,15)
+	!Range(Player1,12)
+	TriggerOverride(Player5,Range(Player1,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player5,12)
+	!Range(Player1,9)
+	TriggerOverride(Player5,Range(Player1,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player5,9)
+	!Range(Player1,6)
+	TriggerOverride(Player5,Range(Player1,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player5,6)
+	!Range(Player5,3)
+	TriggerOverride(Player5,Range(Player1,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player5,3)
+	TriggerOverride(Player5,Range(Player1,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player5,18)
+	!Range(Player2,15)
+	TriggerOverride(Player5,Range(Player2,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player5,15)
+	!Range(Player2,12)
+	TriggerOverride(Player5,Range(Player2,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player5,12)
+	!Range(Player2,9)
+	TriggerOverride(Player5,Range(Player2,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player5,9)
+	!Range(Player2,6)
+	TriggerOverride(Player5,Range(Player2,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player5,6)
+	!Range(Player5,3)
+	TriggerOverride(Player5,Range(Player2,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player5,3)
+	TriggerOverride(Player5,Range(Player2,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player5,18)
+	!Range(Player3,15)
+	TriggerOverride(Player5,Range(Player3,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player5,15)
+	!Range(Player3,12)
+	TriggerOverride(Player5,Range(Player3,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player5,12)
+	!Range(Player3,9)
+	TriggerOverride(Player5,Range(Player3,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player5,9)
+	!Range(Player3,6)
+	TriggerOverride(Player5,Range(Player3,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player5,6)
+	!Range(Player5,3)
+	TriggerOverride(Player5,Range(Player3,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player5,3)
+	TriggerOverride(Player5,Range(Player3,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player5,18)
+	!Range(Player4,15)
+	TriggerOverride(Player5,Range(Player4,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player5,15)
+	!Range(Player4,12)
+	TriggerOverride(Player5,Range(Player4,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player5,12)
+	!Range(Player4,9)
+	TriggerOverride(Player5,Range(Player4,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player5,9)
+	!Range(Player4,6)
+	TriggerOverride(Player5,Range(Player4,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player5,6)
+	!Range(Player5,3)
+	TriggerOverride(Player5,Range(Player4,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player5,3)
+	TriggerOverride(Player5,Range(Player4,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player5,18)
+	!Range(Player6,15)
+	TriggerOverride(Player5,Range(Player6,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player5,15)
+	!Range(Player6,12)
+	TriggerOverride(Player5,Range(Player6,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player5,12)
+	!Range(Player6,9)
+	TriggerOverride(Player5,Range(Player6,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player5,9)
+	!Range(Player6,6)
+	TriggerOverride(Player5,Range(Player6,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player5,6)
+	!Range(Player5,3)
+	TriggerOverride(Player5,Range(Player6,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_5_6","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player5)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	Range(Player6,18)
+	Range(Player5,3)
+	TriggerOverride(Player5,Range(Player6,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer5","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_5_6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player6,18)
+	!Range(Player1,15)
+	TriggerOverride(Player6,Range(Player1,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player6,15)
+	!Range(Player1,12)
+	TriggerOverride(Player6,Range(Player1,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player6,12)
+	!Range(Player1,9)
+	TriggerOverride(Player6,Range(Player1,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player6,9)
+	!Range(Player1,6)
+	TriggerOverride(Player6,Range(Player1,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player6,6)
+	!Range(Player6,3)
+	TriggerOverride(Player6,Range(Player1,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_1","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player1,90,RESISTCOLD)
+		CheckStatLT(Player1,90,RESISTPIERCING)
+	Range(Player1,18)
+	Range(Player6,3)
+	TriggerOverride(Player6,Range(Player1,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player6,18)
+	!Range(Player2,15)
+	TriggerOverride(Player6,Range(Player2,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player6,15)
+	!Range(Player2,12)
+	TriggerOverride(Player6,Range(Player2,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player6,12)
+	!Range(Player2,9)
+	TriggerOverride(Player6,Range(Player2,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player6,9)
+	!Range(Player2,6)
+	TriggerOverride(Player6,Range(Player2,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player6,6)
+	!Range(Player6,3)
+	TriggerOverride(Player6,Range(Player2,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_2","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player2,90,RESISTCOLD)
+		CheckStatLT(Player2,90,RESISTPIERCING)
+	Range(Player2,18)
+	Range(Player6,3)
+	TriggerOverride(Player6,Range(Player2,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player6,18)
+	!Range(Player3,15)
+	TriggerOverride(Player6,Range(Player3,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player6,15)
+	!Range(Player3,12)
+	TriggerOverride(Player6,Range(Player3,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player6,12)
+	!Range(Player3,9)
+	TriggerOverride(Player6,Range(Player3,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player6,9)
+	!Range(Player3,6)
+	TriggerOverride(Player6,Range(Player3,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player6,6)
+	!Range(Player6,3)
+	TriggerOverride(Player6,Range(Player3,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_3","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player3,90,RESISTCOLD)
+		CheckStatLT(Player3,90,RESISTPIERCING)
+	Range(Player3,18)
+	Range(Player6,3)
+	TriggerOverride(Player6,Range(Player3,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player6,18)
+	!Range(Player4,15)
+	TriggerOverride(Player6,Range(Player4,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player6,15)
+	!Range(Player4,12)
+	TriggerOverride(Player6,Range(Player4,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player6,12)
+	!Range(Player4,9)
+	TriggerOverride(Player6,Range(Player4,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player6,9)
+	!Range(Player4,6)
+	TriggerOverride(Player6,Range(Player4,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player6,6)
+	!Range(Player6,3)
+	TriggerOverride(Player6,Range(Player4,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_4","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player4,90,RESISTCOLD)
+		CheckStatLT(Player4,90,RESISTPIERCING)
+	Range(Player4,18)
+	Range(Player6,3)
+	TriggerOverride(Player6,Range(Player4,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player6,18)
+	!Range(Player5,15)
+	TriggerOverride(Player6,Range(Player5,11))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player6,15)
+	!Range(Player5,12)
+	TriggerOverride(Player6,Range(Player5,9))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player6,12)
+	!Range(Player5,9)
+	TriggerOverride(Player6,Range(Player5,7))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player6,9)
+	!Range(Player5,6)
+	TriggerOverride(Player6,Range(Player5,5))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player6,6)
+	!Range(Player6,3)
+	TriggerOverride(Player6,Range(Player5,4))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iaicespikesplayer_6_5","LOCALS",0)
+	!HPLT(Myself,1)
+	See(Player6)
+	OR(2)
+		CheckStatLT(Player6,90,RESISTCOLD)
+		CheckStatLT(Player6,90,RESISTPIERCING)
+	OR(2)
+		CheckStatLT(Player5,90,RESISTCOLD)
+		CheckStatLT(Player5,90,RESISTPIERCING)
+	Range(Player5,18)
+	Range(Player6,3)
+	TriggerOverride(Player6,Range(Player5,2))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaicespikesplayer6","LOCALS",1)
+		SetGlobal("Iaicespikesplayer_6_5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("Iaicespikesplayer1","LOCALS",6)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player1)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer2","LOCALS",6)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player2)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player2)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer3","LOCALS",6)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player3)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer4","LOCALS",6)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player4)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player4)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer5","LOCALS",6)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player5)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player5)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer6","LOCALS",6)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player6)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player6)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer1","LOCALS",5)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player1)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer2","LOCALS",5)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player2)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player2)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer3","LOCALS",5)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player3)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer4","LOCALS",5)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player4)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player4)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer5","LOCALS",5)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player5)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player5)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer6","LOCALS",5)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player6)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player6)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer1","LOCALS",4)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player1)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer2","LOCALS",4)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player2)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player2)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer3","LOCALS",4)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player3)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer4","LOCALS",4)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player4)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player4)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer5","LOCALS",4)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player5)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player5)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer6","LOCALS",4)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player6)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player6)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer1","LOCALS",3)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player1)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer2","LOCALS",3)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player2)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player2)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer3","LOCALS",3)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player3)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer4","LOCALS",3)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player4)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player4)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer5","LOCALS",3)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player5)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player5)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer6","LOCALS",3)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player6)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player6)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer1","LOCALS",2)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player1)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer2","LOCALS",2)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player2)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player2)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer3","LOCALS",2)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player3)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer4","LOCALS",2)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player4)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player4)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer5","LOCALS",2)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player5)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player5)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer6","LOCALS",2)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player6)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player6)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer1","LOCALS",1)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player1)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer2","LOCALS",1)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player2)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player2)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer3","LOCALS",1)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player3)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer4","LOCALS",1)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player4)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player4)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer5","LOCALS",1)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player5)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player5)  // Ice Spikes
+END
+
+IF
+	Global("Iaicespikesplayer6","LOCALS",1)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!HPLT(Myself,1)
+	See(Player6)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!SPIKE",Player6)  // Ice Spikes
+END
+	ForceSpell(Myself,GOLEM_HASTE)  // SPIN978.SPL (Golem Haste)
+END
+
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	GlobalGT("Iapasha","AR4500",0)  // Pocket Plane
+	See([PC])
+	Exists("S!pasha2")  // Pasha Mahmoud
+	!Dead("S!pasha2")  // Pasha Mahmoud
+	See("S!pasha2")  // Pasha Mahmoud
+	Range("S!pasha2",2)  // Pasha Mahmoud
+	RandomNumLT(6,2)
+THEN
+	RESPONSE #100
+		AttackOneRound("S!pasha2")  // Pasha Mahmoud
+		AttackOneRound("S!pasha2")  // Pasha Mahmoud
+END
+
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	GlobalGT("Iapasha","AR4500",0)  // Pocket Plane
+	!See([PC])
+	Exists("S!pasha2")  // Pasha Mahmoud
+	!Dead("S!pasha2")  // Pasha Mahmoud
+	See("S!pasha2")  // Pasha Mahmoud
+	RandomNumGT(6,5)
+THEN
+	RESPONSE #100
+		AttackOneRound("S!pasha2")  // Pasha Mahmoud
+		AttackOneRound("S!pasha2")  // Pasha Mahmoud
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	CheckStatLT(LastSeenBy(Myself),90,RESISTCRUSHING)
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	RandomNumGT(6,3)
+	Range(LastSeenBy(Myself),2)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(NearestEnemyOf(Myself))
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	See(SecondNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	Range(LastSeenBy(Myself),2)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(ThirdNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	Range(LastSeenBy(Myself),2)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(SecondNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	Range(LastSeenBy(Myself),3)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(ThirdNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	Range(LastSeenBy(Myself),3)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(SecondNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	Range(LastSeenBy(Myself),4)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(ThirdNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	Range(LastSeenBy(Myself),4)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(SecondNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(ThirdNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	GlobalGT("Iapasha","AR4500",0)  // Pocket Plane
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Exists("S!pasha2")  // Pasha Mahmoud
+	!Dead("S!pasha2")  // Pasha Mahmoud
+	!See("S!pasha2")  // Pasha Mahmoud
+	Global("partyfled","LOCALS",0)
+	Global("EnemySeen","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("chase","LOCALS",EIGHTEEN_MINUTES)
+		SetGlobal("partyfled","LOCALS",1)
+END
+
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	GlobalGT("Iapasha","AR4500",0)  // Pocket Plane
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Exists("S!pasha2")  // Pasha Mahmoud
+	!Dead("S!pasha2")  // Pasha Mahmoud
+	!See("S!pasha2")  // Pasha Mahmoud
+	Global("partyfled","LOCALS",1)
+	GlobalTimerNotExpired("chase","LOCALS")
+	InMyArea(Player1)
+	Global("EnemySeen","LOCALS",1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	GlobalGT("Iapasha","AR4500",0)  // Pocket Plane
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Exists("S!pasha2")  // Pasha Mahmoud
+	!Dead("S!pasha2")  // Pasha Mahmoud
+	!See("S!pasha2")  // Pasha Mahmoud
+	GlobalTimerExpired("chase","LOCALS")
+	Global("partyfled","LOCALS",1)
+	Global("EnemySeen","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("EnemySeen","LOCALS",0)
+		ReallyForceSpellRES("SPWII07",Myself)  // No such index
+END
+
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	GlobalGT("Iapasha","AR4500",0)  // Pocket Plane
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Dead("S!pasha2")  // Pasha Mahmoud
+	Global("partyfled","LOCALS",0)
+	Global("EnemySeen","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("chase","LOCALS",EIGHTEEN_MINUTES)
+		SetGlobal("partyfled","LOCALS",1)
+END
+
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	GlobalGT("Iapasha","AR4500",0)  // Pocket Plane
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Dead("S!pasha2")  // Pasha Mahmoud
+	Global("partyfled","LOCALS",1)
+	GlobalTimerNotExpired("chase","LOCALS")
+	InMyArea(Player1)
+	Global("EnemySeen","LOCALS",1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	GlobalGT("Iapasha","AR4500",0)  // Pocket Plane
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Dead("S!pasha2")  // Pasha Mahmoud
+	GlobalTimerExpired("chase","LOCALS")
+	Global("partyfled","LOCALS",1)
+	Global("EnemySeen","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("EnemySeen","LOCALS",0)
+		ReallyForceSpellRES("SPWII07",Myself)  // No such index
+END
+
+IF
+	Global("Iapasha","AR4500",0)  // Pocket Plane
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Global("partyfled","LOCALS",0)
+	Global("EnemySeen","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("chase","LOCALS",EIGHTEEN_MINUTES)
+		SetGlobal("partyfled","LOCALS",1)
+END
+
+IF
+	Global("Iapasha","AR4500",0)  // Pocket Plane
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Global("partyfled","LOCALS",1)
+	GlobalTimerNotExpired("chase","LOCALS")
+	InMyArea(Player1)
+	Global("EnemySeen","LOCALS",1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	Global("Iapasha","AR4500",0)  // Pocket Plane
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	GlobalTimerExpired("chase","LOCALS")
+	Global("partyfled","LOCALS",1)
+	Global("EnemySeen","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("EnemySeen","LOCALS",0)
+		ReallyForceSpellRES("SPWII07",Myself)  // No such index
+END
+
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	GlobalGT("Iapasha","AR4500",0)  // Pocket Plane
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Exists("S!pasha2")  // Pasha Mahmoud
+	!Dead("S!pasha2")  // Pasha Mahmoud
+	!See("S!pasha2")  // Pasha Mahmoud
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	AreaCheck("AR4500")  // Pocket Plane
+	Global("Iapasha","AR4500",0)  // Pocket Plane
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+

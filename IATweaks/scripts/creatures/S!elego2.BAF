@@ -1,0 +1,322 @@
+IF
+	See(NearestEnemyOf(Myself))
+	Global("partyfled","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("partyfled","LOCALS",0)
+END
+
+IF
+	Exists("S!pasha")  // Pasha Mahmoud
+	!Dead("S!pasha")  // Pasha Mahmoud
+	OR(2)
+		See("S!pasha")  // Pasha Mahmoud
+		See(NearestEnemyOf(Myself))
+	Global("partyfled","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("partyfled","LOCALS",0)
+END
+
+IF
+	Detect([PC])
+	Global("Iatimer","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("golemcall","LOCALS",THREE_ROUNDS)
+		SetGlobal("Iatimer","LOCALS",1)
+END
+
+IF
+	Global("IaSpawnElementals1","LOCALS",0)
+	HPPercentLT(Myself,75)
+THEN
+	RESPONSE #25
+		ReallyForceSpellRES("S!ELEINF",Myself)
+		CreateCreatureObject("S!ICEEL1",Myself,0,0,0)
+		SetGlobal("IaSpawnElementals1","LOCALS",1)
+		ReallyForceSpellRES("S!COLD-5",Myself)
+		ReallyForceSpellRES("S!ELEC-5",Myself)
+	RESPONSE #25
+		ReallyForceSpellRES("S!ELEINF",Myself)
+		CreateCreatureObject("S!MAGEL1",Myself,0,0,0)
+		SetGlobal("IaSpawnElementals1","LOCALS",1)
+		ReallyForceSpellRES("S!FIRE-5",Myself)
+		ReallyForceSpellRES("S!ACID-5",Myself)
+	RESPONSE #25
+		ReallyForceSpellRES("S!ELEINF",Myself)
+		CreateCreatureObject("S!OOZEL1",Myself,0,0,0)
+		SetGlobal("IaSpawnElementals1","LOCALS",1)
+		ReallyForceSpellRES("S!COLD-5",Myself)
+		ReallyForceSpellRES("S!ACID-5",Myself)
+	RESPONSE #25
+		ReallyForceSpellRES("S!ELEINF",Myself)
+		CreateCreatureObject("S!SMOEL1",Myself,0,0,0)
+		SetGlobal("IaSpawnElementals1","LOCALS",1)
+		ReallyForceSpellRES("S!ELEC-5",Myself)
+		ReallyForceSpellRES("S!FIRE-5",Myself)
+END
+
+IF
+	Global("IaSpawnElementals2","LOCALS",0)
+	HPPercentLT(Myself,50)
+THEN
+	RESPONSE #25
+		ReallyForceSpellRES("S!ELEINF",Myself)
+		CreateCreatureObject("S!ICEEL1",Myself,0,0,0)
+		SetGlobal("IaSpawnElementals2","LOCALS",1)
+		ReallyForceSpellRES("S!COLD-5",Myself)
+		ReallyForceSpellRES("S!ELEC-5",Myself)
+	RESPONSE #25
+		ReallyForceSpellRES("S!ELEINF",Myself)
+		CreateCreatureObject("S!MAGEL1",Myself,0,0,0)
+		SetGlobal("IaSpawnElementals2","LOCALS",1)
+		ReallyForceSpellRES("S!FIRE-5",Myself)
+		ReallyForceSpellRES("S!ACID-5",Myself)
+	RESPONSE #25
+		ReallyForceSpellRES("S!ELEINF",Myself)
+		CreateCreatureObject("S!OOZEL1",Myself,0,0,0)
+		SetGlobal("IaSpawnElementals2","LOCALS",1)
+		ReallyForceSpellRES("S!COLD-5",Myself)
+		ReallyForceSpellRES("S!ACID-5",Myself)
+	RESPONSE #25
+		ReallyForceSpellRES("S!ELEINF",Myself)
+		CreateCreatureObject("S!SMOEL1",Myself,0,0,0)
+		SetGlobal("IaSpawnElementals2","LOCALS",1)
+		ReallyForceSpellRES("S!ELEC-5",Myself)
+		ReallyForceSpellRES("S!FIRE-5",Myself)
+END
+
+IF
+	Global("IaSpawnElementals3","LOCALS",0)
+	HPPercentLT(Myself,25)
+THEN
+	RESPONSE #25
+		ReallyForceSpellRES("S!ELEINF",Myself)
+		CreateCreatureObject("S!ICEEL1",Myself,0,0,0)
+		SetGlobal("IaSpawnElementals3","LOCALS",1)
+		ReallyForceSpellRES("S!COLD-5",Myself)
+		ReallyForceSpellRES("S!ELEC-5",Myself)
+	RESPONSE #25
+		ReallyForceSpellRES("S!ELEINF",Myself)
+		CreateCreatureObject("S!MAGEL1",Myself,0,0,0)
+		SetGlobal("IaSpawnElementals3","LOCALS",1)
+		ReallyForceSpellRES("S!FIRE-5",Myself)
+		ReallyForceSpellRES("S!ACID-5",Myself)
+	RESPONSE #25
+		ReallyForceSpellRES("S!ELEINF",Myself)
+		CreateCreatureObject("S!OOZEL1",Myself,0,0,0)
+		SetGlobal("IaSpawnElementals3","LOCALS",1)
+		ReallyForceSpellRES("S!COLD-5",Myself)
+		ReallyForceSpellRES("S!ACID-5",Myself)
+	RESPONSE #25
+		ReallyForceSpellRES("S!ELEINF",Myself)
+		CreateCreatureObject("S!SMOEL1",Myself,0,0,0)
+		SetGlobal("IaSpawnElementals3","LOCALS",1)
+		ReallyForceSpellRES("S!ELEC-5",Myself)
+		ReallyForceSpellRES("S!FIRE-5",Myself)
+END
+
+IF
+	See([PC])
+	Exists("S!pasha")  // Pasha Mahmoud
+	!Dead("S!pasha")  // Pasha Mahmoud
+	See("S!pasha")  // Pasha Mahmoud
+	RandomNumLT(6,3)
+THEN
+	RESPONSE #100
+		AttackOneRound("S!pasha")  // Pasha Mahmoud
+		AttackOneRound("S!pasha")  // Pasha Mahmoud
+END
+
+IF
+	!See([PC])
+	Exists("S!pasha")  // Pasha Mahmoud
+	!Dead("S!pasha")  // Pasha Mahmoud
+	See("S!pasha")  // Pasha Mahmoud
+THEN
+	RESPONSE #100
+		AttackOneRound("S!pasha")  // Pasha Mahmoud
+		AttackOneRound("S!pasha")  // Pasha Mahmoud
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	CheckStatLT(LastSeenBy(Myself),90,RESISTCRUSHING)
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	RandomNumGT(6,4)
+	Range(LastSeenBy(Myself),3)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Exists("S!pasha")  // Pasha Mahmoud
+	!Dead("S!pasha")  // Pasha Mahmoud
+	!See("S!pasha")  // Pasha Mahmoud
+	Global("partyfled","LOCALS",0)
+	Global("Iatimer","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("chase","LOCALS",EIGHTEEN_MINUTES)
+		SetGlobal("partyfled","LOCALS",1)
+END
+
+IF
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Exists("S!pasha")  // Pasha Mahmoud
+	!Dead("S!pasha")  // Pasha Mahmoud
+	!See("S!pasha")  // Pasha Mahmoud
+	Global("partyfled","LOCALS",1)
+	GlobalTimerNotExpired("chase","LOCALS")
+	InMyArea(Player1)
+	Global("Iatimer","LOCALS",1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Exists("S!pasha")  // Pasha Mahmoud
+	!Dead("S!pasha")  // Pasha Mahmoud
+	!See("S!pasha")  // Pasha Mahmoud
+	GlobalTimerExpired("chase","LOCALS")
+	Global("partyfled","LOCALS",1)
+	Global("Iatimer","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatimer","LOCALS",0)
+		ReallyForceSpellRES("SPWII07",Myself)  // No such index
+END
+
+IF
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Dead("S!pasha")  // Pasha Mahmoud
+	Global("partyfled","LOCALS",0)
+	Global("Iatimer","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("chase","LOCALS",EIGHTEEN_MINUTES)
+		SetGlobal("partyfled","LOCALS",1)
+END
+
+IF
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Dead("S!pasha")  // Pasha Mahmoud
+	Global("partyfled","LOCALS",1)
+	GlobalTimerNotExpired("chase","LOCALS")
+	InMyArea(Player1)
+	Global("Iatimer","LOCALS",1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Dead("S!pasha")  // Pasha Mahmoud
+	GlobalTimerExpired("chase","LOCALS")
+	Global("partyfled","LOCALS",1)
+	Global("Iatimer","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatimer","LOCALS",0)
+		ReallyForceSpellRES("SPWII07",Myself)  // No such index
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	See(SecondNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	Range(LastSeenBy(Myself),3)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(ThirdNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	Range(LastSeenBy(Myself),3)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(FourthNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	Range(LastSeenBy(Myself),3)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(SecondNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	Range(LastSeenBy(Myself),4)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(ThirdNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	Range(LastSeenBy(Myself),4)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(FourthNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	Range(LastSeenBy(Myself),4)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(SecondNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(ThirdNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+

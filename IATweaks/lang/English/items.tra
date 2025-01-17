@@ -172,7 +172,7 @@ Weight: 3~
 It is said, however, that a group of barbarian shamans once congregated deep within the Dales to find a way to better harness the swift agility of the snow leopard. For nearly a year, the shamans remained out of sight from their home clans, busily focusing their attentions on the magic of the snow leopard. Then one day, the shamans returned to their respective clans, each holding a small necklace made of silver, with a pendant that resembled a snow leopard's paw. The shamans gave this pendant to the strongest warrior of each clan. Once placed around the neck of the warrior, the dexterity of the snow leopard filled their powerful bodies. From then on, the Snow Leopard Charm, as it became known, became one of the most prized artifacts within barbarian clans. Only the mightiest warriors wore the amulet, and it became the goal of all young warriors to one day be adorned with the Snow Leopard Charm.
 
 Over time, the legend of these pendants spread beyond the barbarian clans, catching the attention of thieves and treasure hunters across the Realms. Many such amulets have since disappeared, stolen from barbarian warriors by cunning rogues seeking to profit from their power. As a result, few Snow Leopard Charms remain in the possession of the clans.
-   
+
 STATISTICS:
 
 Equipped abilities:
@@ -184,11 +184,18 @@ Weight: 1~
 
 @7022 = ~Improved Snow Leopard Charm
 
-By combining all powers of the original Snow Leopard Charm with Deep Red Ioun Stone and Amulet of Protection +1 Cromwell was able to enhance the item's magical abilities even more.
+Shamans of many barbarian clans have long looked upon the snow leopard as one of the most graceful and swift hunters of the frozen lands. Many times, the warriors of these clans mimic the movements of the large, white cats during fierce combat. In addition, the barbarian shamans would sometimes create spells that would temporarily imbue the warriors with the dexterity of the snow leopards. However, since these spells were temporary, oftentimes the spell would wear off at inopportune times.
+
+It is said, however, that a group of barbarian shamans once congregated deep within the Dales to find a way to better harness the swift agility of the snow leopard. For nearly a year, the shamans remained out of sight from their home clans, busily focusing their attentions on the magic of the snow leopard. Then one day, the shamans returned to their respective clans, each holding a small necklace made of silver, with a pendant that resembled a snow leopard's paw. The shamans gave this pendant to the strongest warrior of each clan. Once placed around the neck of the warrior, the dexterity of the snow leopard filled their powerful bodies. From then on, the Snow Leopard Charm, as it became known, became one of the most prized artifacts within barbarian clans. Only the mightiest warriors wore the amulet, and it became the goal of all young warriors to one day be adorned with the Snow Leopard Charm.
+
+Over time, the legend of these pendants spread beyond the barbarian clans, catching the attention of thieves and treasure hunters across the Realms. Many such amulets have since disappeared, stolen from barbarian warriors by cunning rogues seeking to profit from their power. As a result, few Snow Leopard Charms remain in the possession of the clans.
+
+By combining all powers of the original Snow Leopard Charm with Deep Red Ioun Stone and Amulet of Protection +1 Cromwell was able to enhance the item's magical abilities even more. The Lucky Coin of Tymora was attached and through the powers of the Permanency Scroll it grants its bonuses constantly.
 
 STATISTICS:
 
 Equipped abilities:
+- wearer is under permanent effect of Luck spell
 - Dexterity +3
 - Armor Class: +1
 - Saving Throws: +1~
@@ -246,7 +253,26 @@ Equipped abilities:
 - Electricity Resistance: +30%
 
 @7029 = ~~
+@7034 = ~Lucky Coin of Tymora
+This small, silver coin gleams faintly, as though touched by divine light. One side is engraved with a delicate four-leaf clover, symbolizing the favor of Tymora, the goddess of luck, while the other remains smooth and unadorned. Revered as a token of Tymora’s unpredictable grace, this coin holds the power to invoke her blessing when tossed. However, as with all matters of luck, its effects are uncertain. A flip of the coin carries a 50% chance to grant Tymora's favor and a 50% chance to leave the outcome unchanged. Adventurers often treasure such coins as charms, relying on the goddess’s capricious nature to aid them in dire moments.
 
-@7030 = ~~
+STATISTICS:
 
-@7031 = ~~
+Special abilities:
+The coin can be tossed 3 times per day, if it lands on the side with clover engraving, it grants the effects of Luck spell as if cast by a 20th level Mage.
+
+Weight: 0~
+
+@7035 = ~~
+
+@7036 = ~~
+
+@7037 = ~~
+
+@7038 = ~~
+
+@7039 = ~~
+
+@7040 = ~~
+
+@7041 = ~~

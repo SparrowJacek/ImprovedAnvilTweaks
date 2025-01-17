@@ -114,6 +114,38 @@ COPY ~IATweaks\resources\itm\s!belt11.itm~ ~override~
 COPY_EXISTING ~S!BOLICH.cre~ ~override~     
   ADD_CRE_ITEM ~s!belt11~ #0 #0 #0 ~NONE~ ~INV16~
 
+//////////// Lucky Coin of Tymora
+
+COPY ~IATweaks\resources\bam\s!misc90.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!mis90b.bam~ ~override~
+COPY ~IATweaks\resources\itm\s!misc90.itm~ ~override~
+  SAY NAME1 @7031
+  SAY NAME2 @7032
+  SAY UNIDENTIFIED_DESC @7033
+  SAY IDENTIFIED_DESC @7034
+
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 330
+      match_parameter1 = 1
+      parameter1 = RESOLVE_STR_REF (@5045)
+  END
+
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 330
+      match_parameter1 = 2
+      parameter1 = RESOLVE_STR_REF (@5046)
+  END
+
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 330
+      match_parameter1 = 3
+      parameter1 = RESOLVE_STR_REF (@5047)
+  END
+// TODO ADD THIS ITEM SOMEWHERE!
+
 /////////////// New Recipes
 
 COMPILE ~IATweaks/resources/dlg/crom_new_items.d~

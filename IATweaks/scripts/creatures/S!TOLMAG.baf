@@ -153,7 +153,7 @@ THEN
 	RESPONSE #100
 		SetGlobal("Iatolmag03","LOCALS",1)
 		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
-		ForceSpellRES("SPWI712", Myself)
+		SpellNoDecRES("SPWI712", Myself)
 END
 
 IF
@@ -166,7 +166,7 @@ THEN
 	RESPONSE #100
 		SetGlobal("Iatolmag02","LOCALS",1)
 		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
-		ForceSpellRES("SPWI618", Myself)
+		SpellNoDecRES("SPWI618", Myself)
 END
 
 IF

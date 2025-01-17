@@ -5,6 +5,7 @@ SILENT
 // Whirlwind
 
 ADD_PROJECTILE ~IATweaks\resources\pro\s!whirlw.pro~
+ADD_PROJECTILE ~IATweaks\resources\pro\s!whirl2.pro~
 COPY ~IATweaks\resources\spl\s!whirlw.spl~ ~override~
   SAY NAME1 @6147
   SAY UNIDENTIFIED_DESC @6148
@@ -21,6 +22,12 @@ COPY ~IATweaks\resources\bam\spells\whirlwind\WHIRLWX.BAM~ ~override~
 COPY ~IATweaks\resources\bam\spells\whirlwind\S!WHIRLB.BAM~ ~override~
 COPY ~IATweaks\resources\bam\spells\whirlwind\S!WHIRLC.BAM~ ~override~
 COPY ~IATweaks\resources\wav\iwd_whirlwind\EFF_P105.WAV~ ~override~
+
+COPY_EXISTING ~s!whirlw.spl~ ~override/s!whirl2.spl~
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~s!whirl2~
+  END
 
 // Ice Spikes
 
@@ -84,7 +91,7 @@ COPY ~IATweaks\resources\bam\spells\acid_wave\s!awavex.bam~ ~override~
 // Ice Explosion
 
 COPY ~IATweaks\resources\pro\s!harm05.pro~ ~override/s!iceex5.pro~
-ADD_PROJECTILE ~IATweaks\resources\pro\s!iceex5.pro~
+ADD_PROJECTILE ~override/s!iceex5.pro~
 
 COPY ~IATweaks\resources\spl\s!iceexb.spl~ ~override~
   LPF ~ALTER_SPELL_HEADER~ 
@@ -93,3 +100,16 @@ COPY ~IATweaks\resources\spl\s!iceexb.spl~ ~override~
   END
 
 COPY ~IATweaks\resources\bam\spells\ice_explosion\s!iceexp.bam~ ~override~
+
+// Acid Circle
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!acidci.pro~
+
+COPY ~IATweaks\resources\spl\s!acidci.spl~ ~override~
+  SAY NAME1 @6155
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~s!acidci~
+  END
+
+COPY ~IATweaks\resources\bam\spells\acid_circle\s!acidci.bam~ ~override~

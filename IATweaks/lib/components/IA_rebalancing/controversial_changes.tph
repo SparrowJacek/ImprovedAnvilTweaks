@@ -701,3 +701,57 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
   END
 
   BUT_ONLY
+
+  /////////////////////// Paraelementals //////////////////////////////
+
+// Ice Elemental
+COPY ~IATweaks\resources\cre\s!iceel1.cre~ ~override~
+  SAY NAME1 @5040
+  SAY NAME2 @5040
+  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_ICE_ELEMENTAL~))
+
+COPY ~IATweaks\resources\itm\s!iceele.itm~ ~override~
+
+COMPILE ~IATweaks\scripts\creatures\S!ICEELE.BAF~
+
+// Magma Elemental
+COPY ~IATweaks\resources\cre\s!magel1.cre~ ~override~
+  SAY NAME1 @5041
+  SAY NAME2 @5041
+
+COPY ~IATweaks\resources\itm\s!magele.itm~ ~override~
+
+COMPILE ~IATweaks\scripts\creatures\S!MAGELE.BAF~
+
+// Ooze Elemental
+COPY ~IATweaks\resources\cre\s!oozel1.cre~ ~override~
+  SAY NAME1 @5042
+  SAY NAME2 @5042
+  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_OOZE_ELEMENTAL~))
+
+COPY ~IATweaks\resources\itm\s!oozele.itm~ ~override~
+
+COMPILE ~IATweaks\scripts\creatures\S!OOZELE.BAF~
+
+// Smoke Elemental
+COPY ~IATweaks\resources\cre\s!smoel1.cre~ ~override~
+  SAY NAME1 @5043
+  SAY NAME2 @5043
+  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_SMOKE_ELEMENTAL~))
+
+COPY ~IATweaks\resources\itm\s!smoele.itm~ ~override~
+
+COMPILE ~IATweaks\scripts\creatures\S!SMOELE.BAF~
+
+/////////////////// Elemental Golems //////////////////////
+
+COPY ~IATweaks\resources\spl\s!fire-5.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!elec-5.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!cold-5.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!acid-5.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!eleinf.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@5044)
+  END

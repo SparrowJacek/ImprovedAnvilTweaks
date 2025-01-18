@@ -101,6 +101,15 @@ END
 IF
 	Allegiance(Myself,ENEMY)
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iainitial","LOCALS",0)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iainitial","LOCALS",1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	!See(NearestAllyOf(Myself))
 	See(Player1)
 	CheckStatLT(Player1,50,RESISTACID)

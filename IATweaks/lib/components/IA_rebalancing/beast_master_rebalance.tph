@@ -145,6 +145,7 @@ COPY ~IATweaks\resources\spl\s!bmsum3.spl~ ~override~
   END
 
 COPY ~IATweaks\resources\spl\s!bmsum4.spl~ ~override~
+  SAY NAME1 @6156
   SAY UNIDENTIFIED_DESC @6096
   LPF ~ALTER_EFFECT~
     INT_VAR

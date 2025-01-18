@@ -146,6 +146,15 @@ COPY ~IATweaks\resources\itm\s!misc90.itm~ ~override~
   END
 // TODO ADD THIS ITEM SOMEWHERE!
 
+//////////// Cloverleaf
+
+COPY ~IATweaks\resources\bam\s!belt12.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!bel12b.bam~ ~override~
+COPY ~IATweaks\resources\itm\s!belt12.itm~ ~override~
+  SAY NAME2 @7029
+  SAY IDENTIFIED_DESC @7030
+// TODO ADD THIS ITEM SOMEWHERE!
+
 /////////////// New Recipes
 
 COMPILE ~IATweaks/resources/dlg/crom_new_items.d~

@@ -252,7 +252,33 @@ Equipped abilities:
 - Electrical Damage: +10% bonus
 - Electricity Resistance: +30%
 
-@7029 = ~~
+Weight: 1~
+
+@7029 = ~Cloverleaf~
+
+@7030 = ~Cloverleaf
+The halfling Tip Eldermaple was noted in his town for never losing at cards. The halfling attributed his good fortune to the blessings of Tyche and lived a long, quiet, and very prosperous life. 
+
+When Tip finally died at the age of one hundred and three, he left his favorite belt to his son, who discovered that the belt buckle had caught a four-leaf clover in the clasp. Whether Tip had placed the clover there himself, or whether it had simply been stuck there after a tumble down a hill in his youth, no one will ever know. What is known is that Tip’s fortune passed down to his son, until the belt was stolen from him by an ogre while he was traveling along the Sword Coast.
+
+STATISTICS:
+
+Equipped abilities:
+- Luck
+- 5% Magic Resistance
+
+Weight: 2~
+
+@7031 = ~Coin~
+
+@7032 = ~Lucky Coin of Tymora~
+
+@7033 = ~Coins are small, round pieces of precious metal, minted with intricate designs and symbols of their issuing authority. They are used as currency throughout the realms, valued for their material worth and utility in trade.
+
+STATISTICS:
+
+Weight: 0~
+
 @7034 = ~Lucky Coin of Tymora
 This small, silver coin gleams faintly, as though touched by divine light. One side is engraved with a delicate four-leaf clover, symbolizing the favor of Tymora, the goddess of luck, while the other remains smooth and unadorned. Revered as a token of Tymora’s unpredictable grace, this coin holds the power to invoke her blessing when tossed. However, as with all matters of luck, its effects are uncertain. A flip of the coin carries a 50% chance to grant Tymora's favor and a 50% chance to leave the outcome unchanged. Adventurers often treasure such coins as charms, relying on the goddess’s capricious nature to aid them in dire moments.
 

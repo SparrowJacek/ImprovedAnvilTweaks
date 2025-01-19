@@ -289,11 +289,42 @@ The coin can be tossed 3 times per day, if it lands on the side with clover engr
 
 Weight: 0~
 
-@7035 = ~~
+@7035 = ~Cloak of Mystra~
 
-@7036 = ~~
+@7036 = ~Cloak of Mystra
 
-@7037 = ~~
+Even though wizards can harbor powerful spells, their main weakness is the fact that they cannot wear any sort of armor without suffering severe limitations to their casting abilities. Although with proper training wizards may overcome these restrictions, wizards will normally choose to enchant their robes or a ring to have deflective properties so as to remain unfettered by bulky armor. But if by chance a talented fighter, or a skilled bowman connected with their weapon, the wizard would not have the fortitude to last long.
+
+Clerics of Mystra, seeing this dilemma that fell upon the wizards of the land, made cloaks blessed by Mystra herself. These cloaks granted the wizard special damage resistances where some damage that was dealt out from a weapon would be negated. Needless to say that wizards who acquired the cloaks, which eventually were called Mystra's Blessing, felt even more powerful, if not invulnerable, which often led them to reckless decisions.
+
+The item seems to be attuned to the Mage who wore it before it got into your hands and it rejects any attempts at putting it on. Maybe some craftsman would know how to make the item usable once again?
+
+STATISTICS:
+
+Special:
+- can only be worn by a Mage attuned to the item
+
+Equipped ability:
+
++20% Resistance to damage taken from all weapon types.
+
+Weight: 1~
+
+@7037 = ~Cloak of Mystra
+
+Even though wizards can harbor powerful spells, their main weakness is the fact that they cannot wear any sort of armor without suffering severe limitations to their casting abilities. Although with proper training wizards may overcome these restrictions, wizards will normally choose to enchant their robes or a ring to have deflective properties so as to remain unfettered by bulky armor. But if by chance a talented fighter, or a skilled bowman connected with their weapon, the wizard would not have the fortitude to last long.
+
+Clerics of Mystra, seeing this dilemma that fell upon the wizards of the land, made cloaks blessed by Mystra herself. These cloaks granted the wizard special damage resistances where some damage that was dealt out from a weapon would be negated. Needless to say that wizards who acquired the cloaks, which eventually were called Mystra's Blessing, felt even more powerful, if not invulnerable, which often led them to reckless decisions.
+
+Through the use of Manual of Elaboration, the item's been slightly improved and now it can be used by any Mage without the need to attune to it.
+
+STATISTICS:
+
+Equipped ability:
+
++20% Resistance to damage taken from all weapon types.
+
+Weight: 1~
 
 @7038 = ~~
 

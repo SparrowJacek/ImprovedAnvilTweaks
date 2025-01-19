@@ -155,6 +155,27 @@ COPY ~IATweaks\resources\itm\s!belt12.itm~ ~override~
   SAY IDENTIFIED_DESC @7030
 // TODO ADD THIS ITEM SOMEWHERE!
 
+//////////// Cloak of Mystra
+
+COPY ~IATweaks\resources\bam\s!clck30.bam~ ~override~
+COPY ~IATweaks\resources\itm\s!clck30.itm~ ~override~
+  SAY NAME2 @7035
+  SAY IDENTIFIED_DESC @7036
+
+// Conster
+
+COPY_EXISTING ~FIRMAG01.cre~ ~override~     
+  ADD_CRE_ITEM ~S!CLCK30~ #0 #0 #0 ~UNSTEALABLE~ ~CLOAK~
+
+// Perth
+
+COPY_EXISTING ~PPCOWLED.cre~ ~override~     
+  ADD_CRE_ITEM ~S!CLCK30~ #0 #0 #0 ~UNSTEALABLE~ ~CLOAK~
+
+COPY ~IATweaks\resources\itm\s!clck31.itm~ ~override~
+  SAY NAME2 @7035
+  SAY IDENTIFIED_DESC @7037
+
 /////////////// New Recipes
 
 COMPILE ~IATweaks/resources/dlg/crom_new_items.d~

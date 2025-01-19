@@ -123,3 +123,8 @@ COPY_EXISTING ~SPWII13.spl~ ~override~
   
   // Update casting speed
   LPF ~ALTER_SPELL_HEADER~ INT_VAR speed = 4 END
+
+  
+/////////////////// Asylum Tome //////////////////////
+
+COMPILE ~IATweaks\scripts\others\PPBOOK.BAF~

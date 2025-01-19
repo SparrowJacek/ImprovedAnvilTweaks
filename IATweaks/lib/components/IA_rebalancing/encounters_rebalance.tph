@@ -592,7 +592,7 @@ COPY_EXISTING ~TARNOR.cre~ ~override~
       item_to_delete = ~S!PASHA2~
   END
 
-  ADD_CRE_ITEM ~POTN06~ #0 #0 #0 ~~ ~INV15~
+  ADD_CRE_ITEM ~POTN06~ #0 #0 #0 ~NONE~ ~INV15~
 
 COMPILE ~IATweaks\scripts\creatures\S!TARNOR.BAF~
 
@@ -710,9 +710,9 @@ COPY_EXISTING ~PIRMUR01.cre~ ~override~
   WRITE_BYTE 0x62 0 // Resist Piercing
   WRITE_BYTE 0x63 0 // Resist Missile
 
-  ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~~ ~INV14~
-  ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~~ ~INV15~
-  ADD_CRE_ITEM ~POTN34~ #0 #0 #0 ~~ ~INV16~
+  ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~NONE~ ~INV14~
+  ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~NONE~ ~INV15~
+  ADD_CRE_ITEM ~POTN34~ #0 #0 #0 ~NONE~ ~INV16~
 
   LPF ~ADD_CRE_EFFECT~ INT_VAR
     opcode = 233

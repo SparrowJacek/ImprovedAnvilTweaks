@@ -1035,5 +1035,35 @@ COPY_EXISTING ~PPCOWLED.cre~ ~override~
 
 COMPILE ~IATweaks\scripts\creatures\S!PERTH.BAF~
 
+// Lonk the Sane
 
-COMPILE ~IATweaks\scripts\creatures\S!PERTH.BAF~
+COPY_EXISTING ~PPWORKER.cre~ ~override~
+  WRITE_SHORT 0x24 50 // HP
+  WRITE_SHORT 0x26 50 // HP
+  WRITE_BYTE 0x60 0 // Resist Slashing
+  WRITE_BYTE 0x61 0 // Resist Crushing
+  WRITE_BYTE 0x62 0 // Resist Piercing
+  WRITE_BYTE 0x63 0 // Resist Missile
+  WRITE_BYTE 0x23d 19 // Constitution
+  WRITE_LONG 0x244 0 // Kit = None
+  WRITE_ASCII 0x260 ~S!LONK~ #8
+
+  LPF ~ADD_CRE_EFFECT~ // * in Daggers
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 1
+      parameter2 = 96
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~DRAGRING~
+  END
+
+  ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV13~
+  ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV14~
+
+COMPILE ~IATweaks\scripts\creatures\S!LONK.BAF~

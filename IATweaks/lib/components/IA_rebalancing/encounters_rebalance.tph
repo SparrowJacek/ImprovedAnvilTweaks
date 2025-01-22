@@ -751,3 +751,128 @@ COPY_EXISTING_REGEXP GLOB ~s\!cat[1-9]\.cre~ ~override~
 /////////////////////// Kobold from Crystal fight in Spellhold ////////////////
 
 COMPILE ~IATweaks\scripts\creatures\S!KOBOLD.BAF~
+
+///////////////////////// Noble Trolls /////////////////////////
+
+ACTION_FOR_EACH noble_troll_file IN ~TROLDE01~ ~S!NTROL2~ ~S!NTROLL~ ~S!NTROLR~ BEGIN
+  COPY_EXISTING ~%noble_troll_file%.cre~ ~override~
+    WRITE_BYTE 0x59 50 // Resist Fire
+    WRITE_BYTE 0x5c 50 // Resist Acid
+    WRITE_BYTE 0x5e 50 // Resist Magic Fire
+    WRITE_BYTE 0x60 30 // Resist Slashing
+    WRITE_BYTE 0x61 30 // Resist Crushing
+    WRITE_BYTE 0x62 30 // Resist Piercing
+    WRITE_BYTE 0x63 55 // Resist Missile
+
+  // +25 MDR
+  LPF ~ADD_CRE_EFFECT~ INT_VAR
+    opcode = 31
+    timing = 9
+    target = 1
+    parameter1 = 0
+    parameter2 = 25
+  END
+
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = 0
+    END
+END
+
+///////////////////////// Mithril Golem /////////////////////////
+
+COPY_EXISTING ~S!MITGOL.cre~ ~override~
+  WRITE_BYTE 0x62 95 // Resist Piercing
+
+///////////////////////// Drow Ambushes in the Underdark /////////////////////////
+
+COPY ~IATweaks\resources\cre\S!GSPID1.cre~ ~override~
+  SAY NAME1 @5048
+  SAY NAME2 @5048
+
+COPY ~IATweaks\resources\cre\S!GSPID2.cre~ ~override~
+  SAY NAME1 @5048
+  SAY NAME2 @5048
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!llothb.PRO~
+
+COPY ~IATweaks\resources\spl\s!lloth1.spl~ ~override~
+  SAY NAME1 @6157
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      projectile = ~%s!llothb%~
+  END
+
+COPY ~IATweaks\resources\spl\s!lloth2.spl~ ~override~
+  SAY NAME1 @6157
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      projectile = ~%s!llothb%~
+  END
+
+COMPILE ~IATweaks\scripts\others\S!TRP104.BAF~
+COMPILE ~IATweaks\scripts\others\CUT44A.BAF~
+
+// Drow Fighters
+
+COPY_EXISTING ~UDDROW27.cre~ ~override~
+  WRITE_BYTE 0x59 0 // Resist Fire
+  WRITE_BYTE 0x5a 0 // Resist Cold
+  WRITE_BYTE 0x5b 0 // Resist Electricity
+  WRITE_BYTE 0x5c 0 // Resist Acid
+  WRITE_BYTE 0x5e 0 // Resist Magic Fire
+  WRITE_BYTE 0x5e 0 // Resist Magic Cold
+  WRITE_BYTE 0x60 0 // Resist Slashing
+  WRITE_BYTE 0x61 0 // Resist Crushing
+  WRITE_BYTE 0x62 0 // Resist Piercing
+  WRITE_BYTE 0x63 0 // Resist Missile
+  WRITE_BYTE 0x238 18 // Strength
+  WRITE_BYTE 0x239 76 // Exceptional Strength
+  WRITE_BYTE 0x23c 19 // Dexterity
+
+  LPF ~ADD_CRE_EFFECT~ // ** in Sword and Shield
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 2
+      parameter2 = 112
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // ***** in Flails
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 5
+      parameter2 = 100
+      resist_dispel = 0
+      timing = 9
+  END
+
+COPY_EXISTING ~S!DROWW.cre~ ~override~
+  WRITE_SHORT 0x24 117 // HP
+  WRITE_SHORT 0x26 117 // HP
+  WRITE_BYTE 0x59 0 // Resist Fire
+  WRITE_BYTE 0x5a 0 // Resist Cold
+  WRITE_BYTE 0x5b 0 // Resist Electricity
+  WRITE_BYTE 0x5c 0 // Resist Acid
+  WRITE_BYTE 0x5e 0 // Resist Magic Fire
+  WRITE_BYTE 0x5e 0 // Resist Magic Cold
+  WRITE_BYTE 0x60 0 // Resist Slashing
+  WRITE_BYTE 0x61 0 // Resist Crushing
+  WRITE_BYTE 0x62 0 // Resist Piercing
+  WRITE_BYTE 0x63 0 // Resist Missile
+  WRITE_BYTE 0x238 18 // Strength
+  WRITE_BYTE 0x239 100 // Exceptional Strength
+  WRITE_BYTE 0x23d 15 // Constitution
+
+  LPF ~ADD_CRE_EFFECT~ // ** in Sword and Shield
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 2
+      parameter2 = 112
+      resist_dispel = 0
+      timing = 9
+  END

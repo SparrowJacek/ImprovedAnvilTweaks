@@ -1,0 +1,63 @@
+IF
+	XPLT(Player1,3000000)
+	OR(6)
+		Entered(Player1)
+		Entered(Player2)
+		Entered(Player3)
+		Entered(Player4)
+		Entered(Player5)
+		Entered(Player6)
+THEN
+	RESPONSE #100
+		CreateCreature("S!DROWW",[-1.-1],S)  // Drow Warrior
+		CreateCreature("DROW07",[-1.-1],S)  // Drow Priestess
+		CreateCreature("S!DROWW",[-1.-1],S)  // Drow Warrior
+		CreateCreature("S!gspid1",[-1.-1],S)
+		CreateCreature("S!gspid2",[-1.-1],S)
+		CreateCreature("DROW06",[-1.-1],S)  // Drow
+		CreateCreature("S!DROWW",[-1.-1],S)  // Drow Warrior
+END
+
+IF
+	XPGT(Player1,2999999)
+	XPLT(Player1,3400000)
+	OR(6)
+		Entered(Player1)
+		Entered(Player2)
+		Entered(Player3)
+		Entered(Player4)
+		Entered(Player5)
+		Entered(Player6)
+THEN
+	RESPONSE #100
+		CreateCreature("S!droww",[-1.-1],S)  // Drow Warrior
+		CreateCreature("drow07",[-1.-1],S)  // Drow Priestess
+		CreateCreature("drow06",[-1.-1],S)  // Drow
+		CreateCreature("S!gspid1",[-1.-1],S)
+		CreateCreature("S!droww",[-1.-1],S)  // Drow Warrior
+		CreateCreature("drow06",[-1.-1],S)  // Drow
+		CreateCreature("S!gspid2",[-1.-1],S)
+		CreateCreature("S!droww",[-1.-1],S)  // Drow Warrior
+END
+
+IF
+	XPGT(Player1,3399999)
+	OR(6)
+		Entered(Player1)
+		Entered(Player2)
+		Entered(Player3)
+		Entered(Player4)
+		Entered(Player5)
+		Entered(Player6)
+THEN
+	RESPONSE #100
+		CreateCreature("S!droww",[-1.-1],S)  // Drow Warrior
+		CreateCreature("S!droww",[-1.-1],S)  // Drow Warrior
+		CreateCreature("drow06",[-1.-1],S)  // Drow
+		CreateCreature("S!gspid1",[-1.-1],S)
+		CreateCreature("S!droww",[-1.-1],S)  // Drow Warrior
+		CreateCreature("drow06",[-1.-1],S)  // Drow
+		CreateCreature("drow07",[-1.-1],S)  // Drow Priestess
+		CreateCreature("S!gspid2",[-1.-1],S)
+END
+

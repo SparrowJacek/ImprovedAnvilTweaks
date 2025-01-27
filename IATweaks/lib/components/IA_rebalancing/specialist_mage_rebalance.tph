@@ -115,6 +115,9 @@ COPY ~IATweaks\resources\itm\spwi725.itm~ ~override~
   SAY NAME2 @6137
   SAY IDENTIFIED_DESC @6140
 
+COPY_EXISTING ~UDMASTER.cre~ ~override~
+  ADD_CRE_ITEM ~SPWI725~ #0 #0 #0 ~UNSTEALABLE~ ~INV13~
+
 // RVE
 
 COPY_EXISTING ~spwi905.spl~ ~override~

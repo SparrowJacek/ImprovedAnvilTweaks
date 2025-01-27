@@ -884,12 +884,13 @@ COPY_EXISTING ~S!DROWW.cre~ ~override~
 COPY ~IATweaks\resources\spl\s!mfprot.spl~ ~override~
 
 ACTION_FOR_EACH spellstate_for_damage_reduction IN 1 2 3 4 BEGIN
+  LAF resolve_state STR_VAR new_state_id = EVAL ~DMG_PROT_%spellstate_for_damage_reduction%~ RET new_state_index END
   LAF ~S!ADD_7EYES_ROW~
     INT_VAR
       strref        = RESOLVE_STR_REF (@5049)
     STR_VAR
       row_desc      = EVAL ~DMG_PROT_%spellstate_for_damage_reduction%~
-      spellstate    = EVAL ~%spellstate_for_damage_reduction%~
+      spellstate    = EVAL ~%new_state_index%~
       eff1          = ~12~ // Damage
     RET new_row_id 
   END
@@ -897,6 +898,7 @@ ACTION_FOR_EACH spellstate_for_damage_reduction IN 1 2 3 4 BEGIN
     LPF ~ALTER_EFFECT~
       INT_VAR
         match_parameter1 = spellstate_for_damage_reduction
+        parameter1 = new_state_index
         parameter2 = new_row_id
     END
 END

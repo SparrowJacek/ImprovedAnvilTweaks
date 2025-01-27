@@ -1,0 +1,1993 @@
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("S!MFPROT",Myself)
+		Continue()
+END
+
+IF
+	GlobalGT("IaMind01","LOCALS",0)
+	!GlobalTimerNotExpired("IaMindRegen","LOCALS")
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",-1)
+		SetGlobalTimerRandom("IaMindRegen","LOCALS",4,7)
+END
+
+IF
+	Global("IaStartFight","LOCALS",0)
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOfType([PC]))
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaStartFight","LOCALS",1)
+		SetGlobalTimerRandom("Iaspell","LOCALS",1,3)
+END
+
+IF
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOfType([PC]))
+THEN
+	RESPONSE #100
+		SetGlobal("IaMindAlliesNearby","LOCALS",0)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	GlobalGT("IaMind02","LOCALS",0)
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",-1)
+		SetGlobalTimerRandom("IaSoftenMind","LOCALS",5,11)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(NearestAllyOf(Myself))
+	TriggerOverride(NearestAllyOf(Myself),Race(Myself,MIND_FLAYER))
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMindAlliesNearby","LOCALS",1)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestAllyOf(Myself))
+	TriggerOverride(SecondNearestAllyOf(Myself),Race(Myself,MIND_FLAYER))
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMindAlliesNearby","LOCALS",1)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestAllyOf(Myself))
+	TriggerOverride(ThirdNearestAllyOf(Myself),Race(Myself,MIND_FLAYER))
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMindAlliesNearby","LOCALS",1)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestAllyOf(Myself))
+	TriggerOverride(FourthNearestAllyOf(Myself),Race(Myself,MIND_FLAYER))
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMindAlliesNearby","LOCALS",1)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestAllyOf(Myself))
+	TriggerOverride(FifthNearestAllyOf(Myself),Race(Myself,MIND_FLAYER))
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMindAlliesNearby","LOCALS",1)
+		Continue()
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),25,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),25,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),25,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),25,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),25,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),25,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),75,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),75,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),75,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),75,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),75,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),75,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),25,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),25,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),25,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),25,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),25,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),25,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",7)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",2)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpell(LastSeenBy(Myself),MIND_FLAYER_PSIONIC_BLAST)  // SPIN974.SPL (Psionic Blast)
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",7)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",2)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpell(LastSeenBy(Myself),MIND_FLAYER_PSIONIC_BLAST)  // SPIN974.SPL (Psionic Blast)
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",7)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",2)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpell(LastSeenBy(Myself),MIND_FLAYER_PSIONIC_BLAST)  // SPIN974.SPL (Psionic Blast)
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",7)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",2)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpell(LastSeenBy(Myself),MIND_FLAYER_PSIONIC_BLAST)  // SPIN974.SPL (Psionic Blast)
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",7)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",2)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpell(LastSeenBy(Myself),MIND_FLAYER_PSIONIC_BLAST)  // SPIN974.SPL (Psionic Blast)
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",7)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",2)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpell(LastSeenBy(Myself),MIND_FLAYER_PSIONIC_BLAST)  // SPIN974.SPL (Psionic Blast)
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",6)
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOfType([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
+	!HasItemEquiped("shld25",LastSeenBy(Myself))  // Shield of Harmony +2
+	!HasItemEquiped("sw2h14",LastSeenBy(Myself))  // Lilarcor
+	!HasItemEquiped("S!leat03",LastSeenBy(Myself))  // Improved Corthala Family Armor
+	!HasItemEquiped("S!sw22",LastSeenBy(Myself))  // Githzerai Blade +5
+	!HasItemEquiped("S!shld01",LastSeenBy(Myself))  // Delryn Family Legacy +4
+	!HasItemEquiped("S!sw04",LastSeenBy(Myself))  // Judgement Day +5
+	!HasItemEquiped("S!sw07",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw08",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw09",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw10",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw12",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("npchan",LastSeenBy(Myself))  // Corthala Family Armor
+	!HasItemEquiped("helm06",LastSeenBy(Myself))  // Helm of Charm Protection
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+	!Kit(LastSeenBy(Myself),CAVALIER)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+	!HasBounceEffects(LastSeenBy(Myself))
+	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",2)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpell([PC],MIND_FLAYER_DOMINATION)  // SPIN975.SPL (Psionic Domination)
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",6)
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOfType([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
+	!HasItemEquiped("shld25",LastSeenBy(Myself))  // Shield of Harmony +2
+	!HasItemEquiped("sw2h14",LastSeenBy(Myself))  // Lilarcor
+	!HasItemEquiped("S!leat03",LastSeenBy(Myself))  // Improved Corthala Family Armor
+	!HasItemEquiped("S!sw22",LastSeenBy(Myself))  // Githzerai Blade +5
+	!HasItemEquiped("S!shld01",LastSeenBy(Myself))  // Delryn Family Legacy +4
+	!HasItemEquiped("S!sw04",LastSeenBy(Myself))  // Judgement Day +5
+	!HasItemEquiped("S!sw07",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw08",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw09",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw10",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw12",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("npchan",LastSeenBy(Myself))  // Corthala Family Armor
+	!HasItemEquiped("helm06",LastSeenBy(Myself))  // Helm of Charm Protection
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+	!Kit(LastSeenBy(Myself),CAVALIER)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+	!HasBounceEffects(LastSeenBy(Myself))
+	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",2)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpell([PC],MIND_FLAYER_DOMINATION)  // SPIN975.SPL (Psionic Domination)
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",6)
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOfType([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
+	!HasItemEquiped("shld25",LastSeenBy(Myself))  // Shield of Harmony +2
+	!HasItemEquiped("sw2h14",LastSeenBy(Myself))  // Lilarcor
+	!HasItemEquiped("S!leat03",LastSeenBy(Myself))  // Improved Corthala Family Armor
+	!HasItemEquiped("S!sw22",LastSeenBy(Myself))  // Githzerai Blade +5
+	!HasItemEquiped("S!shld01",LastSeenBy(Myself))  // Delryn Family Legacy +4
+	!HasItemEquiped("S!sw04",LastSeenBy(Myself))  // Judgement Day +5
+	!HasItemEquiped("S!sw07",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw08",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw09",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw10",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw12",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("npchan",LastSeenBy(Myself))  // Corthala Family Armor
+	!HasItemEquiped("helm06",LastSeenBy(Myself))  // Helm of Charm Protection
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+	!Kit(LastSeenBy(Myself),CAVALIER)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+	!HasBounceEffects(LastSeenBy(Myself))
+	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",2)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpell([PC],MIND_FLAYER_DOMINATION)  // SPIN975.SPL (Psionic Domination)
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",6)
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOfType([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
+	!HasItemEquiped("shld25",LastSeenBy(Myself))  // Shield of Harmony +2
+	!HasItemEquiped("sw2h14",LastSeenBy(Myself))  // Lilarcor
+	!HasItemEquiped("S!leat03",LastSeenBy(Myself))  // Improved Corthala Family Armor
+	!HasItemEquiped("S!sw22",LastSeenBy(Myself))  // Githzerai Blade +5
+	!HasItemEquiped("S!shld01",LastSeenBy(Myself))  // Delryn Family Legacy +4
+	!HasItemEquiped("S!sw04",LastSeenBy(Myself))  // Judgement Day +5
+	!HasItemEquiped("S!sw07",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw08",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw09",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw10",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw12",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("npchan",LastSeenBy(Myself))  // Corthala Family Armor
+	!HasItemEquiped("helm06",LastSeenBy(Myself))  // Helm of Charm Protection
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+	!Kit(LastSeenBy(Myself),CAVALIER)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+	!HasBounceEffects(LastSeenBy(Myself))
+	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",2)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpell([PC],MIND_FLAYER_DOMINATION)  // SPIN975.SPL (Psionic Domination)
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",6)
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOfType([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
+	!HasItemEquiped("shld25",LastSeenBy(Myself))  // Shield of Harmony +2
+	!HasItemEquiped("sw2h14",LastSeenBy(Myself))  // Lilarcor
+	!HasItemEquiped("S!leat03",LastSeenBy(Myself))  // Improved Corthala Family Armor
+	!HasItemEquiped("S!sw22",LastSeenBy(Myself))  // Githzerai Blade +5
+	!HasItemEquiped("S!shld01",LastSeenBy(Myself))  // Delryn Family Legacy +4
+	!HasItemEquiped("S!sw04",LastSeenBy(Myself))  // Judgement Day +5
+	!HasItemEquiped("S!sw07",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw08",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw09",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw10",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw12",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("npchan",LastSeenBy(Myself))  // Corthala Family Armor
+	!HasItemEquiped("helm06",LastSeenBy(Myself))  // Helm of Charm Protection
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+	!Kit(LastSeenBy(Myself),CAVALIER)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+	!HasBounceEffects(LastSeenBy(Myself))
+	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",2)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpell([PC],MIND_FLAYER_DOMINATION)  // SPIN975.SPL (Psionic Domination)
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",6)
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOfType([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
+	!HasItemEquiped("shld25",LastSeenBy(Myself))  // Shield of Harmony +2
+	!HasItemEquiped("sw2h14",LastSeenBy(Myself))  // Lilarcor
+	!HasItemEquiped("S!leat03",LastSeenBy(Myself))  // Improved Corthala Family Armor
+	!HasItemEquiped("S!sw22",LastSeenBy(Myself))  // Githzerai Blade +5
+	!HasItemEquiped("S!shld01",LastSeenBy(Myself))  // Delryn Family Legacy +4
+	!HasItemEquiped("S!sw04",LastSeenBy(Myself))  // Judgement Day +5
+	!HasItemEquiped("S!sw07",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw08",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw09",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw10",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("S!sw12",LastSeenBy(Myself))  // Warlord's blade +5
+	!HasItemEquiped("npchan",LastSeenBy(Myself))  // Corthala Family Armor
+	!HasItemEquiped("helm06",LastSeenBy(Myself))  // Helm of Charm Protection
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+	!Kit(LastSeenBy(Myself),CAVALIER)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+	!HasBounceEffects(LastSeenBy(Myself))
+	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",2)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpell([PC],MIND_FLAYER_DOMINATION)  // SPIN975.SPL (Psionic Domination)
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),2,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),2,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),2,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),2,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),2,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),2,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),0,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),0,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),0,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),0,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),0,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),0,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",7)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",2)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpell(LastSeenBy(Myself),MIND_FLAYER_PSIONIC_BLAST)  // SPIN974.SPL (Psionic Blast)
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",7)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",2)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpell(LastSeenBy(Myself),MIND_FLAYER_PSIONIC_BLAST)  // SPIN974.SPL (Psionic Blast)
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",7)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",2)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpell(LastSeenBy(Myself),MIND_FLAYER_PSIONIC_BLAST)  // SPIN974.SPL (Psionic Blast)
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",7)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",2)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpell(LastSeenBy(Myself),MIND_FLAYER_PSIONIC_BLAST)  // SPIN974.SPL (Psionic Blast)
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",7)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",2)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpell(LastSeenBy(Myself),MIND_FLAYER_PSIONIC_BLAST)  // SPIN974.SPL (Psionic Blast)
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",7)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",2)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpell(LastSeenBy(Myself),MIND_FLAYER_PSIONIC_BLAST)  // SPIN974.SPL (Psionic Blast)
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	Global("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),25,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	Global("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),25,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	Global("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),25,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	Global("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),25,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	Global("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),25,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	Global("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),25,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	Global("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	Global("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	Global("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	Global("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	Global("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	Global("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind02","LOCALS",2)
+	GlobalLT("IaMind01","LOCALS",6)
+	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOfType([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind02","LOCALS",1)
+		IncrementGlobal("IaMind01","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSoftenMind","LOCALS",TWO_ROUNDS)
+		ForceSpellRES("S!MFSOFT",LastSeenBy(Myself))
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	Global("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),95,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	Global("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),95,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	Global("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),95,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	Global("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),95,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	Global("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),95,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	GlobalLT("IaMind01","LOCALS",5)
+	Global("IaMindAlliesNearby","LOCALS",0)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOfType([PC]))
+	!CheckStatGT(LastSeenBy(Myself),95,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaMind01","LOCALS",3)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!MFBLST",LastSeenBy(Myself))  // Focused Mind Blast
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		AttackOneRound(NearestEnemyOfType([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOfType([PC]))
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		AttackOneRound(SecondNearestEnemyOfType([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOfType([PC]))
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		AttackOneRound(ThirdNearestEnemyOfType([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOfType([PC]))
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		AttackOneRound(FourthNearestEnemyOfType([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOfType([PC]))
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		AttackOneRound(FifthNearestEnemyOfType([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOfType([PC]))
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		AttackOneRound(SixthNearestEnemyOfType([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		AttackOneRound(SecondNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOf(Myself))
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		AttackOneRound(ThirdNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOf(Myself))
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		AttackOneRound(FourthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOf(Myself))
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		AttackOneRound(FifthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOf(Myself))
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		AttackOneRound(SixthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(NearestEnemyOfType([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOfType([PC]))
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(SecondNearestEnemyOfType([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOfType([PC]))
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(ThirdNearestEnemyOfType([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOfType([PC]))
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(FourthNearestEnemyOfType([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOfType([PC]))
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(FifthNearestEnemyOfType([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOfType([PC]))
+	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(SixthNearestEnemyOfType([PC]))
+END
+

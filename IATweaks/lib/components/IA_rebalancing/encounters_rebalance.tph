@@ -876,3 +876,171 @@ COPY_EXISTING ~S!DROWW.cre~ ~override~
       resist_dispel = 0
       timing = 9
   END
+
+///////////////////////// Mind Flayers ///////////////////////////////
+
+// Add spell which has a chance to grant protection from opcode 12 when hit
+
+COPY ~IATweaks\resources\spl\s!mfprot.spl~ ~override~
+
+ACTION_FOR_EACH spellstate_for_damage_reduction IN 1 2 3 4 BEGIN
+  LAF ~S!ADD_7EYES_ROW~
+    INT_VAR
+      strref        = RESOLVE_STR_REF (@5049)
+    STR_VAR
+      row_desc      = EVAL ~DMG_PROT_%spellstate_for_damage_reduction%~
+      spellstate    = EVAL ~%spellstate_for_damage_reduction%~
+      eff1          = ~12~ // Damage
+    RET new_row_id 
+  END
+  COPY_EXISTING ~s!mfprot.spl~ ~override~
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_parameter1 = spellstate_for_damage_reduction
+        parameter2 = new_row_id
+    END
+END
+
+COPY_EXISTING ~MINDFLAY.itm~ ~override~
+  // Lower int drain to 3
+  LPF ~S!ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 19
+      parameter1 = ~-3~
+  END
+  // Cast S!MFPROT each time the creature is hit
+  LPF ~ADD_ITEM_EQEFFECT~
+    INT_VAR
+      opcode = 232
+      target = 1
+      parameter1 = 0
+      parameter2 = 0
+      timing = 9
+      resist_dispel = 0
+    STR_VAR
+      resource = ~S!MFPROT~
+  END
+  // Grant +5 saving throws against Enchantment spells
+  LPF ~ADD_ITEM_EQEFFECT~
+    INT_VAR
+      opcode = 346
+      target = 1
+      parameter1 = 5
+      parameter2 = 0
+      timing = 9
+      resist_dispel = 0
+      special = 4
+  END
+
+// Mind Flayer Focused Mind Blast
+
+COPY_EXISTING ~BIGNAREA.pro~ ~override/S!MFAREA.pro~
+  WRITE_SHORT 0x200 192 // Affect only allies
+
+ADD_PROJECTILE ~override/S!MFAREA.pro~
+COPY ~IATweaks\resources\spl\s!mfblst.spl~ ~override~
+  SAY NAME1 @6158
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~S!MFAREA~
+  END
+  PATCH_FOR_EACH header_num IN 1 2 3 BEGIN
+    SET min_level = (header_num + 3) * 5
+    LPF ~S!CLONE_SPELL_HEADER~
+      INT_VAR
+        level_req = min_level
+    END
+    LPF ~S!ALTER_EFFECT~
+      INT_VAR
+        header = header_num
+        match_opcode = 148
+        parameter1 = min_level
+    END
+  END
+
+COPY_EXISTING ~s!mindbl.pro~ ~override/s!mfblst.pro~
+  WRITE_SHORT 0x200 64 // Affect only enemies
+
+ADD_PROJECTILE ~override/s!mfblst.pro~
+COPY ~IATweaks\resources\spl\s!mfbls1.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~s!mfblst~
+  END
+  PATCH_FOR_EACH header_num IN 1 2 3 BEGIN
+    SET min_level = (header_num + 3) * 5
+    SET dice_thrown = (header_num * 2) + 6
+    LPF ~S!CLONE_SPELL_HEADER~
+      INT_VAR
+        level_req = min_level
+    END
+    LPF ~S!ALTER_EFFECT~
+      INT_VAR
+        header = header_num
+        match_opcode = 12
+        dicenumber = dice_thrown
+    END
+  END
+
+COPY ~IATweaks\resources\spl\s!mfbls2.spl~ ~override~
+  SAY NAME1 @6160
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~s!mfblst~
+  END
+  PATCH_FOR_EACH header_num IN 1 2 3 BEGIN
+    SET min_level = (header_num + 3) * 5
+    SET dice_thrown = header_num + 3
+    LPF ~S!CLONE_SPELL_HEADER~
+      INT_VAR
+        level_req = min_level
+    END
+    LPF ~S!ALTER_EFFECT~
+      INT_VAR
+        header = header_num
+        match_opcode = 12
+        dicenumber = dice_thrown
+    END
+  END
+
+// Soften Mind
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!mfsoft.pro~
+COPY ~IATweaks\resources\spl\s!mfsoft.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~S!MFAREA~
+  END
+
+COPY ~IATweaks\resources\spl\s!mfsof1.spl~ ~override~
+  SAY NAME1 @6159
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~s!mfsoft~
+  END
+
+ACTION_FOR_EACH mind_flayer_cre IN ~DAMIND1~ ~DAMIND2~ ~ELEILL01~ ~ELMIND01~ ~MINDFL01~ ~UDILL01~ ~UDMIND10~ BEGIN
+  COPY_EXISTING ~%mind_flayer_cre%.cre~ ~override~
+    WRITE_LONG 0x14 THIS + 3000 // Exp for creature
+    WRITE_SHORT 0x24 THIS + 15 // HP
+    WRITE_SHORT 0x26 THIS + 15 // HP
+    WRITE_BYTE 0x52 6 // Thac0
+    WRITE_BYTE 0x54 6  // Saves
+    WRITE_BYTE 0x55 8 // Saves
+    WRITE_BYTE 0x56 7  // Saves
+    WRITE_BYTE 0x57 8  // Saves
+    WRITE_BYTE 0x58 9 // Saves
+    WRITE_BYTE 0x59 0 // Resist Fire
+    WRITE_BYTE 0x5a 0 // Resist Cold
+    WRITE_BYTE 0x5b 0 // Resist Electricity
+    WRITE_BYTE 0x5c 0 // Resist Acid
+    WRITE_BYTE 0x5d 90 // Resist Magic
+    WRITE_BYTE 0x5e 0 // Resist Magic Fire
+    WRITE_BYTE 0x5e 0 // Resist Magic Cold
+    WRITE_BYTE 0x234 15 // Level 1
+    WRITE_BYTE 0x240 2 // Morale Break
+    BUT_ONLY
+    IF_EXISTS
+END
+
+COMPILE ~IATweaks\scripts\creatures\FLAYER01.BAF~

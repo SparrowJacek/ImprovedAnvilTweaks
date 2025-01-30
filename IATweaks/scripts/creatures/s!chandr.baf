@@ -1,0 +1,3022 @@
+IF
+	See(NearestEnemyOf(Myself))
+	Global("IaPrep","LOCALS",0)
+	!Dead("GPSIMB")  // Simbja
+THEN
+	RESPONSE #100
+		SetGlobal("IaPrep","LOCALS",1)
+		ReallyForceSpell("GPSIMB",CLERIC_FREE_ACTION)  // Simbja
+		RemoveSpell(CLERIC_FREE_ACTION)
+		ReallyForceSpell("GPSIMB",CLERIC_CHAOTIC_COMMANDS)  // Simbja
+		RemoveSpell(CLERIC_CHAOTIC_COMMANDS)
+		Continue()
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	Global("IaPrep","LOCALS",0)
+	!Dead("GPTHIEF1")  // Thief
+THEN
+	RESPONSE #100
+		SetGlobal("IaPrep","LOCALS",1)
+		ReallyForceSpell("GPTHIEF1",CLERIC_FREE_ACTION)  // Thief
+		RemoveSpell(CLERIC_FREE_ACTION)
+		ReallyForceSpell("GPTHIEF1",CLERIC_CHAOTIC_COMMANDS)  // Thief
+		RemoveSpell(CLERIC_CHAOTIC_COMMANDS)
+		Continue()
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	Global("IaPrep","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("IaPrep","LOCALS",1)
+		SetGlobalTimer("IaHolyPowerTimer","LOCALS",TWO_TURNS)
+		SetGlobalTimer("IaDefensiveHarmonyTimer","LOCALS",SIX_ROUNDS)
+		ReallyForceSpell(Myself,CLERIC_BLESS)  // SPPR101.SPL (Bless)
+		ReallyForceSpell(Myself,CLERIC_REMOVE_FEAR)  // SPPR108.SPL (Remove Fear)
+		ReallyForceSpell(Myself,CLERIC_ARMOR_OF_FAITH)  // SPPR111.SPL (Armor of Faith)
+		ReallyForceSpell(Myself,CLERIC_AID)  // SPPR201.SPL (Aid)
+		ReallyForceSpell(Myself,CLERIC_CHANT)  // SPPR203.SPL (Chant)
+		ReallyForceSpell(Myself,CLERIC_DRAW_UPON_HOLY_MIGHT)  // SPPR214.SPL (Draw Upon Holy Might)
+		ReallyForceSpell(Myself,CLERIC_PROTECTION_FROM_FIRE)  // SPPR306.SPL (Protection From Fire)
+		ReallyForceSpell(Myself,CLERIC_FREE_ACTION)  // SPPR403.SPL (Free Action)
+		ReallyForceSpellRES("SPPR406F",Myself)  // Defensive Harmony
+		ReallyForceSpell(Myself,CLERIC_PROTECTION_FROM_LIGHTNING)  // SPPR407.SPL (Protection From Lightning)
+		ReallyForceSpell(Myself,CLERIC_DEATH_WARD)  // SPPR409.SPL (Death Ward)
+		ReallyForceSpell(Myself,CLERIC_HOLY_POWER)  // SPPR412.SPL (Holy Power)
+		ReallyForceSpell(Myself,CLERIC_CHAOTIC_COMMANDS)  // SPPR508.SPL (Chaotic Commands)
+		ReallyForceSpell(Myself,CLERIC_MAGIC_RESISTANCE)  // SPPR509.SPL (Magic Resistance)
+		ReallyForceSpell(Myself,CLERIC_CAUSE_CRITICAL_WOUNDS)  // SPPR510.SPL (Cause Critical Wounds)
+		ReallyForceSpell(Myself,CLERIC_SLAY_LIVING)  // SPPR511.SPL (Slay Living)
+		ReallyForceSpell(Myself,CLERIC_PHYSICAL_MIRROR)  // SPPR613.SPL (Protection From Missiles)
+		ReallyForceSpell(Myself,CLERIC_CHAMPIONS_STRENGTH)  // sppr618.spl (Champion's Might)
+		ReallyForceSpellRES("SPPR617",Myself)  // Heavenly Shield
+		ReallyForceSpell(Myself,NPC_BLADE_BARRIER)  // SPPR698.SPL (Blade Barrier)
+		ReallyForceSpell(Myself,CLERIC_SHIELD_OF_THE_ARCHONS)  // SPPR701.SPL (Shield of the Archons)
+		ReallyForceSpellRES("SPPR729",Myself)  // Foreknowledge
+		EquipItem("CRITICAL")  // Cause Critical Wounds
+		Continue()
+END
+
+IF
+	Detect([PC])
+	Global("Iatreasure","LOCALS",0)
+	Global("Iaarundelplace","GLOBAL",3)
+THEN
+	RESPONSE #100
+		SetGlobal("Iaarundelplace","GLOBAL",5)
+		SetGlobal("Iatreasure","LOCALS",1)
+		GiveItemCreate("wastaff",Myself,0,0,0)  // Staff of Arundel +3
+END
+
+IF
+	HaveSpell(CLERIC_SLOW_POISON)
+	StateCheck(Myself,STATE_POISONED)
+	!CheckSpellState(Myself,DEAFENED)
+	!StateCheck(Myself,STATE_DISEASED)
+	!StateCheck(Myself,STATE_BLIND)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpell(Myself,CLERIC_SLOW_POISON)  // SPPR212.SPL (Slow Poison)
+END
+
+IF
+	HaveSpell(CLERIC_NEUTRALIZE_POISON)
+	OR(4)
+		StateCheck(Myself,STATE_POISONED)
+		CheckSpellState(Myself,DEAFENED)
+		StateCheck(Myself,STATE_DISEASED)
+		StateCheck(Myself,STATE_BLIND)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpell(Myself,CLERIC_NEUTRALIZE_POISON)  // SPPR404.SPL (Neutralize Poison)
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	!Dead("gpfight1")
+	HPPercentLT(Myself,75)
+	HPPercentLT("gpfight1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	!Dead("gpsimb")
+	HPPercentLT(Myself,75)
+	HPPercentLT("gpsimb",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	!Dead("gpmage1")
+	HPPercentLT(Myself,75)
+	HPPercentLT("gpmage1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	!Dead("gpthief1")
+	HPPercentLT(Myself,75)
+	HPPercentLT("gpthief1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	!Dead("gpfight1")
+	HPPercentLT("gpfight1",75)
+	HPPercentLT(Myself,75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	!Dead("gpfight1")
+	!Dead("gpsimb")
+	HPPercentLT("gpfight1",75)
+	HPPercentLT("gpsimb",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	!Dead("gpfight1")
+	!Dead("gpmage1")
+	HPPercentLT("gpfight1",75)
+	HPPercentLT("gpmage1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	!Dead("gpfight1")
+	!Dead("gpthief1")
+	HPPercentLT("gpfight1",75)
+	HPPercentLT("gpthief1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	!Dead("gpsimb")
+	HPPercentLT("gpsimb",75)
+	HPPercentLT(Myself,75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	!Dead("gpsimb")
+	!Dead("gpfight1")
+	HPPercentLT("gpsimb",75)
+	HPPercentLT("gpfight1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	!Dead("gpsimb")
+	!Dead("gpmage1")
+	HPPercentLT("gpsimb",75)
+	HPPercentLT("gpmage1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	!Dead("gpsimb")
+	!Dead("gpthief1")
+	HPPercentLT("gpsimb",75)
+	HPPercentLT("gpthief1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	!Dead("gpmage1")
+	HPPercentLT("gpmage1",75)
+	HPPercentLT(Myself,75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	!Dead("gpmage1")
+	!Dead("gpfight1")
+	HPPercentLT("gpmage1",75)
+	HPPercentLT("gpfight1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	!Dead("gpmage1")
+	!Dead("gpsimb")
+	HPPercentLT("gpmage1",75)
+	HPPercentLT("gpsimb",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	!Dead("gpmage1")
+	!Dead("gpthief1")
+	HPPercentLT("gpmage1",75)
+	HPPercentLT("gpthief1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	!Dead("gpthief1")
+	HPPercentLT("gpthief1",75)
+	HPPercentLT(Myself,75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	!Dead("gpthief1")
+	!Dead("gpfight1")
+	HPPercentLT("gpthief1",75)
+	HPPercentLT("gpfight1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	!Dead("gpthief1")
+	!Dead("gpsimb")
+	HPPercentLT("gpthief1",75)
+	HPPercentLT("gpsimb",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	!Dead("gpthief1")
+	!Dead("gpmage1")
+	HPPercentLT("gpthief1",75)
+	HPPercentLT("gpmage1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpfight1")
+	HPPercentLT(Myself,75)
+	HPPercentLT("gpfight1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpsimb")
+	HPPercentLT(Myself,75)
+	HPPercentLT("gpsimb",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpmage1")
+	HPPercentLT(Myself,75)
+	HPPercentLT("gpmage1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpthief1")
+	HPPercentLT(Myself,75)
+	HPPercentLT("gpthief1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpfight1")
+	HPPercentLT("gpfight1",75)
+	HPPercentLT(Myself,75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpfight1")
+	!Dead("gpsimb")
+	HPPercentLT("gpfight1",75)
+	HPPercentLT("gpsimb",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpfight1")
+	!Dead("gpmage1")
+	HPPercentLT("gpfight1",75)
+	HPPercentLT("gpmage1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpfight1")
+	!Dead("gpthief1")
+	HPPercentLT("gpfight1",75)
+	HPPercentLT("gpthief1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpsimb")
+	HPPercentLT("gpsimb",75)
+	HPPercentLT(Myself,75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpsimb")
+	!Dead("gpfight1")
+	HPPercentLT("gpsimb",75)
+	HPPercentLT("gpfight1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpsimb")
+	!Dead("gpmage1")
+	HPPercentLT("gpsimb",75)
+	HPPercentLT("gpmage1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpsimb")
+	!Dead("gpthief1")
+	HPPercentLT("gpsimb",75)
+	HPPercentLT("gpthief1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpmage1")
+	HPPercentLT("gpmage1",75)
+	HPPercentLT(Myself,75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpmage1")
+	!Dead("gpfight1")
+	HPPercentLT("gpmage1",75)
+	HPPercentLT("gpfight1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpmage1")
+	!Dead("gpsimb")
+	HPPercentLT("gpmage1",75)
+	HPPercentLT("gpsimb",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpmage1")
+	!Dead("gpthief1")
+	HPPercentLT("gpmage1",75)
+	HPPercentLT("gpthief1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpthief1")
+	HPPercentLT("gpthief1",75)
+	HPPercentLT(Myself,75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpthief1")
+	!Dead("gpfight1")
+	HPPercentLT("gpthief1",75)
+	HPPercentLT("gpfight1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpthief1")
+	!Dead("gpsimb")
+	HPPercentLT("gpthief1",75)
+	HPPercentLT("gpsimb",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("S!DIVINT")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpthief1")
+	!Dead("gpmage1")
+	HPPercentLT("gpthief1",75)
+	HPPercentLT("gpmage1",75)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("SPPR713")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	HPPercentLT(Myself,60)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("SPPR713",Myself)  // Greater Restoration
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("SPPR713")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	!Dead("gpmage1")  // N'ashtar
+	!HasBounceEffects("gpmage1")  // N'ashtar
+	Range("gpmage1",15)  // N'ashtar
+	HPPercentLT("gpmage1",60)  // N'ashtar
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("SPPR713","gpmage1")  // Greater Restoration
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("SPPR713")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	!Dead("gpfight1")  // Boz
+	See("gpfight1")  // Boz
+	Range("gpfight1",15)  // Boz
+	HPPercentLT("gpfight1",60)  // Boz
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("SPPR713","gpfight1")  // Greater Restoration
+END
+
+IF
+	HaveSpellRES("SPCL943")
+	HaveSpellRES("SPPR713")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	GlobalTimerNotExpired("IaFiveSeconds","LOCALS")
+	!Dead("gpsimb")  // Simbja
+	See("gpsimb")  // Simbja
+	Range("gpsimb",15)  // Simbja
+	HPPercentLT("gpsimb",60)  // Simbja
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("SPCL943",Myself)  // Purify Aura
+		RemoveSpellRES("SPCL943")
+		SpellRES("SPPR713","gpsimb")  // Greater Restoration
+END
+
+IF
+	!HaveSpellRES("SPCL943")
+	HaveSpellRES("SPPR713")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpfight1")
+	See("gpfight1")
+	Range("gpfight1",15)
+	HPPercentLT("gpfight1",60)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SpellRES("SPPR713","gpfight1")  // Greater Restoration
+END
+
+IF
+	!HaveSpellRES("SPCL943")
+	HaveSpellRES("SPPR713")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpsimb")
+	See("gpsimb")
+	Range("gpsimb",15)
+	HPPercentLT("gpsimb",60)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SpellRES("SPPR713","gpsimb")  // Greater Restoration
+END
+
+IF
+	!HaveSpellRES("SPCL943")
+	HaveSpellRES("SPPR713")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpmage1")
+	See("gpmage1")
+	Range("gpmage1",15)
+	HPPercentLT("gpmage1",60)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SpellRES("SPPR713","gpmage1")  // Greater Restoration
+END
+
+IF
+	!HaveSpellRES("SPCL943")
+	HaveSpellRES("SPPR713")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	HPPercentLT(Myself,50)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SpellRES("SPPR713",Myself)  // Greater Restoration
+END
+
+IF
+	HaveSpellRES("S!DIVINT")
+	!HaveSpellRES("SPPR713")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_POISONED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	HPPercentLT(Myself,50)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SpellRES("S!DIVINT",Myself)  // Divine Intervention
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+		Detect([GOODCUTOFF])
+		Detect([PC])
+	Global("partyfled","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("partyfled","LOCALS",0)
+END
+
+IF
+	Global("Iapcastts","GLOBAL",1)
+	Global("Iatsinvulner","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",1)
+		ApplySpellRES("SPINI70",Myself)  // No such index
+END
+
+IF
+	Global("Iapcastts","GLOBAL",0)
+	Global("Iatsinvulner","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",0)
+		ApplySpellRES("SPINI71",Myself)  // No such index
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("Iaturntime","LOCALS")
+	GlobalLT("Iaturning","LOCALS",2)
+	Global("Iapcastts","GLOBAL",0)
+	See(NearestEnemyOfType([GOODCUTOFF.0.0.SKELETON_WARRIOR.0.SUMMONED]))
+	Range(LastSeenBy(Myself),12)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaturning","LOCALS",1)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("Isturning","LOCALS",ONE_ROUND)
+		Turn()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("Iaturntime","LOCALS")
+	GlobalLT("Iaturning","LOCALS",2)
+	Global("Iapcastts","GLOBAL",0)
+	See(NearestEnemyOfType([GOODCUTOFF.0.SKELETON.SKELETON.0.SUMMONED]))
+	Range(LastSeenBy(Myself),12)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaturning","LOCALS",1)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("Isturning","LOCALS",ONE_ROUND)
+		Turn()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("Iaturning","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaturntime","LOCALS",THREE_ROUNDS)
+		SetGlobal("Iaturning","LOCALS",0)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	OR(4)
+		CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+		StateCheck(Myself,STATE_HELPLESS)
+		StateCheck(Myself,STATE_STUNNED)
+		Global("Iapcastts","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+END
+
+IF
+	HaveSpell(CLERIC_ZONE_OF_SWEET_AIR)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	Global("Iapccloud","AR2100",1)  // Underdark
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iapccloud","AR2100",0)  // Underdark
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(Myself,CLERIC_ZONE_OF_SWEET_AIR)  // SPPR318.SPL (Zone of Sweet Air)
+		MoveToObject(Player1)
+END
+
+IF
+	HaveSpellRES("SPPR713")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	HPPercentLT(Myself,60)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SpellRES("SPPR713",Myself)  // Greater Restoration
+END
+
+IF
+	HaveSpellRES("SPPR713")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpmage1")  // N'ashtar
+	!HasBounceEffects("gpmage1")  // N'ashtar
+	Range("gpmage1",15)  // N'ashtar
+	HPPercentLT("gpmage1",60)  // N'ashtar
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SpellRES("SPPR713","gpmage1")  // Greater Restoration
+END
+
+IF
+	HaveSpellRES("SPPR713")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpfight1")  // Boz
+	See("gpfight1")  // Boz
+	Range("gpfight1",15)  // Boz
+	HPPercentLT("gpfight1",60)  // Boz
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SpellRES("SPPR713","gpfight1")  // Greater Restoration
+END
+
+IF
+	HaveSpellRES("SPPR713")
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!Dead("gpsimb")  // Simbja
+	See("gpsimb")  // Simbja
+	Range("gpsimb",15)  // Simbja
+	HPPercentLT("gpsimb",60)  // Simbja
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SpellRES("SPPR713","gpsimb")  // Greater Restoration
+END
+
+IF
+	HaveSpell(CLERIC_ARMOR_OF_FAITH)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(NearestEnemyOf(Myself))
+	!CheckSpellState(Myself,ARMOR_OF_FAITH)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(Myself,CLERIC_ARMOR_OF_FAITH)  // SPPR111.SPL (Armor of Faith)
+END
+
+IF
+	HaveSpell(CLERIC_HOLY_POWER)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaHolyPowerTimer","LOCALS")
+	See(NearestEnemyOf(Myself))
+	RandomNumGT(10,5)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaHolyPowerTimer","LOCALS",TWO_TURNS)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(Myself,CLERIC_HOLY_POWER)  // SPPR412.SPL (Holy Power)
+END
+
+IF
+	HaveSpellRES("SPPR406F")
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaDefensiveHarmonyTimer","LOCALS")
+	See(NearestEnemyOf(Myself))
+	RandomNumGT(10,7)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaDefensiveHarmonyTimer","LOCALS",SIX_ROUNDS)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SpellRES("SPPR406F",Myself)  // Defensive Harmony
+END
+
+IF
+	HaveSpell(CLERIC_TRUE_SIGHT)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("truesight","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	Detect([PC])
+	OR(3)
+		!See([PC])
+		StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(Myself,CLERIC_TRUE_SIGHT)  // SPPR505.SPL (True Seeing)
+END
+
+IF
+	!See(NearestEnemyOf(Myself))
+	Heard([EVILCUTOFF],151)
+	InMyArea(Player1)
+	See(LastHeardBy(Myself))
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	HaveSpell(CLERIC_HARM)
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),10)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_SILENCED)
+	!HasItem("CRITICAL",Myself)  // Cause Critical Wounds
+	!HasItem("S!HARM",Myself)  // Harm
+	RandomNumGT(10,3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(Myself,CLERIC_HARM)  // SPPR608.SPL (Harm)
+END
+
+IF
+	!See(NearestEnemyOf(Myself))
+	Heard([EVILCUTOFF],152)
+	InMyArea(Player1)
+	See(LastHeardBy(Myself))
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	HaveSpell(CLERIC_GREATER_COMMAND)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("Iagcommand","LOCALS")
+	See(ThirdNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iagcommand","LOCALS",THREE_ROUNDS)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_GREATER_COMMAND)  // SPPR512.SPL (Greater Command)
+END
+
+IF
+	HaveSpell(CLERIC_GREATER_COMMAND)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("Iagcommand","LOCALS")
+	See(SecondNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iagcommand","LOCALS",THREE_ROUNDS)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_GREATER_COMMAND)  // SPPR512.SPL (Greater Command)
+END
+
+IF
+	HaveSpell(CLERIC_GREATER_COMMAND)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("Iagcommand","LOCALS")
+	See([PC])
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iagcommand","LOCALS",THREE_ROUNDS)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_GREATER_COMMAND)  // SPPR512.SPL (Greater Command)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(NearestAllyOf(Myself),15))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(NearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(NearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(NearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(NearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(NearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(NearestAllyOf(Myself),0,MINORGLOBE))
+	See(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(SecondNearestAllyOf(Myself),15))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(SecondNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SecondNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SecondNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SecondNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SecondNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SecondNearestAllyOf(Myself),0,MINORGLOBE))
+	See(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(ThirdNearestAllyOf(Myself),15))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(ThirdNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(ThirdNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(ThirdNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(ThirdNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(ThirdNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(ThirdNearestAllyOf(Myself),0,MINORGLOBE))
+	See(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(FourthNearestAllyOf(Myself),15))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(FourthNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FourthNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FourthNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FourthNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FourthNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FourthNearestAllyOf(Myself),0,MINORGLOBE))
+	See(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(FifthNearestAllyOf(Myself),15))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(FifthNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FifthNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FifthNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FifthNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FifthNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FifthNearestAllyOf(Myself),0,MINORGLOBE))
+	See(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(SixthNearestAllyOf(Myself),15))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(SixthNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SixthNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SixthNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SixthNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SixthNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SixthNearestAllyOf(Myself),0,MINORGLOBE))
+	See(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(SeventhNearestAllyOf(Myself),15))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(SeventhNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SeventhNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SeventhNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SeventhNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SeventhNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SeventhNearestAllyOf(Myself),0,MINORGLOBE))
+	See(NearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(NearestAllyOf(Myself),15))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(NearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(NearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(NearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(NearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(NearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(NearestAllyOf(Myself),0,MINORGLOBE))
+	See(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(SecondNearestAllyOf(Myself),15))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(SecondNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SecondNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SecondNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SecondNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SecondNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SecondNearestAllyOf(Myself),0,MINORGLOBE))
+	See(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(ThirdNearestAllyOf(Myself),15))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(ThirdNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(ThirdNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(ThirdNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(ThirdNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(ThirdNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(ThirdNearestAllyOf(Myself),0,MINORGLOBE))
+	See(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(FourthNearestAllyOf(Myself),15))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(FourthNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FourthNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FourthNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FourthNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FourthNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FourthNearestAllyOf(Myself),0,MINORGLOBE))
+	See(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(FifthNearestAllyOf(Myself),15))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(FifthNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FifthNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FifthNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FifthNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FifthNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FifthNearestAllyOf(Myself),0,MINORGLOBE))
+	See(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(SixthNearestAllyOf(Myself),15))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(SixthNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SixthNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SixthNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SixthNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SixthNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SixthNearestAllyOf(Myself),0,MINORGLOBE))
+	See(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(SeventhNearestAllyOf(Myself),15))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(SeventhNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SeventhNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SeventhNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SeventhNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SeventhNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SeventhNearestAllyOf(Myself),0,MINORGLOBE))
+	See(SecondNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(NearestAllyOf(Myself),15))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(NearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(NearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(NearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(NearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(NearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(NearestAllyOf(Myself),0,MINORGLOBE))
+	See(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(SecondNearestAllyOf(Myself),15))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(SecondNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SecondNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SecondNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SecondNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SecondNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SecondNearestAllyOf(Myself),0,MINORGLOBE))
+	See(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(ThirdNearestAllyOf(Myself),15))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(ThirdNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(ThirdNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(ThirdNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(ThirdNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(ThirdNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(ThirdNearestAllyOf(Myself),0,MINORGLOBE))
+	See(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(FourthNearestAllyOf(Myself),15))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(FourthNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FourthNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FourthNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FourthNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FourthNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FourthNearestAllyOf(Myself),0,MINORGLOBE))
+	See(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(FifthNearestAllyOf(Myself),15))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(FifthNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FifthNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FifthNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FifthNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FifthNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FifthNearestAllyOf(Myself),0,MINORGLOBE))
+	See(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(SixthNearestAllyOf(Myself),15))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(SixthNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SixthNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SixthNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SixthNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SixthNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SixthNearestAllyOf(Myself),0,MINORGLOBE))
+	See(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(SeventhNearestAllyOf(Myself),15))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(SeventhNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SeventhNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SeventhNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SeventhNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SeventhNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SeventhNearestAllyOf(Myself),0,MINORGLOBE))
+	See(ThirdNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(NearestAllyOf(Myself),15))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(NearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(NearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(NearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(NearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(NearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(NearestAllyOf(Myself),0,MINORGLOBE))
+	See(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(SecondNearestAllyOf(Myself),15))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(SecondNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SecondNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SecondNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SecondNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SecondNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SecondNearestAllyOf(Myself),0,MINORGLOBE))
+	See(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(ThirdNearestAllyOf(Myself),15))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(ThirdNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(ThirdNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(ThirdNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(ThirdNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(ThirdNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(ThirdNearestAllyOf(Myself),0,MINORGLOBE))
+	See(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(FourthNearestAllyOf(Myself),15))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(FourthNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FourthNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FourthNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FourthNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FourthNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FourthNearestAllyOf(Myself),0,MINORGLOBE))
+	See(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(FifthNearestAllyOf(Myself),15))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(FifthNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FifthNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FifthNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FifthNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FifthNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FifthNearestAllyOf(Myself),0,MINORGLOBE))
+	See(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(SixthNearestAllyOf(Myself),15))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(SixthNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SixthNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SixthNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SixthNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SixthNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SixthNearestAllyOf(Myself),0,MINORGLOBE))
+	See(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(SeventhNearestAllyOf(Myself),15))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(SeventhNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SeventhNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SeventhNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SeventhNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SeventhNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SeventhNearestAllyOf(Myself),0,MINORGLOBE))
+	See(FourthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(NearestAllyOf(Myself),15))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(NearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(NearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(NearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(NearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(NearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(NearestAllyOf(Myself),0,MINORGLOBE))
+	See(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(SecondNearestAllyOf(Myself),15))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(SecondNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SecondNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SecondNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SecondNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SecondNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SecondNearestAllyOf(Myself),0,MINORGLOBE))
+	See(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(ThirdNearestAllyOf(Myself),15))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(ThirdNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(ThirdNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(ThirdNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(ThirdNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(ThirdNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(ThirdNearestAllyOf(Myself),0,MINORGLOBE))
+	See(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(FourthNearestAllyOf(Myself),15))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(FourthNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FourthNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FourthNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FourthNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FourthNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FourthNearestAllyOf(Myself),0,MINORGLOBE))
+	See(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(FifthNearestAllyOf(Myself),15))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(FifthNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FifthNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FifthNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FifthNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FifthNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FifthNearestAllyOf(Myself),0,MINORGLOBE))
+	See(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(SixthNearestAllyOf(Myself),15))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(SixthNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SixthNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SixthNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SixthNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SixthNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SixthNearestAllyOf(Myself),0,MINORGLOBE))
+	See(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(SeventhNearestAllyOf(Myself),15))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(SeventhNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SeventhNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SeventhNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SeventhNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SeventhNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SeventhNearestAllyOf(Myself),0,MINORGLOBE))
+	See(FifthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(NearestAllyOf(Myself),15))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(NearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(NearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(NearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(NearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(NearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(NearestAllyOf(Myself),0,MINORGLOBE))
+	See(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(SecondNearestAllyOf(Myself),15))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(SecondNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SecondNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SecondNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SecondNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SecondNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SecondNearestAllyOf(Myself),0,MINORGLOBE))
+	See(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(ThirdNearestAllyOf(Myself),15))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(ThirdNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(ThirdNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(ThirdNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(ThirdNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(ThirdNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(ThirdNearestAllyOf(Myself),0,MINORGLOBE))
+	See(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(FourthNearestAllyOf(Myself),15))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(FourthNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FourthNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FourthNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FourthNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FourthNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FourthNearestAllyOf(Myself),0,MINORGLOBE))
+	See(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(FifthNearestAllyOf(Myself),15))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(FifthNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FifthNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FifthNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FifthNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(FifthNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(FifthNearestAllyOf(Myself),0,MINORGLOBE))
+	See(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(SixthNearestAllyOf(Myself),15))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(SixthNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SixthNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SixthNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SixthNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SixthNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SixthNearestAllyOf(Myself),0,MINORGLOBE))
+	See(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)  // SPPR314.SPL (Unholy Blight)
+	CheckStatLT(Myself,60,SPELLFAILUREPRIEST)
+	!StateCheck(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),STATE_INVISIBLE)
+	!CheckStatGT(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,SANCTUARY)
+	!CheckStatGT(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),70,RESISTMAGIC)
+	!CheckStatGT(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),80,MAGICDAMAGERESISTANCE)
+	!CheckStat(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),5,SCRIPTINGSTATE7)
+	CheckStat(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),0,MINORGLOBE)
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Range(SeventhNearestAllyOf(Myself),15))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),Alignment(SeventhNearestAllyOf(Myself),MASK_GOOD))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SeventhNearestAllyOf(Myself),0,SANCTUARY))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SeventhNearestAllyOf(Myself),70,RESISTMAGIC))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SeventhNearestAllyOf(Myself),80,MAGICDAMAGERESISTANCE))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStatLT(SeventhNearestAllyOf(Myself),5,SCRIPTINGSTATE7))
+	TriggerOverride(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]),CheckStat(SeventhNearestAllyOf(Myself),0,MINORGLOBE))
+	See(SixthNearestEnemyOfType([PC.0.0.0.0.0.MASK_GOOD]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself), CLERIC_UNHOLY_BLIGHT)
+END
+
+IF
+	HaveSpell(CLERIC_HOLD_PERSON)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See([PC])
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!HasItemEquiped("shld25",LastSeenBy(Myself))  // Shield of Harmony +2
+	!HasItemEquiped("sw1h27",LastSeenBy(Myself))  // Arbane's Sword of Agility +2
+	!HasItemEquiped("S!shld01",LastSeenBy(Myself))  // Delryn Family Legacy +4
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_HOLD_PERSON)  // SPPR208.SPL (Hold Person)
+END
+
+IF
+	HaveSpell(CLERIC_HOLD_PERSON)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SecondNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!HasItemEquiped("shld25",LastSeenBy(Myself))  // Shield of Harmony +2
+	!HasItemEquiped("sw1h27",LastSeenBy(Myself))  // Arbane's Sword of Agility +2
+	!HasItemEquiped("S!shld01",LastSeenBy(Myself))  // Delryn Family Legacy +4
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_HOLD_PERSON)  // SPPR208.SPL (Hold Person)
+END
+
+IF
+	HaveSpell(CLERIC_HOLD_PERSON)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(ThirdNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!HasItemEquiped("shld25",LastSeenBy(Myself))  // Shield of Harmony +2
+	!HasItemEquiped("sw1h27",LastSeenBy(Myself))  // Arbane's Sword of Agility +2
+	!HasItemEquiped("S!shld01",LastSeenBy(Myself))  // Delryn Family Legacy +4
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_HOLD_PERSON)  // SPPR208.SPL (Hold Person)
+END
+
+IF
+	HaveSpell(CLERIC_ANIMATE_DEAD)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(Myself,CLERIC_ANIMATE_DEAD)  // SPPR301.SPL (Animate Dead)
+END
+
+IF
+	HaveSpell(CLERIC_COMMAND)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FourthNearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!HasItemEquiped("morsword",LastSeenBy(Myself))  // Mordenkainen's Sword
+	!HasItemEquiped("ring95",LastSeenBy(Myself))  // Ring
+	!HasItemEquiped("S!ring09",LastSeenBy(Myself))  // Ring
+	CheckStatLT(LastSeenBy(Myself),90,RESISTMAGIC)
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)  // SPPR102.SPL (Command)
+END
+
+IF
+	HaveSpell(CLERIC_COMMAND)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(ThirdNearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!HasItemEquiped("morsword",LastSeenBy(Myself))  // Mordenkainen's Sword
+	!HasItemEquiped("ring95",LastSeenBy(Myself))  // Ring
+	!HasItemEquiped("S!ring09",LastSeenBy(Myself))  // Ring
+	CheckStatLT(LastSeenBy(Myself),90,RESISTMAGIC)
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)  // SPPR102.SPL (Command)
+END
+
+IF
+	HaveSpell(CLERIC_COMMAND)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SecondNearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!HasItemEquiped("morsword",LastSeenBy(Myself))  // Mordenkainen's Sword
+	!HasItemEquiped("ring95",LastSeenBy(Myself))  // Ring
+	!HasItemEquiped("S!ring09",LastSeenBy(Myself))  // Ring
+	CheckStatLT(LastSeenBy(Myself),90,RESISTMAGIC)
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)  // SPPR102.SPL (Command)
+END
+
+IF
+	HaveSpell(CLERIC_COMMAND)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!HasItemEquiped("morsword",LastSeenBy(Myself))  // Mordenkainen's Sword
+	!HasItemEquiped("ring95",LastSeenBy(Myself))  // Ring
+	!HasItemEquiped("S!ring09",LastSeenBy(Myself))  // Ring
+	CheckStatLT(LastSeenBy(Myself),90,RESISTMAGIC)
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)  // SPPR102.SPL (Command)
+END
+
+IF
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Global("partyfled","LOCALS",0)
+	Allegiance(Myself,ENEMY)
+	GlobalGT("IaPrep","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("chase","LOCALS",EIGHTEEN_MINUTES)
+		SetGlobal("partyfled","LOCALS",1)
+END
+
+IF
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_CHARMED)
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Global("partyfled","LOCALS",1)
+	GlobalTimerNotExpired("chase","LOCALS")
+	InMyArea(Player1)
+	Allegiance(Myself,ENEMY)
+	GlobalGT("IaPrep","LOCALS",0)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Allegiance(Myself,ENEMY)
+	GlobalTimerExpired("chase","LOCALS")
+	Global("partyfled","LOCALS",1)
+	GlobalGT("IaPrep","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("IaPrep","LOCALS",0)
+		ReallyForceSpellRES("SPWII07",Myself)  // No such index
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+		HasItem("S!HARM",Myself)  // Harm
+		HasItem("CRITICAL",Myself)  // Cause Critical Wounds
+	See(NearestEnemyOfType([PC]))
+	Range(LastSeenBy(Myself),10)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),3,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+		HasItem("S!HARM",Myself)  // Harm
+		HasItem("CRITICAL",Myself)  // Cause Critical Wounds
+	See(SecondNearestEnemyOfType([PC]))
+	Range(LastSeenBy(Myself),10)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),3,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+		HasItem("S!HARM",Myself)  // Harm
+		HasItem("CRITICAL",Myself)  // Cause Critical Wounds
+	See(ThirdNearestEnemyOfType([PC]))
+	Range(LastSeenBy(Myself),10)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),3,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+		HasItem("S!HARM",Myself)  // Harm
+		HasItem("CRITICAL",Myself)  // Cause Critical Wounds
+	See(NearestEnemyOf(Myself))
+	CheckStatLT(LastSeenBy(Myself),3,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!GlobalTimerNotExpired("Isturning","LOCALS")
+	See(NearestEnemyOf(Myself))
+	CheckStatLT(LastSeenBy(Myself),3,SCRIPTINGSTATE6)
+	WeaponCanDamage(LastSeenBy(Myself),MAINHAND)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	GlobalTimerNotExpired("Isturning","LOCALS")
+	!See(NearestEnemyOfType([GOODCUTOFF.0.0.SKELETON_WARRIOR.0.SUMMONED]))
+	!See(NearestEnemyOfType([GOODCUTOFF.0.SKELETON.SKELETON.0.SUMMONED]))
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	GlobalTimerNotExpired("Isturning","LOCALS")
+	!See(NearestEnemyOfType([GOODCUTOFF.0.0.SKELETON_WARRIOR.0.SUMMONED]))
+	See(NearestEnemyOfType([GOODCUTOFF.0.SKELETON.SKELETON.0.SUMMONED]))
+	!Range(LastSeenBy(Myself),12)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	GlobalTimerNotExpired("Isturning","LOCALS")
+	!See(NearestEnemyOfType([GOODCUTOFF.0.SKELETON.SKELETON.0.SUMMONED]))
+	See(NearestEnemyOfType([GOODCUTOFF.0.0.SKELETON_WARRIOR.0.SUMMONED]))
+	!Range(LastSeenBy(Myself),12)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!See([PC])
+	!See([GOODCUTOFF])
+	Global("IaPrep","LOCALS",0)
+	Global("anticheese","LOCALS",0)
+	OR(2)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		HPPercentLT(Myself,100)
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		SetGlobal("anticheese","LOCALS",1)
+		SetGlobalTimer("chase2","LOCALS",TWO_ROUNDS)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	GlobalTimerNotExpired("chase2","LOCALS")
+	Global("anticheese","LOCALS",1)
+	Global("IaPrep","LOCALS",0)
+	!See([PC])
+	!See([GOODCUTOFF])
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	GlobalTimerExpired("chase2","LOCALS")
+	Global("anticheese","LOCALS",1)
+	Global("IaPrep","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("anticheese","LOCALS",0)
+		ReallyForceSpellRES("SPWII07",Myself)  // No such index
+END

@@ -11,18 +11,35 @@ OUTER_SET enemy_group_state = %new_state_index%
 LAF resolve_state STR_VAR new_state_id = ~SHIELD_EQUIPPED~ RET new_state_index END
 OUTER_SET shield_equipped_state = %new_state_index%
 
-LAF resolve_state STR_VAR new_state_id = EVAL ~DMG_PROT_1~ RET new_state_index END
+LAF resolve_state STR_VAR new_state_id = ~DMG_PROT_1~ RET new_state_index END
 OUTER_SET damage_reduction_1_state = %new_state_index%
 
-LAF resolve_state STR_VAR new_state_id = EVAL ~DMG_PROT_2~ RET new_state_index END
+LAF resolve_state STR_VAR new_state_id = ~DMG_PROT_2~ RET new_state_index END
 OUTER_SET damage_reduction_2_state = %new_state_index%
 
-LAF resolve_state STR_VAR new_state_id = EVAL ~DMG_PROT_3~ RET new_state_index END
+LAF resolve_state STR_VAR new_state_id = ~DMG_PROT_3~ RET new_state_index END
 OUTER_SET damage_reduction_3_state = %new_state_index%
 
-LAF resolve_state STR_VAR new_state_id = EVAL ~DMG_PROT_4~ RET new_state_index END
+LAF resolve_state STR_VAR new_state_id = ~DMG_PROT_4~ RET new_state_index END
 OUTER_SET damage_reduction_4_state = %new_state_index%
 
+LAF resolve_state STR_VAR new_state_id = ~BREACH_TRIGGERING_PHYSICAL_PROTECTION~ RET new_state_index END
+OUTER_SET breach_triggering_physical_protection = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~DISPELLABLE_INCREASED_FIRE_RESISTANCE~ RET new_state_index END
+OUTER_SET dispellable_increased_fire_resistance = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~BARB_ESSENCE_USED~ RET new_state_index END
+OUTER_SET barb_essence_used = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~DISPELLABLE_PROT_FROM_LEVEL_DRAIN~ RET new_state_index END
+OUTER_SET dispellable_prot_from_level_drain = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~UNDISPELLABLE_PROT_FROM_LEVEL_DRAIN~ RET new_state_index END
+OUTER_SET undispellable_prot_from_level_drain = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~MISSILE_IMMUNITY~ RET new_state_index END
+OUTER_SET missile_immunity = %new_state_index%
 // Beast Master
 LAF resolve_state STR_VAR new_state_id = ~UNIFIED_MINDS~ RET new_state_index END
 OUTER_SET unified_minds_state = %new_state_index%
@@ -47,3 +64,35 @@ OUTER_SET trap_immunity_state = %new_state_index%
 // Mage
 LAF resolve_state STR_VAR new_state_id = ~NON_DETECTION~ RET new_state_index END
 OUTER_SET non_detection_state = %new_state_index%
+
+///////////////// Add existing Spellstates to existing spells
+
+COPY_EXISTING ~SPPR113.spl~ ~override~ // Doom
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 328
+      target = 2
+      power = 1
+      parameter2 = 55 // Doom
+      resist_dispel = 1
+      duration = 60
+      special = 1
+      insert_point = 1
+  END
+
+OUTER_SET first_SI_spellstate = 56 // Spell Immunities
+ACTION_FOR_EACH spell_immunity_subspell IN ~SPWI590~ ~SPWI591~ ~SPWI592~ ~SPWI593~ ~SPWI594~ ~SPWI595~ ~SPWI596~ ~SPWI597~ BEGIN
+  COPY_EXISTING ~%spell_immunity_subspell%.spl~ ~override~
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        opcode = 328
+        target = 1
+        power = 5
+        parameter2 = first_SI_spellstate
+        resist_dispel = 0
+        duration = 120
+        special = 1
+        insert_point = 1
+    END
+  OUTER_SET first_SI_spellstate = first_SI_spellstate + 1
+END

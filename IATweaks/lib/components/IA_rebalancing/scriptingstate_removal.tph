@@ -1,27 +1,10 @@
-LAF resolve_state STR_VAR new_state_id = ~BREACH_TRIGGERING_PHYSICAL_PROTECTION~ RET new_state_index END
-OUTER_SET breach_triggering_physical_protection = %new_state_index%
-
-LAF resolve_state STR_VAR new_state_id = ~DISPELLABLE_INCREASED_FIRE_RESISTANCE~ RET new_state_index END
-OUTER_SET dispellable_increased_fire_resistance = %new_state_index%
-
-LAF resolve_state STR_VAR new_state_id = ~BARB_ESSENCE_USED~ RET new_state_index END
-OUTER_SET barb_essence_used = %new_state_index%
-
-LAF resolve_state STR_VAR new_state_id = ~DISPELLABLE_PROT_FROM_LEVEL_DRAIN~ RET new_state_index END
-OUTER_SET dispellable_prot_from_level_drain = %new_state_index%
-
-LAF resolve_state STR_VAR new_state_id = ~UNDISPELLABLE_PROT_FROM_LEVEL_DRAIN~ RET new_state_index END
-OUTER_SET undispellable_prot_from_level_drain = %new_state_index%
-
-LAF resolve_state STR_VAR new_state_id = ~MISSILE_IMMUNITY~ RET new_state_index END
-OUTER_SET missile_immunity = %new_state_index%
 
 ACTION_DEFINE_ASSOCIATIVE_ARRAY spellstate_symbol_to_id_mapping BEGIN
-  "BREACH_TRIGGERING_PHYSICAL_PROTECTION"=>~%breach_triggering_physical_protection%~
-  "DISPELLABLE_INCREASED_FIRE_RESISTANCE"=>~%dispellable_increased_fire_resistance%~
-  "BARB_ESSENCE_USED"=>~%barb_essence_used%~
-  "DISPELLABLE_PROT_FROM_LEVEL_DRAIN"=>~%dispellable_prot_from_level_drain%~
-  "MISSILE_IMMUNITY"=>~%missile_immunity%~
+  "BREACH_TRIGGERING_PHYSICAL_PROTECTION"=>EVAL ~%breach_triggering_physical_protection%~
+  "DISPELLABLE_INCREASED_FIRE_RESISTANCE"=>EVAL ~%dispellable_increased_fire_resistance%~
+  "BARB_ESSENCE_USED"=>EVAL ~%barb_essence_used%~
+  "DISPELLABLE_PROT_FROM_LEVEL_DRAIN"=>EVAL ~%dispellable_prot_from_level_drain%~
+  "MISSILE_IMMUNITY"=>EVAL ~%missile_immunity%~
 END
 
 ACTION_DEFINE_ASSOCIATIVE_ARRAY spellstate_symbol_to_scriptingstate_id BEGIN

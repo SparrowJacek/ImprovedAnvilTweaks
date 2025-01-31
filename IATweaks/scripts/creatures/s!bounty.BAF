@@ -112,7 +112,7 @@ THEN
 		ReallyForceSpell(Myself,CLERIC_AID)  // SPPR201.SPL (Aid)
 		ReallyForceSpell(Myself,CLERIC_CHANT)
 		ReallyForceSpell(Myself,CLERIC_PROTECTION_FROM_FIRE)  // SPPR306.SPL (Protection From Fire)
-		ReallyForceSpell(Myself,CLERIC_FREE_ACTIONS)
+		ReallyForceSpell(Myself,CLERIC_FREE_ACTION)
 		ReallyForceSpell(Myself,CLERIC_PROTECTION_FROM_LIGHTNING)  // SPPR407.SPL (Protection From Lightning)
 		ReallyForceSpell(Myself,CLERIC_DEATH_WARD)  // SPPR409.SPL (Death Ward)
 		ReallyForceSpell(Myself,CLERIC_CHAOTIC_COMMANDS)

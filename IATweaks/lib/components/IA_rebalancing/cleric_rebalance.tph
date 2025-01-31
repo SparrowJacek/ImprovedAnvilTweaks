@@ -2801,6 +2801,52 @@ COPY_EXISTING ~DROW07.cre~ ~override~
 
 COMPILE ~IATweaks\scripts\creatures\S!DROW07.BAF~
 
+// Drow Priestess at the gates
+
+COPY_EXISTING ~UDDOOR06.cre~ ~override~
+  WRITE_SHORT 0x24 102 // HP
+  WRITE_SHORT 0x26 102 // HP
+  WRITE_BYTE 0x59 0 // Resist Fire
+  WRITE_BYTE 0x5a 0 // Resist Cold
+  WRITE_BYTE 0x5b 0 // Resist Electricity
+  WRITE_BYTE 0x5c 0 // Resist Acid
+  WRITE_BYTE 0x5e 0 // Resist Magic Fire
+  WRITE_BYTE 0x5f 0 // Resist Magic Cold
+  WRITE_BYTE 0x60 0 // Resist Slashing
+  WRITE_BYTE 0x61 0 // Resist Crushing
+  WRITE_BYTE 0x62 0 // Resist Piercing
+  WRITE_BYTE 0x63 0 // Resist Missile
+  WRITE_BYTE 0x238 18 // Strength
+  WRITE_BYTE 0x23d 15 // Constitution
+  WRITE_ASCII 0x258 ~UDDOOR06~ #8
+
+  LPF ~ADD_CRE_EFFECT~ // ** in Sword and Shield
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 2
+      parameter2 = 112
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // ** in Flails
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 2
+      parameter2 = 100
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!IMMUNE~
+  END
+
+COMPILE ~IATweaks\scripts\creatures\UDDOOR06.BAF~
+
 // Kuo-toa Prince
 
 COPY_EXISTING ~UDPRINCE.cre~ ~override~

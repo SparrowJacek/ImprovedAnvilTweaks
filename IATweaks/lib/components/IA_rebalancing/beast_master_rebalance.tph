@@ -322,11 +322,6 @@ END
 
 // Unified Minds
 
-// Add spellstate
-
-LAF resolve_state STR_VAR new_state_id = ~UNIFIED_MINDS~ RET new_state_index END
-OUTER_SET unified_minds_state = %new_state_index%
-
 ADD_PROJECTILE ~IATweaks\resources\pro\s!unmind.pro~
 COPY_EXISTING ~s!unmind.pro~ ~override~
   WRITE_SHORT 0x3c unified_minds_state

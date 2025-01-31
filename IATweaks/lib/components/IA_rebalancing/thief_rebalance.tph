@@ -110,16 +110,6 @@ LAF ~S!ADD_SPLPROT_2DA_ENTRY~
     hide_in_shadows_higher_than_row = new_line_number
 END
 
-// Required Spellstates
-// Add spellstate shield_equipped
-
-LAF resolve_state STR_VAR new_state_id = ~HIDE_IN_SHADOWS_SUCCESS~ RET new_state_index END
-OUTER_SET hide_in_shadows_success_state = %new_state_index%
-// Add spellstate shield_equipped
-
-LAF resolve_state STR_VAR new_state_id = ~HIDE_IN_SHADOWS_FAIL~ RET new_state_index END
-OUTER_SET hide_in_shadows_fail_state = %new_state_index%
-
 // Disable backstab for Staves
 
 COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
@@ -2266,9 +2256,6 @@ COPY_EXISTING ~wa2ring.itm~ ~override~
 // //////// Spells /////////
 
 // Detect Traps //
-
-LAF resolve_state STR_VAR new_state_id = ~TRAP_IMMUNITY~ RET new_state_index END
-OUTER_SET trap_immunity_state = %new_state_index%
 
 COPY ~IATweaks\resources\2da\sppr205.2da~ ~override~
 COPY ~IATweaks\resources\spl\sppr205f.spl~ ~override~

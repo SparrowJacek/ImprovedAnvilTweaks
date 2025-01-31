@@ -350,11 +350,6 @@ END
 
 // Non-detection
 
-// Add spellstate shield_equipped
-
-LAF resolve_state STR_VAR new_state_id = ~NON_DETECTION~ RET new_state_index END
-OUTER_SET non_detection_state = %new_state_index%
-
 // Add 7eyes.2da file if it does not exist
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~7EYES.2da~ THEN BEGIN

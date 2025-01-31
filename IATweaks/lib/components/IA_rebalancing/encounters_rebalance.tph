@@ -883,22 +883,28 @@ COPY_EXISTING ~S!DROWW.cre~ ~override~
 
 COPY ~IATweaks\resources\spl\s!mfprot.spl~ ~override~
 
-ACTION_FOR_EACH spellstate_for_damage_reduction IN 1 2 3 4 BEGIN
-  LAF resolve_state STR_VAR new_state_id = EVAL ~DMG_PROT_%spellstate_for_damage_reduction%~ RET new_state_index END
+ACTION_DEFINE_ASSOCIATIVE_ARRAY id_to_damage_reduction_state_mapping BEGIN
+  1=>EVAL ~%damage_reduction_1_state%~
+  2=>EVAL ~%damage_reduction_2_state%~
+  3=>EVAL ~%damage_reduction_3_state%~
+  4=>EVAL ~%damage_reduction_4_state%~
+END
+
+ACTION_PHP_EACH id_to_damage_reduction_state_mapping AS current_id => damage_reduction_state BEGIN
   LAF ~S!ADD_7EYES_ROW~
     INT_VAR
       strref        = RESOLVE_STR_REF (@5049)
     STR_VAR
-      row_desc      = EVAL ~DMG_PROT_%spellstate_for_damage_reduction%~
-      spellstate    = EVAL ~%new_state_index%~
+      row_desc      = EVAL ~DMG_PROT_%current_id%~
+      spellstate    = EVAL ~%damage_reduction_state%~
       eff1          = ~12~ // Damage
     RET new_row_id 
   END
   COPY_EXISTING ~s!mfprot.spl~ ~override~
     LPF ~ALTER_EFFECT~
       INT_VAR
-        match_parameter1 = spellstate_for_damage_reduction
-        parameter1 = new_state_index
+        match_parameter1 = current_id
+        parameter1 = damage_reduction_state
         parameter2 = new_row_id
     END
 END

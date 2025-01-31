@@ -1,0 +1,49 @@
+SILENT
+
+INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
+
+///////////////// Add new Spellstates
+
+// General
+LAF resolve_state STR_VAR new_state_id = ~ENEMY_GROUP~ RET new_state_index END
+OUTER_SET enemy_group_state = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~SHIELD_EQUIPPED~ RET new_state_index END
+OUTER_SET shield_equipped_state = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = EVAL ~DMG_PROT_1~ RET new_state_index END
+OUTER_SET damage_reduction_1_state = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = EVAL ~DMG_PROT_2~ RET new_state_index END
+OUTER_SET damage_reduction_2_state = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = EVAL ~DMG_PROT_3~ RET new_state_index END
+OUTER_SET damage_reduction_3_state = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = EVAL ~DMG_PROT_4~ RET new_state_index END
+OUTER_SET damage_reduction_4_state = %new_state_index%
+
+// Beast Master
+LAF resolve_state STR_VAR new_state_id = ~UNIFIED_MINDS~ RET new_state_index END
+OUTER_SET unified_minds_state = %new_state_index%
+
+// Cleric
+LAF resolve_state STR_VAR new_state_id = ~LIFE_LINK~ RET new_state_index END
+OUTER_SET life_link_state = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~CHAMPIONS_MIGHT~ RET new_state_index END
+OUTER_SET champions_might_state = %new_state_index%
+
+// Thief
+LAF resolve_state STR_VAR new_state_id = ~HIDE_IN_SHADOWS_SUCCESS~ RET new_state_index END
+OUTER_SET hide_in_shadows_success_state = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~HIDE_IN_SHADOWS_FAIL~ RET new_state_index END
+OUTER_SET hide_in_shadows_fail_state = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~TRAP_IMMUNITY~ RET new_state_index END
+OUTER_SET trap_immunity_state = %new_state_index%
+
+// Mage
+LAF resolve_state STR_VAR new_state_id = ~NON_DETECTION~ RET new_state_index END
+OUTER_SET non_detection_state = %new_state_index%

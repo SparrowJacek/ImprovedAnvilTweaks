@@ -377,9 +377,6 @@ END
 
 // Life Link
 
-LAF resolve_state STR_VAR new_state_id = ~LIFE_LINK~ RET new_state_index END
-OUTER_SET life_link_state = %new_state_index%
-
 // Add records for the new portrait icons
 OUTER_SET life_link_desc_str_ref = RESOLVE_STR_REF (@6121)
 LAF ~S!ADD_PORTRAIT_ICON~
@@ -470,11 +467,6 @@ ACTION_FOR_EACH cleric_kit_hla_file IN ~lucl1.2da~ ~lucl2.2da~ ~lucl3.2da~ ~lucl
 END
 
 // Heavenly Shield
-
-// Add spellstate shield_equipped
-
-LAF resolve_state STR_VAR new_state_id = ~SHIELD_EQUIPPED~ RET new_state_index END
-OUTER_SET shield_equipped_state = %new_state_index%
 
 // Patch all shields to set shield_equipped state when worn
 
@@ -1399,9 +1391,6 @@ ACTION_FOR_EACH duhm_spell_file IN ~spin103.spl~ ~sppr214.spl~ BEGIN
 END
 
 // Champion's Strength
-
-LAF resolve_state STR_VAR new_state_id = ~CHAMPIONS_MIGHT~ RET new_state_index END
-OUTER_SET champions_might_state = %new_state_index%
 
 ADD_PROJECTILE ~IATweaks\resources\pro\s!chmpmf.pro~
 COPY_EXISTING ~s!chmpmf.pro~ ~override~

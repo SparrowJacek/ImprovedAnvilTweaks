@@ -109,7 +109,6 @@ END
 
 // Rework Defensive Harmony
 
-
 COPY_EXISTING ~sppr406.spl~ ~override/sppr406d.spl~
   SAY UNIDENTIFIED_DESC @6002
   LPF ~ALTER_SPELL_HEADER~
@@ -1832,10 +1831,11 @@ COPY_EXISTING ~SPPR214.spl~ ~override/SPPR214D.spl~
   WRITE_LONG  0x08      ~-1~ // spell name
   WRITE_BYTE  0x27      0 // secondary type 
 
-  // Remove spell states to avoid AI problems
+  // Remove spell state BUFF_ENHANCEMENT to avoid AI problems
   LPF ~DELETE_SPELL_EFFECT~
     INT_VAR
       opcode_to_delete = 328
+      match_parameter2 = 68
   END
 
   // Make undispellable
@@ -2144,10 +2144,11 @@ COPY_EXISTING ~SPPR513.spl~ ~override/SPPR513D.spl~
   WRITE_LONG  0x08      ~-1~ // spell name
   WRITE_BYTE  0x27      0 // secondary type 
 
-  // Remove spell states to avoid AI problems
+  // Remove spell state BUFF_ENHANCEMENT to avoid AI problems
   LPF ~DELETE_SPELL_EFFECT~
     INT_VAR
       opcode_to_delete = 328
+      match_parameter2 = 68
   END
 
   // Remove self for stacking reasons
@@ -2215,10 +2216,11 @@ COPY_EXISTING ~SPPR412.spl~ ~override/SPPR412D.spl~
   WRITE_LONG  0x08      ~-1~ // spell name
   WRITE_BYTE  0x27      0 // secondary type 
 
-  // Remove spell states to avoid AI problems
+  // Remove spell state BUFF_ENHANCEMENT to avoid AI problems
   LPF ~DELETE_SPELL_EFFECT~
     INT_VAR
       opcode_to_delete = 328
+      match_parameter2 = 68
   END
 
   // Update resource for protection from setting str to 18 if it is higher already

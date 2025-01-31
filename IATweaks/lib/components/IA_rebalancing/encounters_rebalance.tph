@@ -496,6 +496,17 @@ COPY_EXISTING ~SEVPAT04.cre~ ~override~ // Smaeluv
       timing = 9
   END
 
+  LPF ~ADD_CRE_EFFECT~ // +2 movement speed
+    INT_VAR
+      opcode = 126
+      target = 1
+      parameter1 = 2
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL151~
+  END
+
   LPF ~DELETE_EFFECT~
     INT_VAR
       match_opcode = 0

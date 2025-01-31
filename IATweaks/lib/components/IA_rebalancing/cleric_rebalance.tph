@@ -2678,7 +2678,7 @@ COPY_EXISTING ~BERKREF.cre~ ~override~
   WRITE_BYTE 0x59 0 // Resist Fire
   WRITE_BYTE 0x5a 0 // Resist Cold
   WRITE_BYTE 0x5e 0 // Resist Magic Fire
-  WRITE_BYTE 0x5e 0 // Resist Magic Cold
+  WRITE_BYTE 0x5f 0 // Resist Magic Cold
 
   LPF ~ADD_CRE_EFFECT~ INT_VAR
     opcode = 233
@@ -2703,7 +2703,7 @@ COPY_EXISTING ~RENGAA.cre~ ~override~
   WRITE_BYTE 0x59 0 // Resist Fire
   WRITE_BYTE 0x5a 0 // Resist Cold
   WRITE_BYTE 0x5e 0 // Resist Magic Fire
-  WRITE_BYTE 0x5e 0 // Resist Magic Cold
+  WRITE_BYTE 0x5f 0 // Resist Magic Cold
 
   LPF ~ADD_CRE_EFFECT~ INT_VAR
     opcode = 233
@@ -2764,7 +2764,7 @@ COPY_EXISTING ~DROW07.cre~ ~override~
   WRITE_BYTE 0x5b 0 // Resist Electricity
   WRITE_BYTE 0x5c 0 // Resist Acid
   WRITE_BYTE 0x5e 0 // Resist Magic Fire
-  WRITE_BYTE 0x5e 0 // Resist Magic Cold
+  WRITE_BYTE 0x5f 0 // Resist Magic Cold
   WRITE_BYTE 0x60 0 // Resist Slashing
   WRITE_BYTE 0x61 0 // Resist Crushing
   WRITE_BYTE 0x62 0 // Resist Piercing

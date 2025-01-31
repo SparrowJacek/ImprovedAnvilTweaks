@@ -810,7 +810,7 @@ COPY_EXISTING ~PIRSEA03.cre~ ~override~
   WRITE_BYTE 0x5c 0 // Resist Acid
   WRITE_BYTE 0x5d 0 // Resist Magic
   WRITE_BYTE 0x5e 0 // Resist Magic Fire
-  WRITE_BYTE 0x5e 0 // Resist Magic Cold
+  WRITE_BYTE 0x5f 0 // Resist Magic Cold
   WRITE_BYTE 0x60 0 // Resist Slashing
   WRITE_BYTE 0x61 0 // Resist Crushing
   WRITE_BYTE 0x62 0 // Resist Piercing
@@ -856,7 +856,7 @@ COPY_EXISTING ~GAIUS.cre~ ~override~
   WRITE_BYTE 0x5c 0 // Resist Acid
   WRITE_BYTE 0x5d 0 // Resist Magic
   WRITE_BYTE 0x5e 0 // Resist Magic Fire
-  WRITE_BYTE 0x5e 0 // Resist Magic Cold
+  WRITE_BYTE 0x5f 0 // Resist Magic Cold
   WRITE_BYTE 0x60 0 // Resist Slashing
   WRITE_BYTE 0x61 0 // Resist Crushing
   WRITE_BYTE 0x62 0 // Resist Piercing
@@ -999,7 +999,7 @@ COPY_EXISTING ~PPCOWLED.cre~ ~override~
   WRITE_BYTE 0x5c 0 // Resist Acid
   WRITE_BYTE 0x5d 0 // Resist Magic
   WRITE_BYTE 0x5e 0 // Resist Magic Fire
-  WRITE_BYTE 0x5e 0 // Resist Magic Cold
+  WRITE_BYTE 0x5f 0 // Resist Magic Cold
   WRITE_BYTE 0x60 0 // Resist Slashing
   WRITE_BYTE 0x61 0 // Resist Crushing
   WRITE_BYTE 0x62 0 // Resist Piercing
@@ -1076,7 +1076,7 @@ COPY_EXISTING ~DROW06.cre~ ~override~
   WRITE_BYTE 0x5b 0 // Resist Electricity
   WRITE_BYTE 0x5c 0 // Resist Acid
   WRITE_BYTE 0x5e 0 // Resist Magic Fire
-  WRITE_BYTE 0x5e 0 // Resist Magic Cold
+  WRITE_BYTE 0x5f 0 // Resist Magic Cold
   WRITE_BYTE 0x60 0 // Resist Slashing
   WRITE_BYTE 0x61 0 // Resist Crushing
   WRITE_BYTE 0x62 0 // Resist Piercing

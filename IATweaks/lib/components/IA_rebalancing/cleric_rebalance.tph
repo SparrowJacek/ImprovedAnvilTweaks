@@ -94,6 +94,7 @@ COPY_EXISTING ~stylbonu.2da~  ~override/stylbonu.2da~
 
 ADD_PROJECTILE ~IATweaks\resources\pro\s!defha1.pro~
 ADD_PROJECTILE ~IATweaks\resources\pro\s!defha2.pro~
+ADD_PROJECTILE ~IATweaks\resources\pro\s!defha3.pro~
 
 // Add condition for checking specific kit in splprot.2da
 
@@ -149,6 +150,13 @@ COPY_EXISTING ~sppr406.spl~ ~override/sppr406d.spl~
       parameter2 = 1310720
       resist_dispel = 3
   END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 321
+    STR_VAR
+      match_resource = ~SPPR406D~
+      resource = ~SPPR406F~
+  END
 
 COPY ~IATweaks\resources\spl\sppr406e.spl~ ~override\sppr406e.spl~ // Cleric kit only bonus spell
   LPF ~ALTER_SPELL_HEADER~
@@ -175,6 +183,29 @@ COPY ~IATweaks\resources\spl\s!defhar.spl~ ~override\sppr406.spl~ // New Defensi
         resource = ~sppr406e~
         insert = ~below~
     END
+  END
+
+// Defensive Harmony for enemies
+
+COPY_EXISTING ~sppr406.spl~ ~override/sppr406f.spl~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 326
+    STR_VAR
+      match_resource = ~SPPR406E~
+      resource = ~SPPR406G~
+  END
+
+COPY_EXISTING ~sppr406e.spl~ ~override/sppr406g.spl~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      projectile = %s!defha3% // New projectile targetting max 5 non-summoned humanoidal creatures
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 321
+    STR_VAR
+      resource = ~SPPR406G~
   END
 
 // Weaken Undead
@@ -669,6 +700,12 @@ COPY_EXISTING ~SPPR412.spl~ ~override/SPPR412.spl~
     STR_VAR
       insert = ~last~
   END
+  
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_level = 2
+      level = 4
+  END
   BUT_ONLY
 
 // Negative Plane Protection
@@ -688,6 +725,7 @@ COPY_EXISTING ~SPPR202.spl~ ~override/SPPR202.spl~
               ~SPPR411.spl~ ~override/SPPR411.spl~
               ~SPPR501.spl~ ~override/SPPR501.spl~
               ~SPPR602.spl~ ~override/SPPR602.spl~
+              ~SPPR604.spl~ ~override/SPPR604.spl~
               ~SPPR720.spl~ ~override/SPPR720.spl~
   WRITE_BYTE  0x21      0x40
   BUT_ONLY
@@ -1554,6 +1592,27 @@ ACTION_FOR_EACH cleric_kit_hla_file IN ~lucl0.2da~ ~lucl1.2da~ ~lucl2.2da~ ~lucl
       num_allowed = ~2~
   END
 END
+
+// Divine Intervention for enemies
+
+COPY_EXISTING ~spcl942.spl~ ~override/s!divint.spl~
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 318
+      target = 5
+      parameter1 = enemy_group_state
+      parameter2 = 111 // Spellstate = n
+      resist_dispel = 0
+      insert_point = 0
+    STR_VAR
+      resource = ~S!DIVINT~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_target = 3
+      target = 5
+  END
+  BUT_ONLY
 
 // Spell Duration HLA
 

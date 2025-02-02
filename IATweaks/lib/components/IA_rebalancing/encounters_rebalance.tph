@@ -545,6 +545,7 @@ END
 COPY_EXISTING ~PWARDEN.cre~ ~override~
   WRITE_BYTE 0x5b 50 // Resist Electricity
   WRITE_BYTE 0x5c 25 // Resist Acid
+  ADD_MEMORIZED_SPELL ~SPWI925~ #8 ~wizard~ (2)
 
 COMPILE ~IATweaks\scripts\creatures\s!warden.baf~
 

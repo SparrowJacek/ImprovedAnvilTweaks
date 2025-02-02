@@ -83,10 +83,11 @@ THEN
 		SetGlobal("Iarefreshsi","LOCALS",1)
 		SetGlobal("Iawarden06","LOCALS",2)
 		SetGlobal("Iawarden10","LOCALS",3)
-		SetGlobal("Iawarden05","LOCALS",2)
 		SetGlobal("Iawarden03","LOCALS",1)
 		SetGlobal("Iawarden04","LOCALS",1)
 		SetGlobal("Iawarden14","LOCALS",4)
+		RemoveSpellRES("SPWI925")
+		RemoveSpellRES("SPWI925")
 END
 
 IF
@@ -2012,1110 +2013,1495 @@ THEN
 END
 
 IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-THEN
-	RESPONSE #100
-		SetGlobal("Iacometplayer1","LOCALS",0)
-		SetGlobal("Iacometplayer2","LOCALS",0)
-		SetGlobal("Iacometplayer3","LOCALS",0)
-		SetGlobal("Iacometplayer4","LOCALS",0)
-		SetGlobal("Iacometplayer5","LOCALS",0)
-		SetGlobal("Iacometplayer6","LOCALS",0)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player1)
-	CheckStatLT(Player1,90,RESISTFIRE)
-	CheckStatLT(Player2,90,RESISTFIRE)
-	TriggerOverride(Player1, Range(Player2, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer1","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player1)
-	CheckStatLT(Player1,90,RESISTFIRE)
-	CheckStatLT(Player3,90,RESISTFIRE)
-	TriggerOverride(Player1, Range(Player3, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer1","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player1)
-	CheckStatLT(Player1,90,RESISTFIRE)
-	CheckStatLT(Player4,90,RESISTFIRE)
-	TriggerOverride(Player1, Range(Player4, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer1","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player1)
-	CheckStatLT(Player1,90,RESISTFIRE)
-	CheckStatLT(Player5,90,RESISTFIRE)
-	TriggerOverride(Player1, Range(Player5, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer1","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player1)
-	CheckStatLT(Player1,90,RESISTFIRE)
-	CheckStatLT(Player6,90,RESISTFIRE)
-	TriggerOverride(Player1, Range(Player6, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer1","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player2)
-	CheckStatLT(Player2,90,RESISTFIRE)
-	CheckStatLT(Player1,90,RESISTFIRE)
-	TriggerOverride(Player2, Range(Player1, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer2","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player2)
-	CheckStatLT(Player2,90,RESISTFIRE)
-	CheckStatLT(Player3,90,RESISTFIRE)
-	TriggerOverride(Player2, Range(Player3, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer2","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player2)
-	CheckStatLT(Player2,90,RESISTFIRE)
-	CheckStatLT(Player4,90,RESISTFIRE)
-	TriggerOverride(Player2, Range(Player4, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer2","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player2)
-	CheckStatLT(Player2,90,RESISTFIRE)
-	CheckStatLT(Player5,90,RESISTFIRE)
-	TriggerOverride(Player2, Range(Player5, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer2","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player2)
-	CheckStatLT(Player2,90,RESISTFIRE)
-	CheckStatLT(Player6,90,RESISTFIRE)
-	TriggerOverride(Player2, Range(Player6, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer2","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player3)
-	CheckStatLT(Player3,90,RESISTFIRE)
-	CheckStatLT(Player1,90,RESISTFIRE)
-	TriggerOverride(Player3, Range(Player1, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer3","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player3)
-	CheckStatLT(Player3,90,RESISTFIRE)
-	CheckStatLT(Player2,90,RESISTFIRE)
-	TriggerOverride(Player3, Range(Player2, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer3","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player3)
-	CheckStatLT(Player3,90,RESISTFIRE)
-	CheckStatLT(Player4,90,RESISTFIRE)
-	TriggerOverride(Player3, Range(Player4, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer3","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player3)
-	CheckStatLT(Player3,90,RESISTFIRE)
-	CheckStatLT(Player5,90,RESISTFIRE)
-	TriggerOverride(Player3, Range(Player5, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer3","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player3)
-	CheckStatLT(Player3,90,RESISTFIRE)
-	CheckStatLT(Player6,90,RESISTFIRE)
-	TriggerOverride(Player3, Range(Player6, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer3","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player4)
-	CheckStatLT(Player4,90,RESISTFIRE)
-	CheckStatLT(Player1,90,RESISTFIRE)
-	TriggerOverride(Player4, Range(Player1, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer4","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player4)
-	CheckStatLT(Player4,90,RESISTFIRE)
-	CheckStatLT(Player2,90,RESISTFIRE)
-	TriggerOverride(Player4, Range(Player2, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer4","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player4)
-	CheckStatLT(Player4,90,RESISTFIRE)
-	CheckStatLT(Player3,90,RESISTFIRE)
-	TriggerOverride(Player4, Range(Player3, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer4","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player4)
-	CheckStatLT(Player4,90,RESISTFIRE)
-	CheckStatLT(Player5,90,RESISTFIRE)
-	TriggerOverride(Player4, Range(Player5, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer4","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player4)
-	CheckStatLT(Player4,90,RESISTFIRE)
-	CheckStatLT(Player6,90,RESISTFIRE)
-	TriggerOverride(Player4, Range(Player6, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer4","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player5)
-	CheckStatLT(Player5,90,RESISTFIRE)
-	CheckStatLT(Player1,90,RESISTFIRE)
-	TriggerOverride(Player5, Range(Player1, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer5","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player5)
-	CheckStatLT(Player5,90,RESISTFIRE)
-	CheckStatLT(Player2,90,RESISTFIRE)
-	TriggerOverride(Player5, Range(Player2, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer5","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player5)
-	CheckStatLT(Player5,90,RESISTFIRE)
-	CheckStatLT(Player3,90,RESISTFIRE)
-	TriggerOverride(Player5, Range(Player3, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer5","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player5)
-	CheckStatLT(Player5,90,RESISTFIRE)
-	CheckStatLT(Player4,90,RESISTFIRE)
-	TriggerOverride(Player5, Range(Player4, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer5","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player5)
-	CheckStatLT(Player5,90,RESISTFIRE)
-	CheckStatLT(Player6,90,RESISTFIRE)
-	TriggerOverride(Player5, Range(Player6, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer5","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player6)
-	CheckStatLT(Player6,90,RESISTFIRE)
-	CheckStatLT(Player1,90,RESISTFIRE)
-	TriggerOverride(Player6, Range(Player1, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer6","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player6)
-	CheckStatLT(Player6,90,RESISTFIRE)
-	CheckStatLT(Player2,90,RESISTFIRE)
-	TriggerOverride(Player6, Range(Player2, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer6","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player6)
-	CheckStatLT(Player6,90,RESISTFIRE)
-	CheckStatLT(Player3,90,RESISTFIRE)
-	TriggerOverride(Player6, Range(Player3, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer6","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player6)
-	CheckStatLT(Player6,90,RESISTFIRE)
-	CheckStatLT(Player4,90,RESISTFIRE)
-	TriggerOverride(Player6, Range(Player4, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer6","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player6)
-	CheckStatLT(Player6,90,RESISTFIRE)
-	CheckStatLT(Player5,90,RESISTFIRE)
-	TriggerOverride(Player6, Range(Player5, 15))
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iacometplayer6","LOCALS",1)
-		Continue()
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer1","LOCALS",6)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player1)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player1)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer2","LOCALS",6)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player2)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player2)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer3","LOCALS",6)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player3)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player3)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer4","LOCALS",6)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player4)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player4)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer5","LOCALS",6)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player5)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player5)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer6","LOCALS",6)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player6)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player6)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer1","LOCALS",5)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player1)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player1)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer2","LOCALS",5)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player2)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player2)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer3","LOCALS",5)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player3)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player3)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer4","LOCALS",5)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player4)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player4)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer5","LOCALS",5)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player5)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player5)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer6","LOCALS",5)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player6)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player6)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer1","LOCALS",4)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player1)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player1)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer2","LOCALS",4)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player2)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player2)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer3","LOCALS",4)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player3)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player3)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer4","LOCALS",4)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player4)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player4)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer5","LOCALS",4)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player5)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player5)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer6","LOCALS",4)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player6)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player6)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer1","LOCALS",3)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player1)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player1)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer2","LOCALS",3)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player2)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player2)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer3","LOCALS",3)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player3)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player3)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer4","LOCALS",3)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player4)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player4)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer5","LOCALS",3)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player5)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player5)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer6","LOCALS",3)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player6)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player6)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer1","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player1)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player1)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer2","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player2)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player2)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer3","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player3)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player3)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer4","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player4)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player4)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer5","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player5)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player5)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer6","LOCALS",2)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player6)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player6)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer1","LOCALS",1)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player1)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player1)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer2","LOCALS",1)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player2)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player2)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer3","LOCALS",1)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player3)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player3)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer4","LOCALS",1)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player4)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player4)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer5","LOCALS",1)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player5)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player5)
-END
-
-IF
-	GlobalLT("Iawarden05","LOCALS",2)
-	Global("Iacometplayer6","LOCALS",1)
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	!HPLT(Myself,1)
-	!StateCheck(Myself,STATE_HELPLESS)
-	See(Player6)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
-		SpellNoDecRES("SPWI925", Player6)
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	See([PC])
-	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
-	Range(LastSeenBy(Myself),5)
-	Global("Iawarden14","LOCALS",0)
-	Global("Iasettimer","LOCALS",2)
-THEN
-	RESPONSE #100
-		SetGlobal("Iawarden14","LOCALS",1)
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See([PC]) 
+	TriggerOverride([PC], Range(SecondNearest([PC]), 15))
+	CheckStatLT([PC],50,RESISTFIRE)
+	CheckStatLT([PC],50,RESISTMAGIC)
+	CheckStatLT(SecondNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),50,RESISTMAGIC)
+THEN
+	RESPONSE #250
 		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
-		ForceSpell(Myself,WARRIOR_POWER_ATTACK)  // SPCL906.SPL (Power Attack)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", [PC])
+	RESPONSE #50
+	    Continue()
 END
 
 IF
+	HaveSpellRES("SPWI925")
 	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	See([PC])
-	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
-	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-	Global("Iawarden06","LOCALS",0)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See([PC]) 
+	TriggerOverride([PC], Range(ThirdNearest([PC]), 15))
+	CheckStatLT([PC],50,RESISTFIRE)
+	CheckStatLT([PC],50,RESISTMAGIC)
+	CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),50,RESISTMAGIC)
 THEN
-	RESPONSE #100
-		SetGlobal("Iawarden06","LOCALS",1)
+	RESPONSE #250
 		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
-		SpellNoDec(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", [PC])
+	RESPONSE #50
+	    Continue()
 END
 
 IF
+	HaveSpellRES("SPWI925")
 	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	See([PC])
-	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
-	Range(LastSeenBy(Myself),5)
-	Global("Iawarden10","LOCALS",1)
-	Global("Iasettimer","LOCALS",2)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See([PC]) 
+	TriggerOverride([PC], Range(FourthNearest([PC]), 15))
+	CheckStatLT([PC],50,RESISTFIRE)
+	CheckStatLT([PC],50,RESISTMAGIC)
+	CheckStatLT(FourthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),50,RESISTMAGIC)
 THEN
-	RESPONSE #100
-		SetGlobal("Iawarden10","LOCALS",2)
+	RESPONSE #250
 		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
-		ForceSpell(Myself,WARRIOR_GREATER_WHIRLWIND)  // SPCL901.SPL (Greater Whirlwind Attack)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", [PC])
+	RESPONSE #50
+	    Continue()
 END
 
 IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	See(NearestEnemyOf(Myself))
-	Global("Iawarden09","LOCALS",2)
-	Global("Iasettimer","LOCALS",2)
-THEN
-	RESPONSE #100
-		SetGlobal("Iawarden09","LOCALS",3)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
-		SpellNoDec(Myself,WIZARD_ANIMATE_DEAD)  // SPWI501.SPL (Animate Dead)
-END
-
-IF
+	HaveSpellRES("SPWI925")
 	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	See([PC])
-	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
-	Range(LastSeenBy(Myself),5)
-	Global("Iawarden14","LOCALS",1)
-	Global("Iasettimer","LOCALS",2)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See([PC]) 
+	TriggerOverride([PC], Range(FifthNearest([PC]), 15))
+	CheckStatLT([PC],50,RESISTFIRE)
+	CheckStatLT([PC],50,RESISTMAGIC)
+	CheckStatLT(FifthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),50,RESISTMAGIC)
 THEN
-	RESPONSE #100
-		SetGlobal("Iawarden14","LOCALS",2)
+	RESPONSE #250
 		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
-		ForceSpell(Myself,WARRIOR_POWER_ATTACK)  // SPCL906.SPL (Power Attack)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", [PC])
+	RESPONSE #50
+	    Continue()
 END
 
 IF
+	HaveSpellRES("SPWI925")
 	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	See([PC])
-	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
-	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
-	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
-	Range(LastSeenBy(Myself),5)
-	Global("Iawarden14","LOCALS",2)
-	Global("Iasettimer","LOCALS",2)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See([PC]) 
+	TriggerOverride([PC], Range(SixthNearest([PC]), 15))
+	CheckStatLT([PC],50,RESISTFIRE)
+	CheckStatLT([PC],50,RESISTMAGIC)
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SixthNearest([PC]),50,RESISTMAGIC)
 THEN
-	RESPONSE #100
-		SetGlobal("Iawarden14","LOCALS",3)
+	RESPONSE #250
 		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
-		ForceSpell(Myself,WARRIOR_CRITICAL_STRIKE)  // SPCL905.SPL (Critical Strike)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", [PC])
+	RESPONSE #50
+	    Continue()
 END
 
 IF
+	HaveSpellRES("SPWI925")
 	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	See([PC])
-	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
-	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
-	CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
-	GlobalLT("Iawarden05","LOCALS",2)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range([PC], 15))
+	CheckStatLT(SecondNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT([PC],50,RESISTFIRE)
+	CheckStatLT([PC],50,RESISTMAGIC)
 THEN
-	RESPONSE #100
-		IncrementGlobal("Iawarden05","LOCALS",1)
+	RESPONSE #250
 		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
-		SpellNoDec(LastSeenBy(Myself),WIZARD_COMET)  // SPWI925.SPL (Comet)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range(ThirdNearest([PC]), 15))
+	CheckStatLT(SecondNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range(FourthNearest([PC]), 15))
+	CheckStatLT(SecondNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT(FourthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range(FifthNearest([PC]), 15))
+	CheckStatLT(SecondNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT(FifthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range(SixthNearest([PC]), 15))
+	CheckStatLT(SecondNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SixthNearest([PC]),50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range([PC], 15))
+	CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT([PC],50,RESISTFIRE)
+	CheckStatLT([PC],50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range(SecondNearest([PC]), 15))
+	CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT(SecondNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range(FourthNearest([PC]), 15))
+	CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT(FourthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range(FifthNearest([PC]), 15))
+	CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT(FifthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range(SixthNearest([PC]), 15))
+	CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SixthNearest([PC]),50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range([PC], 15))
+	CheckStatLT(FourthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT([PC],50,RESISTFIRE)
+	CheckStatLT([PC],50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range(SecondNearest([PC]), 15))
+	CheckStatLT(FourthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT(SecondNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range(ThirdNearest([PC]), 15))
+	CheckStatLT(FourthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range(FifthNearest([PC]), 15))
+	CheckStatLT(FourthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT(FifthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range(SixthNearest([PC]), 15))
+	CheckStatLT(FourthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SixthNearest([PC]),50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range([PC], 15))
+	CheckStatLT(FifthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT([PC],50,RESISTFIRE)
+	CheckStatLT([PC],50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range(SecondNearest([PC]), 15))
+	CheckStatLT(FifthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT(SecondNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range(ThirdNearest([PC]), 15))
+	CheckStatLT(FifthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range(FourthNearest([PC]), 15))
+	CheckStatLT(FifthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT(FourthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range(SixthNearest([PC]), 15))
+	CheckStatLT(FifthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SixthNearest([PC]),50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range([PC], 15))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SixthNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT([PC],50,RESISTFIRE)
+	CheckStatLT([PC],50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(SecondNearest([PC]), 15))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SixthNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT(SecondNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(ThirdNearest([PC]), 15))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SixthNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(FourthNearest([PC]), 15))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SixthNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT(FourthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(FifthNearest([PC]), 15))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SixthNearest([PC]),50,RESISTMAGIC)
+	CheckStatLT(FifthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),50,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	Range(FourthNearest([PC]),15)
+	OR(4)
+	    CheckStatLT([PC],50,RESISTFIRE)
+	    CheckStatLT(SecondNearest([PC]),50,RESISTFIRE)
+	    CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE)
+	    CheckStatLT(FourthNearest([PC]),50,RESISTFIRE)
+	OR(4)
+	    CheckStatLT([PC],50,RESISTMAGIC)
+	    CheckStatLT(SecondNearest([PC]),50,RESISTMAGIC)
+	    CheckStatLT(ThirdNearest([PC]),50,RESISTMAGIC)
+	    CheckStatLT(FourthNearest([PC]),50,RESISTMAGIC)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", Myself)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	Range(FourthNearest([GOODCUTOFF]),15)
+	OR(4)
+	    CheckStatLT([GOODCUTOFF],50,RESISTFIRE)
+	    CheckStatLT(SecondNearest([GOODCUTOFF]),50,RESISTFIRE)
+	    CheckStatLT(ThirdNearest([GOODCUTOFF]),50,RESISTFIRE)
+	    CheckStatLT(FourthNearest([GOODCUTOFF]),50,RESISTFIRE)
+	OR(4)
+	    CheckStatLT([GOODCUTOFF],50,RESISTMAGIC)
+	    CheckStatLT(SecondNearest([GOODCUTOFF]),50,RESISTMAGIC)
+	    CheckStatLT(ThirdNearest([GOODCUTOFF]),50,RESISTMAGIC)
+	    CheckStatLT(FourthNearest([GOODCUTOFF]),50,RESISTMAGIC)
+THEN
+	RESPONSE #150
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", Myself)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See([PC]) 
+	TriggerOverride([PC], Range(SecondNearest([PC]), 15))
+	CheckStatLT([PC],90,RESISTFIRE)
+	CheckStatLT([PC],80,RESISTMAGIC)
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", [PC])
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See([PC]) 
+	TriggerOverride([PC], Range(ThirdNearest([PC]), 15))
+	CheckStatLT([PC],90,RESISTFIRE)
+	CheckStatLT([PC],80,RESISTMAGIC)
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", [PC])
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See([PC]) 
+	TriggerOverride([PC], Range(FourthNearest([PC]), 15))
+	CheckStatLT([PC],90,RESISTFIRE)
+	CheckStatLT([PC],80,RESISTMAGIC)
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", [PC])
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See([PC]) 
+	TriggerOverride([PC], Range(FifthNearest([PC]), 15))
+	CheckStatLT([PC],90,RESISTFIRE)
+	CheckStatLT([PC],80,RESISTMAGIC)
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", [PC])
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See([PC]) 
+	TriggerOverride([PC], Range(SixthNearest([PC]), 15))
+	CheckStatLT([PC],90,RESISTFIRE)
+	CheckStatLT([PC],80,RESISTMAGIC)
+	CheckStatLT(SixthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(SixthNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", [PC])
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range([PC], 15))
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT([PC],90,RESISTFIRE)
+	CheckStatLT([PC],80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range(ThirdNearest([PC]), 15))
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range(FourthNearest([PC]), 15))
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range(FifthNearest([PC]), 15))
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range(SixthNearest([PC]), 15))
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT(SixthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(SixthNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range([PC], 15))
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT([PC],90,RESISTFIRE)
+	CheckStatLT([PC],80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range(SecondNearest([PC]), 15))
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range(FourthNearest([PC]), 15))
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range(FifthNearest([PC]), 15))
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range(SixthNearest([PC]), 15))
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT(SixthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(SixthNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range([PC], 15))
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT([PC],90,RESISTFIRE)
+	CheckStatLT([PC],80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range(SecondNearest([PC]), 15))
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range(ThirdNearest([PC]), 15))
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range(FifthNearest([PC]), 15))
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range(SixthNearest([PC]), 15))
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT(SixthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(SixthNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range([PC], 15))
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT([PC],90,RESISTFIRE)
+	CheckStatLT([PC],80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range(SecondNearest([PC]), 15))
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range(ThirdNearest([PC]), 15))
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range(FourthNearest([PC]), 15))
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range(SixthNearest([PC]), 15))
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT(SixthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(SixthNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range([PC], 15))
+	CheckStatLT(SixthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(SixthNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT([PC],90,RESISTFIRE)
+	CheckStatLT([PC],80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(SecondNearest([PC]), 15))
+	CheckStatLT(SixthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(SixthNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(ThirdNearest([PC]), 15))
+	CheckStatLT(SixthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(SixthNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(FourthNearest([PC]), 15))
+	CheckStatLT(SixthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(SixthNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(FifthNearest([PC]), 15))
+	CheckStatLT(SixthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(SixthNearest([PC]),80,RESISTMAGIC)
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),80,RESISTMAGIC)
+THEN
+	RESPONSE #250
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	Range(FourthNearest([PC]),15)
+	OR(4)
+	    CheckStatLT([PC],90,RESISTFIRE)
+	    CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+	    CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+	    CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+	OR(4)
+	    CheckStatLT([PC],50,RESISTMAGIC)
+	    CheckStatLT(SecondNearest([PC]),50,RESISTMAGIC)
+	    CheckStatLT(ThirdNearest([PC]),50,RESISTMAGIC)
+	    CheckStatLT(FourthNearest([PC]),50,RESISTMAGIC)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", Myself)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPWI925")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaComet","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	Range(FourthNearest([GOODCUTOFF]),15)
+	OR(4)
+	    CheckStatLT([GOODCUTOFF],90,RESISTFIRE)
+	    CheckStatLT(SecondNearest([GOODCUTOFF]),90,RESISTFIRE)
+	    CheckStatLT(ThirdNearest([GOODCUTOFF]),90,RESISTFIRE)
+	    CheckStatLT(FourthNearest([GOODCUTOFF]),90,RESISTFIRE)
+	OR(4)
+	    CheckStatLT([GOODCUTOFF],50,RESISTMAGIC)
+	    CheckStatLT(SecondNearest([GOODCUTOFF]),50,RESISTMAGIC)
+	    CheckStatLT(ThirdNearest([GOODCUTOFF]),50,RESISTMAGIC)
+	    CheckStatLT(FourthNearest([GOODCUTOFF]),50,RESISTMAGIC)
+THEN
+	RESPONSE #150
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaComet","LOCALS",TWO_ROUNDS)
+		SpellRES("SPWI925", Myself)
+	RESPONSE #50
+	    Continue()
 END
 
 IF

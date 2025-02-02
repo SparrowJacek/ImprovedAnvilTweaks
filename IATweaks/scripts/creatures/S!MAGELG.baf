@@ -34,6 +34,1985 @@ THEN
 END
 
 IF
+	Detect([PC])
+	Global("Iatimer","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobal("Iatimer","LOCALS",1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See([PC]) 
+	TriggerOverride([PC], Range(SecondNearest([PC]), 10))
+	TriggerOverride([PC], Range(ThirdNearest([PC]), 10))
+	CheckStatLT([PC],50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", [PC])
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See([PC]) 
+	TriggerOverride([PC], Range(SecondNearest([PC]), 10))
+	TriggerOverride([PC], Range(FourthNearest([PC]), 10))
+	CheckStatLT([PC],50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", [PC])
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See([PC]) 
+	TriggerOverride([PC], Range(SecondNearest([PC]), 10))
+	TriggerOverride([PC], Range(FifthNearest([PC]), 10))
+	CheckStatLT([PC],50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", [PC])
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See([PC]) 
+	TriggerOverride([PC], Range(ThirdNearest([PC]), 10))
+	TriggerOverride([PC], Range(SecondNearest([PC]), 10))
+	CheckStatLT([PC],50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", [PC])
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See([PC]) 
+	TriggerOverride([PC], Range(ThirdNearest([PC]), 10))
+	TriggerOverride([PC], Range(FourthNearest([PC]), 10))
+	CheckStatLT([PC],50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", [PC])
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See([PC]) 
+	TriggerOverride([PC], Range(ThirdNearest([PC]), 10))
+	TriggerOverride([PC], Range(FifthNearest([PC]), 10))
+	CheckStatLT([PC],50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", [PC])
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See([PC]) 
+	TriggerOverride([PC], Range(FourthNearest([PC]), 10))
+	TriggerOverride([PC], Range(SecondNearest([PC]), 10))
+	CheckStatLT([PC],50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", [PC])
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See([PC]) 
+	TriggerOverride([PC], Range(FourthNearest([PC]), 10))
+	TriggerOverride([PC], Range(ThirdNearest([PC]), 10))
+	CheckStatLT([PC],50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", [PC])
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See([PC]) 
+	TriggerOverride([PC], Range(FourthNearest([PC]), 10))
+	TriggerOverride([PC], Range(FifthNearest([PC]), 10))
+	CheckStatLT([PC],50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", [PC])
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See([PC]) 
+	TriggerOverride([PC], Range(FifthNearest([PC]), 10))
+	TriggerOverride([PC], Range(SecondNearest([PC]), 10))
+	CheckStatLT([PC],50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", [PC])
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See([PC]) 
+	TriggerOverride([PC], Range(FifthNearest([PC]), 10))
+	TriggerOverride([PC], Range(ThirdNearest([PC]), 10))
+	CheckStatLT([PC],50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", [PC])
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See([PC]) 
+	TriggerOverride([PC], Range(FifthNearest([PC]), 10))
+	TriggerOverride([PC], Range(FourthNearest([PC]), 10))
+	CheckStatLT([PC],50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", [PC])
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range([PC], 10))
+	TriggerOverride(SecondNearest([PC]), Range(ThirdNearest([PC]), 10))
+	CheckStatLT(SecondNearest([PC]),50,RESISTFIRE)
+	CheckStatLT([PC],75,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range([PC], 10))
+	TriggerOverride(SecondNearest([PC]), Range(FourthNearest([PC]), 10))
+	CheckStatLT(SecondNearest([PC]),50,RESISTFIRE)
+	CheckStatLT([PC],75,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range([PC], 10))
+	TriggerOverride(SecondNearest([PC]), Range(FifthNearest([PC]), 10))
+	CheckStatLT(SecondNearest([PC]),50,RESISTFIRE)
+	CheckStatLT([PC],75,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range(ThirdNearest([PC]), 10))
+	TriggerOverride(SecondNearest([PC]), Range([PC], 10))
+	CheckStatLT(SecondNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),75,RESISTFIRE)
+	CheckStatLT([PC],90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range(ThirdNearest([PC]), 10))
+	TriggerOverride(SecondNearest([PC]), Range(FourthNearest([PC]), 10))
+	CheckStatLT(SecondNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range(ThirdNearest([PC]), 10))
+	TriggerOverride(SecondNearest([PC]), Range(FifthNearest([PC]), 10))
+	CheckStatLT(SecondNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range(FourthNearest([PC]), 10))
+	TriggerOverride(SecondNearest([PC]), Range([PC], 10))
+	CheckStatLT(SecondNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT([PC],90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range(FourthNearest([PC]), 10))
+	TriggerOverride(SecondNearest([PC]), Range(ThirdNearest([PC]), 10))
+	CheckStatLT(SecondNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range(FourthNearest([PC]), 10))
+	TriggerOverride(SecondNearest([PC]), Range(FifthNearest([PC]), 10))
+	CheckStatLT(SecondNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range(FifthNearest([PC]), 10))
+	TriggerOverride(SecondNearest([PC]), Range([PC], 10))
+	CheckStatLT(SecondNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT([PC],90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range(FifthNearest([PC]), 10))
+	TriggerOverride(SecondNearest([PC]), Range(ThirdNearest([PC]), 10))
+	CheckStatLT(SecondNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range(FifthNearest([PC]), 10))
+	TriggerOverride(SecondNearest([PC]), Range(FourthNearest([PC]), 10))
+	CheckStatLT(SecondNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range([PC], 10))
+	TriggerOverride(ThirdNearest([PC]), Range(SecondNearest([PC]), 10))
+	CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE)
+	CheckStatLT([PC],75,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range([PC], 10))
+	TriggerOverride(ThirdNearest([PC]), Range(FourthNearest([PC]), 10))
+	CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE)
+	CheckStatLT([PC],75,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range([PC], 10))
+	TriggerOverride(ThirdNearest([PC]), Range(FifthNearest([PC]), 10))
+	CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE)
+	CheckStatLT([PC],75,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range(SecondNearest([PC]), 10))
+	TriggerOverride(ThirdNearest([PC]), Range([PC], 10))
+	CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),75,RESISTFIRE)
+	CheckStatLT([PC],90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range(SecondNearest([PC]), 10))
+	TriggerOverride(ThirdNearest([PC]), Range(FourthNearest([PC]), 10))
+	CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range(SecondNearest([PC]), 10))
+	TriggerOverride(ThirdNearest([PC]), Range(FifthNearest([PC]), 10))
+	CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range(FourthNearest([PC]), 10))
+	TriggerOverride(ThirdNearest([PC]), Range([PC], 10))
+	CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT([PC],90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range(FourthNearest([PC]), 10))
+	TriggerOverride(ThirdNearest([PC]), Range(SecondNearest([PC]), 10))
+	CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range(FourthNearest([PC]), 10))
+	TriggerOverride(ThirdNearest([PC]), Range(FifthNearest([PC]), 10))
+	CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range(FifthNearest([PC]), 10))
+	TriggerOverride(ThirdNearest([PC]), Range([PC], 10))
+	CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT([PC],90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range(FifthNearest([PC]), 10))
+	TriggerOverride(ThirdNearest([PC]), Range(SecondNearest([PC]), 10))
+	CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range(FifthNearest([PC]), 10))
+	TriggerOverride(ThirdNearest([PC]), Range(FourthNearest([PC]), 10))
+	CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range([PC], 10))
+	TriggerOverride(FourthNearest([PC]), Range(SecondNearest([PC]), 10))
+	CheckStatLT(FourthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT([PC],75,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range([PC], 10))
+	TriggerOverride(FourthNearest([PC]), Range(ThirdNearest([PC]), 10))
+	CheckStatLT(FourthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT([PC],75,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range([PC], 10))
+	TriggerOverride(FourthNearest([PC]), Range(FifthNearest([PC]), 10))
+	CheckStatLT(FourthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT([PC],75,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range(SecondNearest([PC]), 10))
+	TriggerOverride(FourthNearest([PC]), Range([PC], 10))
+	CheckStatLT(FourthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),75,RESISTFIRE)
+	CheckStatLT([PC],90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range(SecondNearest([PC]), 10))
+	TriggerOverride(FourthNearest([PC]), Range(ThirdNearest([PC]), 10))
+	CheckStatLT(FourthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range(SecondNearest([PC]), 10))
+	TriggerOverride(FourthNearest([PC]), Range(FifthNearest([PC]), 10))
+	CheckStatLT(FourthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range(ThirdNearest([PC]), 10))
+	TriggerOverride(FourthNearest([PC]), Range([PC], 10))
+	CheckStatLT(FourthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),75,RESISTFIRE)
+	CheckStatLT([PC],90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range(ThirdNearest([PC]), 10))
+	TriggerOverride(FourthNearest([PC]), Range(SecondNearest([PC]), 10))
+	CheckStatLT(FourthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range(ThirdNearest([PC]), 10))
+	TriggerOverride(FourthNearest([PC]), Range(FifthNearest([PC]), 10))
+	CheckStatLT(FourthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range(FifthNearest([PC]), 10))
+	TriggerOverride(FourthNearest([PC]), Range([PC], 10))
+	CheckStatLT(FourthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT([PC],90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range(FifthNearest([PC]), 10))
+	TriggerOverride(FourthNearest([PC]), Range(SecondNearest([PC]), 10))
+	CheckStatLT(FourthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range(FifthNearest([PC]), 10))
+	TriggerOverride(FourthNearest([PC]), Range(ThirdNearest([PC]), 10))
+	CheckStatLT(FourthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range([PC], 10))
+	TriggerOverride(FifthNearest([PC]), Range(SecondNearest([PC]), 10))
+	CheckStatLT(FifthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT([PC],75,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range([PC], 10))
+	TriggerOverride(FifthNearest([PC]), Range(ThirdNearest([PC]), 10))
+	CheckStatLT(FifthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT([PC],75,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range([PC], 10))
+	TriggerOverride(FifthNearest([PC]), Range(FourthNearest([PC]), 10))
+	CheckStatLT(FifthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT([PC],75,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range(SecondNearest([PC]), 10))
+	TriggerOverride(FifthNearest([PC]), Range([PC], 10))
+	CheckStatLT(FifthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),75,RESISTFIRE)
+	CheckStatLT([PC],90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range(SecondNearest([PC]), 10))
+	TriggerOverride(FifthNearest([PC]), Range(ThirdNearest([PC]), 10))
+	CheckStatLT(FifthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range(SecondNearest([PC]), 10))
+	TriggerOverride(FifthNearest([PC]), Range(FourthNearest([PC]), 10))
+	CheckStatLT(FifthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range(ThirdNearest([PC]), 10))
+	TriggerOverride(FifthNearest([PC]), Range([PC], 10))
+	CheckStatLT(FifthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),75,RESISTFIRE)
+	CheckStatLT([PC],90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range(ThirdNearest([PC]), 10))
+	TriggerOverride(FifthNearest([PC]), Range(SecondNearest([PC]), 10))
+	CheckStatLT(FifthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range(ThirdNearest([PC]), 10))
+	TriggerOverride(FifthNearest([PC]), Range(FourthNearest([PC]), 10))
+	CheckStatLT(FifthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range(FourthNearest([PC]), 10))
+	TriggerOverride(FifthNearest([PC]), Range([PC], 10))
+	CheckStatLT(FifthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT([PC],90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range(FourthNearest([PC]), 10))
+	TriggerOverride(FifthNearest([PC]), Range(SecondNearest([PC]), 10))
+	CheckStatLT(FifthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range(FourthNearest([PC]), 10))
+	TriggerOverride(FifthNearest([PC]), Range(ThirdNearest([PC]), 10))
+	CheckStatLT(FifthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range([PC], 10))
+	TriggerOverride(SixthNearest([PC]), Range(SecondNearest([PC]), 10))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT([PC],75,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range([PC], 10))
+	TriggerOverride(SixthNearest([PC]), Range(ThirdNearest([PC]), 10))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT([PC],75,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range([PC], 10))
+	TriggerOverride(SixthNearest([PC]), Range(FourthNearest([PC]), 10))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT([PC],75,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range([PC], 10))
+	TriggerOverride(SixthNearest([PC]), Range(FifthNearest([PC]), 10))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT([PC],75,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(SecondNearest([PC]), 10))
+	TriggerOverride(SixthNearest([PC]), Range([PC], 10))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),75,RESISTFIRE)
+	CheckStatLT([PC],90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(SecondNearest([PC]), 10))
+	TriggerOverride(SixthNearest([PC]), Range(ThirdNearest([PC]), 10))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(SecondNearest([PC]), 10))
+	TriggerOverride(SixthNearest([PC]), Range(FourthNearest([PC]), 10))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(SecondNearest([PC]), 10))
+	TriggerOverride(SixthNearest([PC]), Range(FifthNearest([PC]), 10))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(ThirdNearest([PC]), 10))
+	TriggerOverride(SixthNearest([PC]), Range([PC], 10))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),75,RESISTFIRE)
+	CheckStatLT([PC],90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(ThirdNearest([PC]), 10))
+	TriggerOverride(SixthNearest([PC]), Range(SecondNearest([PC]), 10))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(ThirdNearest([PC]), 10))
+	TriggerOverride(SixthNearest([PC]), Range(FourthNearest([PC]), 10))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(ThirdNearest([PC]), 10))
+	TriggerOverride(SixthNearest([PC]), Range(FifthNearest([PC]), 10))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(FourthNearest([PC]), 10))
+	TriggerOverride(SixthNearest([PC]), Range([PC], 10))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT([PC],90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(FourthNearest([PC]), 10))
+	TriggerOverride(SixthNearest([PC]), Range(SecondNearest([PC]), 10))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(FourthNearest([PC]), 10))
+	TriggerOverride(SixthNearest([PC]), Range(ThirdNearest([PC]), 10))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(FourthNearest([PC]), 10))
+	TriggerOverride(SixthNearest([PC]), Range(FifthNearest([PC]), 10))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(FifthNearest([PC]), 10))
+	TriggerOverride(SixthNearest([PC]), Range([PC], 10))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT([PC],90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(FifthNearest([PC]), 10))
+	TriggerOverride(SixthNearest([PC]), Range(SecondNearest([PC]), 10))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(FifthNearest([PC]), 10))
+	TriggerOverride(SixthNearest([PC]), Range(ThirdNearest([PC]), 10))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(FifthNearest([PC]), 10))
+	TriggerOverride(SixthNearest([PC]), Range(FourthNearest([PC]), 10))
+	CheckStatLT(SixthNearest([PC]),50,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),75,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),90,RESISTFIRE)
+THEN
+	RESPONSE #200
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See([PC]) 
+	TriggerOverride([PC], Range(SecondNearest([PC]), 10))
+	CheckStatLT([PC],80,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", [PC])
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See([PC]) 
+	TriggerOverride([PC], Range(ThirdNearest([PC]), 10))
+	CheckStatLT([PC],80,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", [PC])
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See([PC]) 
+	TriggerOverride([PC], Range(FourthNearest([PC]), 10))
+	CheckStatLT([PC],80,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", [PC])
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See([PC]) 
+	TriggerOverride([PC], Range(FifthNearest([PC]), 10))
+	CheckStatLT([PC],80,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", [PC])
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range([PC], 10))
+	CheckStatLT(SecondNearest([PC]),80,RESISTFIRE)
+	CheckStatLT([PC],80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range(ThirdNearest([PC]), 10))
+	CheckStatLT(SecondNearest([PC]),80,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range(FourthNearest([PC]), 10))
+	CheckStatLT(SecondNearest([PC]),80,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SecondNearest([PC])) 
+	TriggerOverride(SecondNearest([PC]), Range(FifthNearest([PC]), 10))
+	CheckStatLT(SecondNearest([PC]),80,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range([PC], 10))
+	CheckStatLT(ThirdNearest([PC]),80,RESISTFIRE)
+	CheckStatLT([PC],80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range(SecondNearest([PC]), 10))
+	CheckStatLT(ThirdNearest([PC]),80,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range(FourthNearest([PC]), 10))
+	CheckStatLT(ThirdNearest([PC]),80,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(ThirdNearest([PC])) 
+	TriggerOverride(ThirdNearest([PC]), Range(FifthNearest([PC]), 10))
+	CheckStatLT(ThirdNearest([PC]),80,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range([PC], 10))
+	CheckStatLT(FourthNearest([PC]),80,RESISTFIRE)
+	CheckStatLT([PC],80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range(SecondNearest([PC]), 10))
+	CheckStatLT(FourthNearest([PC]),80,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range(ThirdNearest([PC]), 10))
+	CheckStatLT(FourthNearest([PC]),80,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FourthNearest([PC])) 
+	TriggerOverride(FourthNearest([PC]), Range(FifthNearest([PC]), 10))
+	CheckStatLT(FourthNearest([PC]),80,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range([PC], 10))
+	CheckStatLT(FifthNearest([PC]),80,RESISTFIRE)
+	CheckStatLT([PC],80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range(SecondNearest([PC]), 10))
+	CheckStatLT(FifthNearest([PC]),80,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range(ThirdNearest([PC]), 10))
+	CheckStatLT(FifthNearest([PC]),80,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FifthNearest([PC])) 
+	TriggerOverride(FifthNearest([PC]), Range(FourthNearest([PC]), 10))
+	CheckStatLT(FifthNearest([PC]),80,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range([PC], 10))
+	CheckStatLT(SixthNearest([PC]),80,RESISTFIRE)
+	CheckStatLT([PC],80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(SecondNearest([PC]), 10))
+	CheckStatLT(SixthNearest([PC]),80,RESISTFIRE)
+	CheckStatLT(SecondNearest([PC]),80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(ThirdNearest([PC]), 10))
+	CheckStatLT(SixthNearest([PC]),80,RESISTFIRE)
+	CheckStatLT(ThirdNearest([PC]),80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(FourthNearest([PC]), 10))
+	CheckStatLT(SixthNearest([PC]),80,RESISTFIRE)
+	CheckStatLT(FourthNearest([PC]),80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SixthNearest([PC])) 
+	TriggerOverride(SixthNearest([PC]), Range(FifthNearest([PC]), 10))
+	CheckStatLT(SixthNearest([PC]),80,RESISTFIRE)
+	CheckStatLT(FifthNearest([PC]),80,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(Nearest([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTCRUSHING)
+THEN
+	RESPONSE #100
+		
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpell(LastSeenBy(Myself),CLERIC_IMPLOSION)  // SPPR728.SPL (Implosion)
+		
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SecondNearest([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTCRUSHING)
+THEN
+	RESPONSE #100
+		
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpell(LastSeenBy(Myself),CLERIC_IMPLOSION)  // SPPR728.SPL (Implosion)
+		
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(ThirdNearest([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTCRUSHING)
+THEN
+	RESPONSE #100
+		
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpell(LastSeenBy(Myself),CLERIC_IMPLOSION)  // SPPR728.SPL (Implosion)
+		
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FourthNearest([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTCRUSHING)
+THEN
+	RESPONSE #100
+		
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpell(LastSeenBy(Myself),CLERIC_IMPLOSION)  // SPPR728.SPL (Implosion)
+		
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FifthNearest([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTCRUSHING)
+THEN
+	RESPONSE #100
+		
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpell(LastSeenBy(Myself),CLERIC_IMPLOSION)  // SPPR728.SPL (Implosion)
+		
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(Nearest([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
+THEN
+	RESPONSE #100
+		
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpell(LastSeenBy(Myself),CLERIC_IMPLOSION)  // SPPR728.SPL (Implosion)
+		
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SecondNearest([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
+THEN
+	RESPONSE #100
+		
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpell(LastSeenBy(Myself),CLERIC_IMPLOSION)  // SPPR728.SPL (Implosion)
+		
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(ThirdNearest([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
+THEN
+	RESPONSE #100
+		
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpell(LastSeenBy(Myself),CLERIC_IMPLOSION)  // SPPR728.SPL (Implosion)
+		
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FourthNearest([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
+THEN
+	RESPONSE #100
+		
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpell(LastSeenBy(Myself),CLERIC_IMPLOSION)  // SPPR728.SPL (Implosion)
+		
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FifthNearest([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
+THEN
+	RESPONSE #100
+		
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpell(LastSeenBy(Myself),CLERIC_IMPLOSION)  // SPPR728.SPL (Implosion)
+		
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(Nearest([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
+THEN
+	RESPONSE #100
+		
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpell(LastSeenBy(Myself),CLERIC_IMPLOSION)  // SPPR728.SPL (Implosion)
+		
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(SecondNearest([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
+THEN
+	RESPONSE #100
+		
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpell(LastSeenBy(Myself),CLERIC_IMPLOSION)  // SPPR728.SPL (Implosion)
+		
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(ThirdNearest([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
+THEN
+	RESPONSE #100
+		
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpell(LastSeenBy(Myself),CLERIC_IMPLOSION)  // SPPR728.SPL (Implosion)
+		
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FourthNearest([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
+THEN
+	RESPONSE #100
+		
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpell(LastSeenBy(Myself),CLERIC_IMPLOSION)  // SPPR728.SPL (Implosion)
+		
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	See(FifthNearest([PC]))
+	!HasBounceEffects(LastSeenBy(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
+THEN
+	RESPONSE #100
+		
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpell(LastSeenBy(Myself),CLERIC_IMPLOSION)  // SPPR728.SPL (Implosion)
+		
+END
+
+IF
 	Global("Iapcastts","GLOBAL",0)
 	Global("Iatsinvulner","LOCALS",1)
 THEN
@@ -54,15 +2033,6 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("partyfled","LOCALS",0)
-END
-
-IF
-	Global("Iapcastts","GLOBAL",0)
-	See(NearestEnemyOf(Myself))
-	!StateCheck(Myself,STATE_HASTED)
-THEN
-	RESPONSE #100
-		ForceSpell(Myself,GOLEM_HASTE)  // SPIN978.SPL (Golem Haste)
 END
 
 IF

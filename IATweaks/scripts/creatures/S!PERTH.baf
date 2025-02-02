@@ -51,19 +51,6 @@ IF
 		InMyArea(Player1)
 		Detect([PC])
 	Global("Iaperth01","LOCALS",0)
-	HasItem("POTN33",Myself)  // Barbarian Essence
-THEN
-	RESPONSE #100
-		ReallyForceSpellRES("PTN33X",Myself)  // No such index
-		DestroyItem("POTN33")  // Barbarian Essence
-		Continue()
-END
-
-IF
-	OR(2)
-		InMyArea(Player1)
-		Detect([PC])
-	Global("Iaperth01","LOCALS",0)
 THEN
 	RESPONSE #100
 		SetGlobal("Iaperth01","LOCALS",1)

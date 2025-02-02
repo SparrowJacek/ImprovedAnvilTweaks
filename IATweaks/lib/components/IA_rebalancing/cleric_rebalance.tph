@@ -506,7 +506,7 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
     THEN BEGIN
       LPF ~ADD_ITEM_EQEFFECT~
         INT_VAR
-          opcode = 335
+          opcode = 328
           target = 1
           parameter1 = %shield_equipped_state%
           timing = 2  
@@ -1609,7 +1609,7 @@ COPY_EXISTING ~spcl942.spl~ ~override/s!divint.spl~
   END
   LPF ~ALTER_EFFECT~
     INT_VAR
-      match_target = 3
+      match_target = 6
       target = 5
   END
   BUT_ONLY

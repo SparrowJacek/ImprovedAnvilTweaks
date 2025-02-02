@@ -128,3 +128,12 @@ COPY_EXISTING ~SPWII13.spl~ ~override~
 /////////////////// Asylum Tome //////////////////////
 
 COMPILE ~IATweaks\scripts\others\PPBOOK.BAF~
+
+// Add Rest effect to spell which triggers when PARTY_FLED is detected
+
+COPY_EXISTING ~SPWII07.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 81
+      opcode = 316
+  END

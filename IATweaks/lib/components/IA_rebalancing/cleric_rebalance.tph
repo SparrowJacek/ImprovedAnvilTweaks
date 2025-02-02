@@ -2923,3 +2923,99 @@ COPY_EXISTING ~UDPRINCE.cre~ ~override~
   END
 
 COMPILE ~IATweaks\scripts\creatures\S!PRINCE.BAF~
+
+// Chandrilla from evil Underdark Party
+
+COPY_EXISTING ~gppri1.cre~ ~override~
+  WRITE_LONG 0x14 18000 // Exp
+  WRITE_SHORT 0x24 100 // HP
+  WRITE_SHORT 0x26 100 // HP
+  WRITE_BYTE 0x52 6 // Thac0
+  WRITE_BYTE 0x54 2  // Saves
+  WRITE_BYTE 0x55 6 // Saves
+  WRITE_BYTE 0x56 5  // Saves
+  WRITE_BYTE 0x57 8  // Saves
+  WRITE_BYTE 0x58 7 // Saves
+  WRITE_BYTE 0x234 23 // Level 1
+  WRITE_BYTE 0x238 17 // Strength
+  WRITE_BYTE 0x23c 19 // Dexterity
+  WRITE_BYTE 0x23d 15 // Constitution
+  WRITE_LONG 0x244 0x40290000 // Kit = Tempus
+
+  LPF ~ADD_CRE_EFFECT~ // ** in Sword and Shield
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 2
+      parameter2 = 112
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // * in Flails
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 1
+      parameter2 = 100
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+  
+  PATCH_FOR_EACH item_to_remove IN ~SLNG01~ ~BULL01~ ~PLAT01~ ~SHLD03~ ~BLUN04~ BEGIN
+    LPF ~DELETE_CRE_ITEM~
+      STR_VAR
+        item_to_delete = EVAL ~%item_to_remove%~
+    END
+  END
+
+  ADD_CRE_ITEM ~HELM01~ #0 #0 #0 ~NONE~ ~HELMET~
+  ADD_CRE_ITEM ~DWPLAT01~ #0 #0 #0 ~NONE~ ~ARMOR~
+  ADD_CRE_ITEM ~DWSHLD01~ #0 #0 #0 ~NONE~ ~SHIELD~
+  ADD_CRE_ITEM ~DWBLUN01~ #0 #0 #0 ~NONE~ ~WEAPON1~
+  ADD_CRE_ITEM ~SHLD30~ #0 #0 #0 ~NONE~ ~INV12~
+  ADD_CRE_ITEM ~PLAT04~ #0 #0 #0 ~NONE~ ~INV13~
+  ADD_CRE_ITEM ~BLUN13~ #0 #0 #0 ~NONE~ ~INV14~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPPR102~ #0 ~priest~ ( 5 ) // Command
+  ADD_MEMORIZED_SPELL ~SPPR111~ #0 ~priest~ ( 2 ) // Armor of Faith
+  ADD_MEMORIZED_SPELL ~SPPR208~ #1 ~priest~ ( 2 ) // Hold Person
+  ADD_MEMORIZED_SPELL ~SPPR212~ #1 ~priest~ ( 2 ) // Slow Poison
+  ADD_MEMORIZED_SPELL ~SPPR301~ #2 ~priest~ ( 2 ) // Animate Dead
+  ADD_MEMORIZED_SPELL ~SPPR314~ #2 ~priest~ ( 5 ) // Unholy Blight
+  ADD_MEMORIZED_SPELL ~SPPR318~ #2 ~priest~ ( 2 ) // Zone of Sweet Air
+  ADD_MEMORIZED_SPELL ~SPPR403~ #3 ~priest~ ( 2 ) // Free Actions
+  ADD_MEMORIZED_SPELL ~SPPR404~ #3 ~priest~ ( 2 ) // Neutralize Poison
+  ADD_MEMORIZED_SPELL ~SPPR406F~ #3 ~priest~ ( 1 ) // Defensive Harmony
+  ADD_MEMORIZED_SPELL ~SPPR412~ #3 ~priest~ ( 1 ) // Holy Power
+  ADD_MEMORIZED_SPELL ~SPPR505~ #4 ~priest~ ( 1 ) // True Seeing
+  ADD_MEMORIZED_SPELL ~SPPR508~ #4 ~priest~ ( 2 ) // Chaotic Commands
+  ADD_MEMORIZED_SPELL ~SPPR512~ #4 ~priest~ ( 2 ) // Greater Command
+  ADD_MEMORIZED_SPELL ~SPPR608~ #5 ~priest~ ( 2 ) // Harm
+  ADD_MEMORIZED_SPELL ~SPPR713~ #6 ~priest~ ( 1 ) // Greater Restoration
+  ADD_MEMORIZED_SPELL ~SPCL943~ #0 ~innate~ ( 1 ) // Purify Aura
+  ADD_MEMORIZED_SPELL ~S!DIVINT~ #0 ~innate~ ( 1 ) // Divine Intervention
+
+COMPILE ~IATweaks\scripts\creatures\S!CHANDR.BAF~

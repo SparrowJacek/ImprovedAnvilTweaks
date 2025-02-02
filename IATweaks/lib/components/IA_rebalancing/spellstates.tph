@@ -40,6 +40,25 @@ OUTER_SET undispellable_prot_from_level_drain = %new_state_index%
 
 LAF resolve_state STR_VAR new_state_id = ~MISSILE_IMMUNITY~ RET new_state_index END
 OUTER_SET missile_immunity = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~HOLD_IMMUNITY~ RET new_state_index END
+OUTER_SET hold_immunity = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~PARALYZE_IMMUNITY~ RET new_state_index END
+OUTER_SET paralyze_immunity = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~STUN_IMMUNITY~ RET new_state_index END
+OUTER_SET stun_immunity = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~CHARM_DOMINATION_IMMUNITY~ RET new_state_index END
+OUTER_SET charm_domination_immunity = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~CONFUSION_IMMUNITY~ RET new_state_index END
+OUTER_SET confusion_immunity = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~SLEEP_IMMUNITY~ RET new_state_index END
+OUTER_SET sleep_immunity = %new_state_index%
+
 // Beast Master
 LAF resolve_state STR_VAR new_state_id = ~UNIFIED_MINDS~ RET new_state_index END
 OUTER_SET unified_minds_state = %new_state_index%
@@ -67,6 +86,46 @@ OUTER_SET non_detection_state = %new_state_index%
 
 ///////////////// Add existing Spellstates to existing spells
 
+OUTER_SET SI_spellstate = 56 // Spell Immunities
+ACTION_FOR_EACH spell_immunity_subspell IN ~SPWI590~ ~SPWI591~ ~SPWI592~ ~SPWI593~ ~SPWI594~ ~SPWI595~ ~SPWI596~ ~SPWI597~ BEGIN
+  COPY_EXISTING ~%spell_immunity_subspell%.spl~ ~override~
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        opcode = 328
+        target = 1
+        power = 5
+        parameter2 = SI_spellstate
+        resist_dispel = 0
+        duration = 120
+        special = 1
+        insert_point = 1
+    END
+  OUTER_SET SI_spellstate = SI_spellstate + 1
+END
+
+OUTER_SET enfeebled_spellstate = 4 // ENFEEBLED
+ACTION_FOR_EACH spell_causing_enfeeblement IN ~INSANITY~ ~spwi509~ ~SPWI714~ BEGIN
+  COPY_EXISTING ~%spell_causing_enfeeblement%.spl~ ~override~
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 76
+        opcode = 328
+        parameter2 = enfeebled_spellstate
+        special = 1
+    END
+END
+
+COPY_EXISTING ~SPPR109.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 153
+      opcode = 328
+      parameter1 = 0
+      parameter2 = 20 // Sanctuary
+      special = 1
+      insert_point = 99
+  END
+
 COPY_EXISTING ~SPPR113.spl~ ~override~ // Doom
   LPF ~ADD_SPELL_EFFECT~
     INT_VAR
@@ -80,19 +139,39 @@ COPY_EXISTING ~SPPR113.spl~ ~override~ // Doom
       insert_point = 1
   END
 
-OUTER_SET first_SI_spellstate = 56 // Spell Immunities
-ACTION_FOR_EACH spell_immunity_subspell IN ~SPWI590~ ~SPWI591~ ~SPWI592~ ~SPWI593~ ~SPWI594~ ~SPWI595~ ~SPWI596~ ~SPWI597~ BEGIN
-  COPY_EXISTING ~%spell_immunity_subspell%.spl~ ~override~
-    LPF ~ADD_SPELL_EFFECT~
-      INT_VAR
-        opcode = 328
-        target = 1
-        power = 5
-        parameter2 = first_SI_spellstate
-        resist_dispel = 0
-        duration = 120
-        special = 1
-        insert_point = 1
-    END
-  OUTER_SET first_SI_spellstate = first_SI_spellstate + 1
-END
+COPY_EXISTING ~SPPR201.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 129
+      opcode = 328
+      parameter1 = 0
+      parameter2 = 23 // Aid
+      special = 1
+      insert_point = 99
+  END
+
+COPY_EXISTING ~SPPR203D.spl~ ~override~
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 328
+      target = 2
+      power = 1
+      parameter2 = 10 // Beneficial Chant
+      resist_dispel = 3
+      duration = 60
+      special = 1
+      insert_point = 99
+  END
+
+COPY_EXISTING ~SPPR203E.spl~ ~override~
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 328
+      target = 2
+      power = 1
+      parameter2 = 11 // Detrimental Chant
+      resist_dispel = 1
+      duration = 60
+      special = 1
+      insert_point = 99
+  END

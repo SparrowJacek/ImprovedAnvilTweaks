@@ -891,6 +891,21 @@ COPY_EXISTING ~S!DROWW.cre~ ~override~
 
 ///////////////////////// Mind Flayers ///////////////////////////////
 
+// Make Psionic Domination and Psionic Blast bypass Magic Resistance and set its power to 0
+COPY_EXISTING ~SPIN974.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      resist_dispel = 2
+      power = 0
+  END
+
+COPY_EXISTING ~SPIN975.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      resist_dispel = 2
+      power = 0
+  END
+
 // Add spell which has a chance to grant protection from opcode 12 when hit
 
 COPY ~IATweaks\resources\spl\s!mfprot.spl~ ~override~

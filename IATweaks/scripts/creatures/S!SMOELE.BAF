@@ -13,112 +13,18 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
 		SetGlobal("Iatimer","LOCALS",1)
-		SetGlobal("Iawhirlwind","LOCALS",0)
 END
 
 IF
-	GlobalGT("Iawhirlwind","LOCALS",0)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-THEN
-	RESPONSE #100
-		SetGlobal("Iawhirlwind","LOCALS",0)
-		Continue()
-END
-IF
 	Allegiance(Myself,ENEMY)
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	Range(Player1, 7)
+	Range([PC], 7)
 	OR(2)
-	    CheckStatLT(Player1,100,RESISTELECTRICITY)
-	    CheckStatLT(Player1,100,RESISTSLASHING)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawhirlwind","LOCALS",1)
-		Continue()
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	Range(Player2, 7)
-	OR(2)
-	    CheckStatLT(Player2,100,RESISTELECTRICITY)
-	    CheckStatLT(Player2,100,RESISTSLASHING)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawhirlwind","LOCALS",1)
-		Continue()
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	Range(Player3, 7)
-	OR(2)
-	    CheckStatLT(Player3,100,RESISTELECTRICITY)
-	    CheckStatLT(Player3,100,RESISTSLASHING)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawhirlwind","LOCALS",1)
-		Continue()
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	Range(Player4, 7)
-	OR(2)
-	    CheckStatLT(Player4,100,RESISTELECTRICITY)
-	    CheckStatLT(Player4,100,RESISTSLASHING)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawhirlwind","LOCALS",1)
-		Continue()
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	Range(Player5, 7)
-	OR(2)
-	    CheckStatLT(Player5,100,RESISTELECTRICITY)
-	    CheckStatLT(Player5,100,RESISTSLASHING)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawhirlwind","LOCALS",1)
-		Continue()
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	Range(Player6, 7)
-	OR(2)
-	    CheckStatLT(Player6,100,RESISTELECTRICITY)
-	    CheckStatLT(Player6,100,RESISTSLASHING)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iawhirlwind","LOCALS",1)
-		Continue()
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	Global("Iainitial","LOCALS",0)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iainitial","LOCALS",1)
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	GlobalGT("Iawhirlwind","LOCALS",1)
+	    CheckStatLT([PC],100,RESISTELECTRICITY)
+	    CheckStatLT([PC],100,RESISTSLASHING)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SetGlobal("Iawhirlwind","LOCALS",0)
 		ForceSpellRES("S!WHIRL2",NearestEnemyOf(Myself))
 END
 

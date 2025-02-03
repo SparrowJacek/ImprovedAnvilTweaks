@@ -16,95 +16,97 @@ THEN
 END
 
 IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-THEN
-	RESPONSE #100
-		SetGlobal("Iaacidcircle","LOCALS",0)
-		Continue()
-END
-IF
 	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	Range(Player1, 12)
-	CheckStatLT(Player1,100,RESISTACID)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iaacidcircle","LOCALS",1)
-		Continue()
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	Range(Player2, 12)
-	CheckStatLT(Player2,100,RESISTACID)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iaacidcircle","LOCALS",1)
-		Continue()
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	Range(Player3, 12)
-	CheckStatLT(Player3,100,RESISTACID)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iaacidcircle","LOCALS",1)
-		Continue()
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	Range(Player4, 12)
-	CheckStatLT(Player4,100,RESISTACID)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iaacidcircle","LOCALS",1)
-		Continue()
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	Range(Player5, 12)
-	CheckStatLT(Player5,100,RESISTACID)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iaacidcircle","LOCALS",1)
-		Continue()
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	Range(Player6, 12)
-	CheckStatLT(Player6,100,RESISTACID)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iaacidcircle","LOCALS",1)
-		Continue()
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	GlobalGT("Iaacidcircle","LOCALS",1)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	Range(FourthNearest([PC]),15)
+	OR(2)
+	    CheckStatLT([PC],50,RESISTACID)
+	    CheckStatLT(SecondNearest([PC]),50,RESISTACID)
+	OR(2)
+	    CheckStatLT([PC],50,RESISTACID)
+	    CheckStatLT(ThirdNearest([PC]),50,RESISTACID)
+	OR(2)
+	    CheckStatLT([PC],50,RESISTACID)
+	    CheckStatLT(FourthNearest([PC]),50,RESISTACID)
+	OR(2)
+	    CheckStatLT(SecondNearest([PC]),50,RESISTACID)
+	    CheckStatLT(ThirdNearest([PC]),50,RESISTACID)
+	OR(2)
+	    CheckStatLT(SecondNearest([PC]),50,RESISTACID)
+	    CheckStatLT(FourthNearest([PC]),50,RESISTACID)
+	OR(2)
+	    CheckStatLT(ThirdNearest([PC]),50,RESISTACID)
+	    CheckStatLT(FourthNearest([PC]),50,RESISTACID)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		ForceSpellRES("S!ACIDCI",Myself)
+		ForceSpellRES("S!ACIDCI", Myself)
 END
 
 IF
 	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	Global("Iainitial","LOCALS",0)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	Range(ThirdNearest([PC]),15)
+	OR(2)
+	    CheckStatLT([PC],50,RESISTACID)
+	    CheckStatLT(SecondNearest([PC]),50,RESISTACID)
+	OR(2)
+	    CheckStatLT([PC],50,RESISTACID)
+	    CheckStatLT(ThirdNearest([PC]),50,RESISTACID)
+	OR(2)
+	    CheckStatLT(SecondNearest([PC]),50,RESISTACID)
+	    CheckStatLT(ThirdNearest([PC]),50,RESISTACID)
 THEN
 	RESPONSE #100
-		IncrementGlobal("Iainitial","LOCALS",1)
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!ACIDCI", Myself)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	Range(FourthNearest([PC]),15)
+	OR(2)
+	    CheckStatLT([PC],80,RESISTACID)
+	    CheckStatLT(SecondNearest([PC]),80,RESISTACID)
+	OR(2)
+	    CheckStatLT([PC],80,RESISTACID)
+	    CheckStatLT(ThirdNearest([PC]),80,RESISTACID)
+	OR(2)
+	    CheckStatLT([PC],80,RESISTACID)
+	    CheckStatLT(FourthNearest([PC]),80,RESISTACID)
+	OR(2)
+	    CheckStatLT(SecondNearest([PC]),80,RESISTACID)
+	    CheckStatLT(ThirdNearest([PC]),80,RESISTACID)
+	OR(2)
+	    CheckStatLT(SecondNearest([PC]),80,RESISTACID)
+	    CheckStatLT(FourthNearest([PC]),80,RESISTACID)
+	OR(2)
+	    CheckStatLT(ThirdNearest([PC]),80,RESISTACID)
+	    CheckStatLT(FourthNearest([PC]),80,RESISTACID)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!ACIDCI", Myself)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("Iaspell","LOCALS")
+	Range(ThirdNearest([PC]),15)
+	OR(2)
+	    CheckStatLT([PC],80,RESISTACID)
+	    CheckStatLT(SecondNearest([PC]),80,RESISTACID)
+	OR(2)
+	    CheckStatLT([PC],80,RESISTACID)
+	    CheckStatLT(ThirdNearest([PC]),80,RESISTACID)
+	OR(2)
+	    CheckStatLT(SecondNearest([PC]),80,RESISTACID)
+	    CheckStatLT(ThirdNearest([PC]),80,RESISTACID)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
+		ForceSpellRES("S!ACIDCI", Myself)
 END
 
 IF

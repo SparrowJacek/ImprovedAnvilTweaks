@@ -47,7 +47,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", [PC])
+		ForceSpellRES("S!FISSUR", [PC])
 	RESPONSE #50
 	    Continue()
 END
@@ -64,7 +64,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", [PC])
+		ForceSpellRES("S!FISSUR", [PC])
 	RESPONSE #50
 	    Continue()
 END
@@ -81,7 +81,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", [PC])
+		ForceSpellRES("S!FISSUR", [PC])
 	RESPONSE #50
 	    Continue()
 END
@@ -98,7 +98,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", [PC])
+		ForceSpellRES("S!FISSUR", [PC])
 	RESPONSE #50
 	    Continue()
 END
@@ -115,7 +115,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", [PC])
+		ForceSpellRES("S!FISSUR", [PC])
 	RESPONSE #50
 	    Continue()
 END
@@ -132,7 +132,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", [PC])
+		ForceSpellRES("S!FISSUR", [PC])
 	RESPONSE #50
 	    Continue()
 END
@@ -149,7 +149,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", [PC])
+		ForceSpellRES("S!FISSUR", [PC])
 	RESPONSE #50
 	    Continue()
 END
@@ -166,7 +166,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", [PC])
+		ForceSpellRES("S!FISSUR", [PC])
 	RESPONSE #50
 	    Continue()
 END
@@ -183,7 +183,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", [PC])
+		ForceSpellRES("S!FISSUR", [PC])
 	RESPONSE #50
 	    Continue()
 END
@@ -200,7 +200,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", [PC])
+		ForceSpellRES("S!FISSUR", [PC])
 	RESPONSE #50
 	    Continue()
 END
@@ -217,7 +217,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", [PC])
+		ForceSpellRES("S!FISSUR", [PC])
 	RESPONSE #50
 	    Continue()
 END
@@ -234,7 +234,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", [PC])
+		ForceSpellRES("S!FISSUR", [PC])
 	RESPONSE #50
 	    Continue()
 END
@@ -251,7 +251,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+		ForceSpellRES("S!FISSUR", SecondNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -268,7 +268,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+		ForceSpellRES("S!FISSUR", SecondNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -285,7 +285,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+		ForceSpellRES("S!FISSUR", SecondNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -302,7 +302,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+		ForceSpellRES("S!FISSUR", SecondNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -319,7 +319,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+		ForceSpellRES("S!FISSUR", SecondNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -336,7 +336,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+		ForceSpellRES("S!FISSUR", SecondNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -353,7 +353,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+		ForceSpellRES("S!FISSUR", SecondNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -370,7 +370,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+		ForceSpellRES("S!FISSUR", SecondNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -387,7 +387,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+		ForceSpellRES("S!FISSUR", SecondNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -404,7 +404,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+		ForceSpellRES("S!FISSUR", SecondNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -421,7 +421,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+		ForceSpellRES("S!FISSUR", SecondNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -438,7 +438,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+		ForceSpellRES("S!FISSUR", SecondNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -455,7 +455,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+		ForceSpellRES("S!FISSUR", ThirdNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -472,7 +472,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+		ForceSpellRES("S!FISSUR", ThirdNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -489,7 +489,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+		ForceSpellRES("S!FISSUR", ThirdNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -506,7 +506,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+		ForceSpellRES("S!FISSUR", ThirdNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -523,7 +523,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+		ForceSpellRES("S!FISSUR", ThirdNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -540,7 +540,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+		ForceSpellRES("S!FISSUR", ThirdNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -557,7 +557,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+		ForceSpellRES("S!FISSUR", ThirdNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -574,7 +574,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+		ForceSpellRES("S!FISSUR", ThirdNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -591,7 +591,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+		ForceSpellRES("S!FISSUR", ThirdNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -608,7 +608,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+		ForceSpellRES("S!FISSUR", ThirdNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -625,7 +625,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+		ForceSpellRES("S!FISSUR", ThirdNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -642,7 +642,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+		ForceSpellRES("S!FISSUR", ThirdNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -659,7 +659,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FourthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -676,7 +676,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FourthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -693,7 +693,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FourthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -710,7 +710,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FourthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -727,7 +727,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FourthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -744,7 +744,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FourthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -761,7 +761,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FourthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -778,7 +778,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FourthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -795,7 +795,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FourthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -812,7 +812,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FourthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -829,7 +829,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FourthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -846,7 +846,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FourthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -863,7 +863,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FifthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -880,7 +880,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FifthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -897,7 +897,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FifthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -914,7 +914,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FifthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -931,7 +931,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FifthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -948,7 +948,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FifthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -965,7 +965,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FifthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -982,7 +982,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FifthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -999,7 +999,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FifthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1016,7 +1016,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FifthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1033,7 +1033,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FifthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1050,7 +1050,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FifthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1067,7 +1067,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1084,7 +1084,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1101,7 +1101,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1118,7 +1118,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1135,7 +1135,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1152,7 +1152,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1169,7 +1169,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1186,7 +1186,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1203,7 +1203,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1220,7 +1220,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1237,7 +1237,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1254,7 +1254,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1271,7 +1271,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1288,7 +1288,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1305,7 +1305,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1322,7 +1322,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1339,7 +1339,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1356,7 +1356,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1373,7 +1373,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1390,7 +1390,7 @@ IF
 THEN
 	RESPONSE #200
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1405,7 +1405,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", [PC])
+		ForceSpellRES("S!FISSUR", [PC])
 	RESPONSE #50
 	    Continue()
 END
@@ -1420,7 +1420,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", [PC])
+		ForceSpellRES("S!FISSUR", [PC])
 	RESPONSE #50
 	    Continue()
 END
@@ -1435,7 +1435,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", [PC])
+		ForceSpellRES("S!FISSUR", [PC])
 	RESPONSE #50
 	    Continue()
 END
@@ -1450,7 +1450,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", [PC])
+		ForceSpellRES("S!FISSUR", [PC])
 	RESPONSE #50
 	    Continue()
 END
@@ -1465,7 +1465,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+		ForceSpellRES("S!FISSUR", SecondNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1480,7 +1480,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+		ForceSpellRES("S!FISSUR", SecondNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1495,7 +1495,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+		ForceSpellRES("S!FISSUR", SecondNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1510,7 +1510,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SecondNearest([PC]))
+		ForceSpellRES("S!FISSUR", SecondNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1525,7 +1525,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+		ForceSpellRES("S!FISSUR", ThirdNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1540,7 +1540,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+		ForceSpellRES("S!FISSUR", ThirdNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1555,7 +1555,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+		ForceSpellRES("S!FISSUR", ThirdNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1570,7 +1570,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", ThirdNearest([PC]))
+		ForceSpellRES("S!FISSUR", ThirdNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1585,7 +1585,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FourthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1600,7 +1600,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FourthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1615,7 +1615,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FourthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1630,7 +1630,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FourthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FourthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1645,7 +1645,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FifthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1660,7 +1660,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FifthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1675,7 +1675,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FifthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1690,7 +1690,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", FifthNearest([PC]))
+		ForceSpellRES("S!FISSUR", FifthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1705,7 +1705,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1720,7 +1720,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1735,7 +1735,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1750,7 +1750,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END
@@ -1765,7 +1765,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("Iaspell","LOCALS",THREE_ROUNDS)
-		SpellNoDecRES("S!FISSUR", SixthNearest([PC]))
+		ForceSpellRES("S!FISSUR", SixthNearest([PC]))
 	RESPONSE #50
 	    Continue()
 END

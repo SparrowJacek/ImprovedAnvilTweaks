@@ -26,84 +26,8 @@ THEN
 END
 
 IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(NearestEnemyOfType([PC]))
-THEN
-	RESPONSE #100
-		SetGlobal("IaMindAlliesNearby","LOCALS",0)
-		Continue()
-END
-
-IF
-	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
-	GlobalGT("IaMind02","LOCALS",0)
-	Allegiance(Myself,ENEMY)
-THEN
-	RESPONSE #100
-		IncrementGlobal("IaMind02","LOCALS",-1)
-		SetGlobalTimerRandom("IaSoftenMind","LOCALS",5,11)
-		Continue()
-END
-
-IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(NearestAllyOf(Myself))
-	TriggerOverride(NearestAllyOf(Myself),Race(Myself,MIND_FLAYER))
-THEN
-	RESPONSE #100
-		IncrementGlobal("IaMindAlliesNearby","LOCALS",1)
-		Continue()
-END
-
-IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(SecondNearestAllyOf(Myself))
-	TriggerOverride(SecondNearestAllyOf(Myself),Race(Myself,MIND_FLAYER))
-THEN
-	RESPONSE #100
-		IncrementGlobal("IaMindAlliesNearby","LOCALS",1)
-		Continue()
-END
-
-IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(ThirdNearestAllyOf(Myself))
-	TriggerOverride(ThirdNearestAllyOf(Myself),Race(Myself,MIND_FLAYER))
-THEN
-	RESPONSE #100
-		IncrementGlobal("IaMindAlliesNearby","LOCALS",1)
-		Continue()
-END
-
-IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(FourthNearestAllyOf(Myself))
-	TriggerOverride(FourthNearestAllyOf(Myself),Race(Myself,MIND_FLAYER))
-THEN
-	RESPONSE #100
-		IncrementGlobal("IaMindAlliesNearby","LOCALS",1)
-		Continue()
-END
-
-IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(FifthNearestAllyOf(Myself))
-	TriggerOverride(FifthNearestAllyOf(Myself),Race(Myself,MIND_FLAYER))
-THEN
-	RESPONSE #100
-		IncrementGlobal("IaMindAlliesNearby","LOCALS",1)
-		Continue()
-END
-
-IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(NearestEnemyOfType([PC]))
@@ -117,7 +41,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(SecondNearestEnemyOfType([PC]))
@@ -131,7 +55,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(ThirdNearestEnemyOfType([PC]))
@@ -145,7 +69,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(FourthNearestEnemyOfType([PC]))
@@ -159,7 +83,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(FifthNearestEnemyOfType([PC]))
@@ -173,7 +97,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(SixthNearestEnemyOfType([PC]))
@@ -187,7 +111,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(NearestEnemyOfType([PC]))
@@ -201,7 +125,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(SecondNearestEnemyOfType([PC]))
@@ -215,7 +139,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(ThirdNearestEnemyOfType([PC]))
@@ -229,7 +153,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(FourthNearestEnemyOfType([PC]))
@@ -243,7 +167,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(FifthNearestEnemyOfType([PC]))
@@ -257,7 +181,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(SixthNearestEnemyOfType([PC]))
@@ -271,7 +195,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(NearestEnemyOfType([PC]))
@@ -285,7 +209,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(SecondNearestEnemyOfType([PC]))
@@ -299,7 +223,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(ThirdNearestEnemyOfType([PC]))
@@ -313,7 +237,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(FourthNearestEnemyOfType([PC]))
@@ -327,7 +251,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(FifthNearestEnemyOfType([PC]))
@@ -341,7 +265,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(SixthNearestEnemyOfType([PC]))
@@ -355,7 +279,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(NearestEnemyOfType([PC]))
@@ -369,7 +293,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(SecondNearestEnemyOfType([PC]))
@@ -383,7 +307,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(ThirdNearestEnemyOfType([PC]))
@@ -397,7 +321,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(FourthNearestEnemyOfType([PC]))
@@ -411,7 +335,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(FifthNearestEnemyOfType([PC]))
@@ -425,7 +349,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(SixthNearestEnemyOfType([PC]))
@@ -439,7 +363,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(NearestEnemyOfType([PC]))
@@ -453,7 +377,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(SecondNearestEnemyOfType([PC]))
@@ -467,7 +391,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(ThirdNearestEnemyOfType([PC]))
@@ -481,7 +405,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(FourthNearestEnemyOfType([PC]))
@@ -495,7 +419,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(FifthNearestEnemyOfType([PC]))
@@ -509,7 +433,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(SixthNearestEnemyOfType([PC]))
@@ -529,9 +453,7 @@ IF
 	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
 	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
 THEN
 	RESPONSE #100
@@ -548,9 +470,7 @@ IF
 	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
 	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
 THEN
 	RESPONSE #100
@@ -567,9 +487,7 @@ IF
 	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
 	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
 THEN
 	RESPONSE #100
@@ -586,9 +504,7 @@ IF
 	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
 	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
 THEN
 	RESPONSE #100
@@ -605,9 +521,7 @@ IF
 	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
 	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
 THEN
 	RESPONSE #100
@@ -621,12 +535,9 @@ IF
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(SixthNearestEnemyOfType([PC]))
-	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
 	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
 THEN
 	RESPONSE #100
@@ -641,23 +552,8 @@ IF
 	See(NearestEnemyOfType([PC]))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
-	!HasItemEquiped("shld25",LastSeenBy(Myself))  // Shield of Harmony +2
-	!HasItemEquiped("sw2h14",LastSeenBy(Myself))  // Lilarcor
-	!HasItemEquiped("S!leat03",LastSeenBy(Myself))  // Improved Corthala Family Armor
-	!HasItemEquiped("S!sw22",LastSeenBy(Myself))  // Githzerai Blade +5
-	!HasItemEquiped("S!shld01",LastSeenBy(Myself))  // Delryn Family Legacy +4
-	!HasItemEquiped("S!sw04",LastSeenBy(Myself))  // Judgement Day +5
-	!HasItemEquiped("S!sw07",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw08",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw09",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw10",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw12",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("npchan",LastSeenBy(Myself))  // Corthala Family Armor
-	!HasItemEquiped("helm06",LastSeenBy(Myself))  // Helm of Charm Protection
-	!Kit(LastSeenBy(Myself),INQUISITOR)
-	!Kit(LastSeenBy(Myself),CAVALIER)
+	!CheckSpellState(LastSeenBy(Myself),CHARM_DOMINATION_IMMUNITY)
+	!CheckSpellState(LastSeenBy(Myself),SI_ENCHANTMENT)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
 	!HasBounceEffects(LastSeenBy(Myself))
 	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
@@ -674,23 +570,8 @@ IF
 	See(SecondNearestEnemyOfType([PC]))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
-	!HasItemEquiped("shld25",LastSeenBy(Myself))  // Shield of Harmony +2
-	!HasItemEquiped("sw2h14",LastSeenBy(Myself))  // Lilarcor
-	!HasItemEquiped("S!leat03",LastSeenBy(Myself))  // Improved Corthala Family Armor
-	!HasItemEquiped("S!sw22",LastSeenBy(Myself))  // Githzerai Blade +5
-	!HasItemEquiped("S!shld01",LastSeenBy(Myself))  // Delryn Family Legacy +4
-	!HasItemEquiped("S!sw04",LastSeenBy(Myself))  // Judgement Day +5
-	!HasItemEquiped("S!sw07",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw08",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw09",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw10",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw12",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("npchan",LastSeenBy(Myself))  // Corthala Family Armor
-	!HasItemEquiped("helm06",LastSeenBy(Myself))  // Helm of Charm Protection
-	!Kit(LastSeenBy(Myself),INQUISITOR)
-	!Kit(LastSeenBy(Myself),CAVALIER)
+	!CheckSpellState(LastSeenBy(Myself),CHARM_DOMINATION_IMMUNITY)
+	!CheckSpellState(LastSeenBy(Myself),SI_ENCHANTMENT)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
 	!HasBounceEffects(LastSeenBy(Myself))
 	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
@@ -707,23 +588,8 @@ IF
 	See(ThirdNearestEnemyOfType([PC]))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
-	!HasItemEquiped("shld25",LastSeenBy(Myself))  // Shield of Harmony +2
-	!HasItemEquiped("sw2h14",LastSeenBy(Myself))  // Lilarcor
-	!HasItemEquiped("S!leat03",LastSeenBy(Myself))  // Improved Corthala Family Armor
-	!HasItemEquiped("S!sw22",LastSeenBy(Myself))  // Githzerai Blade +5
-	!HasItemEquiped("S!shld01",LastSeenBy(Myself))  // Delryn Family Legacy +4
-	!HasItemEquiped("S!sw04",LastSeenBy(Myself))  // Judgement Day +5
-	!HasItemEquiped("S!sw07",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw08",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw09",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw10",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw12",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("npchan",LastSeenBy(Myself))  // Corthala Family Armor
-	!HasItemEquiped("helm06",LastSeenBy(Myself))  // Helm of Charm Protection
-	!Kit(LastSeenBy(Myself),INQUISITOR)
-	!Kit(LastSeenBy(Myself),CAVALIER)
+	!CheckSpellState(LastSeenBy(Myself),CHARM_DOMINATION_IMMUNITY)
+	!CheckSpellState(LastSeenBy(Myself),SI_ENCHANTMENT)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
 	!HasBounceEffects(LastSeenBy(Myself))
 	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
@@ -740,23 +606,8 @@ IF
 	See(FourthNearestEnemyOfType([PC]))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
-	!HasItemEquiped("shld25",LastSeenBy(Myself))  // Shield of Harmony +2
-	!HasItemEquiped("sw2h14",LastSeenBy(Myself))  // Lilarcor
-	!HasItemEquiped("S!leat03",LastSeenBy(Myself))  // Improved Corthala Family Armor
-	!HasItemEquiped("S!sw22",LastSeenBy(Myself))  // Githzerai Blade +5
-	!HasItemEquiped("S!shld01",LastSeenBy(Myself))  // Delryn Family Legacy +4
-	!HasItemEquiped("S!sw04",LastSeenBy(Myself))  // Judgement Day +5
-	!HasItemEquiped("S!sw07",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw08",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw09",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw10",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw12",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("npchan",LastSeenBy(Myself))  // Corthala Family Armor
-	!HasItemEquiped("helm06",LastSeenBy(Myself))  // Helm of Charm Protection
-	!Kit(LastSeenBy(Myself),INQUISITOR)
-	!Kit(LastSeenBy(Myself),CAVALIER)
+	!CheckSpellState(LastSeenBy(Myself),CHARM_DOMINATION_IMMUNITY)
+	!CheckSpellState(LastSeenBy(Myself),SI_ENCHANTMENT)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
 	!HasBounceEffects(LastSeenBy(Myself))
 	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
@@ -773,23 +624,8 @@ IF
 	See(FifthNearestEnemyOfType([PC]))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
-	!HasItemEquiped("shld25",LastSeenBy(Myself))  // Shield of Harmony +2
-	!HasItemEquiped("sw2h14",LastSeenBy(Myself))  // Lilarcor
-	!HasItemEquiped("S!leat03",LastSeenBy(Myself))  // Improved Corthala Family Armor
-	!HasItemEquiped("S!sw22",LastSeenBy(Myself))  // Githzerai Blade +5
-	!HasItemEquiped("S!shld01",LastSeenBy(Myself))  // Delryn Family Legacy +4
-	!HasItemEquiped("S!sw04",LastSeenBy(Myself))  // Judgement Day +5
-	!HasItemEquiped("S!sw07",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw08",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw09",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw10",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw12",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("npchan",LastSeenBy(Myself))  // Corthala Family Armor
-	!HasItemEquiped("helm06",LastSeenBy(Myself))  // Helm of Charm Protection
-	!Kit(LastSeenBy(Myself),INQUISITOR)
-	!Kit(LastSeenBy(Myself),CAVALIER)
+	!CheckSpellState(LastSeenBy(Myself),CHARM_DOMINATION_IMMUNITY)
+	!CheckSpellState(LastSeenBy(Myself),SI_ENCHANTMENT)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
 	!HasBounceEffects(LastSeenBy(Myself))
 	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
@@ -806,25 +642,9 @@ IF
 	See(SixthNearestEnemyOfType([PC]))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
-	!HasItemEquiped("shld25",LastSeenBy(Myself))  // Shield of Harmony +2
-	!HasItemEquiped("sw2h14",LastSeenBy(Myself))  // Lilarcor
-	!HasItemEquiped("S!leat03",LastSeenBy(Myself))  // Improved Corthala Family Armor
-	!HasItemEquiped("S!sw22",LastSeenBy(Myself))  // Githzerai Blade +5
-	!HasItemEquiped("S!shld01",LastSeenBy(Myself))  // Delryn Family Legacy +4
-	!HasItemEquiped("S!sw04",LastSeenBy(Myself))  // Judgement Day +5
-	!HasItemEquiped("S!sw07",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw08",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw09",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw10",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw11",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("S!sw12",LastSeenBy(Myself))  // Warlord's blade +5
-	!HasItemEquiped("npchan",LastSeenBy(Myself))  // Corthala Family Armor
-	!HasItemEquiped("helm06",LastSeenBy(Myself))  // Helm of Charm Protection
-	!Kit(LastSeenBy(Myself),INQUISITOR)
-	!Kit(LastSeenBy(Myself),CAVALIER)
+	!CheckSpellState(LastSeenBy(Myself),CHARM_DOMINATION_IMMUNITY)
+	!CheckSpellState(LastSeenBy(Myself),SI_ENCHANTMENT)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
-	!HasBounceEffects(LastSeenBy(Myself))
 	CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL)
 THEN
 	RESPONSE #100
@@ -836,7 +656,7 @@ END
 IF
 	GlobalLT("IaMind02","LOCALS",2)
 	GlobalLT("IaMind01","LOCALS",6)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
@@ -862,7 +682,7 @@ END
 IF
 	GlobalLT("IaMind02","LOCALS",2)
 	GlobalLT("IaMind01","LOCALS",6)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
@@ -888,7 +708,7 @@ END
 IF
 	GlobalLT("IaMind02","LOCALS",2)
 	GlobalLT("IaMind01","LOCALS",6)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
@@ -914,7 +734,7 @@ END
 IF
 	GlobalLT("IaMind02","LOCALS",2)
 	GlobalLT("IaMind01","LOCALS",6)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
@@ -940,7 +760,7 @@ END
 IF
 	GlobalLT("IaMind02","LOCALS",2)
 	GlobalLT("IaMind01","LOCALS",6)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
@@ -966,7 +786,7 @@ END
 IF
 	GlobalLT("IaMind02","LOCALS",2)
 	GlobalLT("IaMind01","LOCALS",6)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
@@ -992,7 +812,7 @@ END
 IF
 	GlobalLT("IaMind02","LOCALS",2)
 	GlobalLT("IaMind01","LOCALS",6)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
@@ -1018,7 +838,7 @@ END
 IF
 	GlobalLT("IaMind02","LOCALS",2)
 	GlobalLT("IaMind01","LOCALS",6)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
@@ -1044,7 +864,7 @@ END
 IF
 	GlobalLT("IaMind02","LOCALS",2)
 	GlobalLT("IaMind01","LOCALS",6)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
@@ -1070,7 +890,7 @@ END
 IF
 	GlobalLT("IaMind02","LOCALS",2)
 	GlobalLT("IaMind01","LOCALS",6)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
@@ -1096,7 +916,7 @@ END
 IF
 	GlobalLT("IaMind02","LOCALS",2)
 	GlobalLT("IaMind01","LOCALS",6)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
@@ -1122,7 +942,7 @@ END
 IF
 	GlobalLT("IaMind02","LOCALS",2)
 	GlobalLT("IaMind01","LOCALS",6)
-	GlobalGT("IaMindAlliesNearby","LOCALS",1)
+	See(SecondNearest([0.0.MIND_FLAYER.0.0.0.0]))
 	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
@@ -1148,7 +968,7 @@ END
 IF
 	GlobalLT("IaMind02","LOCALS",2)
 	GlobalLT("IaMind01","LOCALS",6)
-	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
@@ -1156,12 +976,10 @@ IF
 	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
-	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
-	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+	OR(2)
+		!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
+		!CheckSpellState(LastSeenBy(Myself),CHARM_DOMINATION_IMMUNITY)
+	CheckStatGT(LastSeenBy(Myself),2,SAVEVSSPELL)
 THEN
 	RESPONSE #100
 		IncrementGlobal("IaMind02","LOCALS",1)
@@ -1174,7 +992,7 @@ END
 IF
 	GlobalLT("IaMind02","LOCALS",2)
 	GlobalLT("IaMind01","LOCALS",6)
-	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
@@ -1182,12 +1000,10 @@ IF
 	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
-	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
-	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+	OR(2)
+		!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
+		!CheckSpellState(LastSeenBy(Myself),CHARM_DOMINATION_IMMUNITY)
+	CheckStatGT(LastSeenBy(Myself),2,SAVEVSSPELL)
 THEN
 	RESPONSE #100
 		IncrementGlobal("IaMind02","LOCALS",1)
@@ -1200,7 +1016,7 @@ END
 IF
 	GlobalLT("IaMind02","LOCALS",2)
 	GlobalLT("IaMind01","LOCALS",6)
-	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
@@ -1208,12 +1024,10 @@ IF
 	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
-	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
-	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+	OR(2)
+		!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
+		!CheckSpellState(LastSeenBy(Myself),CHARM_DOMINATION_IMMUNITY)
+	CheckStatGT(LastSeenBy(Myself),2,SAVEVSSPELL)
 THEN
 	RESPONSE #100
 		IncrementGlobal("IaMind02","LOCALS",1)
@@ -1226,7 +1040,7 @@ END
 IF
 	GlobalLT("IaMind02","LOCALS",2)
 	GlobalLT("IaMind01","LOCALS",6)
-	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
@@ -1234,12 +1048,10 @@ IF
 	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
-	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
-	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+	OR(2)
+		!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
+		!CheckSpellState(LastSeenBy(Myself),CHARM_DOMINATION_IMMUNITY)
+	CheckStatGT(LastSeenBy(Myself),2,SAVEVSSPELL)
 THEN
 	RESPONSE #100
 		IncrementGlobal("IaMind02","LOCALS",1)
@@ -1252,7 +1064,7 @@ END
 IF
 	GlobalLT("IaMind02","LOCALS",2)
 	GlobalLT("IaMind01","LOCALS",6)
-	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
@@ -1260,12 +1072,10 @@ IF
 	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
-	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
-	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+	OR(2)
+		!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
+		!CheckSpellState(LastSeenBy(Myself),CHARM_DOMINATION_IMMUNITY)
+	CheckStatGT(LastSeenBy(Myself),2,SAVEVSSPELL)
 THEN
 	RESPONSE #100
 		IncrementGlobal("IaMind02","LOCALS",1)
@@ -1278,7 +1088,7 @@ END
 IF
 	GlobalLT("IaMind02","LOCALS",2)
 	GlobalLT("IaMind01","LOCALS",6)
-	GlobalGT("IaMindAlliesNearby","LOCALS",0)
+	See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("IaSoftenMind","LOCALS")
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
@@ -1286,12 +1096,10 @@ IF
 	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
-	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
-	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+	OR(2)
+		!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
+		!CheckSpellState(LastSeenBy(Myself),CHARM_DOMINATION_IMMUNITY)
+	CheckStatGT(LastSeenBy(Myself),2,SAVEVSSPELL)
 THEN
 	RESPONSE #100
 		IncrementGlobal("IaMind02","LOCALS",1)
@@ -1306,13 +1114,10 @@ IF
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(NearestEnemyOfType([PC]))
-	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
-	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+	!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
+	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
 THEN
 	RESPONSE #100
 		IncrementGlobal("IaMind01","LOCALS",2)
@@ -1325,13 +1130,10 @@ IF
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(SecondNearestEnemyOfType([PC]))
-	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
-	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+	!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
+	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
 THEN
 	RESPONSE #100
 		IncrementGlobal("IaMind01","LOCALS",2)
@@ -1347,10 +1149,8 @@ IF
 	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
-	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+	!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
+	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
 THEN
 	RESPONSE #100
 		IncrementGlobal("IaMind01","LOCALS",2)
@@ -1366,10 +1166,8 @@ IF
 	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
-	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+	!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
+	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
 THEN
 	RESPONSE #100
 		IncrementGlobal("IaMind01","LOCALS",2)
@@ -1382,13 +1180,10 @@ IF
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(FifthNearestEnemyOfType([PC]))
-	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
-	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+	!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
+	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
 THEN
 	RESPONSE #100
 		IncrementGlobal("IaMind01","LOCALS",2)
@@ -1404,10 +1199,8 @@ IF
 	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
-	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+	!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
+	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
 THEN
 	RESPONSE #100
 		IncrementGlobal("IaMind01","LOCALS",2)
@@ -1417,7 +1210,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	Global("IaMindAlliesNearby","LOCALS",0)
+	!See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(NearestEnemyOfType([PC]))
@@ -1431,7 +1224,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	Global("IaMindAlliesNearby","LOCALS",0)
+	!See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(SecondNearestEnemyOfType([PC]))
@@ -1445,7 +1238,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	Global("IaMindAlliesNearby","LOCALS",0)
+	!See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(ThirdNearestEnemyOfType([PC]))
@@ -1459,7 +1252,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	Global("IaMindAlliesNearby","LOCALS",0)
+	!See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(FourthNearestEnemyOfType([PC]))
@@ -1473,7 +1266,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	Global("IaMindAlliesNearby","LOCALS",0)
+	!See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(FifthNearestEnemyOfType([PC]))
@@ -1487,7 +1280,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	Global("IaMindAlliesNearby","LOCALS",0)
+	!See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(SixthNearestEnemyOfType([PC]))
@@ -1501,7 +1294,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	Global("IaMindAlliesNearby","LOCALS",0)
+	!See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(NearestEnemyOfType([PC]))
@@ -1515,7 +1308,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	Global("IaMindAlliesNearby","LOCALS",0)
+	!See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(SecondNearestEnemyOfType([PC]))
@@ -1529,7 +1322,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	Global("IaMindAlliesNearby","LOCALS",0)
+	!See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(ThirdNearestEnemyOfType([PC]))
@@ -1543,7 +1336,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	Global("IaMindAlliesNearby","LOCALS",0)
+	!See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(FourthNearestEnemyOfType([PC]))
@@ -1557,7 +1350,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	Global("IaMindAlliesNearby","LOCALS",0)
+	!See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(FifthNearestEnemyOfType([PC]))
@@ -1571,7 +1364,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	Global("IaMindAlliesNearby","LOCALS",0)
+	!See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(SixthNearestEnemyOfType([PC]))
@@ -1593,11 +1386,9 @@ IF
 	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
-	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	OR(2)
+		!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
+		!CheckSpellState(LastSeenBy(Myself),CHARM_DOMINATION_IMMUNITY)
 	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
 THEN
 	RESPONSE #100
@@ -1618,11 +1409,9 @@ IF
 	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
-	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	OR(2)
+		!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
+		!CheckSpellState(LastSeenBy(Myself),CHARM_DOMINATION_IMMUNITY)
 	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
 THEN
 	RESPONSE #100
@@ -1643,11 +1432,9 @@ IF
 	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
-	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	OR(2)
+		!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
+		!CheckSpellState(LastSeenBy(Myself),CHARM_DOMINATION_IMMUNITY)
 	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
 THEN
 	RESPONSE #100
@@ -1668,11 +1455,9 @@ IF
 	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
-	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	OR(2)
+		!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
+		!CheckSpellState(LastSeenBy(Myself),CHARM_DOMINATION_IMMUNITY)
 	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
 THEN
 	RESPONSE #100
@@ -1693,11 +1478,9 @@ IF
 	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
-	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	OR(2)
+		!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
+		!CheckSpellState(LastSeenBy(Myself),CHARM_DOMINATION_IMMUNITY)
 	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
 THEN
 	RESPONSE #100
@@ -1718,11 +1501,9 @@ IF
 	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
-	CheckStatLT(LastSeenBy(Myself),1,SCRIPTINGSTATE8)
-	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
-	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
-	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	OR(2)
+		!CheckSpellState(LastSeenBy(Myself),STUN_IMMUNITY)
+		!CheckSpellState(LastSeenBy(Myself),CHARM_DOMINATION_IMMUNITY)
 	CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
 THEN
 	RESPONSE #100
@@ -1735,7 +1516,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	Global("IaMindAlliesNearby","LOCALS",0)
+	!See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(NearestEnemyOfType([PC]))
@@ -1749,7 +1530,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	Global("IaMindAlliesNearby","LOCALS",0)
+	!See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(SecondNearestEnemyOfType([PC]))
@@ -1763,7 +1544,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	Global("IaMindAlliesNearby","LOCALS",0)
+	!See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(ThirdNearestEnemyOfType([PC]))
@@ -1777,7 +1558,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	Global("IaMindAlliesNearby","LOCALS",0)
+	!See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(FourthNearestEnemyOfType([PC]))
@@ -1791,7 +1572,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	Global("IaMindAlliesNearby","LOCALS",0)
+	!See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(FifthNearestEnemyOfType([PC]))
@@ -1805,7 +1586,7 @@ END
 
 IF
 	GlobalLT("IaMind01","LOCALS",5)
-	Global("IaMindAlliesNearby","LOCALS",0)
+	!See([0.0.MIND_FLAYER.0.0.0.0])
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(SixthNearestEnemyOfType([PC]))

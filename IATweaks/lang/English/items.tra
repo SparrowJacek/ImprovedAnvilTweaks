@@ -326,9 +326,29 @@ Equipped ability:
 
 Weight: 3~
 
-@7038 = ~~
+@7038 = ~This powerful elixir is similar to the potion of heroism in that it effectively raises the imbiber's level and can be used by all character classes. This affects Hit Points, THAC0, and thieving abilities, although it does not raise the backstab multiplier. This effect is applied to the base, before any attribute modifiers are added.
 
-@7039 = ~~
+STATISTICS:
+
+THAC0: +2
+Hit Points: +20% temporary (base only)
+Hide In Shadows: +20% (base only)
+Pick Pockets: +20% (base only)
+Open Locks: +20% (base only)
+Find Traps: +20% (base only)
+Duration: 4 turns
+
+Weight: 1~
+
+@7039 = ~This potion is imbued with a powerful enchantment that will simulate a temporary increase in level. The effect lasts for 2 hours, which makes this potion a powerful ally in a deadly combat. This potion may only be used by warriors.
+
+STATISTICS:
+
+Hit Points: +10% (base only)
+THAC0: +1
+Duration: 2 hours
+
+Weight: 1~
 
 @7040 = ~~
 

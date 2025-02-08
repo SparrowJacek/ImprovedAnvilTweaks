@@ -137,3 +137,51 @@ COPY_EXISTING ~SPWII07.spl~ ~override~
       match_opcode = 81
       opcode = 316
   END
+
+// Change thac0 bonus from Potion of Heroism and of Power to static bonus
+
+COPY_EXISTING ~POTN41.itm~ ~override~
+  SAY IDENTIFIED_DESC @7038
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 54
+      parameter1 = 2
+      parameter2 = 0
+  END
+
+COPY_EXISTING ~POTN09.itm~ ~override~
+  SAY IDENTIFIED_DESC @7039
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 54
+      parameter1 = 1
+      parameter2 = 0
+  END
+
+// Add partial immunity to Greater Command for Elves and Half Elves
+
+COPY_EXISTING ~sppr512.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 39
+      opcode = 324
+      parameter1 = 0 
+      parameter2 = 15
+      duration = 0
+      probability1 = 90
+      multi_match = 1
+    STR_VAR
+      resource = ~SPPR512~
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 39
+      opcode = 324
+      parameter1 = 0 
+      parameter2 = 19
+      duration = 0
+      probability1 = 30
+      multi_match = 1
+    STR_VAR
+      resource = ~SPPR512~
+  END

@@ -1,0 +1,10 @@
+SILENT
+
+// Improve Keldorn
+
+ACTION_FOR_EACH keldorn_SoA_file IN ~KELDOR8~ ~KELDOR9~ ~KELDOR10~ ~KELDOR12~ BEGIN
+    COPY_EXISTING ~%keldorn_SoA_file%.cre~ ~override~  
+        WRITE_SHORT 0x24 79 // HP
+        WRITE_SHORT 0x26 79 // HP
+        WRITE_BYTE  0x23c 17 // dexterity
+END

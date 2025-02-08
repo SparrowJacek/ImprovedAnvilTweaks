@@ -1120,3 +1120,54 @@ COPY_EXISTING ~UDDOOR05.cre~ ~override~
   END
 
 COMPILE ~IATweaks\scripts\creatures\UDDOOR05.BAF~
+
+// N'ashtar Mage from Underdark evil party
+
+COPY_EXISTING ~GPMAGE1.cre~ ~override~
+  WRITE_SHORT 0x24 88 // HP
+  WRITE_SHORT 0x26 88 // HP
+  WRITE_SHORT 0x46 10 // AC
+  WRITE_SHORT 0x48 10 // AC
+  WRITE_BYTE 0x52 0 // Thac0
+  WRITE_BYTE 0x59 0 // Resist Fire
+  WRITE_BYTE 0x5e 0 // Resist Magic Fire
+  WRITE_BYTE 0x60 0 // Resist Slashing
+  WRITE_BYTE 0x61 0 // Resist Crushing
+  WRITE_BYTE 0x62 0 // Resist Piercing
+  WRITE_BYTE 0x63 0 // Resist Missile
+  WRITE_BYTE 0x23c 19 // Dexterity
+  WRITE_BYTE 0x23d 17 // Constitution
+  WRITE_BYTE 0x272 2 // Race = Elf
+
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 232
+        target = 0
+        parameter1 = 0
+        parameter2 = 11
+        timing = 1
+        resist_dispel = 0
+        restype = 0
+      STR_VAR
+        resource = ~S!CONT01~
+        effsource = ~S!CONT01~
+    END
+
+  LPF ~DELETE_CRE_EFFECT~
+    STR_VAR
+      opcode_to_delete = 16
+  END
+
+  LPF ~DELETE_CRE_EFFECT~
+    STR_VAR
+      opcode_to_delete = 0
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~DRAGRING~
+  END
+
+  ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV13~
+
+COMPILE ~IATweaks\scripts\creatures\S!GPMAGE.BAF~

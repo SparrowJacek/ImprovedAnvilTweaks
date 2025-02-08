@@ -529,15 +529,15 @@ COPY ~IATweaks\resources\spl\s!-resho.spl~ ~override~
 ACTION_FOR_EACH planar_hound_cre IN ~s!phound~ ~s!phounr~ ~s!phoun3~ ~s!phoun2~ BEGIN
   COPY_EXISTING ~%planar_hound_cre%.cre~ ~override~
     LPF ~ADD_CRE_EFFECT~
-    INT_VAR
-      opcode = 146
-      target = 1
-      parameter2 = 1
-      timing = 9
-      resist_dispel = 0
-    STR_VAR
-      resource = ~S!-RESHO~
-  END
+      INT_VAR
+        opcode = 146
+        target = 1
+        parameter2 = 1
+        timing = 9
+        resist_dispel = 0
+      STR_VAR
+        resource = ~S!-RESHO~
+    END
 END
 
 //////////////// Planar Warden ///////////////////
@@ -1208,7 +1208,7 @@ COMPILE ~IATweaks\scripts\creatures\S!SIMBJA.BAF~
 
 // Boz the Ogre from Underdark evil party
 
-COPY_EXISTING ~GPSIMB.cre~ ~override~
+COPY_EXISTING ~GPFIGHT1.cre~ ~override~
   WRITE_SHORT 0x24 138 // HP
   WRITE_SHORT 0x26 138 // HP
   WRITE_BYTE 0x52 0 // Thac0
@@ -1225,6 +1225,22 @@ COPY_EXISTING ~GPSIMB.cre~ ~override~
   LPF ~DELETE_CRE_ITEM~
     STR_VAR
       item_to_delete = ~DRAGRING~
+  END
+
+LPF ~DELETE_CRE_EFFECT~
+  STR_VAR
+    opcode_to_delete = 16
+END
+
+LPF ~DELETE_CRE_EFFECT~
+  STR_VAR
+    opcode_to_delete = 0
+END
+
+  LPF ~ALTER_EFFECT~
+    STR_VAR
+      match_opcode = 31
+      parameter1 = 40
   END
 
   ADD_CRE_ITEM ~DWPLAT01~ #0 #0 #0 ~UNSTEALABLE~ ~ARMOR~

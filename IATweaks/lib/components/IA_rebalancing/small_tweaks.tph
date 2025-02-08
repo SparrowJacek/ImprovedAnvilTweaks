@@ -185,3 +185,7 @@ COPY_EXISTING ~sppr512.spl~ ~override~
     STR_VAR
       resource = ~SPPR512~
   END
+
+// Contingency files
+
+COPY ~IATweaks\resources\spl\s!cont01.spl~ ~override~ // Remove Magic if HP less than 75

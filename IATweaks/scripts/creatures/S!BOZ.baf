@@ -166,7 +166,7 @@ IF
 	Detect(NearestEnemyOf(Myself))
 	!StateCheck(Myself,STATE_HASTED)
 	CheckStat(Myself,0,IMPROVEDHASTE)
-	SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
 THEN
 	RESPONSE #100
 		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)

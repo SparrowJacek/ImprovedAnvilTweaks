@@ -103,18 +103,6 @@ ACTION_FOR_EACH spell_immunity_subspell IN ~SPWI590~ ~SPWI591~ ~SPWI592~ ~SPWI59
   OUTER_SET SI_spellstate = SI_spellstate + 1
 END
 
-OUTER_SET enfeebled_spellstate = 4 // ENFEEBLED
-ACTION_FOR_EACH spell_causing_enfeeblement IN ~INSANITY~ ~spwi509~ ~SPWI714~ BEGIN
-  COPY_EXISTING ~%spell_causing_enfeeblement%.spl~ ~override~
-    LPF ~CLONE_EFFECT~
-      INT_VAR
-        match_opcode = 76
-        opcode = 328
-        parameter2 = enfeebled_spellstate
-        special = 1
-    END
-END
-
 COPY_EXISTING ~SPPR109.spl~ ~override~
   LPF ~CLONE_EFFECT~
     INT_VAR
@@ -172,6 +160,39 @@ COPY_EXISTING ~SPPR203E.spl~ ~override~
       parameter2 = 11 // Detrimental Chant
       resist_dispel = 1
       duration = 60
+      special = 1
+      insert_point = 99
+  END
+
+COPY_EXISTING ~SPCL321D.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      opcode = 328
+      parameter1 = 0
+      parameter2 = 75 // Berserker rage fatigue
+      special = 1
+      insert_point = 99
+  END
+
+COPY_EXISTING ~SPCL907.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      opcode = 328
+      parameter1 = 0
+      parameter2 = 118 // Hardiness
+      special = 1
+      insert_point = 99
+  END
+
+COPY_EXISTING ~SPWISH12.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      opcode = 328
+      parameter1 = 0
+      parameter2 = 118 // Hardiness
       special = 1
       insert_point = 99
   END

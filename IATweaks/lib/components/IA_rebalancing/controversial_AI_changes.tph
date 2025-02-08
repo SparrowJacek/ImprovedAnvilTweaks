@@ -1,0 +1,9 @@
+SILENT
+
+// Simbja, the Goblin from Underdark evil party
+
+COPY_EXISTING ~GPSIMB.cre~ ~override~
+
+    REMOVE_MEMORIZED_SPELL ~SPPR210~ // Resist Fire/Cold
+
+    ADD_MEMORIZED_SPELL ~SPPR212~ #1 ~priest~ ( 1 ) // Slow Poison

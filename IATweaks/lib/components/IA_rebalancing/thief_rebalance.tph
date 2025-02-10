@@ -428,6 +428,8 @@ COPY ~IATweaks\resources\spl\s!ppcrit.spl~ ~override~
     INT_VAR
       duration_high = 12
   END
+COPY ~IATweaks\resources\spl\s!ppremv.spl~ ~override~
+COPY ~IATweaks\resources\eff\s!ppremv.eff~ ~override~
 COPY ~IATweaks\resources\eff\s!ppthac.eff~ ~override~
 COPY ~IATweaks\resources\eff\s!ppacli.eff~ ~override~
 COPY ~IATweaks\resources\eff\s!ppache.eff~ ~override~

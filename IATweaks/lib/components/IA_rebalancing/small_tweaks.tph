@@ -1,3 +1,5 @@
+SILENT
+
 // Change Kensai bonuses to only apply to melee weapons
 
 COPY_EXISTING ~SPCL141.spl~ ~override~
@@ -188,4 +190,35 @@ COPY_EXISTING ~sppr512.spl~ ~override~
 
 // Contingency files
 
-COPY ~IATweaks\resources\spl\s!cont01.spl~ ~override~ // Remove Magic if HP less than 75
+COPY ~IATweaks\resources\spl\s!cont01.spl~ ~override~ // Remove Magic if HP less than 75// Make stores sell and buy items of new categories, like Bastard Sword (69) - used for backstab weapons
+
+COPY_EXISTING_REGEXP GLOB ~.+\.sto~ ~override~
+  SET deals_in_armors = 0
+  SET deals_in_weapons = 0
+  READ_LONG 0x2c item_categories_offset
+  READ_LONG 0x30 item_category_number
+  FOR (i = 0; i < item_category_number; ++i) BEGIN
+    READ_LONG (item_categories_offset + (4 * i)) item_category
+    PATCH_IF (item_category = 2) BEGIN
+      SET deals_in_armors = 1
+    END
+    PATCH_IF (item_category = 16) BEGIN
+      SET deals_in_weapons = 1
+    END
+  END
+  PATCH_IF (deals_in_armors = 1) BEGIN
+    PATCH_FOR_EACH IWD_armor_category IN 60 61 62 63 64 65 66 67 68 BEGIN
+      LPF ~S!ADD_STORE_PURCHASE~
+        INT_VAR
+          category = IWD_armor_category
+      END
+    END
+  END
+  PATCH_IF (deals_in_weapons = 1) BEGIN
+    PATCH_FOR_EACH IWD_weapon_category IN 57 69 BEGIN
+      LPF ~S!ADD_STORE_PURCHASE~
+        INT_VAR
+          category = IWD_weapon_category
+      END
+    END
+  END

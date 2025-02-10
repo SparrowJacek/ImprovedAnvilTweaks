@@ -1241,3 +1241,186 @@ BEGIN
     END
   BUT_ONLY
 END
+
+// Copied from ADD_STORE_PURCHASE available here https://github.com/WeiDUorg/weidu/blob/devel/src/tph/include/store_functions.tpa
+// This version does not print info if purchase is successfully added
+/**
+ * Adds one or more item categories the store will buy to the current STO file. Existing categories will be skipped.
+ * This is a PATCH function.
+ * SET category     The item category to add.
+ *                  A nearly complete list of supported item category codes can be found here:
+ *                  https://gibberlings3.github.io/iesdp/file_formats/ie_formats/sto_v1.htm#tableItemType
+ * RETURN index     Index of the added purchase. Returns -1 if the purchase could not be added.
+ * RETURN offset    Offset of the added purchase. Returns -1 if the purchase could not be added.
+ */
+DEFINE_PATCH_FUNCTION ~S!ADD_STORE_PURCHASE~
+INT_VAR
+  category  = "-1"
+RET
+  index
+  offset
+BEGIN
+  SET index = "-1"
+  SET offset = "-1"
+
+  // Initializations
+  LPF ~__A7_VALIDATE_STORE~
+  STR_VAR warn_prefix = ~ADD_STORE_PURCHASE~
+  RET
+    failed
+    HEADER_SIZE = header_size
+    SALE_SIZE = sale_size
+    DRINK_SIZE = drink_size
+    CURE_SIZE = cure_size
+    PURCHASE_SIZE = purchase_size
+  END
+
+  PATCH_IF (NOT failed) BEGIN
+    READ_LONG 0x2c ofs_purchases
+    READ_LONG 0x30 num_purchases
+
+    PATCH_IF (num_purchases = 0 && ofs_purchases < HEADER_SIZE) BEGIN
+      // Default order of sections: Drinks < Sales < Cures < Purchases
+      READ_LONG 0x70 ofs  // cures
+      PATCH_IF (ofs >= HEADER_SIZE) BEGIN
+        READ_LONG 0x74 num
+        SET size = CURE_SIZE
+      END ELSE BEGIN
+        READ_LONG 0x34 ofs  // sales
+        PATCH_IF (ofs >= HEADER_SIZE) BEGIN
+          READ_LONG 0x38 num
+          SET size = SALE_SIZE
+        END ELSE BEGIN
+          READ_LONG 0x4c ofs  // drinks
+          PATCH_IF (ofs >= HEADER_SIZE) BEGIN
+            READ_LONG 0x50 num
+            SET size = DRINK_SIZE
+          END
+        END
+      END
+
+      PATCH_IF (ofs >= HEADER_SIZE) BEGIN
+        SET ofs_purchases = ofs + num * size
+      END ELSE BEGIN
+        SET ofs_purchases = HEADER_SIZE
+      END
+      WRITE_LONG 0x2c ofs_purchases
+    END
+
+    // Adding new purchases
+    PATCH_IF (category >= 0) BEGIN
+      // Checking for existing category
+      SET index_found = "-1"
+      FOR (idx = 0; idx < num_purchases; ++idx) BEGIN
+        READ_LONG (ofs_purchases + idx * PURCHASE_SIZE) value
+        PATCH_IF (value = category) BEGIN
+          SET index_found = idx
+          SET idx = num_purchases
+        END
+      END
+
+      PATCH_IF (index_found < 0) BEGIN
+        SET ofs = ofs_purchases + num_purchases * PURCHASE_SIZE
+        INSERT_BYTES ofs PURCHASE_SIZE
+        WRITE_LONG ofs category
+        SET index = num_purchases
+        SET offset = ofs
+
+        // Updating purchase count and remaining offsets
+        WRITE_LONG 0x30 (num_purchases + 1)
+        LPF ~__A7_UPDATE_OFFSETS~
+        INT_VAR
+          value = PURCHASE_SIZE
+          skip_offset = 0x2c
+        END
+      END ELSE BEGIN
+        PATCH_PRINT ~ADD_STORE_PURCHASE: Item category is already in the store.  Skipping...~
+      END
+    END ELSE BEGIN
+      PATCH_WARN ~ADD_STORE_PURCHASE: Invalid item category %category%.  Skipping...~
+    END
+  END
+END
+
+// Used internally to validate generic store file structure
+DEFINE_PATCH_FUNCTION ~__A7_VALIDATE_STORE~
+STR_VAR
+  warn_prefix = ~~
+RET
+  failed
+  version     // 10 (V1.0), 11 (V1.1) or 90 (V9.0)
+  header_size
+  sale_size
+  drink_size
+  cure_size
+  purchase_size
+BEGIN
+  SET failed = 0
+  SET version = 0
+  SET header_size = 0
+  SET sale_size = 0
+  SET drink_size = 20
+  SET cure_size = 12
+  SET purchase_size = 4
+
+  READ_ASCII 0 sig (4)
+  PATCH_IF (NOT ~%sig%~ STR_EQ ~STOR~) BEGIN
+    SET failed = 1
+    PATCH_WARN ~%warn_prefix%: Not a store file.  Skipping...~
+  END
+
+  PATCH_IF (NOT failed) BEGIN
+    READ_ASCII 4 ver (4)
+    SET failed = 1
+    PATCH_MATCH ~%ver%~
+    WITH
+      ~V1.0~
+      BEGIN
+        SET failed = 0
+        SET version = 10
+        SET header_size = 156
+        SET sale_size = 28
+      END
+      ~V1.1~
+      BEGIN
+        SET failed = 0
+        SET version = 11
+        SET header_size = 156
+        SET sale_size = 88
+      END
+      ~V9.0~
+      BEGIN
+        SET failed = 0
+        SET version = 90
+        SET header_size = 240
+        SET sale_size = 28
+      END
+      DEFAULT
+    END
+    PATCH_IF (failed) BEGIN
+      PATCH_WARN ~%warn_prefix%: Unsupported store version "%ver%".  Skipping...~
+    END
+  END
+
+  PATCH_IF (NOT failed && BUFFER_LENGTH < header_size) BEGIN
+    SET failed = 1
+    PATCH_WARN ~%warn_prefix%: Corrupt store file.  Skipping...~
+  END
+END
+
+// Used internally to update STO offsets by a specific amount
+DEFINE_PATCH_FUNCTION ~__A7_UPDATE_OFFSETS~
+INT_VAR
+  value       = 0 // the value to add (can be negative)
+  skip_offset = 0 // this offset is not updated
+BEGIN
+  READ_LONG skip_offset ofs_limit
+  PATCH_FOR_EACH ofs IN 0x2c 0x34 0x4c 0x70 BEGIN
+    PATCH_IF (ofs != skip_offset) BEGIN
+      READ_LONG ofs base_value
+      PATCH_IF (base_value >= ofs_limit) BEGIN
+        WRITE_LONG ofs (base_value + value)
+      END
+    END
+  END
+END

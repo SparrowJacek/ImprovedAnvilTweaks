@@ -209,10 +209,6 @@ IF
 	Detect(NearestEnemyOf(Myself))
 	!StateCheck(Myself,STATE_HASTED)
 	CheckStat(Myself,0,IMPROVEDHASTE)
-	OR(3)
-		Dead("GPPRI1")
-		!CheckSpellState("GPPRI1",CHAMPIONS_MIGHT)
-		!Range("GPPRI1",20)
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 THEN
 	RESPONSE #100
@@ -9137,10 +9133,10 @@ IF
 	ActionListEmpty()
 	CanEquipRanged()
 	See(NearestEnemyOf(Myself))
-	CheckStatLT(NearestEnemyOf(Myself),80,RESISTMISSILE)
+	CheckStatLT(NearestEnemyOf(Myself),95,RESISTMISSILE)
 	!CheckSpellState(NearestEnemyOf(Myself),MISSILE_IMMUNITY)
-    WeaponEffectiveVs(LastTargetedBy(Myself),MAINHAND)
-    WeaponCanDamage(LastTargetedBy(Myself),MAINHAND)
+    WeaponEffectiveVs(NearestEnemyOf(Myself),MAINHAND)
+    WeaponCanDamage(NearestEnemyOf(Myself),MAINHAND)
 	!Range(NearestEnemyOf(Myself),5)
 THEN
 	RESPONSE #100
@@ -9154,10 +9150,10 @@ IF
 	ActionListEmpty()
 	CanEquipRanged()
 	See(SecondNearestEnemyOf(Myself))
-	CheckStatLT(SecondNearestEnemyOf(Myself),80,RESISTMISSILE)
+	CheckStatLT(SecondNearestEnemyOf(Myself),95,RESISTMISSILE)
 	!CheckSpellState(SecondNearestEnemyOf(Myself),MISSILE_IMMUNITY)
-    WeaponEffectiveVs(LastTargetedBy(Myself),MAINHAND)
-    WeaponCanDamage(LastTargetedBy(Myself),MAINHAND)
+    WeaponEffectiveVs(SecondNearestEnemyOf(Myself),MAINHAND)
+    WeaponCanDamage(SecondNearestEnemyOf(Myself),MAINHAND)
 	!Range(SecondNearestEnemyOf(Myself),5)
 THEN
 	RESPONSE #100
@@ -9171,10 +9167,10 @@ IF
 	ActionListEmpty()
 	CanEquipRanged()
 	See(ThirdNearestEnemyOf(Myself))
-	CheckStatLT(ThirdNearestEnemyOf(Myself),80,RESISTMISSILE)
+	CheckStatLT(ThirdNearestEnemyOf(Myself),95,RESISTMISSILE)
 	!CheckSpellState(ThirdNearestEnemyOf(Myself),MISSILE_IMMUNITY)
-    WeaponEffectiveVs(LastTargetedBy(Myself),MAINHAND)
-    WeaponCanDamage(LastTargetedBy(Myself),MAINHAND)
+    WeaponEffectiveVs(ThirdNearestEnemyOf(Myself),MAINHAND)
+    WeaponCanDamage(ThirdNearestEnemyOf(Myself),MAINHAND)
 	!Range(ThirdNearestEnemyOf(Myself),5)
 THEN
 	RESPONSE #100
@@ -9188,10 +9184,10 @@ IF
 	ActionListEmpty()
 	CanEquipRanged()
 	See(FourthNearestEnemyOf(Myself))
-	CheckStatLT(FourthNearestEnemyOf(Myself),80,RESISTMISSILE)
+	CheckStatLT(FourthNearestEnemyOf(Myself),95,RESISTMISSILE)
 	!CheckSpellState(FourthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
-    WeaponEffectiveVs(LastTargetedBy(Myself),MAINHAND)
-    WeaponCanDamage(LastTargetedBy(Myself),MAINHAND)
+    WeaponEffectiveVs(FourthNearestEnemyOf(Myself),MAINHAND)
+    WeaponCanDamage(FourthNearestEnemyOf(Myself),MAINHAND)
 	!Range(FourthNearestEnemyOf(Myself),5)
 THEN
 	RESPONSE #100
@@ -9205,10 +9201,10 @@ IF
 	ActionListEmpty()
 	CanEquipRanged()
 	See(FifthNearestEnemyOf(Myself))
-	CheckStatLT(FifthNearestEnemyOf(Myself),80,RESISTMISSILE)
+	CheckStatLT(FifthNearestEnemyOf(Myself),95,RESISTMISSILE)
 	!CheckSpellState(FifthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
-    WeaponEffectiveVs(LastTargetedBy(Myself),MAINHAND)
-    WeaponCanDamage(LastTargetedBy(Myself),MAINHAND)
+    WeaponEffectiveVs(FifthNearestEnemyOf(Myself),MAINHAND)
+    WeaponCanDamage(FifthNearestEnemyOf(Myself),MAINHAND)
 	!Range(FifthNearestEnemyOf(Myself),5)
 THEN
 	RESPONSE #100
@@ -9222,10 +9218,10 @@ IF
 	ActionListEmpty()
 	CanEquipRanged()
 	See(SixthNearestEnemyOf(Myself))
-	CheckStatLT(SixthNearestEnemyOf(Myself),80,RESISTMISSILE)
+	CheckStatLT(SixthNearestEnemyOf(Myself),95,RESISTMISSILE)
 	!CheckSpellState(SixthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
-    WeaponEffectiveVs(LastTargetedBy(Myself),MAINHAND)
-    WeaponCanDamage(LastTargetedBy(Myself),MAINHAND)
+    WeaponEffectiveVs(SixthNearestEnemyOf(Myself),MAINHAND)
+    WeaponCanDamage(SixthNearestEnemyOf(Myself),MAINHAND)
 	!Range(SixthNearestEnemyOf(Myself),5)
 THEN
 	RESPONSE #100

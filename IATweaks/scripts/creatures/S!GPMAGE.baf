@@ -37,18 +37,22 @@ THEN
 END
 
 IF
-	Allegiance(Myself,ENEMY)
+	OR(2)
+		Detect([PC])
+		Detect([GOODCUTOFF])
 	Global("IaPrep","LOCALS",0)
-	Exists("gpfight1")  // Boz
-	!Dead("gpfight1")  // Boz
+	Exists("gpsimb")
+	!Dead("gpsimb")
 THEN
 	RESPONSE #100
-		ReallyForceSpell("gpfight1",WIZARD_IMPROVED_HASTE)  // Boz
+		ReallyForceSpell("gpsimb",WIZARD_IMPROVED_HASTE)
 		Continue()
 END
 
 IF
-	Allegiance(Myself,ENEMY)
+	OR(2)
+		Detect([PC])
+		Detect([GOODCUTOFF])
 	Global("IaPrep","LOCALS",0)
 	Exists("gpthief1")  // Thief
 	!Dead("gpthief1")  // Thief

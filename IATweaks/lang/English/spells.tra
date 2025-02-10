@@ -538,7 +538,7 @@ This special spell makes the caster so fast, that he can traverse long distances
 @6061 = ~Chain Sequencer~
 
 @6062 = ~Chain Sequencer
-This is a far more dangerous form of standard Sequencer spell. The caster first chooses one spell of levels 1-3 which will be put into the sequencer and stored as an ability just like with any other Sequencer. When used, that selected spell will be cast on all non-invisible creatures in a 15-ft radius from the center chosen by the caster. It is worth mentioning, that spells which require touch will have no effects.~
+This is a far more dangerous form of standard Sequencer spell. The caster first chooses one spell of levels 1-3 which will be put into the sequencer and stored as an ability just like with any other Sequencer. When used, that selected spell will be cast on all non-invisible hostile creatures in a 15-ft radius from the center chosen by the caster. It is worth mentioning, that spells which require touch will have no effects.~
 
 @6063 = ~Activate Chain Sequencer~
 
@@ -1139,9 +1139,105 @@ This spell summons a wave of acidic substances that moves in the direction wille
 
 @6160 = ~Mind Flayer Shared Mind Blast~
 
-@6161 = ~Shield Bash~
+@6161 = ~Emotion: Hope~
 
-@6162 = ~Shield Bash~
+@6162 = ~Emotion: Hope
+(Enchantment/Charm)
+
+Level: 4
+Range: 50 ft.
+Duration: 2 turns
+Casting Time: 4
+Area of Effect: 15-ft. radius
+Saving Throw: None
+
+This spell instills a sense of hope within the area of effect, granting all affected friendly creatures a morale boost along with a +2 bonus to their Saving Throws, attack rolls, and damage rolls. While it negates the effects of Emotion: Hopelessness, it does not provide immunity to the spell and can be overridden by a subsequent casting of Emotion: Hopelessness.~
+
+@6163 = ~Minor Sequencer
+(Generalist)
+
+Level: 4
+Range: 0
+Duration: Permanent
+Casting Time: 9
+Area of Effect: Special
+Saving Throw: None
+
+This spell allows a wizard to store two spells and activate them both at the same time from <PRO_HISHER> Special Ability button. Both spells must be of 2nd level or lower. To create a sequencer, a Mage must memorize not only Minor Sequencer but also the spells <PRO_HESHE> intends to store in it (a Sorcerer can store spells of any level for which <PRO_HESHE> still has spell slots). After casting Minor Sequencer, the player will be prompted to choose the sequenced spells from those <PRO_HESHE> has memorized.
+
+A sequencer lasts until activated and, once used, releases its spells immediately (no casting time). The Special Ability icon also disappears until the next time a sequencer is formed. A wizard can possess only one Minor Sequencer at a time, and it may not be given to other characters.~
+
+@6164 = ~Spell Sequencer
+(Generalist)
+
+Level: 7
+Range: 0
+Duration: Permanent
+Casting Time: 9
+Area of Effect: Special
+Saving Throw: None
+
+This spell allows a wizard to store three spells and activate them all at the same time from <PRO_HISHER> Special Ability button. All spells must be of 4th level or lower. To create a sequencer, a Mage must memorize not only Spell Sequencer but also the spells <PRO_HESHE> intends to store in it (a Sorcerer can store spells of any level for which <PRO_HESHE> still has spell slots). After casting Spell Sequencer, the player will be prompted to choose the sequenced spells from those <PRO_HESHE> has memorized.
+
+A sequencer lasts until activated and, once used, releases its spells immediately (no casting time). The Special Ability icon also disappears until the next time a sequencer is formed. A wizard can possess only one Spell Sequencer at a time, and it may not be given to other characters.~
+
+@6165 = ~Contingency (Generalist)
+Level: 6
+Range: 0
+Duration: 1 day/level
+Casting Time: 0
+Area of Effect: Special
+Saving Throw: None
+
+Upon casting this spell the wizard is allowed to choose a spell out of his repertoire of known spells. One spell level for every three levels of the caster is allowed up to 18th level or 6th level spells. Once the spell is chosen the caster is allowed to choose a condition of some kind from the list provided. The starting condition can be anything from reaching 10% of his/her hit points to an enemy being sighted. Once this starting condition is satisfied the spell that was chosen will be cast automatically. For example a 12th level wizard could place the spell stoneskin in a contingency with the starting condition being 'the wizard reaches 50% of his hit points'. Then in combat once the wizard is reduced to 50% of his hit points or below, stoneskin would be immediately cast upon him. This requires no action by the wizard, it happens automatically and instantaneously. The limitation of this spell is that the target of the spell placed in the contingency must be the caster. Therefor it cannot be an offensive spell and cannot target any other party members.~
+
+@6166 = ~Chain Contingency (Generalist)
+Level: 9
+Range: 0
+Duration: Special
+Casting Time: 0
+Area of Effect: The Caster
+Saving Throw: None
+
+Chain contingency channels some of the magical energy of the mage and releases it only under certain circumstances. Basically, the mage chooses three spells, which will be released under certain conditions such as being hit by an enemy. When this condition occurs all three spells are cast immediately. Spells of 8th level or lower may be used in the contingency. Chain Contingency spell can't be cast again during the same day, even if you cancelled the preparation of the contingency. Moreover, it precludes the possibility to cast the 6th level spell, 'Contingency' for one day. Hence, if a mage wants to cast both spells during the same day, he has to cast the 6th level spell before this spell.~
+
+@6167 = ~Spell Trigger
+(Generalist) 
+
+Level: 8
+Range: 0 
+Duration: Permanent
+Casting Time: 9
+Area of Effect: The caster 
+Saving Throw: None 
+
+This spell allows a wizard to store spells in a magical ability (accessed via the Special Ability button) that is created by the spell. This item, the trigger, can store three spells to be released simultaneously, all of which must be of 6th level or lower. A wizard can only possess one spell trigger at a time, and the trigger may not be given to other characters. Once the spell trigger is used, the icon will disappear from the Special Ability button.~
+
+@6168 = ~Aegis of Faith~
+
+@6169 = ~Aegis of Faith
+Through prayer and devotion, the cleric grants themselves a protective blessing that safeguards their magical defenses. For the next turn, any effects that targets and removes specific protections will be nullified. This spell does not protect against spells and effects that dispel all types of effects at once, like Remove Magic or Purge Magic.
+
+This blessing cannot be dispelled and remains active for its full duration.~
+
+@6170 = ~Chant
+(Conjuration/Summoning)
+
+Level: 2
+Sphere: Combat 
+Range: 0 
+Duration: 1 turn
+Casting Time: 4 
+Area of Effect: 15-ft. radius 
+Saving Throw: None 
+
+By means of the Chant spell, the priest brings special favor upon <PRO_HISHER>self and <PRO_HISHER> party and causes harm to <PRO_HISHER> enemies. When the Chant spell is completed, all the priest's allies within the area of effect gain a +1 bonus to attack rolls, minimum damage, and Saving Throws. Furthermore, damage dice for all effects outside a weapon's base damage is reduced by 1. The priest's enemies suffer the opposite effects.
+
+Multiple chants are not cumulative.~
+
+@6171 = ~Shield Bash~
+
+@6172 = ~Shield Bash~
 
 @6163 = ~Shield Bash~
 

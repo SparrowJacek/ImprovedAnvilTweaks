@@ -190,7 +190,9 @@ COPY_EXISTING ~sppr512.spl~ ~override~
 
 // Contingency files
 
-COPY ~IATweaks\resources\spl\s!cont01.spl~ ~override~ // Remove Magic if HP less than 75// Make stores sell and buy items of new categories, like Bastard Sword (69) - used for backstab weapons
+COPY ~IATweaks\resources\spl\s!cont01.spl~ ~override~ // Remove Magic if HP less than 75
+
+// Make stores sell and buy items of new categories, like Bastard Sword (69) - used for backstab weapons
 
 COPY_EXISTING_REGEXP GLOB ~.+\.sto~ ~override~
   SET deals_in_armors = 0

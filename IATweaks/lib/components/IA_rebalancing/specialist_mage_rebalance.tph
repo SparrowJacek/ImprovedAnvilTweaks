@@ -1241,19 +1241,6 @@ COPY_EXISTING ~GPMAGE1.cre~ ~override~
   WRITE_BYTE 0x23d 17 // Constitution
   WRITE_BYTE 0x272 2 // Race = Elf
 
-    LPF ~ADD_CRE_EFFECT~
-      INT_VAR
-        opcode = 232
-        target = 0
-        parameter1 = 0
-        parameter2 = 11
-        timing = 1
-        resist_dispel = 0
-        restype = 0
-      STR_VAR
-        resource = ~S!CONT01~
-        effsource = ~S!CONT01~
-    END
   LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
     INT_VAR
       target = 1
@@ -1263,6 +1250,20 @@ COPY_EXISTING ~GPMAGE1.cre~ ~override~
       resist_dispel = 0
       timing = 9
       special = 1
+  END
+  
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 232
+      target = 0
+      parameter1 = 0
+      parameter2 = 11
+      timing = 1
+      resist_dispel = 0
+      restype = 0
+    STR_VAR
+      resource = ~S!CONT01~
+      effsource = ~S!CONT01~
   END
 
   LPF ~DELETE_CRE_EFFECT~

@@ -1254,6 +1254,16 @@ COPY_EXISTING ~GPMAGE1.cre~ ~override~
         resource = ~S!CONT01~
         effsource = ~S!CONT01~
     END
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
 
   LPF ~DELETE_CRE_EFFECT~
     STR_VAR

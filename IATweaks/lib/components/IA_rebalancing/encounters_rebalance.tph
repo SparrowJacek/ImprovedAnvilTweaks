@@ -1139,11 +1139,22 @@ COPY_EXISTING ~GPSIMB.cre~ ~override~
       timing = 9
   END
 
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+  
   LPF ~ADD_CRE_EFFECT~ // Increase movement speed
     INT_VAR
       target = 1
       opcode = 126
-      parameter1 = 5
+      parameter1 = 4
       parameter2 = 0
       resist_dispel = 0
       timing = 9
@@ -1222,6 +1233,17 @@ COPY_EXISTING ~GPFIGHT1.cre~ ~override~
   WRITE_BYTE 0x23d 19 // Constitution
   WRITE_LONG 0x244 0x40010000 // Kit = Berserker
 
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+  
   LPF ~DELETE_CRE_ITEM~
     STR_VAR
       item_to_delete = ~DRAGRING~

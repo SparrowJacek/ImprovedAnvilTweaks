@@ -95,6 +95,8 @@ COPY_EXISTING ~stylbonu.2da~  ~override/stylbonu.2da~
 ADD_PROJECTILE ~IATweaks\resources\pro\s!defha1.pro~
 ADD_PROJECTILE ~IATweaks\resources\pro\s!defha2.pro~
 ADD_PROJECTILE ~IATweaks\resources\pro\s!defha3.pro~
+COPY_EXISTING ~s!defha3.pro~ ~override~
+  WRITE_SHORT 0x3c enemy_group_state
 
 // Add condition for checking specific kit in splprot.2da
 
@@ -187,13 +189,6 @@ COPY_EXISTING ~sppr406.spl~ ~override/sppr406d.spl~
       parameter1 = ~-675892480~
       parameter2 = 1310720
       resist_dispel = 3
-  END
-  LPF ~CLONE_EFFECT~
-    INT_VAR
-      match_opcode = 321
-    STR_VAR
-      match_resource = ~SPPR406D~
-      resource = ~SPPR406F~
   END
 
 COPY ~IATweaks\resources\spl\sppr406e.spl~ ~override\sppr406e.spl~ // Cleric kit only bonus spell

@@ -5,6 +5,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("Iapri01","LOCALS",1)
+		ReallyForceSpellRES("S!AEGIS",Myself)
 		ReallyForceSpell(Myself,CLERIC_DEATH_WARD)  // SPPR409.SPL (Death Ward)
 		ReallyForceSpell(Myself,CLERIC_BLESS)  // SPPR101.SPL (Bless)
 		ReallyForceSpell(Myself,CLERIC_AID)  // SPPR201.SPL (Aid)

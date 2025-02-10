@@ -1,0 +1,52 @@
+SILENT
+
+INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
+
+// Remove Specific protections moved to s!specif.spl
+COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
+  LPF ~S!ITEM_USES_OPCODE~
+  INT_VAR
+    check_globals  = 1
+    check_headers  = 1
+    match_opcode   = 221
+    match_param2   = 2
+  RET
+    is_found
+  END
+  PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+    LPF ~ALTER_EFFECT~
+        INT_VAR
+            match_opcode      = 221
+            match_parameter2  = 2
+            opcode            = 146
+            silent            = 0
+        STR_VAR
+            resource = ~S!SPECIF~
+    END
+  END
+  BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~.+\.spl~ ~override~
+  LPF ~S!SPELL_USES_OPCODE~
+  INT_VAR
+    check_globals  = 1
+    check_headers  = 1
+    match_opcode   = 221
+    match_param2   = 2
+  RET
+    is_found
+  END
+  PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+    LPF ~ALTER_EFFECT~
+        INT_VAR
+            match_opcode      = 221
+            match_parameter2  = 2
+            opcode            = 146
+            silent            = 0
+        STR_VAR
+            resource = ~S!SPECIF~
+    END
+  END
+  BUT_ONLY
+
+COPY ~IATweaks\resources\spl\s!specif.spl~ ~override~

@@ -4,6 +4,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("prep","LOCALS",1)
+		ReallyForceSpellRES("S!AEGIS",Myself)
 		ReallyForceSpell(Myself,CLERIC_BLESS)  // SPPR101.SPL (Bless)
 		ReallyForceSpell(Myself,CLERIC_ARMOR_OF_FAITH)  // SPPR111.SPL (Armor of Faith)
 		ReallyForceSpell(Myself,CLERIC_AID)  // SPPR201.SPL (Aid)

@@ -70,6 +70,9 @@ OUTER_SET life_link_state = %new_state_index%
 LAF resolve_state STR_VAR new_state_id = ~CHAMPIONS_MIGHT~ RET new_state_index END
 OUTER_SET champions_might_state = %new_state_index%
 
+LAF resolve_state STR_VAR new_state_id = ~REMOVE_SPECIFIC_PROTS_IMMUNITY~ RET new_state_index END
+OUTER_SET remove_specific_prots_immunity_state = %new_state_index%
+
 // Thief
 LAF resolve_state STR_VAR new_state_id = ~HIDE_IN_SHADOWS_SUCCESS~ RET new_state_index END
 OUTER_SET hide_in_shadows_success_state = %new_state_index%

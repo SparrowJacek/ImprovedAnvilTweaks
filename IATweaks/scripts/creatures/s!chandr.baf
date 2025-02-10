@@ -29,11 +29,26 @@ END
 IF
 	See(NearestEnemyOf(Myself))
 	Global("IaPrep","LOCALS",0)
+	!Dead("GPFIGHT1")
+THEN
+	RESPONSE #100
+		SetGlobal("IaPrep","LOCALS",1)
+		ReallyForceSpell("GPFIGHT1",CLERIC_FREE_ACTION)
+		RemoveSpell(CLERIC_FREE_ACTION)
+		ReallyForceSpell("GPFIGHT1",CLERIC_CHAMPIONS_STRENGTH)
+		RemoveSpell(CLERIC_CHAMPIONS_STRENGTH)
+		Continue()
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	Global("IaPrep","LOCALS",0)
 THEN
 	RESPONSE #100
 		SetGlobal("IaPrep","LOCALS",1)
 		SetGlobalTimer("IaHolyPowerTimer","LOCALS",TWO_TURNS)
 		SetGlobalTimer("IaDefensiveHarmonyTimer","LOCALS",SIX_ROUNDS)
+		ReallyForceSpellRES("S!AEGIS",Myself)
 		ReallyForceSpell(Myself,CLERIC_BLESS)  // SPPR101.SPL (Bless)
 		ReallyForceSpell(Myself,CLERIC_REMOVE_FEAR)  // SPPR108.SPL (Remove Fear)
 		ReallyForceSpell(Myself,CLERIC_ARMOR_OF_FAITH)  // SPPR111.SPL (Armor of Faith)

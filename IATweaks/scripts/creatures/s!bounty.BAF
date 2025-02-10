@@ -99,6 +99,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("Prep","LOCALS",1)
+		ReallyForceSpellRES("S!AEGIS",Myself)
 		ReallyForceSpell(Myself,WIZARD_RESIST_FEAR)
 		ReallyForceSpell(Myself,WIZARD_GHOST_ARMOR)  // SPWI317.SPL (Ghost Armor)
 		ReallyForceSpell(Myself,WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)  // SPWI406.SPL (Minor Globe of Invulnerability)

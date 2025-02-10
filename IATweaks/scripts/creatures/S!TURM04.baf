@@ -58,6 +58,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("Iaturmc01","LOCALS",1)
+		ReallyForceSpellRES("S!AEGIS",Myself)
 		ReallyForceSpell(Myself,CLERIC_REMOVE_FEAR)  // SPPR108.SPL (Remove Fear)
 		ReallyForceSpell(Myself,CLERIC_ARMOR_OF_FAITH)  // SPPR111.SPL (Armor of Faith)
 		ReallyForceSpell(Myself,CLERIC_AID)  // SPPR201.SPL (Aid)

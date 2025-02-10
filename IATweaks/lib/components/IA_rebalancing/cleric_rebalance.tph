@@ -108,6 +108,44 @@ LAF ~S!ADD_SPLPROT_2DA_ENTRY~
     kit_equals_row = new_line_number
 END
 
+// Add Aegis of Faith
+COPY ~IATweaks\resources\bam\s!aegisb.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!aegisc.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!aegisd.bam~ ~override~
+
+OUTER_SET aegis_of_faith_desc_str_ref = RESOLVE_STR_REF (@6168)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %aegis_of_faith_desc_str_ref%
+  STR_VAR
+    bam_file = ~S!AEGISD~
+  RET
+    aegis_of_faith_icon_id = portrait_icon_id
+END
+
+COPY ~IATweaks\resources\spl\s!aegis.spl~ ~override~
+  SAY NAME1 @6168
+  SAY UNIDENTIFIED_DESC @6169
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %aegis_of_faith_icon_id%
+  END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      match_opcode = 328
+      parameter2 = ~%remove_specific_prots_immunity_state%~
+  END
+
+ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR01.2da~ ~CLABPR02.2da~ ~CLABPR03.2da~ ~CLABPR04.2da~ ~OHTYR.2da~ ~OHTEMPUS.2da~ BEGIN
+  LAF ~S!ADD_CLAB_ROW~
+    STR_VAR
+      filename = ~%cleric_kit_clab%~
+      row_desc = ~AEGIS_OF_FAITH~
+      level15 = ~GA_S!AEGIS~
+  END
+END
+
 // Rework Defensive Harmony
 
 COPY_EXISTING ~sppr406.spl~ ~override/sppr406d.spl~

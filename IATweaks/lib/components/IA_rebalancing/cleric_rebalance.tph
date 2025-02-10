@@ -1442,6 +1442,67 @@ COPY_EXISTING ~SPPR201.spl~ ~override/SPPR201.spl~
     END
   END
 
+// Chant
+
+COPY_EXISTING ~SPPR203.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6170
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      speed = 4
+  END
+
+COPY_EXISTING ~SPPR203D.spl~ ~override~
+  LPF ~S!CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 131
+      opcode = 250
+  END
+  LPF ~S!CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 131
+      opcode = 54
+  END
+  LPF ~S!CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 131
+      opcode = 321
+      target = 1
+    STR_VAR
+      insert = ~first~
+      resource = ~SPPR203D~
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 131
+  END
+
+COPY_EXISTING ~SPPR203E.spl~ ~override~
+  LPF ~S!CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 137
+      opcode = 250
+      parameter1 = ~-1~
+  END
+  LPF ~S!CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 137
+      opcode = 54
+      parameter1 = ~-1~
+  END
+  LPF ~S!CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 137
+      opcode = 321
+      target = 1
+    STR_VAR
+      insert = ~first~
+      resource = ~SPPR203E~
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 137
+  END
+
 // Draw Upon Holy Might
 
 ACTION_FOR_EACH duhm_spell_file IN ~spin103.spl~ ~sppr214.spl~ BEGIN

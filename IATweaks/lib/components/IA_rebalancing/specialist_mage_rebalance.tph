@@ -210,7 +210,15 @@ COPY_EXISTING ~spini59.spl~ ~override~
 
 COMPILE ~IATweaks\scripts\creatures\S!MONSUM.baf~
 
+
+OUTER_SET monster_summon_buff_str = RESOLVE_STR_REF (@5050)
 COPY ~IATweaks\resources\spl\s!smbuf1.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = monster_summon_buff_str
+  END
+
 COPY ~IATweaks\resources\spl\s!smbuf2.spl~ ~override~
 
 ACTION_FOR_EACH summoned_monster IN ~OGRELESU~ ~OGRESU~ ~ETTERCSU~ ~S!MINOSU~ ~S!SALASU~ ~S!TROLSU~ ~S!YUANSU~ BEGIN

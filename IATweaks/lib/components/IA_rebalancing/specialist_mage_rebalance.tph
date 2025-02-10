@@ -182,6 +182,28 @@ COPY_EXISTING ~spwi905.spl~ ~override~
       match_opcode = 221
   END
 
+COPY_EXISTING ~spini57.spl~ ~override~
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 321
+      target = 1
+      insert_point = 0
+      resist_dispel = 0
+    STR_VAR
+      resource = ~spini57~
+  END
+
+COPY_EXISTING ~spini59.spl~ ~override~
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 321
+      target = 1
+      insert_point = 0
+      resist_dispel = 0
+    STR_VAR
+      resource = ~spini59~
+  END
+
 //////// CONJURER //////////
 
 // More powerful versions of summons for Conjurer

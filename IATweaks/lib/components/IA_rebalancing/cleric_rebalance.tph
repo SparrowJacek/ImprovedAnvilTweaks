@@ -1958,7 +1958,7 @@ COPY_EXISTING ~SPPR214.spl~ ~override/SPPR214.spl~
       duration = 0
       resist_dispel = 0
     STR_VAR
-      resource = "SPPR214D"
+      resource = "SPPR214"
   END
   // Cast improved version if caster is Lathander
   LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~ 
@@ -2273,7 +2273,7 @@ COPY_EXISTING ~SPPR513.spl~ ~override/SPPR513.spl~
       duration = 0
       resist_dispel = 0
     STR_VAR
-      resource = "SPPR513D"
+      resource = "SPPR513"
   END
   // Cast improved version if caster is Tyr
   LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~ 
@@ -2365,7 +2365,7 @@ COPY_EXISTING ~SPPR412.spl~ ~override/SPPR412.spl~
       duration = 0
       resist_dispel = 0
     STR_VAR
-      resource = "SPPR412D"
+      resource = "SPPR412"
   END
   // Cast improved version if caster is Tempus
   LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~ 
@@ -3039,14 +3039,15 @@ COPY_EXISTING ~gppri1.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPPR301~ #2 ~priest~ ( 2 ) // Animate Dead
   ADD_MEMORIZED_SPELL ~SPPR314~ #2 ~priest~ ( 5 ) // Unholy Blight
   ADD_MEMORIZED_SPELL ~SPPR318~ #2 ~priest~ ( 2 ) // Zone of Sweet Air
-  ADD_MEMORIZED_SPELL ~SPPR403~ #3 ~priest~ ( 2 ) // Free Actions
-  ADD_MEMORIZED_SPELL ~SPPR404~ #3 ~priest~ ( 2 ) // Neutralize Poison
+  ADD_MEMORIZED_SPELL ~SPPR403~ #3 ~priest~ ( 3 ) // Free Actions
+  ADD_MEMORIZED_SPELL ~SPPR404~ #3 ~priest~ ( 1 ) // Neutralize Poison
   ADD_MEMORIZED_SPELL ~SPPR406F~ #3 ~priest~ ( 1 ) // Defensive Harmony
   ADD_MEMORIZED_SPELL ~SPPR412~ #3 ~priest~ ( 1 ) // Holy Power
   ADD_MEMORIZED_SPELL ~SPPR505~ #4 ~priest~ ( 1 ) // True Seeing
   ADD_MEMORIZED_SPELL ~SPPR508~ #4 ~priest~ ( 2 ) // Chaotic Commands
   ADD_MEMORIZED_SPELL ~SPPR512~ #4 ~priest~ ( 2 ) // Greater Command
-  ADD_MEMORIZED_SPELL ~SPPR608~ #5 ~priest~ ( 2 ) // Harm
+  ADD_MEMORIZED_SPELL ~SPPR608~ #5 ~priest~ ( 1 ) // Harm
+  ADD_MEMORIZED_SPELL ~SPPR618~ #5 ~priest~ ( 1 ) // Champion's Might
   ADD_MEMORIZED_SPELL ~SPPR713~ #6 ~priest~ ( 1 ) // Greater Restoration
   ADD_MEMORIZED_SPELL ~SPCL943~ #0 ~innate~ ( 1 ) // Purify Aura
   ADD_MEMORIZED_SPELL ~S!DIVINT~ #0 ~innate~ ( 1 ) // Divine Intervention

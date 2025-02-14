@@ -3115,3 +3115,8 @@ COPY_EXISTING ~gppri1.cre~ ~override~
   ADD_MEMORIZED_SPELL ~S!DIVINT~ #0 ~innate~ ( 1 ) // Divine Intervention
 
 COMPILE ~IATweaks\scripts\creatures\S!CHANDR.BAF~
+
+// Chalinthra, the F/C from Underdark Tavern
+
+COPY_EXISTING ~UDCHAL.cre~ ~override~
+  WRITE_BYTE 0x5d 65 // Resist Magic

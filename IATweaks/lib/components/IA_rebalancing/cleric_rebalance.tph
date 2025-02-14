@@ -541,8 +541,9 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
         INT_VAR
           opcode = 328
           target = 1
-          parameter1 = %shield_equipped_state%
+          parameter2 = %shield_equipped_state%
           timing = 2  
+          special = 1  
       END
   END
   BUT_ONLY

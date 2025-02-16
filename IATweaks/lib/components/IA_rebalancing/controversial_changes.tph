@@ -331,13 +331,19 @@ COPY_EXISTING ~s!robe02.itm~ ~override~
     END
   END
 
-////////// Reworked Improved Haste and Whirlwind Attack ////////////
+////////// Reworked Improved Haste ////////////
 
 ACTION_FOR_EACH improved_haste_spell IN ~SPINI33~ ~SPINI88~ ~SPWI613~ ~S!CHMPMZ~ ~SPWISH36~ ~SPWISH37~ ~SPWISH40~ BEGIN
   COPY_EXISTING ~%improved_haste_spell%.spl~ ~override~
     LPF ~S!SPELL_USES_OPCODE~
       INT_VAR
         match_opcode = 16
+      RET
+        opcode_target
+    END
+    LPF ~S!SPELL_USES_OPCODE~
+      INT_VAR
+        match_opcode = 317
       RET
         opcode_target
     END
@@ -368,6 +374,13 @@ ACTION_FOR_EACH improved_haste_spell IN ~SPINI33~ ~SPINI88~ ~SPWI613~ ~S!CHMPMZ~
         parameter1 = 1
         parameter2 = 0
         silent = 1
+    END
+    LPF ~CLONE_EFFECT~ 
+      INT_VAR
+        match_opcode = 1
+        opcode = 328
+        parameter2 = improved_haste_splstate
+        special = 1
     END
     PATCH_FOR_EACH improved_haste_spell_to_delete IN ~SPINI33~ ~SPINI88~ ~SPWI613~ ~S!CHMPMZ~ ~SPWISH36~ ~SPWISH37~ ~SPWISH40~ BEGIN
       LPF ~ADD_SPELL_EFFECT~ 
@@ -424,6 +437,84 @@ COPY_EXISTING ~clastext.2da~ ~override/clastext.2da~
   SET_2DA_ENTRY_LATER ~s!monk_desc~ $clastext_rows("MONK") $clastext_cols("DESCSTR") RESOLVE_STR_REF (@5030)
   SET_2DA_ENTRIES_NOW ~s!monk_desc~ ~colcount~
   PRETTY_PRINT_2DA
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  INT_VAR
+    col_with_names = 1
+  STR_VAR
+    2da_table_name = ~statdesc.2da~
+
+  RET_ARRAY
+    statdesc_rows = 2da_rows_to_ids_mapping
+END
+
+COPY_EXISTING ~statdesc.2da~ ~override~
+  COUNT_2DA_COLS ~colcount~
+  SET_2DA_ENTRY $statdesc_rows("54312") 1 ~colcount~ RESOLVE_STR_REF (@5052)
+  PRETTY_PRINT_2DA
+
+// Patch items that grant short-lasting IH
+
+COPY ~IATweaks\resources\bam\s!dblapr.bam~ ~override~
+OUTER_SET apr_doubled_desc_str_ref = RESOLVE_STR_REF (@5052)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %apr_doubled_desc_str_ref%
+  STR_VAR
+    bam_file = ~S!DBLAPR~
+  RET
+    apr_doubled_icon_id = portrait_icon_id
+END
+
+// Ring of Gaxx
+COPY_EXISTING ~ring39.itm~ ~override~
+  SAY IDENTIFIED_DESC @7045
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %apr_doubled_icon_id%
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 16
+      opcode = 317
+  END
+
+// Ring of Gaxx
+COPY_EXISTING ~s!ring02.itm~ ~override~
+  SAY IDENTIFIED_DESC @7046
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %apr_doubled_icon_id%
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 16
+      opcode = 317
+  END
+
+// Bracers of Blinding Strike
+COPY_EXISTING ~brac16.itm~ ~override~
+  SAY IDENTIFIED_DESC @7047
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %apr_doubled_icon_id%
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 16
+      opcode = 317
+  END
+  LPF ~ALTER_ITEM_EFFECT~
+    INT_VAR
+      duration_high = 12
+  END
+
+// Stained in Blood
+COPY_EXISTING ~s!chan03.itm~ ~override~
+  SAY IDENTIFIED_DESC @7048
 
 ////////// Non-stackable bonuses from rings and cloaks ////////////
 

@@ -135,7 +135,7 @@ Weight: 3~
 STATISTICS:
 
 Combat abilities: 
-– Applies -1 penalty to melee damage dealt, AC and thac0 for 1 round when successful backstab is performed (Save vs. Death negates)
+– Applies -1 penalty to AC and thac0 for 2 rounds when successful backstab is performed (Save vs. Death negates)
 
 THAC0: +3 
 Damage: 1d6+3 (crushing) 
@@ -401,7 +401,6 @@ Equipped abilities:
 
 Weight: 3~
 
-@7041 = ~~
 @7045 = ~Ring of Gaxx
 This ring is relatively unadorned, but the vile magic within radiates intense evil. Indeed, its creator, Kangaxx, was no less evil himself, even before millennia of undeath honed his power. It is said that a cadre of Netheril mages fought and imprisoned the demilich once, but being unable to truly destroy him they became liches themselves to stand guard over his remains. The construction of the ring may have led to their enmity, as each of the gem's nine facets was supposedly empowered by sacrifice and death.
 

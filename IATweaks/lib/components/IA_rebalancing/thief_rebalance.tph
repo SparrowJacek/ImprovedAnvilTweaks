@@ -336,6 +336,15 @@ COPY_EXISTING ~CLABTH04.2da~ ~override~
     ~****~
   PRETTY_PRINT_2DA
 
+// Lower thac0 bonus from 2 to 1
+
+COPY_EXISTING ~SPCLI14.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 278
+      parameter1 = 1
+  END
+
 ////// Assassin ///////
 
 LAF ~S!ADD_CLAB_ROW~

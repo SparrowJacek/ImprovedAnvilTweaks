@@ -793,3 +793,116 @@ COMPILE ~IATweaks\scripts\creatures\S!ELEGOA.BAF~
 COMPILE ~IATweaks\scripts\creatures\S!ELEGOS.BAF~
 COMPILE ~IATweaks\scripts\creatures\S!GELEGO.BAF~
 COMPILE ~IATweaks\scripts\creatures\S!GELEGS.BAF~
+
+////////////////////// Fighter HLAs ///////////////////////////
+
+// Critical Strike
+
+COPY_EXISTING ~SPCL905.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6171
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      duration_high = 24
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 301
+      parameter1 = 9
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 282
+  END
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      insert_point = ~-1~
+      opcode = 146
+      parameter2 = 1
+      target = 1
+      resist_dispel = 0
+      duration = 24
+      timing = 0
+    STR_VAR
+      resource = EVAL ~S!CRIT1~
+  END
+  FOR (i = 1; i <= 12; ++i) BEGIN
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        insert_point = ~-1~
+        opcode = 321
+        target = 1
+        duration = 24
+        timing = 3
+      STR_VAR
+        resource = EVAL ~S!CRIT%i%~
+    END
+  END
+  FOR (i = 12; i >= 1; --i) BEGIN
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        insert_point = 0
+        opcode = 321
+        target = 1
+        duration = 24
+        timing = 3
+      STR_VAR
+        resource = EVAL ~S!CRIT%i%~
+    END
+  END
+
+COPY ~IATweaks\resources\eff\s!crit1.eff~ ~override~
+COPY_EXISTING ~s!crit1.eff~ ~override/s!crit2.eff~
+  WRITE_ASCII 0x30 ~S!CRIT3~ #8
+
+COPY ~IATweaks\resources\spl\s!crit1.spl~ ~override~
+COPY_EXISTING ~s!crit1.spl~ ~override/s!crit2.spl~
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      insert_point = ~0~
+      opcode = 321
+      target = 1
+      duration = 0
+      timing = 0
+    STR_VAR
+      resource = EVAL ~S!CRIT1~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 248
+    STR_VAR
+      resource = EVAL ~S!CRIT2~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 249
+    STR_VAR
+      resource = EVAL ~S!CRIT2~
+  END
+
+OUTER_FOR (i=3;i<=12;++i) BEGIN
+  OUTER_SET j = i + 1
+  OUTER_SET k = i - 1
+  COPY_EXISTING ~s!crit2.spl~ ~override/s!crit%i%.spl~
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 321
+      STR_VAR
+        resource = EVAL ~S!CRIT%k%~
+    END
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 248
+      STR_VAR
+        resource = EVAL ~S!CRIT%i%~
+    END
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 249
+      STR_VAR
+        resource = EVAL ~S!CRIT%i%~
+    END
+
+  COPY_EXISTING ~s!crit2.eff~ ~override/s!crit%i%.eff~
+    WRITE_ASCIIE 0x30 ~S!CRIT%j%~ #8
+END
+COPY ~IATweaks\resources\spl\s!crit13.spl~ ~override~

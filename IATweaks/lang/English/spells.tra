@@ -1235,9 +1235,10 @@ By means of the Chant spell, the priest brings special favor upon <PRO_HISHER>se
 
 Multiple chants are not cumulative.~
 
-@6171 = ~Shield Bash~
+@6171 = ~Critical Strike
+A master warrior knows exactly when and where to strike for maximum impact. Once per day, <PRO_HESHE> can focus <PRO_HISHER> attacks with unparalleled precision. For the next 4 rounds, <PRO_HESHE> gains a +45% chance to land a critical hit. This effect lasts until the duration ends or after 12 successful attacks, whichever comes first.
 
-@6172 = ~Shield Bash~
+Requires: Power Attack~
 
 @6163 = ~Shield Bash~
 

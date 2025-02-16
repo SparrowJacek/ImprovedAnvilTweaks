@@ -350,7 +350,56 @@ Duration: 2 hours
 
 Weight: 1~
 
-@7040 = ~~
+@7040 = ~Blightwood +5~
+
+@7041 = ~Crafted from three distinct clubs, Blightwood +5 is a weapon that rewards patience and precision. Its enchantments make it especially effective when striking unnoticed, momentarily reducing an enemy’s ability to fight back. While simple in form, those who underestimate its magic often regret it.
+
+STATISTICS:
+
+Combat abilities:
+- Applies cumulative -2 penalty to AC and thac0 for 2 rounds when successful backstab is performed (no save)
+- Critical hit chance increased by 5%
+- Each critical hit performed with this weapon grants additional 5 crushing damage
+- Wielder gains additional +2 thac0 at night or in dungeons
+
+THAC0: +5
+Damage: 1d6+5 (crushing)
+Speed Factor: 0
+Proficiency Type: Club
+Type: One-handed
+Requires:
+5 Strength
+
+Weight: 3~
+
+@7042 = ~The cloak can be made in every possible shape with just about every type of fabric. The most common forms are a circular piece of fabric with a hole in the center for the head, and fabric draped from neck, connected by a chain, brooch, cord, or pins. Talented drow weavers have woven strands of adamantine into the cloak, thus rendering it useless if exposed to the light—the effect of which will turn the cloak to dust.
+
+STATISTICS:
+
+Equipped abilities:
+– Hide In Shadows: +25%
+– Save vs. Breath: +6
+
+Weight: 3~
+
+@7043 = ~This cloak belongs to Solaufein, the drow warrior. It increases the wearer's Hide In Shadows abilities. Talented drow weavers have woven strands of adamantine into this cloak, thus rendering it useless if exposed to the light—the effect of which will turn the cloak to dust.
+
+STATISTICS:
+
+Equipped abilities:
+– Hide In Shadows: +25%
+– Save vs. Breath: +6
+
+Weight: 3~
+
+@7044 = ~This green cloak resembles a normal cloak. Wearing it makes any person able to hide in shadows with astonishing ability. As per the Thief ability though, the moment the wearer attacks or otherwise makes his/her presence known, the wearer must leave the shadows.
+
+STATISTICS:
+
+Equipped abilities:
+– Hide In Shadows: +10%
+
+Weight: 3~
 
 @7041 = ~~
 @7045 = ~Ring of Gaxx

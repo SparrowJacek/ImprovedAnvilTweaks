@@ -943,13 +943,13 @@ COPY_EXISTING ~MINDFLAY.itm~ ~override~
       match_opcode = 19
       parameter1 = ~-3~
   END
-  // Cast S!MFPROT each time the creature is hit
+  // Cast S!MFPROT each time the damage is dealt
   LPF ~ADD_ITEM_EQEFFECT~
     INT_VAR
       opcode = 232
       target = 1
       parameter1 = 0
-      parameter2 = 0
+      parameter2 = 11
       timing = 9
       resist_dispel = 0
     STR_VAR
@@ -989,7 +989,6 @@ COPY ~IATweaks\resources\spl\s!mfblst.spl~ ~override~
       INT_VAR
         header = header_num
         match_opcode = 148
-        parameter1 = min_level
     END
   END
 

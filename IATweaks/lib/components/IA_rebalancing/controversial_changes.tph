@@ -997,3 +997,105 @@ OUTER_FOR (i=3;i<=12;++i) BEGIN
     WRITE_ASCIIE 0x30 ~S!CRIT%j%~ #8
 END
 COPY ~IATweaks\resources\spl\s!crit13.spl~ ~override~
+
+// Whirlwind Attack
+
+COPY ~IATweaks\resources\spl\s!negaih.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter1 = improved_haste_splstate
+  END
+ACTION_FOR_EACH whirlwind_spell IN ~SPCL900~ ~SPCL901~ BEGIN
+  COPY_EXISTING ~%whirlwind_spell%.spl~ ~override~
+    LPF ~ALTER_SPELL_EFFECT~
+      INT_VAR
+        duration_high = 15
+    END
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 1
+        parameter1 = 1
+        parameter2 = 0
+    END
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        opcode = 333
+        insert_point = ~-1~
+        target = 1
+        parameter1 = 14
+        duration = 15
+        special = 1
+        resist_dispel = 0
+      STR_VAR
+        resource = "S!NEGAIH"
+    END
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        opcode = 146
+        insert_point = ~-1~
+        target = 1
+        parameter2 = 1
+        resist_dispel = 0
+      STR_VAR
+        resource = "S!NEGAIH"
+    END
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        opcode = 321
+        insert_point = 0
+        target = 1
+        duration = 0
+        resist_dispel = 0
+      STR_VAR
+        resource = ~SPCL900~
+    END
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        opcode = 321
+        insert_point = 0
+        target = 1
+        duration = 0
+        resist_dispel = 0
+      STR_VAR
+        resource = ~SPCL901~
+    END
+END
+
+COPY_EXISTING ~SPCL900.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6172
+
+COPY_EXISTING ~SPCL901.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6173
+
+COPY_EXISTING_REGEXP GLOB ~LU.*\.2da~ ~override~
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  FOR (i = 0; i < ~rowcount~; ++i) BEGIN
+    READ_2DA_ENTRY i 1 %colcount% current_val
+    PATCH_IF ((~%current_val%~ STR_EQ ~GA_SPCL900~) OR (~%current_val%~ STR_EQ ~GA_SPCL901~)) BEGIN
+      SET_2DA_ENTRY i 6 ~colcount~ 1
+    END
+  END
+  BUT_ONLY
+
+// War Cry
+
+COPY ~IATweaks\resources\bam\s!warcrd.bam~ ~override~
+OUTER_SET war_cry_desc_str_ref = RESOLVE_STR_REF (@6175)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %war_cry_desc_str_ref%
+  STR_VAR
+    bam_file = ~S!WARCRD~
+  RET
+    war_cry_icon_id = portrait_icon_id
+END
+
+COPY ~IATweaks\resources\spl\SPCL908.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6174
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %war_cry_icon_id%
+  END

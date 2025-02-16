@@ -1240,18 +1240,27 @@ A master warrior knows exactly when and where to strike for maximum impact. Once
 
 Requires: Power Attack~
 
-@6163 = ~Shield Bash~
+@6172 = ~Whirlwind Attack
+This ability allows the warrior to unleash a flurry of super-fast blows. The ability increases the number of attacks per round by 1 and then doubles the final value, but one's THAC0 and damage suffer a 4 point penalty. The Whirlwind Attack lasts for 15 seconds. This ability disregards bonuses to attacks per round from Improved Haste and similar spells/abilities, which were used prior to Whirlwind Attack, but does not remove them.
 
-@6164 = ~Shield Bash~
+This ability can be picked only once~
 
-@6165 = ~Shield Bash~
+@6173 = ~Greater Whirlwind Attack
+A more powerful version of the Whirlwind Attack, Greater Whirlwind gives the warrior the same bonuses without penalties. This ability can be picked only once.
 
-@6166 = ~Shield Bash~
+Requires: Whirlwind Attack~
 
-@6167 = ~Shield Bash~
+@6174 = ~War Cry
+Letting loose a battle cry that fuels both rage and resolve, the warrior enters a heightened state of combat. For 1 turn, <PRO_HESHE> gains double the normal number of attacks per round, and cannot be affected by Haste or Slow effects during this time. This reckless exertion comes at a price - every 2 rounds, <PRO_HISHER> fatigue level increases by 1. This ability disregards bonuses to attacks per round from Improved Haste and similar spells/abilities, which were used prior to War Cry, but does not remove them.~
 
-@6168 = ~Shield Bash~
+@6175 = ~War Cry~
 
-@6169 = ~Shield Bash~
+@6176 = ~Shield Bash~
 
-@6170 = ~Shield Bash~
+@6177 = ~Shield Bash~
+
+@6178 = ~Shield Bash~
+
+@6179 = ~Shield Bash~
+
+@6180 = ~Shield Bash~

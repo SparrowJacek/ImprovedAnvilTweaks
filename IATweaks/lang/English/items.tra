@@ -353,3 +353,62 @@ Weight: 1~
 @7040 = ~~
 
 @7041 = ~~
+@7045 = ~Ring of Gaxx
+This ring is relatively unadorned, but the vile magic within radiates intense evil. Indeed, its creator, Kangaxx, was no less evil himself, even before millennia of undeath honed his power. It is said that a cadre of Netheril mages fought and imprisoned the demilich once, but being unable to truly destroy him they became liches themselves to stand guard over his remains. The construction of the ring may have led to their enmity, as each of the gem's nine facets was supposedly empowered by sacrifice and death.
+
+STATISTICS
+
+Armor Class: +2 Bonus
+Saving Throws: +2 Bonus
+Magic Resistance: +10% Bonus
+Special Abilities: Immunity to Poison
+Equipped Abilities: Wearer regenerates 1 hit point every 3 seconds
+Special Use:  Invisibility, once per day
+                      Double movement speed and attacks per round for 10 seconds, three time per day~
+
+@7046 = ~Improved Ring of Gaxx
+This ring is relatively unadorned, but the vile magic within radiates intense evil. Indeed, its creator, Kangaxx, was no less evil himself, even before millennia of undeath honed his power. It is said that a cadre of Netheril mages fought and imprisoned the demilich once, but being unable to truly destroy him they became liches themselves to stand guard over his remains. The construction of the ring may have led to their enmity, as each of the gem's nine facets was supposedly empowered by sacrifice and death.
+
+The Ring has recently been combined with a powerful Ring of Protection +3 and a Ring of Regeneration. The result has surely been worth the attempt.
+
+STATISTICS
+
+Armor Class: +3 Bonus
+Saving Throws: +3 Bonus
+Magic Resistance: +20% Bonus
+Special Abilities: Immunity to Poison
+Equipped Abilities: Wearer regenerates 1 hit point every 2 seconds
+
+Special Use: Invisibility, once per day
+
+Double movement speed and attacks per round for 10 seconds, three time per day~
+
+@7047 = ~Knight Wesic of the Most Noble Order of the Radiant Heart often said, "Attack swiftly and your enemy will be so overwhelmed that the battle will be yours." He lived this principle through these bracers. Before engaging in righteous battle, he would unlock the magic of the Blinding Strike and quickly rush at his enemy. More often than not, his opponent would fall within the first few seconds of battle.
+
+STATISTICS:
+
+Charge abilities:
+– Double movement speed and attacks per round for 12 seconds once per day~
+
+@7048 = ~Stained in Blood +6
+
+A meticulous application of blood taken from several powerful creatures has given this armor a fearful look and imbued it with bizarre magical abilities.
+
+STATISTICS:
+
+Armor Class: -1 (-3 vs. slashing, 1 vs. crushing)
+Equipped Ability: +50% Resistance to Fire
+
+Special abilities:
+- War Paint: enemies that hit the wearer suffer non-cumulative 15% loss to the amount of physical damage that they deal for 2 rounds
+- Blood Rage:
+    wearer gains +3 to THAC0, +3 to damage, +2 to Strength, immunity to Fear, +4 bonus to Critical Chance and his number of attacks per round is doubled for 1 turn
+    wearer cannot become enraged while under the effect of the spell
+    while under the effect of the spell, the warrior suffers a +5 penalty to AC and loses awareness of the damage he receives (The Hit Points are masked for the duration of the spell)
+
+Weight: 7
+Requires: 8 Strength~
+
+@7049 = ~~
+
+@7050 = ~~

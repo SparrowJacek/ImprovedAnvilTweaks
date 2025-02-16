@@ -215,7 +215,7 @@ OUTER_SET monster_summon_buff_str = RESOLVE_STR_REF (@5050)
 COPY ~IATweaks\resources\spl\s!smbuf1.spl~ ~override~
   LPF ~ALTER_EFFECT~
     INT_VAR
-      match_opcode = 139
+      match_opcode = 330
       parameter1 = monster_summon_buff_str
   END
 
@@ -1312,5 +1312,6 @@ COPY_EXISTING ~GPMAGE1.cre~ ~override~
   END
 
   ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV13~
+  ADD_CRE_ITEM ~DWCHAN01~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~ARMOR~
 
 COMPILE ~IATweaks\scripts\creatures\S!GPMAGE.BAF~

@@ -70,7 +70,11 @@ COPY ~IATweaks\resources\bam\s!clubni.bam~ ~override~
 COPY ~IATweaks\resources\itm\s!clubni.itm~ ~override~
   SAY NAME2 @7014 
   SAY IDENTIFIED_DESC @7013 
-// TODO ADD THIS ITEM SOMEWHERE!
+
+// Damien from evil Underdark party
+
+COPY_EXISTING ~GPTHIEF1.cre~ ~override~
+  ADD_CRE_ITEM ~s!clubni~ #0 #0 #0 ~NONE~ ~INV12~
 
 //////////// Sure Strike Club
 

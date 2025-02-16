@@ -1222,6 +1222,21 @@ BEGIN
   BUT_ONLY
 END
 
+DEFINE_PATCH_FUNCTION ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
+  RET_ARRAY
+    2da_columns_to_ids_mapping
+BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY 2da_columns_to_ids_mapping BEGIN
+  END
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  SET new_colcount = %colcount% - 1
+  FOR (current_column = 0 ; current_column < %new_colcount% ; ++current_column) BEGIN
+    READ_2DA_ENTRY 0 %current_column% %new_colcount% current_val
+    SET $2da_columns_to_ids_mapping("%current_val%") = %current_column% + 1
+  END
+END
+
 DEFINE_ACTION_FUNCTION ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
   INT_VAR
     col_with_names = 0
@@ -1240,6 +1255,22 @@ BEGIN
       SET $2da_rows_to_ids_mapping("%current_val%") = %current_row%
     END
   BUT_ONLY
+END
+
+DEFINE_PATCH_FUNCTION ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  INT_VAR
+    col_with_names = 0
+  RET_ARRAY
+    2da_rows_to_ids_mapping
+BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY 2da_rows_to_ids_mapping BEGIN
+  END
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  FOR (current_row = 0 ; current_row < %rowcount% ; ++current_row) BEGIN
+    READ_2DA_ENTRY %current_row% col_with_names %colcount% current_val
+    SET $2da_rows_to_ids_mapping("%current_val%") = %current_row%
+  END
 END
 
 // Copied from ADD_STORE_PURCHASE available here https://github.com/WeiDUorg/weidu/blob/devel/src/tph/include/store_functions.tpa

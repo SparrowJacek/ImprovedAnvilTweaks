@@ -333,6 +333,17 @@ COPY_EXISTING ~s!robe02.itm~ ~override~
 
 ////////// Reworked Improved Haste ////////////
 
+COPY ~IATweaks\resources\bam\s!imphsd.bam~ ~override~
+OUTER_SET improved_haste_desc_str_ref = RESOLVE_STR_REF (@6176)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %improved_haste_desc_str_ref%
+  STR_VAR
+    bam_file = ~S!IMPHSD~
+  RET
+    improved_haste_icon_id = portrait_icon_id
+END
+
 ACTION_FOR_EACH improved_haste_spell IN ~SPINI33~ ~SPINI88~ ~SPWI613~ ~S!CHMPMZ~ ~SPWISH36~ ~SPWISH37~ ~SPWISH40~ BEGIN
   COPY_EXISTING ~%improved_haste_spell%.spl~ ~override~
     LPF ~S!SPELL_USES_OPCODE~
@@ -382,6 +393,12 @@ ACTION_FOR_EACH improved_haste_spell IN ~SPINI33~ ~SPINI88~ ~SPWI613~ ~S!CHMPMZ~
         parameter2 = improved_haste_splstate
         special = 1
     END
+    LPF ~CLONE_EFFECT~ 
+      INT_VAR
+        match_opcode = 1
+        opcode = 142
+        parameter2 = improved_haste_icon_id
+    END
     PATCH_FOR_EACH improved_haste_spell_to_delete IN ~SPINI33~ ~SPINI88~ ~SPWI613~ ~S!CHMPMZ~ ~SPWISH36~ ~SPWISH37~ ~SPWISH40~ BEGIN
       LPF ~ADD_SPELL_EFFECT~ 
         INT_VAR
@@ -392,6 +409,14 @@ ACTION_FOR_EACH improved_haste_spell IN ~SPINI33~ ~SPINI88~ ~SPWI613~ ~S!CHMPMZ~
         STR_VAR
           resource = EVAL ~%improved_haste_spell_to_delete%~
       END
+    END
+    LPF ~CLONE_EFFECT~ 
+      INT_VAR
+        match_opcode = 1
+        opcode = 318
+        parameter1 = 16386 // Wizard Slayer
+        parameter2 = kit_equals_row
+        duration = 0
     END
   BUT_ONLY
   IF_EXISTS

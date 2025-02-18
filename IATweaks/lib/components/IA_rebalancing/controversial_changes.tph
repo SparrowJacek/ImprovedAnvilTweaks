@@ -516,6 +516,52 @@ COPY_EXISTING ~brac16.itm~ ~override~
 COPY_EXISTING ~s!chan03.itm~ ~override~
   SAY IDENTIFIED_DESC @7048
 
+// Boots of Ranger Lord
+COPY_EXISTING ~s!boot01.itm~ ~override~
+  SAY IDENTIFIED_DESC @7049
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 16
+      parameter2 = 0
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 206
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 142
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 16
+      opcode = 1
+      parameter1 = 6
+  END
+
+// Improved Boots of Ranger Lord
+COPY_EXISTING ~s!boot02.itm~ ~override~
+  SAY IDENTIFIED_DESC @7050
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 16
+      parameter2 = 0
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 206
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 142
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 16
+      opcode = 1
+      parameter1 = 6
+  END
+
 ////////// Non-stackable bonuses from rings and cloaks ////////////
 
 COPY ~IATweaks\resources\spl\s!ac_st1.spl~ ~override~
@@ -1099,3 +1145,11 @@ COPY ~IATweaks\resources\spl\SPCL908.spl~ ~override~
       match_opcode = 142
       parameter2 = %war_cry_icon_id%
   END
+
+// Reworked item recipes
+
+COMPILE ~IATweaks/resources/dlg/crom_new_items_controversial.d~
+  USING ~%LANGUAGE%crom_new_items.tra~
+
+COMPILE ~IATweaks/resources/dlg/cespy_new_items_controversial.d~
+  USING ~%LANGUAGE%crom_new_items.tra~ ~%LANGUAGE%cespy_new_items.tra~

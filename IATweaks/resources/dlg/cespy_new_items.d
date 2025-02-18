@@ -40,4 +40,8 @@ BEGIN
   "ACTION" ~TakePartyGold(75000) DestroyGold(75000) TakePartyItemNum("nebdag",1) DestroyItem("nebdag") TakePartyItemNum("dagg03",1) DestroyItem("dagg03") TakePartyItemNum("dagg04",1) DestroyItem("dagg04") TakePartyItemNum("dagg17",1) DestroyItem("dagg17") TakePartyItemNum("dagg24",1) DestroyItem("dagg24") GiveItemCreate("S!dagg01",Player1,1,1,1) CreateVisualEffect("spcrtwpn",[401.348])~
 END
 
-REPLACE_SAY BOTSMITH 97 @9001
+REPLACE_SAY BOTSMITH 200 @9001
+
+// Elven Ancient Expertise
+
+REPLACE_SAY BOTSMITH 233 @9003

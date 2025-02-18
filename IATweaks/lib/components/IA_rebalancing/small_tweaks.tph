@@ -224,3 +224,9 @@ COPY_EXISTING_REGEXP GLOB ~.+\.sto~ ~override~
       END
     END
   END
+
+// Rework Ancient Elven Expertise
+
+COPY ~IATweaks\resources\eff\s!elfexp.eff~ ~override~ 
+COPY ~IATweaks\resources\itm\s!potn02.itm~ ~override~ 
+  SAY UNIDENTIFIED_DESC @7051

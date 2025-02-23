@@ -10,7 +10,7 @@ COPY_EXISTING ~thac0.2da~ ~override~
     ~THIEF.*~
     BEGIN
     END
-    ~THIEF 20 19 18 18 17 16 16 15 14 14 13 12 12 11 10 10 9 8 8 7 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6~
+    ~THIEF 20 19 18 18 17 16 16 15 14 14 13 12 12 11 10 10 9 8 8 7 6 6 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5~
   PRETTY_PRINT_2DA
 
 // Enable ** in Short Swords, Daggers and Single Weapon Style for Assassins
@@ -459,7 +459,7 @@ COPY ~IATweaks\resources\eff\s!ppcrit.eff~ ~override~
 
 // Add this ability to every class and kit that can use pickpocket at lvl 1
 
-ACTION_FOR_EACH class_kit_which_can_pickpocket IN ~CLABTH01.2da~ ~CLABTH02.2da~ ~CLABTH03.2da~ ~CLABTH04.2da~ ~CLABTH05.2da~ ~CLABBA01~ ~CLABBA02~ ~CLABBA03~ ~CLABBA04~ BEGIN
+ACTION_FOR_EACH class_kit_which_can_pickpocket IN ~CLABTH01.2da~ ~CLABTH02.2da~ ~CLABTH03.2da~ ~CLABTH04.2da~ ~CLABTH05.2da~ ~CLABBA01.2da~ ~CLABBA02.2da~ ~CLABBA03.2da~ ~CLABBA04.2da~ BEGIN
   LAF ~S!ADD_CLAB_ROW~
     STR_VAR
       filename = ~%class_kit_which_can_pickpocket%~

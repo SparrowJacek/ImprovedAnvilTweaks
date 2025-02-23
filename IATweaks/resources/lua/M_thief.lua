@@ -4,6 +4,7 @@ anvil_chargen_gui_to_2da_race_mapping = {1, 3, 5, 2, 6, 4, 7} -- for some reason
 anvil_kit_starting_thieving_bonuses = {
 [10] = {  0,   0,   0,  40,  40,   0,   0}, -- Assassin
 [11] = {  0,   0,  40,   0,   0,   0,  40}, -- Bounty Hunter
+[12] = { 40,   40,  0,   0,   0,   0,   0}, -- Swashbuckler
 [33] = {  0,   0,   0,   0,  40,  40,   0}, -- Shadowdancer
 }
 

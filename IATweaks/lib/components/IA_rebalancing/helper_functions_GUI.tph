@@ -174,6 +174,12 @@ function _calculateStartingBonus(thief_ability_id)
     if chargen.levelingUp then
         return 0
     end
+    if createCharScreen:GetCurrentStep() == const.STEP_DUALCLASS_PROFICIENCIES then
+        if anvil_class_starting_thieving_bonuses[class.id] then
+            return anvil_class_starting_thieving_bonuses[class.id][thief_ability_id]
+        end
+        return 0
+    end
     local kit = chargen.kit[currentChargenKit]
 	local class = chargen.class[currentChargenClass]
     if kit == nil or kit.id == 0 then
@@ -200,6 +206,8 @@ function _calculateMaxValue(thief_ability_id)
         else
             return anvil_kit_max_thieving_values[kit_id][thief_ability_id]
         end
+    elseif createCharScreen:GetCurrentStep() == const.STEP_DUALCLASS_PROFICIENCIES then
+		return anvil_default_max_thieving_values[thief_ability_id]
     else
         local kit = chargen.kit[currentChargenKit]
         if not kit then
@@ -216,6 +224,8 @@ function _calculateRaceBonus(thief_ability_id)
 	local race_gui = 0
     if chargen.levelingUp then
         race_gui = anvil_race_name_to_id_mapping[characters[currentID].race]
+    elseif createCharScreen:GetCurrentStep() == const.STEP_DUALCLASS_PROFICIENCIES then
+        race_gui = tonumber(1)
     else
         race_gui = tonumber(chargen.races[currentChargenRace].id)
     end
@@ -244,6 +254,9 @@ function calculateRealBonus(thief_ability_row)
     local thief_ability_id = tonumber(chargen.thief_skill[thief_ability_row].id) + 1
 
     local starting_bonus = _calculateStartingBonus(thief_ability_id)
+	if createCharScreen:GetCurrentStep() == const.STEP_DUALCLASS_PROFICIENCIES then
+		return current_value + starting_bonus
+	end
     local race_bonus = _calculateRaceBonus(thief_ability_id)
     local dex_bonus = _calculateDexBonus(thief_ability_id)
 

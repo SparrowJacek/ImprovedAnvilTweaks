@@ -336,6 +336,19 @@ COPY_EXISTING ~CLABTH04.2da~ ~override~
     ~****~
   PRETTY_PRINT_2DA
 
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABTH04.2da~
+    row_desc = ~PICK_POCKETS_BONUS~
+    level1 = ~AP_S!40PP~
+END
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABTH04.2da~
+    row_desc = ~OPEN_LOCKS_BONUS~
+    level1 = ~AP_S!40OL~
+END
 // Lower thac0 bonus from 2 to 1
 
 COPY_EXISTING ~SPCLI14.spl~ ~override~

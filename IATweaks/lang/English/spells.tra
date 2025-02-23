@@ -1241,7 +1241,7 @@ A master warrior knows exactly when and where to strike for maximum impact. Once
 Requires: Power Attack~
 
 @6172 = ~Whirlwind Attack
-This ability allows the warrior to unleash a flurry of super-fast blows. The ability increases the number of attacks per round by 1 and then doubles the final value, but one's THAC0 and damage suffer a 4 point penalty. The Whirlwind Attack lasts for 15 seconds. This ability disregards bonuses to attacks per round from Improved Haste and similar spells/abilities, which were used prior to Whirlwind Attack, but does not remove them.
+This ability allows the warrior to unleash a flurry of super-fast blows. The ability increases the number of attacks per round by 1 and then doubles the final value, but one's THAC0 and damage suffer a 4 point penalty. The Whirlwind Attack lasts for 3 rounds. This ability disregards bonuses to attacks per round from Improved Haste and similar spells/abilities, which were used prior to Whirlwind Attack, but does not remove them.
 
 This ability can be picked only once~
 
@@ -1257,10 +1257,27 @@ Letting loose a battle cry that fuels both rage and resolve, the warrior enters 
 
 @6176 = ~Improved Hasted~
 
-@6177 = ~Shield Bash~
+@6177 = ~Flurry of Blows
+Agility and prowess are key factors that allow a master of hand-to-hand combat survive in a fight against heavily armed bandits and spell-wielding sorcerers. Trained monks are capable of engaging their opponent with extraordinary speed, making them hasted and doubling their number of attacks per round. This ability lasts for 1 turn and can not be dispelled by any external sources.~
 
-@6178 = ~Shield Bash~
+@6178 = ~Perform Ritual
+Level: Quest
+Range: 0
+Duration: 1 Turn
+Casting Time: 5
+Area of Effect: The Caster
+Saving Throw: None
 
-@6179 = ~Shield Bash~
+PERFORM RITUAL: This ability allows the Avenger to perform a secret ritual that was perfected by members of the order. It is the ultimate reason why the druid has to sacrifice his connection to the nature. When the ritual is initiated, the Avenger attains a state of etherealness, as if stepping outside the material plane. Entering such state allows the Avenger to move faster and avoid constrictive areas. Due to his partial presense in the physical world, the druid becomes harder to hit by the ordinary melee attacks. Any type of magic that affects the druid's movement has no effect on <PRO_HIMHER>. The duration of the ability equals one turn.
+
+Abilities:
+ - +5 Bonus to Armor Class
+ - +1 Bonus to movement speed
+ - Doubled number of attacks per round, disregarding bonuses from Improved Haste
+ - Immunity to Web, Improved Web and Vortex Web
+ - Immunity to Slow, Hold and Stun effects~
+
+@6179 = ~Acrobatic Combat
+By using this ability, a high level swashbuckler can improve his agility and fighting expertise (in both defense and attack) to an extraordinary level. Acrobatic Combat grants +4 bonus to AC against all weapon types (not the base AC), +1/2 attacks per round and +4 bonus to THAC0 for 5 rounds.~
 
 @6180 = ~Shield Bash~

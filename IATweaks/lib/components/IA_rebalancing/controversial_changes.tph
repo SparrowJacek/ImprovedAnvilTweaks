@@ -344,7 +344,7 @@ LAF ~S!ADD_PORTRAIT_ICON~
     improved_haste_icon_id = portrait_icon_id
 END
 
-ACTION_FOR_EACH improved_haste_spell IN ~SPINI33~ ~SPINI88~ ~SPWI613~ ~S!CHMPMZ~ ~SPWISH36~ ~SPWISH37~ ~SPWISH40~ BEGIN
+ACTION_FOR_EACH improved_haste_spell IN ~SPINI33~ ~SPWI613~ ~S!CHMPMZ~ ~SPWISH36~ ~SPWISH37~ ~SPWISH40~ BEGIN
   COPY_EXISTING ~%improved_haste_spell%.spl~ ~override~
     LPF ~S!SPELL_USES_OPCODE~
       INT_VAR
@@ -399,7 +399,7 @@ ACTION_FOR_EACH improved_haste_spell IN ~SPINI33~ ~SPINI88~ ~SPWI613~ ~S!CHMPMZ~
         opcode = 142
         parameter2 = improved_haste_icon_id
     END
-    PATCH_FOR_EACH improved_haste_spell_to_delete IN ~SPINI33~ ~SPINI88~ ~SPWI613~ ~S!CHMPMZ~ ~SPWISH36~ ~SPWISH37~ ~SPWISH40~ BEGIN
+    PATCH_FOR_EACH improved_haste_spell_to_delete IN ~SPINI33~ ~SPWI613~ ~S!CHMPMZ~ ~SPWISH36~ ~SPWISH37~ ~SPWISH40~ BEGIN
       LPF ~ADD_SPELL_EFFECT~ 
         INT_VAR
           opcode = 321
@@ -417,6 +417,18 @@ ACTION_FOR_EACH improved_haste_spell IN ~SPINI33~ ~SPINI88~ ~SPWI613~ ~S!CHMPMZ~
         parameter1 = 16386 // Wizard Slayer
         parameter2 = kit_equals_row
         duration = 0
+      STR_VAR
+        insert = ~first~
+    END
+    LPF ~CLONE_EFFECT~ 
+      INT_VAR
+        match_opcode = 1
+        opcode = 318
+        parameter1 = 20 // Monk
+        parameter2 = 105
+        duration = 0
+      STR_VAR
+        insert = ~first~
     END
   BUT_ONLY
   IF_EXISTS
@@ -439,29 +451,21 @@ COPY_EXISTING ~SPINI33.spl~ ~override~ // Improved Haste for Riskbreaker
   SAY UNIDENTIFIED_DESC @6125
 
 COPY_EXISTING ~SPINI88.spl~ ~override~ // Flurry of Blows
-  SAY UNIDENTIFIED_DESC @6125
+  SAY UNIDENTIFIED_DESC @6177  
+  // Remove level progression from the spell
+  PATCH_FOR_EACH ~min_lvl_val~ IN "12" "13" "14" "15" "16" "17" "18" "19" "20" BEGIN
+    LPF ~DELETE_SPELL_HEADER~ 
+      INT_VAR
+        header_type = ~-1~
+        min_level = ~%min_lvl_val%~
+    END
+  END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      duration_high = 60
+  END
 
-// update Flurry of Blows description in class description for Monk
-
-LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
-  STR_VAR
-    2da_table_name = ~clastext.2da~
-  RET_ARRAY
-    clastext_cols = 2da_columns_to_ids_mapping
-END
-
-LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
-  STR_VAR
-    2da_table_name = ~clastext.2da~
-  RET_ARRAY
-    clastext_rows = 2da_rows_to_ids_mapping
-END
-
-COPY_EXISTING ~clastext.2da~ ~override/clastext.2da~
-  COUNT_2DA_COLS ~colcount~
-  SET_2DA_ENTRY_LATER ~s!monk_desc~ $clastext_rows("MONK") $clastext_cols("DESCSTR") RESOLVE_STR_REF (@5030)
-  SET_2DA_ENTRIES_NOW ~s!monk_desc~ ~colcount~
-  PRETTY_PRINT_2DA
+// Change Improved Haste icon description
 
 LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
   INT_VAR
@@ -477,6 +481,28 @@ COPY_EXISTING ~statdesc.2da~ ~override~
   COUNT_2DA_COLS ~colcount~
   SET_2DA_ENTRY $statdesc_rows("54312") 1 ~colcount~ RESOLVE_STR_REF (@5052)
   PRETTY_PRINT_2DA
+
+// Rework Acrobatic Combat slightly
+
+COPY_EXISTING ~spcli13.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6179
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 0
+      parameter1 = 4
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 54
+      parameter1 = 4
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 54
+      opcode = 1
+      parameter1 = 6
+      parameter2 = 0
+  END
 
 // Patch items that grant short-lasting IH
 
@@ -586,6 +612,33 @@ COPY_EXISTING ~s!boot02.itm~ ~override~
       opcode = 1
       parameter1 = 6
   END
+
+// Grant APR bonuses to Swashbucklers at lvl 12/20 and remove them from Fighters at lvl 7/13
+
+COPY ~IATweaks\resources\spl\s!05apr1.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!05apr2.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!rmapr1.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!rmapr2.spl~ ~override~
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABTH04.2da~
+    row_desc = ~ADDITIONAL_APR~
+    level12 = ~AP_S!05APR1~
+    level20 = ~AP_S!05APR2~
+END
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABFI01.2da~
+    row_desc = ~REMOVE_SWASH_APR_BONUSES~
+    level7 = ~AP_S!RMAPR1~
+    level13 = ~AP_S!RMAPR2~
+END
+
+// New CLAB table for Riskbreaker
+
+COPY ~IATweaks\resources\2da\RBK.2da~ ~override~
 
 ////////// Non-stackable bonuses from rings and cloaks ////////////
 
@@ -1081,7 +1134,7 @@ ACTION_FOR_EACH whirlwind_spell IN ~SPCL900~ ~SPCL901~ BEGIN
   COPY_EXISTING ~%whirlwind_spell%.spl~ ~override~
     LPF ~ALTER_SPELL_EFFECT~
       INT_VAR
-        duration_high = 15
+        duration_high = 18
     END
     LPF ~ALTER_EFFECT~
       INT_VAR
@@ -1171,6 +1224,116 @@ COPY ~IATweaks\resources\spl\SPCL908.spl~ ~override~
       parameter2 = %war_cry_icon_id%
   END
 
+// Perform Ritual
+
+COPY_EXISTING ~SPINI90.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6178
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 333
+      insert_point = ~-1~
+      target = 1
+      parameter1 = 59
+      duration = 60
+      special = 1
+      resist_dispel = 0
+    STR_VAR
+      resource = "S!NEGAIH"
+  END
+
+// Rework HLA tables
+
+// Remove Greater Whirlwind and War Cry from Monks
+
+ACTION_FOR_EACH hla_table IN ~LUMO0~ ~LUMO1~ ~LUMO2~ BEGIN
+  COPY_EXISTING ~%hla_table%.2da~ ~override~
+    COUNT_2DA_COLS ~colcount~
+    COUNT_2DA_ROWS ~colcount~ ~rowcount~
+    SET gww_row = (0 - 1)
+    FOR (i = 0; i < ~rowcount~; ++i) BEGIN
+      READ_2DA_ENTRY i 1 %colcount% current_val
+      PATCH_IF (~%current_val%~ STR_EQ ~GA_SPCL901~) BEGIN
+        SET gww_row = i
+      END
+    END
+    PATCH_IF (gww_row != (0 - 1)) BEGIN
+      REMOVE_2DA_ROW gww_row ~colcount~
+    END
+    BUT_ONLY
+END
+
+ACTION_FOR_EACH hla_table IN ~LUMO0~ ~LUMO1~ ~LUMO2~ BEGIN
+  COPY_EXISTING ~%hla_table%.2da~ ~override~
+    COUNT_2DA_COLS ~colcount~
+    COUNT_2DA_ROWS ~colcount~ ~rowcount~
+    SET warcry_row = (0 - 1)
+    FOR (i = 0; i < ~rowcount~; ++i) BEGIN
+      READ_2DA_ENTRY i 1 %colcount% current_val
+      PATCH_IF (~%current_val%~ STR_EQ ~GA_SPCL908~) BEGIN
+        SET warcry_row = i
+      END
+    END
+    PATCH_IF (warcry_row != (0 - 1)) BEGIN
+      REMOVE_2DA_ROW warcry_row ~colcount~
+    END
+    PRETTY_PRINT_2DA
+    BUT_ONLY
+END
+
+// Lower number of Acrobatic Combat picks for Swashbuckler to 4
+
+COPY_EXISTING ~LUTH1.2da~ ~override~
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  FOR (i = 0; i < ~rowcount~; ++i) BEGIN
+    READ_2DA_ENTRY i 1 %colcount% current_val
+    PATCH_IF (~%current_val%~ STR_EQ ~GA_SPCLI13~) BEGIN
+      SET_2DA_ENTRY i 6 ~colcount~ 4
+    END
+  END
+  BUT_ONLY
+
+// Remove Whirlwind Attack and prerequisite for GWW for Riskbreakers
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~luabbr.2da~
+  RET_ARRAY
+    luabbr_rows = 2da_rows_to_ids_mapping
+END
+
+COPY_EXISTING ~luabbr.2da~  ~override~
+  COUNT_2DA_COLS ~colcount~
+  READ_2DA_ENTRY $luabbr_rows("RISKBREAKER") 1 ~colcount~ rb_hlas_suffix
+  PATCH_IF (~%rb_hlas_suffix%~ STR_EQ ~Fi0~) BEGIN
+    SET_2DA_ENTRY $luabbr_rows("RISKBREAKER") 1 ~colcount~ ~Fi6~
+    PRETTY_PRINT_2DA
+  END
+  BUT_ONLY
+
+ACTION_IF (~%rb_hlas_suffix%~ STR_EQ ~Fi0~) BEGIN
+  COPY_EXISTING ~LUFi0.2da~ ~override/LUFi6.2da~
+END
+
+COPY_EXISTING ~LUFi6.2da~ ~override~
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  SET ww_row = (0 - 1)
+  FOR (i = 0; i < ~rowcount~; ++i) BEGIN
+    READ_2DA_ENTRY i 1 %colcount% current_val
+    PATCH_IF (~%current_val%~ STR_EQ ~GA_SPCL900~) BEGIN
+      SET ww_row = i
+    END
+    PATCH_IF (~%current_val%~ STR_EQ ~GA_SPCL901~) BEGIN
+      SET_2DA_ENTRY i 7 ~colcount~ ~*~
+    END
+  END
+  PATCH_IF (ww_row != (0 - 1)) BEGIN
+    REMOVE_2DA_ROW ww_row ~colcount~
+  END
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+  
 // Reworked item recipes
 
 COMPILE ~IATweaks/resources/dlg/crom_new_items_controversial.d~
@@ -1178,3 +1341,53 @@ COMPILE ~IATweaks/resources/dlg/crom_new_items_controversial.d~
 
 COMPILE ~IATweaks/resources/dlg/cespy_new_items_controversial.d~
   USING ~%LANGUAGE%crom_new_items.tra~ ~%LANGUAGE%cespy_new_items.tra~
+  
+// update Class/Kit descriptions
+
+LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~clastext.2da~
+  RET_ARRAY
+    clastext_cols = 2da_columns_to_ids_mapping
+END
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~clastext.2da~
+  RET_ARRAY
+    clastext_rows = 2da_rows_to_ids_mapping
+END
+
+COPY_EXISTING ~clastext.2da~ ~override/clastext.2da~
+  COUNT_2DA_COLS ~colcount~
+  SET_2DA_ENTRY_LATER ~s!class_desc~ $clastext_rows("MONK") $clastext_cols("DESCSTR") RESOLVE_STR_REF (@5030)
+  SET_2DA_ENTRY_LATER ~s!class_desc~ $clastext_rows("AVENGER") $clastext_cols("DESCSTR") RESOLVE_STR_REF (@5053)
+  SET_2DA_ENTRY_LATER ~s!class_desc~ $clastext_rows("SWASHBUCKLER") $clastext_cols("DESCSTR") RESOLVE_STR_REF (@5054)
+  SET_2DA_ENTRY_LATER ~s!class_desc~ $clastext_rows("RISKBREAKER") $clastext_cols("DESCSTR") RESOLVE_STR_REF (@5055)
+  SET_2DA_ENTRIES_NOW ~s!class_desc~ ~colcount~
+  PRETTY_PRINT_2DA
+
+LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~kitlist.2da~
+  RET_ARRAY
+    kitlist_cols = 2da_columns_to_ids_mapping
+END
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  INT_VAR
+    col_with_names = 1
+  STR_VAR
+    2da_table_name = ~kitlist.2da~
+  RET_ARRAY
+    kitlist_rows = 2da_rows_to_ids_mapping
+END
+
+COPY_EXISTING ~kitlist.2da~ ~override/kitlist.2da~
+  COUNT_2DA_COLS ~colcount~
+  SET description_col = $kitlist_cols("HELP")
+  SET_2DA_ENTRY_LATER ~s!kit_desc~ $kitlist_rows("AVENGER") description_col RESOLVE_STR_REF (@5053)
+  SET_2DA_ENTRY_LATER ~s!kit_desc~ $kitlist_rows("SWASHBUCKLER") description_col RESOLVE_STR_REF (@5054)
+  SET_2DA_ENTRY_LATER ~s!kit_desc~ $kitlist_rows("RISKBREAKER") description_col RESOLVE_STR_REF (@5055)
+  SET_2DA_ENTRIES_NOW ~s!kit_desc~ ~colcount~
+  PRETTY_PRINT_2DA

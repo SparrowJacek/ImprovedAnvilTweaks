@@ -415,7 +415,7 @@ CLASS FEATURES:
 
 STUNNING BLOW: All successful attacks within the next round force the victim to save vs. Spell or be stunned. This special ability automatically modifies normal attacks; no targeting needs to be done.
 
-FLURRY OF BLOWS: Agility and prowess are key factors that allow a master of hand-to-hand combat survive in a fight against heavily armed bandits and spell-wielding sorcerers. Trained monks are capable of engaging their opponent with extraordinary speed, making them hasted and increasing their number of attacks per round by 1. This ability lasts for 3 rounds + 1 round / level and can not be dispelled by any external sources.
+FLURRY OF BLOWS: Agility and prowess are key factors that allow a master of hand-to-hand combat survive in a fight against heavily armed bandits and spell-wielding sorcerers. Trained monks are capable of engaging their opponent with extraordinary speed, making them hasted and doubling their number of attacks per round. This ability lasts for 1 turn and can not be dispelled by any external sources.
 
 DIAMOND BODY: Experienced monk channels his inner energy to induce a restorative state that heals the wounds and protects the self. For 5 rounds, the character receives 20% resistance to physical damage, regenerates 6 Hit Points per round and acquires immunity to Level Drain, Petrification and Imprisonment.
 
@@ -512,11 +512,106 @@ Disadvantages:
 
 @5052 = ~Attacks per Round Doubled~
 
-@5053 = ~~
+@5053 = ~AVENGER: A member of a special sect within the druidic order, a Druid of this type is dedicated to fighting those who would defile nature. Avengers have combat powers the average Druid does not — additional abilities that have been earned through extensive training, rituals and communions with entities from higher planes, a process that is very physically draining and forces them to give up some of their affinity towards nature and special powers that come with it.
 
-@5054 = ~~
+Advantages:
+- Gains two stars in two-handed weapon mastery.
+- May achieve mastery in staffs and spears.
+- May achieve specialization in weapons that are allowed to the druid domain.
+- Seven spells are added to <PRO_HISHER> repertoire, all the way up to the 7th level. These are listed below:
 
-@5055 = ~~
+1st level: Remove Fear.
+2nd level: Draw Upon Holy Might.
+3rd level: Protection from Cold.
+4rd level: Holy Power.
+5th level: Righteous Magic.
+6th level: Giant Strength.
+7th level: Protection from the Elements.
+
+- May use Combat Trance ability once per day. Gains one use at level 13 and an additional use every 6 levels thereafter.
+- At 9th level, receives a special ability Conjure Clan Spirit.
+- Gains a special high level ability Perform Ritual.
+
+Disadvantages:
+- May not wear armor heavier than studded leather.
+- Does not receive the usual druidic immunities and bonuses.
+- Does not possess the ability to shapeshift.
+- Cannot become proficient in ranged weaponry and single weapon.
+- Lacks the ability to cast certain powerful druidic spells.
+- Cannot dual class.
+
+COMBAT TRANCE: From the early days, Avengers are trained to enter a trance-like state of focus. This skill, similar in spirit to focused rage of a barbarian, is achieved purely through physical training and conditioning. It allows the druid to become faster and stronger in melee combat. When in a trance state, the druid gains +1 extra attack per round and +2 bonus to <PRO_HISHER> attack and damage rolls for 1 turn.
+
+CONJURE CLAN SPIRIT: Members of the Avenger sect practice a ritual that brings them into a state of shared consciousness. As their grasp on each others' internal energy increases, the clan members gain an ability to summon forth an ancestral spirit. The spectre will possess abilities and powers of the source, but the strength depends directly on the summoner's experience. The creature will remain in the party for 60 rounds.
+
+PERFORM RITUAL: This ability allows the Avenger to perform a secret ritual that was perfected by members of the order. It is the ultimate reason why the druid has to sacrifice his connection to the nature. When the ritual is initiated, the Avenger attains a state of etherealness, as if stepping outside the material plane. Entering such state allows the Avenger to move faster and avoid constrictive areas. Due to his partial presense in the physical world, the druid becomes harder to hit by the ordinary melee attacks. Any type of magic that affects the druid's movement has no effect on <PRO_HIMHER>. The duration of the ability equals one turn.
+
+Abilities:
+ - +5 Bonus to Armor Class
+ - +1 Bonus to movement speed
+ - Doubled number of attacks per round, disregarding bonuses from Improved Haste
+ - Immunity to Web, Improved Web and Vortex Web
+ - Immunity to Slow, Hold and Stun effects~
+
+@5054 = ~SWASHBUCKLER: This rogue is part acrobat, part swordsman and part wit: the epitome of charm and grace.
+
+Advantages:
+- Bonus +1 to AC.
+- Gains +2 bonus to armor class every 9 levels.
+- Gains +1 to hit and +2 to damage every 9 levels.
+- Can specialize in any melee weapon that a thief can use.
+- May place 3 slots into the proficiency 'two weapon fighting style'.
+- At level 14 and above, every successful melee hit will have a 10% chance to apply a random effect picked from the following pool: "Mirrored Blade" (+3 AC bonus vs. all weapon types and 5% Magic Resistance for 6 rounds with unlimited stacking), "Life Pick" (heals the swashbuckler for 15 hp).
+- At level 20 and above, every successful melee hit will also have 10% chance to apply a random effect picked from the following pool: "Bloodlet" (4D10 additional Piercing damage), "Maim Target" (4D10 additional crushing damage).
+- At levels 12 and 20 gains additional 1/2 attacks per round, just like warrior classes (Fighters, Rangers and Paladins) do at levels 7 and 13.
+– Starts with base scores of 40% in Open Locks and Pick Pockets.
+
+Disadvantages:
+- No backstab multiplier.
+- Only 20 points to distribute at level 1.
+- May not use Set Snare ability.
+- May not invest any points into Set Traps and Stealth Strike.
+- Does not get standard Thief bonuses to Find Traps.~
+
+@5055 = ~RISKBREAKER: Riskbreakers are masters of simultaneous speed and accuracy. They have the ability to move and attack enemies in a way that only a blurred outline of their bodies can be seen. Riskbreakers have limited access to two mage spells as innate abilities. High level Riskbreakers gain unique abilities to break the risk involved in most difficult battles. The trainings required to become a riskbreaker are very demanding and require the riskbreaker to sacrifice a portion of his health and stamina during the process. Only Humans can be Riskbreakers.
+
+Advantages:
+- +2 Bonus to save vs. Breath Weapon.
+- +2 Bonus to Movement Speed.
+- Makes critical hits at a roll of 17 or better (instead of the usual 20).
+- Gains "Blur" every 5 levels.
+- +2 bonus to Armor class for every 6 levels.
+- Gains "Improved Haste" at level 10.
+- Gains "Whirlwind Attack" at levels 16 and 22.
+- Once the Riskbreaker reaches level 15, each of his successful hits will have 15% chance to apply a random effect picked from the following pool: "Hard Hit" on target (applies 10D6 +5 additional damage), "Risk Increment" on target (applies -4 penalty to AC for 2 rounds), "Avert Risk" (heals the Riskbreaker for 20 hp).
+- Gains the ability "Chain Breaker Stance" at levels 17 and 23.
+- Gains the innate ability "Risk Decrement" at levels 18, 24 and 30.
+
+Disadvantages:
+- Cannot wear any armor.
+- Cannot wear any helmet (other than Ioun stones).
+- Cannot use gauntlets and shields.
+- Cannot use ranged weapons.
+- Cannot specialize in two handed weapons.
+- Cannot be proficient in single weapon and Two handed weapon styles.
+- Receives a -2 Penalty to constitution.
+- Is immune to "Spirit Armor" and "Barkskin" spells.
+- Requires 12 Intelligence.
+- Cannot dual class.
+
+Chain Breaker Stance:
+This ability applies the following effects to the caster for 5 rounds:
+- +25% resistance to physical damage
+- 25 strength
+- Regenerating 12 hp per round
+
+Risk Decrement:
+When surrounded by lots of enemies and when most other warriors may fall or surrender in despair, a high level riskbreaker is more than capable to break the risk involved in the toughest situations.
+
+Risk Decrement has the following effects:
+- Heals the riskbreaker completely.
+- Applies a massive attack to all enemies around the riskbreaker inflicting 8D10 crushing damage with no saving throw.
+- Has a good chance to throw back all or some of the enemies.~
 
 @5056 = ~~
 

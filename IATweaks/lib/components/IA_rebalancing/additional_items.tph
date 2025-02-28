@@ -15,7 +15,7 @@ COPY_EXISTING ~KALAH2.cre~ ~override~
 
 // Tolgerias
 
-COPY_EXISTING ~KALAH2.cre~ ~override~
+COPY_EXISTING ~TOLGER2.cre~ ~override~
   ADD_CRE_ITEM ~s!ring20~ #0 #0 #0 ~NONE~ ~LRING~
 
 //////////// Blood Red Ioun Stone
@@ -183,7 +183,7 @@ COPY ~IATweaks\resources\itm\s!clck31.itm~ ~override~
 /////////////// New Recipes
 
 COMPILE ~IATweaks/resources/dlg/crom_new_items.d~
-  USING ~%LANGUAGE%crom_new_items.tra~
+USING ~%LANGUAGE%crom_new_items.tra~
 
 COMPILE ~IATweaks/resources/dlg/cespy_new_items.d~
-  USING ~%LANGUAGE%crom_new_items.tra~ ~%LANGUAGE%cespy_new_items.tra~
+USING ~%LANGUAGE%crom_new_items.tra~ ~%LANGUAGE%cespy_new_items.tra~

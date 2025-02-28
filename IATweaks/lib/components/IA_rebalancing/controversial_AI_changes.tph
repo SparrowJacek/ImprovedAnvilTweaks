@@ -7,3 +7,126 @@ COPY_EXISTING ~GPSIMB.cre~ ~override~
     REMOVE_MEMORIZED_SPELL ~SPPR210~ // Resist Fire/Cold
 
     ADD_MEMORIZED_SPELL ~SPPR212~ #1 ~priest~ ( 1 ) // Slow Poison
+// Ist'tar Jae'llat
+
+COPY_EXISTING ~JAEL03.cre~ ~override~
+
+  REMOVE_MEMORIZED_SPELLS
+  ADD_MEMORIZED_SPELL ~SPCL144~ #0 ~innate~ ( 6 ) // Kai
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL908~ #0 ~innate~ ( 1 ) // War Cry
+
+COMPILE ~IATweaks\scripts\controversial\S!JAEL03.BAF~
+
+// Boz the Ogre from Underdark evil party
+
+COPY_EXISTING ~GPFIGHT1.cre~ ~override~
+
+  REMOVE_MEMORIZED_SPELLS
+  ADD_MEMORIZED_SPELL ~SPCL321~ #0 ~innate~ ( 4 ) // Enrage
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL908~ #0 ~innate~ ( 1 ) // War Cry
+
+COMPILE ~IATweaks\scripts\controversial\S!BOZ.BAF~
+
+// Hindra Jae'llat
+
+COPY_EXISTING ~JAEL01.cre~ ~override~
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPPR101~ #0 ~priest~ ( 1 ) // Bless
+  ADD_MEMORIZED_SPELL ~SPPR102~ #0 ~priest~ ( 2 ) // Command
+  ADD_MEMORIZED_SPELL ~SPPR108~ #0 ~priest~ ( 1 ) // Remove Fear
+  ADD_MEMORIZED_SPELL ~SPPR109~ #0 ~priest~ ( 2 ) // Sanctuary
+  ADD_MEMORIZED_SPELL ~SPPR111~ #0 ~priest~ ( 2 ) // Armor of Faith
+  ADD_MEMORIZED_SPELL ~SPPR113~ #0 ~priest~ ( 3 ) // Doom
+  ADD_MEMORIZED_SPELL ~SPPR201~ #1 ~priest~ ( 1 ) // Aid
+  ADD_MEMORIZED_SPELL ~SPPR203~ #1 ~priest~ ( 1 ) // Chant
+  ADD_MEMORIZED_SPELL ~SPPR206~ #1 ~priest~ ( 1 ) // Flame Blade
+  ADD_MEMORIZED_SPELL ~SPPR208~ #1 ~priest~ ( 7 ) // Hold Person
+  ADD_MEMORIZED_SPELL ~SPPR214~ #1 ~priest~ ( 1 ) // DUHM
+  ADD_MEMORIZED_SPELL ~SPPRI02~ #2 ~priest~ ( 2 ) // Dispel Magic caster-friendly
+  ADD_MEMORIZED_SPELL ~SPPR306~ #2 ~priest~ ( 1 ) // Protection From Fire
+  ADD_MEMORIZED_SPELL ~SPPR312~ #2 ~priest~ ( 1 ) // Strength of One
+  ADD_MEMORIZED_SPELL ~SPPR314~ #2 ~priest~ ( 4 ) // Unholy Blight
+  ADD_MEMORIZED_SPELL ~SPPR318~ #2 ~priest~ ( 2 ) // Zone of Sweet Air
+  ADD_MEMORIZED_SPELL ~SPPR403~ #3 ~priest~ ( 1 ) // Free Actions
+  ADD_MEMORIZED_SPELL ~SPPR406F~ #3 ~priest~ ( 2 ) // Defensive Harmony
+  ADD_MEMORIZED_SPELL ~SPPR407~ #3 ~priest~ ( 1 ) // Protection from Lightning
+  ADD_MEMORIZED_SPELL ~SPPR408~ #3 ~priest~ ( 1 ) // Protection from Evil
+  ADD_MEMORIZED_SPELL ~SPPR409~ #3 ~priest~ ( 1 ) // Death Ward
+  ADD_MEMORIZED_SPELL ~SPPR411~ #3 ~priest~ ( 1 ) // Poison
+  ADD_MEMORIZED_SPELL ~SPPR412~ #3 ~priest~ ( 1 ) // Holy Power
+  ADD_MEMORIZED_SPELL ~SPPR420~ #1 ~priest~ ( 1 ) // Resist Fire and Cold
+  ADD_MEMORIZED_SPELL ~SPPR505~ #4 ~priest~ ( 1 ) // True Seeing
+  ADD_MEMORIZED_SPELL ~SPPR508~ #4 ~priest~ ( 1 ) // Chaotic Commands
+  ADD_MEMORIZED_SPELL ~SPPR510~ #4 ~priest~ ( 1 ) // Cause Critical Wounds
+  ADD_MEMORIZED_SPELL ~SPPR511~ #4 ~priest~ ( 1 ) // Slay Living
+  ADD_MEMORIZED_SPELL ~SPPR512~ #4 ~priest~ ( 3 ) // Greater Command
+  ADD_MEMORIZED_SPELL ~SPPR513~ #4 ~priest~ ( 1 ) // Righteous Magic
+  ADD_MEMORIZED_SPELL ~SPPR514~ #4 ~priest~ ( 1 ) // Mass Cure
+  ADD_MEMORIZED_SPELL ~SPPR601~ #5 ~priest~ ( 1 ) // Aerial Servant
+  ADD_MEMORIZED_SPELL ~SPPR607~ #5 ~priest~ ( 1 ) // Heal
+  ADD_MEMORIZED_SPELL ~SPPR608~ #5 ~priest~ ( 3 ) // Harm
+  ADD_MEMORIZED_SPELL ~SPPR613~ #5 ~priest~ ( 1 ) // Protection from Missiles
+  ADD_MEMORIZED_SPELL ~SPPR617~ #5 ~priest~ ( 1 ) // Heavenly Shield
+  ADD_MEMORIZED_SPELL ~SPPR618~ #5 ~priest~ ( 1 ) // Champion's Might
+  ADD_MEMORIZED_SPELL ~SPPR698~ #5 ~priest~ ( 1 ) // Blade Barrier
+  ADD_MEMORIZED_SPELL ~SPPR701~ #6 ~priest~ ( 1 ) // Shield of Archons
+  ADD_MEMORIZED_SPELL ~SPPR711~ #6 ~priest~ ( 1 ) // Regeneration
+  ADD_MEMORIZED_SPELL ~SPPR713~ #6 ~priest~ ( 1 ) // Greater Restoration
+  ADD_MEMORIZED_SPELL ~SPPR729~ #6 ~priest~ ( 1 ) // Foreknowledge
+  ADD_MEMORIZED_SPELL ~SPPRI26~ #6 ~priest~ ( 1 ) // Continual Cure
+  ADD_MEMORIZED_SPELL ~SPCLI24~ #0 ~innate~ ( 1 ) // Summon Fallen Archdeva
+
+// Rilloa Jae'llat
+
+COPY_EXISTING ~JAEL02.cre~ ~override~
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPPR101~ #0 ~priest~ ( 1 ) // Bless
+  ADD_MEMORIZED_SPELL ~SPPR102~ #0 ~priest~ ( 2 ) // Command
+  ADD_MEMORIZED_SPELL ~SPPR108~ #0 ~priest~ ( 1 ) // Remove Fear
+  ADD_MEMORIZED_SPELL ~SPPR109~ #0 ~priest~ ( 2 ) // Sanctuary
+  ADD_MEMORIZED_SPELL ~SPPR111~ #0 ~priest~ ( 2 ) // Armor of Faith
+  ADD_MEMORIZED_SPELL ~SPPR113~ #0 ~priest~ ( 3 ) // Doom
+  ADD_MEMORIZED_SPELL ~SPPR201~ #1 ~priest~ ( 1 ) // Aid
+  ADD_MEMORIZED_SPELL ~SPPR203~ #1 ~priest~ ( 1 ) // Chant
+  ADD_MEMORIZED_SPELL ~SPPR206~ #1 ~priest~ ( 1 ) // Flame Blade
+  ADD_MEMORIZED_SPELL ~SPPR208~ #1 ~priest~ ( 8 ) // Hold Person
+  // ADD_MEMORIZED_SPELL ~SPPR210~ #1 ~priest~ ( 2 ) // Resist Fire and Cold
+  ADD_MEMORIZED_SPELL ~SPPR214~ #1 ~priest~ ( 1 ) // DUHM
+  ADD_MEMORIZED_SPELL ~SPPRI02~ #2 ~priest~ ( 2 ) // Dispel Magic caster-friendly
+  // ADD_MEMORIZED_SPELL ~SPPR306~ #2 ~priest~ ( 2 ) // Protection From Fire
+  ADD_MEMORIZED_SPELL ~SPPR312~ #2 ~priest~ ( 1 ) // Strength of One
+  ADD_MEMORIZED_SPELL ~SPPR314~ #2 ~priest~ ( 4 ) // Unholy Blight
+  ADD_MEMORIZED_SPELL ~SPPR318~ #2 ~priest~ ( 2 ) // Zone of Sweet Air
+  ADD_MEMORIZED_SPELL ~SPPR403~ #3 ~priest~ ( 2 ) // Free Actions
+  ADD_MEMORIZED_SPELL ~SPPR406F~ #3 ~priest~ ( 1 ) // Defensive Harmony
+  ADD_MEMORIZED_SPELL ~SPPR407~ #3 ~priest~ ( 1 ) // Protection from Lightning
+  ADD_MEMORIZED_SPELL ~SPPR408~ #3 ~priest~ ( 1 ) // Protection from Evil
+  ADD_MEMORIZED_SPELL ~SPPR409~ #3 ~priest~ ( 2 ) // Death Ward
+  ADD_MEMORIZED_SPELL ~SPPR412~ #3 ~priest~ ( 1 ) // Holy Power
+  ADD_MEMORIZED_SPELL ~SPPR420~ #1 ~priest~ ( 2 ) // Resist Fire and Cold
+  ADD_MEMORIZED_SPELL ~SPPR505~ #4 ~priest~ ( 1 ) // True Seeing
+  ADD_MEMORIZED_SPELL ~SPPR508~ #4 ~priest~ ( 2 ) // Chaotic Commands
+  ADD_MEMORIZED_SPELL ~SPPR510~ #4 ~priest~ ( 1 ) // Cause Critical Wounds
+  ADD_MEMORIZED_SPELL ~SPPR511~ #4 ~priest~ ( 1 ) // Slay Living
+  ADD_MEMORIZED_SPELL ~SPPR512~ #4 ~priest~ ( 2 ) // Greater Command
+  ADD_MEMORIZED_SPELL ~SPPR513~ #4 ~priest~ ( 1 ) // Righteous Magic
+  ADD_MEMORIZED_SPELL ~SPPR514~ #4 ~priest~ ( 1 ) // Mass Cure
+  ADD_MEMORIZED_SPELL ~SPPR607~ #5 ~priest~ ( 1 ) // Heal
+  ADD_MEMORIZED_SPELL ~SPPR608~ #5 ~priest~ ( 2 ) // Harm
+  ADD_MEMORIZED_SPELL ~SPPR613~ #5 ~priest~ ( 1 ) // Protection from Missiles
+  ADD_MEMORIZED_SPELL ~SPPR617~ #5 ~priest~ ( 1 ) // Heavenly Shield
+  ADD_MEMORIZED_SPELL ~SPPR618~ #5 ~priest~ ( 1 ) // Champion's Might
+  ADD_MEMORIZED_SPELL ~SPPR698~ #5 ~priest~ ( 1 ) // Blade Barrier
+  ADD_MEMORIZED_SPELL ~SPPR701~ #6 ~priest~ ( 1 ) // Shield of Archons
+  ADD_MEMORIZED_SPELL ~SPPR729~ #6 ~priest~ ( 1 ) // Foreknowledge
+  ADD_MEMORIZED_SPELL ~SPPR735~ #6 ~priest~ ( 1 ) // Spare the Dying
+  ADD_MEMORIZED_SPELL ~SPPRI26~ #6 ~priest~ ( 1 ) // Continual Cure

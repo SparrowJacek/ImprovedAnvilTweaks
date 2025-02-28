@@ -59,6 +59,9 @@ OUTER_SET confusion_immunity = %new_state_index%
 LAF resolve_state STR_VAR new_state_id = ~SLEEP_IMMUNITY~ RET new_state_index END
 OUTER_SET sleep_immunity = %new_state_index%
 
+LAF resolve_state STR_VAR new_state_id = ~POISON_EFFECT_IMMUNITY~ RET new_state_index END
+OUTER_SET poison_effect_immunity = %new_state_index%
+
 LAF resolve_state STR_VAR new_state_id = ~IMPROVED_HASTE~ RET new_state_index END
 OUTER_SET improved_haste_splstate = %new_state_index%
 
@@ -192,5 +195,14 @@ COPY_EXISTING ~SPWISH12.spl~ ~override~
       opcode = 328
       parameter1 = 0
       parameter2 = 118 // Hardiness
+      special = 1
+  END
+
+COPY_EXISTING ~SPCL321.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 328
+      match_parameter2 = 104
+      parameter2 = 77 // BERSERKER_RAGE
       special = 1
   END

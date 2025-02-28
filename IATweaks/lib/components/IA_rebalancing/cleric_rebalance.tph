@@ -506,6 +506,33 @@ ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR02.2da~ ~CLABPR03.2da~ ~CLABPR04.2da~ 
   END
 END
 
+// Enemy version of Life Link
+
+COPY_EXISTING ~s!lifeli.spl~ ~override/s!lifeen.spl~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 146
+    STR_VAR
+      match_resource = ~S!LIFEL3~
+      resource = ~S!LIFEL5~
+  END
+
+COPY_EXISTING ~s!lifel3.spl~ ~override/s!lifel5.spl~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      target = 5
+    STR_VAR
+      match_resource = ~S!LIFEL3~
+      resource = ~S!LIFEL5~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 177
+      target = 5
+      parameter1 = 0
+  END
+
 // Purify Aura
 
 COPY ~IATweaks\resources\spl\spcl943.spl~ ~override~

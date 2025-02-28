@@ -18,6 +18,11 @@ COPY_EXISTING ~KALAH2.cre~ ~override~
 COPY_EXISTING ~TOLGER2.cre~ ~override~
   ADD_CRE_ITEM ~s!ring20~ #0 #0 #0 ~NONE~ ~LRING~
 
+// Rilloa Jae'llat
+
+COPY_EXISTING ~JAEL02.cre~ ~override~
+  ADD_CRE_ITEM ~s!ring20~ #0 #0 #0 ~NONE~ ~RRING~
+
 //////////// Blood Red Ioun Stone
 
 COPY ~IATweaks\resources\bam\s!ioun01.bam~ ~override~

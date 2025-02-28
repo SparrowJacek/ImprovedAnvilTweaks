@@ -1386,7 +1386,7 @@ END
 COPY_EXISTING ~kitlist.2da~ ~override/kitlist.2da~
   COUNT_2DA_COLS ~colcount~
   SET description_col = $kitlist_cols("HELP")
-  SET_2DA_ENTRY_LATER ~s!kit_desc~ $kitlist_rows("AVENGER") description_col RESOLVE_STR_REF (@5053)
+  SET_2DA_ENTRY_LATER ~s!kit_desc~ $kitlist_rows("BEAST_FRIEND") description_col RESOLVE_STR_REF (@5053)
   SET_2DA_ENTRY_LATER ~s!kit_desc~ $kitlist_rows("SWASHBUCKLER") description_col RESOLVE_STR_REF (@5054)
   SET_2DA_ENTRY_LATER ~s!kit_desc~ $kitlist_rows("RISKBREAKER") description_col RESOLVE_STR_REF (@5055)
   SET_2DA_ENTRIES_NOW ~s!kit_desc~ ~colcount~

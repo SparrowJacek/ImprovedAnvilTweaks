@@ -1,0 +1,73 @@
+IF
+	Allegiance(Myself,ENEMY)
+	See([GOODCUTOFF])
+	!GlobalGT("IaShout","LOCALS",0)
+THEN
+	RESPONSE #100
+		GlobalShout(99)
+		SetGlobal("IaShout","LOCALS",1)
+END
+
+IF
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		GlobalShout(99)
+		Enemy()
+END
+
+IF
+	HitBy([GOODCUTOFF],CRUSHING)
+THEN
+	RESPONSE #100
+		GlobalShout(99)
+		Continue()
+END
+
+IF
+	Heard([ANYONE],99)
+	Allegiance(Myself,NEUTRAL)
+	!Class(Myself,INNOCENT)
+THEN
+	RESPONSE #100
+		GlobalShout(57)
+		Enemy()
+		MoveToObject(LastHeardBy(Myself))
+END
+
+IF
+	Heard([ANYONE],99)
+	Allegiance(Myself,NEUTRAL)
+THEN
+	RESPONSE #100
+		Enemy()
+END
+
+IF
+	Heard([ANYONE],57)
+	Allegiance(Myself,NEUTRAL)
+THEN
+	RESPONSE #100
+		Enemy()
+END
+
+IF
+	Heard([ANYONE],99)
+	!Class(Myself,INNOCENT)
+	!See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		MoveToObject(LastHeardBy(Myself))
+		Continue()
+END
+
+IF
+	Heard([ANYONE],57)
+	!Class(Myself,INNOCENT)
+	!See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		MoveToObject(LastHeardBy(Myself))
+		Continue()
+END
+

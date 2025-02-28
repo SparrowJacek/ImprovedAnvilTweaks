@@ -7,6 +7,11 @@ COPY_EXISTING ~GPSIMB.cre~ ~override~
     REMOVE_MEMORIZED_SPELL ~SPPR210~ // Resist Fire/Cold
 
     ADD_MEMORIZED_SPELL ~SPPR212~ #1 ~priest~ ( 1 ) // Slow Poison
+
+// Boz, the Ogre from Underdark evil party
+
+COMPILE ~IATweaks\scripts\controversial\S!BOZ.BAF~
+
 // Ist'tar Jae'llat
 
 COPY_EXISTING ~JAEL03.cre~ ~override~

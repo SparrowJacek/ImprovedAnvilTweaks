@@ -215,6 +215,18 @@ THEN
 END
 
 IF
+	HaveSpell(WARRIOR_WAR_CRY)
+	Detect(NearestEnemyOf(Myself))
+	CheckStat(Myself,0,IMPROVEDHASTE)
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_WAR_CRY)
+		RemoveSpell(WARRIOR_WAR_CRY)
+END
+
+IF
 	Allegiance(Myself,ENEMY)
 	HaveSpell(WARRIOR_CRITICAL_STRIKE)
 	!CheckStatGT(Myself,5,CRITICALHITBONUS)

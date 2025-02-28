@@ -1269,6 +1269,209 @@ END
   ADD_CRE_ITEM ~POTN09~ #0 #0 #0 ~UNSTEALABLE~ ~INV12~ // Potion of Heroism
 
   ADD_MEMORIZED_SPELL ~SPCL321~ #0 ~innate~ ( 4 ) // Enrage
-  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 1 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 1 ) // Critical Strike
 
 COMPILE ~IATweaks\scripts\creatures\S!BOZ.BAF~
+
+// Jae'llat Guards
+
+COPY_EXISTING ~JAEL04.cre~ ~override~
+  WRITE_BYTE 0x2f 83 // Skin Color
+  WRITE_BYTE 0x32 79 // Hair Color
+  WRITE_BYTE 0x60 20 // Resist Slashing
+  WRITE_BYTE 0x61 20 // Resist Crushing
+  WRITE_BYTE 0x62 20 // Resist Piercing
+  WRITE_BYTE 0x63 20 // Resist Missile
+  WRITE_BYTE 0x23c 19 // Dexterity
+  WRITE_LONG 0x244 0x40010000 // Kit = Berserker
+  WRITE_ASCII 0x248 ~S!SHOUT~ #8
+  WRITE_ASCII 0x268 ~S!JAEL04~ #8
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  LPF ~ADD_CRE_EFFECT~  // ***** in Long Swords
+    INT_VAR
+      opcode = 233
+      timing = 9
+      parameter1 = 5
+      parameter2 = 90
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // ** in Sword and Shield
+    INT_VAR
+      opcode = 233
+      timing = 9
+      parameter1 = 2
+      parameter2 = 112
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~DWCHAN01~
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!TRAP~
+  END
+
+  ADD_CRE_ITEM ~DWPLAT01~ #0 #0 #0 ~UNSTEALABLE~ ~ARMOR~
+  ADD_CRE_ITEM ~SW1H04~ #0 #0 #0 ~UNSTEALABLE~ ~WEAPON3~
+  ADD_CRE_ITEM ~POTN14~ #2 #0 #0 ~UNSTEALABLE~ ~INV10~ // Oil of Speed
+  ADD_CRE_ITEM ~POTN02~ #1 #0 #0 ~UNSTEALABLE~ ~INV12~ // Potion of Fire Resistance
+
+  ADD_MEMORIZED_SPELL ~SPCL321~ #0 ~innate~ ( 4 ) // Enrage
+
+COMPILE ~IATweaks\scripts\creatures\S!JAEL04.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!SHOUT.BAF~
+
+// Ist'tar Jae'llat
+
+COPY_EXISTING ~JAEL03.cre~ ~override~
+  WRITE_SHORT 0x24 135 // HP
+  WRITE_SHORT 0x26 135 // HP
+  WRITE_BYTE 0x2f 83 // Skin Color
+  WRITE_BYTE 0x32 79 // Hair Color
+  WRITE_BYTE 0x60 15 // Resist Slashing
+  WRITE_BYTE 0x61 15 // Resist Crushing
+  WRITE_BYTE 0x62 15 // Resist Piercing
+  WRITE_BYTE 0x63 15 // Resist Missile
+  WRITE_BYTE 0x234 24 // Level 1
+  WRITE_BYTE 0x238 18 // Strength
+  WRITE_BYTE 0x239 100 // Exceptional Strength
+  WRITE_BYTE 0x23c 19 // Dexterity
+  WRITE_LONG 0x244 0x40030000 // Kit = Kensai
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ALTER_EFFECT~ // *** in Dual Wield
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 112
+      parameter1 = 3
+      parameter2 = 114
+  END
+
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 16
+  END
+
+  // thac0 and damage bonuses to melee
+  FOR (i=0; i<8; ++i) BEGIN
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 285
+        target = 1
+        parameter1 = 1
+        parameter2 = 0
+        timing = 9
+      STR_VAR
+        effsource = ~SPCL141~
+    END
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 284
+        target = 1
+        parameter1 = 1
+        parameter2 = 0
+        timing = 9
+      STR_VAR
+        effsource = ~SPCL141~
+    END
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // AC
+    INT_VAR
+      opcode = 0
+      target = 1
+      parameter1 = 2
+      parameter2 = 0
+      resist_dispel = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL142~
+  END
+
+  PATCH_FOR_EACH item_to_remove IN ~HELM10~ ~DWPLAT01~ ~DWSHLD01~ ~S!TRAP~ BEGIN
+    LPF ~DELETE_CRE_ITEM~
+      STR_VAR
+        item_to_delete = EVAL ~%item_to_remove%~
+    END
+  END
+
+  ADD_CRE_ITEM ~DWSW1H02~ #0 #0 #0 ~UNSTEALABLE~ ~SHIELD~
+  ADD_CRE_ITEM ~SW1H04~ #0 #0 #0 ~UNSTEALABLE~ ~WEAPON3~
+  ADD_CRE_ITEM ~HELM19~ #0 #0 #0 ~UNSTEALABLE~ ~HELMET~
+  ADD_CRE_ITEM ~RING06~ #0 #0 #0 ~UNSTEALABLE~ ~LRING~
+  ADD_CRE_ITEM ~POTN33~ #1 #0 #0 ~UNSTEALABLE~ ~INV10~ // Barbarian Essence
+  ADD_CRE_ITEM ~POTN35~ #1 #0 #0 ~UNSTEALABLE~ ~INV11~ // Potion of Magic Shielding
+  ADD_CRE_ITEM ~POTN07~ #1 #0 #0 ~UNSTEALABLE~ ~INV12~ // Potion of Storm Giant Strength
+  ADD_CRE_ITEM ~POTN11~ #1 #0 #0 ~UNSTEALABLE~ ~INV13~ // Potion of Invulnerability
+  ADD_CRE_ITEM ~POTN14~ #2 #0 #0 ~UNSTEALABLE~ ~INV14~ // Oil of Speed
+  ADD_CRE_ITEM ~POTN14~ #1 #0 #0 ~UNSTEALABLE~ ~INV15~ // Oil of Resurgence
+
+  ADD_MEMORIZED_SPELL ~SPCL144~ #0 ~innate~ ( 6 ) // Kai
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 1 ) // Critical Strike
+
+COMPILE ~IATweaks\scripts\creatures\S!JAEL03.BAF~
+
+// Move him next to the Priestess
+
+COPY_EXISTING ~AR2209.are~ ~override~
+
+  GET_OFFSET_ARRAY actors ARE_V10_ACTORS
+
+  PHP_EACH actors AS int1 => actor_off BEGIN
+    READ_ASCII actor_off + 0x80 cre_file // CRE file
+
+    PATCH_IF (~%cre_file%~ STR_EQ ~JAEL03~) BEGIN
+      WRITE_SHORT  actor_off + 0x20 627 // X
+      WRITE_SHORT  actor_off + 0x22 838 // Y
+      WRITE_SHORT  actor_off + 0x24 627 // X
+      WRITE_SHORT  actor_off + 0x26 838 // Y
+    END
+  END

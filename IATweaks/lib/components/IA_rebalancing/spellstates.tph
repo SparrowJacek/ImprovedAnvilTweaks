@@ -123,15 +123,14 @@ COPY_EXISTING ~SPPR109.spl~ ~override~
   END
 
 COPY_EXISTING ~SPPR113.spl~ ~override~ // Doom
-  LPF ~ADD_SPELL_EFFECT~
+  LPF ~CLONE_EFFECT~
     INT_VAR
+      opcode = 142
       opcode = 328
-      target = 2
-      power = 1
+      parameter1 = 0
       parameter2 = 55 // Doom
-      resist_dispel = 1
-      duration = 60
       special = 1
+      multi_match = 1
   END
 
 COPY_EXISTING ~SPPR201.spl~ ~override~
@@ -176,6 +175,7 @@ COPY_EXISTING ~SPCL321D.spl~ ~override~
       parameter1 = 0
       parameter2 = 75 // Berserker rage fatigue
       special = 1
+      multi_match = 1
   END
 
 COPY_EXISTING ~SPCL907.spl~ ~override~
@@ -186,6 +186,7 @@ COPY_EXISTING ~SPCL907.spl~ ~override~
       parameter1 = 0
       parameter2 = 118 // Hardiness
       special = 1
+      multi_match = 1
   END
 
 COPY_EXISTING ~SPWISH12.spl~ ~override~
@@ -196,6 +197,7 @@ COPY_EXISTING ~SPWISH12.spl~ ~override~
       parameter1 = 0
       parameter2 = 118 // Hardiness
       special = 1
+      multi_match = 1
   END
 
 COPY_EXISTING ~SPCL321.spl~ ~override~
@@ -205,4 +207,5 @@ COPY_EXISTING ~SPCL321.spl~ ~override~
       match_parameter2 = 104
       parameter2 = 77 // BERSERKER_RAGE
       special = 1
+      multi_match = 1
   END

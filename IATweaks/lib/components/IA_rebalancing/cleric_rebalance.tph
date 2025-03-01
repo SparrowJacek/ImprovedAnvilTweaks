@@ -3294,6 +3294,7 @@ COPY_EXISTING ~JAEL01.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPPR729~ #6 ~priest~ ( 1 ) // Foreknowledge
   ADD_MEMORIZED_SPELL ~SPPRI26~ #6 ~priest~ ( 1 ) // Continual Cure
   ADD_MEMORIZED_SPELL ~SPCLI24~ #0 ~innate~ ( 1 ) // Summon Fallen Archdeva
+  ADD_MEMORIZED_SPELL ~S!AEGIS~ #0 ~innate~ ( 1 ) // Aegis of Faith
 
 COMPILE ~IATweaks\scripts\creatures\S!JAEL01.BAF~
 
@@ -3401,7 +3402,6 @@ COPY_EXISTING ~JAEL02.cre~ ~override~
   ADD_CRE_ITEM ~BELT03~ #0 #0 #0 ~NONE~ ~BELT~
   ADD_CRE_ITEM ~CLCK01~ #0 #0 #0 ~NONE~ ~CLOAK~
   ADD_CRE_ITEM ~BELT14~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~LRING~
-  ADD_CRE_ITEM ~S!RING20~ #0 #0 #0 ~NONE~ ~RRING~
 
   REMOVE_MEMORIZED_SPELLS
 
@@ -3446,5 +3446,6 @@ COPY_EXISTING ~JAEL02.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPPR729~ #6 ~priest~ ( 1 ) // Foreknowledge
   ADD_MEMORIZED_SPELL ~SPPR735~ #6 ~priest~ ( 1 ) // Spare the Dying
   ADD_MEMORIZED_SPELL ~SPPRI26~ #6 ~priest~ ( 1 ) // Continual Cure
+  ADD_MEMORIZED_SPELL ~S!AEGIS~ #0 ~innate~ ( 1 ) // Aegis of Faith
 
 COMPILE ~IATweaks\scripts\creatures\S!JAEL02.BAF~

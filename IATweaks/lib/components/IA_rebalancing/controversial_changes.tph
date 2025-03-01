@@ -1306,16 +1306,17 @@ COPY_EXISTING ~luabbr.2da~  ~override~
   COUNT_2DA_COLS ~colcount~
   READ_2DA_ENTRY $luabbr_rows("RISKBREAKER") 1 ~colcount~ rb_hlas_suffix
   PATCH_IF (~%rb_hlas_suffix%~ STR_EQ ~Fi0~) BEGIN
-    SET_2DA_ENTRY $luabbr_rows("RISKBREAKER") 1 ~colcount~ ~Fi6~
+    SET_2DA_ENTRY $luabbr_rows("RISKBREAKER") 1 ~colcount~ ~S!RB~
     PRETTY_PRINT_2DA
   END
   BUT_ONLY
 
 ACTION_IF (~%rb_hlas_suffix%~ STR_EQ ~Fi0~) BEGIN
-  COPY_EXISTING ~LUFi0.2da~ ~override/LUFi6.2da~
+  COPY_EXISTING ~LUFi0.2da~ ~override/LUS!RB.2da~
+  SPRINT rb_hlas_suffix ~S!RB~
 END
 
-COPY_EXISTING ~LUFi6.2da~ ~override~
+COPY_EXISTING ~LU%rb_hlas_suffix%.2da~ ~override~
   COUNT_2DA_COLS ~colcount~
   COUNT_2DA_ROWS ~colcount~ ~rowcount~
   SET ww_row = (0 - 1)

@@ -388,10 +388,10 @@ COPY_EXISTING ~luabbr.2da~ ~override~
   READ_2DA_ENTRY $hla_mapping_rows("BEASTMASTER") 1 %colcount% beastmaster_hla_suffix
   PATCH_IF ~%beastmaster_hla_suffix%~ STR_EQ ~Ra0~ BEGIN
     INNER_ACTION BEGIN
-      COPY_EXISTING ~LURA0.2DA~ ~override/LURA4.2DA~
+      COPY_EXISTING ~LURA0.2DA~ ~override/LUS!BMAST.2DA~
     END
-    SET_2DA_ENTRY $hla_mapping_rows("BEASTMASTER") 1 %colcount% ~Ra4~
-    SPRINT beastmaster_hla_suffix ~Ra4~
+    SET_2DA_ENTRY $hla_mapping_rows("BEASTMASTER") 1 %colcount% ~S!BMAST~
+    SPRINT beastmaster_hla_suffix ~S!BMAST~
   END
 
 // Add Smilodon HLA

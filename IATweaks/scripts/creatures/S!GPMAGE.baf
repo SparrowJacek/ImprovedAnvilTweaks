@@ -18,6 +18,16 @@ END
 
 IF
 	!See(NearestEnemyOf(Myself))
+	Heard([EVILCUTOFF],151)
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iashoutonce","LOCALS",1)
+		MoveToObject(LastHeardBy(Myself))
+END
+
+IF
+	!See(NearestEnemyOf(Myself))
 	Global("Iapcastts","GLOBAL",0)
 	Heard([EVILCUTOFF],151)
 	See(LastHeardBy(Myself))
@@ -59,6 +69,45 @@ IF
 THEN
 	RESPONSE #100
 		ReallyForceSpell("gpthief1",WIZARD_IMPROVED_HASTE)  // Thief
+		Continue()
+END
+
+IF
+	OR(2)
+		Detect([PC])
+		Detect([GOODCUTOFF])
+	Global("IaPrep","LOCALS",0)
+	Exists("gpthief1")  // Thief
+	!Dead("gpthief1")  // Thief
+THEN
+	RESPONSE #100
+		ReallyForceSpell("gpthief1",WIZARD_LUCK)  // Thief
+		Continue()
+END
+
+IF
+	OR(2)
+		Detect([PC])
+		Detect([GOODCUTOFF])
+	Global("IaPrep","LOCALS",0)
+	Exists("gpthief1")  // Thief
+	!Dead("gpthief1")  // Thief
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("SPWI607","gpthief1")  // Thief
+		Continue()
+END
+
+IF
+	OR(2)
+		Detect([PC])
+		Detect([GOODCUTOFF])
+	Global("IaPrep","LOCALS",0)
+	Exists("gpthief1")  // Thief
+	!Dead("gpthief1")  // Thief
+THEN
+	RESPONSE #100
+		ReallyForceSpell("gpthief1", WIZARD_SPIRIT_ARMOR)  // Thief
 		Continue()
 END
 
@@ -971,46 +1020,6 @@ END
 IF
 	Allegiance(Myself,ENEMY)
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	Dead("GPPRI1")  // Chandrilla
-	See(NearestEnemyOfType([GOODCUTOFF.0.0.0.0.SUMMONED]))
-	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
-	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
-	OR(4)
-		LevelGT(LastSeenBy(Myself),8)
-		CheckStat(LastSeenBy(Myself),95,RESISTPIERCING)
-		CheckStatGT(LastSeenBy(Myself),89,RESISTMAGIC)
-		Class(LastSeenBy(Myself),SKELETON)
-	GlobalLT("IaDeathSpell","LOCALS",1)
-THEN
-	RESPONSE #100
-		IncrementGlobal("IaDeathSpell","LOCALS",1)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
-		SpellNoDec(LastSeenBy(Myself),WIZARD_DEATH_SPELL)  // SPWI605.SPL (Death Spell)
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	See(NearestEnemyOfType([GOODCUTOFF.0.0.0.0.SUMMONED]))
-	!Class(LastSeenBy(Myself),SKELETON)
-	!Class(LastSeenBy(Myself),SKELETON_WARRIOR)
-	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
-	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
-	OR(3)
-		LevelGT(LastSeenBy(Myself),8)
-		CheckStat(LastSeenBy(Myself),95,RESISTPIERCING)
-		CheckStatGT(LastSeenBy(Myself),89,RESISTMAGIC)
-	GlobalLT("IaDeathSpell","LOCALS",1)
-THEN
-	RESPONSE #100
-		IncrementGlobal("IaDeathSpell","LOCALS",1)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
-		SpellNoDec(LastSeenBy(Myself),WIZARD_DEATH_SPELL)  // SPWI605.SPL (Death Spell)
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	See([PC])
 	CheckStatLT(LastSeenBy(Myself),51,RESISTFIRE)
 	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
@@ -1050,7 +1059,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
 	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
-	GlobalLT("IaEmotions","LOCALS",2)
+	GlobalLT("IaEmotions","LOCALS",1)
 THEN
 	RESPONSE #100
 		IncrementGlobal("IaEmotions","LOCALS",1)
@@ -1073,7 +1082,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
 	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
-	GlobalLT("IaEmotions","LOCALS",2)
+	GlobalLT("IaEmotions","LOCALS",1)
 THEN
 	RESPONSE #100
 		IncrementGlobal("IaEmotions","LOCALS",1)
@@ -1096,7 +1105,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
 	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
-	GlobalLT("IaEmotions","LOCALS",2)
+	GlobalLT("IaEmotions","LOCALS",1)
 THEN
 	RESPONSE #100
 		IncrementGlobal("IaEmotions","LOCALS",1)
@@ -1238,7 +1247,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE7)
 	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
-	GlobalLT("IaAcidArrow","LOCALS",5)
+	GlobalLT("IaAcidArrow","LOCALS",4)
 THEN
 	RESPONSE #100
 		IncrementGlobal("IaAcidArrow","LOCALS",1)
@@ -1259,7 +1268,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE7)
 	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
-	GlobalLT("IaAcidArrow","LOCALS",5)
+	GlobalLT("IaAcidArrow","LOCALS",4)
 THEN
 	RESPONSE #100
 		IncrementGlobal("IaAcidArrow","LOCALS",1)
@@ -1280,7 +1289,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE7)
 	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
-	GlobalLT("IaAcidArrow","LOCALS",5)
+	GlobalLT("IaAcidArrow","LOCALS",4)
 THEN
 	RESPONSE #100
 		IncrementGlobal("IaAcidArrow","LOCALS",1)

@@ -96,6 +96,28 @@ THEN
 END
 
 IF
+	!See(NearestEnemyOf(Myself))
+	Heard([EVILCUTOFF],151)
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iashoutonce","LOCALS",1)
+		MoveToObject(LastHeardBy(Myself))
+END
+
+IF
+	Global("Iashoutonce","LOCALS",0)
+	Global("Iapcastts","GLOBAL",0)
+	See([GOODCUTOFF])
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		SetGlobal("Iashoutonce","LOCALS",1)
+		GlobalShout(151)
+END
+
+IF
 	!StateCheck(NearestEnemyOf(Myself),STATE_INVISIBLE)
 	Range(NearestEnemyOf(Myself),5)
 	OR(2)

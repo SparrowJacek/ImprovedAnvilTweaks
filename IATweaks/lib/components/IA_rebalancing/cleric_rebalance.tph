@@ -3134,7 +3134,8 @@ COPY_EXISTING ~gppri1.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPPR208~ #1 ~priest~ ( 2 ) // Hold Person
   ADD_MEMORIZED_SPELL ~SPPR212~ #1 ~priest~ ( 2 ) // Slow Poison
   ADD_MEMORIZED_SPELL ~SPPR301~ #2 ~priest~ ( 2 ) // Animate Dead
-  ADD_MEMORIZED_SPELL ~SPPR314~ #2 ~priest~ ( 5 ) // Unholy Blight
+  ADD_MEMORIZED_SPELL ~SPPR306~ #2 ~priest~ ( 1 ) // Protection From Fire
+  ADD_MEMORIZED_SPELL ~SPPR314~ #2 ~priest~ ( 4 ) // Unholy Blight
   ADD_MEMORIZED_SPELL ~SPPR318~ #2 ~priest~ ( 2 ) // Zone of Sweet Air
   ADD_MEMORIZED_SPELL ~SPPR403~ #3 ~priest~ ( 3 ) // Free Actions
   ADD_MEMORIZED_SPELL ~SPPR404~ #3 ~priest~ ( 1 ) // Neutralize Poison

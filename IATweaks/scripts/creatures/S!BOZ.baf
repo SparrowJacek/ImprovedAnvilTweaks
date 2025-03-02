@@ -69,6 +69,18 @@ THEN
 END
 
 IF
+	Global("Iashoutonce","LOCALS",0)
+	Global("Iapcastts","GLOBAL",0)
+	See([GOODCUTOFF])
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		SetGlobal("Iashoutonce","LOCALS",1)
+		GlobalShout(151)
+END
+
+IF
 	Allegiance(Myself,ENEMY)
 	Global("Iapcastts","GLOBAL",0)
 	See([PC])
@@ -500,6 +512,7 @@ THEN
 	RESPONSE #100
 		SetGlobal("IaPrep","LOCALS",0)
 		SetGlobal("EnemySeen","LOCALS",0)
+		SetGlobal("Iashoutonce","LOCALS",0)
 		ReallyForceSpellRES("SPWII07",Myself)  // No such index
 END
 

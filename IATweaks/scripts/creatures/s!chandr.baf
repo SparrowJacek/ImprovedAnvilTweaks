@@ -4,7 +4,6 @@ IF
 	!Dead("GPSIMB")  // Simbja
 THEN
 	RESPONSE #100
-		SetGlobal("IaPrep","LOCALS",1)
 		ReallyForceSpell("GPSIMB",CLERIC_FREE_ACTION)  // Simbja
 		RemoveSpell(CLERIC_FREE_ACTION)
 		ReallyForceSpell("GPSIMB",CLERIC_CHAOTIC_COMMANDS)  // Simbja
@@ -18,7 +17,6 @@ IF
 	!Dead("GPTHIEF1")  // Thief
 THEN
 	RESPONSE #100
-		SetGlobal("IaPrep","LOCALS",1)
 		ReallyForceSpell("GPTHIEF1",CLERIC_FREE_ACTION)  // Thief
 		RemoveSpell(CLERIC_FREE_ACTION)
 		ReallyForceSpell("GPTHIEF1",CLERIC_CHAOTIC_COMMANDS)  // Thief
@@ -32,11 +30,22 @@ IF
 	!Dead("GPFIGHT1")
 THEN
 	RESPONSE #100
-		SetGlobal("IaPrep","LOCALS",1)
 		ReallyForceSpell("GPFIGHT1",CLERIC_FREE_ACTION)
 		RemoveSpell(CLERIC_FREE_ACTION)
 		ReallyForceSpell("GPFIGHT1",CLERIC_CHAMPIONS_STRENGTH)
 		RemoveSpell(CLERIC_CHAMPIONS_STRENGTH)
+		Continue()
+END
+
+IF
+	HaveSpell(CLERIC_PROTECTION_FROM_FIRE)
+	See(NearestEnemyOf(Myself))
+	Global("IaPrep","LOCALS",0)
+	!Dead("GPFIGHT1")
+THEN
+	RESPONSE #100
+		ReallyForceSpell("GPFIGHT1",CLERIC_PROTECTION_FROM_FIRE)
+		RemoveSpell(CLERIC_PROTECTION_FROM_FIRE)
 		Continue()
 END
 
@@ -84,6 +93,28 @@ THEN
 		SetGlobal("Iaarundelplace","GLOBAL",5)
 		SetGlobal("Iatreasure","LOCALS",1)
 		GiveItemCreate("wastaff",Myself,0,0,0)  // Staff of Arundel +3
+END
+
+IF
+	!See(NearestEnemyOf(Myself))
+	Heard([EVILCUTOFF],151)
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iashoutonce","LOCALS",1)
+		MoveToObject(LastHeardBy(Myself))
+END
+
+IF
+	Global("Iashoutonce","LOCALS",0)
+	Global("Iapcastts","GLOBAL",0)
+	See([GOODCUTOFF])
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		SetGlobal("Iashoutonce","LOCALS",1)
+		GlobalShout(151)
 END
 
 IF
@@ -1347,16 +1378,6 @@ THEN
 		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
 		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
 		Spell(Myself,CLERIC_TRUE_SIGHT)  // SPPR505.SPL (True Seeing)
-END
-
-IF
-	!See(NearestEnemyOf(Myself))
-	Heard([EVILCUTOFF],151)
-	InMyArea(Player1)
-	See(LastHeardBy(Myself))
-THEN
-	RESPONSE #100
-		MoveToObject(Player1)
 END
 
 IF
@@ -2887,6 +2908,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("IaPrep","LOCALS",0)
+		SetGlobal("Iashoutonce","LOCALS",0)
 		ReallyForceSpellRES("SPWII07",Myself)  // No such index
 END
 
@@ -3033,5 +3055,6 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("anticheese","LOCALS",0)
+		SetGlobal("Iashoutonce","LOCALS",0)
 		ReallyForceSpellRES("SPWII07",Myself)  // No such index
 END

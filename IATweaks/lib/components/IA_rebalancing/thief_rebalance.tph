@@ -2558,6 +2558,11 @@ COPY_EXISTING ~wa2ring.itm~ ~override~
       match_opcode = 277
   END
 
+// Spirit of the Night
+
+COPY ~IATweaks\resources\itm\s!leat02.itm~ ~override~
+  SAY UNIDENTIFIED_DESC @7052
+
 // //////// Spells /////////
 
 // Detect Traps //

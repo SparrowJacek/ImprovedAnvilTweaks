@@ -29,6 +29,18 @@ END
 
 IF
 	Allegiance(Myself,ENEMY)
+	Detect([PC])
+	Global("Iadupliringplace","GLOBAL",1)
+	Global("Iapcastts","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iadupliringplace","GLOBAL",4)
+		GiveItemCreate("ohrring1",Myself,0,0,0)  // Ring of Duplication
+		XEquipItem("ohrring1",Myself,SLOT_RING_LEFT,EQUIP)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
 	See([PC])
 	GlobalLT("Iacreature","LOCALS",3)
 	!GlobalTimerNotExpired("Iasummon","LOCALS")

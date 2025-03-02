@@ -45,3 +45,71 @@ REPLACE_SAY BOTSMITH 200 @9001
 // Elven Ancient Expertise
 
 REPLACE_SAY BOTSMITH 233 @9003
+
+// Assassin's Dream
+ALTER_TRANS BOTSMITH
+  BEGIN 168 END
+  BEGIN 1 END
+BEGIN
+  "TRIGGER" ~PartyHasItem("leat17")
+PartyHasItem("leat14")
+PartyHasItem("leat08")
+PartyHasItem("scrl5k")
+PartyHasItem("belt03")
+PartyHasItem("ohrring1")
+NumItemsPartyGT("misc35",2)
+PartyHasItem("S!misc02")
+PartyGoldGT(74999)~
+  "ACTION" ~TakePartyGold(75000)
+DestroyGold(30000)
+TakePartyItemNum("leat17",1)
+DestroyItem("leat17")
+TakePartyItemNum("leat14",1)
+DestroyItem("leat14")
+TakePartyItemNum("leat08",1)
+DestroyItem("leat08")
+TakePartyItemNum("scrl5k",1)
+DestroyItem("scrl5k")
+TakePartyItemNum("belt03",1)
+DestroyItem("belt03")
+TakePartyItemNum("ohrring1",1)
+DestroyItem("ohrring1")
+TakePartyItemNum("misc35",3)
+DestroyItem("misc35")
+DestroyItem("misc35")
+DestroyItem("misc35")
+TakePartyItemNum("S!misc02",1)
+DestroyItem("S!misc02")
+CreateVisualEffect("spcrtwpn",[401.348])~
+END
+
+REPLACE_SAY BOTSMITH 168 @9004
+
+// Blightwood +5
+
+APPEND BOTSMITH
+  IF ~~ THEN BEGIN 301
+    SAY @9005
+    IF ~~ THEN REPLY @8000 GOTO 4
+    IF ~  Global("Iablightwoodforged","GLOBAL",0)
+    PartyHasItem("s!clubni")
+    PartyHasItem("s!surehi")
+    PartyHasItem("s!backwh")
+    PartyHasItem("s!misc02")
+    PartyGoldGT(59999)
+    ~ THEN REPLY @8001 DO ~TakePartyGold(60000)
+    DestroyGold(50000)
+    TakePartyItemNum("s!clubni",1)
+    DestroyItem("s!clubni")
+    TakePartyItemNum("s!surehi",1)
+    DestroyItem("s!surehi")
+    TakePartyItemNum("s!backwh",1)
+    DestroyItem("s!backwh")
+    TakePartyItemNum("s!misc02",1)
+    DestroyItem("s!misc02")
+    SetGlobal("Iablightwoodforged","GLOBAL",1)
+    GiveItemCreate("s!blight",Player1,1,1,1)
+    CreateVisualEffect("spcrtwpn",[401.348])
+    ~ EXIT
+  END
+END

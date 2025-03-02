@@ -357,7 +357,7 @@ Weight: 1~
 STATISTICS:
 
 Combat abilities:
-- Applies cumulative -2 penalty to AC and thac0 for 2 rounds when successful backstab is performed (no save)
+- Applies cumulative -1 penalty to AC and thac0 for 2 rounds when successful backstab is performed (no save)
 - Critical hit chance increased by 5%
 - Each critical hit performed with this weapon grants additional 5 crushing damage
 - Wielder gains additional +2 thac0 at night or in dungeons

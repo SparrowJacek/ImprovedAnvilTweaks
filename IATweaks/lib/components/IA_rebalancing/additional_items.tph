@@ -100,7 +100,39 @@ COPY ~IATweaks\resources\bam\s!backwh.bam~ ~override~
 COPY ~IATweaks\resources\itm\s!backwh.itm~ ~override~
   SAY NAME2 @7015
   SAY IDENTIFIED_DESC @7016
-// TODO ADD THIS ITEM SOMEWHERE!
+
+// Unseeing Eye
+
+COPY_EXISTING ~BHEYE.cre~ ~override~
+  ADD_CRE_ITEM ~s!backwh~ #0 #0 #0 ~NONE~ ~INV12~
+
+////////////// Blightwood +5
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~AREA_TYPE~
+    stat                  = ~0x106~
+    value                 = ~-1~
+    relation              = ~1~
+  RET
+    area_type = new_line_number
+END
+
+COPY ~IATweaks\resources\spl\s!bligh1.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!bligh2.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!bligh3.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 326
+      match_parameter2 = 0
+      parameter1 = 32 // Dungeon
+      parameter2 = area_type
+  END
+COPY ~IATweaks\resources\spl\s!bligh4.spl~ ~override~
+COPY ~IATweaks\resources\bam\s!blight.bam~ ~override~
+COPY ~IATweaks\resources\itm\s!blight.itm~ ~override~
+  SAY NAME2 @7040
+  SAY IDENTIFIED_DESC @7041
 
 //////////// Girdle of Beatification
 
@@ -153,7 +185,10 @@ COPY ~IATweaks\resources\itm\s!misc90.itm~ ~override~
       match_parameter1 = 3
       parameter1 = RESOLVE_STR_REF (@5047)
   END
-// TODO ADD THIS ITEM SOMEWHERE!
+
+// add the item to a merchant in Trademeet
+COPY_EXISTING ~trmer02.sto~ ~override~
+  ADD_STORE_ITEM ~s!misc90~ LAST #3 #0 #0 ~IDENTIFIED&UNSTEALABLE~ #1
 
 //////////// Cloverleaf
 
@@ -162,7 +197,10 @@ COPY ~IATweaks\resources\bam\s!bel12b.bam~ ~override~
 COPY ~IATweaks\resources\itm\s!belt12.itm~ ~override~
   SAY NAME2 @7029
   SAY IDENTIFIED_DESC @7030
-// TODO ADD THIS ITEM SOMEWHERE!
+  
+// add the item to a Drow merchant in Ust Natha
+COPY_EXISTING ~uddrow23.sto~ ~override~
+  ADD_STORE_ITEM ~s!belt12~ LAST #0 #0 #0 ~IDENTIFIED&UNSTEALABLE~ #1
 
 //////////// Cloak of Mystra
 

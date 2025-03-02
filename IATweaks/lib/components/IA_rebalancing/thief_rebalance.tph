@@ -700,7 +700,7 @@ COPY ~IATweaks\resources\spl\s!hisdmg.spl~ ~override~
 ACTION_DEFINE_ASSOCIATIVE_ARRAY hide_in_shadows_value_to_cooldown_mapping BEGIN
   110 => 88
   120 => 87
-  130 => 86
+  130 => 85
   140 => 84
   150 => 82
   160 => 81
@@ -712,7 +712,7 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY hide_in_shadows_value_to_cooldown_mapping BEGIN
   210 => 72
   215 => 70
   220 => 69
-  225 => 66
+  225 => 67
   230 => 66
   235 => 64
   240 => 63

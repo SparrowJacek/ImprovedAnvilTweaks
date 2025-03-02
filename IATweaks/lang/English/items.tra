@@ -490,7 +490,18 @@ STATISTICS:
 
 Grants 250,000 permanent experience points per each class of the imbiber.~
 
-@7052 = ~~
+@7052 = ~Spirit of the Night
+
+Three major and famous leather armors have been combined into an exquisite artifact.
+
+STATISTICS:
+
+Armor Class: 1
++2 AC vs all weapon types
++45% bonus to hide in shadows
+Weight: 5
+Requires: 3 Strength
+~
 
 @7053 = ~~
 

@@ -11,6 +11,16 @@ COPY_EXISTING ~thac0.2da~ ~override~
     BEGIN
     END
     ~THIEF 20 19 18 18 17 16 16 15 14 14 13 12 12 11 10 10 9 8 8 7 6 6 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5~
+  REPLACE_EVALUATE
+    ~FIGHTER_MAGE_THIEF.*~
+    BEGIN
+    END
+    ~FIGHTER_MAGE_THIEF 20                  19                  18                  17                  16                  15                  14                  13                  12                  11                  10                  9                   8                   7                   6                   5                   4                   3                   2                   1                   0                   0                   0                   0                   0                   0                   0                   0                   0                   0                   0                   0                   0                   0                   0                   0                   0                   0                   0                   0~
+  REPLACE_EVALUATE
+    ~FIGHTER_THIEF.*~
+    BEGIN
+    END
+    ~FIGHTER_THIEF 20                  19                  18                  17                  16                  15                  14                  13                  12                  11                  10                  9                   8                   7                   6                   5                   4                   3                   2                   1                   0                   0                   0                   0                   0                   0                   0                   0                   0                   0                   0                   0                   0                   0                   0                   0                   0                   0                   0                   0~
   PRETTY_PRINT_2DA
 
 // Enable ** in Short Swords, Daggers and Single Weapon Style for Assassins

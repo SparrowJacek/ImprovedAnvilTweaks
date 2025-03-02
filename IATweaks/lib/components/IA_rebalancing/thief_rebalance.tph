@@ -1346,6 +1346,133 @@ COPY_EXISTING ~spcl914.spl~ ~override~
       duration_high = 60
   END
 
+// Make Extend Lifespan add 10HP and allow it to be picked only 3 times
+
+COPY_EXISTING ~SPCLI27.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6184
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 18
+      parameter1 = 10
+  END
+
+COPY_EXISTING_REGEXP GLOB ~LU.*\.2da~ ~override~
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  FOR (i = 0; i < ~rowcount~; ++i) BEGIN
+    READ_2DA_ENTRY i 1 %colcount% current_val
+    PATCH_IF (~%current_val%~ STR_EQ ~AP_SPCLI27~) BEGIN
+      SET_2DA_ENTRY i 6 ~colcount~ 3
+    END
+  END
+  BUT_ONLY
+
+// Rework Assassination and allow it to be picked up to 3 times
+
+COPY_EXISTING ~SPCL916.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6185
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      duration_high = 30
+  END
+  FOR (i = 1; i <= 15; ++i) BEGIN
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        insert_point = ~-1~
+        opcode = 321
+        target = 1
+        duration = 24
+        timing = 3
+      STR_VAR
+        resource = EVAL ~S!ASSA%i%~
+    END
+  END
+  FOR (i = 15; i >= 1; --i) BEGIN
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        insert_point = 0
+        opcode = 321
+        target = 1
+        duration = 24
+        timing = 3
+      STR_VAR
+        resource = EVAL ~S!ASSA%i%~
+    END
+  END
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      insert_point = ~-1~
+      opcode = 326
+      parameter1 = 16394 // Assassin
+      parameter2 = kit_equals_row
+      target = 1
+      resist_dispel = 0
+      duration = 30
+      timing = 0
+    STR_VAR
+      resource = ~S!ASSA15~
+  END
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      insert_point = ~-1~
+      opcode = 318
+      parameter1 = 16394 // Assassin
+      parameter2 = kit_equals_row
+      target = 1
+      resist_dispel = 0
+      timing = 0
+    STR_VAR
+      resource = ~SPCL916~
+  END
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      insert_point = ~-1~
+      opcode = 146
+      parameter2 = 1
+      target = 1
+      resist_dispel = 0
+      duration = 30
+      timing = 0
+    STR_VAR
+      resource = ~S!ASSA10~
+  END
+
+COPY ~IATweaks\resources\spl\s!assa1.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!assa15.spl~ ~override~
+COPY ~IATweaks\resources\eff\s!assa15.eff~ ~override~
+
+OUTER_FOR (i=14;i>=2;--i) BEGIN
+  OUTER_SET j = i + 1
+  OUTER_SET k = i - 1
+  COPY_EXISTING ~s!assa15.spl~ ~override/s!assa%i%.spl~
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 321
+      STR_VAR
+        resource = EVAL ~S!ASSA%j%~
+    END
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 248
+      STR_VAR
+        resource = EVAL ~S!ASSA%i%~
+    END
+
+COPY_EXISTING ~s!assa15.eff~ ~override/s!assa%i%.eff~
+    WRITE_ASCIIE 0x30 ~S!ASSA%k%~ #8
+END
+
+COPY_EXISTING_REGEXP GLOB ~LU.*\.2da~ ~override~
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  FOR (i = 0; i < ~rowcount~; ++i) BEGIN
+    READ_2DA_ENTRY i 1 %colcount% current_val
+    PATCH_IF (~%current_val%~ STR_EQ ~GA_SPCL916~) BEGIN
+      SET_2DA_ENTRY i 6 ~colcount~ 3
+    END
+  END
+  BUT_ONLY
+
 // Rework Scribe Scrolls to let you choose which scrolls you want to create
 
 COPY ~IATweaks\resources\2da\spcl919.2da~ ~override~
@@ -2135,6 +2262,14 @@ COPY_EXISTING ~BORINALL.cre~ ~override~
       match_opcode = 0
       parameter1 = 3
   END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~RING06~
+  END
+
+  ADD_CRE_ITEM ~CLCK01~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~CLOAK~
+  ADD_CRE_ITEM ~RING06~ #0 #0 #0 ~NONE~ ~INV12~
 
 COMPILE ~IATweaks\scripts\creatures\S!BORINA.baf~
 

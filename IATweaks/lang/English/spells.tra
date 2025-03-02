@@ -444,7 +444,7 @@ The sword has the following statistics based on levels:
 This spell grants the caster a +1 bonus to hit and damage rolls every 3 levels of the caster. The spell lasts for 6 rounds.~
 
 @6050 = ~Chaos of Battle
-This spell ensures that the next strike from all affected allies will be a critical hit, while the next strike from all affected enemies will be a critical miss. The spell lasts for 2 rounds. If a creature does not attack during this period, the spell's effect will be wasted on that target.
+This spell ensures that the next strike from all affected allies will be a critical hit, while the next strike from all affected enemies will be a critical miss. The spell lasts for 1 round. If a creature does not attack during this period, the spell's effect will be wasted on that target.
 
 The area of effect of this spell grows with the caster's level as follows:
 At levels 5-10, it affects all creatures within a 5-foot radius.

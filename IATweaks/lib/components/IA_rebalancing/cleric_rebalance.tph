@@ -2547,6 +2547,10 @@ COPY ~IATweaks\resources\spl\s!cobfri.spl~ ~override~
       header = 3
       projectile = %s!coba15%
   END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      duration_high = 6
+  END
 
 COPY ~IATweaks\resources\spl\s!cobfoe.spl~ ~override~
   LPF ~ALTER_SPELL_HEADER~
@@ -2563,6 +2567,10 @@ COPY ~IATweaks\resources\spl\s!cobfoe.spl~ ~override~
     INT_VAR
       header = 3
       projectile = %s!cobe15%
+  END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      duration_high = 6
   END
 
 COPY ~IATweaks\resources\spl\s!cobdsp.spl~ ~override~

@@ -38,6 +38,29 @@ COPY_EXISTING ~weapprof.2da~  ~override/weapprof.2da~
   SET_2DA_ENTRIES_NOW ~_#_#_#weapprof~ ~colcount~
   PRETTY_PRINT_2DA
 
+// HLA tables for Thieves
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~luabbr.2da~
+  RET_ARRAY
+    luabbr_rows = 2da_rows_to_ids_mapping
+END
+
+COPY_EXISTING ~luabbr.2da~  ~override~
+  COUNT_2DA_COLS ~colcount~
+  READ_2DA_ENTRY $luabbr_rows("ASSASIN") 1 ~colcount~ assassin_hlas_suffix
+  PATCH_IF (~%assassin_hlas_suffix%~ STR_EQ ~Th0~) BEGIN
+    SET_2DA_ENTRY $luabbr_rows("ASSASIN") 1 ~colcount~ ~S!ASSA~
+    PRETTY_PRINT_2DA
+  END
+  BUT_ONLY
+
+ACTION_IF (~%assassin_hlas_suffix%~ STR_EQ ~Th0~) BEGIN
+  COPY_EXISTING ~LUTH0.2da~ ~override/LUS!ASSA.2da~
+  SPRINT assassin_hlas_suffix ~S!ASSA~
+END
+
 // Required checks for Thieving Ability values
 
 LAF ~S!ADD_SPLPROT_2DA_ENTRY~
@@ -569,7 +592,6 @@ COPY ~IATweaks\resources\spl\s!hisen2.spl~ ~override~
   END
 
 COPY ~IATweaks\resources\spl\s!hissnd.spl~ ~override~
-// TODO: consider changing lower probability to higher probability +1 from s!hisen1 to avoid overlapping
 
 ADD_PROJECTILE ~IATweaks\resources\pro\s!hisinv.pro~
 COPY ~IATweaks\resources\spl\s!hisin1.spl~ ~override~
@@ -1354,6 +1376,69 @@ COPY_EXISTING ~spcl919.spl~ ~override~
     STR_VAR
       resource = ~SPCL919~
   END
+
+// Analyze Opponent
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~CAN_BE_BACKSTABBED~
+    stat                  = ~175~
+    value                 = 0
+    relation              = ~1~
+  RET
+    can_be_backstabbed = new_line_number
+END
+
+COPY ~IATweaks\resources\bam\s!analyb.bam~ ~override~
+COPY ~IATweaks\resources\spl\s!analyz.spl~ ~override~
+  SAY NAME1 @6182
+  SAY UNIDENTIFIED_DESC @6183
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter2 = can_be_backstabbed
+  END
+
+LAF ~S!ADD_HLA_ROW~
+  STR_VAR
+    filename = ~LU%assassin_hlas_suffix%.2DA~
+    row_desc = ~ANALYZE_OPPONENT~
+    ability = ~GA_S!ANALYZ~
+    prerequisite = ~GA_SPCL916~ // Assassination
+    num_allowed = ~3~
+END
+
+// Ghost's Grace
+
+OUTER_SET ghost_grace_icon_desc_str_ref = RESOLVE_STR_REF (@6180)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %ghost_grace_icon_desc_str_ref%
+  STR_VAR
+    bam_file = ~S!GGRACD~
+  RET
+    ghost_grace_icon_id = portrait_icon_id
+END
+
+COPY ~IATweaks\resources\bam\s!ggracb.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!ggracd.bam~ ~override~
+COPY ~IATweaks\resources\spl\s!ggracd.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!ggrace.spl~ ~override~
+  SAY NAME1 @6180
+  SAY UNIDENTIFIED_DESC @6181
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %ghost_grace_icon_id%
+  END
+
+LAF ~S!ADD_HLA_ROW~
+  STR_VAR
+    filename = ~LU%assassin_hlas_suffix%.2DA~
+    row_desc = ~GHOST_GRACE~
+    ability = ~GA_S!GGRACE~
+    num_allowed = ~3~
+END
 
 // Class and Kit description
 

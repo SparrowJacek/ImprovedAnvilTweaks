@@ -2502,6 +2502,42 @@ COPY ~IATweaks\resources\itm\s!dagg01.itm~ ~override~
   SAY NAME2 @7023
   SAY IDENTIFIED_DESC @7024
 
+// Piwafwi Cloaks
+
+COPY_EXISTING ~misc9w.itm~ ~override~
+  SAY IDENTIFIED_DESC @7043
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 59
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 275
+      parameter1 = 25
+  END
+
+COPY_EXISTING ~dwclck01.itm~ ~override~
+  SAY IDENTIFIED_DESC @7042
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 59
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 275
+      parameter1 = 25
+  END
+
+// Cloak of Elvenkind
+
+COPY_EXISTING ~clck23.itm~ ~override~
+  SAY IDENTIFIED_DESC @7044
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 275
+      parameter1 = 10
+  END
+
 //////////////// Weapons for backstabs ///////////////
 
 COPY ~IATweaks\resources\eff\s!ss-20.eff~ ~override~

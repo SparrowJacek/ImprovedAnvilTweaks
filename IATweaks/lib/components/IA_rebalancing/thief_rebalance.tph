@@ -143,6 +143,16 @@ LAF ~S!ADD_SPLPROT_2DA_ENTRY~
     hide_in_shadows_higher_than_row = new_line_number
 END
 
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~HIDE_IN_SHADOWS>=n~
+    stat                  = ~135~
+    value                 = ~-1~
+    relation              = ~4~
+  RET
+    hide_in_shadows_higher_or_equal_to_row = new_line_number
+END
+
 // Disable backstab for Staves
 
 COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
@@ -688,27 +698,49 @@ COPY ~IATweaks\resources\spl\s!hisdmg.spl~ ~override~
   END
 
 ACTION_DEFINE_ASSOCIATIVE_ARRAY hide_in_shadows_value_to_cooldown_mapping BEGIN
+  110 => 88
   120 => 87
+  130 => 86
   140 => 84
+  150 => 82
   160 => 81
+  170 => 79
   180 => 78
+  190 => 76
   200 => 75
+  205 => 73
   210 => 72
+  215 => 70
   220 => 69
+  225 => 66
   230 => 66
+  235 => 64
   240 => 63
+  245 => 61
   250 => 60
+  255 => 58
   260 => 57
+  265 => 55
   270 => 54
+  275 => 52
   280 => 51
+  285 => 49
   290 => 48
+  295 => 46
   300 => 45
+  305 => 43
   310 => 42
+  315 => 40
   320 => 39
+  325 => 37
   330 => 36
+  335 => 34
   340 => 33
+  345 => 31
   350 => 30
+  355 => 28
   360 => 27
+  365 => 25
   370 => 24
 END
 
@@ -730,7 +762,7 @@ COPY ~IATweaks\resources\spl\s!hisrem.spl~ ~override~
         opcode = 318
         target = 1
         parameter1 = %his_value%
-        parameter2 = %hide_in_shadows_higher_than_row%
+        parameter2 = %hide_in_shadows_higher_or_equal_to_row%
         duration = 1
         insert_point = 0
       STR_VAR
@@ -2742,7 +2774,7 @@ COPY_EXISTING ~wa2ring.itm~ ~override~
 // Spirit of the Night
 
 COPY ~IATweaks\resources\itm\s!leat02.itm~ ~override~
-  SAY UNIDENTIFIED_DESC @7052
+  SAY IDENTIFIED_DESC @7052
 
 // //////// Spells /////////
 

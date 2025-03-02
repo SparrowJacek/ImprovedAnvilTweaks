@@ -123,8 +123,8 @@ A Thief who dedicates themselves to mastering the Hide in Shadows skill can achi
 -The rogue might attempt to Hide in Shadows once per round
 -Each 5 points give the user 5% chance to hide when no enemies are around up to 100% when the rogue reaches 100 points.
 -When above 50 points, each 10 points put into this skill give 5% chance to hide when a single enemy is around, hiding around a larger group of enemies is harder, though at 250 points there is 100% chance for success.
--When above 100 points, each 20 points put into this skill lowers the time needed to use this ability by 0,2s.
--When above 200 points, the previous bonus is applied for every 10 points instead of 20.~
+-When above 100 points, each 10 points put into this skill lowers the time needed to use this ability by 0,1s.
+-When above 200 points, the previous bonus is applied for every 5 points instead of 10.~
 
 @5014 = ~STEALTH STRIKE: This ability allows a rogue to unleash devastating attacks from the shadows, catching their enemies completely off guard. Striking with precision and force, the rogue can deal significantly increased damage to their unsuspecting foes.
 

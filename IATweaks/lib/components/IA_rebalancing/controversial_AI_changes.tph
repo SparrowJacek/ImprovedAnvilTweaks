@@ -135,3 +135,7 @@ COPY_EXISTING ~JAEL02.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPPR729~ #6 ~priest~ ( 1 ) // Foreknowledge
   ADD_MEMORIZED_SPELL ~SPPR735~ #6 ~priest~ ( 1 ) // Spare the Dying
   ADD_MEMORIZED_SPELL ~SPPRI26~ #6 ~priest~ ( 1 ) // Continual Cure
+
+// Troll King
+
+COMPILE ~IATweaks\scripts\controversial\S!TROLLK.BAF~

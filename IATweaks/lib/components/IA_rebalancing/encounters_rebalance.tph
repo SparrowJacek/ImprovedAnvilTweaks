@@ -1475,3 +1475,16 @@ COPY_EXISTING ~AR2209.are~ ~override~
       WRITE_SHORT  actor_off + 0x26 838 // Y
     END
   END
+
+// Troll King
+
+COPY_EXISTING ~S!TROLLK.cre~ ~override~
+  WRITE_BYTE 0x59 80 // Fire Resistance
+  WRITE_BYTE 0x5c 80 // Acid Resistance
+  WRITE_BYTE 0x5e 80 // Magic Fire Resistance
+
+// Troll Queen
+
+COPY_EXISTING ~S!TROLLK.cre~ ~override~
+  WRITE_BYTE 0x59 15 // Fire Resistance
+  WRITE_BYTE 0x5e 15 // Magic Fire Resistance

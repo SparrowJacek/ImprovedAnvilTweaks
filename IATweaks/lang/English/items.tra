@@ -503,9 +503,46 @@ Weight: 5
 Requires: 3 Strength
 ~
 
-@7053 = ~~
+@7053 = ~Sunblade: Daystar
+Whether created specifically for use in the service of Torm or appropriated at some point in the long history of the church, paladins of the Loyal Fury have made good use of Daystar in their battles against evil undead. Through magic or blessing it is empowered with the Sunray, a force of pure life energy so potent that it slays both living and unliving.
 
-@7054 = ~~
+STATISTICS:
+
+Charge abilities:
+– Sunray once per day
+
+THAC0: +2, +4 vs. evil creatures
+Damage: 1d8+2, +4 vs. evil creatures, does double damage against undead
+Damage type: Slashing
+Speed Factor: 3
+Proficiency Type: Long Sword
+Type: One-handed
+Requires:
+ 6 Strength
+
+Weight: 2~
+
+@7054 = ~This helm is made of polished steel and set with diamonds, rubies, and fire opals. The gems glow with an internal light, the source of which can only be magical. The helm makes the wearer resistant to fire as well as giving the wearer some spell abilities. These include Fireball, Prismatic Spray, and Sunray.
+
+STATISTICS:
+
+Equipped abilities:
+– Fire Resistance: +40%
+– Protects against critical hits
+
+Charge abilities:
+– Fireball once per day
+  Damage: 6d6 fire (Save vs. Wand for half)
+  Range: 90 ft.
+  Area: 15-ft. radius
+
+– Prismatic Spray once per day
+  Effects vary as per the 7th-level wizard spell
+
+– Sunray once per day
+  Effects vary as per the 7th-level cleric spell
+
+Weight: 2~
 
 @7055 = ~~
 

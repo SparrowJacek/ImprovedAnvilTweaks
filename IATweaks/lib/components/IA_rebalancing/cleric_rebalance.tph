@@ -1157,6 +1157,14 @@ COPY_EXISTING ~SPPR707.spl~ ~override~
       resource = "SPPR707"
   END
 
+// Change descriptions of items that use Sunray
+
+COPY_EXISTING ~SW1H31.itm~ ~override~
+  SAY IDENTIFIED_DESC @7053
+
+COPY_EXISTING ~HELM16.itm~ ~override~
+  SAY IDENTIFIED_DESC @7054
+
 // Disrupt Undead
 
 COPY_EXISTING ~sppr710.spl~ ~override/sppr710.spl~

@@ -1762,6 +1762,66 @@ ACTION_FOR_EACH cleric_kit_hla_file IN ~lucl0.2da~ ~lucl1.2da~ ~lucl2.2da~ ~lucl
   END
 END
 
+// Imposture
+
+COPY_EXISTING ~SPCLI25.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      multi_match       = 1
+      match_opcode      = 142
+      opcode            = 328
+      parameter2        = stun_immunity
+      special           = 1
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      multi_match       = 1
+      match_opcode      = 142
+      opcode            = 328
+      parameter2        = charm_domination_immunity
+      special           = 1
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      multi_match       = 1
+      match_opcode      = 142
+      opcode            = 328
+      parameter2        = hold_immunity
+      special           = 1
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      multi_match       = 1
+      match_opcode      = 142
+      opcode            = 328
+      parameter2        = confusion_immunity
+      special           = 1
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      multi_match       = 1
+      match_opcode      = 142
+      opcode            = 328
+      parameter2        = sleep_immunity
+      special           = 1
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      multi_match       = 1
+      match_opcode      = 142
+      opcode            = 328
+      parameter2        = paralyze_immunity
+      special           = 1
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      multi_match       = 1
+      match_opcode      = 142
+      opcode            = 328
+      parameter2        = 104
+      special           = 1
+  END
+
 // Spare the Dying
 
 COPY ~IATweaks\resources\bam\sppr735b.bam~ ~override~

@@ -229,4 +229,126 @@ COPY_EXISTING_REGEXP GLOB ~.+\.sto~ ~override~
 
 COPY ~IATweaks\resources\eff\s!elfexp.eff~ ~override~ 
 COPY ~IATweaks\resources\itm\s!potn02.itm~ ~override~ 
-  SAY UNIDENTIFIED_DESC @7051
+  SAY IDENTIFIED_DESC @7051
+
+// Add new spellstate and immunities to items protecting from psionics
+
+ACTION_FOR_EACH psionic_item IN ~MISC9Y~ ~SW2H21~ ~S!SW22~ BEGIN
+  COPY_EXISTING ~%psionic_item%.itm~ ~override~
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 206
+        multi_match = 1
+      STR_VAR
+        resource = ~S!MFSOFT~
+    END
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 206
+        multi_match = 1
+      STR_VAR
+        resource = ~S!MFSOFT~
+    END
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 206
+        multi_match = 1
+      STR_VAR
+        resource = ~S!MFSOF1~
+    END
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 206
+        multi_match = 1
+      STR_VAR
+        resource = ~S!MFBLST~
+    END
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 206
+        multi_match = 1
+      STR_VAR
+        resource = ~S!MFBLS1~
+    END
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 206
+        multi_match = 1
+      STR_VAR
+        resource = ~S!MFBLS2~
+    END
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 206
+        multi_match = 1
+        opcode = 328
+        parameter2 = psionics_immunity_splstate
+        special = 1
+    END
+END
+
+// Add PROTECTION_FROM_NORMAL_MISSILES spellstate to Storm Shield
+
+COPY_EXISTING ~spcl721.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 156
+      multi_match = 1
+      opcode = 328
+      parameter2 = 109 // PROTECTION_FROM_NORMAL_MISSILES
+      special = 1
+  END
+
+// Prevent spells that grant Strength bonuses from being used on enemies
+
+COPY_EXISTING ~SPWI214.spl~ ~override~
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 318
+      insert_point = 0
+      target = 2
+      parameter2 = 51
+      duration = 0
+      resist_dispel = 0
+    STR_VAR
+      resource = "SPWI214"
+  END
+
+COPY_EXISTING ~SPDR603.spl~ ~override~
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 318
+      insert_point = 0
+      target = 2
+      parameter2 = 51
+      duration = 0
+      resist_dispel = 0
+    STR_VAR
+      resource = "SPDR603"
+  END
+
+COPY_EXISTING ~SPWI607.spl~ ~override~
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 318
+      insert_point = 0
+      target = 2
+      parameter2 = 51
+      duration = 0
+      resist_dispel = 0
+    STR_VAR
+      resource = "SPWI607"
+  END
+
+// Add a Katana +2 to Gorch in Mae'Var's guild
+
+COPY_EXISTING ~gorch.sto~ ~override~
+  ADD_STORE_ITEM ~SW1H55~ AFTER ~SW1H47~ #0 #0 #0 ~IDENTIFIED&UNSTEALABLE~ #1
+
+// Add Ammo Belt to Gorch and Ribald
+
+COPY_EXISTING ~gorch.sto~ ~override~
+  ADD_STORE_ITEM ~BAG05~ LAST #0 #0 #0 ~IDENTIFIED&UNSTEALABLE~ #1
+
+COPY_EXISTING ~gorch.sto~ ~override~
+  ADD_STORE_ITEM ~BAG05~ AFTER ~BAG02~ #0 #0 #0 ~IDENTIFIED&UNSTEALABLE~ #1

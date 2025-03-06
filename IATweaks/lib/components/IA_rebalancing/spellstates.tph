@@ -65,6 +65,9 @@ OUTER_SET poison_effect_immunity = %new_state_index%
 LAF resolve_state STR_VAR new_state_id = ~IMPROVED_HASTE~ RET new_state_index END
 OUTER_SET improved_haste_splstate = %new_state_index%
 
+LAF resolve_state STR_VAR new_state_id = ~PSIONICS_IMMUNITY~ RET new_state_index END
+OUTER_SET psionics_immunity_splstate = %new_state_index%
+
 // Beast Master
 LAF resolve_state STR_VAR new_state_id = ~UNIFIED_MINDS~ RET new_state_index END
 OUTER_SET unified_minds_state = %new_state_index%

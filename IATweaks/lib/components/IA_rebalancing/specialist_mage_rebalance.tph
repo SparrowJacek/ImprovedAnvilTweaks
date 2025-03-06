@@ -558,7 +558,19 @@ COPY_EXISTING ~SCRL1Y.itm~ ~override~
 COPY ~IATweaks\resources\eff\s!stillu.eff~ ~override~
 COPY ~IATweaks\resources\eff\s!mtillu.eff~ ~override~
 COPY ~IATweaks\resources\spl\s!mtillu.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 335
+      parameter1 = %non_detection_state%
+      parameter2 = %non_detect_row_id%
+  END
 COPY ~IATweaks\resources\spl\s!stillu.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 335
+      parameter1 = %non_detection_state%
+      parameter2 = %non_detect_row_id%
+  END
 COPY ~IATweaks\resources\spl\s!illu01.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!illu02.spl~ ~override~
 

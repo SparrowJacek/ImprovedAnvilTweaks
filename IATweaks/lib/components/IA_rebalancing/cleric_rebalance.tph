@@ -148,6 +148,100 @@ ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR01.2da~ ~CLABPR02.2da~ ~CLABPR03.2da~ 
   END
 END
 
+// Improved Armor of Faith for kits from level 20
+
+// Original Armor of Faith make it remove itself instead of protecting from itself
+COPY_EXISTING ~SPPR111.spl~ ~override/SPPR111.spl~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 206
+      opcode = 321
+      duration = 0
+    STR_VAR
+      insert = ~first~
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 206
+    STR_VAR
+      resource = ~SPPR111~
+  END
+
+// New version for kits
+COPY_EXISTING ~SPPR111.spl~ ~override/SPPR111D.spl~
+  WRITE_LONG  0x08      ~-1~ // spell name
+  WRITE_BYTE  0x27      0 // secondary type 
+
+  // Increase duration to 90s
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      duration_high = 135
+  END
+
+  PATCH_FOR_EACH res_opcode IN 31 86 87 88 89 BEGIN
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = res_opcode
+        parameter1 = 15
+
+    END
+  END
+  // Remove self for stacking reasons
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 321
+      multi_match = 1
+    STR_VAR
+      resource = ~SPPR111D~
+  END
+
+  // Make undispellable
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      resist_dispel = 0
+  END
+
+// Original Armor of Faith
+COPY_EXISTING ~SPPR111.spl~ ~override/SPPR111.spl~
+  LPF ~S!CLONE_SPELL_HEADER~
+    INT_VAR
+      level_req = 20
+  END
+  PATCH_FOR_EACH cleric_kit IN 16425 16424 16404 16405 16403 BEGIN
+  // Protect from original spell if caster is Cleric kit
+    LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~ 
+      INT_VAR
+        header = 2
+        opcode = 318
+        insert_point = ~1~
+        target = 1
+        power = 1
+        parameter1 = cleric_kit
+        parameter2 = %kit_equals_row%
+        duration = 0
+        resist_dispel = 0
+      STR_VAR
+        resource = "SPPR111"
+    END
+    // Cast improved version if caster is Cleric kit
+    LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~ 
+      INT_VAR
+        header = 2
+        opcode = 326
+        insert_point = ~1~
+        target = 1
+        power = 1
+        parameter1 = cleric_kit
+        parameter2 = %kit_equals_row%
+        duration = 0
+        resist_dispel = 0
+      STR_VAR
+        resource = "SPPR111D"
+    END
+  END
+
 // Rework Defensive Harmony
 
 COPY_EXISTING ~sppr406.spl~ ~override/sppr406d.spl~
@@ -2416,6 +2510,18 @@ COPY_EXISTING ~SPPR513.spl~ ~override/SPPR513D.spl~
       resist_dispel = 0
   END
 
+  // Extend duration by 50%
+  GET_OFFSET_ARRAY ab_array SPL_V10_HEADERS
+  PHP_EACH ab_array AS int => ab_off BEGIN
+    GET_OFFSET_ARRAY2 fx_array ab_off SPL_V10_HEAD_EFFECTS
+    PHP_EACH fx_array AS int => fx_off BEGIN
+      READ_LONG (fx_off + 0x0e) duration
+      PATCH_IF duration > 0 BEGIN
+        WRITE_LONG (fx_off + 0x0e) duration + (duration / 2)
+      END
+    END
+  END
+BUT_ONLY
 // Original Righteous Magic
 COPY_EXISTING ~SPPR513.spl~ ~override/SPPR513.spl~
   // Protect from original spell if caster is Tyr
@@ -2506,6 +2612,18 @@ COPY_EXISTING ~SPPR412.spl~ ~override/SPPR412D.spl~
     INT_VAR
       match_opcode = ~-1~
       resist_dispel = 0
+  END
+
+  // Extend duration by 50%
+  GET_OFFSET_ARRAY ab_array SPL_V10_HEADERS
+  PHP_EACH ab_array AS int => ab_off BEGIN
+    GET_OFFSET_ARRAY2 fx_array ab_off SPL_V10_HEAD_EFFECTS
+    PHP_EACH fx_array AS int => fx_off BEGIN
+      READ_LONG (fx_off + 0x0e) duration
+      PATCH_IF duration > 0 BEGIN
+        WRITE_LONG (fx_off + 0x0e) duration + (duration / 2)
+      END
+    END
   END
 
 // Original Holy Power

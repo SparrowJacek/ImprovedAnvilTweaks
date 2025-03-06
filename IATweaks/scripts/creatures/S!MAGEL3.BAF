@@ -1773,7 +1773,7 @@ END
 IF
 	Allegiance(Myself,ENEMY)
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	See(Nearest([PC]))
+	See([PC])
 	!HasBounceEffects(LastSeenBy(Myself))
 	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
 	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
@@ -1858,7 +1858,7 @@ END
 IF
 	Allegiance(Myself,ENEMY)
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	See(Nearest([PC]))
+	See([PC])
 	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
@@ -1933,7 +1933,7 @@ END
 IF
 	Allegiance(Myself,ENEMY)
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	See(Nearest([PC]))
+	See([PC])
 	!HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
 	CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)

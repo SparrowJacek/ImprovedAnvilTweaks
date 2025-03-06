@@ -1,0 +1,212 @@
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	Global("Iabattle","AR1904",0)  // Troll Hill
+THEN
+	RESPONSE #100
+		SetGlobal("Iabattle","AR1904",1)  // Troll Hill
+END
+
+IF
+	Detect([PC])
+	Global("Iatreasure","LOCALS",0)
+	Global("Iahillplace","GLOBAL",4)
+THEN
+	RESPONSE #100
+		SetGlobal("Iahillplace","GLOBAL",5)
+		SetGlobal("Iatreasure","LOCALS",1)
+		GiveItemCreate("belt06",Myself,0,0,0)  // Girdle of Hill Giant Strength
+END
+
+IF
+	Detect([PC])
+	Global("Iatreasure2","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatreasure2","LOCALS",1)
+		GiveItemCreate("s!misc62",Myself,0,0,0)  // Blood of a Royal Troll
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	Global("Iatrollk01","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatrollk01","LOCALS",1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HPPercentLT(Myself,90)
+	!CheckSpellState(Myself,HARDINESS)
+	See(NearestEnemyOf(Myself))
+	GlobalLT("Iatrollk02","LOCALS",6)
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iatrollk02","LOCALS",1)
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_HARDINESS)  // SPCL907.SPL (Hardiness)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	HPPercentLT(Myself,60)
+	HasItem("potn55",Myself)  // Potion of Superior Healing
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("potn55",Myself)  // Potion of Superior Healing
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+	!CheckStatGT(Myself,5,CRITICALHITBONUS)
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	Global("Iatrollk03","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatrollk03","LOCALS",1)
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_CRITICAL_STRIKE)  // SPCL905.SPL (Critical Strike)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	!GlobalTimerNotExpired("IaWhirlwind","LOCALS")
+	See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	Global("Iatrollk04","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatrollk04","LOCALS",1)
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaWhirlwind","LOCALS",THREE_ROUNDS)
+		ForceSpell(Myself,WARRIOR_GREATER_WHIRLWIND)  // SPCL901.SPL (Greater Whirlwind Attack)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+	!CheckStatGT(Myself,5,CRITICALHITBONUS)
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	Global("Iatrollk03","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatrollk03","LOCALS",2)
+		SetGlobalTimer("DrankPotionTimer","LOCALS",TWO_ROUNDS)
+		ForceSpell(Myself,WARRIOR_SMITE)  // SPCL909.SPL (Smite)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	Global("Iatrollk03","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatrollk03","LOCALS",3)
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_POWER_ATTACK)  // SPCL906.SPL (Power Attack)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+	See([PC])
+	Range(LastSeenBy(Myself),5)
+	!GlobalTimerNotExpired("IaWhirlwind","LOCALS")
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	Global("Iatrollk04","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatrollk04","LOCALS",2)
+		SetGlobalTimer("IaWhirlwind","LOCALS",THREE_ROUNDS)
+		SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_WHIRLWIND)  // SPCL900.SPL (Whirlwind Attack)
+END
+
+IF
+	!See([PC])
+	!See([GOODCUTOFF])
+	InMyArea(Player1)
+	Allegiance(Myself,ENEMY)
+	Global("Iatrollk01","LOCALS",1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	!See([PC])
+	!See([GOODCUTOFF])
+	InMyArea(Player1)
+	Allegiance(Myself,ENEMY)
+	OR(3)
+		Global("Iabattle","AR1904",1)  // Troll Hill
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		HPPercentLT(Myself,100)
+	Global("Iatrollk01","LOCALS",0)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	CheckStatLT(LastSeenBy(Myself),90,RESISTCRUSHING)
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	RandomNumGT(6,4)
+	Range(LastSeenBy(Myself),3)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+

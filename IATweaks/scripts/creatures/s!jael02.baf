@@ -274,18 +274,6 @@ THEN
 END
 
 IF
-    HaveSpellRES("SPPR419")
-	Allegiance(Myself,ENEMY)
-	See(NearestEnemyOf(Myself))
-	Global("IaPrep","LOCALS",0)
-THEN
-	RESPONSE #100
-		ReallyForceSpellRES("SPPR419",Myself) //  Mend Serious Wounds
-		RemoveSpellRES("SPPR419")
-		Continue()
-END
-
-IF
     HaveSpellRES("SPPR420")
 	Allegiance(Myself,ENEMY)
 	See(NearestEnemyOf(Myself))

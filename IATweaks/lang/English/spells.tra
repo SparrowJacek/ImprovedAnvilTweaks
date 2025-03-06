@@ -1283,7 +1283,7 @@ By using this ability, a high level swashbuckler can improve his agility and fig
 @6180 = ~Ghost's Grace~
 
 @6181 = ~Ghost's Grace
-Through extensive training and unmatched agility, the Assassin can evade physical attacks with incredible precision. This High-Level Ability grants the Assassin immunity to the physical damage of two incoming attacks per round, using their swift reflexes to dodge the blows. However, while the physical portion of the attack is negated, any additional effects or enchantments on the strike still apply. This ability lasts for 15 rounds.~
+Through extensive training and unmatched agility, the Assassin can evade physical attacks with incredible precision. This High-Level Ability grants the Assassin immunity to the physical damage of two incoming attacks per round, using their swift reflexes to dodge the blows. However, while the physical portion of the attack is negated, any additional effects or enchantments on the strike still apply. This ability lasts for 1 turn.~
 
 @6182 = ~Analyze Opponent~
 
@@ -1298,9 +1298,9 @@ A high-level rogue's astute powers of observation allow them to improve their he
 Drawing on every trick learned through countless battles, the Thief can turn the next ten successful attacks within five rounds into backstabs.
 Assassins, with their deadly precision, gain an improved version of this ability, allowing for fifteen such attacks.~
 
-@6186 = ~Shield Bash~
+@6186 = ~Lesser Hardiness~
 
-@6187 = ~Shield Bash~
+@6187 = ~Summon Swanmay~
 
 @6188 = ~Shield Bash~
 

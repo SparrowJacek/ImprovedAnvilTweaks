@@ -1365,6 +1365,7 @@ COPY_EXISTING ~clastext.2da~ ~override/clastext.2da~
   SET_2DA_ENTRY_LATER ~s!class_desc~ $clastext_rows("AVENGER") $clastext_cols("DESCSTR") RESOLVE_STR_REF (@5053)
   SET_2DA_ENTRY_LATER ~s!class_desc~ $clastext_rows("SWASHBUCKLER") $clastext_cols("DESCSTR") RESOLVE_STR_REF (@5054)
   SET_2DA_ENTRY_LATER ~s!class_desc~ $clastext_rows("RISKBREAKER") $clastext_cols("DESCSTR") RESOLVE_STR_REF (@5055)
+  SET_2DA_ENTRY_LATER ~s!class_desc~ $clastext_rows("VAGRANT") $clastext_cols("DESCSTR") RESOLVE_STR_REF (@5056)
   SET_2DA_ENTRIES_NOW ~s!class_desc~ ~colcount~
   PRETTY_PRINT_2DA
 
@@ -1390,5 +1391,227 @@ COPY_EXISTING ~kitlist.2da~ ~override/kitlist.2da~
   SET_2DA_ENTRY_LATER ~s!kit_desc~ $kitlist_rows("BEAST_FRIEND") description_col RESOLVE_STR_REF (@5053)
   SET_2DA_ENTRY_LATER ~s!kit_desc~ $kitlist_rows("SWASHBUCKLER") description_col RESOLVE_STR_REF (@5054)
   SET_2DA_ENTRY_LATER ~s!kit_desc~ $kitlist_rows("RISKBREAKER") description_col RESOLVE_STR_REF (@5055)
+  SET_2DA_ENTRY_LATER ~s!kit_desc~ $kitlist_rows("VAGRANT") description_col RESOLVE_STR_REF (@5056)
   SET_2DA_ENTRIES_NOW ~s!kit_desc~ ~colcount~
+  PRETTY_PRINT_2DA////////////////// Kit rebalance
+
+// Riskbreaker
+
+ACTION_FOR_EACH weapon_immunity_spell IN ~SPIN686~ ~SPWI611~ ~SPWI907~ BEGIN
+  COPY_EXISTING ~%weapon_immunity_spell%.spl~ ~override~ // Protection from Risk Decrement
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        multi_match = 1
+        match_opcode = 120
+        opcode = 206
+        parameter1 = 0
+        parameter2 = 0
+      STR_VAR
+        resource = ~SPINI34~
+    END
+END
+
+COPY_EXISTING ~INAREANP.PRO~ ~override/S!RISKDE.PRO~ // Risk Decrement ability projectile
+  WRITE_LONG 0x2c ~-2147483648~ // Affect caster once for each enemy for "original caster" targetting
+  WRITE_SHORT 0x204 85 // Range = 5 feet
+  WRITE_SHORT 0x206 85
+
+ADD_PROJECTILE ~override/S!RISKDE.pro~
+
+COPY_EXISTING ~SPINI34.spl~ ~override~ // Risk Decrement
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      projectile = %S!RISKDE%
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      resist_dispel = 0
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 17
+      target = 9 // original caster
+      parameter1 = 10
+      parameter2 = 0
+  END
+
+COPY_EXISTING ~SPCLI06.spl~ ~override~ // AC bonus
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 0
+      parameter1 = 8
+      parameter2 = 16 // set AC
+  END
+  PATCH_FOR_EACH header_id IN 1 2 3 4 5 BEGIN
+    LPF ~S!CLONE_SPELL_HEADER~
+      INT_VAR
+        level_req = (header_id + 1) * 6
+    END
+    LPF ~S!ALTER_EFFECT~
+      INT_VAR
+        header = header_id
+        match_opcode = 0
+        parameter1 = 8 - (header_id * 2)
+    END
+  END
+
+
+// Vagrant
+
+COPY_EXISTING ~SPCLI02.spl~ ~override~ // Elemental resistances
+  WRITE_LONG 0x8 0
+  PATCH_FOR_EACH elemental_res_opcode IN 28 29 30 84 85 BEGIN
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = elemental_res_opcode
+        parameter1 = 25
+    END
+  END
+  LPF ~S!CLONE_SPELL_HEADER~
+    INT_VAR
+      level_req = 12
+  END
+  PATCH_FOR_EACH elemental_res_opcode IN 28 29 30 84 85 BEGIN
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        header = 1
+        match_opcode = elemental_res_opcode
+        parameter1 = 15
+    END
+  END
+  LPF ~S!CLONE_SPELL_HEADER~
+    INT_VAR
+      level_req = 18
+  END
+  PATCH_FOR_EACH elemental_res_opcode IN 28 29 30 84 85 BEGIN
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        header = 2
+        match_opcode = elemental_res_opcode
+        parameter1 = 5
+    END
+  END
+
+COPY_EXISTING ~SPINI08.spl~ ~override~ // Swanmay
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      duration_high = 300
+  END
+  LPF ~S!CLONE_SPELL_HEADER~
+    INT_VAR
+      level_req = 19
+  END
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      header = 2
+    STR_VAR
+      icon = ~SPINI12B~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      header = 1
+      match_opcode = 177
+    STR_VAR
+      match_resource = ~S!SWAN~
+      resource = ~S!GSWAN~
+  END
+  LPF ~S!CLONE_SPELL_HEADER~
+    INT_VAR
+      level_req = 25
+  END
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      header = 3
+    STR_VAR
+      icon = ~SPINI13B~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      header = 2
+      match_opcode = 177
+    STR_VAR
+      match_resource = ~S!SWAN~
+      resource = ~S!SWANQ~
+  END
+
+COPY_EXISTING ~SPINI08.spl~ ~override/SPINI12.spl~ // Swanmay
+  LPF ~DELETE_SPELL_HEADER~
+    INT_VAR
+      header_type = ~-1~
+      min_level = 25
+  END
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      header = 2
+      min_level = 22
+  END
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~vagran.2da~
+  RET_ARRAY
+    vagrant_abilities_rows = 2da_rows_to_ids_mapping
+END
+
+COPY_EXISTING ~vagran.2da~ ~override~
+  COUNT_2DA_COLS ~colcount~
+  REMOVE_2DA_ROW $vagrant_abilities_rows("ABILITY6") ~colcount~
+  REMOVE_2DA_ROW $vagrant_abilities_rows("ABILITY5") ~colcount~
+  REMOVE_2DA_ROW $vagrant_abilities_rows("ABILITY4") ~colcount~
+  REMOVE_2DA_ROW $vagrant_abilities_rows("ABILITY3") ~colcount~
   PRETTY_PRINT_2DA
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~vagran.2da~
+    row_desc = ~ELEMENTAL_RES~
+    level6 = ~AP_SPCLI02~
+    level12 = ~AP_SPCLI02~
+    level18 = ~AP_SPCLI02~
+END
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~vagran.2da~
+    row_desc = ~SWANMAYS~
+    level13 = ~GA_SPINI08~
+    level16 = ~GA_SPINI12~
+END
+
+// Avenger
+
+// Weaken Clan Hunters
+
+OUTER_SET str_bonus = 25
+ACTION_FOR_EACH clan_hunter_cre IN ~S!clhun1~ ~S!clhun2~ ~S!clhun3~ ~S!clhun4~ BEGIN
+  COPY_EXISTING ~%clan_hunter_cre%.cre~ ~override~
+    WRITE_BYTE 0x53 1 // APR
+    READ_BYTE 0x59 fire_res
+    READ_BYTE 0x235 druid_level
+    SET real_HP = 90 + 2 * (druid_level - 9)
+    WRITE_SHORT 0x24 real_HP // HP
+    WRITE_SHORT 0x26 real_HP // HP
+    WRITE_SHORT 0x46 10 // AC
+    WRITE_SHORT 0x48 10 // AC
+    WRITE_BYTE 0x238 18 // Strength
+    WRITE_BYTE 0x239 str_bonus // Exceptional Strength
+    SET str_bonus = str_bonus + 25
+
+    PATCH_IF (druid_level < 15) BEGIN
+      LPF ~DELETE_EFFECT~
+        INT_VAR
+          match_opcode = 173 // Poison Resistance
+      END
+      LPF ~DELETE_EFFECT~
+        INT_VAR
+          match_opcode = 101
+          match_parameter2 = 25 // Immunity to Poison opcode
+      END
+    END
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 31 // Magic damage resistance
+        parameter1 = fire_res
+    END
+  BUT_ONLY
+END

@@ -580,7 +580,7 @@ Advantages:
 - +2 Bonus to Movement Speed.
 - Makes critical hits at a roll of 17 or better (instead of the usual 20).
 - Gains "Blur" every 5 levels.
-- +2 bonus to Armor class for every 6 levels.
+- Base Armor class lowered by 2 for every 6 levels.
 - Gains "Improved Haste" at level 10.
 - Gains "Whirlwind Attack" at levels 16 and 22.
 - Once the Riskbreaker reaches level 15, each of his successful hits will have 15% chance to apply a random effect picked from the following pool: "Hard Hit" on target (applies 10D6 +5 additional damage), "Risk Increment" on target (applies -4 penalty to AC for 2 rounds), "Avert Risk" (heals the Riskbreaker for 20 hp).
@@ -609,11 +609,31 @@ Risk Decrement:
 When surrounded by lots of enemies and when most other warriors may fall or surrender in despair, a high level riskbreaker is more than capable to break the risk involved in the toughest situations.
 
 Risk Decrement has the following effects:
-- Heals the riskbreaker completely.
+- Heals the riskbreaker for 10HP for every enemy hit with this ability.
 - Applies a massive attack to all enemies around the riskbreaker inflicting 8D10 crushing damage with no saving throw.
-- Has a good chance to throw back all or some of the enemies.~
+- Has a good chance to throw back all or some of the enemies.
+- Does not work on enemies under Protection From Magical Weapons or Absolute Immunity.~
 
-@5056 = ~~
+@5056 = ~VAGRANT: Vagrants do not stay in a place for long. They spend most of their time exploring new wilderness areas and enjoying the beauties of nature. Woodlands and lakes are the most favorite places for vagrants. They are very healthy characters with exceptional stamina. Vagrants can develop a special kind of friendship with swanmays. Swanmays are very rare and special kind of lycanthrope rangers living at lakesides in woodlands and in remote temperate wetlands. High level vagrants can call for swanmays' help.
+
+Advantages:
+
++1 bonus to Constitution
+Immunity to disease and poison
++2 bonus to save vs. Paralyze/Death
++25% resistance to elemental damage at level 6, +15% at level 12 and +5% at level 18
+Can gain grand mastery in using axes
+Gains the ability to summon Swanmay at levels 13 and 16
+At level 19 can summon Swanmay and Greater Swanmay, at level 12 can summon two Greater Swanmays
+From level 25 can summon Swanmay Queen and Greater Swanmay
+The swanmays will loyally fight at the vagrant's side for 50 rounds.
+
+Disadvantages:
+
+May not wear armor greater than studded leather
+Cannot specialize in ranged weapons
+Requires 12 Charisma
+Cannot dual class~
 
 @5057 = ~~
 

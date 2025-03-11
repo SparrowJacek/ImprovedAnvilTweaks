@@ -1293,6 +1293,23 @@ ACTION_FOR_EACH hla_table IN ~LUMO0~ ~LUMO1~ ~LUMO2~ BEGIN
     BUT_ONLY
 END
 
+// Remove War Cry from Wizard Slayers
+
+COPY_EXISTING ~LUFI3.2da~ ~override~
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  SET war_cry_row = (0 - 1)
+  FOR (i = 0; i < ~rowcount~; ++i) BEGIN
+    READ_2DA_ENTRY i 1 %colcount% current_val
+    PATCH_IF (~%current_val%~ STR_EQ ~GA_SPCL908~) BEGIN
+      SET war_cry_row = i
+    END
+  END
+  PATCH_IF (war_cry_row != (0 - 1)) BEGIN
+    REMOVE_2DA_ROW war_cry_row ~colcount~
+  END
+  BUT_ONLY
+
 // Lower number of Acrobatic Combat picks for Swashbuckler to 4
 
 COPY_EXISTING ~LUTH1.2da~ ~override~

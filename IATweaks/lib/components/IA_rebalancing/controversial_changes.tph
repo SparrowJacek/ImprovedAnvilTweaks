@@ -1690,3 +1690,23 @@ ACTION_FOR_EACH clan_hunter_cre IN ~S!clhun1~ ~S!clhun2~ ~S!clhun3~ ~S!clhun4~ B
     END
   BUT_ONLY
 END
+
+// Prevent Regeneration from lvl7 divine and RVE from stacking
+
+ACTION_FOR_EACH regen_spell_file IN ~SPWII55~ ~SPINI65~ ~SPINI57~ ~SPPR711~ BEGIN
+  COPY_EXISTING ~%regen_spell_file%.spl~ ~override~
+    PATCH_FOR_EACH regen_spell IN ~SPWII55~ ~SPINI65~ ~SPINI57~ ~SPPR711~ BEGIN
+      LPF ~CLONE_EFFECT~
+        INT_VAR
+          multi_match = 1
+          match_opcode = 98
+          opcode = 321
+          parameter1 = 0
+          parameter2 = 0
+          duration = 0
+        STR_VAR
+          insert = ~first~
+          resource = EVAL ~%regen_spell%~
+      END
+    END
+END

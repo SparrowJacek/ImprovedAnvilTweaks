@@ -2688,6 +2688,16 @@ COPY_EXISTING ~SPPR513.spl~ ~override/SPPR513.spl~
       resource = "SPPR513D"
   END
 
+// Add 3 CS as HLA
+
+LAF ~S!ADD_HLA_ROW~
+  STR_VAR
+    filename = ~lucl4.2da~
+    row_desc = ~CRITICAL_STRIKE~
+    ability = ~GA_SPCL905~
+    num_allowed = ~3~
+END
+
 /////// TEMPUS ///////
 
 // Remove special ability Holy Power

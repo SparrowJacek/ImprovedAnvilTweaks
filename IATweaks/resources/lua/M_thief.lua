@@ -6,6 +6,7 @@ anvil_kit_starting_thieving_bonuses = {
 [11] = {  0,   0,  40,   0,   0,   0,  40}, -- Bounty Hunter
 [12] = { 40,   40,  0,   0,   0,   0,   0}, -- Swashbuckler
 [33] = {  0,   0,   0,   0,  40,  40,   0}, -- Shadowdancer
+[36] = {  0,   0,   0,   0,   0,  10,   0}, -- Dark Moon Monk
 }
 
 anvil_class_starting_thieving_bonuses = {

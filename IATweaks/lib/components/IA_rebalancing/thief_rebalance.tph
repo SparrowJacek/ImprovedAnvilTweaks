@@ -334,6 +334,27 @@ ACTION_FOR_EACH kit_that_can_hide IN ~CLABRN01~ ~CLABRN02~ ~CLABRN03~ ~CLABRN04~
   END
 END
 
+// Remove bonus detect illusion from Dark Moon Monks
+
+LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~clasiskl.2da~
+  RET_ARRAY
+    clasiskl_cols = 2da_columns_to_ids_mapping
+END
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~clasiskl.2da~
+  RET_ARRAY
+    clasiskl_rows = 2da_rows_to_ids_mapping
+END
+
+COPY_EXISTING ~clasiskl.2da~  ~override~
+  COUNT_2DA_COLS ~colcount~
+  SET_2DA_ENTRY $clasiskl_rows("DETECT_ILLUSION") $clasiskl_cols("DARK_MOON") ~colcount~ ~0~
+  PRETTY_PRINT_2DA
+
 // Base thieving stat increasing spells for thief kits
 
 COPY ~IATweaks\resources\spl\s!40his.spl~ ~override~
@@ -1150,6 +1171,31 @@ COPY_EXISTING ~s!sibe25.cre~ ~override~
   WRITE_BYTE 0x69 45 // Find Traps
   WRITE_BYTE 0x6a 10 // Pick Pockets
   IF_EXISTS
+
+COPY_EXISTING ~rasaad8.cre~ ~override~
+  // 40 points to distribute
+  WRITE_BYTE 0x45 40 // Hide in Shadows
+  WRITE_BYTE 0x64 0 // Detect Illusions
+  WRITE_BYTE 0x65 0 // Set Traps
+  WRITE_BYTE 0x67 0 // Open Locks
+  WRITE_BYTE 0x68 0 // Stealth Strike
+  WRITE_BYTE 0x69 0 // Find Traps
+  WRITE_BYTE 0x6a 0 // Pick Pockets
+
+COPY_EXISTING ~rasaad8.cre~ ~override/rasaad9.cre~
+COPY_EXISTING ~rasaad8.cre~ ~override/rasaad10.cre~
+COPY_EXISTING ~rasaad8.cre~ ~override/rasaad11.cre~
+COPY_EXISTING ~rasaad8.cre~ ~override/rasaad13.cre~
+
+COPY_EXISTING ~rasaad12.cre~ ~override~
+  // 65 points to distribute
+  WRITE_BYTE 0x45 65 // Hide in Shadows
+  WRITE_BYTE 0x64 0 // Detect Illusions
+  WRITE_BYTE 0x65 0 // Set Traps
+  WRITE_BYTE 0x67 0 // Open Locks
+  WRITE_BYTE 0x68 0 // Stealth Strike
+  WRITE_BYTE 0x69 0 // Find Traps
+  WRITE_BYTE 0x6a 0 // Pick Pockets
 
 //////// GUI part of the mod /////////
 

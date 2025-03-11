@@ -88,6 +88,7 @@ COPY_EXISTING ~JAEL01.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPPR729~ #6 ~priest~ ( 1 ) // Foreknowledge
   ADD_MEMORIZED_SPELL ~SPPRI26~ #6 ~priest~ ( 1 ) // Continual Cure
   ADD_MEMORIZED_SPELL ~SPCLI24~ #0 ~innate~ ( 1 ) // Summon Fallen Archdeva
+  ADD_MEMORIZED_SPELL ~S!AEGIS~ #0 ~innate~ ( 1 ) // Aegis of Faith
 
 // Rilloa Jae'llat
 
@@ -135,6 +136,7 @@ COPY_EXISTING ~JAEL02.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPPR729~ #6 ~priest~ ( 1 ) // Foreknowledge
   ADD_MEMORIZED_SPELL ~SPPR735~ #6 ~priest~ ( 1 ) // Spare the Dying
   ADD_MEMORIZED_SPELL ~SPPRI26~ #6 ~priest~ ( 1 ) // Continual Cure
+  ADD_MEMORIZED_SPELL ~S!AEGIS~ #0 ~innate~ ( 1 ) // Aegis of Faith
 
 // Troll King
 

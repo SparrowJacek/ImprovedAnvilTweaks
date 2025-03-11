@@ -1845,14 +1845,25 @@ COPY ~IATweaks\resources\spl\s!spldur.spl~ ~override~
   SAY NAME1 @6034
   SAY UNIDENTIFIED_DESC @6035
 
+COPY ~IATweaks\resources\spl\s!spldu2.spl~ ~override~
+  SAY NAME1 @6188
+  SAY UNIDENTIFIED_DESC @6189
 
-ACTION_FOR_EACH cleric_kit_hla_file IN ~lucl0.2da~ ~lucl1.2da~ ~lucl2.2da~ ~lucl3.2da~ ~lucl4.2da~ ~lucl5.2da~ BEGIN
+ACTION_FOR_EACH cleric_kit_hla_file IN ~lucl1.2da~ ~lucl2.2da~ ~lucl3.2da~ ~lucl4.2da~ ~lucl5.2da~ BEGIN
   LAF ~S!ADD_HLA_ROW~
     STR_VAR
       filename = EVAL ~%cleric_kit_hla_file%~
-      row_desc = ~LONG_SPELL_DURATION~
+      row_desc = ~LONG_SPELL_DURATION_20~
       ability = ~AP_s!spldur~
       num_allowed = ~1~
+  END
+  LAF ~S!ADD_HLA_ROW~
+    STR_VAR
+      filename = EVAL ~%cleric_kit_hla_file%~
+      row_desc = ~LONG_SPELL_DURATION_50~
+      ability = ~AP_s!spldu2~
+      num_allowed = ~1~
+      prerequisite = ~AP_s!spldur~
   END
 END
 

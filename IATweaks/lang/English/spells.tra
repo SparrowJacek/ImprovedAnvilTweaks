@@ -350,11 +350,17 @@ Saving Throw: None
 
 This spell connects the caster directly to <PRO_HISHER> god, granting <PRO_HIMHER> and <PRO_HISHER> party a level of healing unlike any other spell. Divine Intervention has similar effect to Greater Restoration, however it is applied to whole party. This spell is extremely taxing to the caster's body and mind, cumulatively lowering <PRO_HISHER> luck by 4 for 5 rounds.~
 
-@6034 = ~Increase Spell Duration~
+@6034 = ~Increase Spell Duration I~
 
-@6035 = ~Increase Spell Duration
+@6035 = ~Increase Spell Duration I
 
-High-level priests devout to their god can receive a special blessing from their worshipped deity, which causes the magic of their spells to dissipate more slowly than normal. This blessing extends the base duration of all spells that do not apply their effects periodically by 20%.~
+High-level priests devout to their god can receive a special blessing from their worshipped deity, which causes the magic of their spells to dissipate more slowly than normal. This blessing extends the base duration of clerical spells by 20%.
+
+This ability does not extend the duration of the following:
+-Spells that apply their effects periodically (like True Seeing or Continual Cure)
+-Spells that apply different effects to allies and enemies (like Chant)
+-Improved versions of spells cast by Cleric kits (like Armor of Faith for all Clerics or Righteous Magic for Priest of Tyr)
+-Spell-like abilities that are not memorized in Priest spellbook (like Summon Archdeva)~
 
 @6036 = ~Spare the Dying~
 
@@ -1302,8 +1308,16 @@ Assassins, with their deadly precision, gain an improved version of this ability
 
 @6187 = ~Summon Swanmay~
 
-@6188 = ~Shield Bash~
+@6188 = ~Increase Spell Duration II~
 
-@6189 = ~Shield Bash~
+@6189 = ~Increase Spell Duration II
+
+High-level priests devout to their god can receive a special blessing from their worshipped deity, which causes the magic of their spells to dissipate more slowly than normal. This blessing extends the base duration of clerical spells by 50%.
+
+This ability does not extend the duration of the following:
+-Spells that apply their effects periodically (like True Seeing or Continual Cure)
+-Spells that apply different effects to allies and enemies (like Chant)
+-Improved versions of spells cast by Cleric kits (like Armor of Faith for all Clerics or Righteous Magic for Priest of Tyr)
+-Spell-like abilities that are not memorized in Priest spellbook (like Summon Archdeva)~
 
 @6190 = ~Shield Bash~

@@ -2761,6 +2761,21 @@ COPY_EXISTING ~clck23.itm~ ~override~
       parameter1 = 10
   END
 
+// Make Armors of Stamina protect from Stealth spell
+
+ACTION_FOR_EACH stamina_armor_itm IN ~LEAT09~ ~S!LEAT06~ BEGIN
+  COPY_EXISTING ~%stamina_armor_itm%.itm~ ~override~
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        multi_match = 1
+        match_opcode = 144
+        match_parameter2 = 0
+        opcode = 206
+      STR_VAR
+        resource = ~S!HISBAS~
+    END
+END
+
 //////////////// Weapons for backstabs ///////////////
 
 COPY ~IATweaks\resources\eff\s!ss-20.eff~ ~override~

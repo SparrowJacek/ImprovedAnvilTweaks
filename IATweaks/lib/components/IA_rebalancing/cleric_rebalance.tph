@@ -546,6 +546,16 @@ LAF ~S!ADD_PORTRAIT_ICON~
 END
 // Main spell file
 
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~PRST_SPELL_DURATION<n~
+    stat                  = ~54~
+    value                 = ~-1~
+    relation              = ~2~
+  RET
+    prst_spell_duration_less_than = new_line_number
+END
+
 COPY ~IATweaks\resources\spl\s!lifeli.spl~ ~override~
   SAY NAME1 @6121
   SAY UNIDENTIFIED_DESC @6122
@@ -569,6 +579,58 @@ COPY ~IATweaks\resources\spl\s!lifeli.spl~ ~override~
         duration = i * 2
       STR_VAR
         insert = ~below~
+    END
+  END
+  LPF ~ADD_SPELL_EFFECT~ 
+    INT_VAR
+      insert_point = ~-1~
+      opcode = 318
+      target = 1
+      parameter1 = 120
+      parameter2 = prst_spell_duration_less_than
+      resist_dispel = 0
+      timing = 0
+      duration = 0
+      power = 6
+    STR_VAR
+      resource = ~S!LIFELI~
+  END
+  FOR (i = 30; i < 36; ++i) BEGIN
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        multi_match = 1
+        match_opcode = 146
+        match_duration = 0
+        timing = 3
+        duration = i * 2
+      STR_VAR
+        insert = ~last~
+    END
+  END
+  LPF ~ADD_SPELL_EFFECT~ 
+    INT_VAR
+      insert_point = ~-1~
+      opcode = 318
+      target = 1
+      parameter1 = 150
+      parameter2 = prst_spell_duration_less_than
+      resist_dispel = 0
+      timing = 0
+      duration = 0
+      power = 6
+    STR_VAR
+      resource = ~S!LIFELI~
+  END
+  FOR (i = 36; i < 45; ++i) BEGIN
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        multi_match = 1
+        match_opcode = 146
+        match_duration = 0
+        timing = 3
+        duration = i * 2
+      STR_VAR
+        insert = ~last~
     END
   END
 
@@ -752,6 +814,68 @@ ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR02.2da~ ~CLABPR03.2da~ ~CLABPR04.2da~ 
       level11 = ~GA_SPPR617~
   END
 END
+
+// Make Heavenly Shield and True Seeing remove themselves after normal spell duration
+
+COPY_EXISTING ~SPPR617.spl~ ~override~
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 321
+      target = 1
+      timing = 3
+      duration = 60
+      insert_point = ~-1~
+      resist_dispel = 0
+    STR_VAR
+      resource = ~SPPR617~
+  END
+  BUT_ONLY
+
+COPY_EXISTING ~SPPR505.spl~ ~override~
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 321
+      target = 1
+      insert_point = 0
+      resist_dispel = 0
+    STR_VAR
+      resource = ~SPPR505~
+  END
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 321
+      target = 1
+      timing = 3
+      duration = 60
+      insert_point = ~-1~
+      resist_dispel = 0
+    STR_VAR
+      resource = ~SPPR505~
+  END
+  BUT_ONLY
+
+COPY_EXISTING ~SPPRI26.spl~ ~override~
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 321
+      target = 1
+      insert_point = 0
+      resist_dispel = 0
+    STR_VAR
+      resource = ~SPPRI26~
+  END
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 321
+      target = 1
+      timing = 3
+      duration = 90
+      insert_point = ~-1~
+      resist_dispel = 0
+    STR_VAR
+      resource = ~SPPRI26~
+  END
+  BUT_ONLY
 
 // Strength of One
 

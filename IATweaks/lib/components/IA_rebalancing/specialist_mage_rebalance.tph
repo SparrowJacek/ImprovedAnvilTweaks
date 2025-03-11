@@ -429,6 +429,39 @@ END
 
 ////// Illusionist ////////
 
+// Mirror Image
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~KIT!=n~
+    stat                  = ~152~
+    value                 = ~-1~
+    relation              = ~5~
+  RET
+    kit_not_equals_row = new_line_number
+END
+
+COPY_EXISTING ~spwi212.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 159
+      opcode = 318
+      parameter1 = 1024 // Illusionist
+      parameter2 = kit_not_equals_row
+      duration = 0
+    STR_VAR
+      insert = ~last~
+      resource = ~SPWI212~
+  END
+  LPF ~S!CLONE_EFFECT_ADD_VALUE~
+    INT_VAR
+      match_opcode = 159
+      opcode = 119
+      parameter1_add = 5
+    STR_VAR
+      insert = ~last~
+  END
+
 // Non-detection
 
 // Add 7eyes.2da file if it does not exist

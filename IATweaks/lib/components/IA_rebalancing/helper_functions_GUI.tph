@@ -542,3 +542,19 @@ end
         PATCH_WARN ~WARNING: Chargen thieving skills will not show base values.~
     END
 END
+
+DEFINE_PATCH_FUNCTION ~S!MOVE_STATUS_EFFECTS_BAR_RIGHT~
+BEGIN
+    SET ofs = INDEX_BUFFER(~area 420 486 164 94~)
+    PATCH_IF %ofs% >= 0 BEGIN
+        REPLACE_EVALUATE
+        ~area 420 486 164 94~
+        BEGIN
+            SPRINT val ~area 864 0 709 160~
+        END
+        ~%val%~
+    END
+    ELSE BEGIN
+        PATCH_FAIL ~FAIL: Could not patch status effects area.~
+    END
+END

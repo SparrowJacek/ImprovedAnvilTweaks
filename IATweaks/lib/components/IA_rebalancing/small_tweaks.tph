@@ -352,3 +352,22 @@ COPY_EXISTING ~gorch.sto~ ~override~
 
 COPY_EXISTING ~gorch.sto~ ~override~
   ADD_STORE_ITEM ~BAG05~ AFTER ~BAG02~ #0 #0 #0 ~IDENTIFIED&UNSTEALABLE~ #1
+// Grant proper Backstab Immunity to Barbarians
+
+COPY_EXISTING ~SPCL151.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 126
+      opcode = 292
+      parameter1 = 0
+      parameter2 = 1
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 126
+      opcode = 324
+      parameter1 = 0
+      parameter2 = 0
+    STR_VAR
+      resource = ~S!ANALYZ~
+  END

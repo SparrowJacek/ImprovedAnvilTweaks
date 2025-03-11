@@ -1013,6 +1013,19 @@ COMPILE ~IATweaks\scripts\creatures\S!GELEGS.BAF~
 
 // Critical Strike
 
+COPY_EXISTING ~SPCL905.spl~ ~override/s!crtstr.spl~
+  SAY NAME1 0
+
+// Reforged Sword of Chaos
+COPY_EXISTING ~S!SW25.itm~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 146
+    STR_VAR
+      match_resource = ~SPCL905~
+      resource = ~S!CRTSTR~
+  END
+
 COPY_EXISTING ~SPCL905.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6171
   LPF ~ALTER_SPELL_EFFECT~

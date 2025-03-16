@@ -1071,11 +1071,19 @@ COPY_EXISTING ~SPCL905.spl~ ~override~
         insert_point = 0
         opcode = 321
         target = 1
-        duration = 24
-        timing = 3
+        timing = 0
       STR_VAR
         resource = EVAL ~S!CRIT%i%~
     END
+  END
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      insert_point = ~-1~
+      opcode = 321
+      target = 1
+      timing = 0
+    STR_VAR
+      resource = EVAL ~SPCL905~
   END
 
 COPY ~IATweaks\resources\eff\s!crit1.eff~ ~override~

@@ -1341,6 +1341,7 @@ COPY_EXISTING ~UI.MENU~ ~override~
   LPF ~S!SHOW_BASE_THIEVING_ABILITIES_ON_CHARGEN_SCREEN~
   END
 
+
 // Make all armors that disable Thieving abilities protect from new stuff
 
 COPY ~IATweaks\resources\eff\s!icsdis.eff~ ~override~
@@ -1504,7 +1505,7 @@ COPY_EXISTING_REGEXP GLOB ~LU.*\.2da~ ~override~
   END
   BUT_ONLY
 
-// Rework Assassination and allow it to be picked up to 3 times
+// Rework Assassination
 
 COPY_EXISTING ~SPCL916.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6185
@@ -1518,7 +1519,7 @@ COPY_EXISTING ~SPCL916.spl~ ~override~
         insert_point = ~-1~
         opcode = 321
         target = 1
-        duration = 24
+        duration = 30
         timing = 3
       STR_VAR
         resource = EVAL ~S!ASSA%i%~
@@ -1530,8 +1531,7 @@ COPY_EXISTING ~SPCL916.spl~ ~override~
         insert_point = 0
         opcode = 321
         target = 1
-        duration = 24
-        timing = 3
+        timing = 0
       STR_VAR
         resource = EVAL ~S!ASSA%i%~
     END
@@ -1599,16 +1599,6 @@ COPY_EXISTING ~s!assa15.eff~ ~override/s!assa%i%.eff~
     WRITE_ASCIIE 0x30 ~S!ASSA%k%~ #8
 END
 
-COPY_EXISTING_REGEXP GLOB ~LU.*\.2da~ ~override~
-  COUNT_2DA_COLS ~colcount~
-  COUNT_2DA_ROWS ~colcount~ ~rowcount~
-  FOR (i = 0; i < ~rowcount~; ++i) BEGIN
-    READ_2DA_ENTRY i 1 %colcount% current_val
-    PATCH_IF (~%current_val%~ STR_EQ ~GA_SPCL916~) BEGIN
-      SET_2DA_ENTRY i 6 ~colcount~ 3
-    END
-  END
-  BUT_ONLY
 // Rework Scribe Scrolls to grant 3 scrolls at the same time
 
 COPY ~IATweaks\resources\itm\s!sscrl2.itm~ ~override~

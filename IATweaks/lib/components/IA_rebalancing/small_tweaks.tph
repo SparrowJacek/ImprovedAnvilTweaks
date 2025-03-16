@@ -371,3 +371,14 @@ COPY_EXISTING ~SPCL151.spl~ ~override~
     STR_VAR
       resource = ~S!ANALYZ~
   END
+
+// Grant immunity to fatigue to Tireless Rage
+
+COPY_EXISTING ~s!axe04.itm~ ~override~
+  LPF ~ADD_ITEM_EQEFFECT~
+    INT_VAR
+      opcode = 101
+      target = 1
+      parameter2 = 93
+      timing = 2
+  END

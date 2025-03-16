@@ -544,7 +544,29 @@ Charge abilities:
 
 Weight: 2~
 
-@7055 = ~~
+@7055 = ~The master smith who forged this weapon, as skilled as he may be, has no clue why it took on a dark red colour very reminiscent of blood, complete from hilt to blade. After some pondering, he quietly warns you: "This powerful axe is evil". Combined from parts of cursed weapons worn by deranged warriors and strengthened with potent potions of barbarian essence, it emanates a sense of doom and disaster. Only someone who feels no mercy or remorse whatsoever would be capable of wielding it.
+
+STATISTICS:
+
+Equipped abilities:
+– Strength: +2
+– Constitution: +2
+– Wearer does not become winded after berserking
+- Wearer does not get tired from using any spells and abilities
+
+Combat abilities:
+– Hit target must save vs. Death or be knocked down and take 2d6 extra crushing damage
+
+THAC0: +5
+Damage: 1d8+5
+Damage type: slashing
+Speed Factor: 0
+Proficiency Type: Axe
+Type: One-handed
+Requires:
+ 18 Strength
+
+Weight: 1~
 
 @7056 = ~~
 

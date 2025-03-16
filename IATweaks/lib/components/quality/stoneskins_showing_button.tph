@@ -1,0 +1,9 @@
+SILENT
+
+INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions_GUI.tph"
+
+COPY ~IATweaks\resources\bam\GUILS10.bam~ ~override~
+
+COPY_EXISTING ~UI.MENU~ ~override~
+  LPF ~S!ADD_BUTTON_FOR_SHOWING_NUMBER_OF_STONESKINS~
+  END

@@ -352,6 +352,70 @@ COPY_EXISTING ~gorch.sto~ ~override~
 
 COPY_EXISTING ~gorch.sto~ ~override~
   ADD_STORE_ITEM ~BAG05~ AFTER ~BAG02~ #0 #0 #0 ~IDENTIFIED&UNSTEALABLE~ #1
+
+// Changes for button showing number of stoneskins
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~STONESKINS_NUM~
+    stat                  = ~88~
+    value                 = ~-1~
+    relation              = ~1~
+  RET
+    stoneskins_num = new_line_number
+END
+
+
+COPY ~IATweaks\resources\spl\s!skin00.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 326
+      parameter1 = 1
+      parameter2 = stoneskins_num
+    STR_VAR
+      resource = ~S!SKIN1~
+  END
+  FOR (i=2;i<=10;++i) BEGIN
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        multi_match = 1
+        match_opcode = 326
+        parameter1 = i
+      STR_VAR
+        resource = EVAL ~S!SKIN%i%~
+    END
+  END
+
+COPY ~IATweaks\resources\spl\s!skin1.spl~ ~override\s!skin1.spl~
+  SAY NAME1 @5066
+
+COPY ~IATweaks\resources\spl\s!skin1.spl~ ~override\s!skin2.spl~
+  SAY NAME1 @5065
+
+COPY ~IATweaks\resources\spl\s!skin1.spl~ ~override\s!skin3.spl~
+  SAY NAME1 @5064
+
+COPY ~IATweaks\resources\spl\s!skin1.spl~ ~override\s!skin4.spl~
+  SAY NAME1 @5063
+
+COPY ~IATweaks\resources\spl\s!skin1.spl~ ~override\s!skin5.spl~
+  SAY NAME1 @5062
+
+COPY ~IATweaks\resources\spl\s!skin1.spl~ ~override\s!skin6.spl~
+  SAY NAME1 @5061
+
+COPY ~IATweaks\resources\spl\s!skin1.spl~ ~override\s!skin7.spl~
+  SAY NAME1 @5060
+
+COPY ~IATweaks\resources\spl\s!skin1.spl~ ~override\s!skin8.spl~
+  SAY NAME1 @5059
+
+COPY ~IATweaks\resources\spl\s!skin1.spl~ ~override\s!skin9.spl~
+  SAY NAME1 @5058
+
+COPY ~IATweaks\resources\spl\s!skin1.spl~ ~override\s!skin10.spl~
+  SAY NAME1 @5057
+
 // Grant proper Backstab Immunity to Barbarians
 
 COPY_EXISTING ~SPCL151.spl~ ~override~

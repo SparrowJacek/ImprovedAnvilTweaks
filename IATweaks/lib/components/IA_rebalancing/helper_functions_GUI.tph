@@ -550,11 +550,83 @@ BEGIN
         REPLACE_EVALUATE
         ~area 420 486 164 94~
         BEGIN
-            SPRINT val ~area 864 0 709 160~
+            SPRINT val ~area 864 0 200 709~
         END
         ~%val%~
     END
     ELSE BEGIN
         PATCH_FAIL ~FAIL: Could not patch status effects area.~
+    END
+END
+
+DEFINE_PATCH_FUNCTION ~S!ADD_BUTTON_FOR_SHOWING_NUMBER_OF_STONESKINS~
+BEGIN
+    SET button_desc_strref = RESOLVE_STR_REF (@5067)
+    TEXT_SPRINT print_number_stoneskins_function ~~~~~
+`
+function print_number_stoneskins()
+	local chars_in_party = Infinity_GetNumCharacters()
+	for index = 1, chars_in_party, 1 do
+		local player_num = tostring(index)
+		local spell_default_string = 'ReallyForceSpellRES("RESOURCE", Player' .. player_num .. ')'
+		local command = spell_default_string:gsub('RESOURCE', 'S!SKIN00')
+		C:Eval(command)
+	end
+end
+`
+~~~~~
+    TEXT_SPRINT print_number_stoneskins_button ~~~~~
+	button
+	{
+		area 6 -50 71 48
+		enabled "e:IsTouchUI() and worldScreen == e:GetActiveEngine()"
+		toggle selectionButtonToggle
+		bam GUILS10
+		sequence 17
+		tooltip lua "Infinity_FetchString(%button_desc_strref%)"
+		tooltip force lua "sidebarForceTooltips == 1"
+		clickable lua "sidebarsGreyed ~= 1"
+		action
+		"
+			print_number_stoneskins()
+		"
+	}
+	button
+	{
+		area 6 0 71 48
+		enabled "not e:IsTouchUI() and worldScreen == e:GetActiveEngine()"
+		toggle selectionButtonToggle
+		bam GUILS10
+		sequence 17
+		tooltip lua "Infinity_FetchString(%button_desc_strref%)"
+		tooltip force lua "sidebarForceTooltips == 1"
+		clickable lua "sidebarsGreyed ~= 1"
+		action
+		"
+			print_number_stoneskins()
+		"
+	}
+~~~~~
+    SPRINT menu_start_regex EVAL ~menu\([ %TAB%]*[%WNL%%LNL%%MNL%]+\)[ %TAB%]*{[ %TAB%]*[%WNL%%LNL%%MNL%]+\([ %TAB%]*\)name 'RIGHT_SIDEBAR_BOTTOM'~
+    SET ofs = INDEX_BUFFER(~%menu_start_regex%~)
+    PATCH_IF %ofs% >= 0 BEGIN
+        SET strlen = STRING_LENGTH ~%print_number_stoneskins_function%~
+        INSERT_BYTES ofs strlen
+        WRITE_ASCIIE ofs ~%print_number_stoneskins_function%~ (strlen)
+        SET ofs2 = INDEX_BUFFER(~--Buttons form a menu aligned bottom right, with height = 197, y is offset from top of that menu.~)
+        PATCH_IF %ofs2% >= 0 THEN BEGIN
+            REPLACE_EVALUATE
+            ~--Buttons form a menu aligned bottom right, with height = 197, y is offset from top of that menu.~
+            BEGIN
+            SPRINT val ~--Buttons form a menu aligned bottom right, with height = 197, y is offset from top of that menu.%print_number_stoneskins_button%~
+            END
+            ~%val%~
+        END
+        ELSE BEGIN
+            PATCH_WARN ~WARNING: Couldn't find proper regex, Stoneskins showing button won't be installed.~
+        END
+    END
+    ELSE BEGIN
+        PATCH_WARN ~WARNING: Couldn't find proper regex, Stoneskins showing button won't be installed.~
     END
 END

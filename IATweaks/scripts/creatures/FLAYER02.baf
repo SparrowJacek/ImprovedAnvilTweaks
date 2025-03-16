@@ -12,7 +12,16 @@ IF
 THEN
 	RESPONSE #100
 		IncrementGlobal("IaMind01","LOCALS",-1)
-		SetGlobalTimerRandom("IaMindRegen","LOCALS",4,7)
+		SetGlobalTimerRandom("IaMindRegen","LOCALS",3,5)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	Global("EnemySeen","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("EnemySeen","LOCALS",1)
+		Shout(89)
 END
 
 IF
@@ -26,15 +35,6 @@ THEN
 END
 
 IF
-	See(NearestEnemyOf(Myself))
-	Global("EnemySeen","LOCALS",0)
-THEN
-	RESPONSE #100
-		SetGlobal("EnemySeen","LOCALS",1)
-		Shout(89)
-END
-
-IF
 	Allegiance(Myself,ENEMY)
 	OR(2)
 		Detect([GOODCUTOFF])
@@ -44,6 +44,58 @@ THEN
 	RESPONSE #100
 		SetGlobal("partyfled","LOCALS",0)
 		Shout(89)
+END
+
+IF
+	Global("Iapcastts","GLOBAL",1)
+	Global("Iatsinvulner","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",1)
+		ApplySpellRES("SPINI70",Myself)  // No such index
+END
+
+IF
+	Global("Iapcastts","GLOBAL",0)
+	Global("Iatsinvulner","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",0)
+		ApplySpellRES("SPINI71",Myself)  // No such index
+END
+
+IF
+	OR(5)
+		StateCheck(Myself,STATE_CONFUSED)
+		StateCheck(Myself,STATE_HELPLESS)
+		StateCheck(Myself,STATE_PANIC)
+		StateCheck(Myself,STATE_STUNNED)
+		Global("Iapcastts","GLOBAL",1)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	!StateCheck(Myself,STATE_MIRRORIMAGE)
+	See(NearestEnemyOf(Myself))
+	HPPercentLT(Myself,90)
+	GlobalLT("IaFlayerMirrorImage","LOCALS",2)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaFlayerMirrorImage","LOCALS",1)
+		ForceSpell(Myself,WIZARD_MIRROR_IMAGE)  // SPWI212.SPL (Mirror Image)
+END
+
+IF
+	HPPercentLT(Myself,55)
+	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaFlayerHeal","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaFlayerHeal","LOCALS",THREE_ROUNDS)
+		ForceSpell(Myself,CLERIC_CURE_SERIOUS_WOUNDS)
 END
 
 IF

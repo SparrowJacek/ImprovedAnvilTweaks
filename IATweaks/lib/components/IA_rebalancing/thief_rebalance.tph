@@ -71,6 +71,20 @@ ACTION_IF (~%assassin_hlas_suffix%~ STR_EQ ~Th0~) BEGIN
   SPRINT assassin_hlas_suffix ~S!ASSA~
 END
 
+COPY_EXISTING ~luabbr.2da~  ~override~
+  COUNT_2DA_COLS ~colcount~
+  READ_2DA_ENTRY $luabbr_rows("STALKER") 1 ~colcount~ stalker_hlas_suffix
+  PATCH_IF (~%stalker_hlas_suffix%~ STR_EQ ~Ra0~) BEGIN
+    SET_2DA_ENTRY $luabbr_rows("STALKER") 1 ~colcount~ ~S!STLK~
+    PRETTY_PRINT_2DA
+  END
+  BUT_ONLY
+
+ACTION_IF (~%stalker_hlas_suffix%~ STR_EQ ~Ra0~) BEGIN
+  COPY_EXISTING ~LURA0.2da~ ~override/LUS!STLK.2da~
+  SPRINT stalker_hlas_suffix ~S!STLK~
+END
+
 // Required checks for Thieving Ability values
 
 LAF ~S!ADD_SPLPROT_2DA_ENTRY~
@@ -308,7 +322,7 @@ COPY_EXISTING ~thiefskl.2da~ ~override~
 
 COPY ~IATweaks\resources\spl\s!0ss.spl~ ~override~
 
-ACTION_FOR_EACH kit_that_can_hide_but_not_backstab IN ~CLABRN01~ ~CLABRN03~ ~CLABRN04~ ~VAGRAN~ ~PROTEC~ ~CLABMO01~ ~CLABMO02~ ~CLABMO03~ ~CLABTH04~ BEGIN
+ACTION_FOR_EACH kit_that_can_hide_but_not_backstab IN ~CLABRN01~ ~CLABRN02~ ~CLABRN04~ ~VAGRAN~ ~PROTEC~ ~CLABMO01~ ~CLABMO02~ ~CLABMO03~ ~CLABTH04~ BEGIN
   // All kits/classes that can't backstab will get -250 to Stealth Strike at lvl1 to prevent them from gaining bonuses from it
   LAF ~S!ADD_CLAB_ROW~
     STR_VAR
@@ -354,6 +368,41 @@ COPY_EXISTING ~clasiskl.2da~  ~override~
   COUNT_2DA_COLS ~colcount~
   SET_2DA_ENTRY $clasiskl_rows("DETECT_ILLUSION") $clasiskl_cols("DARK_MOON") ~colcount~ ~0~
   PRETTY_PRINT_2DA
+
+// Stalker
+
+COPY ~IATweaks\resources\bam\s!mfkild.bam~ ~override~
+
+OUTER_SET marked_for_kill_icon_desc_str_ref = RESOLVE_STR_REF (@6194)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %marked_for_kill_icon_desc_str_ref%
+  STR_VAR
+    bam_file = ~S!MFKILD~
+  RET
+    marked_for_kill_icon_id = portrait_icon_id
+END
+
+COPY ~IATweaks\resources\spl\s!mfkill.spl~ ~override~
+  SAY NAME1 @6192
+  SAY UNIDENTIFIED_DESC @6193
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %marked_for_kill_icon_id%
+  END
+
+COPY ~IATweaks\resources\spl\s!mfkild.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!mfkile.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!mfkbas.spl~ ~override~
+COPY ~IATweaks\resources\eff\s!mfkill.eff~ ~override~
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABRN03.2da~
+    row_desc = ~MARKED_FOR_KILL~
+    level1 = ~AP_S!MFKBAS~
+END
 
 // Base thieving stat increasing spells for thief kits
 

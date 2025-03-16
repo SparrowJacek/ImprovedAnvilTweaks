@@ -1560,36 +1560,58 @@ COPY_EXISTING_REGEXP GLOB ~LU.*\.2da~ ~override~
     END
   END
   BUT_ONLY
+// Rework Scribe Scrolls to grant 3 scrolls at the same time
 
-// Rework Scribe Scrolls to let you choose which scrolls you want to create
-
-COPY ~IATweaks\resources\2da\spcl919.2da~ ~override~
-COPY ~IATweaks\resources\spl\s!sscrl1.spl~ ~override~
-  SAY NAME1 @6082
-COPY ~IATweaks\resources\spl\s!sscrl2.spl~ ~override~
-  SAY NAME1 @6083
-COPY ~IATweaks\resources\spl\s!sscrl3.spl~ ~override~
-  SAY NAME1 @6084
-COPY ~IATweaks\resources\spl\s!sscrl4.spl~ ~override~
-  SAY NAME1 @6085
-COPY ~IATweaks\resources\itm\s!sscrl1.itm~ ~override~
 COPY ~IATweaks\resources\itm\s!sscrl2.itm~ ~override~
 COPY ~IATweaks\resources\itm\s!sscrl3.itm~ ~override~
 COPY ~IATweaks\resources\itm\s!sscrl4.itm~ ~override~
 
 COPY_EXISTING ~spcl919.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6086
-  LPF ~DELETE_EFFECT~
+  LPF ~ALTER_EFFECT~
     INT_VAR
       match_opcode = 122
+      timing = 0
+      duration = 1200
+      probability1 = 100
+      probability2 = 0
+    STR_VAR
+      match_resource = ~S!SCRL20~
+      resource = ~S!SSCRL2~
   END
   LPF ~ALTER_EFFECT~
     INT_VAR
-      match_opcode = 215
-      opcode = 214
-      duration = 0
+      match_opcode = 122
+      timing = 0
+      duration = 1200
+      probability1 = 100
+      probability2 = 0
     STR_VAR
-      resource = ~SPCL919~
+      match_resource = ~S!SCRL15~
+      resource = ~S!SSCRL3~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 122
+      timing = 0
+      duration = 1200
+      probability1 = 100
+      probability2 = 0
+    STR_VAR
+      match_resource = ~S!SCRL19~
+      resource = ~S!SSCRL4~
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 122
+    STR_VAR
+      match_resource = ~S!SCRL18~
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 122
+    STR_VAR
+      match_resource = ~S!SCRL14~
   END
 
 // Analyze Opponent

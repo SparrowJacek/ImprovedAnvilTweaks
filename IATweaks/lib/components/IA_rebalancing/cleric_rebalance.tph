@@ -3789,3 +3789,10 @@ COPY_EXISTING ~JAEL02.cre~ ~override~
   ADD_MEMORIZED_SPELL ~S!AEGIS~ #0 ~innate~ ( 1 ) // Aegis of Faith
 
 COMPILE ~IATweaks\scripts\creatures\S!JAEL02.BAF~
+
+// Theshal
+
+COPY_EXISTING ~THESHAL.cre~ ~override~
+  ADD_MEMORIZED_SPELL ~SPPR411~ #3 ~priest~ ( 5 ) // Poison
+
+COMPILE ~IATweaks\scripts\creatures\S!MAYOR.BAF~

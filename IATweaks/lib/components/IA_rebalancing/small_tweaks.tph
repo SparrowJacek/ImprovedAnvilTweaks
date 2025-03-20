@@ -445,6 +445,87 @@ COPY_EXISTING ~s!axe04.itm~ ~override~
       target = 1
       parameter2 = 93
       timing = 2
+  END
+
+// Remove immunities to physical stat changes, Ray of Enfeeblement and Teleport Field from S!TRAP
+
+COPY_EXISTING ~S!TRAP.itm~ ~override~
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 101
+      match_parameter2 = 44
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 101
+      match_parameter2 = 10
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 101
+      match_parameter2 = 15
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 101
+      match_parameter2 = 222
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 206
+    STR_VAR
+      match_resource = ~SPWI421~
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 267
+      match_parameter1 = 7924 // Enfeebled
+  END
+
+  // Archer lower strength limitations (can't kill, doesn't work on Golems, Dragons and Undead)
+
+COPY_EXISTING ~ARCHSLOW.eff~ ~override~
+  WRITE_LONG 0x10 146
+  WRITE_LONG 0x14 2
+  WRITE_LONG 0x20 1
+  WRITE_ASCII 0x30 ~ARCHSLOW~ #8
+
+COPY ~IATweaks\resources\spl\ARCHSLOW.spl~ ~override~
+
+// Archers can pick any alignment and won't fall:
+
+COPY_EXISTING ~ALIGNMNT.2da~ ~override~
+  REPLACE_EVALUATE
+    ~FERALAN.*~
+    BEGIN
+    END
+    ~FERALAN 1 1 1 1 1 1 1 1 1~
+  PRETTY_PRINT_2DA
+
+APPEND ~FALLEN.2da~ ~FERALAN 0~
+
+// Cloak of Atonement
+
+COPY ~IATweaks\resources\bam\s!atone1.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!atone2.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!atone3.bam~ ~override~
+COPY ~IATweaks\resources\itm\ohrclck3.itm~ ~override~
+  SAY IDENTIFIED_DESC @7063
+
+COPY_EXISTING ~oh4101.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    SET ofs = INDEX_BUFFER(~"OHRCLCK3",Player1,[0-9]+,[0-9]+,[0-9]+~)
+    PATCH_IF %ofs% >= 0 BEGIN
+      REPLACE_EVALUATE
+      ~"OHRCLCK3",Player1,[0-9]+,[0-9]+,[0-9]+~
+      BEGIN
+        SPRINT val ~"OHRCLCK3",Player1,4,3,2~
+      END
+      ~%val%~
+    END
+  END
+  BUT_ONLY
+
 // Make Spell Turning remove itself when all spells are absorbed
 
 COPY ~IATweaks\resources\spl\SPWI701B.spl~ ~override~

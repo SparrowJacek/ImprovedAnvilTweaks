@@ -1340,6 +1340,26 @@ COPY_EXISTING ~GPMAGE1.cre~ ~override~
       resource = ~S!CONT01~
       effsource = ~S!CONT01~
   END
+  
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 30
+      target = 0
+      parameter1 = 25
+      parameter2 = 0
+      timing = 9
+      resist_dispel = 0
+  END
+  
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 84
+      target = 0
+      parameter1 = 25
+      parameter2 = 0
+      timing = 9
+      resist_dispel = 0
+  END
 
   LPF ~DELETE_CRE_EFFECT~
     STR_VAR

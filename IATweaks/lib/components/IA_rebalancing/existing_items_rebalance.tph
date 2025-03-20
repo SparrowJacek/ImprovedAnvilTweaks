@@ -1,0 +1,80 @@
+SILENT
+
+/////////// Treefolk items
+
+COPY ~IATweaks\resources\itm\s!blun04.itm~ ~override~
+  SAY IDENTIFIED_DESC @7056
+
+COPY ~IATweaks\resources\itm\s!blun05.itm~ ~override~
+  SAY IDENTIFIED_DESC @7057
+
+/////////// Flail of Ages
+
+COPY_EXISTING ~BLUN14.itm~ ~override~
+  SAY IDENTIFIED_DESC @7058
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 12
+      match_parameter2 = 0
+      parameter1 = 5
+      probability1 = 10
+  END
+
+COPY_EXISTING ~BLUN30C.itm~ ~override~
+  SAY IDENTIFIED_DESC @7059
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 12
+      match_parameter2 = 0
+      parameter1 = 10
+      probability1 = 15
+  END
+
+COPY_EXISTING ~BLUN30D.itm~ ~override~
+  SAY IDENTIFIED_DESC @7060
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 12
+      match_parameter2 = 0
+      parameter1 = 10
+      probability1 = 15
+  END
+
+COPY_EXISTING ~BLUN30.itm~ ~override~
+  SAY IDENTIFIED_DESC @7061
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 12
+      match_parameter2 = 0
+      parameter1 = 15
+      probability1 = 20
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 12
+      match_probability1 = 5
+      parameter1 = 10
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 166
+      parameter1 = 10
+  END
+  PATCH_FOR_EACH elemental_res_opcode IN 27 28 29 30 84 85 173 BEGIN
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 166
+        opcode = elemental_res_opcode
+    END
+  END
+
+// Ravager +6 add save to vorpal hit
+
+COPY_EXISTING ~HALB11.itm~ ~override~
+  SAY IDENTIFIED_DESC @7062
+  LPF ~S!ALTER_EFFECT~
+    INT_VAR
+      match_probability1 = 10
+      savingthrow = 4 // Death
+      save_bonus = ~-2~
+  END

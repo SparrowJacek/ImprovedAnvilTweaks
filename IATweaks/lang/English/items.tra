@@ -357,9 +357,9 @@ Weight: 1~
 STATISTICS:
 
 Combat abilities:
-- Applies cumulative -1 penalty to AC and thac0 for 2 rounds when successful backstab is performed (no save)
+- Applies cumulative -1 penalty to AC and thac0 for 2 rounds and additional 3 crushing damage when successful backstab is performed (no save)
 - Critical hit chance increased by 5%
-- Each critical hit performed with this weapon grants additional 5 crushing damage
+- Each critical hit performed with this weapon grants additional 3 crushing damage
 - Wielder gains additional +2 thac0 at night or in dungeons
 
 THAC0: +5
@@ -711,7 +711,32 @@ Requires:
 
 Weight: 10~
 
+@7063 = ~Atonement involves making reparations, paying a price. The Cloak of Atonement takes this requirement literally. In exchange for protection and safety, it will leech the health of its wearer to power itself.
 
-@7059 = ~~
+STATISTICS:
 
-@7060 = ~~
+Charge abilities (up to 5 charges each):
+– instant cast of Armor of Faith and Chant at level 15 on self
+  constitution score reduced by 2 points for 8 hours
+
+- instant cast of Death Ward and Chaotic Commands at level 15 on self
+  constitution score reduced by 3 points for 8 hours
+  
+- instant cast of Shield of Archons on self
+  constitution score reduced by 4 points for 8 hours
+
+Weight: 3~
+
+@7064 = ~~
+
+@7065 = ~~
+
+@7066 = ~~
+
+@7067 = ~~
+
+@7068 = ~~
+
+@7069 = ~~
+
+@7070 = ~~

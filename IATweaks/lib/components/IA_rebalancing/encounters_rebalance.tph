@@ -570,7 +570,7 @@ COPY_EXISTING ~TARNOR.cre~ ~override~
   WRITE_BYTE 0x5c 0 // Resist Acid
   WRITE_BYTE 0x5d 0 // Resist Magic
   WRITE_BYTE 0x5e 0 // Resist Magic Fire
-  WRITE_BYTE 0x5e 0 // Resist Magic Cold
+  WRITE_BYTE 0x5f 0 // Resist Magic Cold
   WRITE_BYTE 0x60 20 // Resist Slashing
   WRITE_BYTE 0x61 20 // Resist Crushing
   WRITE_BYTE 0x62 20 // Resist Piercing
@@ -620,7 +620,7 @@ COPY_EXISTING ~DRAUG.cre~ ~override~
   WRITE_BYTE 0x5c 0 // Resist Acid
   WRITE_BYTE 0x5d 0 // Resist Magic
   WRITE_BYTE 0x5e 0 // Resist Magic Fire
-  WRITE_BYTE 0x5e 0 // Resist Magic Cold
+  WRITE_BYTE 0x5f 0 // Resist Magic Cold
   WRITE_BYTE 0x60 20 // Resist Slashing
   WRITE_BYTE 0x61 20 // Resist Crushing
   WRITE_BYTE 0x62 20 // Resist Piercing
@@ -660,7 +660,7 @@ COPY_EXISTING ~GALL.cre~ ~override~
   WRITE_BYTE 0x5c 0 // Resist Acid
   WRITE_BYTE 0x5d 0 // Resist Magic
   WRITE_BYTE 0x5e 0 // Resist Magic Fire
-  WRITE_BYTE 0x5e 0 // Resist Magic Cold
+  WRITE_BYTE 0x5f 0 // Resist Magic Cold
   WRITE_BYTE 0x60 0 // Resist Slashing
   WRITE_BYTE 0x61 0 // Resist Crushing
   WRITE_BYTE 0x62 0 // Resist Piercing
@@ -833,7 +833,7 @@ COPY_EXISTING ~UDDROW27.cre~ ~override~
   WRITE_BYTE 0x5b 0 // Resist Electricity
   WRITE_BYTE 0x5c 0 // Resist Acid
   WRITE_BYTE 0x5e 0 // Resist Magic Fire
-  WRITE_BYTE 0x5e 0 // Resist Magic Cold
+  WRITE_BYTE 0x5f 0 // Resist Magic Cold
   WRITE_BYTE 0x60 0 // Resist Slashing
   WRITE_BYTE 0x61 0 // Resist Crushing
   WRITE_BYTE 0x62 0 // Resist Piercing
@@ -870,7 +870,7 @@ COPY_EXISTING ~S!DROWW.cre~ ~override~
   WRITE_BYTE 0x5b 0 // Resist Electricity
   WRITE_BYTE 0x5c 0 // Resist Acid
   WRITE_BYTE 0x5e 0 // Resist Magic Fire
-  WRITE_BYTE 0x5e 0 // Resist Magic Cold
+  WRITE_BYTE 0x5f 0 // Resist Magic Cold
   WRITE_BYTE 0x60 0 // Resist Slashing
   WRITE_BYTE 0x61 0 // Resist Crushing
   WRITE_BYTE 0x62 0 // Resist Piercing
@@ -950,7 +950,7 @@ COPY_EXISTING ~MINDFLAY.itm~ ~override~
       target = 1
       parameter1 = 0
       parameter2 = 11
-      timing = 9
+      timing = 2
       resist_dispel = 0
     STR_VAR
       resource = ~S!MFPROT~
@@ -962,7 +962,7 @@ COPY_EXISTING ~MINDFLAY.itm~ ~override~
       target = 1
       parameter1 = 5
       parameter2 = 0
-      timing = 9
+      timing = 2
       resist_dispel = 0
       special = 4
   END
@@ -1055,7 +1055,10 @@ COPY ~IATweaks\resources\spl\s!mfsof1.spl~ ~override~
 
 ACTION_FOR_EACH mind_flayer_cre IN ~DAMIND1~ ~DAMIND2~ ~ELEILL01~ ~ELMIND01~ ~MINDFL01~ ~UDILL01~ ~UDMIND10~ BEGIN
   COPY_EXISTING ~%mind_flayer_cre%.cre~ ~override~
-    WRITE_LONG 0x14 THIS + 3000 // Exp for creature
+    READ_LONG 0x14 exp
+    PATCH_IF (exp > 0) BEGIN
+      WRITE_LONG 0x14 THIS + 3000 // Exp for creature
+    END
     WRITE_SHORT 0x24 THIS + 15 // HP
     WRITE_SHORT 0x26 THIS + 15 // HP
     WRITE_BYTE 0x52 6 // Thac0
@@ -1070,10 +1073,21 @@ ACTION_FOR_EACH mind_flayer_cre IN ~DAMIND1~ ~DAMIND2~ ~ELEILL01~ ~ELMIND01~ ~MI
     WRITE_BYTE 0x5c 0 // Resist Acid
     WRITE_BYTE 0x5d 90 // Resist Magic
     WRITE_BYTE 0x5e 0 // Resist Magic Fire
-    WRITE_BYTE 0x5e 0 // Resist Magic Cold
+    WRITE_BYTE 0x5f 0 // Resist Magic Cold
     WRITE_BYTE 0x234 15 // Level 1
     WRITE_BYTE 0x240 2 // Morale Break
     WRITE_BYTE 0x272 124 // Race
+
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 146
+        target = 1
+        parameter2 = 1
+        timing = 9
+        resist_dispel = 0
+      STR_VAR
+        resource = ~S!MFPROT~
+    END
     BUT_ONLY
     IF_EXISTS
 END
@@ -1082,7 +1096,10 @@ COMPILE ~IATweaks\scripts\creatures\FLAYER01.BAF~
 
 ACTION_FOR_EACH ulitharid_cre IN ~GORMIND~ ~MINDUL01~ ~PPMIND01~ BEGIN
   COPY_EXISTING ~%ulitharid_cre%.cre~ ~override~
-    WRITE_LONG 0x14 THIS + 3000 // Exp for creature
+    READ_LONG 0x14 exp
+    PATCH_IF (exp > 0) BEGIN
+      WRITE_LONG 0x14 THIS + 3000 // Exp for creature
+    END
     WRITE_SHORT 0x24 THIS + 15 // HP
     WRITE_SHORT 0x26 THIS + 15 // HP
     WRITE_BYTE 0x52 2 // Thac0
@@ -1091,15 +1108,62 @@ ACTION_FOR_EACH ulitharid_cre IN ~GORMIND~ ~MINDUL01~ ~PPMIND01~ BEGIN
     WRITE_BYTE 0x5b 0 // Resist Electricity
     WRITE_BYTE 0x5c 0 // Resist Acid
     WRITE_BYTE 0x5e 0 // Resist Magic Fire
-    WRITE_BYTE 0x5e 0 // Resist Magic Cold
+    WRITE_BYTE 0x5f 0 // Resist Magic Cold
     WRITE_BYTE 0x234 20 // Level 1
     WRITE_BYTE 0x240 0 // Morale Break
     WRITE_BYTE 0x272 124 // Race
+
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 146
+        target = 1
+        parameter2 = 1
+        timing = 9
+        resist_dispel = 0
+      STR_VAR
+        resource = ~S!MFPROT~
+    END
     BUT_ONLY
     IF_EXISTS
 END
 
 COMPILE ~IATweaks\scripts\creatures\FLAYER02.BAF~
+
+COMPILE ~IATweaks\scripts\others\S!TRP110.BAF~
+COMPILE ~IATweaks\scripts\others\S!TRP111.BAF~
+
+// Master Brain
+
+COPY_EXISTING ~UDMASTER.cre~ ~override~
+  WRITE_BYTE 0x234 30 // Level 1
+  WRITE_BYTE 0x272 124 // Race
+ 
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 146
+      target = 1
+      parameter2 = 1
+      timing = 9
+      resist_dispel = 0
+    STR_VAR
+      resource = ~S!MFPROT~
+  END 
+  ADD_CRE_ITEM ~MINDFLAY~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~WEAPON1~ EQUIP
+
+// Brain Golem item
+
+COPY_EXISTING ~S!GOLBRA.itm~ ~override~
+  LPF ~ADD_ITEM_EFFECT~
+    INT_VAR
+      opcode = 146
+      insert_point = 0
+      parameter2 = 1
+      probability1 = 15
+      probability2 = 1
+      target = 2
+    STR_VAR
+      resource = "S!MFBLST"
+  END
 
 // Simbja, the Goblin from Underdark evil party
 

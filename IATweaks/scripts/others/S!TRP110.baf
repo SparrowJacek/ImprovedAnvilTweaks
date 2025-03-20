@@ -1,0 +1,39 @@
+IF
+	XPLT(Player1,1650000)
+	Global("Iahardmode","GLOBAL",0)
+	Entered([ANYONE])
+THEN
+	RESPONSE #100
+		CreateCreature("mindfl01",[-1.-1],S)  // Mind Flayer
+		CreateCreature("mindfl01",[-1.-1],S)  // Mind Flayer
+		CreateCreature("mindul01",[-1.-1],S)  // Ulitharid
+		CreateCreature("umbhul01",[-1.-1],S)  // Umber Hulk
+END
+
+IF
+	OR(2)
+		XPGT(Player1,1649999)
+		Global("Iahardmode","GLOBAL",1)
+	XPLT(Player1,2950000)
+	Entered([ANYONE])
+THEN
+	RESPONSE #100
+		CreateCreature("mindfl01",[-1.-1],S)  // Mind Flayer
+		CreateCreature("mindfl01",[-1.-1],S)  // Mind Flayer
+		CreateCreature("mindul01",[-1.-1],S)  // Ulitharid
+		CreateCreature("umbhul01",[-1.-1],S)  // Umber Hulk
+		CreateCreature("umbhul01",[-1.-1],S)  // Umber Hulk
+END
+
+IF
+	XPGT(Player1,2949999)
+	Entered([ANYONE])
+THEN
+	RESPONSE #100
+		CreateCreature("mindfl01",[-1.-1],S)  // Mind Flayer
+		CreateCreature("mindul01",[-1.-1],S)  // Ulitharid
+		CreateCreature("mindul01",[-1.-1],S)  // Ulitharid
+		CreateCreature("umbhul01",[-1.-1],S)  // Umber Hulk
+		CreateCreature("umbhul01",[-1.-1],S)  // Umber Hulk
+END
+

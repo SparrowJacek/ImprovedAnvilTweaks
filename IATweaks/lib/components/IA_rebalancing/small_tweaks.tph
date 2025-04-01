@@ -1,5 +1,7 @@
 SILENT
 
+INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
+
 // Change Kensai bonuses to only apply to melee weapons
 
 COPY_EXISTING ~SPCL141.spl~ ~override~
@@ -187,10 +189,6 @@ COPY_EXISTING ~sppr512.spl~ ~override~
     STR_VAR
       resource = ~SPPR512~
   END
-
-// Contingency files
-
-COPY ~IATweaks\resources\spl\s!cont01.spl~ ~override~ // Remove Magic if HP less than 75
 
 // Make stores sell and buy items of new categories, like Bastard Sword (69) - used for backstab weapons
 

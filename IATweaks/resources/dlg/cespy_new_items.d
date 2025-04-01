@@ -118,3 +118,22 @@ APPEND BOTSMITH
     ~ EXIT
   END
 END
+
+// FoA +5
+ALTER_TRANS BOTSMITH
+  BEGIN 71 END
+  BEGIN 1 END
+BEGIN
+  "TRIGGER" ~PartyGoldGT(74999)~
+  "ACTION" ~SetGlobal("ItemMaker","GLOBAL",17)
+TakePartyGold(75000)
+TakePartyItemNum("blun30c",1)
+DestroyItem("blun30c")
+TakePartyItemNum("blun30b",1)
+DestroyItem("blun30b")
+DestroyGold(75000)
+~
+  "EPILOGUE" ~GOTO 11~
+END
+
+REPLACE_SAY BOTSMITH 71 @9006

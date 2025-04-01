@@ -304,6 +304,8 @@ ACTION_FOR_EACH summoned_monster IN ~OGRELESU~ ~OGRESU~ ~ETTERCSU~ ~S!MINOSU~ ~S
     WRITE_ASCII 0x258 ~S!MONSUM~ #8
 END
 
+COPY ~IATweaks\resources\spl\s!smbuf3.spl~ ~override~
+
 //////// TRANSMUTER //////////
 
 // Stoneskin that can be cast at others

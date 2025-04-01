@@ -1,0 +1,48 @@
+SILENT
+
+INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~CASTING_SPEED~
+    stat                  = ~77~
+    value                 = ~-1~
+    relation              = ~1~
+  RET
+    casting_speed_equals = new_line_number
+END
+
+COPY ~IATweaks\resources\spl\s!casttx.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!castt1.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter2 = casting_speed_equals
+  END
+
+ACTION_FOR_EACH powerful_spell IN ~sppr717~ ~spwi812~ ~sppri27~ ~spcli24~ ~spcli23~ ~sppr711~ ~sppr607~ ~sppr705~ BEGIN
+  COPY_EXISTING ~%powerful_spell%.spl~ ~override~
+    READ_LONG 0x64 first_header_offset
+    READ_SHORT first_header_offset + 0x12 casting_speed
+    LPF ~ADD_SPELL_CFEFFECT~ 
+      INT_VAR
+        opcode = 146
+        target = 1
+        parameter1 = casting_speed
+        parameter2 = 2
+        resist_dispel = 2
+      STR_VAR
+        resource = ~S!CASTT1~
+    END
+END
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~stats.ids~
+    col_with_names = 1
+  RET_ARRAY
+    stats_rows = 2da_rows_to_ids_mapping
+END
+
+COPY_EXISTING ~stats.ids~  ~override~
+  INSERT_2DA_ROW $stats_rows("EXTRAPROFICIENCY20") + 1 2 ~134 TICKSTOFINISHCASTINGDANGEROUSSPELL~

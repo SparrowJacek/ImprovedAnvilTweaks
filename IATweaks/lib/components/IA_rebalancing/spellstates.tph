@@ -29,6 +29,45 @@ OUTER_SET breach_triggering_physical_protection = %new_state_index%
 LAF resolve_state STR_VAR new_state_id = ~DISPELLABLE_INCREASED_FIRE_RESISTANCE~ RET new_state_index END
 OUTER_SET dispellable_increased_fire_resistance = %new_state_index%
 
+LAF resolve_state STR_VAR new_state_id = ~DISPELLABLE_INCREASED_COLD_RESISTANCE~ RET new_state_index END
+OUTER_SET dispellable_increased_cold_resistance = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~DISPELLABLE_INCREASED_ACID_RESISTANCE~ RET new_state_index END
+OUTER_SET dispellable_increased_acid_resistance = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~DISPELLABLE_INCREASED_ELEC_RESISTANCE~ RET new_state_index END
+OUTER_SET dispellable_increased_elec_resistance = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~DISPELLABLE_INCREASED_MAGIC_DAMAGE_RESISTANCE~ RET new_state_index END
+OUTER_SET dispellable_increased_magic_damage_resistance = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~DISPELLABLE_INCREASED_MAGIC_RESISTANCE~ RET new_state_index END
+OUTER_SET dispellable_increased_magic_resistance = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~DISPELLABLE_INCREASED_PHYSICAL_DAMAGE_RESISTANCE~ RET new_state_index END
+OUTER_SET dispellable_increased_physical_resistance = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~BREACHABLE_INCREASED_FIRE_RESISTANCE~ RET new_state_index END
+OUTER_SET breachable_increased_fire_resistance = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~BREACHABLE_INCREASED_COLD_RESISTANCE~ RET new_state_index END
+OUTER_SET breachable_increased_cold_resistance = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~BREACHABLE_INCREASED_ACID_RESISTANCE~ RET new_state_index END
+OUTER_SET breachable_increased_acid_resistance = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~BREACHABLE_INCREASED_ELEC_RESISTANCE~ RET new_state_index END
+OUTER_SET breachable_increased_elec_resistance = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~BREACHABLE_INCREASED_MAGIC_DAMAGE_RESISTANCE~ RET new_state_index END
+OUTER_SET breachable_increased_magic_damage_resistance = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~BREACHABLE_INCREASED_MAGIC_RESISTANCE~ RET new_state_index END
+OUTER_SET breachable_increased_magic_resistance = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~BREACHABLE_INCREASED_PHYSICAL_DAMAGE_RESISTANCE~ RET new_state_index END
+OUTER_SET breachable_increased_physical_resistance = %new_state_index%
+
 LAF resolve_state STR_VAR new_state_id = ~BARB_ESSENCE_USED~ RET new_state_index END
 OUTER_SET barb_essence_used = %new_state_index%
 
@@ -192,6 +231,28 @@ COPY_EXISTING ~SPCL907.spl~ ~override~
       multi_match = 1
   END
 
+COPY_EXISTING ~SPWI603.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 54
+      opcode = 328
+      parameter1 = 0
+      parameter2 = 112 // Tenser
+      special = 1
+      multi_match = 1
+  END
+
+COPY_EXISTING ~SPWI804.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 54
+      opcode = 328
+      parameter1 = 0
+      parameter2 = 112 // Tenser
+      special = 1
+      multi_match = 1
+  END
+
 COPY_EXISTING ~SPWISH12.spl~ ~override~
   LPF ~CLONE_EFFECT~
     INT_VAR
@@ -212,3 +273,26 @@ COPY_EXISTING ~SPCL321.spl~ ~override~
       special = 1
       multi_match = 1
   END
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~stats.ids~
+    col_with_names = 1
+  RET_ARRAY
+    stats_rows = 2da_rows_to_ids_mapping
+END
+
+COPY_EXISTING ~stats.ids~  ~override~
+  INSERT_2DA_ROW $stats_rows("EXTRAPROFICIENCY20") + 1 2 ~134 TICKSTOFINISHCASTINGDANGEROUSSPELL~
+
+COPY_EXISTING ~stats.ids~  ~override~
+  INSERT_2DA_ROW $stats_rows("EXTRAPROFICIENCY19") + 1 2 ~133 TICKSTOFINISHCASTINGHIGHPRIORITYSPELL~
+
+COPY_EXISTING ~stats.ids~  ~override~
+  INSERT_2DA_ROW $stats_rows("EXTRAPROFICIENCY18") + 1 2 ~132 DISPELLABLEBUFFSPOWER~
+
+COPY_EXISTING ~stats.ids~  ~override~
+  INSERT_2DA_ROW $stats_rows("EXTRAPROFICIENCY17") + 1 2 ~131 BREACHABLECOMBATBUFFSPOWER~
+
+COPY_EXISTING ~stats.ids~  ~override~
+  INSERT_2DA_ROW $stats_rows("EXTRAPROFICIENCY16") + 1 2 ~130 BREACHABLESPECIFICBUFFSPOWER~

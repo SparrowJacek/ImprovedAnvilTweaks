@@ -3,8 +3,10 @@ DEFINE_PATCH_FUNCTION ~S!ITMSPL_USES_OPCODE~
     check_globals  = 1      // check global effects: 0 for no, 1 for yes
     check_headers  = 1      // check effects on headers; 0 for no, 1 for yes
     match_opcode   = 177    // opcode at 0x00 to match, use -1 for all
+    match_dispel   = ~-999~ // dispel_resistance, use -999 for all
     match_param1   = ~-999~ // param1, use -999 for all
     match_param2   = ~-999~ // param2, use -999 for all
+    min_duration   = 0      // duration
     header_length = 0x38    // 0x38 for item, 0x28 for spell
   RET
     is_found
@@ -25,8 +27,10 @@ BEGIN
       READ_LONG  (fx_off + 0x04 + (index * 0x30)) param1
       READ_LONG  (fx_off + 0x04 + (index * 0x30)) opcode_param1
       READ_LONG  (fx_off + 0x08 + (index * 0x30)) param2
+      READ_BYTE  (fx_off + 0x0d + (index * 0x30)) dispel
+      READ_LONG  (fx_off + 0x0e + (index * 0x30)) duration
       READ_ASCII (fx_off + 0x14 + (index * 0x30)) res_name
-      PATCH_IF (match_opcode = opcode_file AND (match_param1 = ~-999~ OR match_param1 = param1) AND (match_param2 = ~-999~ OR match_param2 = param2)) BEGIN
+      PATCH_IF (match_opcode = opcode_file AND (match_param1 = ~-999~ OR match_param1 = param1) AND (match_param2 = ~-999~ OR match_param2 = param2) AND (match_dispel = ~-999~ OR match_dispel = dispel) AND (min_duration >= duration)) BEGIN
         ///PATCH_PRINT ~File uses opcode %match_opcode% with res %res_name% in global effects~///
         SPRINT is_found "TRUE"
         SPRINT opcode_resource "%res_name%"
@@ -64,8 +68,10 @@ DEFINE_PATCH_FUNCTION ~S!SPELL_USES_OPCODE~
     check_globals  = 1      // check global effects: 0 for no, 1 for yes
     check_headers  = 1      // check effects on headers; 0 for no, 1 for yes
     match_opcode   = 177    // opcode at 0x00 to match, use -1 for all
+    match_dispel   = ~-999~ // dispel_resistance, use -999 for all
     match_param1   = ~-999~ // param1, use -999 for all
     match_param2   = ~-999~ // param2, use -999 for all
+    min_duration   = 0      // duration
   RET
     is_found
     opcode_resource
@@ -77,6 +83,7 @@ BEGIN
       check_globals  = 1
       check_headers  = 1
       match_opcode   = %match_opcode%
+      match_dispel   = %match_dispel%
       match_param1   = %match_param1%
       match_param2   = %match_param2%
       header_length = 0x28
@@ -89,8 +96,10 @@ DEFINE_PATCH_FUNCTION ~S!ITEM_USES_OPCODE~
     check_globals  = 1      // check global effects: 0 for no, 1 for yes
     check_headers  = 1      // check effects on headers; 0 for no, 1 for yes
     match_opcode   = 177    // opcode at 0x00 to match, use -1 for all
+    match_dispel   = ~-999~ // dispel_resistance, use -999 for all
     match_param1   = ~-999~ // param1, use -999 for all
     match_param2   = ~-999~ // param2, use -999 for all
+    min_duration   = 0      // duration
     header_length = 0x38    // 0x38 for item, 0x28 for spell
   RET
     is_found
@@ -1256,6 +1265,7 @@ DEFINE_PATCH_FUNCTION ~S!CLONE_EFFECT_ADD_VALUE~
   
           parameter1_add      = "0"
           parameter2_add      = "0"
+          duration_add        = "0"
           savebonus_add       = "0"
           special_add         = "0"
   
@@ -1429,6 +1439,7 @@ BEGIN
             PATCH_IF (timing >= 0)        BEGIN WRITE_BYTE  (base + 0x0c + (0x10 * fx_type)) timing        END
             PATCH_IF (resist_dispel >= 0) BEGIN WRITE_BYTE  (base + 0x0d + (0x47 * fx_type)) resist_dispel END
             PATCH_IF (duration >= 0)      BEGIN WRITE_LONG  (base + 0x0e + (0x12 * fx_type)) duration      END
+            PATCH_IF (duration_add != 0)      BEGIN WRITE_LONG  (base + 0x0e + (0x12 * fx_type)) o_duration + duration_add      END
             PATCH_IF (probability1 >= 0)  BEGIN WRITE_BYTE  (base + 0x12 + (0x12 * fx_type)) probability1  END
             PATCH_IF (probability2 >= 0)  BEGIN WRITE_BYTE  (base + 0x13 + (0x13 * fx_type)) probability2  END
             PATCH_IF (dicenumber >= 0)    BEGIN WRITE_LONG  (base + 0x1c + (0x14 * fx_type)) dicenumber    END

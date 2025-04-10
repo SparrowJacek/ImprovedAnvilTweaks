@@ -1,0 +1,475 @@
+SILENT
+
+INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
+
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY spell_to_weight_map BEGIN
+	"spwi102"  => 1
+	"spwi114"  => 1
+	"spwi119"  => 1
+	"spwi201"  => 1
+	"spwi209"  => 1
+	"spwi210"  => 1
+	"spwi305"  => 3
+	"spwi314"  => 1
+	"spwi317"  => 1
+	"spwi319"  => 2
+	"spwi320"  => 2
+	"spwi403"  => 2
+	"spwi405"  => 4
+	"spwi414"  => 2
+	"spwi418"  => 2
+	"spwi512"  => 2
+	"spwi517"  => 2
+	"spwi606"  => 3
+	"spwi611"  => 5
+	"spwi613"  => 5
+	"spwi702"  => 4
+	"spwi721"  => 4
+	"spwi803"  => 5
+	"spwi808"  => 5
+	"spwi907"  => 5
+	"spwish10" => 3
+	"spwish12" => 5
+	"spwish31" => 3
+	"spwish36" => 5
+	"spwish37" => 5
+	"sppr101"  => 1
+	"sppr108"  => 1
+	"sppr109"  => 2
+	"sppr111"  => 2
+	"sppr150"  => 1
+	"sppr201"  => 1
+	"sppr202"  => 1
+	"sppr204d" => 1
+	"sppr206"  => 1
+	"sppr210"  => 2
+	"sppr214"  => 2
+	"sppr306"  => 2
+	"sppr312"  => 1
+	"sppr403"  => 2
+	"sppr407"  => 2
+	"sppr408"  => 1
+	"sppr409"  => 2
+	"sppr412"  => 3
+	"sppr418"  => 2
+	"sppr420"  => 3
+	"sppr508"  => 2
+	"sppr509"  => 2
+	"sppr511"  => 2
+	"sppr513"  => 2
+	"sppr546"  => 1
+	"sppr547"  => 1
+	"sppr548"  => 1
+	"sppr549"  => 1
+	"sppr603"  => 1
+	"sppr613"  => 1
+	"sppr617"  => 1
+	"sppr650"  => 2
+	"sppr711"  => 3
+	"sppr725"  => 2
+	"sppr730"  => 3
+	"sppr733"  => 3
+	"spcl237"  => 2
+	"spcl721"  => 3
+	"spcl741"  => 3
+	"spcl904"  => 3
+	"spcl907"  => 5
+	"spcl912"  => 3
+	"spdr302"  => 2
+	"spdr401"  => 3
+	"spdr702"  => 4
+	"spdwd02"  => 2
+	"spin103"  => 2
+	"spin104"  => 1
+	"spin106"  => 1
+	"spini33"  => 5
+	"spini32"  => 1
+	"ohtyr1"   => 2
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY spell_to_opcode_map BEGIN
+	"spwi102"  => 0  
+	"spwi114"  => 0  
+	"spwi119"  => 18 
+	"spwi201"  => 0  
+	"spwi209"  => 142 
+	"spwi210"  => 23 
+	"spwi305"  => 16 
+	"spwi314"  => 18 
+	"spwi317"  => 0  
+	"spwi319"  => 30 
+	"spwi320"  => 28 
+	"spwi403"  => 28 
+	"spwi405"  => 20
+	"spwi414"  => 0  
+	"spwi418"  => 30 
+	"spwi512"  => 29 
+	"spwi517"  => 27 
+	"spwi606"  => 31 
+	"spwi611"  => 120
+	"spwi613"  => 16 
+	"spwi702"  => 30 
+	"spwi721"  => 20 
+	"spwi803"  => 30 
+	"spwi808"  => 120
+	"spwi907"  => 120
+	"spwish10" => 31 
+	"spwish12" => 86 
+	"spwish31" => 166
+	"spwish36" => 16 
+	"spwish37" => 16 
+	"sppr101"  => 130
+	"sppr108"  => 161
+	"sppr109"  => 153
+	"sppr111"  => 31 
+	"sppr150"  => 346
+	"sppr201"  => 129
+	"sppr202"  => 0  
+	"sppr204d" => 54 
+	"sppr206"  => 248
+	"sppr210"  => 30 
+	"sppr214"  => 132
+	"sppr306"  => 30 
+	"sppr312"  => 44 
+	"sppr403"  => 46 
+	"sppr407"  => 29 
+	"sppr408"  => 100
+	"sppr409"  => 282
+	"sppr412"  => 54 
+	"sppr418"  => 27 
+	"sppr420"  => 30
+	"sppr508"  => 142
+	"sppr509"  => 166
+	"sppr511"  => 248
+	"sppr513"  => 44 
+	"sppr546"  => 0  
+	"sppr547"  => 0  
+	"sppr548"  => 0  
+	"sppr549"  => 0  
+	"sppr603"  => 142
+	"sppr613"  => 156
+	"sppr617"  => 142
+	"sppr650"  => 325
+	"sppr711"  => 142
+	"sppr725"  => 142
+	"sppr730"  => 142
+	"sppr733"  => 142
+	"spcl237"  => 142
+	"spcl721"  => 142
+	"spcl741"  => 142
+	"spcl904"  => 142
+	"spcl907"  => 142
+	"spcl912"  => 142
+	"spdr302"  => 28 
+	"spdr401"  => 20 
+	"spdr702"  => 30 
+	"spdwd02"  => 142
+	"spin103"  => 142
+	"spin104"  => 18 
+	"spin106"  => 18 
+	"spini33"  => 16 
+	"spini32"  => 0  
+	"ohtyr1"   => 142
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY spell_to_type_map BEGIN
+	"spwi102"  => "dispel/combat"
+	"spwi114"  => "dispel/combat"
+	"spwi119"  => "dispel"
+	"spwi201"  => "dispel"
+	"spwi209"  => "dispel"
+	"spwi210"  => "dispel/specific"
+	"spwi305"  => "dispel"
+	"spwi314"  => "dispel"
+	"spwi317"  => "dispel/combat"
+	"spwi319"  => "dispel/specific"
+	"spwi320"  => "dispel/specific"
+	"spwi403"  => "dispel/specific"
+	"spwi405"  => "dispel"
+	"spwi414"  => "dispel/combat"
+	"spwi418"  => "dispel/combat"
+	"spwi512"  => "dispel/specific"
+	"spwi517"  => "dispel/specific"
+	"spwi606"  => "dispel/specific"
+	"spwi611"  => "dispel/combat"
+	"spwi613"  => "dispel"
+	"spwi702"  => "dispel/specific"
+	"spwi721"  => "dispel"
+	"spwi803"  => "dispel/specific"
+	"spwi808"  => "dispel/combat"
+	"spwi907"  => "dispel/combat"
+	"spwish10" => "dispel/specific"
+	"spwish12" => "combat"
+	"spwish31" => "dispel/specific"
+	"spwish36" => "dispel"
+	"spwish37" => "dispel"
+	"sppr101"  => "dispel"
+	"sppr108"  => "dispel"
+	"sppr109"  => "dispel"
+	"sppr111"  => "dispel/combat"
+	"sppr150"  => "dispel/specific"
+	"sppr201"  => "dispel"
+	"sppr202"  => "dispel/combat  "
+	"sppr204d" => "dispel"
+	"sppr206"  => "dispel"
+	"sppr210"  => "dispel/specific"
+	"sppr214"  => "dispel"
+	"sppr306"  => "dispel/specific"
+	"sppr312"  => "dispel"
+	"sppr403"  => "dispel/specific"
+	"sppr407"  => "dispel/specific"
+	"sppr408"  => "dispel/specific"
+	"sppr409"  => "dispel/specific"
+	"sppr412"  => "dispel"
+	"sppr418"  => "dispel/specific"
+	"sppr420"  => "dispel/specific"
+	"sppr508"  => "dispel/specific"
+	"sppr509"  => "dispel/specific"
+	"sppr511"  => "dispel"
+	"sppr513"  => "dispel"
+	"sppr546"  => "dispel/combat"
+	"sppr547"  => "dispel/combat"
+	"sppr548"  => "dispel/combat"
+	"sppr549"  => "dispel/combat"
+	"sppr603"  => "dispel/combat"
+	"sppr613"  => "dispel/combat"
+	"sppr617"  => "dispel"
+	"sppr650"  => "dispel/specific"
+	"sppr711"  => "dispel"
+	"sppr725"  => "dispel/combat"
+	"sppr730"  => "dispel/specific"
+	"sppr733"  => "dispel"
+	"spcl237"  => "dispel/specific"
+	"spcl721"  => "dispel/specific"
+	"spcl741"  => "dispel/specific"
+	"spcl904"  => "specific"
+	"spcl907"  => "combat"
+	"spcl912"  => "specific"
+	"spdr302"  => "dispel/specific"
+	"spdr401"  => "dispel"
+	"spdr702"  => "dispel/specific"
+	"spdwd02"  => "combat"
+	"spin103"  => "dispel"
+	"spin104"  => "dispel"
+	"spin106"  => "dispel"
+	"spini33"  => "dispel"
+	"spini32"  => "dispel"
+	"ohtyr1"   => "dispel/specific"
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY item_to_weight_map BEGIN
+	"POTN02"   => 1
+	"POTN03"   => 1
+	"POTN04"   => 2
+	"POTN05"   => 2
+	"POTN06"   => 3
+	"POTN07"   => 3
+	"POTN09"   => 2
+	"POTN11"   => 2
+	"POTN12"   => 2
+	"POTN14"   => 2
+	"POTN15"   => 2
+	"POTN16"   => 2
+	"POTN18"   => 3
+	"POTN19"   => 1
+	"POTN21"   => 2
+	"POTN22"   => 1
+	"POTN24"   => 1
+	"POTN28"   => 1
+	"POTN29"   => 1
+	"POTN31"   => 1
+	"POTN34"   => 3
+	"POTN35"   => 5
+	"POTN36"   => 1
+	"POTN37"   => 1
+	"POTN39"   => 1
+	"POTN40"   => 2
+	"POTN41"   => 4
+	"POTN42"   => 1
+	"POTN45"   => 2
+	"POTN46"   => 2
+	"POTN56"   => 1
+	"S!POTN04" => 1
+	"S!POTN08" => 1
+	"S!POTN09" => 1
+	"S!POTN12" => 2
+	"S!POTN15" => 1
+	"S!POTN16" => 1
+	"scrl03"   => 1
+	"scrl04"   => 1
+	"scrl05"   => 1
+	"scrl06"   => 1
+	"scrl08"   => 1
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY item_to_opcode_map BEGIN
+	"POTN02"   => 30 
+	"POTN03"   => 142
+	"POTN04"   => 142
+	"POTN05"   => 142
+	"POTN06"   => 142
+	"POTN07"   => 142
+	"POTN09"   => 142
+	"POTN11"   => 142
+	"POTN12"   => 142
+	"POTN14"   => 142
+	"POTN15"   => 44 
+	"POTN16"   => 44 
+	"POTN18"   => 142
+	"POTN19"   => 15 
+	"POTN21"   => 142
+	"POTN22"   => 142
+	"POTN24"   => 142
+	"POTN28"   => 10 
+	"POTN29"   => 142
+	"POTN31"   => 142
+	"POTN34"   => 142
+	"POTN35"   => 142
+	"POTN36"   => 142
+	"POTN37"   => 142
+	"POTN39"   => 142
+	"POTN40"   => 142
+	"POTN41"   => 142
+	"POTN42"   => 142
+	"POTN45"   => 142
+	"POTN46"   => 15 
+	"POTN56"   => 142
+	"S!POTN04" => 142
+	"S!POTN08" => 142
+	"S!POTN09" => 142
+	"S!POTN12" => 142
+	"S!POTN15" => 15 
+	"S!POTN16" => 142
+	"scrl03"   => 142
+	"scrl04"   => 142
+	"scrl05"   => 142
+	"scrl06"   => 142
+	"scrl08"   => 142
+END
+
+ACTION_PHP_EACH spell_to_weight_map AS spell_file => spell_weight BEGIN
+  COPY_EXISTING ~%spell_file%.spl~ ~override~
+    SET opcode = $spell_to_opcode_map("%spell_file%")
+    SPRINT types_str $spell_to_type_map("%spell_file%")
+    PATCH_IF NOT (~%types_str%~ STRING_CONTAINS_REGEXP "dispel") BEGIN
+      LPF ~CLONE_EFFECT~
+        INT_VAR
+          multi_match = 1
+          match_opcode = opcode
+          opcode = 233
+          parameter1 = spell_weight
+          parameter2 = 65668 // EXTRAPROFICIENCY18 increment
+      END
+    END
+    PATCH_IF NOT (~%types_str%~ STRING_CONTAINS_REGEXP "combat") BEGIN
+      LPF ~CLONE_EFFECT~
+        INT_VAR
+          multi_match = 1
+          match_opcode = opcode
+          opcode = 233
+          parameter1 = spell_weight
+          parameter2 = 65667 // EXTRAPROFICIENCY17 increment
+      END
+    END
+    PATCH_IF NOT (~%types_str%~ STRING_CONTAINS_REGEXP "specific") BEGIN
+      LPF ~CLONE_EFFECT~
+        INT_VAR
+          multi_match = 1
+          match_opcode = opcode
+          opcode = 233
+          parameter1 = spell_weight
+          parameter2 = 65666 // EXTRAPROFICIENCY16 increment
+      END
+    END
+  IF_EXISTS
+END
+
+ACTION_PHP_EACH item_to_weight_map AS item_file => item_weight BEGIN
+  COPY_EXISTING ~%item_file%.spl~ ~override~
+    SET opcode = $item_to_opcode_map("%item_file%")
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        multi_match = 1
+        match_opcode = opcode
+        opcode = 233
+        parameter1 = item_weight
+        parameter2 = 65668 // EXTRAPROFICIENCY18 increment
+    END
+  IF_EXISTS
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~STONESKINS_NUM<n~
+    stat                  = ~88~
+    value                 = ~-1~
+    relation              = ~2~
+  RET
+    stoneskins_num_lesser_than = new_line_number
+END
+
+COPY ~IATweaks\resources\eff\s!ssweig.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!ssweig.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      match_parameter2 = 0
+      parameter1 = 3
+      parameter2 = stoneskins_num_lesser_than
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      match_parameter2 = 1
+      parameter1 = 5
+      parameter2 = stoneskins_num_lesser_than
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      match_parameter2 = 2
+      parameter1 = 7
+      parameter2 = stoneskins_num_lesser_than
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_power = 1
+      power = 0
+  END
+
+ACTION_FOR_EACH stoneskin_spell IN ~s!skins~ ~spwi408~ ~sppr506~ BEGIN
+  COPY_EXISTING ~%stoneskin_spell%.spl~ ~override~
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 218
+        opcode = 272
+        parameter1 = 1
+        parameter2 = 0
+      STR_VAR
+        resource = ~S!SSWEIG~
+    END
+  IF_EXISTS
+END
+
+ACTION_FOR_EACH larloch_spell IN ~spwi119~ ~spin104~ BEGIN
+  COPY_EXISTING ~%larloch_spell%.spl~ ~override~
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 233
+				match_parameter2 = 65668
+        probability1 = 25
+    END
+  IF_EXISTS
+END
+
+ACTION_FOR_EACH vampiric_touch_spell IN ~spwi314~ ~spin106~ BEGIN
+  COPY_EXISTING ~%larloch_spell%.spl~ ~override~
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 233
+				match_parameter2 = 65668
+        probability1 = 50
+    END
+  IF_EXISTS
+END

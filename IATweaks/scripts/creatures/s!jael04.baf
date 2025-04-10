@@ -62,7 +62,7 @@ IF
 	Global("IaPrep","LOCALS",0)
 THEN
 	RESPONSE #100
-		ReallyForceSpellRES("POTN02",Myself)
+		ReallyForceSpellRES("PTN02X",Myself)
 		Continue()
 END
 
@@ -75,7 +75,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("IaPrep","LOCALS",1)
-		ReallyForceSpellRES("POTN14",Myself)
+		ReallyForceSpellRES("PTN14X",Myself)
 		Continue()
 END
 

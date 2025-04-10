@@ -4,7 +4,7 @@ IF
 	HasItem("POTN35",Myself)  // Potion of Magic Shielding
 THEN
 	RESPONSE #100
-		ReallyForceSpellRES("POTN35",Myself)  // No such index
+		ReallyForceSpellRES("PTN35X",Myself)  // No such index
 		DestroyItem("POTN35")  // Potion of Magic Shielding
 		Continue()
 END
@@ -26,7 +26,7 @@ IF
 	HasItem("POTN07",Myself)
 THEN
 	RESPONSE #100
-		ReallyForceSpellRES("POTN07",Myself)  // No such index
+		ReallyForceSpellRES("PTN07X",Myself)  // No such index
 		DestroyItem("POTN07")
 		Continue()
 END

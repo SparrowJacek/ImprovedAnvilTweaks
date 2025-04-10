@@ -64,7 +64,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("IaPotionBuff","LOCALS",1)
-		ReallyForceSpellRES("POTN36",Myself)
+		ReallyForceSpellRES("PTN36X",Myself)
 		DestroyItem("POTN36")
 		Continue()
 END

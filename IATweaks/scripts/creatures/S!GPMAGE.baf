@@ -133,6 +133,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("IaPrep","LOCALS",1)
+		ReallyForceSpellRES("S!CNT01A",Myself)
 		ReallyForceSpell(Myself,WIZARD_ARMOR)  // SPWI102.SPL (Armor)
 		ReallyForceSpell(Myself,WIZARD_SHIELD)  // SPWI114.SPL (Shield)
 		ReallyForceSpell(Myself,WIZARD_BLUR)  // SPWI201.SPL (Blur)

@@ -83,7 +83,7 @@ IF
 	Global("IaPrep","LOCALS",0)
 THEN
 	RESPONSE #100
-		ReallyForceSpellRES("POTN41",Myself)  // No such index
+		ReallyForceSpellRES("PTN41X",Myself)  // No such index
 		DestroyItem("POTN41")
 		Continue()
 END

@@ -21,7 +21,7 @@ IF
 	HasItem("POTN34",Myself)
 THEN
 	RESPONSE #100
-		ReallyForceSpellRES("POTN34",Myself)
+		ReallyForceSpellRES("PTN34X",Myself)
 		DestroyItem("POTN34")
 		Continue()
 END

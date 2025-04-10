@@ -1335,7 +1335,23 @@ This ability can be used an indefinite number of times, however no more than onc
 
 @6194 = ~Can't use Marked for the Kill~
 
-@6195 = ~Shield Bash~
+@6195 = ~Armor (Conjuration)
+Level: 1
+Range: 0
+Duration: 3 turns
+Casting Time: 1
+Area of Effect: caster
+Saving Throw: None
+
+By means of this spell, the wizard creates a magical field of force that serves as if it were scale mail armor. It sets the wizard's base armor class to 6, and grants an additional +3 bonus to AC against piercing and slashing weapons. It is cumulative with Dexterity and, in the case of fighter/mages, with the shield bonus. Due to the armor's magical nature it also increases elemental resistances by 5%. The armor spell does not hinder movement, adds no weight or encumbrance, nor does it prevent spellcasting. It lasts until successfully dispelled or until the duration runs out.~
+
+@6196 = ~Shield (Evocation)
+Level: 1
+Range: 0
+Duration: 3 turns
+Casting Time: 1
+Area of Effect: caster
+Saving Throw: None
 
 @6196 = ~Shield Bash~
 

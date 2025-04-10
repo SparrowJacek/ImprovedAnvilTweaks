@@ -1748,3 +1748,28 @@ COPY_EXISTING ~spwish12.spl~ ~override~
   END
   IF_EXISTS
 
+// Add slight resistance bonuses to Armor and Shield
+
+COPY_EXISTING ~SPWI102.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6195
+  PATCH_FOR_EACH elemental_res_opcode IN 27 28 29 30 84 85 BEGIN
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        multi_match = 1
+        match_opcode = 0
+        opcode = elemental_res_opcode
+        paramter1 = 5
+        parameter2 = 0
+    END
+  END
+
+COPY_EXISTING ~SPWI114.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6196
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      multi_match = 1
+      match_opcode = 0
+      opcode = elemental_res_opcode
+      paramter1 = 5
+      parameter2 = 0
+  END

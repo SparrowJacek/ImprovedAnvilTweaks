@@ -535,3 +535,7 @@ COPY_EXISTING ~SPWI701.spl~ ~override~
     STR_VAR
       resource = ~SPWI701B~
   END
+
+// Add a spell for invisibility detection for AoE spells
+
+COPY ~IATweaks\resources\spl\S!SEEAOE.spl~ ~override~

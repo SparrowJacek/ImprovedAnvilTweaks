@@ -1,0 +1,718 @@
+SILENT
+
+INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
+
+COPY_EXISTING_REGEXP GLOB ~.+\.spl~ ~override~
+// Charm and Domination immunity
+  LPF ~S!SPELL_USES_OPCODE~
+  INT_VAR
+    check_globals  = 1
+    check_headers  = 1
+    match_opcode   = 101
+    match_param2   = 5
+  RET
+    is_found
+  END
+  PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+    LPF ~S!SPELL_USES_OPCODE~
+    INT_VAR
+        check_globals  = 1
+        check_headers  = 1
+        match_opcode   = 328
+        match_param2   = charm_domination_immunity
+    RET
+        is_found
+    END
+    PATCH_IF ~%is_found%~ STR_EQ ~FALSE~ BEGIN
+      LPF ~CLONE_EFFECT~
+        INT_VAR
+          match_opcode      = 101
+          match_parameter2  = 5
+          opcode            = 328
+          parameter2        = charm_domination_immunity
+          special           = 1
+      END
+    END
+  END
+// Sleep/unconsciousness immunity
+  LPF ~S!SPELL_USES_OPCODE~
+  INT_VAR
+    check_globals  = 1
+    check_headers  = 1
+    match_opcode   = 101
+    match_param2   = 39
+  RET
+    is_found
+  END
+  PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+    LPF ~S!SPELL_USES_OPCODE~
+    INT_VAR
+      check_globals  = 1
+      check_headers  = 1
+      match_opcode   = 328
+      match_param2   = sleep_immunity
+    RET
+        is_found
+    END
+    PATCH_IF ~%is_found%~ STR_EQ ~FALSE~ BEGIN
+      LPF ~CLONE_EFFECT~
+        INT_VAR
+          match_opcode      = 101
+          match_parameter2  = 39
+          opcode            = 328
+          parameter2        = sleep_immunity
+          special           = 1
+      END
+    END
+  END
+// Confusion immunity
+  LPF ~S!SPELL_USES_OPCODE~
+  INT_VAR
+    check_globals  = 1
+    check_headers  = 1
+    match_opcode   = 101
+    match_param2   = 128
+  RET
+    is_found
+  END
+  PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+    LPF ~S!SPELL_USES_OPCODE~
+      INT_VAR
+        check_globals  = 1
+        check_headers  = 1
+        match_opcode   = 328
+        match_param2   = confusion_immunity
+      RET
+          is_found
+    END
+    PATCH_IF ~%is_found%~ STR_EQ ~FALSE~ BEGIN
+      LPF ~CLONE_EFFECT~
+        INT_VAR
+          match_opcode      = 101
+          match_parameter2  = 128
+          opcode            = 328
+          parameter2        = confusion_immunity
+          special           = 1
+      END
+    END
+  END
+// Paralyze immunity
+  LPF ~S!SPELL_USES_OPCODE~
+  INT_VAR
+    check_globals  = 1
+    check_headers  = 1
+    match_opcode   = 101
+    match_param2   = 109
+  RET
+    is_found
+  END
+  PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+    LPF ~S!SPELL_USES_OPCODE~
+      INT_VAR
+        check_globals  = 1
+        check_headers  = 1
+        match_opcode   = 328
+        match_param2   = paralyze_immunity
+      RET
+          is_found
+    END
+    PATCH_IF ~%is_found%~ STR_EQ ~FALSE~ BEGIN
+      LPF ~CLONE_EFFECT~
+        INT_VAR
+          match_opcode      = 101
+          match_parameter2  = 109
+          opcode            = 328
+          parameter2        = paralyze_immunity
+          special           = 1
+      END
+    END
+  END
+// Hold immunity
+  LPF ~S!SPELL_USES_OPCODE~
+  INT_VAR
+    check_globals  = 1
+    check_headers  = 1
+    match_opcode   = 101
+    match_param2   = 175
+  RET
+    is_found
+  END
+  PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+    LPF ~S!SPELL_USES_OPCODE~
+      INT_VAR
+        check_globals  = 1
+        check_headers  = 1
+        match_opcode   = 328
+        match_param2   = hold_immunity
+      RET
+          is_found
+    END
+    PATCH_IF ~%is_found%~ STR_EQ ~FALSE~ BEGIN
+      LPF ~CLONE_EFFECT~
+        INT_VAR
+          match_opcode      = 101
+          match_parameter2  = 175
+          opcode            = 328
+          parameter2        = hold_immunity
+          special           = 1
+      END
+    END
+  END  
+// Stun immunity
+  LPF ~S!SPELL_USES_OPCODE~
+  INT_VAR
+    check_globals  = 1
+    check_headers  = 1
+    match_opcode   = 101
+    match_param2   = 45
+  RET
+    is_found
+  END
+  PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+    LPF ~S!SPELL_USES_OPCODE~
+      INT_VAR
+        check_globals  = 1
+        check_headers  = 1
+        match_opcode   = 328
+        match_param2   = stun_immunity
+      RET
+          is_found
+    END
+    PATCH_IF ~%is_found%~ STR_EQ ~FALSE~ BEGIN
+      LPF ~CLONE_EFFECT~
+        INT_VAR
+          match_opcode      = 101
+          match_parameter2  = 45
+          opcode            = 328
+          parameter2        = stun_immunity
+          special           = 1
+      END
+    END
+  END
+// poison_effect immunity
+  LPF ~S!SPELL_USES_OPCODE~
+  INT_VAR
+    check_globals  = 1
+    check_headers  = 1
+    match_opcode   = 101
+    match_param2   = 25
+  RET
+    is_found
+  END
+  PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+    LPF ~S!SPELL_USES_OPCODE~
+      INT_VAR
+        check_globals  = 1
+        check_headers  = 1
+        match_opcode   = 328
+        match_param2   = poison_effect_immunity
+      RET
+          is_found
+    END
+    PATCH_IF ~%is_found%~ STR_EQ ~FALSE~ BEGIN
+      LPF ~CLONE_EFFECT~
+        INT_VAR
+          match_opcode      = 101
+          match_parameter2  = 25
+          opcode            = 328
+          parameter2        = poison_effect_immunity
+          special           = 1
+      END
+    END
+  END
+// Protection from normal weapons
+  LPF ~S!SPELL_USES_OPCODE~
+  INT_VAR
+    check_globals  = 1
+    check_headers  = 1
+    match_opcode   = 120
+    match_param2   = 2
+  RET
+    is_found
+  END
+  PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+    LPF ~S!SPELL_USES_OPCODE~
+    INT_VAR
+      check_globals  = 1
+      check_headers  = 1
+      match_opcode   = 328
+      match_param2   = 111
+    RET
+        is_found
+    END
+    PATCH_IF ~%is_found%~ STR_EQ ~FALSE~ BEGIN
+      LPF ~CLONE_EFFECT~
+        INT_VAR
+          match_opcode      = 120
+          match_parameter2  = 2
+          opcode            = 328
+          parameter2        = 111
+          special           = 1
+      END
+    END
+  END
+// Dispellable protection from fire
+  LPF ~S!SPELL_USES_OPCODE~
+  INT_VAR
+    check_globals  = 1
+    check_headers  = 1
+    match_dispel   = 3
+    match_opcode   = 30
+    min_duration   = 12
+  RET
+    is_found
+  END
+  PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+    LPF ~S!SPELL_USES_OPCODE~
+    INT_VAR
+      check_globals  = 1
+      check_headers  = 1
+      match_opcode   = 328
+      match_param2   = dispellable_increased_fire_resistance
+    RET
+        is_found
+    END
+    PATCH_IF ~%is_found%~ STR_EQ ~FALSE~ BEGIN
+      LPF ~S!CLONE_EFFECT_ADD_VALUE~
+        INT_VAR
+          match_opcode      = 30
+          opcode            = 328
+          parameter2        = dispellable_increased_fire_resistance
+          special           = 1
+          duration_add      = ~-3~
+      END
+    END
+  END
+// Dispellable protection from cold
+  LPF ~S!SPELL_USES_OPCODE~
+  INT_VAR
+    check_globals  = 1
+    check_headers  = 1
+    match_dispel   = 3
+    match_opcode   = 28
+    min_duration   = 12
+  RET
+    is_found
+  END
+  PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+    LPF ~S!SPELL_USES_OPCODE~
+    INT_VAR
+      check_globals  = 1
+      check_headers  = 1
+      match_opcode   = 328
+      match_param2   = dispellable_increased_cold_resistance
+    RET
+        is_found
+    END
+    PATCH_IF ~%is_found%~ STR_EQ ~FALSE~ BEGIN
+      LPF ~S!CLONE_EFFECT_ADD_VALUE~
+        INT_VAR
+          match_opcode      = 28
+          opcode            = 328
+          parameter2        = dispellable_increased_cold_resistance
+          special           = 1
+          duration_add      = ~-3~
+      END
+    END
+  END
+// Dispellable protection from acid
+  LPF ~S!SPELL_USES_OPCODE~
+  INT_VAR
+    check_globals  = 1
+    check_headers  = 1
+    match_dispel   = 3
+    match_opcode   = 27
+    min_duration   = 12
+  RET
+    is_found
+  END
+  PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+    LPF ~S!SPELL_USES_OPCODE~
+    INT_VAR
+      check_globals  = 1
+      check_headers  = 1
+      match_opcode   = 328
+      match_param2   = dispellable_increased_acid_resistance
+    RET
+        is_found
+    END
+    PATCH_IF ~%is_found%~ STR_EQ ~FALSE~ BEGIN
+      LPF ~S!CLONE_EFFECT_ADD_VALUE~
+        INT_VAR
+          match_opcode      = 27
+          opcode            = 328
+          parameter2        = dispellable_increased_acid_resistance
+          special           = 1
+          duration_add      = ~-3~
+      END
+    END
+  END
+// Dispellable protection from elec
+  LPF ~S!SPELL_USES_OPCODE~
+  INT_VAR
+    check_globals  = 1
+    check_headers  = 1
+    match_dispel   = 3
+    match_opcode   = 29
+    min_duration   = 12
+  RET
+    is_found
+  END
+  PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+    LPF ~S!SPELL_USES_OPCODE~
+    INT_VAR
+      check_globals  = 1
+      check_headers  = 1
+      match_opcode   = 328
+      match_param2   = dispellable_increased_elec_resistance
+    RET
+        is_found
+    END
+    PATCH_IF ~%is_found%~ STR_EQ ~FALSE~ BEGIN
+      LPF ~S!CLONE_EFFECT_ADD_VALUE~
+        INT_VAR
+          match_opcode      = 29
+          opcode            = 328
+          parameter2        = dispellable_increased_elec_resistance
+          special           = 1
+          duration_add      = ~-3~
+      END
+    END
+  END
+// Dispellable protection from magic damage
+  LPF ~S!SPELL_USES_OPCODE~
+  INT_VAR
+    check_globals  = 1
+    check_headers  = 1
+    match_dispel   = 3
+    match_opcode   = 31
+    min_duration   = 12
+  RET
+    is_found
+  END
+  PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+    LPF ~S!SPELL_USES_OPCODE~
+    INT_VAR
+      check_globals  = 1
+      check_headers  = 1
+      match_opcode   = 328
+      match_param2   = dispellable_increased_magic_damage_resistance
+    RET
+        is_found
+    END
+    PATCH_IF ~%is_found%~ STR_EQ ~FALSE~ BEGIN
+      LPF ~S!CLONE_EFFECT_ADD_VALUE~
+        INT_VAR
+          match_opcode      = 31
+          opcode            = 328
+          parameter2        = dispellable_increased_magic_damage_resistance
+          special           = 1
+          duration_add      = ~-3~
+      END
+    END
+  END
+// Dispellable protection from physical damage
+  LPF ~S!SPELL_USES_OPCODE~
+  INT_VAR
+    check_globals  = 1
+    check_headers  = 1
+    match_dispel   = 3
+    match_opcode   = 86
+    min_duration   = 12
+  RET
+    is_found
+  END
+  PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+    LPF ~S!SPELL_USES_OPCODE~
+    INT_VAR
+      check_globals  = 1
+      check_headers  = 1
+      match_opcode   = 328
+      match_param2   = dispellable_increased_physical_resistance
+    RET
+        is_found
+    END
+    PATCH_IF ~%is_found%~ STR_EQ ~FALSE~ BEGIN
+      LPF ~S!CLONE_EFFECT_ADD_VALUE~
+        INT_VAR
+          match_opcode      = 86
+          opcode            = 328
+          parameter2        = dispellable_increased_physical_resistance
+          special           = 1
+          duration_add      = ~-3~
+      END
+    END
+  END
+// Dispellable protection from magic
+  LPF ~S!SPELL_USES_OPCODE~
+  INT_VAR
+    check_globals  = 1
+    check_headers  = 1
+    match_dispel   = 3
+    match_opcode   = 166
+    min_duration   = 12
+  RET
+    is_found
+    opcode_param1
+  END
+  PATCH_IF (~%is_found%~ STR_EQ ~TRUE~) AND (opcode_param1 > 0) AND (opcode_param1 < 127) BEGIN
+    LPF ~S!SPELL_USES_OPCODE~
+    INT_VAR
+      check_globals  = 1
+      check_headers  = 1
+      match_opcode   = 328
+      match_param2   = dispellable_increased_magic_resistance
+    RET
+        is_found
+    END
+    PATCH_IF ~%is_found%~ STR_EQ ~FALSE~ BEGIN
+      LPF ~S!CLONE_EFFECT_ADD_VALUE~
+        INT_VAR
+          match_opcode      = 166
+          opcode            = 328
+          parameter2        = dispellable_increased_magic_resistance
+          special           = 1
+          duration_add      = ~-3~
+      END
+    END
+  END
+
+
+
+
+
+
+
+
+
+
+// Breachable Spell Protections
+  READ_BYTE 0x27 secondary_type
+  PATCH_IF (secondary_type = 2) OR (secondary_type = 7) BEGIN
+  // Breachable protection from fire
+    LPF ~S!SPELL_USES_OPCODE~
+    INT_VAR
+      check_globals  = 1
+      check_headers  = 1
+      match_dispel   = 3
+      match_opcode   = 30
+      min_duration   = 12
+    RET
+      is_found
+    END
+    PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+      LPF ~S!SPELL_USES_OPCODE~
+      INT_VAR
+        check_globals  = 1
+        check_headers  = 1
+        match_opcode   = 328
+        match_param2   = breachable_increased_fire_resistance
+      RET
+          is_found
+      END
+      PATCH_IF ~%is_found%~ STR_EQ ~FALSE~ BEGIN
+        LPF ~S!CLONE_EFFECT_ADD_VALUE~
+          INT_VAR
+            match_opcode      = 30
+            opcode            = 328
+            parameter2        = breachable_increased_fire_resistance
+            special           = 1
+            duration_add      = ~-3~
+        END
+      END
+    END
+  // Breachable protection from cold
+    LPF ~S!SPELL_USES_OPCODE~
+    INT_VAR
+      check_globals  = 1
+      check_headers  = 1
+      match_dispel   = 3
+      match_opcode   = 28
+      min_duration   = 12
+    RET
+      is_found
+    END
+    PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+      LPF ~S!SPELL_USES_OPCODE~
+      INT_VAR
+        check_globals  = 1
+        check_headers  = 1
+        match_opcode   = 328
+        match_param2   = breachable_increased_cold_resistance
+      RET
+          is_found
+      END
+      PATCH_IF ~%is_found%~ STR_EQ ~FALSE~ BEGIN
+        LPF ~S!CLONE_EFFECT_ADD_VALUE~
+          INT_VAR
+            match_opcode      = 28
+            opcode            = 328
+            parameter2        = breachable_increased_cold_resistance
+            special           = 1
+            duration_add      = ~-3~
+        END
+      END
+    END
+  // Breachable protection from acid
+    LPF ~S!SPELL_USES_OPCODE~
+    INT_VAR
+      check_globals  = 1
+      check_headers  = 1
+      match_dispel   = 3
+      match_opcode   = 27
+      min_duration   = 12
+    RET
+      is_found
+    END
+    PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+      LPF ~S!SPELL_USES_OPCODE~
+      INT_VAR
+        check_globals  = 1
+        check_headers  = 1
+        match_opcode   = 328
+        match_param2   = breachable_increased_acid_resistance
+      RET
+          is_found
+      END
+      PATCH_IF ~%is_found%~ STR_EQ ~FALSE~ BEGIN
+        LPF ~S!CLONE_EFFECT_ADD_VALUE~
+          INT_VAR
+            match_opcode      = 27
+            opcode            = 328
+            parameter2        = breachable_increased_acid_resistance
+            special           = 1
+            duration_add      = ~-3~
+        END
+      END
+    END
+  // Breachable protection from elec
+    LPF ~S!SPELL_USES_OPCODE~
+    INT_VAR
+      check_globals  = 1
+      check_headers  = 1
+      match_dispel   = 3
+      match_opcode   = 29
+      min_duration   = 12
+    RET
+      is_found
+    END
+    PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+      LPF ~S!SPELL_USES_OPCODE~
+      INT_VAR
+        check_globals  = 1
+        check_headers  = 1
+        match_opcode   = 328
+        match_param2   = breachable_increased_elec_resistance
+      RET
+          is_found
+      END
+      PATCH_IF ~%is_found%~ STR_EQ ~FALSE~ BEGIN
+        LPF ~S!CLONE_EFFECT_ADD_VALUE~
+          INT_VAR
+            match_opcode      = 29
+            opcode            = 328
+            parameter2        = breachable_increased_elec_resistance
+            special           = 1
+            duration_add      = ~-3~
+        END
+      END
+    END
+  // Breachable protection from magic damage
+    LPF ~S!SPELL_USES_OPCODE~
+    INT_VAR
+      check_globals  = 1
+      check_headers  = 1
+      match_dispel   = 3
+      match_opcode   = 31
+      min_duration   = 12
+    RET
+      is_found
+    END
+    PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+      LPF ~S!SPELL_USES_OPCODE~
+      INT_VAR
+        check_globals  = 1
+        check_headers  = 1
+        match_opcode   = 328
+        match_param2   = breachable_increased_magic_damage_resistance
+      RET
+          is_found
+      END
+      PATCH_IF ~%is_found%~ STR_EQ ~FALSE~ BEGIN
+        LPF ~S!CLONE_EFFECT_ADD_VALUE~
+          INT_VAR
+            match_opcode      = 31
+            opcode            = 328
+            parameter2        = breachable_increased_magic_damage_resistance
+            special           = 1
+            duration_add      = ~-3~
+        END
+      END
+    END
+  // Breachable protection from physical damage
+    LPF ~S!SPELL_USES_OPCODE~
+    INT_VAR
+      check_globals  = 1
+      check_headers  = 1
+      match_dispel   = 3
+      match_opcode   = 86
+      min_duration   = 12
+    RET
+      is_found
+    END
+    PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+      LPF ~S!SPELL_USES_OPCODE~
+      INT_VAR
+        check_globals  = 1
+        check_headers  = 1
+        match_opcode   = 328
+        match_param2   = breachable_increased_physical_resistance
+      RET
+          is_found
+      END
+      PATCH_IF ~%is_found%~ STR_EQ ~FALSE~ BEGIN
+        LPF ~S!CLONE_EFFECT_ADD_VALUE~
+          INT_VAR
+            match_opcode      = 86
+            opcode            = 328
+            parameter2        = breachable_increased_physical_resistance
+            special           = 1
+            duration_add      = ~-3~
+        END
+      END
+    END
+  // Breachable protection from magic
+    LPF ~S!SPELL_USES_OPCODE~
+    INT_VAR
+      check_globals  = 1
+      check_headers  = 1
+      match_dispel   = 3
+      match_opcode   = 166
+      min_duration   = 12
+    RET
+      is_found
+      opcode_param1
+    END
+    PATCH_IF (~%is_found%~ STR_EQ ~TRUE~) AND (opcode_param1 > 0) AND (opcode_param1 < 127) BEGIN
+      LPF ~S!SPELL_USES_OPCODE~
+      INT_VAR
+        check_globals  = 1
+        check_headers  = 1
+        match_opcode   = 328
+        match_param2   = breachable_increased_magic_resistance
+      RET
+          is_found
+      END
+      PATCH_IF ~%is_found%~ STR_EQ ~FALSE~ BEGIN
+        LPF ~S!CLONE_EFFECT_ADD_VALUE~
+          INT_VAR
+            match_opcode      = 166
+            opcode            = 328
+            parameter2        = breachable_increased_magic_resistance
+            special           = 1
+            duration_add      = ~-3~
+        END
+      END
+    END
+  END
+  BUT_ONLY

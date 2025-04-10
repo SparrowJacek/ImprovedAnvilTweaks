@@ -3512,6 +3512,7 @@ COPY_EXISTING ~JAEL01.cre~ ~override~
   WRITE_SHORT 0x26 104 // HP
   WRITE_BYTE 0x52 6 // Thac0
   WRITE_BYTE 0x59 0 // Resist Fire
+  WRITE_BYTE 0x5c 25 // Resist Acid
   WRITE_BYTE 0x5e 0 // Resist Magic Fire
   WRITE_BYTE 0x60 20 // Resist Slashing
   WRITE_BYTE 0x61 20 // Resist Crushing
@@ -3548,6 +3549,24 @@ COPY_EXISTING ~JAEL01.cre~ ~override~
       target = 1
       opcode = 293
       parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // 100% poison res
+    INT_VAR
+      target = 1
+      opcode = 173
+      parameter1 = 100
+      resist_dispel = 0
+      timing = 9
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // immunity to poison status
+    INT_VAR
+      target = 1
+      opcode = 101
+      parameter2 = 25
       resist_dispel = 0
       timing = 9
   END
@@ -3627,8 +3646,9 @@ COPY_EXISTING ~JAEL01.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPPR407~ #3 ~priest~ ( 1 ) // Protection from Lightning
   ADD_MEMORIZED_SPELL ~SPPR408~ #3 ~priest~ ( 1 ) // Protection from Evil
   ADD_MEMORIZED_SPELL ~SPPR409~ #3 ~priest~ ( 1 ) // Death Ward
-  ADD_MEMORIZED_SPELL ~SPPR411~ #3 ~priest~ ( 2 ) // Poison
+  ADD_MEMORIZED_SPELL ~SPPR411~ #3 ~priest~ ( 1 ) // Poison
   ADD_MEMORIZED_SPELL ~SPPR412~ #3 ~priest~ ( 1 ) // Holy Power
+  ADD_MEMORIZED_SPELL ~SPPR418~ #3 ~priest~ ( 1 ) // Acid Shield
   // ADD_MEMORIZED_SPELL ~SPPR420~ #1 ~priest~ ( 2 ) // Resist Fire and Cold
   ADD_MEMORIZED_SPELL ~SPPR505~ #4 ~priest~ ( 1 ) // True Seeing
   ADD_MEMORIZED_SPELL ~SPPR508~ #4 ~priest~ ( 2 ) // Chaotic Commands
@@ -3666,6 +3686,7 @@ COPY_EXISTING ~JAEL02.cre~ ~override~
   WRITE_SHORT 0x26 100 // HP
   WRITE_BYTE 0x52 6 // Thac0
   WRITE_BYTE 0x59 0 // Resist Fire
+  WRITE_BYTE 0x5c 25 // Resist Acid
   WRITE_BYTE 0x5e 0 // Resist Magic Fire
   WRITE_BYTE 0x60 20 // Resist Slashing
   WRITE_BYTE 0x61 20 // Resist Crushing
@@ -3702,6 +3723,24 @@ COPY_EXISTING ~JAEL02.cre~ ~override~
       target = 1
       opcode = 293
       parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // 100% poison res
+    INT_VAR
+      target = 1
+      opcode = 173
+      parameter1 = 100
+      resist_dispel = 0
+      timing = 9
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // immunity to poison status
+    INT_VAR
+      target = 1
+      opcode = 101
+      parameter2 = 25
       resist_dispel = 0
       timing = 9
   END
@@ -3762,7 +3801,8 @@ COPY_EXISTING ~JAEL02.cre~ ~override~
   REMOVE_MEMORIZED_SPELLS
 
   ADD_MEMORIZED_SPELL ~SPPR101~ #0 ~priest~ ( 1 ) // Bless
-  ADD_MEMORIZED_SPELL ~SPPR102~ #0 ~priest~ ( 2 ) // Command
+  ADD_MEMORIZED_SPELL ~SPPR102~ #0 ~priest~ ( 1 ) // Command
+  ADD_MEMORIZED_SPELL ~SPPR107~ #0 ~priest~ ( 1 ) // Protection from Evil
   ADD_MEMORIZED_SPELL ~SPPR108~ #0 ~priest~ ( 1 ) // Remove Fear
   ADD_MEMORIZED_SPELL ~SPPR109~ #0 ~priest~ ( 2 ) // Sanctuary
   ADD_MEMORIZED_SPELL ~SPPR111~ #0 ~priest~ ( 2 ) // Armor of Faith
@@ -3781,9 +3821,9 @@ COPY_EXISTING ~JAEL02.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPPR403~ #3 ~priest~ ( 2 ) // Free Actions
   ADD_MEMORIZED_SPELL ~SPPR406F~ #3 ~priest~ ( 2 ) // Defensive Harmony
   ADD_MEMORIZED_SPELL ~SPPR407~ #3 ~priest~ ( 2 ) // Protection from Lightning
-  ADD_MEMORIZED_SPELL ~SPPR408~ #3 ~priest~ ( 1 ) // Protection from Evil
   ADD_MEMORIZED_SPELL ~SPPR409~ #3 ~priest~ ( 2 ) // Death Ward
   ADD_MEMORIZED_SPELL ~SPPR412~ #3 ~priest~ ( 1 ) // Holy Power
+  ADD_MEMORIZED_SPELL ~SPPR418~ #3 ~priest~ ( 1 ) // Acid Shield
   // ADD_MEMORIZED_SPELL ~SPPR420~ #1 ~priest~ ( 2 ) // Resist Fire and Cold
   ADD_MEMORIZED_SPELL ~SPPR505~ #4 ~priest~ ( 1 ) // True Seeing
   ADD_MEMORIZED_SPELL ~SPPR508~ #4 ~priest~ ( 2 ) // Chaotic Commands

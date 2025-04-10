@@ -121,7 +121,7 @@ Level: 1
 Sphere: Healing
 Range: Touch
 Duration: Permanent
-Casting Time: 5
+Casting Time: 4
 Area of Effect: 1 creature
 Saving Throw: None
 
@@ -1353,9 +1353,18 @@ Casting Time: 1
 Area of Effect: caster
 Saving Throw: None
 
-@6196 = ~Shield Bash~
+When this spell is cast, an invisible barrier comes into being in front of the wizard. It sets the wizard's base armor class to 6, and grants an additional +3 bonus to AC against missile and blunt weapons. It is cumulative with Dexterity and, in the case of fighter/mages, with the shield bonus. Due to the shield's magical nature it also increases resistance to magical damage by 10%. The shield spell does not hinder movement, adds no weight or encumbrance, nor does it prevent spellcasting. The effect lasts for the duration of the spell or until dispelled.~
 
-@6197 = ~Shield Bash~
+@6197 = ~Silence 15' Radius (Alteration)
+Level: 2
+Sphere: Guardian
+Range: Visual range of the caster
+Duration: 2 rounds per 3 levels
+Casting Time: 5
+Area of Effect: 15-foot-radius sphere
+Saving Throw: Neg
+
+Upon casting this spell, complete silence prevails in the affected area. All sound is stopped: conversation is impossible and spells cannot be cast. Each creature in the area must make a saving throw vs. spells at -2; if the save is failed, then they are silenced for the duration of the spell. Note that this spell does not continue to affect the area after being cast; only those in the area at the time of the casting are affected by the silence.~
 
 @6198 = ~Shield Bash~
 

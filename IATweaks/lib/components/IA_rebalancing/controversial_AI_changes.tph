@@ -45,7 +45,8 @@ COPY_EXISTING ~JAEL01.cre~ ~override~
   REMOVE_MEMORIZED_SPELLS
 
   ADD_MEMORIZED_SPELL ~SPPR101~ #0 ~priest~ ( 1 ) // Bless
-  ADD_MEMORIZED_SPELL ~SPPR102~ #0 ~priest~ ( 2 ) // Command
+  ADD_MEMORIZED_SPELL ~SPPR102~ #0 ~priest~ ( 1 ) // Command
+  ADD_MEMORIZED_SPELL ~SPPR107~ #0 ~priest~ ( 1 ) // Protection from Evil
   ADD_MEMORIZED_SPELL ~SPPR108~ #0 ~priest~ ( 1 ) // Remove Fear
   ADD_MEMORIZED_SPELL ~SPPR109~ #0 ~priest~ ( 2 ) // Sanctuary
   ADD_MEMORIZED_SPELL ~SPPR111~ #0 ~priest~ ( 2 ) // Armor of Faith
@@ -63,10 +64,10 @@ COPY_EXISTING ~JAEL01.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPPR403~ #3 ~priest~ ( 1 ) // Free Actions
   ADD_MEMORIZED_SPELL ~SPPR406F~ #3 ~priest~ ( 2 ) // Defensive Harmony
   ADD_MEMORIZED_SPELL ~SPPR407~ #3 ~priest~ ( 1 ) // Protection from Lightning
-  ADD_MEMORIZED_SPELL ~SPPR408~ #3 ~priest~ ( 1 ) // Protection from Evil
   ADD_MEMORIZED_SPELL ~SPPR409~ #3 ~priest~ ( 1 ) // Death Ward
   ADD_MEMORIZED_SPELL ~SPPR411~ #3 ~priest~ ( 1 ) // Poison
   ADD_MEMORIZED_SPELL ~SPPR412~ #3 ~priest~ ( 1 ) // Holy Power
+  ADD_MEMORIZED_SPELL ~SPPR418~ #3 ~priest~ ( 1 ) // Acid Shield
   ADD_MEMORIZED_SPELL ~SPPR420~ #1 ~priest~ ( 1 ) // Resist Fire and Cold
   ADD_MEMORIZED_SPELL ~SPPR505~ #4 ~priest~ ( 1 ) // True Seeing
   ADD_MEMORIZED_SPELL ~SPPR508~ #4 ~priest~ ( 1 ) // Chaotic Commands
@@ -96,7 +97,8 @@ COPY_EXISTING ~JAEL02.cre~ ~override~
   REMOVE_MEMORIZED_SPELLS
 
   ADD_MEMORIZED_SPELL ~SPPR101~ #0 ~priest~ ( 1 ) // Bless
-  ADD_MEMORIZED_SPELL ~SPPR102~ #0 ~priest~ ( 2 ) // Command
+  ADD_MEMORIZED_SPELL ~SPPR102~ #0 ~priest~ ( 1 ) // Command
+  ADD_MEMORIZED_SPELL ~SPPR107~ #0 ~priest~ ( 1 ) // Protection from Evil
   ADD_MEMORIZED_SPELL ~SPPR108~ #0 ~priest~ ( 1 ) // Remove Fear
   ADD_MEMORIZED_SPELL ~SPPR109~ #0 ~priest~ ( 2 ) // Sanctuary
   ADD_MEMORIZED_SPELL ~SPPR111~ #0 ~priest~ ( 2 ) // Armor of Faith
@@ -115,9 +117,9 @@ COPY_EXISTING ~JAEL02.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPPR403~ #3 ~priest~ ( 2 ) // Free Actions
   ADD_MEMORIZED_SPELL ~SPPR406F~ #3 ~priest~ ( 1 ) // Defensive Harmony
   ADD_MEMORIZED_SPELL ~SPPR407~ #3 ~priest~ ( 1 ) // Protection from Lightning
-  ADD_MEMORIZED_SPELL ~SPPR408~ #3 ~priest~ ( 1 ) // Protection from Evil
   ADD_MEMORIZED_SPELL ~SPPR409~ #3 ~priest~ ( 2 ) // Death Ward
   ADD_MEMORIZED_SPELL ~SPPR412~ #3 ~priest~ ( 1 ) // Holy Power
+  ADD_MEMORIZED_SPELL ~SPPR418~ #3 ~priest~ ( 1 ) // Acid Shield
   ADD_MEMORIZED_SPELL ~SPPR420~ #1 ~priest~ ( 2 ) // Resist Fire and Cold
   ADD_MEMORIZED_SPELL ~SPPR505~ #4 ~priest~ ( 1 ) // True Seeing
   ADD_MEMORIZED_SPELL ~SPPR508~ #4 ~priest~ ( 2 ) // Chaotic Commands

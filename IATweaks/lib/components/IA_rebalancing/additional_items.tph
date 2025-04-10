@@ -224,6 +224,11 @@ COPY_EXISTING ~FIRMAG01.cre~ ~override~
 COPY_EXISTING ~PPCOWLED.cre~ ~override~     
   ADD_CRE_ITEM ~S!CLCK30~ #0 #0 #0 ~UNSTEALABLE~ ~CLOAK~
 
+// Vithal
+
+COPY_EXISTING ~UDVITH.cre~ ~override~     
+  ADD_CRE_ITEM ~S!CLCK30~ #0 #0 #0 ~UNSTEALABLE~ ~CLOAK~
+
 COPY ~IATweaks\resources\itm\s!clck31.itm~ ~override~
   SAY NAME2 @7035
   SAY IDENTIFIED_DESC @7037

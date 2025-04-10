@@ -1442,7 +1442,83 @@ COPY_EXISTING ~GPMAGE1.cre~ ~override~
       item_to_delete = ~DRAGRING~
   END
 
-  ADD_CRE_ITEM ~POTN33~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV13~
+COMPILE ~IATweaks\scripts\creatures\S!GPMAGE.BAF~
+
+// Vithal, imprisoned Mage
+
+COPY_EXISTING ~UDVITH.cre~ ~override~
+  WRITE_SHORT 0x24 55 // HP
+  WRITE_SHORT 0x26 55 // HP
+  WRITE_SHORT 0x46 10 // AC
+  WRITE_SHORT 0x48 10 // AC
+  WRITE_BYTE 0x59 0 // Resist Fire
+  WRITE_BYTE 0x5a 0 // Resist Cold
+  WRITE_BYTE 0x5b 0 // Resist Electricity
+  WRITE_BYTE 0x5c 0 // Resist Acid
+  WRITE_BYTE 0x5d 0 // Resist Magic
+  WRITE_BYTE 0x5e 0 // Resist Magic Fire
+  WRITE_BYTE 0x5f 0 // Resist Magic Cold
+  WRITE_BYTE 0x60 0 // Resist Slashing
+  WRITE_BYTE 0x61 0 // Resist Crushing
+  WRITE_BYTE 0x62 0 // Resist Piercing
+  WRITE_BYTE 0x63 0 // Resist Missile
+  WRITE_BYTE 0x234 25 // Level 1
+  WRITE_BYTE 0x23c 18 // Dexterity
+
+  LPF ~DELETE_CRE_EFFECT~
+    STR_VAR
+      opcode_to_delete = 31
+  END
+
+  LPF ~DELETE_CRE_EFFECT~
+    STR_VAR
+      opcode_to_delete = 0
+  END
+
   ADD_CRE_ITEM ~DWCHAN01~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~ARMOR~
 
-COMPILE ~IATweaks\scripts\creatures\S!GPMAGE.BAF~
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!IMMUNE~
+  END
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL "SPWI102" #0 "wizard" ( 1 ) // Armor
+  ADD_MEMORIZED_SPELL "SPWI112" #0 "wizard" ( 3 ) // Magic Missile
+  ADD_MEMORIZED_SPELL "SPWI113" #0 "wizard" ( 1 ) // Protection From Evil
+  ADD_MEMORIZED_SPELL "SPWI114" #0 "wizard" ( 1 ) // Shield
+  ADD_MEMORIZED_SPELL "SPWI201" #1 "wizard" ( 1 ) // Blur
+  ADD_MEMORIZED_SPELL "SPWI209" #1 "wizard" ( 1 ) // Luck
+  ADD_MEMORIZED_SPELL "SPWI211" #1 "wizard" ( 3 ) // Melf's Acid Arrow
+  ADD_MEMORIZED_SPELL "SPWI212" #1 "wizard" ( 1 ) // Mirror Image
+  ADD_MEMORIZED_SPELL "SPWI302" #2 "wizard" ( 3 ) // Remove Magic
+  ADD_MEMORIZED_SPELL "SPWI303" #2 "wizard" ( 1 ) // Flame Arrow
+  ADD_MEMORIZED_SPELL "SPWI305" #2 "wizard" ( 1 ) // Haste
+  ADD_MEMORIZED_SPELL "SPWI325" #2 "wizard" ( 2 ) // Melf's Minute Meteors
+  ADD_MEMORIZED_SPELL "SPWI405" #3 "wizard" ( 1 ) // Improved Invisibility
+  ADD_MEMORIZED_SPELL "SPWI408" #3 "wizard" ( 2 ) // Stoneskin
+  ADD_MEMORIZED_SPELL "SPWI418" #3 "wizard" ( 1 ) // Fire Shield (Red)
+  ADD_MEMORIZED_SPELL "SPWI508" #4 "wizard" ( 1 ) // Chaos
+  ADD_MEMORIZED_SPELL "SPWI510" #4 "wizard" ( 1 ) // Spell Immunity
+  ADD_MEMORIZED_SPELL "SPWI513" #4 "wizard" ( 2 ) // Breach
+  ADD_MEMORIZED_SPELL "SPWI514" #4 "wizard" ( 1 ) // Lower Resistance
+  ADD_MEMORIZED_SPELL "SPWI522" #4 "wizard" ( 1 ) // Soul Armor
+  ADD_MEMORIZED_SPELL "SPWI602" #5 "wizard" ( 1 ) // Globe of Invulnerability
+  ADD_MEMORIZED_SPELL "SPWI605" #5 "wizard" ( 2 ) // Death Spell
+  ADD_MEMORIZED_SPELL "SPWI606" #5 "wizard" ( 1 ) // Protection From Magic Energy
+  ADD_MEMORIZED_SPELL "SPWI611" #5 "wizard" ( 2 ) // Protection From Magical Weapons
+  ADD_MEMORIZED_SPELL "SPWI612" #5 "wizard" ( 1 ) // Power Word, Silence
+  ADD_MEMORIZED_SPELL "SPWI701" #6 "wizard" ( 1 ) // Spell Turning
+  ADD_MEMORIZED_SPELL "SPWI702" #6 "wizard" ( 1 ) // Protection From The Elements
+  ADD_MEMORIZED_SPELL "SPWI704" #6 "wizard" ( 3 ) // Ruby Ray of Reversal
+  ADD_MEMORIZED_SPELL "SPWI715" #6 "wizard" ( 1 ) // Power Word, Stun
+  ADD_MEMORIZED_SPELL "SPWI725" #6 "wizard" ( 1 ) // Shield Mind and Body
+  ADD_MEMORIZED_SPELL "SPWI804" #7 "wizard" ( 2 ) // Tenser's Partial Transformation
+  ADD_MEMORIZED_SPELL "SPWI812" #7 "wizard" ( 2 ) // Abi-Dalzim's Horrid Wilting
+  ADD_MEMORIZED_SPELL "SPWI815" #7 "wizard" ( 3 ) // Monster Summoning VI
+  ADD_MEMORIZED_SPELL "SPWI902" #8 "wizard" ( 3 ) // Monster Summoning VII
+  ADD_MEMORIZED_SPELL "SPWI912" #8 "wizard" ( 1 ) // Power Word, Kill
+  ADD_MEMORIZED_SPELL "SPWI925" #8 "wizard" ( 2 ) // Comet
+
+COMPILE ~IATweaks\scripts\creatures\S!VITHAL.BAF~

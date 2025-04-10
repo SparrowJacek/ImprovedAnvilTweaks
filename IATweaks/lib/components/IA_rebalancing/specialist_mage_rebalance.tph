@@ -29,7 +29,6 @@ COPY ~IATweaks\resources\spl\s!cnt01a.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!cnt01b.spl~ ~override~ // Remove Magic on self if HP less than 75  
 
 COPY ~IATweaks\resources\eff\s!cnt02a.eff~ ~override~
-COPY ~IATweaks\resources\eff\s!cnt02b.eff~ ~override~
 COPY ~IATweaks\resources\spl\s!cnt02a.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!cnt02b.spl~ ~override~ // ADHW on target if HP less than 75 
 COPY ~IATweaks\resources\spl\s!cnt02c.spl~ ~override~
@@ -280,6 +279,15 @@ COPY_EXISTING ~spini59.spl~ ~override~
       resist_dispel = 0
     STR_VAR
       resource = ~spini59~
+  END
+
+// Change Imprisonment to Maze
+
+COPY_EXISTING ~spwi910.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 211
+      opcode = 233
   END
 
 //////// CONJURER //////////

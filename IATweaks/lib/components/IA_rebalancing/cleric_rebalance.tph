@@ -262,6 +262,10 @@ COPY_EXISTING ~sppr406.spl~ ~override/sppr406d.spl~
   END
   LPF ~DELETE_EFFECT~
     INT_VAR
+      match_opcode = 233 // Modify Proficiencies
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
       match_opcode = 174 // Play sound
   END
   LPF ~ALTER_EFFECT~
@@ -1160,6 +1164,8 @@ END
 
 COPY_EXISTING ~sppr103.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6014
+  // Update casting speed
+  LPF ~ALTER_SPELL_HEADER~ INT_VAR speed = 4 END
 
 COPY_EXISTING ~sppr315.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6015
@@ -1774,6 +1780,16 @@ ACTION_FOR_EACH duhm_spell_file IN ~spin103.spl~ ~sppr214.spl~ BEGIN
         min_level = 18
     END
 END
+
+// Silence
+
+COPY_EXISTING ~sppr211.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6197
+  LPF ~S!ALTER_EFFECT~
+    INT_VAR
+      match_savingthrow = ~-5~
+      savingthrow = ~-2~
+  END
 
 // Champion's Strength
 

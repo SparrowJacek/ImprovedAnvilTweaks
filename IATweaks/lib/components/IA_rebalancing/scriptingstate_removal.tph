@@ -46,7 +46,7 @@ COPY_EXISTING_REGEXP GLOB ~.+\.spl~ ~override~
       RET
         is_found
       END
-      PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ BEGIN
+      PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ AND spellstate_id != dispellable_increased_fire_resistance BEGIN
         LPF ~ALTER_EFFECT~
           INT_VAR
             match_opcode = 282
@@ -56,6 +56,14 @@ COPY_EXISTING_REGEXP GLOB ~.+\.spl~ ~override~
             parameter1 = 0
             parameter2 = %spellstate_id%
             special = 1
+        END
+      END
+      PATCH_IF ~%is_found%~ STR_EQ ~TRUE~ AND spellstate_id = dispellable_increased_fire_resistance BEGIN
+        LPF ~DELETE_EFFECT~
+          INT_VAR
+            match_opcode = 282
+            match_parameter1 = 1
+            match_parameter2 = $spellstate_symbol_to_scriptingstate_id("%spellstate_symbol%")
         END
       END
     END

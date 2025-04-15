@@ -258,3 +258,25 @@ COPY ~IATweaks\resources\ini\smoke_elemental.INI~ ~override\%hexNumber%.ini~
 ACTION_IF (NOT FILE_EXISTS_IN_GAME ~S!SEG2.BAM~) BEGIN
 	COPY ~IATweaks\resources\bam\animations\smoke_elem~ ~override~
 END
+
+// Truly Horrid Umber Hulk (Resized Umber Hulk from IWD)
+// uses IWD slot allocated dynamically
+// INI not included in BG2EE
+// resref: S!SE
+// requires patching during mod install because of dynamic allocation
+// WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_UMBER_HULK_HORRID~))
+
+LAF FIND_FREE_ANIM_SLOT INT_VAR slotMin = 0xe000 slotMax = 0xefff RET slot END
+ACTION_IF (slot <= 0) BEGIN
+  FAIL ~No free creature animation slot found.~
+END
+
+LAF TO_HEX_NUMBER INT_VAR value = slot minDigits = 4 RET hexNumber END
+APPEND ~animate.ids~ ~0x%hexNumber% ANVIL_UMBER_HULK_HORRID~ UNLESS ~ANVIL_UMBER_HULK_HORRID~
+CLEAR_IDS_MAP
+
+COPY ~IATweaks\resources\ini\umber_hulk.INI~ ~override\%hexNumber%.ini~
+
+ACTION_IF (NOT FILE_EXISTS_IN_GAME ~S!UMA1.BAM~) BEGIN
+	COPY ~IATweaks\resources\bam\animations\umber_hulk~ ~override~
+END

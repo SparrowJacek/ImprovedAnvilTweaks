@@ -30,8 +30,7 @@ COPY ~IATweaks\resources\spl\s!cnt01b.spl~ ~override~ // Remove Magic on self if
 
 COPY ~IATweaks\resources\eff\s!cnt02a.eff~ ~override~
 COPY ~IATweaks\resources\spl\s!cnt02a.spl~ ~override~
-COPY ~IATweaks\resources\spl\s!cnt02b.spl~ ~override~ // ADHW on target if HP less than 75 
-COPY ~IATweaks\resources\spl\s!cnt02c.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!cnt02b.spl~ ~override~ // ADHW on target if HP less than 60
 
 COPY ~IATweaks\resources\eff\s!cnt01a.eff~ ~override\s!cnt03a.eff~
   WRITE_ASCII 0x30 ~S!CNT03B~ #8

@@ -2546,7 +2546,7 @@ COPY_EXISTING ~BDTURM02.cre~ ~override~
       item_to_delete = ~S!IMMUNE~
   END
 
-  ADD_CRE_ITEM ~POTN36~ #0 #0 #0 ~~ ~INV15~
+  ADD_CRE_ITEM ~POTN36~ #0 #0 #0 ~NONE~ ~INV15~
 
 COMPILE ~IATweaks\scripts\creatures\S!TURM02.BAF~
 
@@ -2838,6 +2838,25 @@ COPY ~IATweaks\resources\itm\s!dagg01.itm~ ~override~
   SAY NAME2 @7023
   SAY IDENTIFIED_DESC @7024
 
+// Assassin's Dream +5
+
+COPY ~IATweaks\resources\eff\s!-1apr.eff~ ~override~
+COPY ~IATweaks\resources\bam\s!dagg02.bam~ ~override~
+COPY ~IATweaks\resources\itm\s!dagg02.itm~ ~override~
+  SAY NAME2 @7064
+  SAY IDENTIFIED_DESC @7065
+  PATCH_FOR_EACH weapon_type IN 0x10 0x11 0x13 0x14 0x15 0x16 0x17 0x19 0x1a BEGIN
+    LPF ~ADD_ITEM_EQEFFECT~
+      INT_VAR
+        insert_point = ~-1~
+        opcode = 183
+        target = 1
+        parameter2 = weapon_type
+        timing = 2
+      STR_VAR
+        resource = EVAL ~S!-1APR~
+    END  
+  END
 // Piwafwi Cloaks
 
 COPY_EXISTING ~misc9w.itm~ ~override~
@@ -2899,6 +2918,7 @@ COPY ~IATweaks\resources\eff\s!ss-50.eff~ ~override~
 ACTION_DEFINE_ASSOCIATIVE_ARRAY weapon_to_stealth_strike_bonus_mapping BEGIN
   "sw1h10"=>20 // Short sword of backstabbing
   "s!dagg01"=>40 // Assassin's Dream +4
+  "s!dagg02"=>50 // Assassin's Dream +5
 END
 
 ACTION_PHP_EACH weapon_to_stealth_strike_bonus_mapping AS weapon => bonus BEGIN

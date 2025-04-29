@@ -599,6 +599,11 @@ COPY ~IATweaks\resources\spl\s!lifeli.spl~ ~override~
     STR_VAR
       resource = ~S!LIFELI~
   END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6208)
+  END
   FOR (i = 30; i < 36; ++i) BEGIN
     LPF ~CLONE_EFFECT~
       INT_VAR

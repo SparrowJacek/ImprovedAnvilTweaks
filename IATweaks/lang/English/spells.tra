@@ -1436,6 +1436,15 @@ Additionally, there is a 40% chance every 3 seconds to automatically remove Web 
 
 @6208 = ~You can't cast Life Link on yourself.~
 
-@6199 = ~Shield Bash~
+@6209 = ~Spellstrike (Abjuration)
+Level: 9
+Range: Visual sight of caster
+Duration: Instantaneous
+Casting Time: 5
+Area of Effect: Target Creature
+Saving Throw: None
+
+When this spell is cast at a target creature, it will dispel all of the magical protections that surround that creature. This includes: Minor Globe Of Invulnerability, Spell Immunity (except SI: Abjuration), Globe Of Invulnerability, Spell Turning and Spell Shield. The target's magic resistance, if any, does not affect this spell.~
+
 
 @6200 = ~Shield Bash~

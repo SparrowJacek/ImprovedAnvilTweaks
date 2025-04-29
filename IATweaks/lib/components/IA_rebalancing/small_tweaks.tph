@@ -781,6 +781,11 @@ COPY_EXISTING ~AR0711.are~ ~override~
       new_item = ~SCRLAG~
   END
 
+// Fix projectile for Icedust and for Horn of Blasting
+
+COPY_EXISTING ~SAFEFIRE.pro~ ~override~
+  WRITE_SHORT 0x200 0
+
 // Change Spellstrike description
 
 COPY_EXISTING ~spwi903.spl~ ~override~

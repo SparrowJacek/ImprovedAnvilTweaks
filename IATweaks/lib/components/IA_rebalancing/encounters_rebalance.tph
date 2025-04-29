@@ -1149,6 +1149,16 @@ COPY_EXISTING ~UDMASTER.cre~ ~override~
       resource = ~S!MFPROT~
   END 
   ADD_CRE_ITEM ~MINDFLAY~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~WEAPON1~ EQUIP
+  ADD_CRE_ITEM ~SUREHP1~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~LRING~
+
+  COMPILE ~IATweaks\scripts\creatures\UDMASTER.BAF~
+
+// Brain Golem
+
+COPY_EXISTING ~UDGOLEM.cre~ ~override~
+  WRITE_LONG 0x14 12000 // Exp for creature
+  WRITE_BYTE 0x53 2  // APR
+  WRITE_BYTE 0x5a 50  // Electricity Resistance
 
 // Brain Golem item
 
@@ -1158,7 +1168,7 @@ COPY_EXISTING ~S!GOLBRA.itm~ ~override~
       opcode = 146
       insert_point = 0
       parameter2 = 1
-      probability1 = 15
+      probability1 = 20
       probability2 = 1
       target = 2
     STR_VAR

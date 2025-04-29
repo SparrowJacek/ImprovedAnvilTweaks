@@ -80,6 +80,7 @@ DestroyItem("misc35")
 DestroyItem("misc35")
 TakePartyItemNum("S!misc02",1)
 DestroyItem("S!misc02")
+GiveItemCreate("S!leat02",Player1,1,1,1)
 CreateVisualEffect("spcrtwpn",[401.348])~
 END
 
@@ -137,3 +138,32 @@ DestroyGold(75000)
 END
 
 REPLACE_SAY BOTSMITH 71 @9006
+
+// Assassin's Dream +5
+ALTER_TRANS BOTSMITH
+  BEGIN 201 END
+  BEGIN 1 END
+BEGIN
+  "TRIGGER" ~PartyHasItem("S!dagg01")
+PartyHasItem("dagg21")
+PartyHasItem("scrl7q")
+NumItemsPartyGT("misc42",3)
+PartyGoldGT(99999)~
+  "ACTION" ~TakePartyGold(100000)
+DestroyGold(100000)
+TakePartyItemNum("S!dagg01",1)
+DestroyItem("S!dagg01")
+TakePartyItemNum("dagg21",1)
+DestroyItem("dagg21")
+TakePartyItemNum("scrl7q",1)
+DestroyItem("scrl7q")
+TakePartyItemNum("misc42",4)
+DestroyItem("misc42")
+DestroyItem("misc42")
+DestroyItem("misc42")
+DestroyItem("misc42")
+GiveItemCreate("S!dagg02",Player1,1,1,1)
+CreateVisualEffect("spcrtwpn",[401.348])~
+END
+
+REPLACE_SAY BOTSMITH 201 @9007

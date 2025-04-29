@@ -119,3 +119,32 @@ APPEND WSMITH01
     ~ EXIT
   END
 END
+
+// Assassin's Dream +5
+ALTER_TRANS WSMITH01
+  BEGIN 98 END
+  BEGIN 1 END
+BEGIN
+  "TRIGGER" ~PartyHasItem("S!dagg01")
+PartyHasItem("dagg21")
+PartyHasItem("scrl7q")
+NumItemsPartyGT("misc42",3)
+PartyGoldGT(99999)~
+  "ACTION" ~TakePartyGold(100000)
+DestroyGold(100000)
+TakePartyItemNum("S!dagg01",1)
+DestroyItem("S!dagg01")
+TakePartyItemNum("dagg21",1)
+DestroyItem("dagg21")
+TakePartyItemNum("scrl7q",1)
+DestroyItem("scrl7q")
+TakePartyItemNum("misc42",4)
+DestroyItem("misc42")
+DestroyItem("misc42")
+DestroyItem("misc42")
+DestroyItem("misc42")
+GiveItemCreate("S!dagg02",Player1,1,1,1)
+CreateVisualEffect("spcrtwpn",[401.348])~
+END
+
+REPLACE_SAY WSMITH01 98 @8010

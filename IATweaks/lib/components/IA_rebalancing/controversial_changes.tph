@@ -442,10 +442,6 @@ COPY_EXISTING ~SCRL7Q.itm~ ~override~ // Improved Haste
 
 COPY_EXISTING ~SPWI613.spl~ ~override~ // Improved Haste
   SAY UNIDENTIFIED_DESC @6125
-  LPF ~ALTER_SPELL_HEADER~
-    INT_VAR
-      target_count = 2
-  END
 
 COPY_EXISTING ~SPINI33.spl~ ~override~ // Improved Haste for Riskbreaker
   SAY UNIDENTIFIED_DESC @6125
@@ -1769,7 +1765,7 @@ COPY_EXISTING ~SPWI114.spl~ ~override~
     INT_VAR
       multi_match = 1
       match_opcode = 0
-      opcode = elemental_res_opcode
+      opcode = 31
       paramter1 = 5
       parameter2 = 0
   END

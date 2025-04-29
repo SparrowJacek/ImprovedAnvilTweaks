@@ -912,10 +912,10 @@ Level: 6
 Range: 40 ft.
 Duration: 3 rounds + 1 round/level
 Casting Time: 3
-Area of Effect: up to 2 creatures
+Area of Effect: 1 creature
 Saving Throw: None
 
-When casting this spell the caster chooses up to two targets within the spell's range. The affected creatures function at double their normal movement, become hasted and get an additional attack per round. Thus, a creature moving at 6 and attacking once per round would move at 12 and attack thrice per round. Spellcasting and spell effects are not sped up. There are three major differences between the 3rd-level wizard spell Haste and this spell: First, there is no period of fatigue following the expiration of the spell; second, this spell will only affect up to two creatures; third, this spell increase the number attacks per round of the hasted creature by additional 1 point. This spell also negates the effects of a Slow spell, but it is not cumulative with itself or with other similar magic. Its effects will last for the duration or until dispelled~
+When casting this spell the caster chooses one target within the spell's range. The affected creature functions at double its normal movement, becomes hasted and gets an additional attack per round. Thus, a creature moving at 6 and attacking once per round would move at 12 and attack thrice per round. Spellcasting and spell effects are not sped up. There are three major differences between the 3rd-level wizard spell Haste and this spell: First, there is no period of fatigue following the expiration of the spell; second, this spell will only affect a single creature; third, this spell increase the number attacks per round of the hasted creature by additional 1 point. This spell also negates the effects of a Slow spell, but it is not cumulative with itself or with other similar magic. Its effects will last for the duration or until dispelled~
 
 @6126 = ~Flurry of Blows:
 Agility and prowess are key factors that allow a master of hand-to-hand combat survive in a fight against heavily armed bandits and spell-wielding sorcerers. Trained monks are capable of engaging their opponent with extraordinary speed, making them hasted and increasing their number of attacks per round by 1. This ability lasts for 3 rounds + 1 round / level and can not be dispelled by any external sources.~

@@ -539,3 +539,231 @@ COPY_EXISTING ~SPWI701.spl~ ~override~
 // Add a spell for invisibility detection for AoE spells
 
 COPY ~IATweaks\resources\spl\S!SEEAOE.spl~ ~override~
+
+////////////// Fireshield spells removing Web and Insects
+
+ACTION_FOR_EACH insects_spell IN ~SPIN689~ ~SPPR319~ ~SPPR517~ ~SPPR717~ ~SPINI15~ BEGIN
+  COPY_EXISTING ~%insects_spell%.spl~ ~override~
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        multi_match       = 1
+        match_opcode      = 60
+        opcode            = 328
+        parameter1        = 0
+        parameter2        = insects_splstate
+        special           = 1
+    END
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~WEB=n~
+    stat                  = ~67~
+    value                 = ~-1~
+    relation              = ~1~
+  RET
+    web_equals_row = new_line_number
+END
+
+COPY ~IATweaks\resources\eff\s!rmbugf.eff~ ~override~
+
+ACTION_FOR_EACH x_shield_removal_eff IN ~s!rmbuga~ ~s!rmbugc~ ~s!rmbugd~ ~s!rmweba~ ~s!rmwebc~ ~s!rmwebd~ ~s!rmwebf~ BEGIN
+  COPY_EXISTING ~s!rmbugf.eff~ ~override/%x_shield_removal_eff%.eff~
+    TO_UPPER %x_shield_removal_eff%
+    WRITE_ASCIIE 0x30 ~%x_shield_removal_eff%~ #8
+END
+
+COPY ~IATweaks\resources\spl\s!rmbugf.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter1 = insects_splstate
+      parameter2 = 111 // splstate !=
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6205)
+  END
+
+COPY ~IATweaks\resources\spl\s!rmbuga.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter1 = insects_splstate
+      parameter2 = 111 // splstate !=
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6207)
+  END
+
+COPY ~IATweaks\resources\spl\s!rmbugc.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter1 = insects_splstate
+      parameter2 = 111 // splstate !=
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6203)
+  END
+
+COPY ~IATweaks\resources\spl\s!rmbugd.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter1 = insects_splstate
+      parameter2 = 111 // splstate !=
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6205)
+  END
+
+COPY ~IATweaks\resources\spl\s!rmwebf.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter1 = 0
+      parameter2 = web_equals_row
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6204)
+  END
+  BUT_ONLY
+
+COPY ~IATweaks\resources\spl\s!rmweba.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter1 = 0
+      parameter2 = web_equals_row
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6206)
+  END
+
+COPY ~IATweaks\resources\spl\s!rmwebc.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter1 = 0
+      parameter2 = web_equals_row
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6202)
+  END
+
+COPY ~IATweaks\resources\spl\s!rmwebd.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter1 = 0
+      parameter2 = web_equals_row
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6204)
+  END
+
+COPY_EXISTING ~spwi403.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6198
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 28
+      opcode = 272
+      parameter1 = 3
+      parameter2 = 3
+    STR_VAR
+      resource = ~S!RMWEBC~
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 28
+      opcode = 272
+      parameter1 = 3
+      parameter2 = 3
+    STR_VAR
+      resource = ~S!RMBUGC~
+  END
+
+COPY_EXISTING ~scrl1W.itm~ ~override~
+  SAY IDENTIFIED_DESC @6198
+
+COPY_EXISTING ~spwi418.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6198
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 30
+      opcode = 272
+      parameter1 = 3
+      parameter2 = 3
+    STR_VAR
+      resource = ~S!RMWEBC~
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 30
+      opcode = 272
+      parameter1 = 3
+      parameter2 = 3
+    STR_VAR
+      resource = ~S!RMBUGC~
+  END
+
+COPY_EXISTING ~scrl6N.itm~ ~override~
+  SAY IDENTIFIED_DESC @6199
+
+COPY_EXISTING ~sppr418.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6200
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 27
+      opcode = 272
+      parameter1 = 3
+      parameter2 = 3
+    STR_VAR
+      resource = ~S!RMWEBA~
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 27
+      opcode = 272
+      parameter1 = 3
+      parameter2 = 3
+    STR_VAR
+      resource = ~S!RMBUGA~
+  END
+
+COPY_EXISTING ~sppr730.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6201
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 30
+      opcode = 272
+      parameter1 = 3
+      parameter2 = 3
+    STR_VAR
+      resource = ~S!RMWEBD~
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 30
+      opcode = 272
+      parameter1 = 3
+      parameter2 = 3
+    STR_VAR
+      resource = ~S!RMBUGD~
+  END

@@ -130,6 +130,10 @@ COPY_EXISTING ~spwi212.spl~ ~override~
 
 // Web
 
+COPY_EXISTING ~spdr201.spl~ ~override~
+  WRITE_SHORT 0x22 14 // Casting animation
+  WRITE_BYTE 0x25 2 // School
+
 COPY_EXISTING ~spwi215.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6056
   READ_BYTE 0x1f spell_flags

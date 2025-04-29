@@ -1446,6 +1446,7 @@ Saving Throw: None
 
 When this spell is cast at a target creature, it will dispel all of the magical protections that surround that creature. This includes: Minor Globe Of Invulnerability, Spell Immunity (except SI: Abjuration), Globe Of Invulnerability, Spell Turning and Spell Shield. The target's magic resistance, if any, does not affect this spell.~
 
+@6210 = ~Charge~
 
 @6211 = ~Unholy Blight
 (Necromancy)

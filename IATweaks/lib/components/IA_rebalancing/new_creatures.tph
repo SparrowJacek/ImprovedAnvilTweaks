@@ -41,3 +41,35 @@ COPY ~IATweaks\resources\cre\s!smoel1.cre~ ~override~
 COPY ~IATweaks\resources\itm\s!smoele.itm~ ~override~
 
 COMPILE ~IATweaks\scripts\creatures\S!SMOELE.BAF~
+
+// Truly Horrid Umber Hulk
+COPY ~IATweaks\resources\cre\s!umbth1.cre~ ~override~
+  SAY NAME1 @5069
+  SAY NAME2 @5069
+  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_UMBER_HULK_HORRID~))
+
+COPY ~IATweaks\resources\itm\s!umbth1.itm~ ~override~
+COPY ~IATweaks\resources\itm\s!umbth2.itm~ ~override~
+
+COMPILE ~IATweaks\scripts\creatures\S!UMBTH1.BAF~
+
+// Charge ability
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!invbas.pro~
+ADD_PROJECTILE ~IATweaks\resources\pro\s!charge.pro~
+
+COPY ~IATweaks\resources\spl\s!charg1.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~%s!invbas%~
+  END
+COPY ~IATweaks\resources\spl\s!charg2.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~%s!charge%~
+  END
+COPY ~IATweaks\resources\spl\s!charg3.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!charg4.spl~ ~override~
+  SAY NAME1 @6210
+COPY ~IATweaks\resources\spl\s!charg5.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!charg6.spl~ ~override~

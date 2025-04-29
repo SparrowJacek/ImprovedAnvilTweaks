@@ -824,68 +824,6 @@ ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR02.2da~ ~CLABPR03.2da~ ~CLABPR04.2da~ 
   END
 END
 
-// Make Heavenly Shield and True Seeing remove themselves after normal spell duration
-
-COPY_EXISTING ~SPPR617.spl~ ~override~
-  LPF ~ADD_SPELL_EFFECT~
-    INT_VAR
-      opcode = 321
-      target = 1
-      timing = 3
-      duration = 60
-      insert_point = ~-1~
-      resist_dispel = 0
-    STR_VAR
-      resource = ~SPPR617~
-  END
-  BUT_ONLY
-
-COPY_EXISTING ~SPPR505.spl~ ~override~
-  LPF ~ADD_SPELL_EFFECT~
-    INT_VAR
-      opcode = 321
-      target = 1
-      insert_point = 0
-      resist_dispel = 0
-    STR_VAR
-      resource = ~SPPR505~
-  END
-  LPF ~ADD_SPELL_EFFECT~
-    INT_VAR
-      opcode = 321
-      target = 1
-      timing = 3
-      duration = 60
-      insert_point = ~-1~
-      resist_dispel = 0
-    STR_VAR
-      resource = ~SPPR505~
-  END
-  BUT_ONLY
-
-COPY_EXISTING ~SPPRI26.spl~ ~override~
-  LPF ~ADD_SPELL_EFFECT~
-    INT_VAR
-      opcode = 321
-      target = 1
-      insert_point = 0
-      resist_dispel = 0
-    STR_VAR
-      resource = ~SPPRI26~
-  END
-  LPF ~ADD_SPELL_EFFECT~
-    INT_VAR
-      opcode = 321
-      target = 1
-      timing = 3
-      duration = 90
-      insert_point = ~-1~
-      resist_dispel = 0
-    STR_VAR
-      resource = ~SPPRI26~
-  END
-  BUT_ONLY
-
 // Strength of One
 
 // Add exceptional strength check
@@ -2927,6 +2865,110 @@ COPY ~IATweaks\resources\spl\s!cobfoe.spl~ ~override~
 
 COPY ~IATweaks\resources\spl\s!cobdsp.spl~ ~override~
 COPY ~IATweaks\resources\eff\s!cobdsp.eff~ ~override~
+
+// Make Ticking spells remove themselves after normal spell duration
+
+COPY_EXISTING ~SPPR617.spl~ ~override~ // Heavenly Shield
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 321
+      target = 1
+      timing = 3
+      duration = 60
+      insert_point = ~-1~
+      resist_dispel = 0
+    STR_VAR
+      resource = ~SPPR617~
+  END
+  BUT_ONLY
+
+COPY_EXISTING ~SPPR505.spl~ ~override~ // True Seeing
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 321
+      target = 1
+      insert_point = 0
+      resist_dispel = 0
+    STR_VAR
+      resource = ~SPPR505~
+  END
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 321
+      target = 1
+      timing = 3
+      duration = 60
+      insert_point = ~-1~
+      resist_dispel = 0
+    STR_VAR
+      resource = ~SPPR505~
+  END
+  BUT_ONLY
+
+COPY_EXISTING ~SPPRI26.spl~ ~override~ // Continual Cure
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 321
+      target = 1
+      insert_point = 0
+      resist_dispel = 0
+    STR_VAR
+      resource = ~SPPRI26~
+  END
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 321
+      target = 1
+      timing = 3
+      duration = 90
+      insert_point = ~-1~
+      resist_dispel = 0
+    STR_VAR
+      resource = ~SPPRI26~
+  END
+  BUT_ONLY
+
+COPY_EXISTING ~SPPR725.spl~ ~override~ // Globe of Blades
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 321
+      target = 1
+      timing = 3
+      duration = 60
+      insert_point = ~-1~
+      resist_dispel = 0
+    STR_VAR
+      resource = ~SPPR725~
+  END
+  BUT_ONLY
+
+COPY_EXISTING ~SPPR406.spl~ ~override~ // Defensive Harmony
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 321
+      target = 1
+      timing = 3
+      duration = 36
+      insert_point = ~-1~
+      resist_dispel = 0
+    STR_VAR
+      resource = ~SPPR406~
+  END
+  BUT_ONLY
+
+COPY_EXISTING ~SPPR515.spl~ ~override~ // Weaken Undead
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 321
+      target = 1
+      timing = 3
+      duration = 36
+      insert_point = ~-1~
+      resist_dispel = 0
+    STR_VAR
+      resource = ~SPPR515~
+  END
+  BUT_ONLY
 
 // // Cleric Descriptions
 

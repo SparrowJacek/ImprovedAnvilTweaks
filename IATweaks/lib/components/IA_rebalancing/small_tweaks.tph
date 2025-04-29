@@ -768,6 +768,19 @@ COPY_EXISTING ~sppr730.spl~ ~override~
       resource = ~S!RMBUGD~
   END
 
+// Swap places of Crom scroll and Hammer of Thunderbolts
+
+COPY_EXISTING ~shadra01.cre~ ~override~
+  REMOVE_CRE_ITEM ~SCRLAG~
+  ADD_CRE_ITEM ~HAMM07~ #0 #0 #0 ~UNSTEALABLE~ ~INV7~
+
+COPY_EXISTING ~AR0711.are~ ~override~
+  LPF ~REPLACE_AREA_ITEM~
+    STR_VAR
+      old_item = ~HAMM07~
+      new_item = ~SCRLAG~
+  END
+
 // Change Spellstrike description
 
 COPY_EXISTING ~spwi903.spl~ ~override~

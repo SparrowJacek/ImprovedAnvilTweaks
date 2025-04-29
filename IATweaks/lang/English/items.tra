@@ -727,9 +727,38 @@ Charge abilities (up to 5 charges each):
 
 Weight: 3~
 
-@7064 = ~~
+@7064 = ~Assassin's Dream +5~
 
-@7065 = ~~
+@7065 = ~Assassin's Dream +5
+
+Stories tell of daggers wielded by the most infamous thieves and assassins of the Realms, each imbued with a fragment of their wielder's cunning, precision, and malice. Over decades, these weapons absorbed the essence of their masters, carrying echoes of their infamous deeds.
+
+With the help of the Manual of Elaboration, master craftsman was able to extract and weave their lingering magical auras into a single blade. The result is this dagger, a creation not of steel and shards but of pure essence. When held, the weapon seems to move with a will of its own, subtly guiding its owner’s hand with the wisdom of long-dead assassins.
+
+To wield this blade is to carry the weight of countless lives taken and to feel the shadows of its former masters at your side. It is said that those who hold it too long may find their own spirit overshadowed by the whispers of the past.
+
+The already powerful Assassin's Dream +4 has been upgraded to this fabulous weapon, which is undoubtedly the most fearsome blade in hands of a thief or an assassin.
+
+STATISTICS:
+- Can only be wielded in main hand
+
+Equipped abilities:
+- Stealth Strike +50% when used as a single weapon or with a shield
+- +1 Attack per round, when used as a single weapon or with a shield
+- Immunity to Poison and Backstab
+- 5% on any hit to turn the wielder invisible for 1-turn.
+
+Special ability:
+Assassination: Twice per day
+
+THAC0: +5 bonus
+Damage: 2D4 +5
+Damage type: piercing
+Weight: 1
+Speed Factor: 0
+Proficiency Type: Dagger
+Type: 1-handed
+Require: 3 Strength~
 
 @7066 = ~~
 

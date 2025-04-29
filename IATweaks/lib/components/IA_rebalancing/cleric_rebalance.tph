@@ -1849,6 +1849,16 @@ COPY_EXISTING_REGEXP GLOB ~.+\.cre~ ~override~
   REMOVE_MEMORIZED_SPELL ~SPPR507~
   BUT_ONLY
 
+// Unholy Blight
+
+COPY_EXISTING ~sppr314.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6211
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 177
+      parameter1 = 2
+  END
+
 // Greater Restoration
 
 COPY_EXISTING ~sppr713.spl~ ~override~

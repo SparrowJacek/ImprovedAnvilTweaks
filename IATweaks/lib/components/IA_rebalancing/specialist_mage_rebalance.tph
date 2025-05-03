@@ -1008,6 +1008,17 @@ LAF ~S!ADD_CLAB_ROW~
     level36 = ~GA_S!ABJMAS~
 END
 
+// +1 casting level
+
+COPY ~IATweaks\resources\spl\s!+1lvlw.spl~ ~override~
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABMA02.2da~
+    row_desc = ~INCREASE_CAST_LEVEL~
+    level1  = ~AP_S!+1LVLW~
+END
+
 ///////////////// Creatures ////////////////////
 
 // Sorcerous Amon

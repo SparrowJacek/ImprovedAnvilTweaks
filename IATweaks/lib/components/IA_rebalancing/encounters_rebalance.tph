@@ -1584,3 +1584,32 @@ COPY_EXISTING ~S!TROLLK.cre~ ~override~
 COPY_EXISTING ~S!TROLLK.cre~ ~override~
   WRITE_BYTE 0x59 15 // Fire Resistance
   WRITE_BYTE 0x5e 15 // Magic Fire Resistance
+
+// Egg Prisons in Mind Flayers' Dungeon
+
+COMPILE ~IATweaks\scripts\others\S!MFDOOR.BAF~
+
+COPY_EXISTING ~AR2400.are~ ~override~
+
+  GET_OFFSET_ARRAY actors ARE_V10_ACTORS
+
+  PHP_EACH actors AS int1 => actor_off BEGIN
+    READ_SHORT actor_off + 0x20 X_coordinate
+    READ_SHORT actor_off + 0x22 Y_coordinate
+
+    PATCH_IF (X_coordinate = 973 AND Y_coordinate = 2083) BEGIN
+      WRITE_LONG  actor_off + 0x30 (IDS_OF_SYMBOL (~animate~ ~ANVIL_UMBER_HULK_HORRID~))
+      WRITE_ASCII  actor_off + 0x80 ~S!UMBTH1~
+    END
+  END
+
+  GET_OFFSET_ARRAY doors ARE_V10_DOORS
+
+  PHP_EACH doors AS int1 => door_off BEGIN
+    READ_ASCII door_off + 0x20 door_id
+
+    PATCH_IF NOT (~%door_id%~ STRING_CONTAINS_REGEXP ~EGG0~) BEGIN
+      WRITE_SHORT  door_off + 0x70 1
+      WRITE_ASCII  door_off + 0x80 ~S!MFDOOR~
+    END
+  END

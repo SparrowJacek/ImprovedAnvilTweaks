@@ -1,0 +1,12 @@
+IF
+	Opened([ANYONE])
+THEN
+	RESPONSE #100
+		DisplayStringHead(LastTrigger,14381)  // Trap Sprung
+		OpenDoor("EGG01")
+		OpenDoor("EGG02")
+		OpenDoor("EGG03")
+		OpenDoor("Egg01")
+		OpenDoor("Egg02")
+		OpenDoor("Egg03")
+END

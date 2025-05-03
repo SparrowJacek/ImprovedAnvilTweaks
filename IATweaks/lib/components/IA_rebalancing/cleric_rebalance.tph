@@ -1914,7 +1914,7 @@ COPY_EXISTING_REGEXP GLOB ~.+\.cre~ ~override~
 
 COPY_EXISTING ~sppr314.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6211
-  LPF ~ALTER_EFFECT~
+  LPF ~CLONE_EFFECT~
     INT_VAR
       match_opcode = 177
       parameter1 = 2
@@ -3102,17 +3102,14 @@ COPY_EXISTING ~kitlist.2da~ ~override/kitlist.2da~
 // patch in removal of shaman's innate aura cleansing //
 
 COPY_EXISTING_REGEXP GLOB ~SPPR[1-7][0-5][0-9]+\.spl~ ~override~
-  READ_BYTE 0x21 exc_flags
 
-  PATCH_IF (NOT (exc_flags BAND BIT7) = 0) BEGIN
-    LPF ADD_SPELL_EFFECT
-      INT_VAR
-        opcode = 321
-        target = 1
-        insert_point = 0
-      STR_VAR
-        resource = ~SPPRI25~
-    END
+  LPF ADD_SPELL_EFFECT
+    INT_VAR
+      opcode = 321
+      target = 1
+      insert_point = 0
+    STR_VAR
+      resource = ~SPPRI25~
   END
 
   BUT_ONLY
@@ -3147,6 +3144,7 @@ COPY_EXISTING_REGEXP GLOB ~SPWI[1-9][0-9][0-9]+\.spl~ ~override~
                           ~SPCL93[6-8]+\.spl~ ~override~
                           ~SPCL94[0-3]+\.spl~ ~override~
                           ~SPCLI13.spl~ ~override~
+                          ~SPPRI2[6-8]+\.spl~ ~override~
                           ~SPIN001.spl~ ~override~
                           ~SPIN1[01][0-9].spl~ ~override~
                           ~SPIN12[0-7].spl~ ~override~

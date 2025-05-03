@@ -539,6 +539,7 @@ COPY_EXISTING ~SPWI701.spl~ ~override~
 // Add a spell for invisibility detection for AoE spells
 
 COPY ~IATweaks\resources\spl\S!SEEAOE.spl~ ~override~
+COPY ~IATweaks\resources\spl\S!SEEREM.spl~ ~override~
 
 ////////////// Fireshield spells removing Web and Insects
 

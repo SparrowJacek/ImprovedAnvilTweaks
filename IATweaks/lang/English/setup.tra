@@ -702,3 +702,158 @@ Disadvantages:
 
 @5071 = ~Blibdoolpoolp Battlepriest~
 
+@5072 = ~ILLUSIONIST: A Mage who specializes in creating illusions to confuse and mislead.
+
+Advantages:
+– May cast one additional spell per level.
+– Receives a +15% bonus when scribing scrolls from the Illusion school.
+– Receives a +2 bonus when making Saving Throws against spells from the Illusion school.
+– Targets suffer a -2 penalty when making Saving Throws against spells from the Illusion school.
+- Mirror Image spell cast by Illusionist creates 5 additional images.
+- When the Illusionist reaches level 15, all his spells that grant invisibility or improved invisibily apply additional Non-Detection spell to all targets.
+- At level 16 Illusionists gain Simulacrum special ability.
+
+SIMULACRUM:
+This spell creates a duplicate of the caster, which closely resembles the original and acts as a powerful ally. The clone can be controlled freely and can cast spells just like the caster, it will serve the caster for 2 turns. The clone cannot engage in physical combat or use weapons. The spell does not replicate any items the caster is using or wearing. It is created at 60% of the caster's level and can cast spells of up to 3rd level 
+
+Disadvantages:
+– May not learn or cast any spells of the Necromancy school.
+– Receives a -15% penalty when scribing scrolls from other schools.
+- Cannot dual class.
+
+Requires at least 16 Dexterity.~
+
+@5073 = ~ABJURER: A Mage who specializes in protective magics.
+
+Advantages:
+– May cast one additional spell per level.
+– Receives a +15% bonus when scribing scrolls from the Abjuration school.
+– Receives a +2 bonus when making Saving Throws against spells from the Abjuration school.
+– Targets suffer a -2 penalty when making Saving Throws against spells from the Abjuration school.
+- Casts all arcane spells as if 1 level higher.
+- At levels 12, 18 and 24, 30 and 36 Abjurers get Abjuration Mastery ability.
+
+ABJURATION MASTERY: With this power a skilled Abjurers can cast any spell of their favored school bypassing the need to cleanse their aura. The chosen spell is uninterruptible and does not need to be prepared in advance. This grants Abjurers an unparalleled edge in battle, allowing them to summon protective and dispelling magic at a moment's notice.
+
+The potency of this ability grows with the caster's experience:
+
+At level 12: Cast spells up to 4th level
+At level 14: Cast spells up to 5th level
+At level 16: Cast spells up to 6th level
+At level 18: Cast spells up to 7th level
+At level 20: Cast spells up to 8th level
+At level 22 and above: Cast any mage abjuration spell
+
+Disadvantages:
+– May not learn or cast any spells of the Alteration school.
+– Receives a -15% penalty when scribing scrolls from other schools.
+- Cannot dual class.
+
+Requires at least 15 Wisdom.~
+
+@5074 = ~CONJURER: A Mage who specializes in creating creatures and objects to assist <PRO_HIMHER>.
+
+Advantages:
+– May cast one additional spell per level.
+– Receives a +15% bonus when scribing scrolls from the Conjuration school.
+– Receives a +2 bonus when making Saving Throws against spells from the Conjuration school.
+– Targets suffer a -2 penalty when making Saving Throws against spells from the Conjuration school.
+- Maximum limit of creatures summoned at the same time is 6, not 5 when determining if a creature can be summoned by a Conjurer.
+- Creatures summoned by Conjurers via Monster Summoning I-VII spells gain additional +2 damage, thac0, AC, strength and have 20% more hit points.
+- Creatures summoned by Conjurers via Monster Summoning IV-VII spells gain additional +2 movement speed and +1 attack per round.
+- From level 24, creatures summoned by Conjurers via Monster Summoning I-VII spells are immune to spells and effects that would unsummon them. 
+
+Disadvantages:
+– May not learn or cast any spells of the Divination school.
+– Receives a -15% penalty when scribing scrolls from other schools.
+- Cannot dual class.
+
+Requires at least 15 Constitution.~
+
+@5075 = ~DIVINER: A Mage who specializes in detection and divining magics.
+
+Advantages:
+– May cast one additional spell per level.
+– Receives a +15% bonus when scribing scrolls from the Divination school.
+– Receives a +2 bonus when making Saving Throws against spells from the Divination school.
+– Targets suffer a -2 penalty when making Saving Throws against spells from the Divination school.
+- Diviners automatically learn Foreknowledge spell at level 16 without the need to scribing it into their spellbook.
+- Has access to a unique High Level Ability called See Invisible.
+- At levels 1, 8, 16, 24, 32 and 40 gains one use of Glimpse of the Future ability.
+
+GLIMPSE OF THE FUTURE: This ability targets any single friendly creature without requiring the caster's aura to be cleansed. It sends visions of numerous potential futures to the target, providing insight on how to avoid or mitigate impending danger. The target gains a +20 bonus to all saving throws for 3 seconds or until hit by any spell or physical attack.
+
+Disadvantages:
+– May not learn or cast any spells of the Conjuration school.
+– Receives a -15% penalty when scribing scrolls from other schools.
+- Cannot dual class.
+
+Requires at least 16 Wisdom.~
+
+@5076 = ~ENCHANTER: A Mage who specializes in manipulating the minds of sentient beings.
+
+Advantages:
+– May cast one additional spell per level.
+– Receives a +15% bonus when scribing scrolls from the Enchantment school.
+– Receives a +2 bonus when making Saving Throws against spells from the Enchantment school.
+– Targets suffer a -2 penalty when making Saving Throws against spells from the Enchantment school.
+- Gains an additional +1 saving throw against spells from Enchantment school every 6 levels.
+- Gains one use of Focused Mind Blast ability at level 10, gains additional uses at levels 20 and 30.
+
+FOCUSED MIND BLAST: Expertise with mind-affecting spells and creativity can make for a deadly combination. Enchanters can usurp control over enemy minds by force, or guide and join the minds of those who willingly allow them access. By casting this spell, an enchanter connects with companions from the same party and momentarily focuses on a small area within their vision. Through the enchanter's guidance, a powerful blast of cumulative telepathic energy is sent towards that point, exploding suddenly. Any creature in that area will be severely damaged, regardless of whether it has a mind or not.
+
+The caster can achieve a similar effect alone, but the more party members join forces, the more deadly the attack will be. At level 10, the blast deals 4d6 magical damage plus an additional 2d6 for each party member. This damage increases by 2d6 for the caster and by 1d6 for party members at caster levels 16, 22, 28, 34 and 40, and it bypasses magical resistance. A party member has to be within 50 feet from the center of the spell to contribute in the damage.
+
+- Enchanters will automatically learn a unique 4th level spell Emotion: Hope at level 7.
+
+Disadvantages:
+– May not learn or cast any spells of the Invocation school.
+– Receives a -15% penalty when scribing scrolls from other schools.
+- Cannot dual class.
+
+Requires at least 16 Charisma.~
+
+@5077 = ~INVOKER: A Mage who specializes in the manipulation of raw and elemental energies.
+
+Advantages:
+– May cast one additional spell per level.
+– Receives a +15% bonus when scribing scrolls from the Invocation school.
+– Receives a +2 bonus when making Saving Throws against spells from the Invocation school.
+– Targets suffer a -2 penalty when making Saving Throws against spells from the Invocation school.
+- Invokers learn to manipulate elemental energies better than any other arcane casters. At level 10 all elemental damage they deal will be incremented by 5%, this bonus will grow to 10% at level 20 and to 15% at level 30.
+- At level 15 gains one use of Chain Sequencer, gains another use at level 25, though as with any other Sequencer, only one instance of the spell can be active at the same time.
+
+CHAIN SEQUENCER: This is a far more dangerous form of standard Sequencer spell. The caster first chooses one spell of levels 1-3 which will be put into the sequencer and stored as an ability just like with any other Sequencer. When used, that selected spell will be cast on all non-invisible hostile creatures in a 15-ft radius from the center chosen by the caster. It is worth mentioning, that spells which require touch will have no effects.
+
+Disadvantages:
+– May not learn or cast any spells of the Enchantment school.
+– Receives a -15% penalty when scribing scrolls from other schools.
+- Cannot dual class.
+
+Requires at least 16 Constitution.~
+
+@5078 = ~TRANSMUTER: A Mage who specializes in magic that alters physical reality.
+
+Advantages:
+– May cast one additional spell per level.
+– Receives a +15% bonus when scribing scrolls from the Alteration school.
+– Receives a +2 bonus when making Saving Throws against spells from the Alteration school.
+– Targets suffer a -2 penalty when making Saving Throws against spells from the Alteration school.
+- Transmuter gains a special ability at levels 5/15/25/35, which acts just like Stoneskin, but can be cast on another character, however this version of the spell lasts for 3 turns only.
+- Has access to a unique High Level Ability called Dragon Strength.
+- Tenser's Transformation spell cast by Transmuters grants two pips in all weapons available to Mages, two points in Single Weapon Style and in Twohanded Weapon Style, 3/2 additional attacks per round (1 from Fighter levels and 1/2 from weapon proficiencies), Special Abilities button is also available when under the spell's effect.
+- Tenser's Partial Transformation spell cast by Transmuters grants one point in Single Weapon Style and Twohanded Weapon Style and one additional attack per round.
+- At level 14, 21, 28 and 35 gains one use of Blinding Speed ability.
+
+BLINDING SPEED: This special spell makes the caster so fast, that he can traverse long distances in a blink of an eye, if there are no obstacles in his path. In addition, the number of attacks per round is doubled and this spell can't be dispelled. It lasts for 5 rounds.
+
+Disadvantages:
+– May not learn or cast any spells of the Abjuration school.
+– Receives a -15% penalty when scribing scrolls from other schools.
+- Cannot dual class.
+
+Requires at least 15 Dexterity.~
+
+@5079 = ~~
+
+@5080 = ~~

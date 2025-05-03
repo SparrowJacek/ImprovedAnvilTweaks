@@ -170,7 +170,7 @@ COPY_EXISTING ~SPPR109.spl~ ~override~
 COPY_EXISTING ~SPPR113.spl~ ~override~ // Doom
   LPF ~CLONE_EFFECT~
     INT_VAR
-      opcode = 142
+      match_opcode = 142
       opcode = 328
       parameter1 = 0
       parameter2 = 55 // Doom

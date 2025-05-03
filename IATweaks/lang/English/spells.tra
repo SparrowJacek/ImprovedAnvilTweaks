@@ -1487,8 +1487,16 @@ This spell may only be cast once per turn, but is undispellable.~
 @6214 = ~Can't use Nature's Beauty~
 
 @6215 = ~Stoneskin
+(Alteration)
 
-@6215 = ~Shield Bash~
+Level: 4
+Range: 0
+Duration: 3 turns
+Casting Time: 1
+Area of Effect: Single creature
+Saving Throw: None 
+
+When a wizard casts this powerful spell upon a target, an outer skin of stone will move up from the ground, completely covering the target. This skin is of course magical and will hinder the target in no way. The effect of this is to protect the target from physical attacks such as melee weapons and projectiles. For every 2 levels of the caster, an additional skin is gained upon casting. For example, a 10th-level wizard would create 5 skins while a 20th-level wizard would create 10. For each skin the target possesses, the spell will stop one attack, so a 10th-level wizard would be protected from the first 5 attacks, but the 6th would affect the target normally. The skins will remain on the target until he or she is affected by a Dispel Magic, all of the skins are removed due to physical attacks, or the spell duration expires. It is important to note that this will not protect the target from any magical attacks, such as Fireball.~
 
 @6216 = ~Shield Bash~
 

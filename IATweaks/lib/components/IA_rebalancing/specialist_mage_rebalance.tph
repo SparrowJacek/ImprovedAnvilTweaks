@@ -322,6 +322,7 @@ COPY ~IATweaks\resources\spl\s!smbuf3.spl~ ~override~
 // Stoneskin that can be cast at others
 
 COPY_EXISTING ~spwi408.spl~ ~override/s!stonsk.spl~
+  SAY UNIDENTIFIED_DESC @6215
   WRITE_SHORT 0x1c 4 // Innate
   LPF ~ALTER_SPELL_HEADER~
     INT_VAR
@@ -332,6 +333,11 @@ COPY_EXISTING ~spwi408.spl~ ~override/s!stonsk.spl~
     INT_VAR
       match_opcode = ~-1~
       target = 2
+  END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      match_opcode = ~-1~
+      duration_high = 180
   END
 
 LAF ~S!ADD_CLAB_ROW~

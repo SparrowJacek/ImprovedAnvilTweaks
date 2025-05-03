@@ -1461,11 +1461,32 @@ Saving Throw: Special
 
 This spell calls upon energy from the Negative Energy Plane in order to open a channel between it and the targets. The result is that any good or neutral creatures within the spell's area of effect take 1d4 points of damage per level of the caster, or half damage upon a successful Saving Throw vs. Spell. If the victims fail their Saving Throw, they also receive a -2 penalty to all their rolls for 4 rounds.~
 
-@6212 = ~Shield Bash~
+@6212 = ~Nature's Beauty
+Illusion/Phantasm
+Sphere: Elemental
+Level: 7
+Range: Caster
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: The caster
+Saving Throw: None
 
-@6213 = ~Shield Bash~
+When this spell is cast, the caster becomes a radiant embodiment of nature's perfection, a vision so breathtaking that it halts all actions from those who behold it. For 3 rounds, the caster cannot be targeted or attacked by most humanoid creatures, no matter if friend or foe, as their senses are overwhelmed with awe and reverence.
 
-@6214 = ~Shield Bash~
+Affected creature types include:
+Humans, Elves, Dwarves, Halflings, Gnomes, Half-elves, Half-orcs, Goblinoids, Lycanthropes, Orcs, Ogres, Trolls, Gnolls, Kobolds, Lizardfolk, Sahuagin, Yuan-ti, and Giant-kin.
+
+Creatures with alien minds or strong psychic resistance, such as Githyanki, Kuo-Toa, and extraplanar entities, are unaffected. They can interact with the caster normally.
+
+The caster may act freely during this time, but is still vulnerable to area effects, traps, or magical effects already in place.
+
+This spell may only be cast once per turn, but is undispellable.~
+
+@6213 = ~Nature's Beauty~
+
+@6214 = ~Can't use Nature's Beauty~
+
+@6215 = ~Stoneskin
 
 @6215 = ~Shield Bash~
 

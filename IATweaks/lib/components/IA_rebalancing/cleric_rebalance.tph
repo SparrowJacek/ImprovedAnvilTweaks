@@ -1036,6 +1036,67 @@ COPY_EXISTING ~sppr603d.spl~ ~override~
 //   END
 //   BUT_ONLY
 
+// Nature's Beauty
+
+COPY ~IATweaks\resources\bam\sppr704d.bam~ ~override~
+COPY ~IATweaks\resources\bam\sppr704e.bam~ ~override~
+
+OUTER_SET nature_beauty_desc_str_ref = RESOLVE_STR_REF (@6213)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %nature_beauty_desc_str_ref%
+  STR_VAR
+    bam_file = ~SPPR704E~
+  RET
+    nature_beauty_icon_id = portrait_icon_id
+END
+
+OUTER_SET cant_use_nature_beauty_desc_str_ref = RESOLVE_STR_REF (@6214)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %cant_use_nature_beauty_desc_str_ref%
+  STR_VAR
+    bam_file = ~SPPR704D~
+  RET
+    cant_use_nature_beauty_icon_id = portrait_icon_id
+END
+
+
+COPY ~IATweaks\resources\spl\SPPR704.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6212
+  PATCH_FOR_EACH race_id IN 185 2 138 4 2 199 142 110 6 161 3 5 7 111 112 162 122 113 143 131 153 129 154 BEGIN
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        multi_match = 1
+        match_opcode = 100
+        parameter1 = race_id
+      STR_VAR
+        insert = ~below~
+    END
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      multi_match = 1
+      match_opcode = 321
+      opcode = 206
+      duration = 60
+    STR_VAR
+      resource = ~SPPR704~
+      insert = ~last~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      match_duration = 18
+      parameter2 = %nature_beauty_icon_id%
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      match_duration = 60
+      parameter2 = %cant_use_nature_beauty_icon_id%
+  END
+
 // Earthquake
 
 ADD_PROJECTILE ~IATweaks\resources\pro\s!equake.PRO~

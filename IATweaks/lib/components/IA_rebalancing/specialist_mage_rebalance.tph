@@ -752,6 +752,7 @@ COPY ~IATweaks\resources\bam\s!simulc.bam~ ~override~
 COPY ~IATweaks\resources\spl\s!simorg.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6067
 COPY ~IATweaks\resources\spl\s!simuli.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!simule.spl~ ~override~
 
 COPY_EXISTING ~simulacr.spl~ ~override~
   LPF ~ADD_SPELL_EFFECT~
@@ -759,7 +760,7 @@ COPY_EXISTING ~simulacr.spl~ ~override~
       opcode = 146
       target = 1
       parameter1 = 0
-      parameter2 = 0
+      parameter2 = 1
       resist_dispel = 0
       duration = 0
     STR_VAR
@@ -770,14 +771,12 @@ LAF ~S!ADD_CLAB_ROW~
   STR_VAR
     filename = ~CLABMA08.2da~
     row_desc = ~SIMULACRUM~
-    level16 = ~GA_S!SIMORG~
+    level12 = ~GA_S!SIMORG~
 END
 
+COMPILE ~IATweaks\scripts\simulacrum\S!SIMUL.BAF~
+
 // TODO:
-// - set number of attacks to 0
-// - address level properly
-// - remove opcode 177 to prevent non-detection? maybe through a wizard spell that removes it if spell level < 14
-//   as the 1st class can be Fighter, not Illusionist
 // Add some bonuses to HiS and Detect Illusions
 
 //////// Enchanter /////////

@@ -563,12 +563,7 @@ By casting this spell, the wizard makes the creature or object touched immune to
 @6066 = ~Target is already under the effects of Improved Invisibility~
 
 @6067 = ~Simulacrum:
-This spell creates a duplicate of the caster, which closely resembles the original and acts as a powerful ally. The clone can be controlled freely and can cast spells just like the caster, it will serve the caster for 2 turns. The clone cannot engage in physical combat or use weapons. The spell does not replicate any items the caster is using or wearing. The clone's level depends on the caster's level:
-
-At caster level 16, the clone is level 10.
-At caster level 20, the clone is level 12.
-At caster level 24, the clone is level 14.
-At caster level 28, the clone is level 16 and will not improve any further.~
+This spell creates a duplicate of the caster, which closely resembles the original and acts as a powerful ally. The clone can be controlled freely and can cast spells just like the caster, it will serve the caster for 2 turns. The clone cannot engage in physical combat or use weapons. The spell does not replicate any items the caster is using or wearing. It is created at 60% of the caster's level and can cast spells of up to 3rd level ~
 
 @6068 = ~Focused Mind Blast~
 
@@ -592,7 +587,7 @@ This ability targets any single friendly creature without requiring the caster's
 @6074 = ~Abjuration Mastery~
 
 @6075 = ~Abjuration Mastery
-With this power skilled Abjurers can cast any spell of their favored school bypassing the need to cleanse their aura. The chosen spell is uninterruptible and does not need to be prepared in advance. This grants Abjurers an unparalleled edge in battle, allowing them to summon protective and dispelling magic at a moment's notice.
+With this power a skilled Abjurers can cast any spell of their favored school bypassing the need to cleanse their aura. The chosen spell is uninterruptible and does not need to be prepared in advance. This grants Abjurers an unparalleled edge in battle, allowing them to summon protective and dispelling magic at a moment's notice.
 
 The potency of this ability grows with the caster's experience:
 

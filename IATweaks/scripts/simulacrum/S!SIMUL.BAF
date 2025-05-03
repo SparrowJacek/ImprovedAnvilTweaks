@@ -1,0 +1,9 @@
+IF
+	Global("IaRemoveItems","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("IaRemoveItems","LOCALS",1)
+		DestroyAllEquipment()
+		ReallyForceSpellRES("S!SIMULE",Myself)  // No such index
+END
+

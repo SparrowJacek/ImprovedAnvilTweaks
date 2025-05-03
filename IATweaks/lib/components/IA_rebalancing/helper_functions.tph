@@ -831,6 +831,7 @@ BEGIN
     READ_LONG   (0x20 + %effect_offset%) dicesize
     READ_LONG   (0x24 + %effect_offset%) savingthrow
     READ_LONG   (0x28 + %effect_offset%) savebonus
+    READ_LONG   (0x2c + %effect_offset%) special
 	LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~
       INT_VAR
         opcode              = %opcode%
@@ -847,7 +848,8 @@ BEGIN
         dicesize            = %dicesize%
         savingthrow         = %savingthrow%
         savebonus           = %savebonus%
-		  header              = %abil_num% + 1
+        special             = %special%
+        header              = %abil_num% + 1
       STR_VAR
         resource            = EVALUATE_BUFFER "%resource%"
     END

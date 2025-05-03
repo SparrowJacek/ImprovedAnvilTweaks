@@ -796,3 +796,8 @@ ACTION_FOR_EACH spellstrike_scroll IN ~SCRL9L~ ~SCRL9M~ ~SCRL9R~ BEGIN
   COPY_EXISTING ~%spellstrike_scroll%.itm~ ~override~
     SAY UNIDENTIFIED_DESC @6209
 END
+
+// Remove Magical flag from Kuo Toa spear
+
+COPY_EXISTING ~KUOSPER.itm~ ~override~
+  WRITE_LONG 0x18 42

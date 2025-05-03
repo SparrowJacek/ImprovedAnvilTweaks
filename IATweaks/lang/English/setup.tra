@@ -882,6 +882,66 @@ Disadvantages:
 
 Requires at least 15 Dexterity.~
 
-@5079 = ~~
+@5079 = ~Installing spellstates component~
 
-@5080 = ~~
+@5080 = ~Installing ABC component~
+
+@5081 = ~Installing animations component~
+
+@5082 = ~Installing weapon_styles component~
+
+@5083 = ~Installing summon_limit component~
+
+@5084 = ~Installing existing_items_rebalance component~
+
+@5085 = ~Installing cleric_rebalance component~
+
+@5086 = ~Installing specialist_mage_rebalance component~
+
+@5087 = ~Installing beast_master_rebalance component~
+
+@5088 = ~Installing thief_rebalance component~
+
+@5089 = ~Installing scriptingstate_removal component~
+
+@5090 = ~Installing elemental_spells component~
+
+@5091 = ~Installing new_creatures component~
+
+@5092 = ~Installing dispel_weights component~
+
+@5093 = ~Installing controversial_changes component~
+
+@5094 = ~Installing encounters_rebalance component~
+
+@5095 = ~Installing controversial_AI_changes component~
+
+@5096 = ~Installing additional_items component~
+
+@5097 = ~Installing small_tweaks component~
+
+@5098 = ~Installing usable_item_changes component~
+
+@5099 = ~Installing standarized_protection_spellstates_items component~
+
+@5100 = ~Installing standarized_protection_spellstates_spells component~
+
+@5101 = ~Installing extract_effects_to_spells component~
+
+@5102 = ~Installing pc_casting_tracking component~
+
+@5103 = ~~
+
+@5104 = ~~
+
+@5105 = ~~
+
+@5106 = ~~
+
+@5107 = ~~
+
+@5108 = ~~
+
+@5109 = ~~
+
+@5110 = ~~

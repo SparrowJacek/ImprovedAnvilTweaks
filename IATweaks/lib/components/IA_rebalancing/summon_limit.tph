@@ -1,5 +1,7 @@
 /// Remove class restrictions from the Gypsy quests and the Limak encounter. The Old Ones quest remains Necromancer-only. ///
 
+PRINT @5083
+
 SILENT
 
 // Find all creatures with SUMMON gender

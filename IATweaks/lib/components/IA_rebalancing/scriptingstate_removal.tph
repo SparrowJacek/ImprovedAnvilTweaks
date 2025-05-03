@@ -1,3 +1,6 @@
+PRINT @5089
+
+SILENT
 
 ACTION_DEFINE_ASSOCIATIVE_ARRAY spellstate_symbol_to_id_mapping BEGIN
   "BREACH_TRIGGERING_PHYSICAL_PROTECTION"=>EVAL ~%breach_triggering_physical_protection%~

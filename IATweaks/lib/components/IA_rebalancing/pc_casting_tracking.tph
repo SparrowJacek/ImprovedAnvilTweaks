@@ -1,3 +1,5 @@
+PRINT @5102
+
 SILENT
 
 INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"

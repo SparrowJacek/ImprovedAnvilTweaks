@@ -1,5 +1,7 @@
 /// Add elemental spells
 
+PRINT @5090
+
 SILENT
 
 // Whirlwind

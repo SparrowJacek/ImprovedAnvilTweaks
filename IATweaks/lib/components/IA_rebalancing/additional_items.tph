@@ -1,3 +1,7 @@
+PRINT @5096
+
+SILENT
+
 /////////// Wardring (+1 AC) ////////////
 
 COPY ~IATweaks\resources\bam\s!ring20.bam~ ~override~

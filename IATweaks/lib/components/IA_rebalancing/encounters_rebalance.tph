@@ -1,3 +1,7 @@
+PRINT @5094
+
+SILENT
+
 /////// Suna Seni encounter ///////
 
 COPY_EXISTING ~RESUNA.cre~ ~override~

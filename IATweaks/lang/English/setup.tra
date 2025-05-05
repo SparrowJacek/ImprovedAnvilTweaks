@@ -786,10 +786,10 @@ Advantages:
 – Receives a +15% bonus when scribing scrolls from the Conjuration school.
 – Receives a +2 bonus when making Saving Throws against spells from the Conjuration school.
 – Targets suffer a -2 penalty when making Saving Throws against spells from the Conjuration school.
-- Maximum limit of creatures summoned at the same time is 6, not 5 when determining if a creature can be summoned by a Conjurer.
-- Creatures summoned by Conjurers via Monster Summoning I-VII spells gain additional +2 damage, thac0, AC, strength and have 20% more hit points.
+- Maximum limit of creatures summoned at the same time is 6, not 5 when determining if a creature can be summoned by a conjuration spell cast by Conjurer.
+- All creatures, apart from Elementals, Nishruu and Hakeashar, summoned by conjuration spells gain additional +2 damage, thac0, AC, strength and have 20% more hit points.
 - Creatures summoned by Conjurers via Monster Summoning IV-VII spells gain additional +2 movement speed and +1 attack per round.
-- From level 24, creatures summoned by Conjurers via Monster Summoning I-VII spells are immune to spells and effects that would unsummon them. 
+- From level 24, all creatures, apart from Nishruu and Hakeashar, summoned by conjuration spells become immune to spells and effects that would unsummon them. 
 
 Disadvantages:
 – May not learn or cast any spells of the Divination school.

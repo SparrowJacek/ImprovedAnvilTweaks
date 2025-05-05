@@ -330,7 +330,7 @@ COPY_EXISTING ~spwi910.spl~ ~override~
 
 // More powerful versions of summons for Conjurer
 
-COMPILE ~IATweaks\scripts\creatures\S!MONSUM.baf~
+COMPILE ~IATweaks\scripts\creatures\S!CONJUR.baf~
 
 
 OUTER_SET monster_summon_buff_str = RESOLVE_STR_REF (@5050)
@@ -343,12 +343,88 @@ COPY ~IATweaks\resources\spl\s!smbuf1.spl~ ~override~
 
 COPY ~IATweaks\resources\spl\s!smbuf2.spl~ ~override~
 
-ACTION_FOR_EACH summoned_monster IN ~OGRELESU~ ~OGRESU~ ~ETTERCSU~ ~S!MINOSU~ ~S!SALASU~ ~S!TROLSU~ ~S!YUANSU~ BEGIN
+COPY_EXISTING ~SPIDPHSU.cre~ ~override~
+    WRITE_ASCII 0x260 ~PSPIDER~ #8
+
+ACTION_FOR_EACH summoned_monster IN ~OGRELESU~ ~OGRESU~ ~ETTERCSU~ ~S!MINOSU~ ~S!SALASU~ ~S!TROLSU~ ~S!YUANSU~ ~SPIDSWSU~ ~SPIDPHSU~ ~SPIDGISU~ ~STALKE~ ~WYVERNSU~ ~CARRIOSU~ ~EFREETSU~ ~DJINNISU~ BEGIN
   COPY_EXISTING ~%summoned_monster%.cre~ ~override~
-    WRITE_ASCII 0x258 ~S!MONSUM~ #8
+    WRITE_ASCII 0x248 ~S!CONJUR~ #8
 END
 
 COPY ~IATweaks\resources\spl\s!smbuf3.spl~ ~override~
+
+// 6 summons instead of 5
+
+// Add lines to splprot.2da
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~SUMMONEDNUM<6~
+    stat                  = ~0x115~
+    value                 = ~6~
+    relation              = ~2~
+  RET
+    less_than_6_summons_row = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~CANT_SUMMON_MORE_CREATURES_CONJURER~
+    stat                  = ~0x104~
+    value                 = ~%less_than_6_summons_row%~
+    relation              = ~%not_allies_row%~
+  RET
+    allies_cant_summon_more_conjurer = new_line_number
+END
+
+ACTION_FOR_EACH orig_summ_spell IN ~spwi309~ ~spwi407~ ~spwi423~ ~spwi504~ ~spwi601~ ~spwi618~ ~spwi619~ ~spwi623~ ~spwi624~ ~spwi712~ ~spwi717~ ~spwi718~ ~spwi719~ ~spwi815~ ~spwi902~ BEGIN
+  COPY_EXISTING ~%orig_summ_spell%.spl~ ~override/%orig_summ_spell%d.spl~
+    WRITE_LONG 0x08 ~-1~ // Remove spell name
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 318
+        parameter1 = 0
+        parameter2 = allies_cant_summon_more_conjurer
+      STR_VAR
+        resource = EVALUATE_BUFFER ~%orig_summ_spell%d~
+    END
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 326
+        parameter1 = 0
+        parameter2 = allies_cant_summon_more_conjurer
+      STR_VAR
+        resource = EVALUATE_BUFFER ~%orig_summ_spell%d~
+    END
+END
+
+ACTION_FOR_EACH orig_summ_spell IN ~spwi309~ ~spwi407~ ~spwi423~ ~spwi504~ ~spwi601~ ~spwi618~ ~spwi619~ ~spwi623~ ~spwi624~ ~spwi712~ ~spwi717~ ~spwi718~ ~spwi719~ ~spwi815~ ~spwi902~ BEGIN
+  COPY_EXISTING ~%orig_summ_spell%.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      multi_match = 1
+      match_opcode = 318
+      parameter1 = 128
+      parameter2 = %kit_equals_row%
+      probability1 = 100
+      probability2 = 0
+    STR_VAR
+      resource = EVALUATE_BUFFER ~%orig_summ_spell%~
+      insert = ~first~
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      multi_match = 1
+      match_opcode = 326
+      parameter1 = 128
+      parameter2 = %kit_equals_row% 
+      probability1 = 100
+      probability2 = 0
+    STR_VAR
+      resource = EVALUATE_BUFFER ~%orig_summ_spell%d~
+      insert = ~first~
+  END
+END
 
 //////// TRANSMUTER //////////
 

@@ -1,0 +1,37 @@
+IF
+	Kit(LastSummonerOf(Myself),MAGESCHOOL_CONJURER)
+	Global("conjurerbuff","LOCALS",0)
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("s!smbuf1",Myself)  // No such index
+		Continue()
+END
+
+IF
+	Kit(LastSummonerOf(Myself),MAGESCHOOL_CONJURER)
+	LevelGT(Myself,10)
+	Global("conjurerbuff","LOCALS",0)
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("s!smbuf2",Myself)  // No such index
+		Continue()
+END
+
+IF
+	Kit(LastSummonerOf(Myself),MAGESCHOOL_CONJURER)
+	LevelGT(LastSummonerOf(Myself),23)
+	Global("conjurerbuff","LOCALS",0)
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("s!smbuf3",Myself)  // No such index
+		Continue()
+END
+
+IF
+	Kit(LastSummonerOf(Myself),MAGESCHOOL_CONJURER)
+	Global("conjurerbuff","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("conjurerbuff","LOCALS",1)
+		Continue()
+END

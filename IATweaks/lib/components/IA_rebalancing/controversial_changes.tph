@@ -776,6 +776,16 @@ ACTION_FOR_EACH lesser_golem_weapon IN ~S!GEM.itm~ ~S!AMBER.itm~ BEGIN
     END 
 END
 
+// Lower Amber Golem capabilities of lowering electricity resistance on hit
+
+COPY_EXISTING ~S!AMBER.itm~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 29
+      probability2 = 41
+      duration = 30
+  END
+
 // Remove immunity to RoF from Asylum Scouts
 
 COPY_EXISTING ~S!GEMPP.cre~ ~override~

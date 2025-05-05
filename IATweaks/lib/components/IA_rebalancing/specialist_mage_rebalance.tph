@@ -28,7 +28,7 @@ END
 
 COPY ~IATweaks\resources\eff\s!cnt01a.eff~ ~override~
 COPY ~IATweaks\resources\spl\s!cnt01a.spl~ ~override~
-COPY ~IATweaks\resources\spl\s!cnt01b.spl~ ~override~ // Remove Magic on self if HP less than 75  
+COPY ~IATweaks\resources\spl\s!cnt01b.spl~ ~override~ // Remove Magic on self if HP less than 75
 
 COPY ~IATweaks\resources\eff\s!cnt02a.eff~ ~override~
 COPY ~IATweaks\resources\spl\s!cnt02a.spl~ ~override~
@@ -79,6 +79,14 @@ COPY ~IATweaks\resources\spl\s!cnt03b.spl~ ~override\s!cnt04b.spl~ // PFMW on se
     STR_VAR
       resource = ~SPWI611~
   END
+
+COPY ~IATweaks\resources\eff\s!cnt05a.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!cnt05a.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!cnt05b.spl~ ~override~ // SI:Abjuration if not active on hit
+
+COPY ~IATweaks\resources\eff\s!cnt06a.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!cnt06a.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!cnt06b.spl~ ~override~ // SI:Abjuration, GoI and Spell Turning if not active on hit
 
 // Add condition for checking specific kit in splprot.2da
 

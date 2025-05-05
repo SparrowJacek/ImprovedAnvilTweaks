@@ -803,3 +803,30 @@ END
 
 COPY_EXISTING ~KUOSPER.itm~ ~override~
   WRITE_LONG 0x18 42
+
+// Apply -4 str/con penalty to Auramasters as a separate spell
+
+COPY_EXISTING ~ABCLSMOD.2da~ ~override~
+  REPLACE_EVALUATE
+    ~AURAMASTER*~
+    BEGIN
+    END
+    ~AURAMASTER 0 0 0 0 0 0~
+  PRETTY_PRINT_2DA
+
+COPY_EXISTING ~ABCLASRQ.2da~ ~override~
+  REPLACE_EVALUATE
+    ~AURAMASTER*~
+    BEGIN
+    END
+    ~AURAMASTER 5 0 5 12 12 15~
+  PRETTY_PRINT_2DA
+
+COPY ~IATweaks\resources\spl\s!aura-4.spl~ ~override~
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~AMDK.2da~
+    row_desc = ~STAT_PENALTY~
+    level1 = ~AP_S!AURA-4~
+END

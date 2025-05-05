@@ -1,5 +1,3 @@
-/// Remove class restrictions from the Gypsy quests and the Limak encounter. The Old Ones quest remains Necromancer-only. ///
-
 PRINT @5083
 
 SILENT
@@ -264,11 +262,11 @@ COPY_EXISTING_REGEXP GLOB ~.*\.SPL~ ~override~
       LPF ~CLONE_EFFECT~ // The easiest way to add protection from the spell right above the summoning effect
         INT_VAR
           match_opcode = 177
-          duration = 0
+          timing = 10
+          duration = 3
           opcode = 318
           parameter1 = 1
           parameter2 = %allies_cant_summon_more%
-          special = RESOLVE_STR_REF (@6000)
         STR_VAR
           resource = EVAL ~%SOURCE_RES%~
       END

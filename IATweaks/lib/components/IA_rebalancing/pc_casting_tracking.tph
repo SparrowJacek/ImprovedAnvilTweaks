@@ -53,7 +53,10 @@ ACTION_FOR_EACH powerful_spell_scroll IN ~scrl9g~ ~s!scrl06~ BEGIN
   COPY_EXISTING ~%powerful_spell_scroll%.itm~ ~override~
     LPF ~CLONE_EFFECT~ 
       INT_VAR
-        opcode = 318
+        multi_match = 1
+        match_opcode = 318
+        parameter1 = 0
+        parameter2 = 0
       STR_VAR
         resource = ~S!CASTT1~
         insert = ~below~
@@ -80,7 +83,10 @@ ACTION_FOR_EACH priority_spell_scroll IN ~scrlb4~ ~scrl8d~ ~scrl9a~ ~scrl8g~ ~sc
   COPY_EXISTING ~%priority_spell_scroll%.itm~ ~override~
     LPF ~CLONE_EFFECT~ 
       INT_VAR
-        opcode = 318
+        multi_match = 1
+        match_opcode = 318
+        parameter1 = 0
+        parameter2 = 0
       STR_VAR
         resource = ~S!CASTT2~
         insert = ~below~

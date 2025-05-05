@@ -1155,7 +1155,7 @@ COPY_EXISTING ~SPPR720.spl~ ~override~
 
 // Cure spells
 
-ACTION_FOR_EACH healing_spell IN ~sppr103.spl~ ~sppr315.spl~ ~sppr401.spl~ ~sppr502.spl~ BEGIN
+ACTION_FOR_EACH healing_spell IN ~spin101.spl~ ~sppr103.spl~ ~sppr315.spl~ ~sppr401.spl~ ~sppr502.spl~ ~spin200.spl~ ~spini40.spl~ ~spin958.spl~ BEGIN
   COPY_EXISTING ~%healing_spell%~ ~override~
     READ_LONG 0x34 spell_level
     LPF ~CLONE_EFFECT~
@@ -1167,6 +1167,9 @@ ACTION_FOR_EACH healing_spell IN ~sppr103.spl~ ~sppr315.spl~ ~sppr401.spl~ ~sppr
 END
 
 // Update spell descriptions
+
+COPY_EXISTING ~spin101.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6222
 
 COPY_EXISTING ~sppr103.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6014
@@ -1188,11 +1191,81 @@ COPY_EXISTING ~scrl56.itm~ ~override~
 COPY_EXISTING ~sppr502.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6017
 
+COPY_EXISTING ~spin200.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6223
+
+COPY_EXISTING ~spini40.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6223
+
+COPY_EXISTING ~spin958.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 17
+      match_parameter2 = 0
+      parameter1 = 17
+  END
+
 COPY_EXISTING ~s!scrl12.itm~ ~override~
   SAY IDENTIFIED_DESC @6017
 
 COPY_EXISTING ~scrl61.itm~ ~override~
   SAY IDENTIFIED_DESC @6017
+
+// Mend spells
+
+ACTION_FOR_EACH healing_spell IN ~sppr116.spl~ ~sppr320.spl~ ~sppr419.spl~ ~sppr518.spl~ BEGIN
+  COPY_EXISTING ~%healing_spell%~ ~override~
+    READ_LONG 0x34 spell_level
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 17
+        parameter1 = %spell_level% * 3
+        parameter2 = 2
+    END
+END
+
+COPY_EXISTING ~sppr116.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6216
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      speed = 3
+  END
+
+COPY_EXISTING ~sppr320.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6217
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      speed = 4
+  END
+
+COPY_EXISTING ~sppr419.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6218
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      speed = 5
+  END
+
+COPY_EXISTING ~sppr518.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6219
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      speed = 6
+  END
+
+COPY_EXISTING ~sppr519.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6220
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      speed = 4
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 17
+      parameter1 = 15
+  END
+
+COPY_EXISTING ~sppr733.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6221
 
 // Update Temple descriptions
 

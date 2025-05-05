@@ -974,6 +974,7 @@ COPY_EXISTING ~MINDFLAY.itm~ ~override~
 // Mind Flayer Focused Mind Blast
 
 COPY_EXISTING ~BIGNAREA.pro~ ~override/S!MFAREA.pro~
+  WRITE_BYTE 0x0c 18 // Ignore caster
   WRITE_SHORT 0x200 192 // Affect only allies
 
 ADD_PROJECTILE ~override/S!MFAREA.pro~

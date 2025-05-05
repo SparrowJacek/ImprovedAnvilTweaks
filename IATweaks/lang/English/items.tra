@@ -760,9 +760,17 @@ Proficiency Type: Dagger
 Type: 1-handed
 Require: 3 Strength~
 
-@7066 = ~~
+@7066 = ~Bracers of Brute Force~
 
-@7067 = ~~
+@7067 = ~Bracers of Brute Force
+Though deceptively elegant in design, these heavy metal wristbands are etched with ancient sigils of war and rage. Worn by a long-forgotten duelist who favored brute strength over finesse, they channel raw power into each blow. However, their unbalanced weight and aggressive enchantment throw off the wearer’s aim, making precision strikes more difficult.
+
+STATISTICS:
+
++2 bonus to melee damage
+–2 penalty to THAC0
+
+Weight: 2~
 
 @7068 = ~~
 

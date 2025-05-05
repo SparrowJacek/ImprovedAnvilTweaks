@@ -80,3 +80,19 @@ COPY_EXISTING ~HALB11.itm~ ~override~
       savingthrow = 4 // Death
       save_bonus = ~-2~
   END
+
+// Change Ravager to only deal piercing damage
+
+COPY_EXISTING ~HALB10.itm~ ~override~
+  LPF ~ALTER_ITEM_HEADER~
+    INT_VAR
+      header_type = 1
+      damage_type = 1
+  END
+
+COPY_EXISTING ~HALB11.itm~ ~override~
+  LPF ~ALTER_ITEM_HEADER~
+    INT_VAR
+      header_type = 1
+      damage_type = 1
+  END

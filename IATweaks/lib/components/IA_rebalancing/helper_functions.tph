@@ -112,6 +112,7 @@ BEGIN
       check_globals  = 1
       check_headers  = 1
       match_opcode   = %match_opcode%
+      match_dispel   = %match_dispel%
       match_param1   = %match_param1%
       match_param2   = %match_param2%
       header_length = 0x38

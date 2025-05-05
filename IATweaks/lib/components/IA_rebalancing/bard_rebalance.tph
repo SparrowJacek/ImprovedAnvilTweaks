@@ -1,0 +1,52 @@
+
+// Class and Kit description
+
+LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~clastext.2da~
+  RET_ARRAY
+    clastext_cols = 2da_columns_to_ids_mapping
+END
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~clastext.2da~
+  RET_ARRAY
+    clastext_rows = 2da_rows_to_ids_mapping
+END
+
+// update class description for Thieves
+COPY_EXISTING ~clastext.2da~ ~override/clastext.2da~
+  COUNT_2DA_COLS ~colcount~
+  SET description_col = $clastext_cols("DESCSTR")
+  SET_2DA_ENTRY_LATER ~s!bard_desc~ $clastext_rows("BARD") description_col RESOLVE_STR_REF (@5106)
+  SET_2DA_ENTRY_LATER ~s!bard_desc~ $clastext_rows("BLADE") description_col RESOLVE_STR_REF (@5103)
+  SET_2DA_ENTRY_LATER ~s!bard_desc~ $clastext_rows("JESTER") description_col RESOLVE_STR_REF (@5104)
+  SET_2DA_ENTRY_LATER ~s!bard_desc~ $clastext_rows("SKALD") description_col RESOLVE_STR_REF (@5105)
+  SET_2DA_ENTRIES_NOW ~s!bard_desc~ ~colcount~
+  PRETTY_PRINT_2DA
+
+LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~kitlist.2da~
+  RET_ARRAY
+    kitlist_cols = 2da_columns_to_ids_mapping
+END
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  INT_VAR
+    col_with_names = 1
+  STR_VAR
+    2da_table_name = ~kitlist.2da~
+  RET_ARRAY
+    kitlist_rows = 2da_rows_to_ids_mapping
+END
+
+COPY_EXISTING ~kitlist.2da~ ~override/kitlist.2da~
+  COUNT_2DA_COLS ~colcount~
+  SET description_col = $kitlist_cols("HELP")
+  SET_2DA_ENTRY_LATER ~s!bard_desc~ $clastext_rows("BLADE") description_col RESOLVE_STR_REF (@5103)
+  SET_2DA_ENTRY_LATER ~s!bard_desc~ $clastext_rows("JESTER") description_col RESOLVE_STR_REF (@5104)
+  SET_2DA_ENTRY_LATER ~s!bard_desc~ $clastext_rows("SKALD") description_col RESOLVE_STR_REF (@5105)
+  SET_2DA_ENTRIES_NOW ~s!bard_desc~ ~colcount~
+  PRETTY_PRINT_2DA

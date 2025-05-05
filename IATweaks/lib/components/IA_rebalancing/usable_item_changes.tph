@@ -127,6 +127,13 @@ END
 
 //////////// Scrolls and Wands not being able to target invisible + not usable when silenced //////////////
 
+COPY ~IATweaks\resources\spl\s!noscrl.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@5108)
+  END
+
 COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
   READ_SHORT 0x1c item_category
   PATCH_IF (item_category = 11 OR item_category = 35) BEGIN
@@ -171,6 +178,19 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
       STR_VAR
         insert = ~above~
         resource = EVAL ~%SOURCE_RES%~
+    END
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 318
+        opcode = 146
+        parameter1 = 0
+        parameter2 = 1
+        timing = 0
+        duation = 0
+        silent = 1
+      STR_VAR
+        insert = ~above~
+        resource = ~S!NOSCRL~
     END
   END
 

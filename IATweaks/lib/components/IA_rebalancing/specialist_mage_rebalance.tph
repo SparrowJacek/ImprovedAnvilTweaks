@@ -147,6 +147,37 @@ COPY_EXISTING ~spwi215.spl~ ~override~
 COPY_EXISTING ~SCRL99.itm~ ~override~
   SAY IDENTIFIED_DESC @6056
 
+// Nishruu and Hakeshar changes, they lower the number of spell slots now instead of draining spells
+
+COPY ~IATweaks\resources\itm\S!NISHR3.itm~ ~override~
+COPY ~IATweaks\resources\itm\S!HAKESH.itm~ ~override~
+
+COPY_EXISTING ~spwi624.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6224
+
+COPY_EXISTING ~scrl8b.itm~ ~override~
+  SAY IDENTIFIED_DESC @6224
+
+COPY_EXISTING ~spwi719.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6225
+
+COPY_EXISTING ~scrl8u.itm~ ~override~
+  SAY IDENTIFIED_DESC @6225
+
+COPY_EXISTING ~NISHRUSU.cre~ ~override~  
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~NISHRUU~
+  END
+  ADD_CRE_ITEM ~S!NISHR3~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~WEAPON1~ EQUIP
+
+COPY_EXISTING ~HAKSU.cre~ ~override~  
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~NISHRUU~
+  END
+  ADD_CRE_ITEM ~S!HAKESH~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~WEAPON1~ EQUIP
+
 // Shield Mind and Body
 
 COPY_EXISTING ~sppr112a.bam~ ~override\spwi725a.bam~

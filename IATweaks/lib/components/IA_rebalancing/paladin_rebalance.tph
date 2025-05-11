@@ -36,3 +36,18 @@ COPY_EXISTING ~weapprof.2da~  ~override/weapprof.2da~
   SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ sw_and_sh_row $weapprof_cols("UNDEAD_HUNTER") ~3~
   SET_2DA_ENTRIES_NOW ~_#_#_#weapprof~ ~colcount~
   PRETTY_PRINT_2DA
+
+COPY_EXISTING ~spcl211.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6229
+  // Extend duration by 50%
+  GET_OFFSET_ARRAY ab_array SPL_V10_HEADERS
+  PHP_EACH ab_array AS int => ab_off BEGIN
+    GET_OFFSET_ARRAY2 fx_array ab_off SPL_V10_HEAD_EFFECTS
+    PHP_EACH fx_array AS int => fx_off BEGIN
+      READ_SHORT (fx_off + 0x00) opcode
+      PATCH_IF opcode = 17 BEGIN
+        WRITE_LONG (fx_off + 0x04) THIS * 5  / 2
+      END
+    END
+  END
+BUT_ONLY

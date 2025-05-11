@@ -96,6 +96,37 @@ COPY_EXISTING ~VICONI6.cre~ ~override~
  WRITE_BYTE  0x246 ~%SHAR%~
  WRITE_BYTE  0x247 0x40
 
+// Remove holy symbols from pure Clerics
+
+COPY_EXISTING ~CLABPR01.2da~ ~override~
+  REPLACE_EVALUATE
+    ~AP_CDHLYSYM~
+    BEGIN
+    END
+    ~****~
+  PRETTY_PRINT_2DA
+
+// Allow Cleric kits to get their Holy Symbols at level 20
+
+ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR02.2da~ ~CLABPR03.2da~ ~CLABPR04.2da~ ~OHTYR.2da~ ~OHTEMPUS.2da~ ~SHAR.2da~ BEGIN
+  COPY_EXISTING ~%cleric_kit_clab%~ ~override~
+    REPLACE_EVALUATE
+      ~AP_CDHLYSYM~
+      BEGIN
+      END
+      ~****~
+    PRETTY_PRINT_2DA
+END
+
+ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR02.2da~ ~CLABPR03.2da~ ~CLABPR04.2da~ ~OHTYR.2da~ ~OHTEMPUS.2da~ ~SHAR.2da~ BEGIN
+  LAF ~S!ADD_CLAB_ROW~
+    STR_VAR
+      filename = ~%cleric_kit_clab%~
+      row_desc = ~HOLY_SYMBOL~
+      level20 = ~AP_CDHLYSYM~
+  END
+END
+
 // Make all Cleric kits use unique files for their HLAs
 
 ACTION_DEFINE_ASSOCIATIVE_ARRAY hla_row_to_abbrev_mapping BEGIN

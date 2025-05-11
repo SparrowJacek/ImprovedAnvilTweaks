@@ -1,0 +1,7 @@
+IF
+	Entered([ANYONE])
+THEN
+	RESPONSE #100
+		SetGlobal("Iapartycame","AR0206",1)  // Ghoul village (Temple District)
+END
+

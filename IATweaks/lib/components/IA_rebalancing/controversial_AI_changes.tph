@@ -214,3 +214,26 @@ COPY_EXISTING ~S!KUOBPR.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
   ADD_MEMORIZED_SPELL ~SPCL908~ #0 ~innate~ ( 1 ) // War Cry
   // The last HLA are Foreknowledge and Continual Cure, in Controversial we'll use GWW and War Cry
+
+// Insane Dwarf in the Underdark
+
+COPY_EXISTING ~UDDWARF.cre~ ~override~
+
+  LPF ~ALTER_EFFECT~
+    STR_VAR
+      match_opcode = 16
+      parameter2 = 0
+  END
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL321~ #0 ~innate~ ( 4 ) // Enrage
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 3 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 4 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL908~ #0 ~innate~ ( 1 ) // War Cry
+
+COMPILE ~IATweaks\scripts\controversial\S!UDDWAR.BAF~
+

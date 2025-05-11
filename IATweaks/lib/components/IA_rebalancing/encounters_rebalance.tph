@@ -1318,6 +1318,8 @@ COPY_EXISTING ~GPSIMB.cre~ ~override~
   ADD_CRE_ITEM ~POTN55~ #2 #0 #0 ~UNSTEALABLE~ ~INV14~ // Superior Healing Potion
   ADD_CRE_ITEM ~POTN37~ #0 #0 #0 ~UNSTEALABLE~ ~INV15~ // Oil of Resurgence
 
+  REMOVE_MEMORIZED_SPELLS
+
   ADD_MEMORIZED_SPELL ~SPPR111~ #0 ~priest~ ( 2 ) // Armor of Faith
   ADD_MEMORIZED_SPELL ~SPPR113~ #0 ~priest~ ( 2 ) // Doom
   ADD_MEMORIZED_SPELL ~SPPR202~ #1 ~priest~ ( 1 ) // Barkskin
@@ -1381,6 +1383,8 @@ END
   ADD_CRE_ITEM ~DWPLAT01~ #0 #0 #0 ~UNSTEALABLE~ ~ARMOR~
   ADD_CRE_ITEM ~POTN14~ #1 #0 #0 ~UNSTEALABLE~ ~INV10~ // Oil of Speed
   ADD_CRE_ITEM ~POTN09~ #0 #0 #0 ~UNSTEALABLE~ ~INV12~ // Potion of Heroism
+
+  REMOVE_MEMORIZED_SPELLS
 
   ADD_MEMORIZED_SPELL ~SPCL321~ #0 ~innate~ ( 4 ) // Enrage
   ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
@@ -1455,6 +1459,8 @@ COPY_EXISTING ~JAEL04.cre~ ~override~
   ADD_CRE_ITEM ~SW1H04~ #0 #0 #0 ~UNSTEALABLE~ ~WEAPON3~
   ADD_CRE_ITEM ~POTN14~ #2 #0 #0 ~UNSTEALABLE~ ~INV10~ // Oil of Speed
   ADD_CRE_ITEM ~POTN02~ #1 #0 #0 ~UNSTEALABLE~ ~INV12~ // Potion of Fire Resistance
+
+  REMOVE_MEMORIZED_SPELLS
 
   ADD_MEMORIZED_SPELL ~SPCL321~ #0 ~innate~ ( 4 ) // Enrage
 
@@ -1565,6 +1571,8 @@ COPY_EXISTING ~JAEL03.cre~ ~override~
   ADD_CRE_ITEM ~POTN14~ #2 #0 #0 ~UNSTEALABLE~ ~INV14~ // Oil of Speed
   ADD_CRE_ITEM ~POTN14~ #1 #0 #0 ~UNSTEALABLE~ ~INV15~ // Oil of Resurgence
 
+  REMOVE_MEMORIZED_SPELLS
+
   ADD_MEMORIZED_SPELL ~SPCL144~ #0 ~innate~ ( 6 ) // Kai
   ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
   ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
@@ -1631,3 +1639,38 @@ COPY_EXISTING ~AR2400.are~ ~override~
       WRITE_ASCII  door_off + 0x80 ~S!MFDOOR~
     END
   END
+
+// Insane Dwarf in the Underdark
+
+COPY_EXISTING ~UDDWARF.cre~ ~override~
+  WRITE_BYTE 0x52 THIS + 4 // Thac0
+  WRITE_BYTE 0x5d 50 // Resist Magic
+  WRITE_LONG 0x244 0x40010000 // Kit = Berserker
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~DRAGRING~
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!DRACON~
+  END
+
+  LPF ~ALTER_EFFECT~
+    STR_VAR
+      match_opcode = 31
+      parameter1 = 60
+  END
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL321~ #0 ~innate~ ( 4 ) // Enrage
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 3 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 2 ) // Greater Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 4 ) // Critical Strike
+
+COMPILE ~IATweaks\scripts\creatures\S!UDDWAR.BAF~
+

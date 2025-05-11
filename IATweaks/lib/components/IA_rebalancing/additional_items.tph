@@ -158,7 +158,11 @@ COPY ~IATweaks\resources\bam\s!brc20b.bam~ ~override~
 COPY ~IATweaks\resources\itm\s!brac20.itm~ ~override~
   SAY NAME2 @7066
   SAY IDENTIFIED_DESC @7067
-// TODO ADD THIS ITEM SOMEWHERE!
+
+// Insane Dwarf from the Underdark
+
+COPY_EXISTING ~UDDWARF.cre~ ~override~
+  ADD_CRE_ITEM ~s!brac20~ #0 #0 #0 ~NONE~ ~GLOVES~
 
 //////////// Insulated Arcs of Disredain
 

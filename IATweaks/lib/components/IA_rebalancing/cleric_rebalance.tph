@@ -4177,6 +4177,8 @@ COPY_EXISTING ~THESHAL.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPPR411~ #3 ~priest~ ( 5 ) // Poison
 
 COMPILE ~IATweaks\scripts\creatures\S!MAYOR.BAF~
+COMPILE ~IATweaks\scripts\others\S!TRP2.BAF~
+COMPILE ~IATweaks\scripts\others\S!AR206.BAF~
 
 // Kuo Toa Battlepriest
 

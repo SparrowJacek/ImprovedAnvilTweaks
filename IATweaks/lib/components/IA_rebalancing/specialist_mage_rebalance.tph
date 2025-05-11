@@ -84,9 +84,14 @@ COPY ~IATweaks\resources\eff\s!cnt05a.eff~ ~override~
 COPY ~IATweaks\resources\spl\s!cnt05a.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!cnt05b.spl~ ~override~ // SI:Abjuration if not active on hit
 
+ADD_PROJECTILE ~IATweaks\resources\pro\s!invbas.pro~
 COPY ~IATweaks\resources\eff\s!cnt06a.eff~ ~override~
 COPY ~IATweaks\resources\spl\s!cnt06a.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!cnt06b.spl~ ~override~ // SI:Abjuration, GoI and Spell Turning if not active on hit
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~%s!invbas%~
+  END
 
 // Add condition for checking specific kit in splprot.2da
 
@@ -186,6 +191,28 @@ COPY_EXISTING ~HAKSU.cre~ ~override~
   END
   ADD_CRE_ITEM ~S!HAKESH~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~WEAPON1~ EQUIP
 
+// Power Word Silence
+
+COPY_EXISTING ~spwi612.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6230
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 318
+      insert_point = 0
+      target = 2
+      timing = 10
+      parameter1 = 70
+      parameter2 = 144
+      duration = 2
+      resist_dispel = 0
+    STR_VAR
+      resource = "SPWI612"
+  END
+
+COPY_EXISTING ~scrl7p.itm~ ~override~
+  SAY IDENTIFIED_DESC @6230
+
+ 
 // Shield Mind and Body
 
 COPY_EXISTING ~sppr112a.bam~ ~override\spwi725a.bam~

@@ -1655,6 +1655,34 @@ Casting this powerful spell makes Priestess of Shar immune to all divination spe
 
 The character channels positive energy to heal the touched creature of 5 Hit Points per level of the caster up till 170.~
 
-@6229 = ~Shield Bash~
+@6230 = ~Power Word, Silence
+(Conjuration/Summoning)
 
-@6230 = ~Shield Bash~
+Level: 6
+Range: 90 ft.
+Duration: 7 rounds
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: None
+
+In using this spell, the wizard points at an individual and utters the Power Word. The creature targeted must have less than 70 Hit Points and gets no Saving Throw. For the next 7 rounds, that creature cannot make any sound. This silence completely foils any spells that require verbal components. The only ways to counter this spell are either a Dispel Magic or a Vocalize spell.~
+
+@6231 = ~Shield Bash~
+
+@6232 = ~Shield Bash~
+
+@6233 = ~Shield Bash~
+
+@6234 = ~Shield Bash~
+
+@6235 = ~Shield Bash~
+
+@6236 = ~Shield Bash~
+
+@6237 = ~Shield Bash~
+
+@6238 = ~Shield Bash~
+
+@6239 = ~Shield Bash~
+
+@6240 = ~Shield Bash~

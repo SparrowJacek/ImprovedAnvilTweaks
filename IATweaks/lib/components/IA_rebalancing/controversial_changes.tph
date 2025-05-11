@@ -1466,6 +1466,11 @@ COPY_EXISTING ~SPWISH12.spl~ ~override~
     STR_VAR
       match_resource = ~SPCL907~
   END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 328
+      match_parameter2 = 118
+  END
   PATCH_FOR_EACH physical_res_opcode IN 86 87 88 89 BEGIN
     LPF ~ALTER_EFFECT~
       INT_VAR

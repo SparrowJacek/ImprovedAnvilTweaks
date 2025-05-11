@@ -1249,6 +1249,13 @@ COPY_EXISTING ~SPPR720.spl~ ~override~
 
 // Cure spells
 
+// update Continual Cure description
+COPY_EXISTING ~SPPRI26.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6226
+
+COPY_EXISTING ~SPWSL05.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6226
+
 ACTION_FOR_EACH healing_spell IN ~spin101.spl~ ~sppr103.spl~ ~sppr315.spl~ ~sppr401.spl~ ~sppr502.spl~ ~spin200.spl~ ~spini40.spl~ ~spin958.spl~ BEGIN
   COPY_EXISTING ~%healing_spell%~ ~override~
     READ_LONG 0x34 spell_level

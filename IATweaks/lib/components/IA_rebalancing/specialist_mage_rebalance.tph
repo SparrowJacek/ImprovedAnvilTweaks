@@ -352,7 +352,7 @@ COPY_EXISTING ~spini59.spl~ ~override~
       resource = ~spini59~
   END
 
-// Change Imprisonment to Maze
+// Change Imprisonment to Maze and add immunity to it to all that protects from Imprisonment
 
 COPY_EXISTING ~spwi910.spl~ ~override~
   LPF ~ALTER_EFFECT~
@@ -360,6 +360,36 @@ COPY_EXISTING ~spwi910.spl~ ~override~
       match_opcode = 211
       opcode = 233
   END
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      silent = 1
+      multi_match = 1
+      match_opcode = 101
+      match_parameter2 = 211
+      opcode = 206
+      parameter2 = 0
+    STR_VAR
+      resource = ~SPWI910~
+  END
+
+  BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~.*\.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      silent = 1
+      multi_match = 1
+      match_opcode = 101
+      match_parameter2 = 211
+      opcode = 206
+      parameter2 = 0
+    STR_VAR
+      resource = ~SPWI910~
+  END
+
+  BUT_ONLY
 
 //////// CONJURER //////////
 

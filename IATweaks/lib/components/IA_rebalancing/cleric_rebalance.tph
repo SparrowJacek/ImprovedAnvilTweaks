@@ -4,6 +4,98 @@ SILENT
 
 INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
 
+// Priestess of Shar kit
+
+COPY_EXISTING ~SPWI112.spl~ ~override/s!mmshar.spl~
+  WRITE_SHORT 0x1c 2 // spell type
+  WRITE_LONG 0x1e 0 // exclusions
+
+COPY_EXISTING ~SPWI592.spl~ ~override/s!sishar.spl~
+  SAY UNIDENTIFIED_DESC @6228
+  WRITE_SHORT 0x1c 2 // spell type
+  WRITE_LONG 0x1e 0 // exclusions
+
+COPY_EXISTING ~SPWI714.spl~ ~override/s!psshar.spl~
+  WRITE_SHORT 0x1c 2 // spell type
+  WRITE_LONG 0x1e 0 // exclusions
+
+COPY_EXISTING ~SPPR509.spl~ ~override/s!mrshar.spl~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      target = 1
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      target = 2
+      resist_dispel = 0
+  END
+
+ACTION_FOR_EACH magic_resistance_spell IN ~SPPR509~ ~s!mrshar~ ~SPWISH31~ BEGIN
+  COPY_EXISTING ~%magic_resistance_spell%.spl~ ~override~
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        multi_match = 1
+        match_opcode = 206
+      STR_VAR
+        resource = ~S!MRSHAR~
+    END
+END
+
+COPY ~IATweaks\resources\spl\s!mdmg25.spl~ ~override~
+COPY ~IATweaks\resources\2da\LUSHAR.2da~ ~override~
+
+ADD_KIT ~SHAR~
+~SHAR 0 0 1 1 0 1 0 0~  // clasweap
+~SHAR 0 0 0 0 1 1 0 1 0 0 0 0 0 0 0 0 1 1 0 0 1 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~ // weapprof
+~SHAR 0 0 0 0 9 0~ // abclasrq
+~SHAR 0 0 0 0 0 0~ // abclsmod
+~SHAR 0 0 0 0 0 0~ // abdcdsrq
+~SHAR 0 0 0 0 0 0~ // abdcscrq
+~SHAR 0 0 1 0 1 1 0 0 1~ // alignmnt
+~SHAR 0 0 0 0 0 0~ // dualclas
+~IATweaks\resources\2da\SHAR.2da~ // clab file
+~~ // allowed races
+~0x04000000 3~ // usability & class flags
+~SHAR~ // HLA table
+~* * HELM19 BAG27 RING06 RING31 CLCK02 BOOT01 AMUL21 BRAC15 BELT10 * * * POTN52,5 POTN4,2 POTN14,5 HAMM07 SW1H27 STAF08~
+SAY @5109
+SAY @5110
+SAY @5111
+
+LAF fl#add_kit_ee // launch_action_function start
+  INT_VAR
+    biography = ~-1~
+    briefdesc = RESOLVE_STR_REF (@5111)
+    fallen = 0
+  STR_VAR
+    kit_name = ~SHAR~
+    clswpbon = ~0 0 3~
+    clsrcreq = ~0 0 0 0 0 0 0~
+END
+
+// assign the new kit and increase stats of Viconia
+COPY_EXISTING ~VICONI16.cre~ ~override~
+    REMOVE_KNOWN_SPELL ~SPPR609~
+    REMOVE_MEMORIZED_SPELL ~SPPR609~
+    REMOVE_KNOWN_SPELL ~SPPR614~
+    REMOVE_MEMORIZED_SPELL ~SPPR614~
+    REMOVE_KNOWN_SPELL ~SPPR707~
+    REMOVE_MEMORIZED_SPELL ~SPPR707~
+
+COPY_EXISTING ~VICONI6.cre~ ~override~
+              ~VICONI8.cre~ ~override~
+              ~VICONI9.cre~ ~override~
+              ~VICONI11.cre~ ~override~
+              ~VICONI13.cre~ ~override~
+              ~VICONI16.cre~ ~override~
+ WRITE_SHORT 0x24 THIS + 10
+ WRITE_SHORT 0x26 THIS + 10
+ WRITE_BYTE  0x238 13
+ WRITE_BYTE  0x23d 12
+ WRITE_SHORT 0x244 0
+ WRITE_BYTE  0x246 ~%SHAR%~
+ WRITE_BYTE  0x247 0x40
+
 // Make all Cleric kits use unique files for their HLAs
 
 ACTION_DEFINE_ASSOCIATIVE_ARRAY hla_row_to_abbrev_mapping BEGIN
@@ -58,6 +150,7 @@ COPY_EXISTING ~weapprof.2da~  ~override/weapprof.2da~
   SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ sw_and_sh_row $weapprof_cols("LATHANDER") ~2~
   SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ sw_and_sh_row $weapprof_cols("OHTYR") ~3~
   SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ sw_and_sh_row $weapprof_cols("OHTEMPUS") ~2~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ sw_and_sh_row $weapprof_cols("SHAR") ~2~
 // Enable Clerics to put points into daggers
   SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ dagger_row $weapprof_cols("CLERIC") ~1~
   SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ dagger_row $weapprof_cols("FIGHTER_CLERIC") ~2~
@@ -70,6 +163,7 @@ COPY_EXISTING ~weapprof.2da~  ~override/weapprof.2da~
   SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ dagger_row $weapprof_cols("LATHANDER") ~1~
   SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ dagger_row $weapprof_cols("OHTYR") ~1~
   SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ dagger_row $weapprof_cols("OHTEMPUS") ~1~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ dagger_row $weapprof_cols("SHAR") ~1~
   SET_2DA_ENTRIES_NOW ~_#_#_#weapprof~ ~colcount~
   PRETTY_PRINT_2DA
 
@@ -141,7 +235,7 @@ COPY ~IATweaks\resources\spl\s!aegis.spl~ ~override~
       parameter2 = ~%remove_specific_prots_immunity_state%~
   END
 
-ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR01.2da~ ~CLABPR02.2da~ ~CLABPR03.2da~ ~CLABPR04.2da~ ~OHTYR.2da~ ~OHTEMPUS.2da~ BEGIN
+ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR02.2da~ ~CLABPR03.2da~ ~CLABPR04.2da~ ~OHTYR.2da~ ~OHTEMPUS.2da~ ~SHAR.2da~ BEGIN
   LAF ~S!ADD_CLAB_ROW~
     STR_VAR
       filename = ~%cleric_kit_clab%~
@@ -529,7 +623,7 @@ COPY ~IATweaks\resources\bam\sppr520b.bam~ ~override~
 COPY ~IATweaks\resources\bam\sppr520c.bam~ ~override~
 COPY ~IATweaks\resources\bam\sppr520d.bam~ ~override~
 
-ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR02.2da~ ~CLABPR03.2da~ ~CLABPR04.2da~ ~OHTYR.2da~ ~OHTEMPUS.2da~ BEGIN
+ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR02.2da~ ~CLABPR03.2da~ ~CLABPR04.2da~ ~OHTYR.2da~ ~OHTEMPUS.2da~ ~SHAR.2da~ BEGIN
   LAF ~S!ADD_CLAB_ROW~
     STR_VAR
       filename = ~%cleric_kit_clab%~
@@ -664,7 +758,7 @@ COPY ~IATweaks\resources\bam\s!lifelb.bam~ ~override~
 COPY ~IATweaks\resources\bam\s!lifelc.bam~ ~override~
 COPY ~IATweaks\resources\bam\s!lifeld.bam~ ~override~
 
-ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR02.2da~ ~CLABPR03.2da~ ~CLABPR04.2da~ ~OHTYR.2da~ ~OHTEMPUS.2da~ BEGIN
+ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR02.2da~ ~CLABPR03.2da~ ~CLABPR04.2da~ ~OHTYR.2da~ ~OHTEMPUS.2da~ ~SHAR.2da~ BEGIN
   LAF ~S!ADD_CLAB_ROW~
     STR_VAR
       filename = ~%cleric_kit_clab%~
@@ -713,7 +807,7 @@ COPY ~IATweaks\resources\bam\spcl943c.bam~ ~override~
 
 // Add HLA entries
 
-ACTION_FOR_EACH cleric_kit_hla_file IN ~lucl1.2da~ ~lucl2.2da~ ~lucl3.2da~ ~lucl4.2da~ ~lucl5.2da~ BEGIN
+ACTION_FOR_EACH cleric_kit_hla_file IN ~lucl1.2da~ ~lucl2.2da~ ~lucl3.2da~ ~lucl4.2da~ ~lucl5.2da~ ~lushar.2da~ BEGIN
   LAF ~S!ADD_HLA_ROW~
     STR_VAR
       filename = ~%cleric_kit_hla_file%~
@@ -817,7 +911,7 @@ COPY ~IATweaks\resources\spl\SPPR617I.spl~ ~override/SPPR617I.spl~
 COPY ~IATweaks\resources\spl\SPPR617J.spl~ ~override/SPPR617J.spl~
 COPY ~IATweaks\resources\eff\S!hvshld.eff~ ~override/S!hvshld.eff~
 
-ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR02.2da~ ~CLABPR03.2da~ ~CLABPR04.2da~ ~OHTYR.2da~ ~OHTEMPUS.2da~ BEGIN
+ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR02.2da~ ~CLABPR03.2da~ ~CLABPR04.2da~ ~OHTYR.2da~ ~OHTEMPUS.2da~ ~SHAR.2da~ BEGIN
   LAF ~S!ADD_CLAB_ROW~
     STR_VAR
       filename = ~%cleric_kit_clab%~
@@ -965,7 +1059,7 @@ COPY_EXISTING_REGEXP GLOB ~.+\.cre~ ~override~
 
   // Remove summon animals spells
   PATCH_IF %char_class% != 21 AND %char_class% != 11 AND %char_class% != 16 BEGIN
-    REMOVE_KNOWN_SPELL ~SPPE202~
+    REMOVE_KNOWN_SPELL ~SPPR202~
     REMOVE_KNOWN_SPELL ~SPPR402~
     REMOVE_KNOWN_SPELL ~SPPR411~
     REMOVE_KNOWN_SPELL ~SPPR501~
@@ -2036,7 +2130,7 @@ COPY ~IATweaks\resources\spl\spcl942.spl~ ~override~
   SAY NAME1 @6032
   SAY UNIDENTIFIED_DESC @6033
 
-ACTION_FOR_EACH cleric_kit_hla_file IN ~lucl0.2da~ ~lucl1.2da~ ~lucl2.2da~ ~lucl3.2da~ ~lucl4.2da~ ~lucl5.2da~ BEGIN
+ACTION_FOR_EACH cleric_kit_hla_file IN ~lucl0.2da~ ~lucl1.2da~ ~lucl2.2da~ ~lucl3.2da~ ~lucl4.2da~ ~lucl5.2da~ ~lushar.2da~ BEGIN
   LAF ~S!ADD_HLA_ROW~
     STR_VAR
       filename = EVAL ~%cleric_kit_hla_file%~
@@ -2078,7 +2172,7 @@ COPY ~IATweaks\resources\spl\s!spldu2.spl~ ~override~
   SAY NAME1 @6188
   SAY UNIDENTIFIED_DESC @6189
 
-ACTION_FOR_EACH cleric_kit_hla_file IN ~lucl1.2da~ ~lucl2.2da~ ~lucl3.2da~ ~lucl4.2da~ ~lucl5.2da~ BEGIN
+ACTION_FOR_EACH cleric_kit_hla_file IN ~lucl1.2da~ ~lucl2.2da~ ~lucl3.2da~ ~lucl4.2da~ ~lucl5.2da~ ~lushar.2da~ BEGIN
   LAF ~S!ADD_HLA_ROW~
     STR_VAR
       filename = EVAL ~%cleric_kit_hla_file%~
@@ -2191,7 +2285,7 @@ COPY ~IATweaks\resources\spl\sppr735e.spl~ ~override~
       parameter1 = RESOLVE_STR_REF (@6038)
   END
 
-ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR02.2da~ ~CLABPR03.2da~ ~CLABPR04.2da~ ~OHTYR.2da~ ~OHTEMPUS.2da~ BEGIN
+ACTION_FOR_EACH cleric_kit_clab IN ~CLABPR02.2da~ ~CLABPR03.2da~ ~CLABPR04.2da~ ~OHTYR.2da~ ~OHTEMPUS.2da~ ~SHAR.2da~ BEGIN
   LAF ~S!ADD_CLAB_ROW~
     STR_VAR
       filename = ~%cleric_kit_clab%~

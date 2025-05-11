@@ -166,7 +166,9 @@ Advantages:
 - From level 20, Armor of Faith cast by this kit will grant 15% resistances, last for 50% longer and will be undispellable.
 – May cast a special version of Hold Undead once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
 - Draw Upon Holy Might cast by Priest of Lathander lasts for 15 rounds and is undispellable.
-- Gains access to 1 new spell of level 5 - Protective Chant, 1 new spell of level 6 - Life Link and 1 of level 7 - Spare the Dying.
+- Additional fifth level spell: Protective Chant.
+- Additional sixth level spell: Life Link.
+- Additional seventh level spell: Spare the Dying.
 – May cast Boon of Lathander once per day. Gains one use at level 10 and another use every 6 levels thereafter.
 
 BOON OF LATHANDER: This spell lasts for 1 turn. It gives the caster a +1 bonus to all Saving Throws, +2 to damage and thac0, and +1 extra attack per round.
@@ -185,7 +187,9 @@ Advantages:
 - From level 20, Armor of Faith cast by this kit will grant 15% resistances, last for 50% longer and will be undispellable.
 – May cast Lightning Bolt of Talos once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
 - Gains early access to a HLA Purify Aura, may cast it once at level 5, then gains additional uses at levels 15, 25 and 35.
-- Gains access to 1 new spell of level 5 - Protective Chant, 1 new spell of level 6 - Life Link and 2 new spells of level 7 - Spare the Dying and Spiritual Link.
+- Additional fifth level spell: Protective Chant.
+- Additional sixth level spell: Life Link.
+- Additional seventh level spells: Spare the Dying, Spiritual Link.
 – May cast Storm Shield once per day. Gains one use at level 1 and an additional use every 10 levels thereafter.
 
 STORM SHIELD: This spell lasts 1 round per level of the caster. It protects the caster from lightning, fire, cold, and normal missiles.
@@ -203,7 +207,9 @@ Advantages:
 - From level 20, Armor of Faith cast by this kit will grant 15% resistances, last for 50% longer and will be undispellable.
 – May cast True Sight once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
 - Gains one point in Long Swords at level 1. (can obtain another * from his unique HLA)
-- Gains access to 1 new spell of level 5 - Protective Chant, 1 new spell of level 6 - Life Link and 1 of level 7 - Spare the Dying.
+- Additional fifth level spell: Protective Chant.
+- Additional sixth level spell: Life Link.
+- Additional seventh level spell: Spare the Dying.
 – May cast Seeking Sword once per day. Gains one use at level 1 and an additional use every 10 levels thereafter.
 
 SEEKING SWORD: This spell creates a long sword in the Cleric's hand that cannot be dropped or unequipped, it stays in <PRO_HISHER> hand for 1 round per level, up to 20 rounds. To wield the weapon better, the caster must know how to use Long Swords. The sword gets more powerful as the caster gains experience, however wielding it requires intense focus, so the Cleric won't be able to use another weapon in the offhand and spells cast when the sword is equipped have weaker effects.
@@ -229,7 +235,9 @@ Advantages:
 - From level 20, Armor of Faith cast by this kit will grant 15% resistances, last for 50% longer and will be undispellable.
 - May become Master at Sword and Shield style.
 - Righteous Magic cast by Priest of Tyr becomes undispellable and lasts for 50% longer.
-- Gains access to 1 new spell of level 5 - Protective Chant, 1 new spell of level 6 - Life Link and 1 of level 7 - Spare the Dying.
+- Additional fifth level spell: Protective Chant.
+- Additional sixth level spell: Life Link.
+- Additional seventh level spell: Spare the Dying.
 - Can pick Critical Strike High Level Ability up to 3 times.
 – May cast Exaltation once per day every 5 levels of the caster (starts at 1st level with one use).
 
@@ -251,7 +259,9 @@ Disadvantages:
 Advantages:
 - From level 20, Armor of Faith cast by this kit will grant 15% resistances, last for 50% longer and will be undispellable.
 - Holy Power cast by Priest of Tempus lasts for 50% longer, gives additional 1/2 APR at level 12 and 1 APR from level 20, additionally it becomes undispellable.
-- Gains access to 1 new spell of level 5 - Protective Chant, 1 new spell of level 6 - Life Link and 1 of level 7 - Spare the Dying.
+- Additional fifth level spell: Protective Chant.
+- Additional sixth level spell: Life Link.
+- Additional seventh level spell: Spare the Dying.
 - May cast Chaos of Battle once per day. Gains one use at level 1 and an additional use every 10 levels thereafter.
 - Champion's Might's periodic pulses can affect up to two nearest characters at the same time.
 
@@ -275,7 +285,9 @@ Disadvantages:
 Advantages:
 – May cast Lightning Bolt of Talos once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
 - Gains early access to a HLA Purify Aura, may cast it once at level 5, then gains additional uses at levels 15, 25 and 35.
-- Gains access to 1 new spell of level 5 - Protective Chant, 1 new spell of level 6 - Life Link and 2 new spells of level 7 - Spare the Dying and Spiritual Link.
+- Additional fifth level spell: Protective Chant.
+- Additional sixth level spell: Life Link.
+- Additional seventh level spells: Spare the Dying, Spiritual Link.
 – May cast Storm Shield once per day. Gains one use at level 1 and an additional use every 10 levels thereafter.
 
 STORM SHIELD: This spell lasts 1 round per level of the caster. It protects the caster from normal missiles and sets his lightning, fire and cold resistances to 75%.
@@ -984,10 +996,32 @@ CLASS FEATURES:
 – Alignment restricted to any neutral.
 – Hit Die: d6~
 
-@5107 = ~paladin_rebalance~
+@5107 = ~Installing paladin_rebalance~
 
 @5108 = ~The scroll vanishes without any effects, its magic used up, as you try to use it while under the effect of silence.~
 
-@5109 = ~~
+@5109 = ~PRIESTESS OF SHAR~
 
-@5110 = ~~
+@5110 = ~Priestess of Shar~
+
+@5111 = ~PRIESTESS OF SHAR: Shar is the goddess of darkness, loss, and secrets, revered by those who dwell in shadow and silence. She embodies night, forgetfulness, and hidden knowledge, offering comfort to the grieving and power to those who seek to hide or destroy the light. Shar’s faithful uphold her ideals through quiet manipulation, forbidden magic, and the eradication of joy and memory. As mistress of the night and twin to Selûne, she represents the ever-present allure of oblivion and the silence that follows sorrow.
+
+Advantages:
+- From level 20, Armor of Faith cast by this kit will grant 15% resistances, last for 50% longer and will be undispellable.
+- Magic Resistance divine spell cast by Priestess of Shar can be directed at other creatures.
+- Magic Damage dealt by Priestess of Shar is increased by 25%.
+- Additional first level spell: Magic Missile 
+- Additional second level spell: Mirror Image 
+- Additional fourth level spell: Improved Invisibility 
+- Additional fifth level spells: Immunity: Divination, Protective Chant
+- Additional sixth level spell: Life Link
+- Additional seventh level spells: Spare the Dying, Prismatic Spray
+- Gains early access to a HLA Purify Aura, may cast it once at level 10.
+- From level 15 can use Aegis of Faith ability.
+
+AEGIS OF FAITH: Through prayer and devotion, the cleric grants themselves a protective blessing that safeguards their magical defenses. For the next turn, any effects that targets and removes specific protections will be nullified. This spell does not protect against spells and effects that dispel all types of effects at once, like Remove Magic or Purge Magic.
+
+Disadvantages:
+- Alignment restricted to evil or true neutral.
+- Can't use Sunray, Sol's Searing Orb, and False Dawn.~
+

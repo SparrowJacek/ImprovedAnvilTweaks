@@ -1628,6 +1628,16 @@ By casting the Summon Hakeashar spell, the wizard calls into existence a magical
 
 @6226 = ~Shield Bash~
 
+@6228 = ~Immunity: Divination
+Level: 5
+Range: 0
+Duration: 2 turns
+Casting Time: 5
+Area of Effect: Special
+Saving Throw: None
+
+Casting this powerful spell makes Priestess of Shar immune to all divination spells for the duration of the spell. All spells of this school will not be able to harm or aid the caster for the duration of this spell (except those spells which can only affect their casters). This includes all spells from this school, including any priest spells that might benefit the caster.~
+
 @6227 = ~Shield Bash~
 
 @6228 = ~Shield Bash~

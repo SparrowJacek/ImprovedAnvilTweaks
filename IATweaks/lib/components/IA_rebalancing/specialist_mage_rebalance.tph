@@ -391,6 +391,36 @@ COPY_EXISTING_REGEXP GLOB ~.*\.spl~ ~override~
 
   BUT_ONLY
 
+// Make PFMW/AI grant immunity to Swanmay Wing Swings
+
+ACTION_FOR_EACH pfmw_type_spell IN ~SPWI611~ ~SPWI808~ ~SPWI907~ BEGIN
+  COPY_EXISTING ~%pfmw_type_spell%.spl~ ~override~
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        silent = 1
+        multi_match = 1
+        match_opcode = 206
+      STR_VAR
+        resource = ~SPWII33~
+    END
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        silent = 1
+        multi_match = 1
+        match_opcode = 206
+      STR_VAR
+        resource = ~SPWII35~
+    END
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        silent = 1
+        multi_match = 1
+        match_opcode = 206
+      STR_VAR
+        resource = ~SPWII36~
+    END
+END
+
 //////// CONJURER //////////
 
 // More powerful versions of summons for Conjurer

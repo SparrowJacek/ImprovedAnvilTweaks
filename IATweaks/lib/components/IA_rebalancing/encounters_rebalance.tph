@@ -442,7 +442,7 @@ ACTION_FOR_EACH mutated_spider_cre_file IN ~s!spidr2.cre~ ~spidsm02.cre~ BEGIN
     WRITE_BYTE 0x5f 75  // Magic Cold Resistance
     WRITE_BYTE 0x62 80 // Resist Piercing
     WRITE_BYTE 0x63 80 // Resist Missile
-    WRITE_BYTE 0x23d 18 // Strength
+    WRITE_BYTE 0x238 18 // Strength
 END
 
 //////////// Mencar's Party /////////////
@@ -1161,15 +1161,28 @@ COPY_EXISTING ~UDMASTER.cre~ ~override~
 // Brain Golem
 
 COPY_EXISTING ~UDGOLEM.cre~ ~override~
-  WRITE_LONG 0x14 12000 // Exp for creature
-  WRITE_BYTE 0x53 2  // APR
-  WRITE_BYTE 0x5a 50  // Electricity Resistance
+  WRITE_LONG 0x14 15000 // Exp for creature
+  WRITE_BYTE 0x52 THIS - 4 // Thac0
+  WRITE_BYTE 0x53 3  // APR
+  WRITE_BYTE 0x5b 50  // Electricity Resistance
+  WRITE_BYTE 0x5d 75 // Resist Magic
+  WRITE_BYTE 0x60 75 // Resist Slashing
+  WRITE_BYTE 0x61 75 // Resist Crushing
+  WRITE_BYTE 0x62 75 // Resist Piercing
+  WRITE_BYTE 0x63 75 // Resist Missile
 
 // Brain Golem item
 
 COPY_EXISTING ~S!GOLBRA.itm~ ~override~
+  LPF ~ALTER_ITEM_HEADER~
+    INT_VAR
+      dicesize = 6
+      dicenumber = 1
+      damage_bonus = 15
+  END
   LPF ~ADD_ITEM_EFFECT~
     INT_VAR
+      type = 1
       opcode = 146
       insert_point = 0
       parameter2 = 1
@@ -1193,7 +1206,7 @@ COPY_EXISTING ~GPSIMB.cre~ ~override~
   WRITE_BYTE 0x54 3  // Saves
   WRITE_BYTE 0x55 5  // Saves
   WRITE_BYTE 0x56 4  // Saves
-  WRITE_BYTE 0x57 3  // Saves
+  WRITE_BYTE 0x57 4  // Saves
   WRITE_BYTE 0x58 6  // Saves
   WRITE_BYTE 0x60 20 // Resist Slashing
   WRITE_BYTE 0x61 20 // Resist Crushing

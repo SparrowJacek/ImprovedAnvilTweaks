@@ -237,3 +237,23 @@ COPY_EXISTING ~UDDWARF.cre~ ~override~
 
 COMPILE ~IATweaks\scripts\controversial\S!UDDWAR.BAF~
 
+// Archer from North Forest party
+
+COPY_EXISTING ~AR18ARCH.cre~ ~override~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPPR111~ #0 ~priest~ ( 2 ) // Armor of Faith
+  ADD_MEMORIZED_SPELL ~SPPR113~ #0 ~priest~ ( 2 ) // Doom
+  ADD_MEMORIZED_SPELL ~SPPR202~ #1 ~priest~ ( 1 ) // Barkskin
+  ADD_MEMORIZED_SPELL ~SPPR206~ #1 ~priest~ ( 1 ) // Flame Blade
+  ADD_MEMORIZED_SPELL ~SPPR209~ #1 ~priest~ ( 1 ) // Know Alignment
+  ADD_MEMORIZED_SPELL ~SPPR210~ #1 ~priest~ ( 1 ) // Resist Fire/Cold
+  ADD_MEMORIZED_SPELL ~SPPR306~ #2 ~priest~ ( 1 ) // Protection from Fire
+  ADD_MEMORIZED_SPELL ~SPPR312~ #2 ~priest~ ( 1 ) // Strength of One
+  ADD_MEMORIZED_SPELL ~SPPR316~ #2 ~priest~ ( 1 ) // Cure Medium Wounds
+  ADD_MEMORIZED_SPELL ~SPCL121~ #0 ~innate~ ( 5 ) // Called Shot
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL908~ #0 ~innate~ ( 1 ) // War Cry
+  ADD_MEMORIZED_SPELL ~SPCL922~ #0 ~innate~ ( 1 ) // Contact with Nature
+

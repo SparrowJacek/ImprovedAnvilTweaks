@@ -1674,3 +1674,144 @@ COPY_EXISTING ~UDDWARF.cre~ ~override~
 
 COMPILE ~IATweaks\scripts\creatures\S!UDDWAR.BAF~
 
+// Archer from North Forest party
+
+COPY_EXISTING ~AR18ARCH.cre~ ~override~
+  WRITE_SHORT 0x24 126 // HP
+  WRITE_SHORT 0x26 126 // HP
+  WRITE_BYTE 0x45 100 // Hide in Shadows
+  WRITE_SHORT 0x46 10 // AC
+  WRITE_SHORT 0x48 10 // AC
+  WRITE_BYTE 0x52 0 // Thac0
+  WRITE_BYTE 0x53 1  // APR
+  WRITE_BYTE 0x54 3  // Saves
+  WRITE_BYTE 0x55 5  // Saves
+  WRITE_BYTE 0x56 4  // Saves
+  WRITE_BYTE 0x57 4  // Saves
+  WRITE_BYTE 0x58 6  // Saves
+  WRITE_BYTE 0x60 20 // Resist Slashing
+  WRITE_BYTE 0x61 20 // Resist Crushing
+  WRITE_BYTE 0x62 20 // Resist Piercing
+  WRITE_BYTE 0x63 20 // Resist Missile
+  WRITE_BYTE 0x68 20 // Stealth Strike
+  WRITE_BYTE 0x234 21 // Level 1
+  WRITE_BYTE 0x235 1 // Level 2
+  WRITE_BYTE 0x23d 18 // Constitution
+  WRITE_BYTE 0x241 1 // Racial Enemy = Human
+  WRITE_LONG 0x244 0x40070000 // Kit = Archer
+  WRITE_ASCII 0x248 ~~ #8
+  WRITE_ASCII 0x250 ~S!ARCH21~ #8
+  WRITE_ASCII 0x268 ~~ #8
+  WRITE_BYTE 0x273 12 // Class = Ranger
+    
+  LPF ~ADD_CRE_EFFECT~ // ***** in Long Bows
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 5
+      parameter2 = 104
+      resist_dispel = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // * in Daggers
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 5
+      parameter2 = 96
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // * in Single Weapon
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 1
+      parameter2 = 113
+      resist_dispel = 0
+      timing = 9
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  // thac0 and damage bonuses to ranged
+  FOR (i=0; i<7; ++i) BEGIN
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 167
+        target = 1
+        parameter1 = 1
+        parameter2 = 0
+        timing = 9
+      STR_VAR
+        effsource = ~SPCL122~
+    END
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 286
+        target = 1
+        parameter1 = 1
+        parameter2 = 0
+        timing = 9
+      STR_VAR
+        effsource = ~SPCL122~
+    END
+  END
+  
+  PATCH_FOR_EACH item_to_remove IN ~LEAT10~ ~DAGG01~ ~BOW05~ ~AROW04~ ~AROW09~ ~AROW11~ BEGIN
+    LPF ~DELETE_CRE_ITEM~
+      STR_VAR
+        item_to_delete = EVAL ~%item_to_remove%~
+    END
+  END
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_CRE_ITEM ~HELM02~ #0 #0 #0 ~UNSTEALABLE~ ~HELMET~
+  ADD_CRE_ITEM ~OHLEAT52~ #0 #0 #0 ~UNSTEALABLE~ ~ARMOR~
+  ADD_CRE_ITEM ~DAGG01~ #0 #0 #0 ~UNSTEALABLE~ ~WEAPON1~
+  ADD_CRE_ITEM ~BOW16~ #0 #0 #0 ~UNSTEALABLE~ ~WEAPON2~ EQUIP
+  ADD_CRE_ITEM ~AROW15~ #35 #0 #0 ~UNSTEALABLE~ ~QUIVER1~ // Arrow +3
+  ADD_CRE_ITEM ~AROW15~ #35 #0 #0 ~UNSTEALABLE~ ~QUIVER2~ // Arrow +3
+  ADD_CRE_ITEM ~AROW01~ #80 #0 #0 ~UNSTEALABLE~ ~QUIVER3~ // Arrow
+  ADD_CRE_ITEM ~POTN14~ #1 #0 #0 ~UNSTEALABLE~ ~INV10~ // Oil of Speed
+  ADD_CRE_ITEM ~POTN10~ #3 #0 #0 ~UNSTEALABLE~ ~INV11~ // Potion of Invisibility
+  ADD_CRE_ITEM ~POTN55~ #2 #0 #0 ~UNSTEALABLE~ ~INV14~ // Superior Healing Potion
+  ADD_CRE_ITEM ~POTN37~ #0 #0 #0 ~UNSTEALABLE~ ~INV15~ // Oil of Resurgence
+
+  ADD_MEMORIZED_SPELL ~SPPR111~ #0 ~priest~ ( 2 ) // Armor of Faith
+  ADD_MEMORIZED_SPELL ~SPPR113~ #0 ~priest~ ( 2 ) // Doom
+  ADD_MEMORIZED_SPELL ~SPPR202~ #1 ~priest~ ( 1 ) // Barkskin
+  ADD_MEMORIZED_SPELL ~SPPR206~ #1 ~priest~ ( 1 ) // Flame Blade
+  ADD_MEMORIZED_SPELL ~SPPR209~ #1 ~priest~ ( 1 ) // Know Alignment
+  ADD_MEMORIZED_SPELL ~SPPR210~ #1 ~priest~ ( 1 ) // Resist Fire/Cold
+  ADD_MEMORIZED_SPELL ~SPPR306~ #2 ~priest~ ( 1 ) // Protection from Fire
+  ADD_MEMORIZED_SPELL ~SPPR312~ #2 ~priest~ ( 1 ) // Strength of One
+  ADD_MEMORIZED_SPELL ~SPPR316~ #2 ~priest~ ( 1 ) // Cure Medium Wounds
+  ADD_MEMORIZED_SPELL ~SPCL121~ #0 ~innate~ ( 5 ) // Called Shot
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 1 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 1 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL922~ #0 ~innate~ ( 1 ) // Contact with Nature
+
+COMPILE ~IATweaks\scripts\creatures\S!ARCH21.BAF~

@@ -673,6 +673,7 @@ END
 // Chain Sequencer
 
 COPY_EXISTING ~inareanp.pro~ ~override/s!wij01.pro~
+  WRITE_SHORT 0xa 1000 // projectile speed
   READ_BYTE 0x2f ext_flags_4
   WRITE_BYTE 0x2f (%ext_flags_4% BOR 0b01000000) // Activate IWD style checks
   WRITE_SHORT 0x3e 142 // Do not affect invisible creatures

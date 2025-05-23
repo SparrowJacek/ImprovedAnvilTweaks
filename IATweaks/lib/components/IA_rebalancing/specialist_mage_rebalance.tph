@@ -191,6 +191,11 @@ COPY_EXISTING ~HAKSU.cre~ ~override~
   END
   ADD_CRE_ITEM ~S!HAKESH~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~WEAPON1~ EQUIP
 
+// True Sight projectile increase speed
+
+COPY_EXISTING ~BIGNAREA.pro~ ~override~
+  WRITE_SHORT 0x0a 4000
+
 // Power Word Silence
 
 COPY_EXISTING ~spwi612.spl~ ~override~

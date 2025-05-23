@@ -15,6 +15,7 @@ LAF ~S!ADD_SPLPROT_2DA_ENTRY~
 END
 
 COPY ~IATweaks\resources\spl\s!casttx.spl~ ~override~
+COPY ~IATweaks\resources\eff\s!casttx.eff~ ~override~
 COPY ~IATweaks\resources\spl\s!castt1.spl~ ~override~
   LPF ~ALTER_EFFECT~
     INT_VAR
@@ -33,7 +34,7 @@ COPY_EXISTING ~s!castt1.spl~ ~override/s!castt2.spl~
       parameter2 = 65669 // EXTRAPROFICIENCY19 increment
   END
 
-ACTION_FOR_EACH powerful_spell IN ~sppr717~ ~spwi812~ ~sppri27~ ~spcli24~ ~spcli23~ ~sppr711~ ~sppr607~ ~sppr705~ ~spwi807~ BEGIN
+ACTION_FOR_EACH powerful_spell IN ~sppr717~ ~spwi812~ ~sppri27~ ~spcli24~ ~spcli23~ ~sppr711~ ~sprr722~ ~sppr705~ ~sppr607~ ~sppr705~ ~spwi807~ ~spini13~ BEGIN
   COPY_EXISTING ~%powerful_spell%.spl~ ~override~
     READ_LONG 0x64 first_header_offset
     READ_SHORT first_header_offset + 0x12 casting_speed
@@ -63,7 +64,7 @@ ACTION_FOR_EACH powerful_spell_scroll IN ~scrl9g~ ~s!scrl06~ BEGIN
     END
 END
 
-ACTION_FOR_EACH priority_spell IN ~spwi326~ ~sppr303~ ~spwi510~ ~spwi513~ ~spwi602~ ~sppri18~ ~spwi704~ ~spwi805~ ~spwi701~ ~spwi919~ ~sppri25~ ~sppri16~ ~spwi921~ BEGIN
+ACTION_FOR_EACH priority_spell IN ~spwi302~ ~spwi326~ ~sppr303~ ~spwi510~ ~spwi513~ ~spwi602~ ~sppri18~ ~spwi704~ ~spwi805~ ~spwi701~ ~spwi919~ ~sppri25~ ~sppri16~ ~spwi921~ BEGIN
   COPY_EXISTING ~%priority_spell%.spl~ ~override~
     READ_LONG 0x64 first_header_offset
     READ_SHORT first_header_offset + 0x12 casting_speed
@@ -79,7 +80,7 @@ ACTION_FOR_EACH priority_spell IN ~spwi326~ ~sppr303~ ~spwi510~ ~spwi513~ ~spwi6
     END
 END
 
-ACTION_FOR_EACH priority_spell_scroll IN ~scrlb4~ ~scrl8d~ ~scrl9a~ ~scrl8g~ ~scrl8i~ ~scrl7f~ ~scrl6u~ ~scrl6s~ ~scrl1e~ ~scrl6g~ BEGIN
+ACTION_FOR_EACH priority_spell_scroll IN ~scrla7~ ~scrlb4~ ~scrl8d~ ~scrl9a~ ~scrl8g~ ~scrl8i~ ~scrl7f~ ~scrl6u~ ~scrl6s~ ~scrl1e~ ~scrl6g~ BEGIN
   COPY_EXISTING ~%priority_spell_scroll%.itm~ ~override~
     LPF ~CLONE_EFFECT~ 
       INT_VAR

@@ -57,7 +57,6 @@ COMPILE ~IATweaks\scripts\creatures\S!UMBTH1.BAF~
 
 // Charge ability
 
-ADD_PROJECTILE ~IATweaks\resources\pro\s!invbas.pro~
 ADD_PROJECTILE ~IATweaks\resources\pro\s!charge.pro~
 
 COPY ~IATweaks\resources\spl\s!charg1.spl~ ~override~

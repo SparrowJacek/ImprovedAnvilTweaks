@@ -388,7 +388,7 @@ ACTION_PHP_EACH spell_to_weight_map AS spell_file => spell_weight BEGIN
 END
 
 ACTION_PHP_EACH item_to_weight_map AS item_file => item_weight BEGIN
-  COPY_EXISTING ~%item_file%.spl~ ~override~
+  COPY_EXISTING ~%item_file%.itm~ ~override~
     SET opcode = $item_to_opcode_map("%item_file%")
     LPF ~CLONE_EFFECT~
       INT_VAR
@@ -466,7 +466,7 @@ ACTION_FOR_EACH larloch_spell IN ~spwi119~ ~spin104~ BEGIN
 END
 
 ACTION_FOR_EACH vampiric_touch_spell IN ~spwi314~ ~spin106~ BEGIN
-  COPY_EXISTING ~%larloch_spell%.spl~ ~override~
+  COPY_EXISTING ~%vampiric_touch_spell%.spl~ ~override~
     LPF ~ALTER_EFFECT~
       INT_VAR
         match_opcode = 233

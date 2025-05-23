@@ -257,3 +257,41 @@ COPY_EXISTING ~AR18ARCH.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPCL908~ #0 ~innate~ ( 1 ) // War Cry
   ADD_MEMORIZED_SPELL ~SPCL922~ #0 ~innate~ ( 1 ) // Contact with Nature
 
+// Maferan, the Minotaur from Guarded Compound
+
+COPY_EXISTING ~HLMAFER.cre~ ~override~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL321~ #0 ~innate~ ( 5 ) // Enrage
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 1 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL908~ #0 ~innate~ ( 1 ) // War Cry
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  
+// Olaf, the Orc from Guarded Compound
+
+COPY_EXISTING ~HLOLAF.cre~ ~override~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL152~ #0 ~innate~ ( 5 ) // Barbarian Rage
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL908~ #0 ~innate~ ( 1 ) // War Cry
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+
+// Koshi, the Kensai from Guarded Compound
+
+COPY_EXISTING ~HLKOSHI.cre~ ~override~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL144~ #0 ~innate~ ( 6 ) // Kai
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 2 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL908~ #0 ~innate~ ( 1 ) // War Cry
+
+  

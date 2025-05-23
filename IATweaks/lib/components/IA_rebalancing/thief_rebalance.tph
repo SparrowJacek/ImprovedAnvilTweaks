@@ -2744,7 +2744,7 @@ COPY_EXISTING ~GPTHIEF1.cre~ ~override~
     END
   END
 
-  PATCH_FOR_EACH item_to_remove IN ~MAGE01~ ~RING05~ ~S!TRAP~ ~LEAT02~ BEGIN
+  PATCH_FOR_EACH item_to_remove IN ~MAGE01~ ~RING05~ ~LEAT02~ BEGIN
     LPF ~DELETE_CRE_ITEM~
       STR_VAR
         item_to_delete = EVAL ~%item_to_remove%~
@@ -2771,22 +2771,132 @@ COPY_EXISTING ~GPTHIEF1.cre~ ~override~
 
 COMPILE ~IATweaks\scripts\creatures\S!GPTHIE.baf~
 
-// Move him next to the Priestess
+// Ketta from Guarded Compound
 
-COPY_EXISTING ~AR2100.bcs~ ~override~
-  DECOMPILE_AND_PATCH BEGIN
-    SET ofs = INDEX_BUFFER(~"gpthief1",[3789.2071]~)
-    PATCH_IF %ofs% >= 0 BEGIN
-      // PATCH_PRINT ~%ofs%~
-      REPLACE_EVALUATE
-      ~"gpthief1",[3789.2071]~
-      BEGIN
-        SPRINT val ~"gpthief1",[3245.2209F]~
-      END
-      ~%val%~
+COPY_EXISTING ~HLKETTA.cre~ ~override~
+  WRITE_SHORT 0x24 130 // HP
+  WRITE_SHORT 0x26 130 // HP
+  WRITE_BYTE 0x45 160 // Hide in Shadows
+  WRITE_BYTE 0x52 5 // Thac0
+  WRITE_BYTE 0x54 8 // Saves
+  WRITE_BYTE 0x55 4 // Saves
+  WRITE_BYTE 0x56 7 // Saves
+  WRITE_BYTE 0x57 11 // Saves
+  WRITE_BYTE 0x58 5 // Saves
+  WRITE_BYTE 0x59 50 // Resist Fire
+  WRITE_BYTE 0x5e 50 // Resist Magic Fire
+  WRITE_BYTE 0x60 20 // Resist Slashing
+  WRITE_BYTE 0x61 20 // Resist Crushing
+  WRITE_BYTE 0x62 20 // Resist Piercing
+  WRITE_BYTE 0x63 20 // Resist Missile
+  WRITE_BYTE 0x64 0 // Detect Illusions
+  WRITE_BYTE 0x65 0 // Set Traps
+  WRITE_BYTE 0x67 0 // Pick Locks
+  WRITE_BYTE 0x68 140 // Stealth Strike
+  WRITE_BYTE 0x69 0 // Find Traps
+  WRITE_BYTE 0x6a 0 // Pick Pockets
+  WRITE_BYTE 0x234 30 // 1st Class Level
+  WRITE_BYTE 0x235 1 // 2nd Class Level
+  WRITE_BYTE 0x238 18 // Strength
+  WRITE_LONG 0x244 0x400a0000 // Kit = Assassin
+  WRITE_BYTE 0x270 255 // Allegiance = Enemy
+  WRITE_BYTE 0x273 4 // Class = Thief
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 73
+      target = 1
+      parameter1 = 1
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL421~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 278
+      target = 1
+      parameter1 = 1
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL421~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 59
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40SS~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 275
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40HIS~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 144
+      target = 1
+      timing = 9
+    STR_VAR
+      effsource = ~S!DISSTE~
+  END
+
+  PATCH_FOR_EACH item_to_remove IN ~DRAGRING~ ~LEAT12~ BEGIN
+    LPF ~DELETE_CRE_ITEM~
+      STR_VAR
+        item_to_delete = EVAL ~%item_to_remove%~
     END
   END
-  BUT_ONLY
+
+  ADD_CRE_ITEM ~OHLEAT53~ #0 #0 #0 ~NONE~ ~ARMOR~
+  ADD_CRE_ITEM ~SW1H07~ #0 #0 #0 ~NONE~ ~WEAPON3~
+  ADD_CRE_ITEM ~POTN14~ #2 #0 #0 ~UNSTEALABLE~ ~INV10~ // Oil of Speed
+  ADD_CRE_ITEM ~POTN39~ #0 #0 #0 ~UNSTEALABLE~ ~INV13~ // Potion of Perception
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL423~ #0 ~innate~ ( 6 ) // Poison Weapon
+  ADD_MEMORIZED_SPELL ~S!GGRACE~ #0 ~innate~ ( 1 ) // Ghost's Grace
+  ADD_MEMORIZED_SPELL ~SPCL913~ #0 ~innate~ ( 1 ) // Evasion
+  ADD_MEMORIZED_SPELL ~SPCL914~ #0 ~innate~ ( 1 ) // Greater Evasion
+  ADD_MEMORIZED_SPELL ~SPCL916~ #0 ~innate~ ( 1 ) // Assassination
+  ADD_MEMORIZED_SPELL ~SPCL917~ #0 ~innate~ ( 1 ) // Avoid Death
+
+COMPILE ~IATweaks\scripts\creatures\HLKETTA.baf~
 
 /////////// Items ////////////
 
@@ -3217,55 +3327,3 @@ ACTION_PHP_EACH trigger_area_trap_scripts AS trap_script => _ BEGIN
     SET state = trap_immunity_state
     EVALUATE_BUFFER
 END
-
-// ACTION_PHP_EACH container_trap_scripts AS trap_script => _ BEGIN
-//   COPY_EXISTING ~%trap_script%.bcs~ ~override~
-//     DECOMPILE_AND_PATCH BEGIN
-//       SET ofs = INDEX_BUFFER(~CheckSpellState(Player\(\d\),\.*)~)
-//       PATCH_IF ofs >= 0 BEGIN
-//         REPLACE_EVALUATE
-//           ~CheckSpellState(Player\(\d\),\.*)~
-//           BEGIN
-//           END
-//           ~CheckSpellState(Player%MATCH1%,%trap_immunity_state%)~
-//       END
-//     END
-// END
-
-// COPY_EXISTING ~GSLIME.bcs~ ~override~
-//   DECOMPILE_AND_PATCH BEGIN
-//     SET ofs = INDEX_BUFFER(~\(Entered(\[ANYONE\])\|Opened(\[ANYONE\])\)~)
-//     PATCH_IF ofs >= 0 BEGIN
-//       REPLACE_EVALUATE
-//         // "\(IF[ %TAB%]*\)\([%WNL%%LNL%%MNL%]*\)\([ -~%TAB%%WNL%%LNL%%MNL%]*?\)\(Entered(\[ANYONE\])\|Opened(\[ANYONE\])\)\([ -~%TAB%%WNL%%LNL%%MNL%]*\THEN\)"
-//         "IF\([ -~%TAB%%WNL%%LNL%%MNL%]*?\)\(Entered(\[ANYONE\])\|Opened(\[ANYONE\])\)\([ -~%TAB%%WNL%%LNL%%MNL%]*\)THEN\([ %TAB%]*[%WNL%%LNL%%MNL%]\)"
-//         BEGIN
-//           // PATCH_PRINT ~%MATCH1%%MATCH2%  !GlobalTimerNotExpired("IsDeactivated","LOCALS")%MATCH2%%MATCH3%%MATCH4%%MATCH5%~
-//           PATCH_PRINT ~IF%MATCH1%%MATCH2%%MATCH3%  !GlobalTimerNotExpired("IsDeactivated","LOCALS")%MATCH4%THEN%MATCH4%~
-//           // SPRINT val ~%MATCH1%%MATCH2%  !GlobalTimerNotExpired("IsDeactivated","LOCALS")%MATCH2%%MATCH3%%MATCH4%%MATCH5%~
-//           // SPRINT val ~%MATCH1%%MATCH2%  !GlobalTimerNotExpired("IsDeactivated","LOCALS")%MATCH2%%MATCH3%%MATCH4%%MATCH5%~
-//           // SPRINT val ~%MATCH1%  !GlobalTimerNotExpired("IsDeactivated","LOCALS")%MATCH2%%MATCH3%%MATCH4%%MATCH5%~
-//         END
-//         ~%MATCH0%~
-//     END
-//   END
-
-// ACTION_PHP_EACH trap_removable_scripts AS trap_script => _ BEGIN
-//   EXTEND_TOP "%trap_script%.bcs" ".../IATweaks-inlined/spell_remove_traps.baf"
-//   COPY_EXISTING ~%trap_script%.bcs~ ~override~
-//     DECOMPILE_AND_PATCH BEGIN
-//       SET ofs = INDEX_BUFFER(~\(Entered(\[ANYONE\])\|Opened(\[ANYONE\])\)~)
-//       PATCH_IF ofs >= 0 BEGIN
-//         REPLACE_EVALUATE
-//           // "\(IF[ %TAB%]*\)\([%WNL%%LNL%%MNL%]*\)\([ -~%TAB%%WNL%%LNL%%MNL%]*?\)\(Entered(\[ANYONE\])\|Opened(\[ANYONE\])\)\([ -~%TAB%%WNL%%LNL%%MNL%]*\THEN\)"
-//           "IF\([ -~%TAB%%WNL%%LNL%%MNL%]*?\)\(Entered(\[ANYONE\])\|Opened(\[ANYONE\])\)\([ -~%TAB%%WNL%%LNL%%MNL%]*\THEN\)"
-//           BEGIN
-//             PATCH_PRINT ~%MATCH1%%MATCH2%  !GlobalTimerNotExpired("IsDeactivated","LOCALS")%MATCH2%%MATCH3%%MATCH4%%MATCH5%~
-//             SPRINT val ~%MATCH1%%MATCH2%  !GlobalTimerNotExpired("IsDeactivated","LOCALS")%MATCH2%%MATCH3%%MATCH4%%MATCH5%~
-//             // SPRINT val ~%MATCH1%  !GlobalTimerNotExpired("IsDeactivated","LOCALS")%MATCH2%%MATCH3%%MATCH4%%MATCH5%~
-//           END
-//           ~%MATCH0%~
-//       END
-//     END
-// END
-

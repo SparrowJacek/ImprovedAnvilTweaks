@@ -1210,8 +1210,6 @@ COPY ~IATweaks\resources\spl\s!glimp2.spl~ ~override~
       parameter2 = %glimpse_of_future_icon_id%
   END
 
-COPY ~IATweaks\resources\spl\s!glimp3.spl~ ~override~
-
 LAF ~S!ADD_CLAB_ROW~
   STR_VAR
     filename = ~CLABMA05.2da~

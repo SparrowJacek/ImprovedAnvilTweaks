@@ -1667,7 +1667,19 @@ Saving Throw: None
 
 In using this spell, the wizard points at an individual and utters the Power Word. The creature targeted must have less than 70 Hit Points and gets no Saving Throw. For the next 7 rounds, that creature cannot make any sound. This silence completely foils any spells that require verbal components. The only ways to counter this spell are either a Dispel Magic or a Vocalize spell.~
 
-@6231 = ~Shield Bash~
+@6231 = ~Flame Strike
+(Evocation)
+
+Level: 5
+Sphere: Combat
+Range: 40 ft.
+Duration: Instant
+Casting Time: 8
+Area of Effect: 1 creature
+Saving Throw: 1/2 
+
+When the priest calls down a Flame Strike spell, a vertical column of fire roars downward in the exact location called for by the caster. The target must roll a Saving Throw vs. Breath with a -2 penalty. Failure means the creature sustains 1d8 points of damage per level of the caster; otherwise, the damage is halved.~
+
 
 @6232 = ~Shield Bash~
 

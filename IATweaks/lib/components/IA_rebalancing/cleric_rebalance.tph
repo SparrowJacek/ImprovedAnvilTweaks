@@ -2146,6 +2146,18 @@ COPY_EXISTING ~sppr314.spl~ ~override~
       parameter1 = 2
   END
 
+// Flame Strike
+
+COPY_EXISTING ~sppr503.spl~ ~override~
+              ~sppr985.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6231
+  LPF ~S!ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 12
+      savingthrow = 2 // breath
+      savebonus = ~-2~
+  END
+
 // Greater Restoration
 
 COPY_EXISTING ~sppr713.spl~ ~override~

@@ -1723,7 +1723,7 @@ COPY_EXISTING ~SPWI102.spl~ ~override~
         multi_match = 1
         match_opcode = 0
         opcode = elemental_res_opcode
-        paramter1 = 5
+        parameter1 = 10
         parameter2 = 0
     END
   END
@@ -1735,6 +1735,6 @@ COPY_EXISTING ~SPWI114.spl~ ~override~
       multi_match = 1
       match_opcode = 0
       opcode = 31
-      paramter1 = 5
+      paramter1 = 15
       parameter2 = 0
   END

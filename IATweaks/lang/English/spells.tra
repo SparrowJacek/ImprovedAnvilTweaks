@@ -1343,7 +1343,7 @@ Casting Time: 1
 Area of Effect: caster
 Saving Throw: None
 
-By means of this spell, the wizard creates a magical field of force that serves as if it were scale mail armor. It sets the wizard's base armor class to 6, and grants an additional +3 bonus to AC against piercing and slashing weapons. It is cumulative with Dexterity and, in the case of fighter/mages, with the shield bonus. Due to the armor's magical nature it also increases elemental resistances by 5%. The armor spell does not hinder movement, adds no weight or encumbrance, nor does it prevent spellcasting. It lasts until successfully dispelled or until the duration runs out.~
+By means of this spell, the wizard creates a magical field of force that serves as if it were scale mail armor. It sets the wizard's base armor class to 6, and grants an additional +3 bonus to AC against piercing and slashing weapons. It is cumulative with Dexterity and, in the case of fighter/mages, with the shield bonus. Due to the armor's magical nature it also increases elemental resistances by 10%. The armor spell does not hinder movement, adds no weight or encumbrance, nor does it prevent spellcasting. It lasts until successfully dispelled or until the duration runs out.~
 
 @6196 = ~Shield (Evocation)
 Level: 1
@@ -1353,7 +1353,7 @@ Casting Time: 1
 Area of Effect: caster
 Saving Throw: None
 
-When this spell is cast, an invisible barrier comes into being in front of the wizard. It sets the wizard's base armor class to 6, and grants an additional +3 bonus to AC against missile and blunt weapons. It is cumulative with Dexterity and, in the case of fighter/mages, with the shield bonus. Due to the shield's magical nature it also increases resistance to magical damage by 10%. The shield spell does not hinder movement, adds no weight or encumbrance, nor does it prevent spellcasting. The effect lasts for the duration of the spell or until dispelled.~
+When this spell is cast, an invisible barrier comes into being in front of the wizard. It sets the wizard's base armor class to 6, and grants an additional +3 bonus to AC against missile and blunt weapons. It is cumulative with Dexterity and, in the case of fighter/mages, with the shield bonus. Due to the shield's magical nature it also increases resistance to magical damage by 15%. The shield spell does not hinder movement, adds no weight or encumbrance, nor does it prevent spellcasting. The effect lasts for the duration of the spell or until dispelled.~
 
 @6197 = ~Silence 15' Radius (Alteration)
 Level: 2

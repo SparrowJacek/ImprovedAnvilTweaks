@@ -2204,7 +2204,7 @@ COPY_EXISTING ~UDVITH.cre~ ~override~
   ADD_MEMORIZED_SPELL "SPWI305" #2 "wizard" ( 1 ) // Haste
   ADD_MEMORIZED_SPELL "SPWI325" #2 "wizard" ( 2 ) // Melf's Minute Meteors
   ADD_MEMORIZED_SPELL "SPWI405" #3 "wizard" ( 1 ) // Improved Invisibility
-  ADD_MEMORIZED_SPELL "SPWI408" #3 "wizard" ( 2 ) // Stoneskin
+  ADD_MEMORIZED_SPELL "SPWI408" #3 "wizard" ( 4 ) // Stoneskin
   ADD_MEMORIZED_SPELL "SPWI418" #3 "wizard" ( 1 ) // Fire Shield (Red)
   ADD_MEMORIZED_SPELL "SPWI508" #4 "wizard" ( 1 ) // Chaos
   ADD_MEMORIZED_SPELL "SPWI510" #4 "wizard" ( 1 ) // Spell Immunity
@@ -2229,3 +2229,248 @@ COPY_EXISTING ~UDVITH.cre~ ~override~
   ADD_MEMORIZED_SPELL "SPWI925" #8 "wizard" ( 2 ) // Comet
 
 COMPILE ~IATweaks\scripts\creatures\S!VITHAL.BAF~
+
+// Sion from Guarded Compound
+
+COPY_EXISTING ~HLSION.cre~ ~override~
+  WRITE_SHORT 0x24 55 // HP
+  WRITE_SHORT 0x26 55 // HP
+  WRITE_BYTE 0x59 50 // Resist Fire
+  WRITE_BYTE 0x5d 0 // Resist Magic
+  WRITE_BYTE 0x5e 50 // Resist Magic Fire
+  WRITE_BYTE 0x60 10 // Resist Slashing
+  WRITE_BYTE 0x61 10 // Resist Crushing
+  WRITE_BYTE 0x62 10 // Resist Piercing
+  WRITE_BYTE 0x63 10 // Resist Missile
+  WRITE_BYTE 0x234 25 // Level 1
+  WRITE_BYTE 0x23d 17 // Constitution
+  WRITE_LONG 0x244 0x08000000 // Kit = Invoker
+  WRITE_BYTE 0x270 255 // Allegiance = Enemy
+
+  FOR (i = 0; i <= 2; ++i) BEGIN
+    PATCH_FOR_EACH element_id IN 1 2 3 4 BEGIN
+      LPF ~ADD_CRE_EFFECT~ // Bonus elemental damage
+        INT_VAR
+          opcode = 332
+          target = 1
+          parameter1 = 5
+          parameter2 = element_id
+          resist_dispel = 0
+          timing = 9
+        STR_VAR
+          effsource = ~S!+5ELED~
+      END
+    END
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Sequencer with Remove Magic
+    INT_VAR
+      opcode = 256
+      target = 1
+      resist_dispel = 0
+      timing = 9
+      parameter3 = 0
+    STR_VAR
+      effsource = ~SPWIJ01~
+      resource = ~SPWI302~
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~CLCK14~
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!SION~
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~SCRL9P~
+  END
+
+  ADD_CRE_ITEM ~CLCK17~ #0 #0 #0 ~UNSTEALABLE~ ~ARMOR~
+  ADD_CRE_ITEM ~CLCK01~ #0 #0 #0 ~NONE~ ~CLOAK~
+  ADD_CRE_ITEM ~SCRL6U~ #3 #0 #0 ~NONE~ ~INV11~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL "SPWI102" #0 "wizard" ( 1 ) // Armor
+  ADD_MEMORIZED_SPELL "SPWI112" #0 "wizard" ( 3 ) // Magic Missile
+  ADD_MEMORIZED_SPELL "SPWI113" #0 "wizard" ( 1 ) // Protection From Evil
+  ADD_MEMORIZED_SPELL "SPWI114" #0 "wizard" ( 1 ) // Shield
+
+  ADD_MEMORIZED_SPELL "SPWI209" #1 "wizard" ( 3 ) // Luck
+  ADD_MEMORIZED_SPELL "SPWI211" #1 "wizard" ( 2 ) // Melf's Acid Arrow
+  ADD_MEMORIZED_SPELL "SPWI212" #1 "wizard" ( 1 ) // Mirror Image
+
+  ADD_MEMORIZED_SPELL "SPWI302" #2 "wizard" ( 2 ) // Remove Magic
+  ADD_MEMORIZED_SPELL "SPWI303" #2 "wizard" ( 2 ) // Flame Arrow
+  ADD_MEMORIZED_SPELL "SPWI305" #2 "wizard" ( 1 ) // Haste
+  ADD_MEMORIZED_SPELL "SPWI321" #2 "wizard" ( 1 ) // Spell Thrust
+
+  ADD_MEMORIZED_SPELL "SPWI403" #3 "wizard" ( 1 ) // Fire Shield (Blue)
+  ADD_MEMORIZED_SPELL "SPWI408" #3 "wizard" ( 2 ) // Stoneskin
+  ADD_MEMORIZED_SPELL "SPWI414" #3 "wizard" ( 1 ) // Spirit Armor
+  ADD_MEMORIZED_SPELL "SPWI418" #3 "wizard" ( 1 ) // Fire Shield (Red)
+  ADD_MEMORIZED_SPELL "SPWI419" #3 "wizard" ( 1 ) // Secret Word
+
+  ADD_MEMORIZED_SPELL "SPWI510" #4 "wizard" ( 1 ) // Spell Immunity
+  ADD_MEMORIZED_SPELL "SPWI513" #4 "wizard" ( 1 ) // Breach
+  ADD_MEMORIZED_SPELL "SPWI514" #4 "wizard" ( 3 ) // Lower Resistance
+  ADD_MEMORIZED_SPELL "SPWI522" #4 "wizard" ( 1 ) // Soul Armor
+
+  ADD_MEMORIZED_SPELL "SPWI602" #5 "wizard" ( 1 ) // Globe of Invulnerability
+  ADD_MEMORIZED_SPELL "SPWI605" #5 "wizard" ( 1 ) // Death Spell
+  ADD_MEMORIZED_SPELL "SPWI606" #5 "wizard" ( 1 ) // Protection From Magic Energy
+  ADD_MEMORIZED_SPELL "SPWI607" #5 "wizard" ( 1 ) // Giant Strength
+  ADD_MEMORIZED_SPELL "SPWI609" #5 "wizard" ( 1 ) // True Sight
+  ADD_MEMORIZED_SPELL "SPWI613" #5 "wizard" ( 2 ) // Improved Haste
+
+  ADD_MEMORIZED_SPELL "SPWI701" #6 "wizard" ( 1 ) // Spell Turning
+  ADD_MEMORIZED_SPELL "SPWI702" #6 "wizard" ( 1 ) // Protection From The Elements
+  ADD_MEMORIZED_SPELL "SPWI704" #6 "wizard" ( 2 ) // Ruby Ray of Reversal
+  ADD_MEMORIZED_SPELL "SPWI714" #6 "wizard" ( 2 ) // Prismatic Spray
+  ADD_MEMORIZED_SPELL "SPWI725" #6 "wizard" ( 1 ) // Shield Mind and Body
+
+  ADD_MEMORIZED_SPELL "SPWI803" #7 "wizard" ( 2 ) // Protection from Energy
+  ADD_MEMORIZED_SPELL "SPWI804" #7 "wizard" ( 1 ) // Tenser's Partial Transformation
+  ADD_MEMORIZED_SPELL "SPWI807" #7 "wizard" ( 1 ) // Foreknowledge
+  ADD_MEMORIZED_SPELL "SPWI812" #7 "wizard" ( 1 ) // Abi-Dalzim's Horrid Wilting
+  ADD_MEMORIZED_SPELL "SPWI813" #7 "wizard" ( 2 ) // Maze
+
+  ADD_MEMORIZED_SPELL "SPWI907" #8 "wizard" ( 2 ) // Absolute Immunity
+  ADD_MEMORIZED_SPELL "SPWI920" #8 "wizard" ( 2 ) // Energy Blades
+  ADD_MEMORIZED_SPELL "SPWI922" #8 "wizard" ( 2 ) // Dragon's Breath
+
+COMPILE ~IATweaks\scripts\creatures\HLSION.BAF~
+
+// Kenzenrich from Guarded Compound
+
+COPY ~IATweaks\resources\cre\s!kenzen.cre~ ~override~
+  SAY NAME1 @5112
+  SAY NAME2 @5112
+
+  FOR (i = 0; i <= 3; ++i) BEGIN
+    LPF ~ADD_CRE_EFFECT~ // Bonus save vs Enchantment school
+      INT_VAR
+        opcode = 346
+        target = 1
+        parameter1 = 1
+        parameter2 = 0
+        resist_dispel = 0
+        timing = 9
+        special = 4
+      STR_VAR
+        effsource = ~S!+1ENCH~
+    END
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL "SPWI102" #0 "wizard" ( 1 ) // Armor
+  ADD_MEMORIZED_SPELL "SPWI113" #0 "wizard" ( 1 ) // Protection From Evil
+  ADD_MEMORIZED_SPELL "SPWI119" #0 "wizard" ( 4 ) // Larloch's Minor Drain
+
+  ADD_MEMORIZED_SPELL "SPWI201" #1 "wizard" ( 1 ) // Blur
+  ADD_MEMORIZED_SPELL "SPWI209" #1 "wizard" ( 1 ) // Luck
+  ADD_MEMORIZED_SPELL "SPWI211" #1 "wizard" ( 3 ) // Melf's Acid Arrow
+  ADD_MEMORIZED_SPELL "SPWI212" #1 "wizard" ( 1 ) // Mirror Image
+
+  ADD_MEMORIZED_SPELL "SPWI302" #2 "wizard" ( 1 ) // Remove Magic
+  ADD_MEMORIZED_SPELL "SPWI303" #2 "wizard" ( 2 ) // Flame Arrow
+  ADD_MEMORIZED_SPELL "SPWI314" #2 "wizard" ( 1 ) // Vampiric Touch
+  ADD_MEMORIZED_SPELL "SPWI321" #2 "wizard" ( 2 ) // Spell Thrust
+
+  ADD_MEMORIZED_SPELL "S!HOPE" #3 "wizard" ( 1 ) // Emotion: Hope
+  ADD_MEMORIZED_SPELL "SPWI408" #3 "wizard" ( 2 ) // Stoneskin
+  ADD_MEMORIZED_SPELL "SPWI414" #3 "wizard" ( 1 ) // Spirit Armor
+  ADD_MEMORIZED_SPELL "SPWI421" #3 "wizard" ( 1 ) // Teleport Field
+  ADD_MEMORIZED_SPELL "SPWI419" #3 "wizard" ( 1 ) // Secret Word
+
+  ADD_MEMORIZED_SPELL "SPWI508" #4 "wizard" ( 3 ) // Chaos
+  ADD_MEMORIZED_SPELL "SPWI510" #4 "wizard" ( 1 ) // Spell Immunity
+  ADD_MEMORIZED_SPELL "SPWI514" #4 "wizard" ( 1 ) // Lower Resistance
+  ADD_MEMORIZED_SPELL "SPWI522" #4 "wizard" ( 1 ) // Soul Armor
+
+  ADD_MEMORIZED_SPELL "SPWI602" #5 "wizard" ( 1 ) // Globe of Invulnerability
+  ADD_MEMORIZED_SPELL "SPWI605" #5 "wizard" ( 2 ) // Death Spell
+  ADD_MEMORIZED_SPELL "SPWI606" #5 "wizard" ( 1 ) // Protection From Magic Energy
+  ADD_MEMORIZED_SPELL "SPWI611" #5 "wizard" ( 1 ) // Protection From Magical Weapons
+  ADD_MEMORIZED_SPELL "SPWI612" #5 "wizard" ( 1 ) // Power Word: Silence
+
+  ADD_MEMORIZED_SPELL "SPWI701" #6 "wizard" ( 1 ) // Spell Turning
+  ADD_MEMORIZED_SPELL "SPWI704" #6 "wizard" ( 1 ) // Ruby Ray of Reversal
+  ADD_MEMORIZED_SPELL "SPWI714" #6 "wizard" ( 1 ) // Prismatic Spray
+  ADD_MEMORIZED_SPELL "SPWI715" #6 "wizard" ( 1 ) // Power Word, Stun
+  ADD_MEMORIZED_SPELL "SPWI725" #6 "wizard" ( 1 ) // Shield Mind and Body
+
+  ADD_MEMORIZED_SPELL "SPWI803" #7 "wizard" ( 1 ) // Protection from Energy
+  ADD_MEMORIZED_SPELL "SPWI807" #7 "wizard" ( 1 ) // Foreknowledge
+  ADD_MEMORIZED_SPELL "SPWI812" #7 "wizard" ( 1 ) // Abi-Dalzim's Horrid Wilting
+  ADD_MEMORIZED_SPELL "SPWI813" #7 "wizard" ( 2 ) // Maze
+
+  ADD_MEMORIZED_SPELL "SPWI907" #8 "wizard" ( 1 ) // Absolute Immunity
+  ADD_MEMORIZED_SPELL "SPWI919" #8 "wizard" ( 2 ) // Wish
+
+  ADD_MEMORIZED_SPELL "S!MINDBL" #0 "innate" ( 2 ) // Focused Mind Blast
+
+COMPILE ~IATweaks\scripts\creatures\S!KENZEN.BAF~
+
+COPY_EXISTING ~AR0907.are~ ~override~
+
+  // add him to the area
+  LPF fj_are_structure
+    INT_VAR
+      fj_loc_x       = 1039
+      fj_loc_y       = 813
+      fj_dest_x      = 1039
+      fj_dest_y      = 813
+      fj_animation   = 25088
+      fj_orientation = 14
+    STR_VAR
+      fj_structure_type = actor
+      fj_name           = ~Kenzenrich~
+      fj_cre_resref     = ~S!KENZEN~
+  END

@@ -1128,20 +1128,33 @@ LAF ~S!ADD_7EYES_ROW~
   RET non_detect_row_id = new_row_id 
 END
 
-COPY_EXISTING ~spwi310.spl~ ~override~
+// Move spell to level 1
+ADD_SPELL ~IATweaks\resources\spl\S!NONDET.spl~ 2 1 ~WIZARD_NON_DETECTION~
   SAY UNIDENTIFIED_DESC @6064
-  LPF ~ALTER_SPELL_HEADER~
-    INT_VAR
-      range = 60 //Visual range of the caster
-  END
-
   LPF ~ALTER_EFFECT~
     INT_VAR
-      match_opcode = 69
-      opcode = 335
+      match_opcode = 335
       parameter1 = %non_detection_state%
       parameter2 = %non_detect_row_id%
   END
+
+LAF RES_NAME_OF_SPELL_NUM INT_VAR spell_num = ~WIZARD_NON_DETECTION~ RET wizard_non_detection_spell_res = spell_res END
+
+COPY_EXISTING ~hidespl.2da~ ~override~
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPWI310 1 0 0~
+  PRETTY_PRINT_2DA
+
+COPY_EXISTING ~SCRL1M.itm~ ~override~
+  LPF ~ALTER_EFFECT~
+    STR_VAR
+      match_resource = ~SPWI310~
+      resource = EVAL ~%wizard_non_detection_spell_res%~
+  END
+
+COPY_EXISTING ~spwi310.spl~ ~override~
+  WRITE_BYTE 0x25 0
 
 // Create a list of all spells that grant Improved Invisibility
 COPY_EXISTING_REGEXP GLOB ~.*\.SPL~ ~override~

@@ -552,14 +552,14 @@ This is a far more dangerous form of standard Sequencer spell. The caster first 
 @6063 = ~Activate Chain Sequencer~
 
 @6064 = ~Non-Detection (Abjuration)
-Level: 3
+Level: 1
 Range: Visual range of the caster
 Duration: 2 turns
 Casting Time: 3
-Area of Effect: 1 creature or item
+Area of Effect: 1 creature
 Saving Throw: None
 
-By casting this spell, the wizard makes the creature or object touched immune to the first effect that would dispel invisibility from that creature, be it from magical means like True Sight or through Detect Illusions ability.~
+By casting this spell, the wizard makes one creature immune to the first effect that would dispel invisibility from that creature, be it from magical means like True Sight or through Detect Illusions ability.~
 
 @6065 = ~Non-Detection absorbed~
 

@@ -310,6 +310,18 @@ COPY_EXISTING ~JAGA2.cre~ ~override~ // Kail
       effsource = ~SPCL142~
   END
 
+  LPF ~ADD_CRE_EFFECT~ // Weapon speed
+    INT_VAR
+      opcode = 190
+      target = 1
+      parameter1 = 3
+      parameter2 = 0
+      resist_dispel = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL143~
+  END
+
 COPY_EXISTING ~JAGA1.cre~ ~override~ // Bessen
   WRITE_SHORT 0x24 73 // HP
   WRITE_SHORT 0x26 73 // HP
@@ -514,11 +526,6 @@ COPY_EXISTING ~SEVPAT04.cre~ ~override~ // Smaeluv
   LPF ~DELETE_EFFECT~
     INT_VAR
       match_opcode = 0
-  END
-  
-  LPF ~DELETE_CRE_ITEM~
-    STR_VAR
-      item_to_delete = ~S!TRAP~
   END
 
   ADD_CRE_ITEM ~POTN11~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~INV14~
@@ -1450,11 +1457,6 @@ COPY_EXISTING ~JAEL04.cre~ ~override~
       item_to_delete = ~DWCHAN01~
   END
 
-  LPF ~DELETE_CRE_ITEM~
-    STR_VAR
-      item_to_delete = ~S!TRAP~
-  END
-
   ADD_CRE_ITEM ~DWPLAT01~ #0 #0 #0 ~UNSTEALABLE~ ~ARMOR~
   ADD_CRE_ITEM ~SW1H04~ #0 #0 #0 ~UNSTEALABLE~ ~WEAPON3~
   ADD_CRE_ITEM ~POTN14~ #2 #0 #0 ~UNSTEALABLE~ ~INV10~ // Oil of Speed
@@ -1553,7 +1555,19 @@ COPY_EXISTING ~JAEL03.cre~ ~override~
       effsource = ~SPCL142~
   END
 
-  PATCH_FOR_EACH item_to_remove IN ~HELM10~ ~DWPLAT01~ ~DWSHLD01~ ~S!TRAP~ BEGIN
+  LPF ~ADD_CRE_EFFECT~ // Weapon speed
+    INT_VAR
+      opcode = 190
+      target = 1
+      parameter1 = 7
+      parameter2 = 0
+      resist_dispel = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL143~
+  END
+
+  PATCH_FOR_EACH item_to_remove IN ~HELM10~ ~DWPLAT01~ ~DWSHLD01~ BEGIN
     LPF ~DELETE_CRE_ITEM~
       STR_VAR
         item_to_delete = EVAL ~%item_to_remove%~

@@ -2831,8 +2831,10 @@ END
 COPY ~IATweaks\resources\bam\s!tallbb.bam~ ~override~
 COPY ~IATweaks\resources\bam\s!tallbc.bam~ ~override~
 COPY ~IATweaks\resources\bam\s!ylight.bam~ ~override~
+ADD_PROJECTILE ~IATweaks\resources\pro\s!light2.pro~
 COPY_EXISTING ~lightb.pro~ ~override/s!light1.pro~
   WRITE_ASCII 0x104 ~s!ylight~ #8
+  WRITE_SHORT 0x21a ~%s!light2%~ // explosion projectile
 
 ADD_PROJECTILE ~override/s!light1.pro~
 

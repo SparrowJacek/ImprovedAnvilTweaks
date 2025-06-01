@@ -1,0 +1,183 @@
+IF
+	OnCreation()
+	Global("EnteredAR0907","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("EnteredAR0907","GLOBAL",1)
+		Continue()
+END
+
+IF
+	InMyArea(Player1)
+	Global("Iaexit2","AR0907",0)  // Guarded Compound 2nd Floor
+THEN
+	RESPONSE #100
+		SetGlobal("Iaexit2","AR0907",1)  // Guarded Compound 2nd Floor
+		TriggerActivation("Tran0906a",FALSE)
+		TriggerActivation("Tran0906b",FALSE)
+		Continue()
+END
+
+IF
+	InMyArea(Player1)
+	Global("Iatrap","AR0907",0)  // Guarded Compound 2nd Floor
+	Global("Iapcastts","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatrap","AR0907",1)  // Guarded Compound 2nd Floor
+		SetInterrupt(FALSE)
+		DisplayString(Player1,14381)  // Trap Sprung
+		PlaySound("AMB_D17")
+		SetGlobal("Iap1nr","GLOBAL",0)
+		SetGlobal("Iap2nr","GLOBAL",0)
+		SetGlobal("Iap3nr","GLOBAL",0)
+		SetGlobal("Iap4nr","GLOBAL",0)
+		SetGlobal("Iap5nr","GLOBAL",0)
+		SetGlobal("Iap6nr","GLOBAL",0)
+		SetGlobal("Iap1nb","GLOBAL",0)
+		SetGlobal("Iap2nb","GLOBAL",0)
+		SetGlobal("Iap3nb","GLOBAL",0)
+		SetGlobal("Iap4nb","GLOBAL",0)
+		SetGlobal("Iap5nb","GLOBAL",0)
+		SetGlobal("Iap6nb","GLOBAL",0)
+		ActionOverride(Player1,ReallyForceSpellRES("SPINI22",Myself))  // No such index
+		SetInterrupt(TRUE)
+END
+
+IF
+	Global("Iaexit2","AR0907",1)  // Guarded Compound 2nd Floor
+	Dead("hlsion")  // Sion
+	Dead("hlstal")  // Stalman
+	Dead("hlketta")  // Ketta
+	Dead("hlolaf")  // Olaf Rassmusen
+	Dead("hlmafer")  // Maferan
+	Dead("hlkoshi")  // Koshi
+THEN
+	RESPONSE #100
+		SetGlobal("Iaexit2","AR0907",2)  // Guarded Compound 2nd Floor
+		TriggerActivation("Tran0906a",TRUE)
+		TriggerActivation("Tran0906b",TRUE)
+END
+
+IF
+	Global("Iaexit2","AR0907",1)  // Guarded Compound 2nd Floor
+	Global("Iasummontime","AR0907",0)  // Guarded Compound 2nd Floor
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iasummontime","AR0907",1)  // Guarded Compound 2nd Floor
+		SetGlobalTimer("Iaassassin","AR0907",TWO_ROUNDS)  // Guarded Compound 2nd Floor
+END
+
+IF
+	Global("Iaexit2","AR0907",1)  // Guarded Compound 2nd Floor
+	GlobalLT("Iaassassins","AR0907",9)  // Guarded Compound 2nd Floor
+	Global("Iasummontime","AR0907",1)  // Guarded Compound 2nd Floor
+	!GlobalTimerNotExpired("Iaassassin","AR0907")  // Guarded Compound 2nd Floor
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaassassins","AR0907",1)  // Guarded Compound 2nd Floor
+		SetGlobalTimer("Iaassassin","AR0907",THREE_ROUNDS)  // Guarded Compound 2nd Floor
+		CreateCreatureObject("S!slassa",Player1,0,0,0)  // Assassin
+END
+
+IF
+	Global("Iaitem","AR0907",0)  // Guarded Compound 2nd Floor
+THEN
+	RESPONSE #100
+		SetGlobal("Iaitem","AR0907",1)  // Guarded Compound 2nd Floor
+		ActionOverride("Container 11",CreateItem("misc07",4500,0,0))  // Gold
+		ActionOverride("Container 13",CreateItem("blun07",0,0,0))  // Morning Star +1
+		CreateCreature("S!elegos",[1908.497],SWW)  // Greater Elemental Golem
+END
+
+IF
+	Global("Iaexit","AR0907",1)  // Guarded Compound 2nd Floor
+	Global("Iaexit2","AR0907",2)  // Guarded Compound 2nd Floor
+THEN
+	RESPONSE #100
+		SetGlobal("Iaexit","AR0907",2)  // Guarded Compound 2nd Floor
+		TriggerActivation("Tran0906a",FALSE)
+		TriggerActivation("Tran0906b",FALSE)
+END
+
+IF
+	Global("Iaexit","AR0907",2)  // Guarded Compound 2nd Floor
+	Dead("S!elegos")  // Greater Elemental Golem
+	CombatCounter(0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iaexit","AR0907",3)  // Guarded Compound 2nd Floor
+		TriggerActivation("Tran0906a",TRUE)
+		TriggerActivation("Tran0906b",TRUE)
+END
+
+IF
+	InMyArea(Player1)
+	OR(4)
+		SpellCast([PC],WIZARD_DEATH_FOG)  // SPWI614.SPL (Death Fog)
+		SpellCast([PC],WIZARD_CLOUDKILL)  // SPWI502.SPL (Cloudkill)
+		SpellCast([PC],WIZARD_INCENDIARY_CLOUD)  // SPWI810.SPL (Incendiary Cloud)
+		SpellCast([PC],WIZARD_STINKING_CLOUD)  // SPWI213.SPL (Stinking Cloud)
+THEN
+	RESPONSE #100
+		SetGlobal("Iapccloud","AR0907",1)  // Guarded Compound 2nd Floor
+		SetGlobalTimer("Iacloudtime","AR0907",TEN_ROUNDS)  // Guarded Compound 2nd Floor
+END
+
+IF
+	Global("Iapccloud","AR0907",1)  // Guarded Compound 2nd Floor
+	GlobalTimerExpired("Iacloudtime","AR0907")  // Guarded Compound 2nd Floor
+THEN
+	RESPONSE #100
+		SetGlobal("Iapccloud","AR0907",0)  // Guarded Compound 2nd Floor
+END
+
+IF
+	Global("Tfcre","AR0907",0)  // Guarded Compound 2nd Floor
+THEN
+	RESPONSE #100
+		SetGlobal("Tfcre","AR0907",1)  // Guarded Compound 2nd Floor
+		CreateCreature("S!mflich",[909.1771],NNW)  // Ancient Lich
+		CreateCreature("S!mfvamp",[941.1743],NNW)  // Vampire Lord
+END
+
+IF
+	InMyArea(Player1)
+	Global("Tfcre","AR0907",1)  // Guarded Compound 2nd Floor
+	Global("Tfexit","AR0907",1)  // Guarded Compound 2nd Floor
+	Global("Iaexit2","AR0907",2)  // Guarded Compound 2nd Floor
+	OR(2)
+		Global("Iaexit","AR0907",0)  // Guarded Compound 2nd Floor
+		Global("Iaexit","AR0907",3)  // Guarded Compound 2nd Floor
+THEN
+	RESPONSE #100
+		SetGlobal("Tfexit","AR0907",2)  // Guarded Compound 2nd Floor
+		TriggerActivation("Tran0906a",FALSE)
+		TriggerActivation("Tran0906b",FALSE)
+END
+
+IF
+	InMyArea(Player1)
+	Global("Tfexit","AR0907",2)  // Guarded Compound 2nd Floor
+	Dead("S!mflich")  // Ancient Lich
+	Dead("S!mfvamp")  // Vampire Lord
+	CombatCounter(0)
+	OR(2)
+		Global("Iaexit","AR0907",0)  // Guarded Compound 2nd Floor
+		Global("Iaexit","AR0907",3)  // Guarded Compound 2nd Floor
+THEN
+	RESPONSE #100
+		SetGlobal("Tfexit","AR0907",3)  // Guarded Compound 2nd Floor
+		TriggerActivation("Tran0906a",TRUE)
+		TriggerActivation("Tran0906b",TRUE)
+END
+
+IF
+	Global("EnteredAR0907","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("EnteredAR0907","GLOBAL",1)
+END
+

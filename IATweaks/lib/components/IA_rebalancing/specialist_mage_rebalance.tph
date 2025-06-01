@@ -1244,6 +1244,14 @@ COPY_EXISTING ~SCRL1Y.itm~ ~override~
 COPY ~IATweaks\resources\eff\s!stillu.eff~ ~override~
 COPY ~IATweaks\resources\eff\s!mtillu.eff~ ~override~
 COPY ~IATweaks\resources\spl\s!mtillu.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      range = 120
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 142
+  END
   LPF ~ALTER_EFFECT~
     INT_VAR
       match_opcode = 335
@@ -1251,6 +1259,14 @@ COPY ~IATweaks\resources\spl\s!mtillu.spl~ ~override~
       parameter2 = %non_detect_row_id%
   END
 COPY ~IATweaks\resources\spl\s!stillu.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      range = 120
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 142
+  END
   LPF ~ALTER_EFFECT~
     INT_VAR
       match_opcode = 335

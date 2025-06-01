@@ -1686,13 +1686,13 @@ END
 
 // Update Dispel Weights for some spells
 
-ACTION_FOR_EACH improved_haste_spell IN ~spini33~ ~spwish37~ ~spwish36~ ~spwi613~ BEGIN
-  COPY_EXISTING ~%larloch_spell%.spl~ ~override~
+ACTION_FOR_EACH improved_haste_spell IN ~spini33~ ~spwish37~ ~spwish36~ ~spwi613~ ~S!WISHIH~ BEGIN
+  COPY_EXISTING ~%improved_haste_spell%.spl~ ~override~
     LPF ~ALTER_EFFECT~
       INT_VAR
         match_opcode = 233
 				match_parameter2 = 65668
-        probability1 = 50
+        parameter1 = 3
     END
   IF_EXISTS
 END

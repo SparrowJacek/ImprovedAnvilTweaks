@@ -2734,6 +2734,17 @@ END
 
 /////// HELM ///////
 
+// Blind Immunity
+
+COPY ~IATweaks\resources\spl\s!noblnd.spl~ ~override~
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABPR03.2da~
+    row_desc = ~BLIND_IMMUNITY~
+    level1 = ~AP_s!noblnd~
+END
+
 // * in Long Swords
 COPY ~IATweaks\resources\bam\s!loswrd.bam~ ~override~
 COPY ~IATweaks\resources\spl\s!loswrd.spl~ ~override~

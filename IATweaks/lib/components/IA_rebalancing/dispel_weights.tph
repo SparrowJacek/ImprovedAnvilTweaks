@@ -36,6 +36,7 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY spell_to_weight_map BEGIN
 	"spwish31" => 3
 	"spwish36" => 5
 	"spwish37" => 5
+	"s!wishih" => 5
 	"sppr101"  => 1
 	"sppr108"  => 1
 	"sppr109"  => 2
@@ -119,6 +120,7 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY spell_to_opcode_map BEGIN
 	"spwish31" => 166
 	"spwish36" => 16 
 	"spwish37" => 16 
+	"s!wishih" => 16 
 	"sppr101"  => 130
 	"sppr108"  => 161
 	"sppr109"  => 153
@@ -202,6 +204,7 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY spell_to_type_map BEGIN
 	"spwish31" => "dispel/specific"
 	"spwish36" => "dispel"
 	"spwish37" => "dispel"
+	"s!wishih" => "dispel"
 	"sppr101"  => "dispel"
 	"sppr108"  => "dispel"
 	"sppr109"  => "dispel"

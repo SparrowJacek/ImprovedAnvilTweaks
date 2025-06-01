@@ -1,0 +1,119 @@
+IF
+	Detect(LastSummonerOf(Myself))
+	!Allegiance(LastSummonerOf(Myself),PC)
+	TriggerOverride(LastSummonerOf(Myself),Global("IaWish","LOCALS",1))
+THEN
+	RESPONSE #100
+		FaceObject(LastSummonerOf(Myself))
+		ActionOverride(LastSummonerOf(Myself),SetGlobal("IaWish","LOCALS",0))
+		ActionOverride(LastSummonerOf(Myself),DisplayStringHead(Myself,0))
+		Wait(1)
+		ForceSpellRES("S!WISHHA",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Detect(LastSummonerOf(Myself))
+	!Allegiance(LastSummonerOf(Myself),PC)
+	TriggerOverride(LastSummonerOf(Myself),Global("IaWish","LOCALS",2))
+THEN
+	RESPONSE #100
+		FaceObject(LastSummonerOf(Myself))
+		ActionOverride(LastSummonerOf(Myself),SetGlobal("IaWish","LOCALS",0))
+		ActionOverride(LastSummonerOf(Myself),DisplayStringHead(Myself,1))
+		Wait(1)
+		ForceSpellRES("S!WISHBR",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Detect(LastSummonerOf(Myself))
+	!Allegiance(LastSummonerOf(Myself),PC)
+	TriggerOverride(LastSummonerOf(Myself),Global("IaWish","LOCALS",3))
+THEN
+	RESPONSE #100
+		FaceObject(LastSummonerOf(Myself))
+		ActionOverride(LastSummonerOf(Myself),SetGlobal("IaWish","LOCALS",0))
+		ActionOverride(LastSummonerOf(Myself),DisplayStringHead(Myself,2))
+		Wait(1)
+		ForceSpellRES("S!WISHDB",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Detect(LastSummonerOf(Myself))
+	!Allegiance(LastSummonerOf(Myself),PC)
+	TriggerOverride(LastSummonerOf(Myself),Global("IaWish","LOCALS",4))
+THEN
+	RESPONSE #100
+		FaceObject(LastSummonerOf(Myself))
+		ActionOverride(LastSummonerOf(Myself),SetGlobal("IaWish","LOCALS",0))
+		ActionOverride(LastSummonerOf(Myself),DisplayStringHead(Myself,3))
+		Wait(1)
+		ForceSpellRES("S!WISHRE",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Detect(LastSummonerOf(Myself))
+	!Allegiance(LastSummonerOf(Myself),PC)
+	TriggerOverride(LastSummonerOf(Myself),Global("IaWish","LOCALS",5))
+THEN
+	RESPONSE #100
+		FaceObject(LastSummonerOf(Myself))
+		ActionOverride(LastSummonerOf(Myself),SetGlobal("IaWish","LOCALS",0))
+		ActionOverride(LastSummonerOf(Myself),DisplayStringHead(Myself,4))
+		Wait(1)
+		ForceSpellRES("S!WISHST",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Detect(LastSummonerOf(Myself))
+	!Allegiance(LastSummonerOf(Myself),PC)
+	TriggerOverride(LastSummonerOf(Myself),Global("IaWish","LOCALS",6))
+THEN
+	RESPONSE #100
+		FaceObject(LastSummonerOf(Myself))
+		ActionOverride(LastSummonerOf(Myself),SetGlobal("IaWish","LOCALS",0))
+		ActionOverride(LastSummonerOf(Myself),DisplayStringHead(Myself,5))
+		Wait(1)
+		ActionOverride(LastSummonerOf(Myself),ForceSpellRES("SPWISH09",Myself))
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Detect(LastSummonerOf(Myself))
+	!Allegiance(LastSummonerOf(Myself),PC)
+	TriggerOverride(LastSummonerOf(Myself),Global("IaWish","LOCALS",7))
+THEN
+	RESPONSE #100
+		FaceObject(LastSummonerOf(Myself))
+		ActionOverride(LastSummonerOf(Myself),SetGlobal("IaWish","LOCALS",0))
+		ActionOverride(LastSummonerOf(Myself),DisplayStringHead(Myself,6))
+		Wait(1)
+		ForceSpellRES("S!WISHGR",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Detect(LastSummonerOf(Myself))
+	!Allegiance(LastSummonerOf(Myself),PC)
+	TriggerOverride(LastSummonerOf(Myself),Global("IaWish","LOCALS",8))
+THEN
+	RESPONSE #100
+		FaceObject(LastSummonerOf(Myself))
+		ActionOverride(LastSummonerOf(Myself),SetGlobal("IaWish","LOCALS",0))
+		ActionOverride(LastSummonerOf(Myself),DisplayStringHead(Myself,7))
+		Wait(1)
+		ForceSpellRES("S!WISHIH",Myself)
+		Wait(1)
+		DestroySelf()
+END

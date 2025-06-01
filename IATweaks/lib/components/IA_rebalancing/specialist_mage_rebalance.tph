@@ -476,6 +476,289 @@ ACTION_FOR_EACH pfmw_type_spell IN ~SPWI611~ ~SPWI808~ ~SPWI907~ BEGIN
     END
 END
 
+// Add Wishes for enemies
+
+COPY ~IATweaks\resources\cre\s!wishen.cre~ ~override~
+
+COPY_EXISTING ~SPWI919.spl~ ~override/S!WISHEN.spl~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 67
+    STR_VAR
+      resource = ~S!WISHEN~
+  END
+
+OUTER_SET hardiness_wish_str_ref = RESOLVE_STR_REF (@5113)
+OUTER_SET breach_wish_str_ref = RESOLVE_STR_REF (@5114)
+OUTER_SET deathblow_wish_str_ref = RESOLVE_STR_REF (@5115)
+OUTER_SET rest_wish_str_ref = RESOLVE_STR_REF (@5116)
+OUTER_SET stats_wish_str_ref = RESOLVE_STR_REF (@5117)
+OUTER_SET globe_of_blades_wish_str_ref = RESOLVE_STR_REF (@5118)
+OUTER_SET restoration_wish_str_ref = RESOLVE_STR_REF (@5119)
+OUTER_SET improved_haste_wish_str_ref = RESOLVE_STR_REF (@5120)
+
+COMPILE ~IATweaks\scripts\creatures\S!WISHEN.BAF~
+
+COPY_EXISTING ~S!WISHEN.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    REPLACE_TEXTUALLY ~DisplayStringHead(Myself,0)~ ~DisplayStringHead(Myself,%hardiness_wish_str_ref%)~
+    REPLACE_TEXTUALLY ~DisplayStringHead(Myself,1)~ ~DisplayStringHead(Myself,%breach_wish_str_ref%)~
+    REPLACE_TEXTUALLY ~DisplayStringHead(Myself,2)~ ~DisplayStringHead(Myself,%deathblow_wish_str_ref%)~
+    REPLACE_TEXTUALLY ~DisplayStringHead(Myself,3)~ ~DisplayStringHead(Myself,%rest_wish_str_ref%)~
+    REPLACE_TEXTUALLY ~DisplayStringHead(Myself,4)~ ~DisplayStringHead(Myself,%stats_wish_str_ref%)~
+    REPLACE_TEXTUALLY ~DisplayStringHead(Myself,5)~ ~DisplayStringHead(Myself,%globe_of_blades_wish_str_ref%)~
+    REPLACE_TEXTUALLY ~DisplayStringHead(Myself,6)~ ~DisplayStringHead(Myself,%restoration_wish_str_ref%)~
+    REPLACE_TEXTUALLY ~DisplayStringHead(Myself,7)~ ~DisplayStringHead(Myself,%improved_haste_wish_str_ref%)~
+  END
+
+// Wish Hardiness for enemies
+
+COPY_EXISTING ~SPWISH12.spl~ ~override/s!wishha.spl~
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 318
+      target = 5
+      parameter1 = enemy_group_state
+      parameter2 = 111 // Spellstate != n
+      duration = 1
+      resist_dispel = 0
+      insert_point = 0
+    STR_VAR
+      resource = ~S!WISHHA~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_target = 3
+      target = 5
+  END
+  BUT_ONLY
+
+ACTION_FOR_EACH greater_hardiness IN ~SPINI26~ ~spcl907~ BEGIN
+  COPY_EXISTING ~%greater_hardiness%.spl~ ~override~ 
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        multi_match = 1
+        match_opcode = 206
+      STR_VAR
+        match_resource = ~spwish12~
+        resource = ~s!wishha~
+    END
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        opcode = 321
+        target = 1  
+        insert_point = 0
+      STR_VAR
+        resource = "SPWISH12"
+    END
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        opcode = 321
+        target = 1  
+        insert_point = 0
+      STR_VAR
+        resource = "S!WISHHA"
+    END
+END
+
+// Wish Breach for enemies
+
+COPY_EXISTING ~SPWISH38.spl~ ~override/s!wishbr.spl~
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 318
+      target = 4
+      parameter1 = enemy_group_state
+      parameter2 = 110 // Spellstate = n
+      duration = 1
+      resist_dispel = 0
+      insert_point = 0
+    STR_VAR
+      resource = ~S!WISHBR~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_target = 5
+      target = 4
+  END
+  BUT_ONLY
+
+// Wish Greater Deathblow for enemies
+
+COPY_EXISTING ~SPWISH11.spl~ ~override/s!wishdb.spl~
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 318
+      target = 5
+      parameter1 = enemy_group_state
+      parameter2 = 111 // Spellstate != n
+      duration = 1
+      resist_dispel = 0
+      insert_point = 0
+    STR_VAR
+      resource = ~S!WISHDB~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_target = 3
+      target = 5
+      power = 0
+  END
+  BUT_ONLY
+
+// Wish Rest for enemies
+
+COPY_EXISTING ~SPWISH16.spl~ ~override/s!wishre.spl~
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 318
+      target = 5
+      parameter1 = enemy_group_state
+      parameter2 = 111 // Spellstate != n
+      duration = 1
+      resist_dispel = 0
+      insert_point = 0
+    STR_VAR
+      resource = ~S!WISHRE~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_target = 3
+      target = 5
+      power = 0
+  END
+  BUT_ONLY
+
+// Wish 25 stats for enemies
+
+COPY_EXISTING ~SPWISH08.spl~ ~override/s!wishst.spl~
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 318
+      target = 5
+      parameter1 = enemy_group_state
+      parameter2 = 111 // Spellstate != n
+      duration = 1
+      resist_dispel = 0
+      insert_point = 0
+    STR_VAR
+      resource = ~S!WISHST~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_target = 3
+      target = 5
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      target = 5
+  END
+  BUT_ONLY
+
+// Wish Globe of Blades
+
+COPY_EXISTING ~SPWISH09.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 146
+      parameter2 = 2 // cast instantly
+  END
+
+// Wish Greater Restoration
+
+COPY_EXISTING ~SPWISH07.spl~ ~override/s!wishgr.spl~
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 318
+      target = 5
+      parameter1 = enemy_group_state
+      parameter2 = 111 // Spellstate != n
+      duration = 1
+      resist_dispel = 0
+      insert_point = 0
+    STR_VAR
+      resource = ~S!WISHGR~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_target = 6
+      target = 5
+      power = 0
+  END
+  BUT_ONLY
+
+// Wish Improved Haste
+
+COPY_EXISTING ~SPWISH36.spl~ ~override/s!wishih.spl~
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 318
+      target = 5
+      parameter1 = enemy_group_state
+      parameter2 = 111 // Spellstate != n
+      duration = 1
+      resist_dispel = 0
+      insert_point = 0
+    STR_VAR
+      resource = ~S!WISHIH~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_target = 4
+      target = 5
+      power = 0
+  END
+  BUT_ONLY  
+
+// Make Wish:Hardiness weaker
+
+COPY ~IATweaks\resources\bam\s!hardin.bam~ ~override~
+OUTER_SET lesser_hardiness_desc_str_ref = RESOLVE_STR_REF (@6186)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %lesser_hardiness_desc_str_ref%
+  STR_VAR
+    bam_file = ~S!HARDIN~
+  RET
+    lesser_hardiness_icon_id = portrait_icon_id
+END
+
+ACTION_FOR_EACH lesser_hardiness IN ~SPWISH12~ ~S!WISHHA~ BEGIN
+  COPY_EXISTING ~%lesser_hardiness%.spl~ ~override~
+    SAY NAME1 @6186
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 142
+        parameter2 = %lesser_hardiness_icon_id%
+    END
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = 206
+      STR_VAR
+        match_resource = ~SPCL907~
+    END
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = 328
+        match_parameter2 = 118
+    END
+    PATCH_FOR_EACH physical_res_opcode IN 86 87 88 89 BEGIN
+      LPF ~ALTER_EFFECT~
+        INT_VAR
+          match_opcode = physical_res_opcode
+          parameter1 = 20
+      END
+    END
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 86
+        multi_match = 1
+        opcode = 139
+        parameter1 = lesser_hardiness_desc_str_ref
+    END
+END
+
 //////// CONJURER //////////
 
 // More powerful versions of summons for Conjurer

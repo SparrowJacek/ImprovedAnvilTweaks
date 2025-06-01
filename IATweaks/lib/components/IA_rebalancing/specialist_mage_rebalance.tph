@@ -1697,6 +1697,22 @@ COPY_EXISTING ~SEVPAT02.cre~ ~override~
   WRITE_BYTE 0x63 0 // Resist Missile
   WRITE_LONG 0x244 0x08000000 // Kit = Invoker
 
+  FOR (i = 0; i <= 1; ++i) BEGIN
+    PATCH_FOR_EACH element_id IN 1 2 3 4 BEGIN
+      LPF ~ADD_CRE_EFFECT~ // Bonus elemental damage
+        INT_VAR
+          opcode = 332
+          target = 1
+          parameter1 = 5
+          parameter2 = element_id
+          resist_dispel = 0
+          timing = 9
+        STR_VAR
+          effsource = ~S!+5ELED~
+      END
+    END
+  END
+
   LPF ~ADD_CRE_EFFECT~ // Sequencer with Flame Arrow
     INT_VAR
       opcode = 256

@@ -1413,9 +1413,11 @@ Casting Time: 4
 Area of Effect: The caster
 Saving Throw: None
 
-This spell causes the caster to be enveloped by an aura of intense flame that both injures opponents and protects the caster from damage. This shield not only grants the user 90% Fire Resistance and an AC bonus of 4, but also protects <PRO_HIMHER> from attacks made within a 5-ft. radius. An opponent that hits the caster with any weapons or spells within this radius suffers 2d10+2 fire damage. In addition, the intense heat protects the caster from all non-magical weapons, melee or missile.
+This spell causes the caster to be enveloped by an aura of intense flame that both injures opponents and protects the caster from damage. This shield not only increases the user's Fire Resistance by 90% and an AC bonus of 4, but also protects <PRO_HIMHER> from attacks made within a 5-ft. radius. An opponent that hits the caster with any weapons or spells within this radius suffers 2d10+2 fire damage. In addition, the intense heat protects the caster from all non-magical weapons, melee or missile.
 
-Additionally, there is a 40% chance every 3 seconds to automatically remove Web effects and any Insect-based spells affecting the caster, such as Insect Plague or Creeping Doom. The overwhelming magical flames burn through nearly anything that would otherwise cling or swarm.~
+Additionally, there is a 40% chance every 3 seconds to automatically remove Web effects and any Insect-based spells affecting the caster, such as Insect Plague or Creeping Doom. The overwhelming magical flames burn through nearly anything that would otherwise cling or swarm.
+
+These effects will remain for the spell's duration and won't be dispellable.~
 
 @6202 = ~The icy flames make the webs brittle and they shatter.~
 

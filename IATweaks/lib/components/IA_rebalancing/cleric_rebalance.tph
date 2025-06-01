@@ -1430,6 +1430,22 @@ ACTION_FOR_EACH spl_granting_globe_of_blades_immunity IN ~SPPR725~ ~MELIS02~ ~SP
     END
 END
 
+
+// Aura of Flaming Death
+
+COPY_EXISTING ~sppr730.spl~ ~override~
+  WRITE_BYTE  0x27 0 // secondary type = None
+  LPF ~ALTER_EFFECT~ // increase fire res instead of setting it
+    INT_VAR
+      match_opcode = 30
+      parameter2 = 0
+  END
+  LPF ~ALTER_EFFECT~ // make undispellable
+    INT_VAR
+      match_resist_dispel = 3
+      resist_dispel = 2
+  END
+
 // Cure spells
 
 // update Continual Cure description

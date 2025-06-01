@@ -1393,6 +1393,41 @@ LAF ~S!ADD_CLAB_ROW~
     level30 = ~GA_S!MINDBL~
 END
 
+// Enemy version of Focused Mind Blast
+
+COPY_EXISTING ~s!mindbl.spl~ ~override/s!mindb2.spl~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_target = 3
+      target = 5
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 148
+      match_target = 5
+      opcode = 318
+      parameter1 = enemy_group_state
+      parameter2 = 111 // Spellstate != n
+      duration = 1
+      resist_dispel = 0
+    STR_VAR
+      resource = ~S!MINDB2~
+      insert = ~above~
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 148
+      match_target = 1
+      opcode = 206
+      parameter1 = 0
+      duration = 1
+      resist_dispel = 0
+      insert_point = 0
+    STR_VAR
+      resource = ~S!MINDB2~
+      insert = ~below~
+  END
+
 // Emotion: Hope
 
 COPY ~IATweaks\resources\bam\s!hopeb.bam~ ~override~

@@ -2749,12 +2749,233 @@ END
 
 // Seeking Sword
 
+COPY ~IATweaks\resources\bam\s!seek-x.bam~ ~override~
+
+OUTER_SET seeking_sword_desc_str_ref = RESOLVE_STR_REF (@6235)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %seeking_sword_desc_str_ref%
+  STR_VAR
+    bam_file = ~S!SEEK-X~
+  RET
+    seeking_sword_icon_id = portrait_icon_id
+END
+
+COPY ~IATweaks\resources\spl\s!seek-x.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %seeking_sword_icon_id%
+  END
+COPY ~IATweaks\resources\eff\s!seek-1.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!seek-1.eff~ ~override\s!seek-2.eff~
+  WRITE_LONG 0x1c 2
+COPY ~IATweaks\resources\eff\s!seek-1.eff~ ~override\s!seek-3.eff~
+  WRITE_LONG 0x1c 3
+COPY ~IATweaks\resources\eff\s!seek-1.eff~ ~override\s!seek-4.eff~
+  WRITE_LONG 0x1c 4
+COPY ~IATweaks\resources\eff\s!seek-1.eff~ ~override\s!seek-5.eff~
+  WRITE_LONG 0x1c 5
+
+OUTER_SET seeking_sword_disappearing = RESOLVE_STR_REF (@6236)
 COPY ~IATweaks\resources\itm\s!seek01.itm~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 146
+      opcode = 318
+      parameter1 = 16404 // Helm
+      parameter2 = kit_equals_row
+      timing = 10
+      duration = 1
+    STR_VAR
+      insert = ~last~
+      resource = ~S!SEEK01~
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 146
+      opcode = 139
+      parameter1 = seeking_sword_disappearing
+      parameter2 = 0
+    STR_VAR
+      insert = ~last~
+      resource = ~~
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 146
+      opcode = 112
+      parameter1 = 0
+      parameter2 = 0
+    STR_VAR
+      insert = ~last~
+      resource = ~S!SEEK01~
+  END
 COPY ~IATweaks\resources\itm\s!seek02.itm~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 146
+      opcode = 318
+      parameter1 = 16404 // Helm
+      parameter2 = kit_equals_row
+      timing = 10
+      duration = 1
+    STR_VAR
+      insert = ~last~
+      resource = ~S!SEEK02~
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 146
+      opcode = 139
+      parameter1 = seeking_sword_disappearing
+      parameter2 = 0
+    STR_VAR
+      insert = ~last~
+      resource = ~~
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 146
+      opcode = 112
+      parameter1 = 0
+      parameter2 = 0
+    STR_VAR
+      insert = ~last~
+      resource = ~S!SEEK02~
+  END
 COPY ~IATweaks\resources\itm\s!seek03.itm~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 146
+      opcode = 318
+      parameter1 = 16404 // Helm
+      parameter2 = kit_equals_row
+      timing = 10
+      duration = 1
+    STR_VAR
+      insert = ~last~
+      resource = ~S!SEEK03~
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 146
+      opcode = 139
+      parameter1 = seeking_sword_disappearing
+      parameter2 = 0
+    STR_VAR
+      insert = ~last~
+      resource = ~~
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 146
+      opcode = 112
+      parameter1 = 0
+      parameter2 = 0
+    STR_VAR
+      insert = ~last~
+      resource = ~S!SEEK03~
+  END
 COPY ~IATweaks\resources\itm\s!seek04.itm~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 146
+      opcode = 318
+      parameter1 = 16404 // Helm
+      parameter2 = kit_equals_row
+      timing = 10
+      duration = 1
+    STR_VAR
+      insert = ~last~
+      resource = ~S!SEEK04~
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 146
+      opcode = 139
+      parameter1 = seeking_sword_disappearing
+      parameter2 = 0
+    STR_VAR
+      insert = ~last~
+      resource = ~~
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 146
+      opcode = 112
+      parameter1 = 0
+      parameter2 = 0
+    STR_VAR
+      insert = ~last~
+      resource = ~S!SEEK04~
+  END
 COPY ~IATweaks\resources\itm\s!seek05.itm~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 146
+      opcode = 318
+      parameter1 = 16404 // Helm
+      parameter2 = kit_equals_row
+      timing = 10
+      duration = 1
+    STR_VAR
+      insert = ~last~
+      resource = ~S!SEEK05~
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 146
+      opcode = 139
+      parameter1 = seeking_sword_disappearing
+      parameter2 = 0
+    STR_VAR
+      insert = ~last~
+      resource = ~~
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 146
+      opcode = 112
+      parameter1 = 0
+      parameter2 = 0
+    STR_VAR
+      insert = ~last~
+      resource = ~S!SEEK05~
+  END
 COPY ~IATweaks\resources\itm\s!seek06.itm~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 146
+      opcode = 318
+      parameter1 = 16404 // Helm
+      parameter2 = kit_equals_row
+      timing = 10
+      duration = 1
+    STR_VAR
+      insert = ~last~
+      resource = ~S!SEEK06~
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 146
+      opcode = 139
+      parameter1 = seeking_sword_disappearing
+      parameter2 = 0
+    STR_VAR
+      insert = ~last~
+      resource = ~~
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 146
+      opcode = 112
+      parameter1 = 0
+      parameter2 = 0
+    STR_VAR
+      insert = ~last~
+      resource = ~S!SEEK06~
+  END
 COPY_EXISTING ~SPCL731.spl~ ~override/SPCL731.spl~
   SAY UNIDENTIFIED_DESC @6046
 
@@ -2764,6 +2985,7 @@ COPY_EXISTING ~SPCL731.spl~ ~override/SPCL731.spl~
       INT_VAR
         header = %ability_num%
         match_opcode = 111
+        new_opcode = 122
       STR_VAR
         resource = ~S!seek01~
     END
@@ -2774,6 +2996,7 @@ COPY_EXISTING ~SPCL731.spl~ ~override/SPCL731.spl~
       INT_VAR
         header = %ability_num%
         match_opcode = 111
+        new_opcode = 122
       STR_VAR
         resource = ~S!seek02~
     END
@@ -2784,6 +3007,7 @@ COPY_EXISTING ~SPCL731.spl~ ~override/SPCL731.spl~
       INT_VAR
         header = %ability_num%
         match_opcode = 111
+        new_opcode = 122
       STR_VAR
         resource = ~S!seek03~
     END
@@ -2794,6 +3018,7 @@ COPY_EXISTING ~SPCL731.spl~ ~override/SPCL731.spl~
       INT_VAR
         header = %ability_num%
         match_opcode = 111
+        new_opcode = 122
       STR_VAR
         resource = ~S!seek04~
     END
@@ -2803,6 +3028,7 @@ COPY_EXISTING ~SPCL731.spl~ ~override/SPCL731.spl~
     INT_VAR
       header = 20
       match_opcode = 111
+      new_opcode = 122
     STR_VAR
       resource = ~S!seek05~
   END
@@ -2816,7 +3042,7 @@ COPY_EXISTING ~SPCL731.spl~ ~override/SPCL731.spl~
   LAUNCH_PATCH_FUNCTION ~ALTER_SPELL_EFFECT~ 
     INT_VAR
       header = 21
-      match_opcode = 111
+      match_opcode = 122
     STR_VAR
       resource = ~S!seek06~
   END

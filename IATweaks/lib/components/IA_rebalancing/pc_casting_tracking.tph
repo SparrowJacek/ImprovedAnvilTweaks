@@ -34,7 +34,7 @@ COPY_EXISTING ~s!castt1.spl~ ~override/s!castt2.spl~
       parameter2 = 65669 // EXTRAPROFICIENCY19 increment
   END
 
-ACTION_FOR_EACH powerful_spell IN ~sppr717~ ~spwi812~ ~sppri27~ ~spcli24~ ~spcli23~ ~sppr711~ ~sprr722~ ~sppr705~ ~sppr607~ ~sppr705~ ~spwi807~ ~spini13~ BEGIN
+ACTION_FOR_EACH powerful_spell IN ~sppr717~ ~spwi812~ ~sppri27~ ~spcli24~ ~spcli23~ ~sppr711~ ~sppr722~ ~sppr705~ ~sppr607~ ~sppr705~ ~spwi807~ ~spini13~ BEGIN
   COPY_EXISTING ~%powerful_spell%.spl~ ~override~
     READ_LONG 0x64 first_header_offset
     READ_SHORT first_header_offset + 0x12 casting_speed

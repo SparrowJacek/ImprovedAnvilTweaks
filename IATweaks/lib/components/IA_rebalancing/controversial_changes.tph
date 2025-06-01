@@ -346,7 +346,7 @@ LAF ~S!ADD_PORTRAIT_ICON~
     improved_haste_icon_id = portrait_icon_id
 END
 
-ACTION_FOR_EACH improved_haste_spell IN ~SPINI33~ ~SPWI613~ ~S!CHMPMZ~ ~SPWISH36~ ~SPWISH37~ ~SPWISH40~ BEGIN
+ACTION_FOR_EACH improved_haste_spell IN ~SPINI33~ ~SPWI613~ ~S!CHMPMZ~ ~SPWISH36~ ~SPWISH37~ ~SPWISH40~ ~S!WISHIH~ BEGIN
   COPY_EXISTING ~%improved_haste_spell%.spl~ ~override~
     LPF ~S!SPELL_USES_OPCODE~
       INT_VAR
@@ -401,7 +401,7 @@ ACTION_FOR_EACH improved_haste_spell IN ~SPINI33~ ~SPWI613~ ~S!CHMPMZ~ ~SPWISH36
         opcode = 142
         parameter2 = improved_haste_icon_id
     END
-    PATCH_FOR_EACH improved_haste_spell_to_delete IN ~SPINI33~ ~SPWI613~ ~S!CHMPMZ~ ~SPWISH36~ ~SPWISH37~ ~SPWISH40~ BEGIN
+    PATCH_FOR_EACH improved_haste_spell_to_delete IN ~SPINI33~ ~SPWI613~ ~S!CHMPMZ~ ~SPWISH36~ ~SPWISH37~ ~SPWISH40~ ~S!WISHIH~ BEGIN
       LPF ~ADD_SPELL_EFFECT~ 
         INT_VAR
           opcode = 321

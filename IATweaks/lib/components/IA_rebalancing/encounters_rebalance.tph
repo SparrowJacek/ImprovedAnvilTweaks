@@ -1625,16 +1625,12 @@ COMPILE ~IATweaks\scripts\others\S!MFDOOR.BAF~
 
 COPY_EXISTING ~AR2400.are~ ~override~
 
-  GET_OFFSET_ARRAY actors ARE_V10_ACTORS
-
-  PHP_EACH actors AS int1 => actor_off BEGIN
-    READ_SHORT actor_off + 0x20 X_coordinate
-    READ_SHORT actor_off + 0x22 Y_coordinate
-
-    PATCH_IF (X_coordinate = 973 AND Y_coordinate = 2083) BEGIN
-      WRITE_LONG  actor_off + 0x30 (IDS_OF_SYMBOL (~animate~ ~ANVIL_UMBER_HULK_HORRID~))
-      WRITE_ASCII  actor_off + 0x80 ~S!UMBTH1~
-    END
+  LPF ALTER_AREA_ACTOR
+    INT_VAR
+      x_coord = 627
+      y_coord = 838
+    STR_VAR
+     actor_name = ~Ist'tar Jae'llat~
   END
 
   GET_OFFSET_ARRAY doors ARE_V10_DOORS
@@ -1823,3 +1819,323 @@ COPY_EXISTING ~AR18ARCH.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPCL922~ #0 ~innate~ ( 1 ) // Contact with Nature
 
 COMPILE ~IATweaks\scripts\creatures\S!ARCH21.BAF~
+
+// Maferan, the Minotaur from Guarded Compound
+
+COPY_EXISTING ~HLMAFER.cre~ ~override~
+  WRITE_SHORT 0x24 126 // HP
+  WRITE_SHORT 0x26 126 // HP
+  WRITE_BYTE 0x52 0 // Thac0
+  WRITE_BYTE 0x60 10 // Resist Slashing
+  WRITE_BYTE 0x61 10 // Resist Crushing
+  WRITE_BYTE 0x62 10 // Resist Piercing
+  WRITE_BYTE 0x63 10 // Resist Missile
+  WRITE_BYTE 0x234 22 // Level 1  
+  WRITE_BYTE 0x23c 18 // Dexterity
+  WRITE_LONG 0x244 0x40010000 // Kit = Berserker
+  WRITE_BYTE 0x272 171 // Race = Minotaur
+    
+  LPF ~ADD_CRE_EFFECT~ // normal Haste
+    INT_VAR
+      target = 1
+      opcode = 16
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // ***** in Axes
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 5
+      parameter2 = 92
+      resist_dispel = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // ** in Sword and Shield
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 2
+      parameter2 = 112
+      resist_dispel = 0
+      timing = 9
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+  
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = EVAL ~S!MISS6~
+  END
+
+  ADD_CRE_ITEM ~POTN41~ #1 #0 #0 ~NONE~ ~INV10~ // Potion of Power
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL321~ #0 ~innate~ ( 5 ) // Enrage
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 1 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+
+COMPILE ~IATweaks\scripts\creatures\S!MAFER.BAF~
+
+// Olaf, the Orc from Guarded Compound
+
+COPY_EXISTING ~HLOLAF.cre~ ~override~
+  WRITE_SHORT 0x24 150 // HP
+  WRITE_SHORT 0x26 150 // HP
+  WRITE_BYTE 0x52 0 // Thac0
+  WRITE_BYTE 0x5d 40 // Resist Magic
+  WRITE_BYTE 0x60 30 // Resist Slashing
+  WRITE_BYTE 0x61 30 // Resist Crushing
+  WRITE_BYTE 0x62 30 // Resist Piercing
+  WRITE_BYTE 0x63 30 // Resist Missile
+  WRITE_BYTE 0x234 24 // Level 1
+  WRITE_BYTE 0x238 19 // Strength
+  WRITE_BYTE 0x23d 19 // Constitution
+  WRITE_LONG 0x244 0x40000000 // Kit = Barbarian
+    
+  LPF ~ADD_CRE_EFFECT~ // Movement speed set to 11
+    INT_VAR
+      target = 1
+      opcode = 126
+      parameter1 = 11
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // normal Haste
+    INT_VAR
+      target = 1
+      opcode = 16
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // ** in 2h Swords
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 2
+      parameter2 = 93
+      resist_dispel = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // ** in 2h Weapons
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 2
+      parameter2 = 111
+      resist_dispel = 0
+      timing = 9
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+  
+  PATCH_FOR_EACH item_to_remove IN ~PLAT14~ ~S!MISS6~ ~SW2H11~ BEGIN
+    LPF ~DELETE_CRE_ITEM~
+      STR_VAR
+        item_to_delete = EVAL ~%item_to_remove%~
+    END
+  END
+
+  ADD_CRE_ITEM ~CLCK01~ #0 #0 #0 ~NONE~ ~CLOAK~
+  ADD_CRE_ITEM ~OHCHAN50~ #0 #0 #0 ~NONE~ ~ARMOR~
+  ADD_CRE_ITEM ~SW2H20~ #0 #0 #0 ~UNSTEALABLE~ ~WEAPON1~ EQUIP
+  ADD_CRE_ITEM ~SW2H01~ #0 #0 #0 ~UNSTEALABLE~ ~WEAPON2~
+  ADD_CRE_ITEM ~POTN37~ #1 #0 #0 ~NONE~ ~INV10~ // Oil of Resurgence
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL152~ #0 ~innate~ ( 5 ) // Barbarian Rage
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 2 ) // Critical Strike
+
+COMPILE ~IATweaks\scripts\creatures\S!OLAF.BAF~
+
+// Koshi, the Kensai from Guarded Compound
+
+COPY_EXISTING ~HLKOSHI.cre~ ~override~
+  WRITE_LONG 0x14 27000 // Exp
+  WRITE_SHORT 0x24 144 // HP
+  WRITE_SHORT 0x26 144 // HP
+  WRITE_SHORT 0x46 10 // AC
+  WRITE_SHORT 0x48 10 // AC
+  WRITE_BYTE 0x52 0 // Thac0
+  WRITE_BYTE 0x5d 0 // Resist Magic
+  WRITE_BYTE 0x60 10 // Resist Slashing
+  WRITE_BYTE 0x61 10 // Resist Crushing
+  WRITE_BYTE 0x62 10 // Resist Piercing
+  WRITE_BYTE 0x63 10 // Resist Missile
+  WRITE_BYTE 0x234 27 // Level 1
+  WRITE_BYTE 0x238 18 // Strength
+  WRITE_BYTE 0x239 100 // Exceptional Strength
+  WRITE_BYTE 0x23d 18 // Constitution
+  WRITE_LONG 0x244 0x40030000 // Kit = Kensai
+    
+  LPF ~ADD_CRE_EFFECT~ // normal Haste
+    INT_VAR
+      target = 1
+      opcode = 16
+      timing = 9
+  END
+
+  LPF ~ALTER_EFFECT~ // ***** in Katanas
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 94
+      parameter1 = 5
+  END
+
+  LPF ~ALTER_EFFECT~ // *** in Dual Wield
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 114
+      parameter1 = 3
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  // thac0 and damage bonuses to melee
+  FOR (i=0; i<9; ++i) BEGIN
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 285
+        target = 1
+        parameter1 = 1
+        parameter2 = 0
+        timing = 9
+      STR_VAR
+        effsource = ~SPCL141~
+    END
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 284
+        target = 1
+        parameter1 = 1
+        parameter2 = 0
+        timing = 9
+      STR_VAR
+        effsource = ~SPCL141~
+    END
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // AC
+    INT_VAR
+      opcode = 0
+      target = 1
+      parameter1 = 2
+      parameter2 = 0
+      resist_dispel = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL142~
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Weapon speed
+    INT_VAR
+      opcode = 190
+      target = 1
+      parameter1 = 7
+      parameter2 = 0
+      resist_dispel = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL143~
+  END
+  
+  PATCH_FOR_EACH item_to_remove IN ~SW1H44~ ~S!MISS6~ ~S!KOSHI~ ~HELM01~ BEGIN
+    LPF ~DELETE_CRE_ITEM~
+      STR_VAR
+        item_to_delete = EVAL ~%item_to_remove%~
+    END
+  END
+
+  ADD_CRE_ITEM ~CLCK02~ #0 #0 #0 ~NONE~ ~CLOAK~
+  ADD_CRE_ITEM ~SW1H75~ #0 #0 #0 ~UNSTEALABLE~ ~SHIELD~
+  ADD_CRE_ITEM ~SW1H43~ #0 #0 #0 ~UNSTEALABLE~ ~WEAPON2~
+  ADD_CRE_ITEM ~POTN37~ #1 #0 #0 ~NONE~ ~INV10~ // Oil of Resurgence
+  ADD_CRE_ITEM ~POTN11~ #1 #0 #0 ~NONE~ ~INV11~ // Potion of Invulnerability
+  ADD_CRE_ITEM ~POTN07~ #1 #0 #0 ~NONE~ ~INV12~ // Potion of Storm Giant Strength
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL144~ #0 ~innate~ ( 6 ) // Kai
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 2 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 2 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+
+COMPILE ~IATweaks\scripts\creatures\S!KOSHI.BAF~
+
+// Disable universal dispel on entering Guarded Compound level 2
+
+COPY_EXISTING ~AR0907.BCS~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    REPLACE_EVALUATE
+      ~SetGlobal("EnteredAR0907","GLOBAL",1)~
+      BEGIN
+          SPRINT val ~%MATCH0%
+          SetGlobal("Iatrap","AR0907",1)
+          ~ END
+      ~%val%~
+  END

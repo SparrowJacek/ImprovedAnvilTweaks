@@ -828,14 +828,32 @@ COPY_EXISTING ~s!lifel3.spl~ ~override/s!lifel5.spl~
 
 // Purify Aura
 
-COPY ~IATweaks\resources\spl\spcl943.spl~ ~override~
-  SAY NAME1 @6007
-  SAY UNIDENTIFIED_DESC @6008
-
 // BAMs for the file
 
 COPY ~IATweaks\resources\bam\spcl943b.bam~ ~override~
 COPY ~IATweaks\resources\bam\spcl943c.bam~ ~override~
+COPY ~IATweaks\resources\bam\spcl943d.bam~ ~override~
+
+// Add records for the new portrait icons
+
+OUTER_SET purify_aura_desc_str_ref = RESOLVE_STR_REF (@6227)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %purify_aura_desc_str_ref%
+  STR_VAR
+    bam_file = ~SPCL943D~
+  RET
+    purify_aura_icon_id = portrait_icon_id
+END
+
+COPY ~IATweaks\resources\spl\spcl943.spl~ ~override~
+  SAY NAME1 @6007
+  SAY UNIDENTIFIED_DESC @6008
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %purify_aura_icon_id%
+  END
 
 // Add HLA entries
 

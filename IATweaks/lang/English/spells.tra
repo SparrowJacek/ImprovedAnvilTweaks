@@ -1700,7 +1700,28 @@ Saving Throw: Special
 
 This spell causes confusion in one or more enemy creatures within the area, creating indecision and the inability to take effective action. All enemy creatures within the area of effect are allowed Saving Throws vs. Spell with a -4 penalty. Those successfully saving are unaffected by the spell. Those who fail their Saving Throws will either go berserk, stand confused, or wander about. The spell lasts for 5 rounds + 1 round per 6 levels of the caster (up to 8 rounds at level 18), or until a successful Dispel Magic is cast.~
 
-@6232 = ~Shield Bash~
+@6233 = ~Prismatic Spray
+(Conjuration/Summoning)
+
+Level: 7
+Range: 0
+Duration: Instant
+Casting Time: 7
+Area of Effect: 15-ft.-long cone 
+Saving Throw: Special
+
+When casting this spell, the wizard causes seven shimmering multicolored rays of light to flash from <PRO_HISHER> hand, portraying all colors of the visible spectrum. Any creature with fewer than 8 Hit Dice struck by a ray is blinded for 5 rounds, regardless of any other effect. All creatures caught within the area of effect will be touched by 1 or 2 of the rays, each of which has a different power and purpose:
+
+  Red — Inflicts 20 points of damage with no save.
+  Orange — Inflicts 40 points of damage; Save vs. Breath for half.
+  Yellow — Inflicts 80 points of damage; Save vs. Spell for half.
+  Green — Save vs. Poison or die; survivors take 20 points of poison damage.
+  Blue — Inflicts 70 points of damage; Save vs. Spell for half.
+  Indigo — Inflicts 50 points of damage; Save vs. Breath for half.
+  Violet — Inflicts 30 points of damage with no save.
+  
+  This spell affects only enemies.~
+
 @6234 = ~Globe of Blades
 (Evocation)
 Level: Quest

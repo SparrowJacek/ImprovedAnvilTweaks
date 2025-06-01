@@ -217,7 +217,57 @@ COPY_EXISTING ~spwi612.spl~ ~override~
 COPY_EXISTING ~scrl7p.itm~ ~override~
   SAY IDENTIFIED_DESC @6230
 
- 
+// Change Prismatic Spray
+
+COPY_EXISTING ~S!PSSHAR.spl~ ~override~
+              ~SPWI714.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6233
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 12
+      match_parameter1 = 10
+      match_savingthrow = 1
+      savingthrow = 0
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 12
+      match_parameter1 = 20
+      match_savingthrow = 1
+      savingthrow = 2
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 134
+      opcode = 12
+      parameter1 = 70
+      parameter2 = 64
+      savingthrow = 1
+      special = 256
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 76
+      opcode = 12
+      parameter1 = 50
+      parameter2 = 64
+      savingthrow = 2
+      special = 256
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 238
+      opcode = 12
+      parameter1 = 30
+      parameter2 = 64
+      savingthrow = 0
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      match_parameter2 = 48
+  END
+
 // Shield Mind and Body
 
 COPY_EXISTING ~sppr112a.bam~ ~override\spwi725a.bam~

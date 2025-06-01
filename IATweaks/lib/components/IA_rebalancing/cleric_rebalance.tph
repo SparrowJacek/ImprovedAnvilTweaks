@@ -336,7 +336,8 @@ COPY_EXISTING ~SPPR111.spl~ ~override/SPPR111.spl~
     INT_VAR
       level_req = 20
   END
-  PATCH_FOR_EACH cleric_kit IN 16425 16424 16404 16405 16403 BEGIN
+  SET shar_kit = ~%SHAR%~ + 0x4000
+  PATCH_FOR_EACH cleric_kit IN 16425 16424 16404 16405 16403 ~%shar_kit%~ BEGIN
   // Protect from original spell if caster is Cleric kit
     LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~ 
       INT_VAR
@@ -430,7 +431,7 @@ COPY ~IATweaks\resources\spl\s!defhar.spl~ ~override\sppr406.spl~ // New Defensi
     STR_VAR
       resource = ~sppr406d~
   END
-  PATCH_FOR_EACH kit_name IN ~OHTYR~ ~GODTALOS~ ~GODHELM~ ~GODLATHANDER~ ~OHTEMPUS~ BEGIN
+  PATCH_FOR_EACH kit_name IN ~OHTYR~ ~GODTALOS~ ~GODHELM~ ~GODLATHANDER~ ~OHTEMPUS~ ~SHAR~ BEGIN
     LPF ~CLONE_EFFECT~
       INT_VAR
         match_opcode = 146

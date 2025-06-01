@@ -809,6 +809,13 @@ COPY_EXISTING ~s!lifeli.spl~ ~override/s!lifeen.spl~
       match_resource = ~S!LIFEL3~
       resource = ~S!LIFEL5~
   END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+    STR_VAR
+      match_resource = ~S!LIFELI~
+      resource = ~S!LIFEEN~
+  END
 
 COPY_EXISTING ~s!lifel3.spl~ ~override/s!lifel5.spl~
   LPF ~ALTER_EFFECT~

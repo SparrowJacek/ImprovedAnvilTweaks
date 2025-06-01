@@ -1694,14 +1694,23 @@ Saving Throw: Special
 This spell causes confusion in one or more enemy creatures within the area, creating indecision and the inability to take effective action. All enemy creatures within the area of effect are allowed Saving Throws vs. Spell with a -4 penalty. Those successfully saving are unaffected by the spell. Those who fail their Saving Throws will either go berserk, stand confused, or wander about. The spell lasts for 5 rounds + 1 round per 6 levels of the caster (up to 8 rounds at level 18), or until a successful Dispel Magic is cast.~
 
 @6232 = ~Shield Bash~
+@6234 = ~Globe of Blades
+(Evocation)
+Level: Quest
+Sphere: Guardian/ Creation
+Range: 0
+Duration: 1 turn
+Casting Time: 7
+Area of Effect: Special
+Saving Throw: Special
 
-@6233 = ~Shield Bash~
+The priest employs this spell to set up a globe of razor-sharp blades. These whirl and flash around the caster, creating a dangerous barrier. The barrier deals 4D4 points of slashing damage twice per round to any hostile creature in 5ft radius from the caster. The blades are considered as a +5 weapon to determine what creatures can be hit. Creatures under the effect of Globe of Blades, Blade Barrier, Stoneskin or Ironskins are immune to the damage caused by this spell.
 
-@6234 = ~Shield Bash~
+This spell will last for 1 turn and cannot be removed or dispelled.~
 
-@6235 = ~Shield Bash~
+@6235 = ~Divine spells cast at lower level~
 
-@6236 = ~Shield Bash~
+@6236 = ~Seeking Sword disappears when you touch it.~
 
 @6237 = ~Shield Bash~
 

@@ -820,7 +820,7 @@ Advantages:
 – Targets suffer a -2 penalty when making Saving Throws against spells from the Divination school.
 - Diviners automatically learn Foreknowledge spell at level 16 without the need to scribing it into their spellbook.
 - Has access to a unique High Level Ability called See Invisible.
-- At levels 1, 8, 16, 24, 32 and 40 gains one use of Glimpse of the Future ability.
+- At levels 1, 8, and every 8 levels thereafter gains one use of Glimpse of the Future ability.
 
 GLIMPSE OF THE FUTURE: This ability targets any single friendly creature without requiring the caster's aura to be cleansed. It sends visions of numerous potential futures to the target, providing insight on how to avoid or mitigate impending danger. The target gains a +20 bonus to all saving throws for 3 seconds or until hit by any spell or physical attack.
 
@@ -997,7 +997,7 @@ CLASS FEATURES:
 – Alignment restricted to any neutral.
 – Hit Die: d6~
 
-@5107 = ~Installing paladin_rebalance~
+@5107 = ~Installing paladin_rebalance component~
 
 @5108 = ~The scroll vanishes without any effects, its magic used up, as you try to use it while under the effect of silence.~
 

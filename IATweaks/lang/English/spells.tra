@@ -112,7 +112,7 @@ Casting Time: 6
 Area of Effect: The caster
 Saving Throw: None
 
-Through this spell, the caster imbues <PRO_HIMHER>self with the strength and skill of a Fighter of the same level. The priest's Strength score is set to 18/00—unless it is higher—<PRO_HISHER> THAC0 becomes that of a Fighter of the same level, and <PRO_HESHE> gains 1 temporary Hit Point per level. This will last for the duration of the spell or until dispelled.~
+Through this spell, the caster imbues <PRO_HIMHER>self with the strength and skill of a Fighter of the same level. The priest's Strength score is set to 18/00 - unless it is higher - <PRO_HISHER> THAC0 becomes that of a Fighter of the same level, and <PRO_HESHE> gains 1 temporary Hit Point per level. This will last for the duration of the spell or until dispelled.~
 
 @6014 = ~Cure Light Wounds
 (Necromancy)
@@ -127,7 +127,7 @@ Saving Throw: None
 
 By casting this spell and laying <PRO_HISHER> hand upon a creature, the priest causes 8 points + 5% of wound or other injury damage to the creature's body to be healed. This healing cannot affect creatures without corporeal bodies, nor can it cure wounds of creatures not living or of extraplanar origin.
 
-Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will heal—or can be cured—just as any normal injury.~
+Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will heal - or can be cured - just as any normal injury.~
 
 @6015 = ~Cure Medium Wounds
 (Necromancy)
@@ -140,7 +140,7 @@ Casting Time: 5
 Area of Effect: 1 creature 
 Saving Throw: None 
 
-By casting this spell and laying <PRO_HISHER> hand upon a creature, the priest heals 14 points +15% of wound or other injury damage from the creature's body. This healing cannot affect creatures without corporeal bodies, nor can it cure wounds of creatures not living or of extraplanar origin. Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will heal—or can be cured—just as any normal injury.~
+By casting this spell and laying <PRO_HISHER> hand upon a creature, the priest heals 14 points +15% of wound or other injury damage from the creature's body. This healing cannot affect creatures without corporeal bodies, nor can it cure wounds of creatures not living or of extraplanar origin. Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will heal - or can be cured - just as any normal injury.~
 
 @6016 = ~Cure Serious Wounds
 (Necromancy)
@@ -359,7 +359,8 @@ High-level priests devout to their god can receive a special blessing from their
 This ability does not extend the duration of the following:
 -Spells that apply their effects periodically (like True Seeing or Continual Cure)
 -Spells that apply different effects to allies and enemies (like Chant)
--Improved versions of spells cast by Cleric kits (like Armor of Faith for all Clerics or Righteous Magic for Priest of Tyr)
+-Improved versions of spells cast by Cleric kits (like 
+ for all Clerics or Righteous Magic for Priest of Tyr)
 -Spell-like abilities that are not memorized in Priest spellbook (like Summon Archdeva)~
 
 @6036 = ~Spare the Dying~
@@ -508,7 +509,9 @@ Saving Throw: None
 
 When this spell is cast, the priest places a divine mark on the target, which lasts for 15 rounds. A moment later a surge of godly energy flows from the priest's body to the nearest party member with said mark active. This energy greatly enhances combat abilities of the target, granting +1 bonus to THAC0 per 5 levels of the caster (up to +4 at level 20) and doubling the number of attacks as if Improved Haste was cast.
 
-The spell applies its effects every 6 seconds to the nearest marked character for its duration and the effects last for the same amount of time. The target has to be in the caster's range for each pulse of the spell, otherwise he'll have to wait for another pulse to get the benefits.~
+The spell applies its effects every 6 seconds to the nearest marked character for its duration and the effects last for the same amount of time. The target has to be in the caster's range for each pulse of the spell, otherwise he'll have to wait for another pulse to get the benefits.
+
+Only the temporary effects granted by each energy surge - THAC0 bonus and increase in attacks per round - can be dispelled. The divine mark itself, as well as the recurring pulses of energy, cannot be removed by dispel effects.~
 
 @6056 = ~Web
 (Conjuration)
@@ -606,7 +609,7 @@ Casting Time: 5
 Area of Effect: 2 animals
 Saving Throw: None
 
-By casting this spell Beast Masters targets two animals and turns on their most feral side in a guided way, without the risk of them going berserk or attacking their allies in fury. The animals becomes enraged for 2 turns. While enraged, they gains an additional attack per round, a bonus of +2 to their attack and damage rolls as well as to Armor Class, and become immune to charm, confusion, fear, feeblemind, hold, stun, sleep, level drain. This spell works only on animals.~
+By casting this spell Beast Masters targets two animals and turns on their most feral side in a guided way, without the risk of them going berserk or attacking their allies in fury. The animals becomes enraged for 2 turns. While enraged, they gains an additional attack per round, a bonus of +2 to their attack and damage rolls as well as to Armor Class, and become immune to charm, confusion, fear, feeblemind, hold, stun, sleep, level drain. This spell works only on animals and cannot be dispelled by any means.~
 
 @6077 = ~Hide in Shadows active~
 
@@ -616,10 +619,10 @@ By casting this spell Beast Masters targets two animals and turns on their most 
 With extraordinary effort, a high-level rogue can avoid almost certain death. The effect lasts for 1 turn, and during this time, the rogue's Save vs. Death receives a bonus of 5, Hit Points are increased by 20, and the rogue becomes immune to death magic.~
 
 @6080 = ~Evasion
-A rogue's natural sense of preservation becomes heightened with the use of the Evasion ability. Evasion gives a bonus of 4 to AC and 2 to all Saving Throws. The effect lasts for 6 rounds.~
+A rogue's natural sense of preservation becomes heightened with the use of the Evasion ability. Evasion gives a bonus of 4 to AC and 2 to all Saving Throws. The effect lasts for 6 rounds and cannot be dispelled by any means.~
 
 @6081 = ~Greater Evasion
-A more powerful version of Evasion, this ability improves Armor Class by 6 and Saving Throws by 3. In addition, Greater Evasion allows the rogue to move so quickly that <PRO_HISHER> movement rate is increased by 2 (base is 9) and normal missiles have no chance of striking <PRO_HIMHER>. Greater Evasion lasts for 1 turn.
+A more powerful version of Evasion, this ability improves Armor Class by 6 and Saving Throws by 3. In addition, Greater Evasion allows the rogue to move so quickly that <PRO_HISHER> movement rate is increased by 2 (base is 9) and normal missiles have no chance of striking <PRO_HIMHER>. Greater Evasion lasts for 1 turn and cannot be dispelled by any means.
 
 Requires: Evasion~
 
@@ -823,7 +826,7 @@ Casting Time: 7
 Area of Effect: 1 creature
 Saving Throw: None
 
-When the spell is cast, it sets the target's elemental resistance to 75%, partially protecting from all elemental attacks—such as fire, cold, acid and electricity, whether magical or non magical—from spells, weapons, wands, breath weapons, etc. The effect of a Protection From The Elements spell lasts 1 round per level of the caster or until dispelled.~
+When the spell is cast, it sets the target's elemental resistance to 75%, partially protecting from all elemental attacks - such as fire, cold, acid and electricity, whether magical or non magical - from spells, weapons, wands, breath weapons, etc. The effect of a Protection From The Elements spell lasts 1 round per level of the caster or until dispelled.~
 
 @6117 = ~Protection From Energy
 (Abjuration)
@@ -835,7 +838,7 @@ Casting Time: 8
 Area of Effect: 1 creature
 Saving Throw: None
 
-When the spell is cast, it sets the target's resistances against all energies to 75%, partially protecting from all energy attacks—such as fire, cold, acid, magic, and electricity, whether from magical or non-magical sources—such as spells, weapons, wands, breath weapons, etc. This excludes any physical attacks and spell-created weapons, such as Enchanted Weapon and Spiritual Hammer. In other words, any physical damage, such as piercing, crushing, or slashing will get through. This effect lasts for the duration of the spell or until dispelled.~
+When the spell is cast, it sets the target's resistances against all energies to 75%, partially protecting from all energy attacks - such as fire, cold, acid, magic, and electricity, whether from magical or non-magical sources - such as spells, weapons, wands, breath weapons, etc. This excludes any physical attacks and spell-created weapons, such as Enchanted Weapon and Spiritual Hammer. In other words, any physical damage, such as piercing, crushing, or slashing will get through. This effect lasts for the duration of the spell or until dispelled.~
 
 @6118 = ~Storm Shield: 
 This spell lasts 1 round per level of the caster. It protects the caster from normal missiles and sets his lightning, fire and cold resistances to 75%.~
@@ -881,7 +884,7 @@ Casting Time: 4
 Area of Effect: 1 creature
 Saving Throw: None
 
-This spell is similar to Invisibility, but the recipient is able to attack by missile discharge, melee combat, or spellcasting while remaining unseen. However, telltale traces—a shimmering—allow an observant opponent to attack the invisible spell recipient. These traces are only noticeable when specifically looked for (after the invisible character has made <PRO_HISHER> presence known). Attacks against the invisible character suffer a -4 penalty to attack rolls.
+This spell is similar to Invisibility, but the recipient is able to attack by missile discharge, melee combat, or spellcasting while remaining unseen. However, telltale traces - a shimmering - allow an observant opponent to attack the invisible spell recipient. These traces are only noticeable when specifically looked for (after the invisible character has made <PRO_HISHER> presence known). Attacks against the invisible character suffer a -4 penalty to attack rolls.
 
 Note: After making an attack, the wizard is no longer completely invisible. Opponents can target the wizard.~
 
@@ -898,7 +901,9 @@ Saving Throw: None
 
 When this spell is cast, the priest places a divine mark on the target, which lasts for 15 rounds. A moment later a surge of godly energy flows from the priest's body to the nearest party member with said mark active. This energy greatly enhances combat abilities of the target, granting +1 bonus to THAC0 per 5 levels of the caster (up to +4 at level 20). The target also becomes hasted and his number of attacks per round is increased by one as if Improved Haste was cast on him.
 
-The spell applies its effects every 6 seconds to the nearest marked character for its duration and the effects last for the same amount of time. The target has to be in the caster's range for each pulse of the spell, otherwise he'll have to wait for another pulse to get the benefits.~
+The spell applies its effects every 6 seconds to the nearest marked character for its duration and the effects last for the same amount of time. The target has to be in the caster's range for each pulse of the spell, otherwise he'll have to wait for another pulse to get the benefits.
+
+Only the temporary effects granted by each energy surge - THAC0 bonus, haste, and extra attack - can be dispelled. The divine mark itself, as well as the recurring pulses of energy, cannot be removed by dispel effects.~
 
 @6125 = ~Improved Haste
 (Alteration)
@@ -1558,7 +1563,7 @@ Casting Time: 4
 Area of Effect: 15-ft. radius
 Saving Throw: None
 
-When casting this spell, the shaman reaches out to the spirits of his companions and wills them to mend the harm done to their physical bodies. Upon completion, all party members within a 15-ft. radius of the shaman are healed 15 Hit Points. Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will heal—or can be cured—just as any normal injury.~
+When casting this spell, the shaman reaches out to the spirits of his companions and wills them to mend the harm done to their physical bodies. Upon completion, all party members within a 15-ft. radius of the shaman are healed 15 Hit Points. Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will heal - or can be cured - just as any normal injury.~
 
 @6221 = ~Healing Ward
 (Necromancy)
@@ -1586,7 +1591,7 @@ Saving Throw: None
 
 By casting this spell and laying <PRO_HISHER> hand upon a creature, the priest causes 8 points + 5% of wound or other injury damage to the creature's body to be healed. This healing cannot affect creatures without corporeal bodies, nor can it cure wounds of creatures not living or of extraplanar origin.
 
-Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will heal—or can be cured—just as any normal injury.~
+Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will heal - or can be cured - just as any normal injury.~
 
 
 @6223 = ~Cure Serious Wounds
@@ -1639,7 +1644,7 @@ Casting time: 5
 Area of Effect: The caster
 Saving Throw: None
 
-Continual Cure cures the cleric for 27 points of damage, and continues to do so every round of the spell's duration. The spell also cures effects of poison and disease, and removes fear each round as well.~
+Continual Cure cures the cleric for 27 points of damage, and continues to do so every round of the spell's duration. The spell also cures effects of poison and disease, and removes fear each round as well. These effects will remain for the spell's duration and can't be dispelled.~
 
 @6227 = ~Can't use Purify Aura~
 

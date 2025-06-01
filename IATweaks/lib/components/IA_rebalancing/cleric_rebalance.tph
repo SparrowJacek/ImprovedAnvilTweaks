@@ -1124,6 +1124,10 @@ COPY_EXISTING_REGEXP GLOB ~.+\.cre~ ~override~
     REMOVE_MEMORIZED_SPELL ~SPPR604~
     REMOVE_MEMORIZED_SPELL ~SPPR720~
   END
+  // Remove other spells
+  
+    REMOVE_KNOWN_SPELL ~SPPR709~
+    REMOVE_MEMORIZED_SPELL ~SPPR709~
   BUT_ONLY
 
 // Blade Barrier
@@ -2936,6 +2940,16 @@ LAF ~S!ADD_CLAB_ROW~
     filename = ~CLABPR03.2da~
     row_desc = ~LONG_SWORD_PROF~
     level1 = ~AP_s!loswrd~
+END
+
+// Allow PoHelm to put 2 more points into Long Swords
+
+LAF ~S!ADD_HLA_ROW~
+  STR_VAR
+    filename = ~lucl2.2da~
+    row_desc = ~LONG_SWORD_PROFICIENCY~
+    ability = ~AP_s!loswrd~
+    num_allowed = ~2~
 END
 
 // Seeking Sword

@@ -1639,7 +1639,7 @@ Saving Throw: None
 
 Continual Cure cures the cleric for 27 points of damage, and continues to do so every round of the spell's duration. The spell also cures effects of poison and disease, and removes fear each round as well.~
 
-@6227 = ~~
+@6227 = ~Can't use Purify Aura~
 
 @6228 = ~Immunity: Divination
 Level: 5
@@ -1680,6 +1680,18 @@ Saving Throw: 1/2
 
 When the priest calls down a Flame Strike spell, a vertical column of fire roars downward in the exact location called for by the caster. The target must roll a Saving Throw vs. Breath with a -2 penalty. Failure means the creature sustains 1d8 points of damage per level of the caster; otherwise, the damage is halved.~
 
+@6232 = ~Chaos
+(Enchantment/Charm)
+
+Level: 6
+Sphere: Chaos
+Range: 35 ft.
+Duration: 5 rounds + 1 round/6 levels
+Casting Time: 4
+Area of Effect: 15-ft. radius
+Saving Throw: Special
+
+This spell causes confusion in one or more enemy creatures within the area, creating indecision and the inability to take effective action. All enemy creatures within the area of effect are allowed Saving Throws vs. Spell with a -4 penalty. Those successfully saving are unaffected by the spell. Those who fail their Saving Throws will either go berserk, stand confused, or wander about. The spell lasts for 5 rounds + 1 round per 6 levels of the caster (up to 8 rounds at level 18), or until a successful Dispel Magic is cast.~
 
 @6232 = ~Shield Bash~
 

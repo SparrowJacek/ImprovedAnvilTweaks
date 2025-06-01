@@ -1182,6 +1182,31 @@ COPY_EXISTING ~sppr603d.spl~ ~override~
 //   END
 //   BUT_ONLY
 
+// Remove Confusion and introduce 6th level Chaos
+ADD_SPELL ~IATweaks\resources\spl\S!CHAOSP.spl~ 1 6 ~CLERIC_CHAOS~
+  SAY UNIDENTIFIED_DESC @6232
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_power = 5
+      power = 6
+  END  
+
+COPY_EXISTING ~SPELL.IDS~ ~override~
+  REPLACE_TEXTUALLY
+    ~[ %TAB%%LNL%%MNL%%WNL%]*1709[ %TAB%%LNL%%MNL%%WNL%]*CLERIC_CONFUSION~
+    ~~
+
+LAF RES_NAME_OF_SPELL_NUM INT_VAR spell_num = ~CLERIC_CHAOS~ RET cleric_chaos_spell_res = spell_res END
+
+COPY_EXISTING ~hidespl.2da~ ~override~
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR520 1 0 0~
+  INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR709 1 0 0~
+  INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR734 1 0 0~
+  INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR735 1 0 0~
+  PRETTY_PRINT_2DA
+
 // Nature's Beauty
 
 COPY ~IATweaks\resources\bam\sppr704d.bam~ ~override~

@@ -69,8 +69,6 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY spell_to_weight_map BEGIN
 	"sppr617"  => 1
 	"sppr650"  => 2
 	"sppr711"  => 3
-	"sppr725"  => 2
-	"sppr730"  => 3
 	"sppr733"  => 3
 	"spcl237"  => 2
 	"spcl721"  => 3
@@ -154,8 +152,6 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY spell_to_opcode_map BEGIN
 	"sppr617"  => 142
 	"sppr650"  => 325
 	"sppr711"  => 142
-	"sppr725"  => 142
-	"sppr730"  => 142
 	"sppr733"  => 142
 	"spcl237"  => 142
 	"spcl721"  => 142
@@ -239,8 +235,6 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY spell_to_type_map BEGIN
 	"sppr617"  => "dispel"
 	"sppr650"  => "dispel/specific"
 	"sppr711"  => "dispel"
-	"sppr725"  => "dispel/combat"
-	"sppr730"  => "dispel/specific"
 	"sppr733"  => "dispel"
 	"spcl237"  => "dispel/specific"
 	"spcl721"  => "dispel/specific"

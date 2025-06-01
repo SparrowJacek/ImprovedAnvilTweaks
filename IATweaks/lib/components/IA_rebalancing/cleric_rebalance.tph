@@ -4373,7 +4373,7 @@ COPY_EXISTING ~JAEL01.cre~ ~override~
       match_opcode = 0 // AC
   END
 
-  PATCH_FOR_EACH item_to_remove IN ~S!IMMUNE~ ~S!TRAP~ BEGIN
+  PATCH_FOR_EACH item_to_remove IN ~S!IMMUNE~ BEGIN
     LPF ~DELETE_CRE_ITEM~
       STR_VAR
         item_to_delete = EVAL ~%item_to_remove%~
@@ -4549,7 +4549,7 @@ COPY_EXISTING ~JAEL02.cre~ ~override~
       match_opcode = 0 // AC
   END
 
-  PATCH_FOR_EACH item_to_remove IN ~S!IMMUNE~ ~S!TRAP~ BEGIN
+  PATCH_FOR_EACH item_to_remove IN ~S!IMMUNE~ BEGIN
     LPF ~DELETE_CRE_ITEM~
       STR_VAR
         item_to_delete = EVAL ~%item_to_remove%~
@@ -4708,3 +4708,153 @@ COPY ~IATweaks\resources\cre\S!KUOBPR.cre~ ~override~
   // The last HLA are Foreknowledge and Continual Cure, in Controversial we'll use GWW and War Cry
 
 COMPILE ~IATweaks\scripts\creatures\S!KUOBPR.BAF~
+
+// Stalman from Guarded Compound
+
+COPY_EXISTING ~HLSTAL.cre~ ~override~
+  WRITE_LONG 0x14 28000 // Exp
+  WRITE_SHORT 0x24 114 // HP
+  WRITE_SHORT 0x26 114 // HP
+  WRITE_BYTE 0x52 6 // Thac0
+  WRITE_BYTE 0x59 50 // Resist Fire
+  WRITE_BYTE 0x5d 20 // Resist Magic
+  WRITE_BYTE 0x5e 50 // Resist Magic Fire
+  WRITE_BYTE 0x60 20 // Resist Slashing
+  WRITE_BYTE 0x61 20 // Resist Crushing
+  WRITE_BYTE 0x62 20 // Resist Piercing
+  WRITE_BYTE 0x63 20 // Resist Missile
+  WRITE_BYTE 0x234 30 // Level 1
+  WRITE_BYTE 0x23d 17 // Constitution
+  WRITE_LONG 0x244 0x40130000 // Kit = Talos
+
+  LPF ~ALTER_EFFECT~ // Casting speed
+    INT_VAR
+      match_opcode = 189
+      parameter1 = 1
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // ** in Sword and Shield
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 2
+      parameter2 = 112
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 146
+      target = 1
+      parameter2 = 1
+      timing = 9
+      resist_dispel = 0
+      special = 30
+    STR_VAR
+      resource = ~S!SPLDU2~
+      effsource = ~S!SPLDU2~
+  END
+
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 0 // AC
+  END
+
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 31 // Magic Damage Resistance
+  END
+
+  PATCH_FOR_EACH item_to_remove IN ~S!IMMUNE~ ~PLAT10~ ~SHLD29~ BEGIN
+    LPF ~DELETE_CRE_ITEM~
+      STR_VAR
+        item_to_delete = EVAL ~%item_to_remove%~
+    END
+  END
+
+  ADD_CRE_ITEM ~OHBSHLD1~ #0 #0 #0 ~NONE~ ~SHIELD~
+  ADD_CRE_ITEM ~PLAT23~ #0 #0 #0 ~NONE~ ~ARMOR~
+  ADD_CRE_ITEM ~BELT14~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~LRING~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPPR101~ #0 ~priest~ ( 1 ) // Bless
+  ADD_MEMORIZED_SPELL ~SPPR102~ #0 ~priest~ ( 1 ) // Command
+  ADD_MEMORIZED_SPELL ~SPPR107~ #0 ~priest~ ( 1 ) // Protection from Evil
+  ADD_MEMORIZED_SPELL ~SPPR108~ #0 ~priest~ ( 1 ) // Remove Fear
+  ADD_MEMORIZED_SPELL ~SPPR109~ #0 ~priest~ ( 2 ) // Sanctuary
+  ADD_MEMORIZED_SPELL ~SPPR111~ #0 ~priest~ ( 2 ) // Armor of Faith
+  ADD_MEMORIZED_SPELL ~SPPR113~ #0 ~priest~ ( 3 ) // Doom
+
+  ADD_MEMORIZED_SPELL ~SPPR201~ #1 ~priest~ ( 1 ) // Aid
+  ADD_MEMORIZED_SPELL ~SPPR203~ #1 ~priest~ ( 2 ) // Chant
+  ADD_MEMORIZED_SPELL ~SPPR206~ #1 ~priest~ ( 1 ) // Flame Blade
+  ADD_MEMORIZED_SPELL ~SPPR208~ #1 ~priest~ ( 2 ) // Hold Person
+  // ADD_MEMORIZED_SPELL ~SPPR209~ #1 ~priest~ ( 1 ) // Know Alignment
+  ADD_MEMORIZED_SPELL ~SPPR210~ #1 ~priest~ ( 3 ) // Resist Fire and Cold
+  ADD_MEMORIZED_SPELL ~SPPR214~ #1 ~priest~ ( 2 ) // DUHM
+
+  ADD_MEMORIZED_SPELL ~SPPRI02~ #2 ~priest~ ( 3 ) // Dispel Magic caster-friendly
+  ADD_MEMORIZED_SPELL ~SPPR308~ #2 ~priest~ ( 1 ) // Remove Paralysis
+  ADD_MEMORIZED_SPELL ~SPPR312~ #2 ~priest~ ( 1 ) // Strength of One
+  ADD_MEMORIZED_SPELL ~SPPR314~ #2 ~priest~ ( 3 ) // Unholy Blight
+  ADD_MEMORIZED_SPELL ~SPPR318~ #2 ~priest~ ( 2 ) // Zone of Sweet Air
+
+  ADD_MEMORIZED_SPELL ~SPPR403~ #3 ~priest~ ( 3 ) // Free Actions
+  ADD_MEMORIZED_SPELL ~SPPR406F~ #3 ~priest~ ( 2 ) // Defensive Harmony
+  ADD_MEMORIZED_SPELL ~SPPR407~ #3 ~priest~ ( 1 ) // Protection from Lightning
+  ADD_MEMORIZED_SPELL ~SPPR409~ #3 ~priest~ ( 3 ) // Death Ward
+  ADD_MEMORIZED_SPELL ~SPPR412~ #3 ~priest~ ( 1 ) // Holy Power
+  // ADD_MEMORIZED_SPELL ~SPPR420~ #1 ~priest~ ( 2 ) // Resist Fire and Cold
+
+  ADD_MEMORIZED_SPELL ~SPPR505~ #4 ~priest~ ( 1 ) // True Seeing
+  ADD_MEMORIZED_SPELL ~SPPR508~ #4 ~priest~ ( 3 ) // Chaotic Commands
+  ADD_MEMORIZED_SPELL ~SPPR509~ #4 ~priest~ ( 1 ) // Magic Resistance
+  ADD_MEMORIZED_SPELL ~SPPR511~ #4 ~priest~ ( 1 ) // Slay Living
+  ADD_MEMORIZED_SPELL ~SPPR512~ #4 ~priest~ ( 1 ) // Greater Command
+  ADD_MEMORIZED_SPELL ~SPPR513~ #4 ~priest~ ( 1 ) // Righteous Magic
+  ADD_MEMORIZED_SPELL ~SPPR514~ #4 ~priest~ ( 1 ) // Mass Cure
+  
+  ADD_MEMORIZED_SPELL ~SPPR601~ #5 ~priest~ ( 1 ) // Aerial Servant
+  ADD_MEMORIZED_SPELL ~SPPR607~ #5 ~priest~ ( 2 ) // Heal
+  ADD_MEMORIZED_SPELL ~SPPR608~ #5 ~priest~ ( 3 ) // Harm
+  ADD_MEMORIZED_SPELL ~SPPR613~ #5 ~priest~ ( 1 ) // Protection from Missiles
+  ADD_MEMORIZED_SPELL ~SPPR617~ #5 ~priest~ ( 1 ) // Heavenly Shield
+  ADD_MEMORIZED_SPELL ~SPPR618~ #5 ~priest~ ( 1 ) // Champion's Might
+  ADD_MEMORIZED_SPELL ~SPPR698~ #5 ~priest~ ( 1 ) // Blade Barrier
+
+  ADD_MEMORIZED_SPELL ~SPPR701~ #6 ~priest~ ( 1 ) // Shield of Archons
+  ADD_MEMORIZED_SPELL ~SPPR711~ #6 ~priest~ ( 3 ) // Regeneration
+  ADD_MEMORIZED_SPELL ~SPPR721~ #6 ~priest~ ( 2 ) // Energy Blades
+  ADD_MEMORIZED_SPELL ~SPPR729~ #6 ~priest~ ( 1 ) // Foreknowledge
+  ADD_MEMORIZED_SPELL ~SPPR730~ #6 ~priest~ ( 1 ) // Aura of Flaming Death
+  ADD_MEMORIZED_SPELL ~SPPRI26~ #6 ~priest~ ( 1 ) // Continual Cure
+
+  ADD_MEMORIZED_SPELL ~S!AEGIS~ #0 ~innate~ ( 1 ) // Aegis of Faith
+  ADD_MEMORIZED_SPELL ~SPCL721~ #0 ~innate~ ( 3 ) // Storm Shield
+  ADD_MEMORIZED_SPELL ~SPCL722~ #0 ~innate~ ( 6 ) // Lightning Bolt of Talos
+  ADD_MEMORIZED_SPELL ~SPCL943~ #0 ~innate~ ( 6 ) // Purify Aura
+  ADD_MEMORIZED_SPELL ~S!DIVINT~ #0 ~innate~ ( 1 ) // Divine Intervention
+
+COMPILE ~IATweaks\scripts\creatures\S!HLSTAL.BAF~

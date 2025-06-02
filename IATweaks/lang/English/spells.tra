@@ -1827,9 +1827,17 @@ Area of Effect: Special
 
 Aura Cleansing essentially erases the pause between casting spells. When cast, the druid can begin casting a new spell the instant casting of the current spell is finished.  The effect lasts for 2 rounds and cannot be dispelled by any means.~
 
-@6246 = ~Shield Bash~
+@6246 = ~Spellstrike (Abjuration)
+Level: 9
+Range: Visual range of the caster
+Duration: Special
+Casting Time: 5
+Area of Effect: Target Creature
+Saving Throw: None
 
-@6247 = ~Shield Bash~
+When this spell is cast at a target creature, it strips away all of the target’s magic resistance, even if that creature is immune all other effects that would lower its magic resistance. Creatures immune to spells of level 9, or protected by Spell Immunity: Abjuration are still unaffected by this spell. This effect will last for 5 rounds or till 5 hostile attacks are performed against the target, be it a hit from a weapon, or a spell applying damage or negative effects. The effects of this spell are not cumulative. The target's magic resistance, if any, does not affect this spell.~
+
+@6247 = ~Spellstrike effect ended.~
 
 @6248 = ~Shield Bash~
 

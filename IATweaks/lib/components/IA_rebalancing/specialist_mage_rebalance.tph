@@ -918,6 +918,100 @@ ACTION_FOR_EACH orig_summ_spell IN ~spwi309~ ~spwi407~ ~spwi423~ ~spwi504~ ~spwi
   END
 END
 
+// Rework Spellstrike
+
+COPY ~IATweaks\resources\eff\s!spstr2.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!spstr2.eff~ ~override\s!spstr3.eff~
+  WRITE_ASCII 0x30 ~S!SPSTR2~
+COPY ~IATweaks\resources\eff\s!spstr2.eff~ ~override\s!spstr4.eff~
+  WRITE_ASCII 0x30 ~S!SPSTR3~
+COPY ~IATweaks\resources\eff\s!spstr2.eff~ ~override\s!spstr5.eff~
+  WRITE_ASCII 0x30 ~S!SPSTR4~
+COPY ~IATweaks\resources\eff\s!spstr2.eff~ ~override\s!spstr6.eff~
+  WRITE_ASCII 0x30 ~S!SPSTR5~
+
+COPY ~IATweaks\resources\spl\s!spstr1.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6247)
+  END
+COPY ~IATweaks\resources\spl\s!spstr2.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!spstr2.spl~ ~override\s!spstr3.spl~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 321
+    STR_VAR
+      resource = ~S!SPSTR4~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 177
+    STR_VAR
+      resource = ~S!SPSTR3~
+  END
+COPY ~IATweaks\resources\spl\s!spstr2.spl~ ~override\s!spstr4.spl~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 321
+    STR_VAR
+      resource = ~S!SPSTR5~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 177
+    STR_VAR
+      resource = ~S!SPSTR4~
+  END
+COPY ~IATweaks\resources\spl\s!spstr2.spl~ ~override\s!spstr5.spl~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 321
+    STR_VAR
+      resource = ~S!SPSTR6~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 177
+    STR_VAR
+      resource = ~S!SPSTR5~
+  END
+COPY ~IATweaks\resources\spl\s!spstr2.spl~ ~override\s!spstr6.spl~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      target = 1
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 321
+    STR_VAR
+      resource = ~S!SPSTR7~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 177
+    STR_VAR
+      resource = ~S!SPSTR6~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      target = 2
+  END
+
+COPY ~IATweaks\resources\eff\SPWI903.eff~ ~override~
+COPY ~IATweaks\resources\spl\SPWI903.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6246
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      target = 2
+      power = 9
+      duration_high = 30
+  END
+
+COPY_EXISTING ~SCRL9L.itm~ ~override~
+              ~SCRL9M.itm~ ~override~
+              ~SCRL9R.itm~ ~override~
+  SAY IDENTIFIED_DESC @6246
 
 // Remove restrictions from Chain Contingency, but make it castable normally
 

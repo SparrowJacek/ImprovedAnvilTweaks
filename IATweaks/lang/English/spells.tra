@@ -1839,8 +1839,53 @@ When this spell is cast at a target creature, it strips away all of the targetâ€
 
 @6247 = ~Spellstrike effect ended.~
 
-@6248 = ~Shield Bash~
+@6248 = ~Bigby's Clenched Fist (Evocation)
+Level: 8
+Range: Visual range of caster
+Duration: instantaneous
+Casting Time: 6
+Area of Effect: 1 creature
+Saving Throw: None
 
-@6249 = ~Shield Bash~
+This spell creates a giant disembodied hand to squeeze and constrict the target. Upon being cast, the spell immediately inflicts 8D6 crushing damage with no saving throw. The target's magic resistance (if any) cannot block the spell's effect.~
 
-@6250 = ~Shield Bash~
+@6249 = ~Bigby's Crushing Hand (Evocation)
+Level: 9
+Range: Visual range of caster
+Duration: instantaneous
+Casting Time: 7
+Area of Effect: 1 creature
+Saving Throw: None
+
+This spell creates a huge disembodied fist that crushes the target. Upon being cast, the spell immediately inflicts 8D10 crushing damage with no saving throw. The target's magic resistance (if any) cannot block the spell's effect.~
+
+@6250 = ~Fist of Nature
+Level: Quest
+Sphere: Combat, Summoning
+Range: Visual range of caster
+Duration: Permanent
+Casting Time: 5
+Area of Effect: One Creature
+Saving Throw: None
+
+By means of this powerful spell, the druid uses his connection with nature to creates a huge disembodied fist that inflicts 6D10 crushing damage to the target. This spell not only affects the Rakshasa (who are otherwise immune to druidic spells), but even inflicts quadruple damage to them.~
+
+@6251 = ~Shield Bash~
+
+@6252 = ~Shield Bash~
+
+@6253 = ~Shield Bash~
+
+@6254 = ~Shield Bash~
+
+@6255 = ~Shield Bash~
+
+@6256 = ~Shield Bash~
+
+@6257 = ~Shield Bash~
+
+@6258 = ~Shield Bash~
+
+@6259 = ~Shield Bash~
+
+@6260 = ~Shield Bash~

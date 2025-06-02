@@ -380,6 +380,24 @@ COPY ~IATweaks\resources\itm\spwi725.itm~ ~override~
 COPY_EXISTING ~UDMASTER.cre~ ~override~
   ADD_CRE_ITEM ~SPWI725~ #0 #0 #0 ~UNSTEALABLE~ ~INV13~
 
+// ADHW projectile change that might help with targetting
+
+COPY_EXISTING ~PWILT.pro~ ~override~
+  WRITE_SHORT 0x21a 0
+
+// Increase damage for Bigby's Fist
+
+COPY_EXISTING ~SPWI818.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6248
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 12
+      dicenumber = 8
+  END
+
+COPY_EXISTING ~SCRLB1.spl~ ~override~
+  SAY IDENTIFIED_DESC @6248
+
 // Make all Contingencies and Sequencers have spellschool Generalist
 
 COPY_EXISTING ~SPWI420.spl~ ~override~
@@ -1036,6 +1054,19 @@ COPY_EXISTING ~SPWI908.spl~ ~override~
     INT_VAR
       match_opcode = 101
   END
+
+// Increase damage for Bigby's Hand
+
+COPY_EXISTING ~SPWI918.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6249
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 12
+      dicenumber = 8
+  END
+
+COPY_EXISTING ~SCRLB2.spl~ ~override~
+  SAY IDENTIFIED_DESC @6249
 
 // Update description for Improved Alacrity
 

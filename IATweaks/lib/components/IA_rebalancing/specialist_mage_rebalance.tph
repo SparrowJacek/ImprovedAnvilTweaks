@@ -129,6 +129,17 @@ COPY_EXISTING ~spwi101.spl~ ~override~
       duration_high = 6
   END
 
+COPY_EXISTING ~SCRL66.itm~ ~override~
+  SAY IDENTIFIED_DESC @6239
+
+// Larloch's Minor Drain
+
+COPY_EXISTING ~spwi119.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6241
+
+COPY_EXISTING ~SCRL84.itm~ ~override~
+  SAY IDENTIFIED_DESC @6241
+
 // Luck
 
 COPY_EXISTING ~spwi209.spl~ ~override~
@@ -251,6 +262,10 @@ COPY_EXISTING ~spwi615.spl~ ~override~
     END
   END
 BUT_ONLY
+
+COPY_EXISTING ~SCRL7k.itm~ ~override~
+              ~SCRL7s.itm~ ~override~
+  SAY IDENTIFIED_DESC @6240
 
 // Change Prismatic Spray
 
@@ -895,6 +910,9 @@ ACTION_FOR_EACH orig_summ_spell IN ~spwi309~ ~spwi407~ ~spwi423~ ~spwi504~ ~spwi
 END
 
 // Make Dragon's Breath projectile faster
+
+COPY_EXISTING ~SPWI922.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6242
 
 COPY_EXISTING ~SPDRGNBR.vvc~ ~override~
   WRITE_LONG 0x34 29

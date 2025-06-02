@@ -1768,9 +1768,33 @@ Saving Throw: 1/2
 
 When the wizard casts Chain Lightning, arcs of electrical energy burst from <PRO_HISHER> fingertips. These brilliant arcs of lightning leap at all enemies near the caster, burning them with electrical damage. The lightning causes 2d6 + 1d6 points of damage for every 2 levels of the caster up to 12d6 at level 20. If the target of the lightning saves vs. Spell, only half damage is inflicted. Thus, a 12th-level wizard will cause 8d6 damage to a victim (4d6 if the victim makes <PRO_HISHER> Saving Throw vs. Breath).~
 
-@6241 = ~Shield Bash~
+@6241 = ~Larloch's Minor Drain 
+(Necromancy)
 
-@6242 = ~Shield Bash~
+Level: 1
+Range: 30 ft.
+Duration: Special
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: None
+
+With this spell, the wizard drains the life force from a target and adds it to <PRO_HISHER> own. The target creature suffers 4 damage, while the Mage gains the same amount. If the Mage goes over <PRO_HISHER> maximum Hit Point total with this spell, <PRO_HESHE> loses any extra Hit Points after 1 turn.
+
+This spell bypasses Magic Resistance.~
+
+@6242 = ~Dragon's Breath
+(Any School)
+
+Level: 10
+Range: 320 ft.
+Duration: Instant
+Casting Time: 3
+Area of Effect: 15-ft. radius
+Saving Throw: Special
+
+This spell causes a disembodied head of a red dragon to appear and breathe fire with the strength of an adult red dragon. In addition to the enormous 20d10 fireball, the force of the dragon's breath knocks an opponent off their feet and away from the caster. The victim can save vs. Breath Weapon to take half damage and not be blown backwards. Magic Resistance cannot block the effects of this spell. 
+
+This spell will not harm party members.~
 
 @6243 = ~Shield Bash~
 

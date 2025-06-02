@@ -1720,7 +1720,7 @@ When casting this spell, the wizard causes seven shimmering multicolored rays of
   Indigo — Inflicts 50 points of damage; Save vs. Breath for half.
   Violet — Inflicts 30 points of damage with no save.
   
-  This spell affects only enemies.~
+This spell affects only enemies.~
 
 @6234 = ~Globe of Blades
 (Evocation)
@@ -1744,6 +1744,17 @@ This spell will last for 1 turn and cannot be removed or dispelled.~
 
 @6238 = ~After many hours of training with Seeking Sword, the priest can gain even more prowess with the weapon. This passive skill gives additional Long Sword Proficiency~
 
-@6239 = ~Shield Bash~
+@6239 = ~Grease
+(Conjuration/Summoning)
+
+Level: 1
+Range: 30 ft.
+Duration: Special
+Casting Time: 1
+Area of Effect: 15-ft. radius
+Saving Throw: Neg.
+
+A Grease spell covers a material surface with a slippery layer of a fatty, greasy nature for one turn. Any creature entering the area or caught in it when the spell is cast must save vs. Spell at +2 or the substance will cover them impeding their movements. Those who fail their save can move, albeit very slowly, for the rest of the round. Those who remain in the area are allowed a Saving Throw each round until they escape the area.~
+
 
 @6240 = ~Shield Bash~

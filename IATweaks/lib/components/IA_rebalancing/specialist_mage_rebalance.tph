@@ -135,6 +135,7 @@ COPY_EXISTING ~SCRL66.itm~ ~override~
 // Larloch's Minor Drain
 
 COPY_EXISTING ~spwi119.spl~ ~override~
+              ~spin104.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6241
 
 COPY_EXISTING ~SCRL84.itm~ ~override~
@@ -186,6 +187,14 @@ COPY_EXISTING ~spwi215.spl~ ~override~
 
 COPY_EXISTING ~SCRL99.itm~ ~override~
   SAY IDENTIFIED_DESC @6056
+
+// Larloch's Interrupter
+
+COPY_EXISTING ~spwi511.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6243
+
+COPY_EXISTING ~S!SCRL29.itm~ ~override~
+  SAY IDENTIFIED_DESC @6243
 
 // Nishruu and Hakeshar changes, they lower the number of spell slots now instead of draining spells
 
@@ -908,6 +917,15 @@ ACTION_FOR_EACH orig_summ_spell IN ~spwi309~ ~spwi407~ ~spwi423~ ~spwi504~ ~spwi
       insert = ~first~
   END
 END
+
+// Update description for Improved Alacrity
+
+COPY_EXISTING ~SPWI921.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6244
+
+COPY_EXISTING ~sppri16.spl~ ~override~
+              ~sppri25.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6245
 
 // Make Dragon's Breath projectile faster
 

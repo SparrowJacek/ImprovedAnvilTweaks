@@ -1796,11 +1796,36 @@ This spell causes a disembodied head of a red dragon to appear and breathe fire 
 
 This spell will not harm party members.~
 
-@6243 = ~Shield Bash~
+@6243 = ~Larloch's Interrupter (Necromantic)
+Level: 5
+Range: Visual range of the caster
+Duration: special
+Casting Time: 5
+Area of Effect: One creature
+Saving Throw: None
 
-@6244 = ~Shield Bash~
+With this spell, the wizard manipulates the life force of a target to disturb the target's concentration as well as causing some damage. Once the spell hits the target, it inflicts 1D6 magic damage; after a second it inflicts 1D6 additional damage, and one second later, it causes one final shock which does another 1D6 magic damage. The spell cannot interrupt the target's use of items and scrolls. Magic Resistance cannot block the effects of this spell.~
 
-@6245 = ~Shield Bash~
+@6244 = ~Improved Alacrity
+(Any School)
+
+Level: 10
+Range: 0
+Duration: 2 rounds
+Casting Time: 9
+Area of Effect: The caster
+Saving Throw: None
+
+Improved Alacrity essentially erases the pause between casting spells. When cast, the wizard can begin casting a new spell the instant <PRO_HESHE> is finished casting <PRO_HISHER> current spell. The effect lasts for 2 rounds and cannot be dispelled by any means.~
+
+@6245 = ~Aura Cleansing
+Level: 7
+Range: Unlimited
+Duration: 2 Rounds
+Casting Time: 7
+Area of Effect: Special
+
+Aura Cleansing essentially erases the pause between casting spells. When cast, the druid can begin casting a new spell the instant casting of the current spell is finished.  The effect lasts for 2 rounds and cannot be dispelled by any means.~
 
 @6246 = ~Shield Bash~
 

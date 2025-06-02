@@ -918,6 +918,31 @@ ACTION_FOR_EACH orig_summ_spell IN ~spwi309~ ~spwi407~ ~spwi423~ ~spwi504~ ~spwi
   END
 END
 
+
+// Remove restrictions from Chain Contingency, but make it castable normally
+
+COPY_EXISTING ~SPWI908.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      target = 5
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 146
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 206
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 296
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 101
+  END
+
 // Update description for Improved Alacrity
 
 COPY_EXISTING ~SPWI921.spl~ ~override~

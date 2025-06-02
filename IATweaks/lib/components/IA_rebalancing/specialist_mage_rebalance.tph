@@ -894,6 +894,15 @@ ACTION_FOR_EACH orig_summ_spell IN ~spwi309~ ~spwi407~ ~spwi423~ ~spwi504~ ~spwi
   END
 END
 
+// Make Dragon's Breath projectile faster
+
+COPY_EXISTING ~SPDRGNBR.vvc~ ~override~
+  WRITE_LONG 0x34 29
+
+COPY_EXISTING ~SPDRBRTH.pro~ ~override~
+  WRITE_SHORT 0x0a 1000
+  WRITE_SHORT 0x210 10
+
 //////// TRANSMUTER //////////
 
 // Stoneskin that can be cast at others

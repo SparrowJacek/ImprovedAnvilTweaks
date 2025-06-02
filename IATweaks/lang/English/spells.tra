@@ -1756,5 +1756,34 @@ Saving Throw: Neg.
 
 A Grease spell covers a material surface with a slippery layer of a fatty, greasy nature for one turn. Any creature entering the area or caught in it when the spell is cast must save vs. Spell at +2 or the substance will cover them impeding their movements. Those who fail their save can move, albeit very slowly, for the rest of the round. Those who remain in the area are allowed a Saving Throw each round until they escape the area.~
 
+@6240 = ~Chain Lightning 
+(Invocation/Evocation)
 
-@6240 = ~Shield Bash~
+Level: 6
+Range: 40 ft.
+Duration: Instant
+Casting Time: 5
+Area of Effect: Special 
+Saving Throw: 1/2 
+
+When the wizard casts Chain Lightning, arcs of electrical energy burst from <PRO_HISHER> fingertips. These brilliant arcs of lightning leap at all enemies near the caster, burning them with electrical damage. The lightning causes 2d6 + 1d6 points of damage for every 2 levels of the caster up to 12d6 at level 20. If the target of the lightning saves vs. Spell, only half damage is inflicted. Thus, a 12th-level wizard will cause 8d6 damage to a victim (4d6 if the victim makes <PRO_HISHER> Saving Throw vs. Breath).~
+
+@6241 = ~Shield Bash~
+
+@6242 = ~Shield Bash~
+
+@6243 = ~Shield Bash~
+
+@6244 = ~Shield Bash~
+
+@6245 = ~Shield Bash~
+
+@6246 = ~Shield Bash~
+
+@6247 = ~Shield Bash~
+
+@6248 = ~Shield Bash~
+
+@6249 = ~Shield Bash~
+
+@6250 = ~Shield Bash~

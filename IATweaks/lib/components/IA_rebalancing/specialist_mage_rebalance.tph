@@ -233,6 +233,25 @@ COPY_EXISTING ~spwi612.spl~ ~override~
 COPY_EXISTING ~scrl7p.itm~ ~override~
   SAY IDENTIFIED_DESC @6230
 
+// Improve Chain Lightning
+
+COPY_EXISTING ~spwi615.spl~ ~override~
+              ~sppri13.spl~ ~override~
+              ~spdr601.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6240
+  GET_OFFSET_ARRAY ab_array SPL_V10_HEADERS
+  PHP_EACH ab_array AS int => ab_off BEGIN
+    GET_OFFSET_ARRAY2 fx_array ab_off SPL_V10_HEAD_EFFECTS
+    PHP_EACH fx_array AS int => fx_off BEGIN
+      READ_SHORT fx_off current_opcode
+      PATCH_IF (current_opcode = 12) BEGIN
+        WRITE_LONG (fx_off + 0x1c) THIS + 2
+        WRITE_BYTE (fx_off + 0x24) 2
+      END
+    END
+  END
+BUT_ONLY
+
 // Change Prismatic Spray
 
 COPY_EXISTING ~S!PSSHAR.spl~ ~override~

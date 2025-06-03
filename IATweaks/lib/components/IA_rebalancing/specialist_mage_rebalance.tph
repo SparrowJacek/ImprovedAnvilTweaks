@@ -584,7 +584,7 @@ COPY_EXISTING ~BLAKBLAD.itm~ ~override~
 COPY_EXISTING ~SPWI920.spl~ ~override~
   WRITE_ASCII 0x3a ~SPPR721C~
   LPF ~ALTER_SPELL_HEADER~ 
-    INT_VAR 
+    STR_VAR 
       icon = ~SPPR721B~
   END
 

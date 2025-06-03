@@ -175,7 +175,7 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
   READ_SHORT 0x1c item_category
   PATCH_IF (item_category = 26) THEN BEGIN  
     READ_BYTE 0x18 item_flags_1
-    PATCH_IF (%item_flags_1% BAND 0b01000000) > 0 BEGIN // If weapon is twohanded
+    PATCH_IF (%item_flags_1% BAND 0b01000000) > 0 BEGIN // If weapon is two-handed
       LPF ~ADD_ITEM_EQEFFECT~
         INT_VAR
           opcode = 263
@@ -752,21 +752,6 @@ COPY ~IATweaks\resources\spl\s!hisdmg.spl~ ~override~
       parameter2 = 143
     STR_VAR
       insert = ~first~
-  END
-  //////////////////////// TO BE REMOVED ////////////////////////////////
-  LPF ~CLONE_EFFECT~
-    INT_VAR
-      match_opcode = 285
-      opcode = 139
-      parameter1 = 17011
-    STR_VAR
-  END
-  LPF ~ALTER_EFFECT~
-    INT_VAR
-      match_opcode = 139
-      multi_match = 1
-      parameter1 = 17003
-    STR_VAR
   END
 
 ACTION_DEFINE_ASSOCIATIVE_ARRAY hide_in_shadows_value_to_cooldown_mapping BEGIN
@@ -2897,6 +2882,15 @@ COPY_EXISTING ~HLKETTA.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPCL917~ #0 ~innate~ ( 1 ) // Avoid Death
 
 COMPILE ~IATweaks\scripts\creatures\HLKETTA.baf~
+
+COPY_EXISTING ~AR0907.are~ ~override~
+  LPF ~ALTER_AREA_ACTOR~
+    INT_VAR
+      x_coord  = 965
+      y_coord  = 738
+    STR_VAR
+      actor_name = ~Ketta~
+  END
 
 /////////// Items ////////////
 

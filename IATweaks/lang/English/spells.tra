@@ -604,12 +604,12 @@ At level 22 and above: Cast any mage abjuration spell~
 @6076 = ~Animal Rage (Enchantment)
 Level: 3
 Range: Visual range of the caster
-Duration: 1 turn
+Duration: 2 turns
 Casting Time: 5
 Area of Effect: 2 animals
 Saving Throw: None
 
-By casting this spell Beast Masters targets two animals and turns on their most feral side in a guided way, without the risk of them going berserk or attacking their allies in fury. The animals becomes enraged for 2 turns. While enraged, they gains an additional attack per round, a bonus of +2 to their attack and damage rolls as well as to Armor Class, and become immune to charm, confusion, fear, feeblemind, hold, stun, sleep, level drain. This spell works only on animals and cannot be dispelled by any means.~
+By casting this spell Beast Masters targets two animals and turns on their most feral side in a guided way, without the risk of them going berserk or attacking their allies in fury. The animals becomes enraged for 2 turns. While enraged, they gains an additional attack per round, a bonus of +3 to their attack and damage rolls as well as to Armor Class. This spell works only on animals and cannot be dispelled by any means.~
 
 @6077 = ~Hide in Shadows active~
 
@@ -673,14 +673,20 @@ By casting this spell the Beast Master targets two animals, fortifies their natu
 @6097 = ~Hunter's Mark~
 
 @6098 = ~Hunter's Mark:
-When using this ability, the Beast Master places a mystical mark on a single enemy. For the next turn, the marked enemy suffers a -2 penalty to their THAC0 and damage against the Beast Master and any animals. The Beast Master and all animals within a 15-foot radius gain a +2 bonus to their damage and THAC0 against the marked enemy. Additionally, all attacks from affected animals against that target will be treated as if made with a +4 weapon for determining if the target can be damaged. All thac0 and damage bonuses/penalties increase by 1 for every 5 levels of the caster.
+When using this ability, the Beast Master places a mystical mark on a single enemy. For the next turn, the marked enemy suffers a -2 penalty to their THAC0 against the Beast Master and any animals. The Beast Master and all animals within a 15-foot radius gain a +2 bonus to their damage and THAC0 against the marked enemy. Additionally, all attacks from affected animals against that target will be treated as if made with a +4 weapon for determining if the target can be damaged. All thac0 and damage bonuses/penalties increase by 1 for every 5 levels of the caster.
 
 The Beast Master can use this ability again after 15 rounds or if the target dies.~
 
 @6099 = ~Unified Minds~
 
 @6100 = ~Unified Minds
-By using this ability, the Beast Master opens his mind to one animal, allowing their senses and thoughts to bond almost as if they were a single organism. For the next turn, whenever the Beast Master and the targeted animal stand within 5 feet from each other, they can protect each other. This includes things like blocking an attack directed at one of them, alerting each other of an incoming arrow, or redirecting a hit targeted at a vital point. This ability grants a -5 bonus to AC and +10% damage reduction against all weapon types. Additionally, their connected minds protect each other from mental manipulation, granting both the Beast Master and the animal a +3 bonus to saving throws against enchantment spells. The effects from multiple uses of this ability are not cumulative. If either the Beast Master or the target animal become feared, held, charmed or disabled in any other way, the effects of this spell will be nullified.~
+By invoking this ability, the Beast Master forms a mental bond with one animal companion, linking their senses and instincts into a single, harmonious flow. For 1 turn, as long as the Beast Master and the chosen animal remain within 10 feet of each other, they instinctively protect one another - deflecting blows, alerting each other to danger, and shifting to shield vital areas.
+
+While under this effect, both the Beast Master and the bonded creature receive a -5 bonus to Armor Class and 10% damage resistance against all weapon types. Their shared awareness also shields them from mental interference, granting immunity to fear and protection from confusion, charm, domination, and similar effects, akin to the Chaotic Commands spell.
+
+This ability has no effect if either the Beast Master or the animal is confused, stunned, charmed, feared, or feebleminded at the time of casting or restoring the link. The link is broken if they move more than 10 feet apart, but it will be restored if they come close again before the duration ends.
+
+The effects do not stack with multiple uses.~
 
 @6101 = ~Resist Fire/Resist Cold (Alteration)
 Level: 4

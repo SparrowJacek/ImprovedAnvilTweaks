@@ -233,12 +233,6 @@ COPY ~IATweaks\resources\spl\s!hunfoe.spl~ ~override~
         match_opcode = 178
         special = %new_val%
     END
-    LPF ~S!ALTER_EFFECT~
-      INT_VAR
-        header = %header_num%
-        match_opcode = 179
-        special = %new_val%
-    END
   END
 
 COPY ~IATweaks\resources\eff\s!hunfoe.eff~ ~override~

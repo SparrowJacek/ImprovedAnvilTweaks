@@ -4,6 +4,11 @@ SILENT
 
 INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
 
+// More spells at higher levels for Mage and Sorcerer
+
+COPY ~IATweaks\resources\2da\mxsplsrc.2da~ ~override~
+COPY ~IATweaks\resources\2da\mxsplwiz.2da~ ~override~
+
 // Contingency files
 
 LAF ~S!ADD_SPLPROT_2DA_ENTRY~

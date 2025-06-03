@@ -880,13 +880,19 @@ Advantages:
 – Receives a +15% bonus when scribing scrolls from the Alteration school.
 – Receives a +2 bonus when making Saving Throws against spells from the Alteration school.
 – Targets suffer a -2 penalty when making Saving Throws against spells from the Alteration school.
+- Transmuter gains additional attacks per round just like warrior classes, when they wield a weapon that they're proficient in (1/2 attack for specialization and 1 attack per round for grandmastery).
 - Transmuter gains a special ability at levels 5/15/25/35, which acts just like Stoneskin, but can be cast on another character, however this version of the spell lasts for 3 turns only.
-- Has access to a unique High Level Ability called Dragon Strength.
-- Tenser's Transformation spell cast by Transmuters grants two pips in all weapons available to Mages, two points in Single Weapon Style and in Two-handed Weapon Style, 3/2 additional attacks per round (1 from Fighter levels and 1/2 from weapon proficiencies), Special Abilities button is also available when under the spell's effect.
+- Tenser's Transformation spell cast by Transmuters grants two additional slots in all weapons available to Mages, two slots in Single Weapon Style and in Two-handed Weapon Style and 1 additional base attack per round. Special Abilities button is also available when under the spell's effect.
 - Tenser's Partial Transformation spell cast by Transmuters grants one point in Single Weapon Style and Two-handed Weapon Style and one additional attack per round.
 - At level 14, 21, 28 and 35 gains one use of Blinding Speed ability.
 
 BLINDING SPEED: This special spell makes the caster so fast, that he can traverse long distances in a blink of an eye, if there are no obstacles in his path. In addition, the number of attacks per round is doubled and this spell can't be dispelled. It lasts for 5 rounds.
+
+- At level 18 and 24 gains one use of Dragon's Strength ability.
+
+DRAGON'S STRENGTH: This spell endows the target with the raw power and vitality of a mighty dragon. This surge of strength allows the recipient to perform incredible feats of physical might and endure far greater punishment in combat. However, despite these formidable enhancements, their outward appearance remains unchanged, making the transformation all the more astonishing.
+
+This spell grants the recipient 25 strength, +5 base damage in melee, immunity to Fear and a 25% increase in their base health pool, which can not be dispelled for its duration.
 
 Disadvantages:
 – May not learn or cast any spells of the Abjuration school.

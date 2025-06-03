@@ -400,7 +400,7 @@ COPY_EXISTING ~SPWI818.spl~ ~override~
       dicenumber = 8
   END
 
-COPY_EXISTING ~SCRLB1.spl~ ~override~
+COPY_EXISTING ~SCRLB1.itm~ ~override~
   SAY IDENTIFIED_DESC @6248
 
 // Make all Contingencies and Sequencers have spellschool Generalist
@@ -1091,7 +1091,7 @@ COPY_EXISTING ~SPWI918.spl~ ~override~
       dicenumber = 8
   END
 
-COPY_EXISTING ~SCRLB2.spl~ ~override~
+COPY_EXISTING ~SCRLB2.itm~ ~override~
   SAY IDENTIFIED_DESC @6249
 
 // Update description for Improved Alacrity
@@ -1234,7 +1234,7 @@ COPY_EXISTING ~BLAKBLAD.itm~ ~override~
     STR_VAR
       resource = ~S!1_2APR~
   END
-  
+
 // Dragon's Strength
 
 COPY ~IATweaks\resources\bam\s!dragsb.bam~ ~override~
@@ -1265,8 +1265,6 @@ LAF ~S!ADD_CLAB_ROW~
     row_desc = ~DRAGON_STRENGTH~
     level18 = ~GA_S!DRGSTR~
     level24 = ~GA_S!DRGSTR~
-    level30 = ~GA_S!DRGSTR~
-    level36 = ~GA_S!DRGSTR~
 END
 
 // Blinding Speed

@@ -579,6 +579,15 @@ COPY_EXISTING ~BLAKBLAD.itm~ ~override~
       dicenumber = 4
   END
 
+// Change Energy Blades icon to that of Priest version
+
+COPY_EXISTING ~SPWI920.spl~ ~override~
+  WRITE_ASCII 0x3a ~SPPR721C~
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      icon = ~SPPR721B~
+  END
+
 // Add Wishes for enemies
 
 COPY ~IATweaks\resources\cre\s!wishen.cre~ ~override~

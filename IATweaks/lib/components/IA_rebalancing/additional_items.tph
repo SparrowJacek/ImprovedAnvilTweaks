@@ -250,6 +250,20 @@ COPY ~IATweaks\resources\itm\s!clck31.itm~ ~override~
   SAY NAME2 @7035
   SAY IDENTIFIED_DESC @7037
 
+///////////// Stalker Gauntlets
+
+COPY ~IATweaks\resources\bam\s!brc21a.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!brc21b.bam~ ~override~
+COPY ~IATweaks\resources\eff\s!brac21.eff~ ~override~
+COPY ~IATweaks\resources\itm\s!brac21.itm~ ~override~
+  SAY NAME2 @7069
+  SAY IDENTIFIED_DESC @7068
+
+// Merella the Ranger
+
+COPY_EXISTING ~UHRANG01.cre~ ~override~
+  ADD_CRE_ITEM ~s!brac21~ #0 #0 #0 ~NONE~ ~INV1~
+
 /////////////// New Recipes
 
 COMPILE ~IATweaks/resources/dlg/crom_new_items.d~

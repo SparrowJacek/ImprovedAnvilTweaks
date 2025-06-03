@@ -30,6 +30,6 @@ COPY_EXISTING ~stylbonu.2da~  ~override/stylbonu.2da~
   SET_2DA_ENTRY 6 6 ~colcount~ ~-1~
   SET_2DA_ENTRY 10 5 ~colcount~ ~-2~
   SET_2DA_ENTRY 10 6 ~colcount~ ~-2~
-  // give additional damage to ** in Twohanded Weapon
+  // give additional damage to ** in Two-handed Weapon
   SET_2DA_ENTRY 8 1 ~colcount~ ~3~
   PRETTY_PRINT_2DA

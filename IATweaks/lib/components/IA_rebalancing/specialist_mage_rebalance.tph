@@ -553,6 +553,27 @@ ACTION_FOR_EACH pfmw_type_spell IN ~SPWI611~ ~SPWI808~ ~SPWI907~ BEGIN
     END
 END
 
+// Rework Black Blade of Disaster
+
+COPY_EXISTING ~SPWI910.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6251
+
+COPY_EXISTING ~BLAKBLAD.itm~ ~override~
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 238
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 216
+      parameter1 = 2
+  END
+  LPF ~ALTER_ITEM_HEADER~
+    INT_VAR
+      dicesize = 6
+      dicenumber = 4
+  END
+
 // Add Wishes for enemies
 
 COPY ~IATweaks\resources\cre\s!wishen.cre~ ~override~
@@ -1185,7 +1206,31 @@ COPY_EXISTING ~spwi804.spl~ ~override~
       resource = ~spwi804d~
   END
 
-// Dragon Strength
+// Additional APR for Black Blade of Disaster
+
+COPY_EXISTING ~BLAKBLAD.itm~ ~override~
+  LPF ~ADD_ITEM_EQEFFECT~
+    INT_VAR
+      opcode = 177
+      target = 1
+      parameter1 = 8192
+      parameter2 = 9
+      timing = 2
+    STR_VAR
+      resource = ~S!1_2APR~
+  END
+  LPF ~ADD_ITEM_EQEFFECT~
+    INT_VAR
+      opcode = 177
+      target = 1
+      parameter1 = 8192
+      parameter2 = 9
+      timing = 2
+    STR_VAR
+      resource = ~S!1_2APR~
+  END
+  
+// Dragon's Strength
 
 COPY ~IATweaks\resources\bam\s!dragsb.bam~ ~override~
 COPY ~IATweaks\resources\bam\s!dragsd.bam~ ~override~

@@ -525,9 +525,9 @@ Saving Throw: Neg.
 
 A Web spell creates a many-layered mass of strong, sticky strands similar to spider webs but far larger and tougher. The Web spell covers a maximum area of about 15 ft. in radius (roughly the same size as a Fireball). Creatures caught within webs, or simply touching them, become stuck among the gluey fibers. Anyone in the area when the spell is cast must roll a Saving Throw vs. Spell with a -2 penalty. If the Saving Throw is successful, then the creature is free to move out of the area. A failed Saving Throw means the creature is stuck in the webs unable to move. Each round that a creature remains in the web, it must make a Saving Throw or be unable to move.~
 
-@6057 = ~Dragon Strength~
+@6057 = ~Dragon's Strength~
 
-@6058 = ~Dragon Strength (Alteration)
+@6058 = ~Dragon's Strength (Alteration)
 Level: 10
 Range: Touch
 Duration: 2 turns
@@ -1870,7 +1870,17 @@ Saving Throw: None
 
 By means of this powerful spell, the druid uses his connection with nature to creates a huge disembodied fist that inflicts 6D10 crushing damage to the target. This spell not only affects the Rakshasa (who are otherwise immune to druidic spells), but even inflicts quadruple damage to them.~
 
-@6251 = ~Shield Bash~
+@6251 = ~Black Blade of Disaster
+(Evocation)
+
+Level: 9
+Range: 0
+Duration: 18 rounds
+Casting Time: 4
+Area of Effect: Special
+Saving Throw: None
+
+This spell enables the caster to create a black, blade-shaped planar rift about three feet long. It jumps into the caster's hand and is used as a normal sword, remaining there for the duration of the spell. The caster is considered to be proficient to the point of Grand Mastery in this weapon. The sword acts as a +5 weapon and deals 4-24 damage to its victims. There is also a 10% chance with every hit that the sword drains 2 levels from the target and heals the wielder 20 Hit Points.~
 
 @6252 = ~Shield Bash~
 

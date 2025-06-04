@@ -175,6 +175,18 @@ COPY_EXISTING ~spwi212.spl~ ~override~
       match_opcode = 119
       opcode = 159
   END
+  SET images = 3
+  FOR (i=0;i<6;++i) BEGIN
+    FOR (j=0;j<3;++j) BEGIN
+      LPF ~ALTER_EFFECT~
+        INT_VAR
+          header = (i*3 + j)
+          match_opcode = 159
+          parameter1 = images
+      END  
+    END
+    SET images = images + 1
+  END
 
 // Web
 
@@ -1383,7 +1395,6 @@ COPY_EXISTING ~spwi212.spl~ ~override~
   LPF ~S!CLONE_EFFECT_ADD_VALUE~
     INT_VAR
       match_opcode = 159
-      opcode = 119
       parameter1_add = 5
     STR_VAR
       insert = ~last~
@@ -1610,10 +1621,23 @@ COPY ~IATweaks\resources\bam\s!simulb.bam~ ~override~
 COPY ~IATweaks\resources\bam\s!simulc.bam~ ~override~
 COPY ~IATweaks\resources\spl\s!simorg.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6067
+COPY ~IATweaks\resources\spl\s!simu4a.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!simu4b.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!simuli.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!simule.spl~ ~override~
 
 COPY_EXISTING ~simulacr.spl~ ~override~
+  LPF ~ADD_SPELL_EFFECT~
+    INT_VAR
+      opcode = 146
+      target = 1
+      parameter1 = 0
+      parameter2 = 1
+      resist_dispel = 0
+      duration = 0
+    STR_VAR
+      resource = ~S!SIMU4A~
+  END
   LPF ~ADD_SPELL_EFFECT~
     INT_VAR
       opcode = 146
@@ -1631,6 +1655,13 @@ LAF ~S!ADD_CLAB_ROW~
     filename = ~CLABMA08.2da~
     row_desc = ~SIMULACRUM~
     level12 = ~GA_S!SIMORG~
+END
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABMA08.2da~
+    row_desc = ~SIMUL_4TH_LEVEL_SPELLS~
+    level20 = ~AP_S!SIMU4B~
 END
 
 COMPILE ~IATweaks\scripts\simulacrum\S!SIMUL.BAF~

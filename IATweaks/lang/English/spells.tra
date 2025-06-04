@@ -994,7 +994,7 @@ Area of Effect: The caster
 Saving Throw: None
 
 Upon casting, the spell envelops the caster in two distinct layers of shielding energy.
-The Shield Body layer fortifies the caster’s physical form, granting immunity to poisons, blindness, and deafness, while also clearing the air that the caster inhales, protecting from poisonous and acidic cloud effects.
+The Shield Body layer fortifies the caster's physical form, granting immunity to poisons, blindness, and deafness, while also clearing the air that the caster inhales, protecting from poisonous and acidic cloud effects.
 The Shield Mind layer grants mental clarity and protects from all forms of fear, sleep, berserk, mind control and any similar effects.~
 
 @6141 = ~Ray of Fragmentation (Evocation)
@@ -1335,9 +1335,9 @@ This ability can be used instantly at any moment, without wasting character's ac
 @6192 = ~Marked for the Kill~
 
 @6193 = ~Marked for the Kill
-With a keen hunter’s eye, the Stalker identifies and exploits the subtle flaws in an enemy’s defenses. The target loses any immunity to backstab until any damage is dealt to him or until one round passes.
+With a keen hunter's eye, the Stalker identifies and exploits the subtle flaws in an enemy's defenses. The target loses any immunity to backstab until any damage is dealt to him or until one round passes.
 
-This ability can be used an indefinite number of times, however no more than once per 5 rounds. This time is decreased to 4 rounds at level 10, 3 rounds at level 20 and finally to 2 rounds at level 30.~
+This ability can be used an indefinite number of times, however no more often than once per 5 rounds. This time is decreased to 4 rounds at level 10, 3 rounds at level 20 and finally to 2 rounds at level 30.~
 
 @6194 = ~Can't use Marked for the Kill~
 
@@ -1841,7 +1841,7 @@ Casting Time: 5
 Area of Effect: Target Creature
 Saving Throw: None
 
-When this spell is cast at a target creature, it strips away all of the target’s magic resistance, even if that creature is immune all other effects that would lower its magic resistance. Creatures immune to spells of level 9, or protected by Spell Immunity: Abjuration are still unaffected by this spell. This effect will last for 5 rounds or till 5 hostile attacks are performed against the target, be it a hit from a weapon, or a spell applying damage or negative effects. The effects of this spell are not cumulative. The target's magic resistance, if any, does not affect this spell.~
+When this spell is cast at a target creature, it strips away all of the target's magic resistance, even if that creature is immune all other effects that would lower its magic resistance. Creatures immune to spells of level 9, or protected by Spell Immunity: Abjuration are still unaffected by this spell. This effect will last for 5 rounds or till 5 hostile attacks are performed against the target, be it a hit from a weapon, or a spell applying damage or negative effects. The effects of this spell are not cumulative. The target's magic resistance, if any, does not affect this spell.~
 
 @6247 = ~Spellstrike effect ended.~
 

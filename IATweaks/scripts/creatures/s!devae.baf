@@ -903,6 +903,7 @@ THEN
 END
 
 IF
+	Allegiance(Myself,ENEMY)
 	ActionListEmpty()
 	Global("Iamoving","LOCALS",1)
 	!See(NearestEnemyOf(Myself))

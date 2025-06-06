@@ -875,3 +875,20 @@ ACTION_FOR_EACH insects_spell IN ~sppr319~ ~sppr517~ ~sppr717~ BEGIN
     END
 END
 
+// Prevent most summons from following us
+
+COMPILE ~IATweaks\scripts\creatures\CBEAR.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!berser.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!djinn.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!spidsu.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!swansu.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!alsuc4.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!allyc4.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!antic3.BAF~
+
+// // Make some spells properly hostile
+
+// ACTION_FOR_EACH hostile_spell IN ~SPPR106~ ~SPPR208~ ~SPPR211~ ~SPPR302~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ BEGIN
+//   COPY_EXISTING ~%hostile_spell%.spl~ ~override~
+//     WRITE_BYTE 0x18 (THIS BOR 0b00000100) // Add Hostile flag
+// END

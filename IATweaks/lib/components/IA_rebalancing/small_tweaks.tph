@@ -856,3 +856,22 @@ ACTION_FOR_EACH cernd_file IN ~CERND10~ ~CERND12~ ~CERND13~ ~CERND13B~ ~CERND14~
       resource = ~S!AURA-4~
   END
 END
+
+// Make Golems immune to Insects
+
+ACTION_FOR_EACH insects_spell IN ~sppr319~ ~sppr517~ ~sppr717~ BEGIN
+  COPY_EXISTING ~%insects_spell%.spl~ ~override~
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        multi_match = 1
+        match_opcode = 272
+        opcode = 324
+        parameter1 = 0
+        parameter2 = 27
+        duration = 1
+      STR_VAR
+        insert = ~above~
+        resource = EVAL ~%SOURCE_RES%~
+    END
+END
+

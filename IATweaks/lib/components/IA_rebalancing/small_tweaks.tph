@@ -885,6 +885,9 @@ COMPILE ~IATweaks\scripts\creatures\S!swansu.BAF~
 COMPILE ~IATweaks\scripts\creatures\S!alsuc4.BAF~
 COMPILE ~IATweaks\scripts\creatures\S!allyc4.BAF~
 COMPILE ~IATweaks\scripts\creatures\S!antic3.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!planet.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!deva.BAF~
+COMPILE ~IATweaks\scripts\creatures\DEVAGOOD.BAF~
 
 // // Make some spells properly hostile
 

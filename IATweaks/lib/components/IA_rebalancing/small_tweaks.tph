@@ -365,7 +365,6 @@ LAF ~S!ADD_SPLPROT_2DA_ENTRY~
     stoneskins_num = new_line_number
 END
 
-
 COPY ~IATweaks\resources\spl\s!skin00.spl~ ~override~
   LPF ~ALTER_EFFECT~
     INT_VAR
@@ -924,6 +923,15 @@ COPY_EXISTING ~SPPR418.spl~ ~override~
       match_resource = ~SPWI418D~
       resource = ~SPPR418D~
   END
+
+// Remove knockback from the Horde's Orc Shamans
+
+COPY_EXISTING ~S!SLING.itm~ ~override~
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 235
+  END
+
 // // Make some spells properly hostile
 
 // ACTION_FOR_EACH hostile_spell IN ~SPPR106~ ~SPPR208~ ~SPPR211~ ~SPPR302~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ BEGIN

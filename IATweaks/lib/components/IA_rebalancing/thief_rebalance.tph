@@ -394,8 +394,11 @@ COPY ~IATweaks\resources\spl\s!mfkill.spl~ ~override~
       parameter2 = %marked_for_kill_icon_id%
   END
 
+COPY ~IATweaks\resources\2da\s!mfkill.2da~ ~override~
 COPY ~IATweaks\resources\spl\s!mfkild.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!mfkile.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!mfkilf.spl~ ~override~
+  SAY NAME1 @6192
 COPY ~IATweaks\resources\spl\s!mfkbas.spl~ ~override~
 COPY ~IATweaks\resources\eff\s!mfkill.eff~ ~override~
 
@@ -404,6 +407,14 @@ LAF ~S!ADD_CLAB_ROW~
     filename = ~CLABRN03.2da~
     row_desc = ~MARKED_FOR_KILL~
     level1 = ~AP_S!MFKBAS~
+END
+
+LAF ~S!ADD_HLA_ROW~
+  STR_VAR
+    filename = ~LU%stalker_hlas_suffix%.2DA~
+    row_desc = ~ASSASSINATION~
+    ability = ~GA_SPCL916~
+    num_allowed = ~1~
 END
 
 // Base thieving stat increasing spells for thief kits
@@ -1740,14 +1751,6 @@ END
 
 LAF ~S!ADD_HLA_ROW~
   STR_VAR
-    filename = ~LU%stalker_hlas_suffix%.2DA~
-    row_desc = ~STRAIGHT_THROUGH_HEART~
-    ability = ~GA_S!HEART~
-    num_allowed = ~1~
-END
-
-LAF ~S!ADD_HLA_ROW~
-  STR_VAR
     filename = ~LUTH0.2DA~
     row_desc = ~STRAIGHT_THROUGH_HEART~
     ability = ~GA_S!HEART~
@@ -1780,6 +1783,7 @@ COPY_EXISTING ~clastext.2da~ ~override/clastext.2da~
   SET_2DA_ENTRY_LATER ~s!thief_desc~ $clastext_rows("BOUNTY_HUNTER") description_col RESOLVE_STR_REF (@5026)
   SET_2DA_ENTRY_LATER ~s!thief_desc~ $clastext_rows("SWASHBUCKLER") description_col RESOLVE_STR_REF (@5027)
   SET_2DA_ENTRY_LATER ~s!thief_desc~ $clastext_rows("SHADOWDANCER") description_col RESOLVE_STR_REF (@5028)
+  SET_2DA_ENTRY_LATER ~s!thief_desc~ $clastext_rows("STALKER") description_col RESOLVE_STR_REF (@5039)
   SET_2DA_ENTRIES_NOW ~s!thief_desc~ ~colcount~
   PRETTY_PRINT_2DA
 
@@ -1811,6 +1815,7 @@ COPY_EXISTING ~kitlist.2da~ ~override/kitlist.2da~
   SET_2DA_ENTRY_LATER ~s!thief_desc~ $kitlist_rows("BOUNTY_HUNTER") description_col RESOLVE_STR_REF (@5026)
   SET_2DA_ENTRY_LATER ~s!thief_desc~ $kitlist_rows("SWASHBUCKLER") description_col RESOLVE_STR_REF (@5027)
   SET_2DA_ENTRY_LATER ~s!thief_desc~ $kitlist_rows("SHADOWDANCER") description_col RESOLVE_STR_REF (@5028)
+  SET_2DA_ENTRY_LATER ~s!thief_desc~ $kitlist_rows("STALKER") description_col RESOLVE_STR_REF (@5039)
   SET_2DA_ENTRIES_NOW ~s!thief_desc~ ~colcount~
   PRETTY_PRINT_2DA
 

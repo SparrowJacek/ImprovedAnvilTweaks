@@ -1499,7 +1499,14 @@ COPY_EXISTING ~SPCLI06.spl~ ~override~ // AC bonus
       INT_VAR
         header = header_id
         match_opcode = 0
-        parameter1 = 8 - (header_id * 2)
+        parameter1 = 9 - header_id
+    END
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        header = header_id
+        match_opcode = 0
+        parameter1 = 1
+        parameter2 = 0
     END
   END
 

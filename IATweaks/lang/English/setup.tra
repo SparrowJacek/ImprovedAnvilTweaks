@@ -635,7 +635,8 @@ Advantages:
 - +2 Bonus to Movement Speed.
 - Makes critical hits at a roll of 17 or better (instead of the usual 20).
 - Gains "Blur" every 5 levels.
-- Base Armor class lowered by 2 for every 6 levels.
+- Base Armor class lowered by 1 for every 6 levels.
+- Gains +1 bonus Armor Class for every 6 levels.
 - Gains "Improved Haste" at level 10.
 - Gains "Whirlwind Attack" at levels 16 and 22.
 - Once the Riskbreaker reaches level 15, each of his successful hits will have 15% chance to apply a random effect picked from the following pool: "Hard Hit" on target (applies 10D6 +5 additional damage), "Risk Increment" on target (applies -4 penalty to AC for 2 rounds), "Avert Risk" (heals the Riskbreaker for 20 hp).

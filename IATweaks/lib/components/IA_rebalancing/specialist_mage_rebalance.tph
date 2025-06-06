@@ -266,6 +266,10 @@ COPY_EXISTING ~spwi612.spl~ ~override~
     STR_VAR
       resource = "SPWI612"
   END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      duration_high = 30
+  END
 
 COPY_EXISTING ~scrl7p.itm~ ~override~
   SAY IDENTIFIED_DESC @6230

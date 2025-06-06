@@ -1365,7 +1365,7 @@ When this spell is cast, an invisible barrier comes into being in front of the w
 Level: 2
 Sphere: Guardian
 Range: Visual range of the caster
-Duration: 2 rounds per 3 levels
+Duration: 3 rounds
 Casting Time: 5
 Area of Effect: 15-foot-radius sphere
 Saving Throw: Neg
@@ -1673,7 +1673,7 @@ The character channels positive energy to heal the touched creature of 5 Hit Poi
 
 Level: 6
 Range: 90 ft.
-Duration: 7 rounds
+Duration: 5 rounds
 Casting Time: 1
 Area of Effect: 1 creature
 Saving Throw: None

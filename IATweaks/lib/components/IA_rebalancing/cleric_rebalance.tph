@@ -2175,10 +2175,21 @@ END
 
 COPY_EXISTING ~sppr211.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6197
+  PATCH_FOR_EACH ~min_lvl_val~ IN "6" "9" "12" "15" "18" BEGIN
+    LPF ~DELETE_SPELL_HEADER~ 
+      INT_VAR
+        header_type = ~-1~
+        min_level = ~%min_lvl_val%~
+    END
+  END
   LPF ~S!ALTER_EFFECT~
     INT_VAR
       match_savingthrow = ~-5~
       savingthrow = ~-2~
+  END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      duration_high = 18
   END
 
 // Champion's Strength

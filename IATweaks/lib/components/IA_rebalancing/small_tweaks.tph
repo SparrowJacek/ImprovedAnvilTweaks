@@ -896,6 +896,34 @@ COMPILE ~IATweaks\scripts\creatures\S!AMMA01.BAF~
 COPY_EXISTING ~S!AMMAR.cre~ ~override~
   WRITE_ASCII 0x248 ~S!AMMA01~ #8
 
+// Add projectiles for Fire Shields, fix power levels
+
+ACTION_FOR_EACH fireshield_spell IN ~SPWI403D~ ~SPWI418D~ ~SPPR730D~ ~SPPR953D~ BEGIN
+  COPY_EXISTING ~%fireshield_spell%.spl~ ~override~
+    SET projectile_5_ft = IDS_OF_SYMBOL (projectl ~RANGE10~) + 1
+    LPF ~ALTER_SPELL_HEADER~ 
+      INT_VAR
+        range = 1000
+        projectile = projectile_5_ft
+    END
+END
+
+COPY_EXISTING ~SPPR730D.spl~ ~override~
+  LPF ~ALTER_EFFECT~ 
+    INT_VAR 
+      match_power = 4
+      power = 7
+  END
+
+COPY_EXISTING ~SPWI418D.eff~ ~override/SPPR418D.eff~
+  WRITE_ASCII 0x30 ~SPPR953~
+
+COPY_EXISTING ~SPPR418.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    STR_VAR
+      match_resource = ~SPWI418D~
+      resource = ~SPPR418D~
+  END
 // // Make some spells properly hostile
 
 // ACTION_FOR_EACH hostile_spell IN ~SPPR106~ ~SPPR208~ ~SPPR211~ ~SPPR302~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ BEGIN

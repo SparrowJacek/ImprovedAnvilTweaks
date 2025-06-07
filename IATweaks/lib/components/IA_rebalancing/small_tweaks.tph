@@ -1175,6 +1175,24 @@ ACTION_FOR_EACH creature_immune IN
     END
 END
 
+// Block spawning points for 0-exp Golems in 2nd level of WK
+
+<<<<<<<< .../inlined/ar3016-no-0-exp-golems.baf
+IF
+		Global("Iaenablespawns","AR3016",0)
+		Global("SetDifficulty","AR3016",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iaenablespawns","AR3016",1)
+		SetGlobal("SetDifficulty","AR3016",1)
+END
+
+>>>>>>>>
+EXTEND_TOP ~ar3016.bcs~ ~.../inlined/ar3016-no-0-exp-golems.baf~
+  EVALUATE_BUFFER
+
+// Add info about Orcus when you pick up Daystar
+
 OUTER_SET orcus_info_str_ref = RESOLVE_STR_REF(@5121)
 <<<<<<<< .../inlined/ar0082-orcus-info.baf
 IF

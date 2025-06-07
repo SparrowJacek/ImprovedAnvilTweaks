@@ -932,6 +932,249 @@ COPY_EXISTING ~S!SLING.itm~ ~override~
       match_opcode = 235
   END
 
+// Rework Deathblow and Greater Deathblow
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~SLASHING_RES<100~
+    stat                  = ~21~
+    value                 = ~100~
+    relation              = ~2~
+  RET
+    slashing_less_than_100 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~CRUSHING_RES<100~
+    stat                  = ~22~
+    value                 = ~100~
+    relation              = ~2~
+  RET
+    crushing_less_than_100 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~PIERCING_RES<100~
+    stat                  = ~23~
+    value                 = ~100~
+    relation              = ~2~
+  RET
+    piercing_less_than_100 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~MISSILE_RES>=100~
+    stat                  = ~24~
+    value                 = ~100~
+    relation              = ~4~
+  RET
+    missile_equal_or_greater_than_100 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~SLASHING_OR_CRUSHING<100~
+    stat                  = ~0x103~
+    value                 = EVAL ~%slashing_less_than_100%~
+    relation              = EVAL ~%crushing_less_than_100%~
+  RET
+    slashing_or_crushing_less_than_100 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~SLASHING_AND_CRUSHING_AND_PIERCING>=100~
+    stat                  = ~0x104~
+    value                 = EVAL ~%piercing_less_than_100%~
+    relation              = EVAL ~%slashing_or_crushing_less_than_100%~
+  RET
+    slashing_and_crushing_and_piercing_equal_or_greater_than_100 = new_line_number
+END
+
+COPY ~IATweaks\resources\eff\s!dblows.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!dblow1.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!dblow1.eff~ ~override\s!dblow2.eff~
+  WRITE_ASCII 0x30 ~S!DBLOW2~ #8
+COPY ~IATweaks\resources\eff\s!dblow1.eff~ ~override\s!dblow3.eff~
+  WRITE_ASCII 0x30 ~S!DBLOW3~ #8
+COPY ~IATweaks\resources\eff\s!dblow1.eff~ ~override\s!dblow4.eff~
+  WRITE_ASCII 0x30 ~S!DBLOW4~ #8
+
+COPY ~IATweaks\resources\spl\s!dblow1.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      match_parameter2 = 1
+      parameter1 = 0
+      parameter2 = stoneskins_num_greater_than
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      match_parameter2 = 2
+      parameter1 = 0
+      parameter2 = slashing_and_crushing_and_piercing_equal_or_greater_than_100
+  END
+
+COPY_EXISTING ~s!dblow1.spl~ ~override\s!dblow2.spl~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      match_parameter2 = slashing_and_crushing_and_piercing_equal_or_greater_than_100
+      parameter1 = 0
+      parameter2 = missile_equal_or_greater_than_100
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+    STR_VAR
+      resource = ~S!DBLOW2~
+  END
+
+COPY_EXISTING ~s!dblow1.spl~ ~override\s!dblow3.spl~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      match_parameter2 = 144
+      parameter1 = 31
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+    STR_VAR
+      resource = ~S!DBLOW3~
+  END
+
+COPY_EXISTING ~s!dblow3.spl~ ~override\s!dblow4.spl~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      match_parameter2 = slashing_and_crushing_and_piercing_equal_or_greater_than_100
+      parameter1 = 0
+      parameter2 = missile_equal_or_greater_than_100
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+    STR_VAR
+      resource = ~S!DBLOW4~
+  END
+
+COPY_EXISTING ~SPCL902.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6252
+  LPF ~DELETE_EFFECT~
+    STR_VAR
+      match_resource = ~SPCL902A~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 248
+    STR_VAR
+      resource = ~S!DBLOW1~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 249
+    STR_VAR
+      resource = ~S!DBLOW2~
+  END
+
+COPY_EXISTING ~SPCL903.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6253
+  LPF ~DELETE_EFFECT~
+    STR_VAR
+      match_resource = ~SPCL903A~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 248
+    STR_VAR
+      resource = ~S!DBLOW3~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 249
+    STR_VAR
+      resource = ~S!DBLOW4~
+  END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      duration_high = 18
+  END
+
+// Add immunity to this spell to some items and creatures
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~
+  PATCH_FOR_EACH deathblow_spell IN ~S!DBLOW1~ ~S!DBLOW2~ ~S!DBLOW3~ ~S!DBLOW4~ BEGIN
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        silent = 1
+        multi_match = 1
+        match_opcode = 208
+        opcode = 206
+        parameter1 = 0
+        parameter2 = 0
+      STR_VAR
+        resource = EVAL ~%deathblow_spell%~
+    END
+  END
+
+  BUT_ONLY
+
+ACTION_FOR_EACH protective_spell IN ~spcl917~ ~spcl941~ BEGIN
+  COPY_EXISTING ~%protective_spell%.spl~ ~override~
+    PATCH_FOR_EACH deathblow_spell IN ~S!DBLOW1~ ~S!DBLOW2~ ~S!DBLOW3~ ~S!DBLOW4~ BEGIN
+      LPF ~CLONE_EFFECT~
+        INT_VAR
+          silent = 1
+          multi_match = 1
+          match_opcode = 208
+          opcode = 206
+          parameter1 = 0
+          parameter2 = 0
+        STR_VAR
+          resource = EVAL ~%deathblow_spell%~
+      END
+    END
+END
+
+ACTION_FOR_EACH creature_immune IN 
+                        ~FINMEL01~ 
+                        ~SENDAI~ 
+                        ~SENDAI2~ 
+                        ~SENDAI3~ 
+                        ~SENDAI4~ 
+                        ~SENDAI5~ 
+                        ~SENDAI6~ 
+                        ~SENDAI7~ 
+                        ~SENDAI8~
+                        ~GORGIT~
+                        ~S!SUPGOL~
+                        ~S!SUPGOW~
+                        ~DEMOGOR2~
+                        ~HLDEMI~
+                        ~DEMILICH~
+                        ~C6BODHI~
+                        ~BALTH~ 
+                        ~ABAZIGAL~ 
+                        ~DRAGBLUE~ BEGIN
+  COPY_EXISTING ~%creature_immune%.cre~ ~override~
+    PATCH_FOR_EACH deathblow_spell IN ~S!DBLOW1~ ~S!DBLOW2~ ~S!DBLOW3~ ~S!DBLOW4~ BEGIN
+      LPF ~ADD_CRE_EFFECT~
+        INT_VAR
+          opcode = 206
+          target = 1
+          timing = 9
+          resist_dispel = 0
+        STR_VAR
+          resource = EVAL ~%deathblow_spell%~
+      END
+    END
+END
+
 // // Make some spells properly hostile
 
 // ACTION_FOR_EACH hostile_spell IN ~SPPR106~ ~SPPR208~ ~SPPR211~ ~SPPR302~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ BEGIN

@@ -616,7 +616,7 @@ By casting this spell Beast Masters targets two animals and turns on their most 
 @6078 = ~Hide in Shadows disabled~
 
 @6079 = ~Avoid Death
-With extraordinary effort, a high-level rogue can avoid almost certain death. The effect lasts for 1 turn, and during this time, the rogue's Save vs. Death receives a bonus of 5, Hit Points are increased by 20, and the rogue becomes immune to death magic.~
+With extraordinary effort, a high-level rogue can avoid almost certain death. The effect lasts for 1 turn, and during this time, the rogue's Save vs. Death receives a bonus of 5, Hit Points are increased by 20, and the rogue becomes immune to death magic and instant death effects. This ability cannot be dispelled by any means~
 
 @6080 = ~Evasion
 A rogue's natural sense of preservation becomes heightened with the use of the Evasion ability. Evasion gives a bonus of 4 to AC and 2 to all Saving Throws. The effect lasts for 6 rounds and cannot be dispelled by any means.~
@@ -1888,9 +1888,19 @@ Saving Throw: None
 
 This spell enables the caster to create a black, blade-shaped planar rift about three feet long. It jumps into the caster's hand and is used as a normal sword, remaining there for the duration of the spell. The caster is considered to be proficient to the point of Grand Mastery in this weapon. The sword acts as a +5 weapon and deals 4-24 damage to its victims. There is also a 10% chance with every hit that the sword drains 2 levels from the target and heals the wielder 20 Hit Points.~
 
-@6252 = ~Shield Bash~
+@6252 = ~Deathblow
+Activating this ability causes all physical attacks made by the warrior to instantly kill any creature that has fewer than 20 Hit Points at the time of the strike.
+The effect is considered non-magical and thus bypasses most magical immunities to death effects, such as Death Ward or Spell Immunity: Necromancy. Creatures completely immune to physical damage, or those protected by Stoneskins are immune to the effect.
 
-@6253 = ~Shield Bash~
+ The effect lasts for 2 rounds and cannot be dispelled by any means.~
+
+@6253 = ~Greater Deathblow
+Activating this ability causes all physical attacks made by the warrior to instantly kill any creature that has fewer than 30 Hit Points at the time of the strike.
+The effect is considered non-magical and thus bypasses magical immunities to death effects, such as Death Ward, Spell Immunity: Necromancy, or Protection from Death Magic. Creatures completely immune to physical damage, or those protected by Stoneskins are immune to the effect.
+
+The effect lasts for 3 rounds and cannot be dispelled by any means.
+
+Requires: Deathblow~
 
 @6254 = ~Shield Bash~
 

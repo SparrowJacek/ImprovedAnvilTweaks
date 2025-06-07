@@ -1175,6 +1175,21 @@ ACTION_FOR_EACH creature_immune IN
     END
 END
 
+OUTER_SET orcus_info_str_ref = RESOLVE_STR_REF(@5121)
+<<<<<<<< .../inlined/ar0082-orcus-info.baf
+IF
+		Global("IaOrcusInfo","AR0082",0)
+		PartyHasItem("SW1H31")
+THEN
+	RESPONSE #100
+		SetGlobal("IaOrcusInfo","AR0082",1)
+		DisplayStringHead(Player1,%orcus_info_str_ref%)
+END
+
+>>>>>>>>
+EXTEND_TOP ~ar0082.bcs~ ~.../inlined/ar0082-orcus-info.baf~
+  EVALUATE_BUFFER
+
 // // Make some spells properly hostile
 
 // ACTION_FOR_EACH hostile_spell IN ~SPPR106~ ~SPPR208~ ~SPPR211~ ~SPPR302~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ BEGIN

@@ -490,7 +490,7 @@ COPY_EXISTING ~SEVPAT04.cre~ ~override~ // Smaeluv
   WRITE_BYTE 0x61 20 // Resist Crushing
   WRITE_BYTE 0x62 20 // Resist Piercing
   WRITE_BYTE 0x63 20 // Resist Missile
-  WRITE_LONG 0x244 0x40000000 // Kit = Barbarian
+  WRITE_LONG 0x244 0x00004000 // Kit = Barbarian
     
   LPF ~ADD_CRE_EFFECT~ // ** in 2h Sword
     INT_VAR
@@ -1758,6 +1758,7 @@ COPY_EXISTING ~S!TROLLQ.cre~ ~override~
   ADD_CRE_ITEM ~S!HELM04~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~HELMET~
 
 COMPILE ~IATweaks\scripts\creatures\S!TROLLQ.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!ntrol2.BAF~
 
 // Egg Prisons in Mind Flayers' Dungeon
 
@@ -2053,7 +2054,7 @@ COPY_EXISTING ~HLOLAF.cre~ ~override~
   WRITE_BYTE 0x234 24 // Level 1
   WRITE_BYTE 0x238 19 // Strength
   WRITE_BYTE 0x23d 19 // Constitution
-  WRITE_LONG 0x244 0x40000000 // Kit = Barbarian
+  WRITE_LONG 0x244 0x00004000 // Kit = Barbarian
     
   LPF ~ADD_CRE_EFFECT~ // Movement speed set to 11
     INT_VAR

@@ -309,3 +309,7 @@ COPY_EXISTING ~S!TROLLK.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 5 ) // Critical Strike
 
 COMPILE ~IATweaks\scripts\controversial\S!TROLLK.BAF~
+
+// Troll Queen
+
+COMPILE ~IATweaks\scripts\controversial\S!TROLLQ.BAF~

@@ -408,6 +408,16 @@ LAF ~S!ADD_SPLPROT_2DA_ENTRY~
     stoneskins_num_lesser_than = new_line_number
 END
 
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~STONESKINS_NUM>n~
+    stat                  = ~88~
+    value                 = ~-1~
+    relation              = ~3~
+  RET
+    stoneskins_num_greater_than = new_line_number
+END
+
 COPY ~IATweaks\resources\eff\s!ssweig.eff~ ~override~
 COPY ~IATweaks\resources\spl\s!ssweig.spl~ ~override~
   LPF ~ALTER_EFFECT~

@@ -64,7 +64,7 @@ ACTION_FOR_EACH powerful_spell_scroll IN ~scrl9g~ ~s!scrl06~ BEGIN
     END
 END
 
-ACTION_FOR_EACH priority_spell IN ~spwi302~ ~spwi326~ ~sppr303~ ~spwi510~ ~spwi513~ ~spwi602~ ~sppri18~ ~spwi704~ ~spwi805~ ~spwi701~ ~spwi919~ ~sppri25~ ~sppri16~ ~spwi921~ BEGIN
+ACTION_FOR_EACH priority_spell IN ~spwi302~ ~spwi326~ ~sppr303~ ~spwi510~ ~spwi513~ ~spwi602~ ~sppri18~ ~spwi704~ ~spwi805~ ~spwi701~ ~spwi919~ ~sppri16~ ~spwi921~ BEGIN
   COPY_EXISTING ~%priority_spell%.spl~ ~override~
     READ_LONG 0x64 first_header_offset
     READ_SHORT first_header_offset + 0x12 casting_speed

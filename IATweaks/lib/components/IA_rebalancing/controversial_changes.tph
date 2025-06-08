@@ -1176,8 +1176,8 @@ ACTION_FOR_EACH whirlwind_spell IN ~SPCL900~ ~SPCL901~ BEGIN
         opcode = 333
         insert_point = ~-1~
         target = 1
-        parameter1 = 14
-        duration = 15
+        parameter1 = 17
+        duration = 18
         special = 1
         resist_dispel = 0
       STR_VAR

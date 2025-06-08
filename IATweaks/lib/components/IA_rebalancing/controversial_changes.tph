@@ -1482,6 +1482,17 @@ COPY_EXISTING ~SPINI34.spl~ ~override~ // Risk Decrement
       parameter1 = 10
       parameter2 = 0
   END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 215
+    STR_VAR
+      match_resource = ~SPSTRENH~
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 215
+      target = 1
+  END
 
 COPY_EXISTING ~SPCLI06.spl~ ~override~ // AC bonus
   LPF ~ALTER_EFFECT~

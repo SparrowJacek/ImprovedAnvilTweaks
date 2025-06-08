@@ -294,4 +294,18 @@ COPY_EXISTING ~HLKOSHI.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
   ADD_MEMORIZED_SPELL ~SPCL908~ #0 ~innate~ ( 1 ) // War Cry
 
-  
+// Troll King
+
+COPY_EXISTING ~S!TROLLK.cre~ ~override~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPINI34~ #0 ~innate~ ( 3 ) // Risk Decrement
+  ADD_MEMORIZED_SPELL ~SPINI51~ #0 ~innate~ ( 2 ) // Chain Breaker Stance
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 2 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 2 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 5 ) // Critical Strike
+
+COMPILE ~IATweaks\scripts\controversial\S!TROLLK.BAF~

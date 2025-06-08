@@ -1608,16 +1608,156 @@ COPY_EXISTING ~AR2209.are~ ~override~
 
 // Troll King
 
+COPY ~IATweaks\resources\itm\s!torga2.itm~ ~override~
+
 COPY_EXISTING ~S!TROLLK.cre~ ~override~
+  WRITE_SHORT 0x24 407 // HP
+  WRITE_SHORT 0x26 407 // HP
+  WRITE_BYTE 0x53 2  // APR
   WRITE_BYTE 0x59 80 // Fire Resistance
   WRITE_BYTE 0x5c 80 // Acid Resistance
   WRITE_BYTE 0x5e 80 // Magic Fire Resistance
+  WRITE_BYTE 0x60 55 // Resist Slashing
+  WRITE_BYTE 0x61 55 // Resist Crushing
+  WRITE_BYTE 0x62 55 // Resist Piercing
+  WRITE_BYTE 0x63 55 // Resist Missile
+  WRITE_SHORT 0x246 IDS_OF_SYMBOL(~kit~ ~RISKBREAKER~) // Kit
+    
+  LPF ~ADD_CRE_EFFECT~ // Color
+    INT_VAR
+      target = 1
+      opcode = 51
+      parameter1 = 5046016
+      parameter2 = 2
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // RB base bonuses
+    INT_VAR
+      opcode = 146
+      target = 1
+      parameter2 = 1
+      timing = 9
+      resist_dispel = 0
+    STR_VAR
+      resource = ~SPCLI05~
+      effsource = ~SPCLI05~
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // RB on-hit bonuses
+    INT_VAR
+      opcode = 146
+      target = 1
+      parameter2 = 1
+      timing = 9
+      resist_dispel = 0
+    STR_VAR
+      resource = ~SPCLI09~
+      effsource = ~SPCLI09~
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Regeneration
+    INT_VAR
+      opcode = 98
+      target = 2
+      parameter1 = 2
+      parameter2 = 2
+      timing = 9
+      resist_dispel = 0
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!TORGAL~
+  END
+
+  ADD_CRE_ITEM ~S!TORGA2~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~WEAPON1~ EQUIP
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPINI34~ #0 ~innate~ ( 3 ) // Risk Decrement
+  ADD_MEMORIZED_SPELL ~SPINI51~ #0 ~innate~ ( 2 ) // Chain Breaker Stance
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 3 ) // Greater Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 4 ) // Critical Strike
+
+COMPILE ~IATweaks\scripts\creatures\S!TROLLK.BAF~
 
 // Troll Queen
 
+COPY ~IATweaks\resources\spl\s!flee01.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!retrea.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6254
+
+COPY ~IATweaks\resources\spl\s!lowres.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!linkup.spl~ ~override~
+
 COPY_EXISTING ~S!TROLLQ.cre~ ~override~
+  WRITE_SHORT 0x24 223 // HP
+  WRITE_SHORT 0x26 223 // HP
+  WRITE_SHORT 0x46 10 // AC
+  WRITE_SHORT 0x48 10 // AC
+  WRITE_BYTE 0x52 0 // Thac0
+  WRITE_BYTE 0x53 2  // APR
   WRITE_BYTE 0x59 15 // Fire Resistance
   WRITE_BYTE 0x5e 15 // Magic Fire Resistance
+  WRITE_BYTE 0x234 36 // Level 1
+  WRITE_BYTE 0x235 1 // Level 2
+  WRITE_BYTE 0x238 19 // Strength
+  WRITE_BYTE 0x23d 16 // Constitution
+  WRITE_SHORT 0x246 IDS_OF_SYMBOL(~kit~ ~AURAMASTER~) // Kit
+  WRITE_BYTE 0x273 11 // Class = Druid
+    
+  LPF ~ADD_CRE_EFFECT~ // normal Haste
+    INT_VAR
+      target = 1
+      opcode = 16
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // Color
+    INT_VAR
+      target = 1
+      opcode = 51
+      parameter1 = 0xe0f59500
+      parameter2 = 2
+      timing = 9
+  END
+
+  LPF ~ALTER_EFFECT~
+    STR_VAR
+      match_opcode = 189 // Casting Speed
+      parameter1 = 2
+  END
+
+  LPF ~DELETE_EFFECT~
+    STR_VAR
+      match_opcode = 66 // Translucency
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~HELMNOAN~
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~CLCK01~
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!TORGAL~
+  END
+
+  ADD_CRE_ITEM ~S!TORGA2~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~WEAPON1~ EQUIP
+  ADD_CRE_ITEM ~CLCK02~ #0 #0 #0 ~NONE~ ~CLOAK~
+  ADD_CRE_ITEM ~POTN10~ #0 #0 #0 ~NONE~ ~INV1~
+  ADD_CRE_ITEM ~S!HELM04~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~HELMET~
+
+COMPILE ~IATweaks\scripts\creatures\S!TROLLQ.BAF~
 
 // Egg Prisons in Mind Flayers' Dungeon
 
@@ -1650,6 +1790,7 @@ COPY_EXISTING ~UDDWARF.cre~ ~override~
   WRITE_BYTE 0x52 THIS + 4 // Thac0
   WRITE_BYTE 0x5d 50 // Resist Magic
   WRITE_LONG 0x244 0x40010000 // Kit = Berserker
+  WRITE_BYTE 0x27b 51 // Alignment
 
   LPF ~DELETE_CRE_ITEM~
     STR_VAR

@@ -1393,7 +1393,14 @@ COPY_EXISTING ~SPPR725.spl~ ~override~
 //       resource = ~SPPR725E~
 //   END
 
+ADD_PROJECTILE ~IATweaks\resources\pro\S!5FEETP.PRO~
+
 COPY_EXISTING ~SPPR725D.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~%S!5FEETP%~ 
+      speed = 8
+  END
   LPF ~ALTER_EFFECT~
     INT_VAR
       match_opcode = 12

@@ -2897,6 +2897,119 @@ COPY_EXISTING ~AR0907.are~ ~override~
       actor_name = ~Ketta~
   END
 
+// Ferric from Samia's party
+
+COPY_EXISTING ~DESHAR.cre~ ~override~
+  WRITE_SHORT 0x24 99 // HP
+  WRITE_SHORT 0x26 99 // HP
+  WRITE_BYTE 0x45 0 // Hide in Shadows
+  WRITE_BYTE 0x59 25 // Resist Fire
+  WRITE_BYTE 0x5e 25 // Resist Magic Fire
+  WRITE_BYTE 0x60 20 // Resist Slashing
+  WRITE_BYTE 0x61 20 // Resist Crushing
+  WRITE_BYTE 0x62 20 // Resist Piercing
+  WRITE_BYTE 0x63 20 // Resist Missile
+  WRITE_BYTE 0x64 0 // Detect Illusions
+  WRITE_BYTE 0x65 75 // Set Traps
+  WRITE_BYTE 0x67 0 // Pick Locks
+  WRITE_BYTE 0x68 0 // Stealth Strike
+  WRITE_BYTE 0x69 45 // Find Traps
+  WRITE_BYTE 0x6a 110 // Pick Pockets
+  WRITE_BYTE 0x238 18 // Strength
+  WRITE_BYTE 0x239 76 // Exceptional Strength
+  WRITE_BYTE 0x23d 18 // constitution
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 90
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40OL~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 91
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40FT~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 92
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40PP~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 144
+      target = 1
+      timing = 9
+    STR_VAR
+      effsource = ~S!DISSTE~
+  END
+
+  ADD_CRE_ITEM ~SW1H43~ #0 #0 #0 ~NONE~ ~WEAPON3~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL913~ #0 ~innate~ ( 1 ) // Evasion
+  ADD_MEMORIZED_SPELL ~SPCL914~ #0 ~innate~ ( 1 ) // Greater Evasion
+  ADD_MEMORIZED_SPELL ~SPCL916~ #0 ~innate~ ( 1 ) // Assassination
+  ADD_MEMORIZED_SPELL ~SPCL917~ #0 ~innate~ ( 1 ) // Avoid Death
+
+COMPILE ~IATweaks\scripts\creatures\S!DESHAR.baf~
+
+COPY_EXISTING ~S!DESHAR.itm~ ~override~
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 206
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 101
+      parameter2 = 45
+  END
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 101
+      parameter2 = 175
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 0
+      parameter1 = 2
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 31
+      parameter1 = 50
+  END
+
 /////////// Items ////////////
 
 // Randomize Ring of Duplication between Shadow Dragon, Borinall and Damien

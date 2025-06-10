@@ -313,3 +313,119 @@ COMPILE ~IATweaks\scripts\controversial\S!TROLLK.BAF~
 // Troll Queen
 
 COMPILE ~IATweaks\scripts\controversial\S!TROLLQ.BAF~
+// Chak from Samia's party
+
+COPY_EXISTING ~CHAK.cre~ ~override~
+
+  REMOVE_KNOWN_SPELLS
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPPR101~ #0 ~priest~ ( 1 ) // Bless
+  ADD_MEMORIZED_SPELL ~SPPR111~ #0 ~priest~ ( 5 ) // Armor of Faith
+  ADD_MEMORIZED_SPELL ~SPPR113~ #0 ~priest~ ( 3 ) // Doom
+
+  ADD_MEMORIZED_SPELL ~SPPR202~ #1 ~priest~ ( 2 ) // Barkskin
+  ADD_MEMORIZED_SPELL ~SPPR206~ #1 ~priest~ ( 1 ) // Flame Blade
+  ADD_MEMORIZED_SPELL ~SPPR209~ #1 ~priest~ ( 1 ) // Know Alignment
+  // ADD_MEMORIZED_SPELL ~SPPR210~ #1 ~priest~ ( 2 ) // Resist Fire and Cold
+  ADD_MEMORIZED_SPELL ~SPPR212~ #1 ~priest~ ( 4 ) // Slow Poison
+
+  ADD_MEMORIZED_SPELL ~SPPRI02~ #2 ~priest~ ( 2 ) // Dispel Magic caster-friendly
+  ADD_MEMORIZED_SPELL ~SPPR306~ #2 ~priest~ ( 2 ) // Protection From Fire
+  ADD_MEMORIZED_SPELL ~SPPR315~ #2 ~priest~ ( 2 ) // Cure Medium Wounds
+  ADD_MEMORIZED_SPELL ~SPPR318~ #2 ~priest~ ( 1 ) // Zone of Sweet Air
+
+  ADD_MEMORIZED_SPELL ~SPPR403~ #3 ~priest~ ( 1 ) // Free Actions
+  ADD_MEMORIZED_SPELL ~SPPR407~ #3 ~priest~ ( 2 ) // Protection from Lightning
+  ADD_MEMORIZED_SPELL ~SPPR409~ #3 ~priest~ ( 1 ) // Death Ward
+  ADD_MEMORIZED_SPELL ~SPPR411~ #3 ~priest~ ( 1 ) // Poison
+  ADD_MEMORIZED_SPELL ~SPPR418~ #3 ~priest~ ( 1 ) // Acid Shield
+  ADD_MEMORIZED_SPELL ~SPPR420~ #1 ~priest~ ( 1 ) // Resist Fire and Cold
+
+  ADD_MEMORIZED_SPELL ~SPPR505~ #4 ~priest~ ( 1 ) // True Seeing
+  ADD_MEMORIZED_SPELL ~SPPR506~ #4 ~priest~ ( 2 ) // Iron Skins
+  ADD_MEMORIZED_SPELL ~SPPR508~ #4 ~priest~ ( 1 ) // Chaotic Commands
+  ADD_MEMORIZED_SPELL ~SPPR509~ #4 ~priest~ ( 1 ) // Magic Resistance
+
+  ADD_MEMORIZED_SPELL ~SPPR604~ #5 ~priest~ ( 1 ) // Conjure Animals
+  ADD_MEMORIZED_SPELL ~SPPR607~ #5 ~priest~ ( 1 ) // Heal
+  ADD_MEMORIZED_SPELL ~SPPR613~ #5 ~priest~ ( 1 ) // Protection from Missiles
+
+  ADD_MEMORIZED_SPELL ~SPPR701~ #6 ~priest~ ( 1 ) // Shield of Archons
+  ADD_MEMORIZED_SPELL ~SPPR717~ #6 ~priest~ ( 1 ) // Creeping Doom
+
+  ADD_MEMORIZED_SPELL ~SPCLI12~ #0 ~innate~ ( 1 ) // Smilodon
+  ADD_MEMORIZED_SPELL ~SPCLI15~ #0 ~innate~ ( 1 ) // Natural Restoral
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 1 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+
+COMPILE ~IATweaks\scripts\controversial\S!CHAK.BAF~
+// Legdoril from Samia's party
+
+COPY_EXISTING ~LEGDOR.cre~ ~override~
+
+  REMOVE_KNOWN_SPELLS
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPPR101~ #0 ~priest~ ( 1 ) // Bless
+  ADD_MEMORIZED_SPELL ~SPPR102~ #0 ~priest~ ( 2 ) // Command
+  ADD_MEMORIZED_SPELL ~SPPR108~ #0 ~priest~ ( 2 ) // Remove Fear
+  ADD_MEMORIZED_SPELL ~SPPR111~ #0 ~priest~ ( 2 ) // Armor of Faith
+  ADD_MEMORIZED_SPELL ~SPPR113~ #0 ~priest~ ( 3 ) // Doom
+
+  ADD_MEMORIZED_SPELL ~SPPR201~ #1 ~priest~ ( 1 ) // Aid
+  ADD_MEMORIZED_SPELL ~SPPR203~ #1 ~priest~ ( 1 ) // Chant
+  ADD_MEMORIZED_SPELL ~SPPR206~ #1 ~priest~ ( 1 ) // Flame Blade
+  ADD_MEMORIZED_SPELL ~SPPR208~ #1 ~priest~ ( 3 ) // Hold Person
+  ADD_MEMORIZED_SPELL ~SPPR209~ #1 ~priest~ ( 1 ) // Know Alignment
+  ADD_MEMORIZED_SPELL ~SPPR214~ #1 ~priest~ ( 2 ) // DUHM
+
+  ADD_MEMORIZED_SPELL ~SPPRI02~ #2 ~priest~ ( 3 ) // Dispel Magic caster-friendly
+  ADD_MEMORIZED_SPELL ~SPPR308~ #2 ~priest~ ( 2 ) // Remove Paralysis
+  ADD_MEMORIZED_SPELL ~SPPR317~ #2 ~priest~ ( 2 ) // Cure Disease
+  ADD_MEMORIZED_SPELL ~SPPR318~ #2 ~priest~ ( 2 ) // Zone of Sweet Air
+
+  ADD_MEMORIZED_SPELL ~SPPR403~ #3 ~priest~ ( 3 ) // Free Actions
+  ADD_MEMORIZED_SPELL ~SPPR406F~ #3 ~priest~ ( 1 ) // Defensive Harmony
+  ADD_MEMORIZED_SPELL ~SPPR407~ #3 ~priest~ ( 1 ) // Protection from Lightning
+  ADD_MEMORIZED_SPELL ~SPPR408~ #3 ~priest~ ( 1 ) // Protection from Evil
+  ADD_MEMORIZED_SPELL ~SPPR409~ #3 ~priest~ ( 2 ) // Death Ward
+  ADD_MEMORIZED_SPELL ~SPPR412~ #3 ~priest~ ( 1 ) // Holy Power
+
+  ADD_MEMORIZED_SPELL ~SPPR503~ #4 ~priest~ ( 2 ) // Flame Strike
+  ADD_MEMORIZED_SPELL ~SPPR508~ #4 ~priest~ ( 3 ) // Chaotic Commands
+  ADD_MEMORIZED_SPELL ~SPPR509~ #4 ~priest~ ( 1 ) // Magic Resistance
+  ADD_MEMORIZED_SPELL ~SPPR511~ #4 ~priest~ ( 1 ) // Slay Living
+  ADD_MEMORIZED_SPELL ~SPPR513~ #4 ~priest~ ( 1 ) // Righteous Magic
+  
+  ADD_MEMORIZED_SPELL ~SPPR607~ #5 ~priest~ ( 2 ) // Heal
+  ADD_MEMORIZED_SPELL ~SPPR613~ #5 ~priest~ ( 1 ) // Protection from Missiles
+  ADD_MEMORIZED_SPELL ~SPPR617~ #5 ~priest~ ( 1 ) // Heavenly Shield
+  ADD_MEMORIZED_SPELL ~SPPR618~ #5 ~priest~ ( 1 ) // Champion's Might
+  ADD_MEMORIZED_SPELL ~SPPR698~ #5 ~priest~ ( 1 ) // Blade Barrier
+
+  ADD_MEMORIZED_SPELL ~SPPR701~ #6 ~priest~ ( 1 ) // Shield of Archons
+  ADD_MEMORIZED_SPELL ~SPPR727~ #6 ~priest~ ( 1 ) // Fallen Deva
+
+COMPILE ~IATweaks\scripts\controversial\S!LEGDOR.BAF~
+
+// Ferric from Samia's party
+
+COMPILE ~IATweaks\scripts\controversial\S!DESHAR.baf~
+
+// Samia
+
+COPY_EXISTING ~SAMIA.cre~ ~override~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 1 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+
+COMPILE ~IATweaks\scripts\controversial\SAMIA.BAF~

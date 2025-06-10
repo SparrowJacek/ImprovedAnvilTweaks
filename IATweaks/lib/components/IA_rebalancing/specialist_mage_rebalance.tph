@@ -2796,3 +2796,48 @@ COPY_EXISTING ~AR0907.are~ ~override~
       fj_name           = ~Kenzenrich~
       fj_cre_resref     = ~S!KENZEN~
   END
+// Kaol from Samia's party
+
+COPY_EXISTING ~KAOL.cre~ ~override~
+  WRITE_SHORT 0x24 65 // HP
+  WRITE_SHORT 0x26 65 // HP
+  WRITE_SHORT 0x46 0 // AC
+  WRITE_SHORT 0x48 0 // AC
+  WRITE_BYTE 0x60 0 // Resist Slashing
+  WRITE_BYTE 0x61 0 // Resist Crushing
+  WRITE_BYTE 0x62 0 // Resist Piercing
+  WRITE_BYTE 0x63 0 // Resist Missile
+  WRITE_BYTE 0x23d 17 // Constitution
+
+  LPF ~ALTER_EFFECT~
+    STR_VAR
+      match_opcode = 189 // Casting Speed
+      parameter1 = 3
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!IMMUNE~
+  END
+
+COMPILE ~IATweaks\scripts\creatures\S!KAOL1.BAF~

@@ -1371,15 +1371,15 @@ COPY_EXISTING ~GPFIGHT1.cre~ ~override~
       item_to_delete = ~DRAGRING~
   END
 
-LPF ~DELETE_CRE_EFFECT~
-  STR_VAR
-    opcode_to_delete = 16
-END
+  LPF ~DELETE_CRE_EFFECT~
+    STR_VAR
+      opcode_to_delete = 16
+  END
 
-LPF ~DELETE_CRE_EFFECT~
-  STR_VAR
-    opcode_to_delete = 0
-END
+  LPF ~DELETE_CRE_EFFECT~
+    STR_VAR
+      opcode_to_delete = 0
+  END
 
   LPF ~ALTER_EFFECT~
     STR_VAR
@@ -1823,6 +1823,7 @@ COMPILE ~IATweaks\scripts\creatures\S!UDDWAR.BAF~
 // Archer from North Forest party
 
 COPY_EXISTING ~AR18ARCH.cre~ ~override~
+  WRITE_LONG 0x14 25000 // Exp
   WRITE_SHORT 0x24 126 // HP
   WRITE_SHORT 0x26 126 // HP
   WRITE_BYTE 0x45 100 // Hide in Shadows
@@ -1965,6 +1966,7 @@ COMPILE ~IATweaks\scripts\creatures\S!ARCH21.BAF~
 // Maferan, the Minotaur from Guarded Compound
 
 COPY_EXISTING ~HLMAFER.cre~ ~override~
+  WRITE_LONG 0x14 22000 // Exp
   WRITE_SHORT 0x24 126 // HP
   WRITE_SHORT 0x26 126 // HP
   WRITE_BYTE 0x52 0 // Thac0
@@ -2043,6 +2045,7 @@ COMPILE ~IATweaks\scripts\creatures\S!MAFER.BAF~
 // Olaf, the Orc from Guarded Compound
 
 COPY_EXISTING ~HLOLAF.cre~ ~override~
+  WRITE_LONG 0x14 25000 // Exp
   WRITE_SHORT 0x24 150 // HP
   WRITE_SHORT 0x26 150 // HP
   WRITE_BYTE 0x52 0 // Thac0
@@ -2138,7 +2141,7 @@ COMPILE ~IATweaks\scripts\creatures\S!OLAF.BAF~
 // Koshi, the Kensai from Guarded Compound
 
 COPY_EXISTING ~HLKOSHI.cre~ ~override~
-  WRITE_LONG 0x14 27000 // Exp
+  WRITE_LONG 0x14 36000 // Exp
   WRITE_SHORT 0x24 144 // HP
   WRITE_SHORT 0x26 144 // HP
   WRITE_SHORT 0x46 10 // AC
@@ -2281,3 +2284,189 @@ COPY_EXISTING ~AR0907.BCS~ ~override~
           ~ END
       ~%val%~
   END
+
+// Akae from Samia's party
+
+COPY_EXISTING ~AKAE.cre~ ~override~
+  WRITE_LONG 0x14 21000 // Exp
+  WRITE_SHORT 0x24 123 // HP
+  WRITE_SHORT 0x26 123 // HP
+  WRITE_BYTE 0x59 25  // Fire Resistance
+  WRITE_BYTE 0x5e 25  // Magic Fire Resistance
+  WRITE_BYTE 0x239 92 // Exceptional Strength
+  WRITE_BYTE 0x23d 18 // Constitution
+  WRITE_LONG 0x244 0x40030000 // Kit = Kensai
+  WRITE_ASCII 0x248 ~S!SHOUT~ #8
+  WRITE_ASCII 0x250 ~AKAE~ #8
+  WRITE_BYTE 0x272 3 // Race
+  
+  ACTION_FOR_EACH opcode_to_remove IN 267 101 296 BEGIN
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = opcode_to_remove
+    END
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  // thac0 and damage bonuses to melee
+  FOR (i=0; i<6; ++i) BEGIN
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 285
+        target = 1
+        parameter1 = 1
+        parameter2 = 0
+        timing = 9
+      STR_VAR
+        effsource = ~SPCL141~
+    END
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 284
+        target = 1
+        parameter1 = 1
+        parameter2 = 0
+        timing = 9
+      STR_VAR
+        effsource = ~SPCL141~
+    END
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // AC
+    INT_VAR
+      opcode = 0
+      target = 1
+      parameter1 = 2
+      parameter2 = 0
+      resist_dispel = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL142~
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Weapon speed
+    INT_VAR
+      opcode = 190
+      target = 1
+      parameter1 = 5
+      parameter2 = 0
+      resist_dispel = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL143~
+  END
+
+  LPF ~ALTER_EFFECT~
+    STR_VAR
+      match_opcode = 31
+      parameter1 = 40
+  END
+  
+  PATCH_FOR_EACH item_to_remove IN ~S!KOSHI~ BEGIN
+    LPF ~DELETE_CRE_ITEM~
+      STR_VAR
+        item_to_delete = EVAL ~%item_to_remove%~
+    END
+  END
+
+  ADD_CRE_ITEM ~SW1H43~ #0 #0 #0 ~UNSTEALABLE~ ~WEAPON2~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL144~ #0 ~innate~ ( 4 ) // Kai
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 1 ) // Hardiness
+
+COMPILE ~IATweaks\scripts\creatures\AKAE.BAF~
+
+// Samia
+
+COPY_EXISTING ~SAMIA.cre~ ~override~
+  WRITE_LONG 0x14 28000 // Exp
+  WRITE_BYTE 0x52 0 // Thac0
+  WRITE_BYTE 0x59 50  // Fire Resistance
+  WRITE_BYTE 0x5c 75  // Acid Resistance
+  WRITE_BYTE 0x5e 50  // Magic Fire Resistance
+  WRITE_BYTE 0x60 30 // Resist Slashing
+  WRITE_BYTE 0x61 30 // Resist Crushing
+  WRITE_BYTE 0x62 30 // Resist Piercing
+  WRITE_BYTE 0x63 30 // Resist Missile
+  WRITE_BYTE 0x239 100 // Exceptional Strength
+  WRITE_BYTE 0x23d 18 // Constitution
+  WRITE_ASCII 0x248 ~S!SHOUT~ #8
+  WRITE_ASCII 0x250 ~SAMIA~ #8
+  
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 0
+  END
+    
+  LPF ~ALTER_EFFECT~ // ** in Sword and Shield
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 112
+      parameter1 = 2
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  LPF ~ALTER_EFFECT~
+    STR_VAR
+      match_opcode = 31
+      parameter1 = 75
+  END
+  
+  PATCH_FOR_EACH item_to_remove IN ~DRAGRING~ BEGIN
+    LPF ~DELETE_CRE_ITEM~
+      STR_VAR
+        item_to_delete = EVAL ~%item_to_remove%~
+    END
+  END
+
+  ADD_CRE_ITEM ~SW1H04~ #0 #0 #0 ~UNSTEALABLE~ ~WEAPON2~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 1 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 1 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 2 ) // Greater Whirlwind Attack
+
+COMPILE ~IATweaks\scripts\creatures\SAMIA.BAF~

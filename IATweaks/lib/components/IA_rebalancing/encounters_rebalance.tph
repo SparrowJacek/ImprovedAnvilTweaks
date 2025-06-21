@@ -2300,7 +2300,7 @@ COPY_EXISTING ~AKAE.cre~ ~override~
   WRITE_ASCII 0x250 ~AKAE~ #8
   WRITE_BYTE 0x272 3 // Race
   
-  ACTION_FOR_EACH opcode_to_remove IN 267 101 296 BEGIN
+  PATCH_FOR_EACH opcode_to_remove IN 267 101 296 BEGIN
     LPF ~DELETE_EFFECT~
       INT_VAR
         match_opcode = opcode_to_remove
@@ -2418,12 +2418,15 @@ COPY_EXISTING ~SAMIA.cre~ ~override~
     INT_VAR
       match_opcode = 0
   END
-    
-  LPF ~ALTER_EFFECT~ // ** in Sword and Shield
+
+  LPF ~ADD_CRE_EFFECT~ // ** in Sword and Shield
     INT_VAR
-      match_opcode = 233
-      match_parameter2 = 112
+      target = 1
+      opcode = 233
       parameter1 = 2
+      parameter2 = 112
+      resist_dispel = 0
+      timing = 9
   END
 
   LPF ~ADD_CRE_EFFECT~ // Set persistent AI

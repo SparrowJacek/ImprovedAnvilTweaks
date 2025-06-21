@@ -213,6 +213,14 @@ COPY_EXISTING ~spwi511.spl~ ~override~
 COPY_EXISTING ~S!SCRL29.itm~ ~override~
   SAY IDENTIFIED_DESC @6243
 
+// Spell Turning change description
+
+COPY_EXISTING ~SPWI701.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6255
+
+COPY_EXISTING ~scrl8d.itm~ ~override~
+  SAY IDENTIFIED_DESC @6255
+
 // Nishruu and Hakeshar changes, they lower the number of spell slots now instead of draining spells
 
 COPY ~IATweaks\resources\itm\S!NISHR3.itm~ ~override~

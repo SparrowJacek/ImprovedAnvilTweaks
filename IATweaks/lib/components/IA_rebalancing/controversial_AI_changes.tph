@@ -410,8 +410,6 @@ COPY_EXISTING ~LEGDOR.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPPR701~ #6 ~priest~ ( 1 ) // Shield of Archons
   ADD_MEMORIZED_SPELL ~SPPR727~ #6 ~priest~ ( 1 ) // Fallen Deva
 
-COMPILE ~IATweaks\scripts\controversial\S!LEGDOR.BAF~
-
 // Ferric from Samia's party
 
 COMPILE ~IATweaks\scripts\controversial\S!DESHAR.baf~

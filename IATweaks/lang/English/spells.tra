@@ -1904,7 +1904,15 @@ Requires: Deathblow~
 
 @6254 = ~Dexterous Retreat~
 
-@6255 = ~Shield Bash~
+@6255 = ~Spell Turning (Abjuration)
+Level: 7
+Range: 0
+Duration: 15 rounds
+Casting Time: 7
+Area of Effect: The caster
+Saving Throw: None
+
+This powerful abjuration spell causes the spells cast against the wizard to rebound upon the original caster. This effects a total of 12 spell levels for spells from level 1 to 9, for example 4 3rd-level, or 1 6th and 1 7th-level, etc.. This includes spells cast from scrolls and innate spell-like abilities, but excludes the following: spells removing spell protections like Secret Word or Ruby Ray of Reversal, Breach, Lower Resistance, instant area effects like Fireball, as well as area effects that are stationary such as cloud kill and stinking cloud. As long as the spell is cast directly at the wizard it will be reflected back upon the caster. Something to note is that as long as there are levels remaining then the spell will be reflected. For example if there is only 1 level left and a 3rd-level spell is cast at the wizard, the spell will be reflected while cancelling the spell turning. This spell will not protect the caster from dispel magic. However it will not be affected by dispel magic either.~
 
 @6256 = ~Shield Bash~
 

@@ -74,3 +74,16 @@ COPY ~IATweaks\resources\spl\s!charg4.spl~ ~override~
   SAY NAME1 @6210
 COPY ~IATweaks\resources\spl\s!charg5.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!charg6.spl~ ~override~
+
+// Red Abishai
+COPY ~IATweaks\resources\itm\s!abishr.itm~ ~override~
+COPY ~IATweaks\resources\cre\s!abishr.cre~ ~override~
+  SAY NAME1 @5122
+  SAY NAME2 @5122
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL "SPWI303" #2 "wizard" ( 2 ) // Flame Arrow
+  ADD_MEMORIZED_SPELL "SPWI304" #2 "wizard" ( 2 ) // Fireball
+
+COMPILE ~IATweaks\scripts\creatures\S!ABISHR.BAF~

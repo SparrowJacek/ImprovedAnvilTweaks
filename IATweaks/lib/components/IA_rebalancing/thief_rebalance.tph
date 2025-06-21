@@ -919,9 +919,80 @@ COPY_EXISTING ~s!hisrem.spl~ ~override/s!hisre2.spl~
       resource = ~S!HISRE2~
   END
 
+COPY_EXISTING ~s!hisre2.spl~ ~override/s!hisre3.spl~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      target = 1
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      target = 2
+  END
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      silent = 1
+      multi_match = 1
+      match_opcode = 220
+      match_parameter2 = 5 // Illusionist
+      opcode = 326
+      parameter1 = %hide_in_shadows_success_state%
+      parameter2 = 76 // SPLSTATE = n
+    STR_VAR
+      insert = ~below~
+      resource = ~S!HISRE3~
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      silent = 1
+      multi_match = 1
+      match_opcode = 221
+      match_parameter2 = 3 // Illusionary Protections
+      opcode = 326
+      parameter1 = %hide_in_shadows_success_state%
+      parameter2 = 76 // SPLSTATE = n
+    STR_VAR
+      insert = ~below~
+      resource = ~S!HISRE3~
+  END
+  BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~.*\.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      silent = 1
+      multi_match = 1
+      match_opcode = 220
+      match_parameter2 = 5 // Illusionist
+      opcode = 326
+      parameter1 = %hide_in_shadows_success_state%
+      parameter2 = 76 // SPLSTATE = n
+    STR_VAR
+      insert = ~below~
+      resource = ~S!HISRE3~
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      silent = 1
+      multi_match = 1
+      match_opcode = 221
+      match_parameter2 = 3 // Illusionary Protections
+      opcode = 326
+      parameter1 = %hide_in_shadows_success_state%
+      parameter2 = 76 // SPLSTATE = n
+    STR_VAR
+      insert = ~below~
+      resource = ~S!HISRE3~
+  END
+  BUT_ONLY
+
 // Ensure that Hide in Shadows sound ID is present in .IDS file
 
-LOOKUP_IDS_SYMBOL_OF_INT his_sound_id ~SOUNDOFF~ 70
+OUTER_PATCH 0 BEGIN
+  LOOKUP_IDS_SYMBOL_OF_INT his_sound_id ~SOUNDOFF~ 70
+END
+
 ACTION_IF ~%his_sound_id%~ STR_EQ ~70~ BEGIN
   APPEND ~SOUNDOFF.ids~ ~70 HIDDEN_IN_SHADOWS~
 END

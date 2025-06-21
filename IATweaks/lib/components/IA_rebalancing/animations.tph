@@ -282,3 +282,20 @@ COPY ~IATweaks\resources\ini\umber_hulk.INI~ ~override\%hexNumber%.ini~
 ACTION_IF (NOT FILE_EXISTS_IN_GAME ~S!UMA1.BAM~) BEGIN
 	COPY ~IATweaks\resources\bam\animations\umber_hulk~ ~override~
 END
+
+// Invisible Creature (Doom Guard animation but with shadow turned off in .ini file)
+// INI not included in BG2EE
+// resref: MDGU
+// requires patching during mod install because of dynamic allocation
+// WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_INVISIBLE~))
+
+LAF FIND_FREE_ANIM_SLOT INT_VAR slotMin = 0xe000 slotMax = 0xefff RET slot END
+ACTION_IF (slot <= 0) BEGIN
+  FAIL ~No free creature animation slot found.~
+END
+
+LAF TO_HEX_NUMBER INT_VAR value = slot minDigits = 4 RET hexNumber END
+APPEND ~animate.ids~ ~0x%hexNumber% ANVIL_INVISIBLE~ UNLESS ~ANVIL_INVISIBLE~
+CLEAR_IDS_MAP
+
+COPY ~IATweaks\resources\ini\invisible_creature.INI~ ~override\%hexNumber%.ini~

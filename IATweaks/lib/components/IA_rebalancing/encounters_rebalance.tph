@@ -2470,3 +2470,37 @@ COPY_EXISTING ~SAMIA.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 2 ) // Greater Whirlwind Attack
 
 COMPILE ~IATweaks\scripts\creatures\SAMIA.BAF~
+
+/////////////// Firkraag Fight
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!firag0.PRO~
+
+COPY ~IATweaks\resources\eff\s!firag0.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!firag0.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      projectile = ~%s!firag0%~
+  END
+
+COPY ~IATweaks\resources\vvc\s!firbal.vvc~ ~override~
+COPY ~IATweaks\resources\spl\s!firaga.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!firagb.spl~ ~override~
+COMPILE ~IATweaks\scripts\creatures\S!FIRAG1.BAF~
+COPY ~IATweaks\resources\cre\s!firag1.CRE~ ~override~
+  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_INVISIBLE~))
+COPY_EXISTING ~s!firag1.cre~ ~override\s!firag2.cre~
+  WRITE_ASCII 0x248 ~~ #8
+  WRITE_BYTE 0x272 255 // Race
+  WRITE_ASCII 0x280 ~S!FIRAG2~ #20
+COPY_EXISTING ~s!firag1.cre~ ~override~
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 272
+      target = 1
+      parameter1 = 12
+      parameter2 = 3
+      timing = 9
+      resist_dispel = 0
+    STR_VAR
+      resource = ~S!FIRAG0~
+  END

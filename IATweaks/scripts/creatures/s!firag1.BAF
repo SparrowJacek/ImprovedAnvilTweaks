@@ -1,0 +1,81 @@
+IF
+	AreaCheck("AR1203")  // Firkraag's Hideout
+	Dead("firkra02")  // Firkraag
+THEN
+	RESPONSE #100
+		ActionOverride("S!FIRAG2",DestroySelf())
+		DestroySelf()
+END
+
+IF
+	Global("IaStart","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("IaStart","LOCALS",1)
+		ReallyForceSpellRES("S!FIRAG0",Myself)  // No such index
+		ActionOverride("S!FIRAG2",SetInterrupt(FALSE))
+		Continue()
+END
+
+IF
+	AreaCheck("AR1203")  // Firkraag's Hideout
+	InMyArea("firkra02")  // Firkraag
+	!Dead("firkra02")  // Firkraag
+	TriggerOverride("firkra02",Global("Iacreature","LOCALS",2))
+	Global("IaBoost1","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobal("IaBoost1","LOCALS",1)
+		ReallyForceSpellRES("S!FIRAGB",Myself)  // No such index
+		ReallyForceSpellRES("S!FIRAGB","S!FIRAG2")  // No such index
+		SetInterrupt(TRUE)
+END
+
+IF
+	AreaCheck("AR1203")  // Firkraag's Hideout
+	InMyArea("firkra02")  // Firkraag
+	!Dead("firkra02")  // Firkraag
+	TriggerOverride("firkra02",Global("Iacreature","LOCALS",3))
+	Global("IaBoost2","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobal("IaBoost2","LOCALS",1)
+		ReallyForceSpellRES("S!FIRAGB",Myself)  // No such index
+		ReallyForceSpellRES("S!FIRAGB","S!FIRAG2")  // No such index
+		SetInterrupt(TRUE)
+END
+
+IF
+	Global("IaMove","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobal("IaMove","LOCALS",1)
+		Face(SEE)
+		ActionOverride("S!FIRAG2",Face(SEE))
+		JumpToPoint([1185.914])
+		ActionOverride("S!FIRAG2",JumpToPoint([741.1232]))
+		ActionOverride("S!FIRAG2",MoveToPoint([1793.1957]))
+		MoveToPoint([2237.1639])
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	Global("IaMove","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobal("IaMove","LOCALS",0)
+		Face(NWW)
+		ActionOverride("S!FIRAG2",Face(NWW))
+		JumpToPoint([2237.1639])
+		ActionOverride("S!FIRAG2",JumpToPoint([1793.1957]))
+		ActionOverride("S!FIRAG2",MoveToPoint([741.1232]))
+		MoveToPoint([1185.914])
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+

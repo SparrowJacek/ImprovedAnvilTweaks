@@ -2855,3 +2855,139 @@ COPY_EXISTING ~HLFIGHT.cre~ ~override~
 
 COMPILE ~IATweaks\scripts\creatures\HLFIGHT.BAF~
 
+// Alhoon
+
+COPY ~IATweaks\resources\bam\s!barrie.bam~ ~override~
+COPY ~IATweaks\resources\vvc\s!barrie.vvc~ ~override~
+COPY ~IATweaks\resources\spl\s!barrie.spl~ ~override~
+  SAY NAME1 @6256
+
+COPY ~IATweaks\resources\spl\s!mfpull.spl~ ~override~
+  SAY NAME1 @6257
+
+COPY ~IATweaks\resources\spl\s!mfsplt.spl~ ~override~
+  SAY NAME1 @6258
+
+COPY_EXISTING ~mindal01.cre~ ~override~
+  WRITE_BYTE 0x53 3  // APR
+  WRITE_BYTE 0x59 0  // Fire Resistance
+  WRITE_BYTE 0x5e 0  // Magic Fire Resistance
+  WRITE_BYTE 0x234 14 // Level 26
+
+  // Cast S!MFPROT each time the damage is dealt
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 232
+      target = 1
+      parameter1 = 0
+      parameter2 = 11
+      timing = 2
+      resist_dispel = 0
+    STR_VAR
+      resource = ~S!MFPROT~
+  END
+  
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 146
+      target = 1
+      parameter2 = 1
+      timing = 9
+      resist_dispel = 0
+    STR_VAR
+      resource = ~S!MFPROT~
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // normal Haste
+    INT_VAR
+      target = 1
+      opcode = 16
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Casting Speed
+    INT_VAR
+      target = 1
+      opcode = 189
+      parameter1 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // See Invisible
+    INT_VAR
+      target = 1
+      opcode = 193
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 146
+      target = 1
+      parameter2 = 1
+      timing = 9
+      resist_dispel = 0
+    STR_VAR
+      resource = ~S!BARRIE~
+  END
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL "SPWI112" #0 "wizard" ( 6 ) // Magic Missile
+
+  ADD_MEMORIZED_SPELL "SPWI209" #1 "wizard" ( 1 ) // Luck
+  ADD_MEMORIZED_SPELL "SPWI211" #1 "wizard" ( 3 ) // Melf's Acid Arrow
+  ADD_MEMORIZED_SPELL "SPWI212" #1 "wizard" ( 2 ) // Mirror Image
+
+  ADD_MEMORIZED_SPELL "SPWI302" #2 "wizard" ( 2 ) // Remove Magic
+  ADD_MEMORIZED_SPELL "SPWI303" #2 "wizard" ( 3 ) // Flame Arrow
+  ADD_MEMORIZED_SPELL "SPWI314" #2 "wizard" ( 1 ) // Vampiric Touch
+
+  ADD_MEMORIZED_SPELL "SPWI403" #3 "wizard" ( 1 ) // Fire Shield (Blue)
+  ADD_MEMORIZED_SPELL "SPWI405" #3 "wizard" ( 1 ) // Improved Invisibility
+  ADD_MEMORIZED_SPELL "SPWI414" #3 "wizard" ( 1 ) // Spirit Armor
+  ADD_MEMORIZED_SPELL "SPWI418" #3 "wizard" ( 1 ) // Fire Shield (Red)
+  ADD_MEMORIZED_SPELL "SPWI419" #3 "wizard" ( 2 ) // Secret Word
+
+  ADD_MEMORIZED_SPELL "SPWI510" #4 "wizard" ( 1 ) // Spell Immunity
+  ADD_MEMORIZED_SPELL "SPWI513" #4 "wizard" ( 4 ) // Breach
+  ADD_MEMORIZED_SPELL "SPWI514" #4 "wizard" ( 1 ) // Lower Resistance
+
+  ADD_MEMORIZED_SPELL "SPWI602" #5 "wizard" ( 1 ) // Globe of Invulnerability
+  ADD_MEMORIZED_SPELL "SPWI607" #5 "wizard" ( 1 ) // Giant Strength
+  ADD_MEMORIZED_SPELL "SPWI613" #5 "wizard" ( 3 ) // PFMW
+  ADD_MEMORIZED_SPELL "SPWI613" #5 "wizard" ( 1 ) // Improved Haste
+
+  ADD_MEMORIZED_SPELL "SPWI701" #6 "wizard" ( 1 ) // Spell Turning
+  ADD_MEMORIZED_SPELL "SPWI704" #6 "wizard" ( 3 ) // Ruby Ray of Reversal
+  ADD_MEMORIZED_SPELL "SPWI714" #6 "wizard" ( 2 ) // Prismatic Spray
+
+  ADD_MEMORIZED_SPELL "SPWI812" #7 "wizard" ( 6 ) // Abi-Dalzim's Horrid Wilting
+
+  ADD_MEMORIZED_SPELL "SPWI915" #8 "wizard" ( 1 ) // Black Blade of Disaster
+  ADD_MEMORIZED_SPELL "SPWI922" #8 "wizard" ( 4 ) // Dragon's Breath
+
+COMPILE ~IATweaks\scripts\creatures\MINDAL01.BAF~

@@ -499,3 +499,9 @@ COPY_EXISTING ~HLCLERIC.cre~ ~override~
 
 COMPILE ~IATweaks\scripts\creatures\S!HLCLER.BAF~
 
+//////////////// Alhoon
+
+// Increase APR to keep it at 6 under Improved Haste
+
+COPY_EXISTING ~mindal01.cre~ ~override~
+  WRITE_BYTE 0x53 4  // APR

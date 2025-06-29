@@ -1346,7 +1346,7 @@ COPY_EXISTING ~GPSIMB.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPPR210~ #1 ~priest~ ( 1 ) // Resist Fire/Cold
   ADD_MEMORIZED_SPELL ~SPPR306~ #2 ~priest~ ( 1 ) // Protection from Fire
   ADD_MEMORIZED_SPELL ~SPPR312~ #2 ~priest~ ( 1 ) // Strength of One
-  ADD_MEMORIZED_SPELL ~SPPR316~ #2 ~priest~ ( 1 ) // Cure Medium Wounds
+  ADD_MEMORIZED_SPELL ~SPPR315~ #2 ~priest~ ( 1 ) // Cure Medium Wounds
   ADD_MEMORIZED_SPELL ~SPCL121~ #0 ~innate~ ( 4 ) // Called Shot
 
 COMPILE ~IATweaks\scripts\creatures\S!SIMBJA.BAF~
@@ -1877,7 +1877,7 @@ COPY_EXISTING ~AR18ARCH.cre~ ~override~
     INT_VAR
       target = 1
       opcode = 233
-      parameter1 = 5
+      parameter1 = 1
       parameter2 = 96
       resist_dispel = 0
       timing = 9
@@ -1966,7 +1966,7 @@ COPY_EXISTING ~AR18ARCH.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPPR210~ #1 ~priest~ ( 1 ) // Resist Fire/Cold
   ADD_MEMORIZED_SPELL ~SPPR306~ #2 ~priest~ ( 1 ) // Protection from Fire
   ADD_MEMORIZED_SPELL ~SPPR312~ #2 ~priest~ ( 1 ) // Strength of One
-  ADD_MEMORIZED_SPELL ~SPPR316~ #2 ~priest~ ( 1 ) // Cure Medium Wounds
+  ADD_MEMORIZED_SPELL ~SPPR315~ #2 ~priest~ ( 1 ) // Cure Medium Wounds
   ADD_MEMORIZED_SPELL ~SPCL121~ #0 ~innate~ ( 5 ) // Called Shot
   ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 1 ) // Hardiness
   ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack

@@ -1426,11 +1426,11 @@ LAF ~S!ADD_7EYES_ROW~
   STR_VAR
     row_desc      = ~NON_DETECTION~
     spellstate    = EVAL ~%non_detection_state%~
-    eff1          = ~136~ // Force visible
-    eff2          = ~116~ // Cure invisibility
-    eff3          = ~47~ // Another cure invisibility
-    eff4          = ~220*5~ // Remove spell school protection (ILLUSIONIST)
-    eff5          = ~221*3~ // Remove spell type protection (ILLUSIONARYPROTECTIONS)
+    eff1          = ~116~ // Cure invisibility
+    eff2          = ~47~ // Another cure invisibility
+    eff3          = ~220*5~ // Remove spell school protection (ILLUSIONIST)
+    eff4          = ~221*3~ // Remove spell type protection (ILLUSIONARYPROTECTIONS)
+    eff5          = ~*~
     eff6          = ~*~
     eff7          = ~*~
     eff8          = ~*~

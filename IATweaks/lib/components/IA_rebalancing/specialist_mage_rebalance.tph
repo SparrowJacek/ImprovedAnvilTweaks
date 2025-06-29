@@ -1175,10 +1175,10 @@ LAF ~S!ADD_CLAB_ROW~
   STR_VAR
     filename = ~CLABMA04.2da~
     row_desc = ~ALLY_STONESKIN~
-    level5 = ~GA_S!STONSK~
-    level15 = ~GA_S!STONSK~
-    level25 = ~GA_S!STONSK~
-    level35 = ~GA_S!STONSK~
+    level10 = ~GA_S!STONSK~
+    level20 = ~GA_S!STONSK~
+    level30 = ~GA_S!STONSK~
+    level40 = ~GA_S!STONSK~
 END
 
 // Tenser's Transformation

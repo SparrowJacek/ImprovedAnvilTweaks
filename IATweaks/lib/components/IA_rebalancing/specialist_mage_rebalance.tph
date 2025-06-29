@@ -2849,3 +2849,64 @@ COPY_EXISTING ~KAOL.cre~ ~override~
   END
 
 COMPILE ~IATweaks\scripts\creatures\S!KAOL1.BAF~
+
+// Mage from Illithid Compound
+
+COPY_EXISTING ~HLMAGE.cre~ ~override~
+  WRITE_SHORT 0x24 96 // HP
+  WRITE_SHORT 0x26 96 // HP
+  WRITE_BYTE 0x60 40 // Resist Slashing
+  WRITE_BYTE 0x61 40 // Resist Crushing
+  WRITE_BYTE 0x62 40 // Resist Piercing
+  WRITE_BYTE 0x63 40 // Resist Missile
+  WRITE_BYTE 0x23d 18 // Constitution
+
+  LPF ~ALTER_EFFECT~
+    STR_VAR
+      match_opcode = 189 // Casting Speed
+      parameter1 = 3
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // ** in 2h Weapon
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 2
+      parameter2 = 111
+      resist_dispel = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // ** in Single Weapon
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 2
+      parameter2 = 113
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  ADD_CRE_ITEM ~HELM06~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~HELMET~
+
+COMPILE ~IATweaks\scripts\creatures\S!HLMAGE.BAF~

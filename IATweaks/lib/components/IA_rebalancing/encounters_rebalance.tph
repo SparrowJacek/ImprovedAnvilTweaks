@@ -2610,3 +2610,248 @@ COPY_EXISTING ~AR1203.BCS~ ~override~
 //     INT_VAR
 //       projectile = ~%s!flstrk%~
 //   END
+
+// Archer from Illithid Hideout
+
+COPY ~IATweaks\resources\cre\hlarch.cre~ ~override~
+  WRITE_BYTE 0x60 20 // Resist Slashing
+  WRITE_BYTE 0x61 20 // Resist Crushing
+  WRITE_BYTE 0x62 20 // Resist Piercing
+  WRITE_BYTE 0x63 20 // Resist Missile
+
+  ADD_CRE_ITEM ~HELM06~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~HELMET~
+  ADD_CRE_ITEM ~RING06~ #0 #0 #0 ~NONE~ ~RRING~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPPR111~ #0 ~priest~ ( 2 ) // Armor of Faith
+  ADD_MEMORIZED_SPELL ~SPPR113~ #0 ~priest~ ( 2 ) // Doom
+  ADD_MEMORIZED_SPELL ~SPPR202~ #1 ~priest~ ( 1 ) // Barkskin
+  ADD_MEMORIZED_SPELL ~SPPR206~ #1 ~priest~ ( 1 ) // Flame Blade
+  ADD_MEMORIZED_SPELL ~SPPR209~ #1 ~priest~ ( 1 ) // Know Alignment
+  ADD_MEMORIZED_SPELL ~SPPR210~ #1 ~priest~ ( 1 ) // Resist Fire/Cold
+  ADD_MEMORIZED_SPELL ~SPPR306~ #2 ~priest~ ( 1 ) // Protection from Fire
+  ADD_MEMORIZED_SPELL ~SPPR312~ #2 ~priest~ ( 1 ) // Strength of One
+  ADD_MEMORIZED_SPELL ~SPPR315~ #2 ~priest~ ( 1 ) // Cure Medium Wounds
+  ADD_MEMORIZED_SPELL ~SPCL121~ #0 ~innate~ ( 5 ) // Called Shot
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL922~ #0 ~innate~ ( 1 ) // Contact with Nature
+  
+COMPILE ~IATweaks\scripts\creatures\S!ARCH19.BAF~
+
+// Fighter from Illithid Compound turned into a Wizard Slayer
+
+COPY_EXISTING ~HLFIGHT.cre~ ~override/S!WIZSL1.cre~
+  WRITE_LONG 0x8 5753
+  WRITE_LONG 0xc 5753
+  WRITE_LONG 0x14 30000 // Exp
+  WRITE_SHORT 0x24 135 // HP
+  WRITE_SHORT 0x26 135 // HP
+  WRITE_LONG 0x28 0x6102 // Dwarf
+  WRITE_BYTE 0x52 0 // Thac0
+  WRITE_BYTE 0x5d 0 // Resist Magic
+  WRITE_BYTE 0x60 20 // Resist Slashing
+  WRITE_BYTE 0x61 20 // Resist Crushing
+  WRITE_BYTE 0x62 20 // Resist Piercing
+  WRITE_BYTE 0x63 20 // Resist Missile
+  WRITE_BYTE 0x234 24 // Level 1
+  WRITE_BYTE 0x238 18 // Strength
+  WRITE_BYTE 0x239 100 // Exceptional Strength
+  WRITE_BYTE 0x23c 17 // Dexterity
+  WRITE_BYTE 0x23d 19 // Constitution
+  WRITE_LONG 0x244 0x40020000 // Kit = Wizard Slayer
+  WRITE_ASCII 0x250 ~S!WIZSL1~ #8
+  WRITE_BYTE 0x272 4 // Dwarf
+  WRITE_ASCII 0x280 ~S!WIZSL1~ #20
+    
+  LPF ~ADD_CRE_EFFECT~ // ***** in 2h Sword
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 5
+      parameter2 = 93
+      resist_dispel = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // ** in 2h Weapons
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 2
+      parameter2 = 111
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  FOR (i = 1; i < 5; ++i) BEGIN // Magic Res
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 146
+        target = 1
+        parameter2 = 1
+        timing = 9
+        resist_dispel = 0
+      STR_VAR
+        resource = ~SPWSL01~
+    END
+  END
+
+  FOR (i = 1; i < 3; ++i) BEGIN // Stats
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 146
+        target = 1
+        parameter2 = 1
+        timing = 9
+        resist_dispel = 0
+      STR_VAR
+        resource = ~SPWSL02~
+    END
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Immunity to Haste/Slow
+    INT_VAR
+      opcode = 146
+      target = 1
+      parameter2 = 1
+      timing = 9
+      resist_dispel = 0
+    STR_VAR
+      resource = ~SPWSL03~
+  END
+
+  FOR (i = 1; i < 4; ++i) BEGIN // Fire Res
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 146
+        target = 1
+        parameter2 = 1
+        timing = 9
+        resist_dispel = 0
+      STR_VAR
+        resource = ~SPWSL07~
+    END
+  END
+
+  PATCH_FOR_EACH item_to_remove IN ~BLUN13~ ~SW1H07~ ~PLAT04~ BEGIN
+    LPF ~DELETE_CRE_ITEM~
+      STR_VAR
+        item_to_delete = EVAL ~%item_to_remove%~
+    END
+  END
+
+  ADD_CRE_ITEM ~SW2H06~ #0 #0 #0 ~UNSTEALABLE~ ~WEAPON1~ EQUIP
+  ADD_CRE_ITEM ~SW2H01~ #0 #0 #0 ~UNSTEALABLE~ ~WEAPON2~
+  ADD_CRE_ITEM ~PLAT05~ #0 #0 #0 ~UNSTEALABLE~ ~ARMOR~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 1 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPWSL04~ #0 ~innate~ ( 2 ) // Purge Magic
+  ADD_MEMORIZED_SPELL ~SPWSL08~ #0 ~innate~ ( 2 ) // Tower of Resilience
+  ADD_MEMORIZED_SPELL ~SPWSL05~ #0 ~innate~ ( 1 ) // Continual Cure
+
+COMPILE ~IATweaks\scripts\creatures\S!WIZSL1.BAF~
+
+COPY_EXISTING ~AR0711.are~ ~override~
+  LPF ~S!ALTER_AREA_ACTOR~
+    INT_VAR
+      creature_x = 1952
+      creature_y = 1149
+    STR_VAR
+     actor_name = ~Fighter~
+     cre_file = ~S!WIZSL1~
+  END
+
+// // Fighter from Illithid Compound
+
+COPY_EXISTING ~HLFIGHT.cre~ ~override~
+  WRITE_LONG 0x14 20000 // Exp
+  WRITE_SHORT 0x24 123 // HP
+  WRITE_SHORT 0x26 123 // HP
+  WRITE_BYTE 0x5d 0 // Resist Magic
+  WRITE_BYTE 0x60 20 // Resist Slashing
+  WRITE_BYTE 0x61 20 // Resist Crushing
+  WRITE_BYTE 0x62 20 // Resist Piercing
+  WRITE_BYTE 0x63 20 // Resist Missile
+  WRITE_BYTE 0x238 18 // Strength
+  WRITE_BYTE 0x239 100 // Exceptional Strength
+    
+  LPF ~ADD_CRE_EFFECT~ // ***** in Flail
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 5
+      parameter2 = 100
+      resist_dispel = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // ** in Single Weapon
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 2
+      parameter2 = 113
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  PATCH_FOR_EACH item_to_remove IN ~SW1H07~ BEGIN
+    LPF ~DELETE_CRE_ITEM~
+      STR_VAR
+        item_to_delete = EVAL ~%item_to_remove%~
+    END
+  END
+
+  ADD_CRE_ITEM ~CLCK01~ #0 #0 #0 ~NONE~ ~CLOAK~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 1 ) // Hardiness
+
+COMPILE ~IATweaks\scripts\creatures\HLFIGHT.BAF~
+

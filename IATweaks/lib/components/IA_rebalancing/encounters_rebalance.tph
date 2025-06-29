@@ -954,18 +954,6 @@ COPY_EXISTING ~MINDFLAY.itm~ ~override~
       match_opcode = 19
       parameter1 = ~-3~
   END
-  // Cast S!MFPROT each time the damage is dealt
-  LPF ~ADD_ITEM_EQEFFECT~
-    INT_VAR
-      opcode = 232
-      target = 1
-      parameter1 = 0
-      parameter2 = 11
-      timing = 2
-      resist_dispel = 0
-    STR_VAR
-      resource = ~S!MFPROT~
-  END
   // Grant +5 saving throws against Enchantment spells
   LPF ~ADD_ITEM_EQEFFECT~
     INT_VAR
@@ -1090,6 +1078,18 @@ ACTION_FOR_EACH mind_flayer_cre IN ~DAMIND1~ ~DAMIND2~ ~ELEILL01~ ~ELMIND01~ ~MI
     WRITE_BYTE 0x240 2 // Morale Break
     WRITE_BYTE 0x272 124 // Race
 
+    // Cast S!MFPROT each time the damage is dealt
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 232
+        target = 1
+        parameter1 = 0
+        parameter2 = 11
+        timing = 2
+        resist_dispel = 0
+      STR_VAR
+        resource = ~S!MFPROT~
+    END
     LPF ~ADD_CRE_EFFECT~
       INT_VAR
         opcode = 146
@@ -1125,6 +1125,18 @@ ACTION_FOR_EACH ulitharid_cre IN ~GORMIND~ ~MINDUL01~ ~PPMIND01~ BEGIN
     WRITE_BYTE 0x240 0 // Morale Break
     WRITE_BYTE 0x272 124 // Race
 
+    // Cast S!MFPROT each time the damage is dealt
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 232
+        target = 1
+        parameter1 = 0
+        parameter2 = 11
+        timing = 2
+        resist_dispel = 0
+      STR_VAR
+        resource = ~S!MFPROT~
+    END
     LPF ~ADD_CRE_EFFECT~
       INT_VAR
         opcode = 146

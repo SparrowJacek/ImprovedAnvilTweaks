@@ -281,6 +281,13 @@ ACTION_FOR_EACH psionic_item IN ~MISC9Y~ ~SW2H21~ ~S!SW22~ BEGIN
       INT_VAR
         match_opcode = 206
         multi_match = 1
+      STR_VAR
+        resource = ~S!MFPULL~
+    END
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 206
+        multi_match = 1
         opcode = 328
         parameter2 = psionics_immunity_splstate
         special = 1

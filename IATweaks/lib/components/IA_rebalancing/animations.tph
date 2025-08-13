@@ -299,3 +299,25 @@ APPEND ~animate.ids~ ~0x%hexNumber% ANVIL_INVISIBLE~ UNLESS ~ANVIL_INVISIBLE~
 CLEAR_IDS_MAP
 
 COPY ~IATweaks\resources\ini\invisible_creature.INI~ ~override\%hexNumber%.ini~
+
+// Dracolich (from NWN, extracted my morpheus)
+// uses IWD slot allocated dynamically
+// INI not included in BG2EE
+// resref: MODL
+// requires patching during mod install because of dynamic allocation
+// WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_DRACOLICH~))
+
+LAF FIND_FREE_ANIM_SLOT INT_VAR slotMin = 0xe000 slotMax = 0xefff RET slot END
+ACTION_IF (slot <= 0) BEGIN
+  FAIL ~No free creature animation slot found.~
+END
+
+LAF TO_HEX_NUMBER INT_VAR value = slot minDigits = 4 RET hexNumber END
+APPEND ~animate.ids~ ~0x%hexNumber% ANVIL_DRACOLICH~ UNLESS ~ANVIL_DRACOLICH~
+CLEAR_IDS_MAP
+
+COPY ~IATweaks\resources\ini\dracolich.INI~ ~override\%hexNumber%.ini~
+
+ACTION_IF (NOT FILE_EXISTS_IN_GAME ~modla1.BAM~) BEGIN
+	COPY ~IATweaks\resources\bam\animations\dracolich~ ~override~
+END

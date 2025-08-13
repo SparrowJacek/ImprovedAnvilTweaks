@@ -1249,3 +1249,7 @@ END
 //   COPY_EXISTING ~%hostile_spell%.spl~ ~override~
 //     WRITE_BYTE 0x18 (THIS BOR 0b00000100) // Add Hostile flag
 // END
+// Assign new animation to Dracolich
+
+COPY ~IATweaks\resources\cre\s!dracol.CRE~ ~override~
+  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_DRACOLICH~))

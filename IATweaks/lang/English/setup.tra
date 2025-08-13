@@ -187,9 +187,10 @@ Advantages:
 - From level 20, Armor of Faith cast by this kit will grant 15% resistances, last for 50% longer and will be undispellable.
 – May cast Lightning Bolt of Talos once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
 - Gains early access to a HLA Purify Aura, may cast it once at level 5, then gains additional uses at levels 15, 25 and 35.
+- Purify Aura used by Priest of Talos grants additional +1 casting speed for the next spell.
 - Additional fifth level spell: Protective Chant.
 - Additional sixth level spell: Life Link.
-- Additional seventh level spells: Spare the Dying, Spiritual Link.
+- Additional seventh level spell: Spare the Dying.
 – May cast Storm Shield once per day. Gains one use at level 1 and an additional use every 10 levels thereafter.
 
 STORM SHIELD: This spell lasts 1 round per level of the caster. It protects the caster from lightning, fire, cold, and normal missiles.
@@ -286,9 +287,10 @@ Disadvantages:
 Advantages:
 – May cast Lightning Bolt of Talos once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
 - Gains early access to a HLA Purify Aura, may cast it once at level 5, then gains additional uses at levels 15, 25 and 35.
+- Purify Aura used by Priest of Talos grants additional +1 casting speed for the next spell.
 - Additional fifth level spell: Protective Chant.
 - Additional sixth level spell: Life Link.
-- Additional seventh level spells: Spare the Dying, Spiritual Link.
+- Additional seventh level spell: Spare the Dying.
 – May cast Storm Shield once per day. Gains one use at level 1 and an additional use every 10 levels thereafter.
 
 STORM SHIELD: This spell lasts 1 round per level of the caster. It protects the caster from normal missiles and sets his lightning, fire and cold resistances to 75%.
@@ -1070,7 +1072,7 @@ Disadvantages:
 
 @5124 = ~All party members gain the temporary ability Deathblow.~
 
-@5125 = ~~
+@5125 = ~Reshape elemental energies.~
 
 @5126 = ~~
 

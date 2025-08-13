@@ -2804,6 +2804,7 @@ COPY_EXISTING ~AR0907.are~ ~override~
       fj_name           = ~Kenzenrich~
       fj_cre_resref     = ~S!KENZEN~
   END
+
 // Kaol from Samia's party
 
 COPY_EXISTING ~KAOL.cre~ ~override~

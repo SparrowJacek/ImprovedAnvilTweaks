@@ -2822,40 +2822,70 @@ COPY_EXISTING ~SPPR214.spl~ ~override/SPPR214.spl~
 
 //////// TALOS ///////////
 
-// Spiritual Link
+// // Spiritual Link
 
-COPY ~IATweaks\resources\bam\sppr734b.bam~ ~override~
-COPY ~IATweaks\resources\bam\sppr734c.bam~ ~override~
-COPY ~IATweaks\resources\bam\sppr734d.bam~ ~override~
+// COPY ~IATweaks\resources\bam\sppr734b.bam~ ~override~
+// COPY ~IATweaks\resources\bam\sppr734c.bam~ ~override~
+// COPY ~IATweaks\resources\bam\sppr734d.bam~ ~override~
 
-OUTER_SET spiritual_link_desc_str_ref = RESOLVE_STR_REF (@6041)
-LAF ~S!ADD_PORTRAIT_ICON~
-  INT_VAR
-    description_str_ref = %spiritual_link_desc_str_ref%
-  STR_VAR
-    bam_file = ~SPPR734D~
-  RET
-    spiritual_link_icon_id = portrait_icon_id
-END
+// OUTER_SET spiritual_link_desc_str_ref = RESOLVE_STR_REF (@6041)
+// LAF ~S!ADD_PORTRAIT_ICON~
+//   INT_VAR
+//     description_str_ref = %spiritual_link_desc_str_ref%
+//   STR_VAR
+//     bam_file = ~SPPR734D~
+//   RET
+//     spiritual_link_icon_id = portrait_icon_id
+// END
 
-COPY ~IATweaks\resources\spl\sppr734.spl~ ~override~
-  SAY NAME1 @6041
-  SAY UNIDENTIFIED_DESC @6042
+// COPY ~IATweaks\resources\spl\sppr734.spl~ ~override~
+//   SAY NAME1 @6041
+//   SAY UNIDENTIFIED_DESC @6042
+//   LPF ~ALTER_EFFECT~
+//     INT_VAR
+//       match_opcode = 142
+//       parameter2 = %spiritual_link_icon_id%
+//   END
+
+// COPY ~IATweaks\resources\spl\sppr734d.spl~ ~override~
+//   SAY NAME1 @6043
+
+// LAF ~S!ADD_CLAB_ROW~
+//   STR_VAR
+//     filename = ~CLABPR02.2da~
+//     row_desc = ~SPIRITUAL_LINK~
+//     level14 = ~GA_SPPR734~
+// END
+
+// Aura Cleansing rework and +1 casting speed for Talos
+
+COPY ~IATweaks\resources\eff\s!+1cast.eff~ ~override~
+COPY_EXISTING ~sppri25.spl~ ~override~
   LPF ~ALTER_EFFECT~
     INT_VAR
-      match_opcode = 142
-      parameter2 = %spiritual_link_icon_id%
+      duration = 6
   END
-
-COPY ~IATweaks\resources\spl\sppr734d.spl~ ~override~
-  SAY NAME1 @6043
-
-LAF ~S!ADD_CLAB_ROW~
-  STR_VAR
-    filename = ~CLABPR02.2da~
-    row_desc = ~SPIRITUAL_LINK~
-    level14 = ~GA_SPPR734~
-END
+  LPF ~ADD_SPELL_EFFECT~ 
+    INT_VAR
+      opcode = 177
+      insert_point = ~-1~
+      target = 1
+      parameter1 = (IDS_OF_SYMBOL(~kit~ ~GODTALOS~))
+      parameter2 = 9
+      duration = 6
+      resist_dispel = 0
+    STR_VAR
+      resource = "S!+1CAST"
+  END
+  LPF ~ADD_SPELL_EFFECT~ 
+    INT_VAR
+      opcode = 142
+      insert_point = ~-1~
+      target = 1
+      parameter2 = 159
+      duration = 6
+      resist_dispel = 0
+  END
 
 // Lightning Bolt of Talos
 

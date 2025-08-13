@@ -1249,7 +1249,27 @@ END
 //   COPY_EXISTING ~%hostile_spell%.spl~ ~override~
 //     WRITE_BYTE 0x18 (THIS BOR 0b00000100) // Add Hostile flag
 // END
+
+// Remove immunity to opcode "create item" from some items and swap it with immunity to Polymorph spell
+
+OUTER_SET wizard_polymorph_other_spell_id = IDS_OF_SYMBOL (~spell~ ~WIZARD_POLYMORPH_OTHER~)
+LAF RES_NAME_OF_SPELL_NUM INT_VAR spell_num = wizard_polymorph_other_spell_id RET wizard_polymorph_other_spell_res = spell_res END
+
+ACTION_FOR_EACH item_to_patch IN ~DRAGRING~ ~S!DRGRNG~ BEGIN
+  COPY_EXISTING ~%item_to_patch%.itm~ ~override~
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 101
+        match_parameter2 = 111
+        opcode = 206
+        parameter1 = 0
+        parameter2 = 0
+      STR_VAR
+        resource = EVAL ~%wizard_polymorph_other_spell_res%~
+    END
+END
+
 // Assign new animation to Dracolich
 
-COPY ~IATweaks\resources\cre\s!dracol.CRE~ ~override~
+COPY_EXISTING ~s!dracol.CRE~ ~override~
   WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_DRACOLICH~))

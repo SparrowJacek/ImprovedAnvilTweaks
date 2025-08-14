@@ -1414,6 +1414,14 @@ COPY_EXISTING ~spwi212.spl~ ~override~
 
 // Non-detection
 
+// Add new animations
+
+COPY ~IATweaks\resources\bam\s!ndecc1.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!ndecc2.bam~ ~override~
+COPY ~IATweaks\resources\vvc\s!ndec1a.vvc~ ~override~
+COPY ~IATweaks\resources\vvc\s!ndec2a.vvc~ ~override~
+COPY ~IATweaks\resources\wav\\iwd_7_eyes\aft_m15.wav~ ~override~
+
 // Add 7eyes.2da file if it does not exist
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~7EYES.2da~ THEN BEGIN
@@ -1445,6 +1453,12 @@ ADD_SPELL ~IATweaks\resources\spl\S!NONDET.spl~ 2 1 ~WIZARD_NON_DETECTION~
     INT_VAR
       match_opcode = 335
       parameter1 = %non_detection_state%
+      parameter2 = %non_detect_row_id%
+      special = %non_detect_row_id%
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 336
       parameter2 = %non_detect_row_id%
   END
 

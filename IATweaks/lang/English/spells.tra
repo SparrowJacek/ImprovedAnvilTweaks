@@ -1673,12 +1673,12 @@ The character channels positive energy to heal the touched creature of 5 Hit Poi
 
 Level: 6
 Range: 90 ft.
-Duration: 5 rounds
+Duration: 3 rounds
 Casting Time: 1
 Area of Effect: 1 creature
 Saving Throw: None
 
-In using this spell, the wizard points at an individual and utters the Power Word. The creature targeted must have less than 70 Hit Points and gets no Saving Throw. For the next 7 rounds, that creature cannot make any sound. This silence completely foils any spells that require verbal components. The only ways to counter this spell are either a Dispel Magic or a Vocalize spell.~
+In using this spell, the wizard points at an individual and utters the Power Word. The creature targeted must have less than 90 Hit Points and gets no Saving Throw. For the next 3 rounds, that creature cannot make any sound. This silence completely foils any spells that require verbal components. The only ways to counter this spell are either a Dispel Magic or a Vocalize spell.~
 
 @6231 = ~Flame Strike
 (Evocation)

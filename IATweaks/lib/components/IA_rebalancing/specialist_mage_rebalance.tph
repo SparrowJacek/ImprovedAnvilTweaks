@@ -267,7 +267,7 @@ COPY_EXISTING ~spwi612.spl~ ~override~
       insert_point = 0
       target = 2
       timing = 10
-      parameter1 = 70
+      parameter1 = 90
       parameter2 = 144
       duration = 2
       resist_dispel = 0
@@ -276,7 +276,7 @@ COPY_EXISTING ~spwi612.spl~ ~override~
   END
   LPF ~ALTER_SPELL_EFFECT~
     INT_VAR
-      duration_high = 30
+      duration_high = 18
   END
 
 COPY_EXISTING ~scrl7p.itm~ ~override~

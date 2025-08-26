@@ -1920,6 +1920,58 @@ This powerful abjuration spell causes the spells cast against the wizard to rebo
 
 @6258 = ~Split Mind~
 
-@6259 = ~Shield Bash~
+@6259 = ~Casting speed decreased by 5~
 
-@6260 = ~Shield Bash~
+@6260 = ~Casting speed decreased by 4~
+
+@6261 = ~Casting speed decreased by 3~
+
+@6262 = ~Casting speed decreased by 2~
+
+@6263 = ~Casting speed decreased by 1~
+
+@6264 = ~Heal
+(Necromancy)
+
+Level: 6
+Sphere: Healing 
+Range: Touch
+Duration: Permanent
+Casting Time: 9
+Area of Effect: 1 creature
+Saving Throw: None
+
+The very potent Heal spell enables the priest to wipe away disease and injury in the creature who receives the benefits of the spell. It completely cures all disease and blindness in the recipient and heals all points of damage suffered due to wounds or injury and removes casting speed penalties caused by damage done to vocal cords by spells like Greater Silence, though it does not cure the silence effect itself. It also dispels a Feeblemind spell and cures those mental disorders caused by spells or injury to the brain. Naturally, the effects can be negated by later wounds, injuries, and diseases.~
+
+@6265 = ~Mend Body
+(Necromancy)
+
+Level: 6
+Sphere: Healing
+Range: Visual range of the caster
+Duration: Permanent
+Casting Time: 6
+Area of Effect: 1 creature
+Saving Throw: None
+
+Mend Body is the epitome of the shaman's ability to channel spiritual energy into the cure of physical trauma. This spell completely removes all disease and blindness in the recipient, recovers up to 60% of health lost due to wounds or injury and removes casting speed penalties caused by damage done to vocal cords by spells like Greater Silence, though it does not cure the silence effect itself. It also dispels a Feeblemind spell and cures those mental disorders caused by spells or injury to the brain. Naturally, the effects can be negated by later wounds, injuries, and diseases.~
+
+@6266 = ~Sense of Limbo
+(Alteration)
+
+Level: 7
+Range: Visual range of the caster
+Duration: 5 rounds
+Casting Time: 7
+Area of Effect: 1 creature
+Saving Throw: None
+
+By casting this spell, the caster opens a short-lasting connection to the Ethereal Plane for the target, which can be used to cast magic by channeling the verbal part of the incantantion into the Prime Material Plane without the need to employ their vocal cords. Effectively, this allows the target to become immune to even the most debilitating forms of silence and removes all effects of such spells. Additionally this spell removes all forms of miscast magic and protects from that effect for its duration or until dispelled.~
+
+@6267 = ~Shield Bash~
+
+@6268 = ~Shield Bash~
+
+@6269 = ~Shield Bash~
+
+@6270 = ~Shield Bash~

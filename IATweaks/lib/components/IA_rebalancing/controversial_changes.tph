@@ -1758,3 +1758,190 @@ COPY_EXISTING ~SPWI114.spl~ ~override~
   END
 
 // Dracolich fight
+// Silence spells
+
+COPY ~IATweaks\resources\bam\s!-casts.bam~ ~override~
+
+OUTER_SET cast_time_minus_5_desc_str_ref = RESOLVE_STR_REF (@6259)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %cast_time_minus_5_desc_str_ref%
+  STR_VAR
+    bam_file = ~S!-CASTS~
+  RET
+    cast_time_minus_5_icon_id = portrait_icon_id
+END
+
+OUTER_SET cast_time_minus_4_desc_str_ref = RESOLVE_STR_REF (@6260)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %cast_time_minus_4_desc_str_ref%
+  STR_VAR
+    bam_file = ~S!-CASTS~
+  RET
+    cast_time_minus_4_icon_id = portrait_icon_id
+END
+
+OUTER_SET cast_time_minus_3_desc_str_ref = RESOLVE_STR_REF (@6261)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %cast_time_minus_3_desc_str_ref%
+  STR_VAR
+    bam_file = ~S!-CASTS~
+  RET
+    cast_time_minus_3_icon_id = portrait_icon_id
+END
+
+OUTER_SET cast_time_minus_2_desc_str_ref = RESOLVE_STR_REF (@6262)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %cast_time_minus_2_desc_str_ref%
+  STR_VAR
+    bam_file = ~S!-CASTS~
+  RET
+    cast_time_minus_2_icon_id = portrait_icon_id
+END
+
+OUTER_SET cast_time_minus_1_desc_str_ref = RESOLVE_STR_REF (@6263)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %cast_time_minus_1_desc_str_ref%
+  STR_VAR
+    bam_file = ~S!-CASTS~
+  RET
+    cast_time_minus_1_icon_id = portrait_icon_id
+END
+
+COPY ~IATweaks\resources\spl\s!-cast5.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = cast_time_minus_5_icon_id
+  END
+
+COPY ~IATweaks\resources\spl\s!-cast4.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = cast_time_minus_4_icon_id
+  END
+
+COPY ~IATweaks\resources\spl\s!-cast3.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = cast_time_minus_3_icon_id
+  END
+
+COPY ~IATweaks\resources\spl\s!-cast2.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = cast_time_minus_2_icon_id
+  END
+
+COPY ~IATweaks\resources\spl\s!-cast1.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = cast_time_minus_1_icon_id
+  END
+
+// Power Word: Greater Silence
+
+COPY ~IATweaks\resources\spl\spin692.spl~ ~override~
+
+// Make Heal, Mend Body and Natural Restoral dispel casting speed penalties
+
+ACTION_FOR_EACH heal_spell IN ~SPIN734~ ~DEVAHEAL~ ~SPPR615~ ~SPPR607~ ~SPWISH28~ ~SPWISH39~ ~SPWM168~ ~SPCLI15~ BEGIN
+  COPY_EXISTING ~%heal_spell%.spl~ ~override~
+    PATCH_FOR_EACH silence_cast_penalty IN ~S!-CAST5~ ~S!-CAST4~ ~S!-CAST3~ ~S!-CAST2~ ~S!-CAST1~ BEGIN
+      LPF ~CLONE_EFFECT~
+        INT_VAR
+          match_opcode = 17
+          opcode = 321
+          parameter1 = 0
+          parameter2 = 0
+          timing = 0
+          dicenumber = 0
+          dicesize = 0
+        STR_VAR
+          resource = EVAL ~%silence_cast_penalty%~
+      END
+    END
+END
+
+COPY_EXISTING ~SPPR607.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6264
+
+COPY_EXISTING ~SPPR615.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6265
+
+// Make all spells that have casting time of 0, have -10 casting time to prevent them not firing immediately, when silenced
+
+COPY_EXISTING_REGEXP GLOB ~.*\.SPL~ ~override~
+  LPF ~S!ALTER_SPELL_HEADER~
+    INT_VAR 
+      match_speed = 0
+      speed = ~-10~
+  END
+
+// Rework Grave Silence
+
+COPY_EXISTING ~SPINI39.spl~ ~override~
+  LPF ~S!ALTER_EFFECT~
+    INT_VAR
+      savingthrow = 1
+      savebonus = ~-10~
+  END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      duration_high = 30
+  END
+
+// Rework Sense of Limbo
+
+LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_SENSE_OF_LIMBO~ RET sense_of_limbo_spell_res = spell_res END
+
+COPY_EXISTING ~%sense_of_limbo_spell_res%.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6266
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      target = 1
+      speed = 7
+  END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      target = 2
+      duration_high = 30
+    END
+  PATCH_FOR_EACH silence_spell IN ~SPIN692~ ~SPIN998~ ~SPINI39~ ~SPINI78~ ~SPPR211~ ~SPPR988~ ~SPWI052~ ~SPWI612~ ~SPWISH35~ BEGIN
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        multi_match = 1
+        match_opcode = 321
+      STR_VAR
+        insert = ~below~
+        resource = EVAL ~%silence_spell%~
+    END
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      multi_match = 1
+      match_opcode = 240
+      parameter2 = 105
+  END
+  LPF ~S!CLONE_EFFECT~
+    INT_VAR
+      multi_match = 1
+      match_opcode = 240
+      opcode = 337
+      parameter1 = ~-1~
+      parameter2 = 60
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      multi_match = 1
+      match_opcode = 169
+      parameter2 = 105
+  END

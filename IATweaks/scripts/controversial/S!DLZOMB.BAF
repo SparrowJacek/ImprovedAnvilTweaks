@@ -1,0 +1,24 @@
+IF
+	AreaCheck("ARIA14")
+	!Dead("S!DRACOL")
+	!See("S!DRACOL")
+THEN
+	RESPONSE #100
+		MoveToObject("S!DRACOL")
+END
+
+IF
+	AreaCheck("ARIA14")
+	Dead("S!DRACOL")
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	See([GOODCUTOFF])
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+

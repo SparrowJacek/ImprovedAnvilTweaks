@@ -1757,7 +1757,157 @@ COPY_EXISTING ~SPWI114.spl~ ~override~
       parameter2 = 0
   END
 
-// Dracolich fight
+//////////// Dracolich fight
+
+// Compile new area script
+
+COMPILE ~IATweaks\scripts\controversial\ARIA14.BAF~
+
+// New types of zombie
+
+COMPILE ~IATweaks\scripts\controversial\S!DLZOMB.BAF~
+
+COPY ~IATweaks\resources\cre\s!zmbdra.cre~ ~override~
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+COPY ~IATweaks\resources\cre\s!zmbrun.cre~ ~override~
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+COPY ~IATweaks\resources\spl\s!dboost.spl~ ~override~
+
+// Slight reworks of Deep Shadows
+
+COPY_EXISTING ~S!SHADOW.cre~ ~override~
+  WRITE_BYTE 0x59 60  // Fire Resistance
+  WRITE_BYTE 0x234 18 // Level 1
+  WRITE_BYTE 0x271 4 // General = Undead
+
+COPY_EXISTING ~S!SHADO2.cre~ ~override~
+  WRITE_BYTE 0x59 60  // Fire Resistance
+  WRITE_BYTE 0x234 18 // Level 1
+  WRITE_BYTE 0x271 4 // General = Undead
+
+COPY_EXISTING ~S!SHADO2.cre~ ~override/S!SHADO3.cre~
+  WRITE_LONG 0x14 2000 // Exp
+
+// Low exp version of Skeleton Lord
+
+COPY_EXISTING ~S!skelpp.cre~ ~override/S!SKELLD.cre~
+  WRITE_LONG 0x14 3500 // Exp
+
+// Make some space in upper right corner of the map
+COPY ~IATweaks\resources\bmp\AR3024SR.bmp~ ~override~
+
+// Charm and Drain Undead
+
+COPY ~IATweaks\resources\spl\s!chrund.spl~ ~override~
+  SAY NAME1 @6269
+COPY ~IATweaks\resources\spl\s!drainl.spl~ ~override~
+  SAY NAME1 @6268
+
+// Reverse Wing Buffet to move all creatures towards the PC
+
+COPY ~IATweaks\resources\eff\s!wbuffe.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!wbuffe.spl~ ~override~
+
+// Spells to make a creature clear fog of war and remove it
+
+COPY ~IATweaks\resources\spl\s!clrfog.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!clrfo2.spl~ ~override~
+
+// Dracolich himself
+
+COPY_EXISTING ~s!dracol.CRE~ ~override~
+  WRITE_SHORT 0x24 383 // HP
+  WRITE_SHORT 0x26 383 // HP
+  WRITE_BYTE 0x59 80  // Fire Resistance
+  WRITE_BYTE 0x5c 80  // Acid Resistance
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      multi_match = 1
+      match_opcode = 206
+    STR_VAR
+      resource = ~S!WBUFFE~
+  END
+  PATCH_FOR_EACH spell_immunity_to_remove IN ~SPWI911~ ~SPWI810~ ~SPPR705~ BEGIN
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = 206
+      STR_VAR
+        match_resource = EVAL ~%spell_immunity_to_remove%~
+    END
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Casting Speed
+    INT_VAR
+      target = 1
+      opcode = 189
+      parameter1 = 2
+      resist_dispel = 0
+      timing = 9
+  END
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL "SPWI302" #2 "wizard" ( 6 ) // Remove Magic
+  ADD_MEMORIZED_SPELL "SPWI508" #4 "wizard" ( 2 ) // Chaos
+  ADD_MEMORIZED_SPELL "SPWI513" #4 "wizard" ( 4 ) // Breach
+  ADD_MEMORIZED_SPELL "SPWI514" #4 "wizard" ( 3 ) // Lower Resistance
+  ADD_MEMORIZED_SPELL "SPWI704" #6 "wizard" ( 5 ) // Ruby Ray of Reversal
+  
+  ADD_MEMORIZED_SPELL ~SPIN686~ #0 ~innate~ ( 1 ) // PFMW for Dragons
+  ADD_MEMORIZED_SPELL ~SPIN692~ #0 ~innate~ ( 5 ) // Greater Silence
+  ADD_MEMORIZED_SPELL ~SPIN694~ #0 ~innate~ ( 2 ) // Dragon Stoneskin
+
+COMPILE ~IATweaks\scripts\controversial\S!DRACOL.BAF~
+
+COPY ~IATweaks\resources\bam\s!fpilar.bam~ ~override~
+COPY ~IATweaks\resources\vvc\s!fpilar.vvc~ ~override~
+COPY ~IATweaks\resources\cre\s!fpilar.CRE~ ~override~
+  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_INVISIBLE~))
+
+COPY_EXISTING ~S!FPILAR.cre~ ~override/S!FPILA2.cre~
+  WRITE_ASCII 0x280 ~S!FPILA2~ #20
+  WRITE_ASCII 0x248 ~S!FPILA2~ #8
+
+COPY_EXISTING ~S!FPILAR.cre~ ~override/S!FPILA3.cre~
+  WRITE_ASCII 0x280 ~S!FPILA3~ #20
+  WRITE_ASCII 0x248 ~S!FPILA3~ #8
+
+COPY_EXISTING ~S!FPILAR.cre~ ~override/S!FPILA4.cre~
+  WRITE_ASCII 0x280 ~S!FPILA4~ #20
+  WRITE_ASCII 0x248 ~S!FPILA4~ #8
+
+COMPILE ~IATweaks\scripts\controversial\S!FPILAR.BAF~
+COMPILE ~IATweaks\scripts\controversial\S!FPILA2.BAF~
+COMPILE ~IATweaks\scripts\controversial\S!FPILA3.BAF~
+COMPILE ~IATweaks\scripts\controversial\S!FPILA4.BAF~
+
+COMPILE ~IATweaks\scripts\others\S!DRLCH1.BAF~
+
+COMPILE ~IATweaks/resources/dlg/dracolich_new_text.d~
+USING ~%LANGUAGE%dracolich.tra~
+
+COPY_EXISTING ~s!dracol.itm~ ~override~
+  LPF ~ALTER_ITEM_HEADER~
+    INT_VAR
+      range = 2
+  END
+
 // Silence spells
 
 COPY ~IATweaks\resources\bam\s!-casts.bam~ ~override~

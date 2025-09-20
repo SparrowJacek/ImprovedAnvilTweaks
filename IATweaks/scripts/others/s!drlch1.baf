@@ -1,0 +1,94 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("S!DRACOL")  // Dracolich
+		MoveViewObject("S!DRACOL",INSTANT)  // Dracolich
+		ReallyForceSpellRES("S!CLRFOG","S!DRACOL")  // No such index
+		ForceSpell(Myself,LONG_VISUAL2)  // SPIN790.SPL ()
+		CreateVisualEffectObject("OHRSGONE",Player1)
+		CreateVisualEffectObject("OHRSGONE",Player2)
+		CreateVisualEffectObject("OHRSGONE",Player3)
+		CreateVisualEffectObject("OHRSGONE",Player4)
+		CreateVisualEffectObject("OHRSGONE",Player5)
+		CreateVisualEffectObject("OHRSGONE",Player6)
+		CreateVisualEffectObject("OHRSGONE","S!DRACOL")  // Dracolich
+		SmallWait(12)
+		ActionOverride(Player1,JumpToPoint([906.999]))
+		ActionOverride(Player2,JumpToPoint([906.1009]))
+		ActionOverride(Player3,JumpToPoint([906.1019]))
+		ActionOverride(Player4,JumpToPoint([906.1029]))
+		ActionOverride(Player5,JumpToPoint([906.1039]))
+		ActionOverride(Player6,JumpToPoint([906.1049]))
+		FadeToColor([10.0],0)
+		SmallWait(12)
+		JumpToPoint([1885.1736])
+		MoveViewObject("S!DRACOL",INSTANT)  // Dracolich
+		FadeFromColor([10.0],0)
+		ActionOverride(Player1,ReallyForceSpellRES("S!WBUFFE",Myself))  // No such index
+		Wait(1)
+		CreateCreatureImpassable("s!fpilar",[912.1380],SE)  // No such index
+		CreateCreatureImpassable("s!fpilar",[963.1343],SE)  // No such index
+		CreateCreatureImpassable("s!fpilar",[1015.1307],SE)  // No such index
+		CreateCreatureImpassable("s!fpilar",[1067.1271],SE)  // No such index
+		CreateCreatureImpassable("s!fpilar",[1119.1235],SE)  // No such index
+		CreateCreatureImpassable("s!fpilar",[1171.1198],SE)  // No such index
+		CreateCreatureImpassable("s!fpilar",[1223.1162],SE)  // No such index
+		CreateCreatureImpassable("s!fpilar",[1275.1126],SE)  // No such index
+		CreateCreatureImpassable("s!fpilar",[1327.1090],SE)  // No such index
+		CreateCreatureImpassable("s!fpilar",[1379.1054],SE)  // No such index
+		CreateCreatureImpassable("s!fpila2",[1037.1474],14)
+		CreateCreatureImpassable("s!fpila2",[1088.1437],14)
+		CreateCreatureImpassable("s!fpila2",[1140.1401],14)
+		CreateCreatureImpassable("s!fpila2",[1192.1365],14)
+		CreateCreatureImpassable("s!fpila2",[1244.1329],14)
+		CreateCreatureImpassable("s!fpila2",[1296.1292],14)
+		CreateCreatureImpassable("s!fpila2",[1348.1256],14)
+		CreateCreatureImpassable("s!fpila2",[1400.1220],14)
+		CreateCreatureImpassable("s!fpila2",[1452.1184],14)
+		CreateCreatureImpassable("s!fpila2",[1504.1148],14)
+		CreateCreatureImpassable("s!fpila3",[1216.1592],14)
+		CreateCreatureImpassable("s!fpila3",[1267.1555],14)
+		CreateCreatureImpassable("s!fpila3",[1319.1519],14)
+		CreateCreatureImpassable("s!fpila3",[1371.1483],14)
+		CreateCreatureImpassable("s!fpila3",[1423.1447],14)
+		CreateCreatureImpassable("s!fpila3",[1475.1410],14)
+		CreateCreatureImpassable("s!fpila3",[1527.1374],14)
+		CreateCreatureImpassable("s!fpila3",[1579.1338],14)
+		CreateCreatureImpassable("s!fpila3",[1631.1302],14)
+		CreateCreatureImpassable("s!fpila3",[1683.1266],14)
+		DisplayStringHead(Myself,@5127)
+		Wait(1)
+		MoveViewPoint([915.1006],BD_SWIFT)
+		Wait(2)
+		CreateVisualEffect("SPRAISED",[800.1296])
+		CreateVisualEffect("SPRAISED",[877.1241])
+		CreateVisualEffect("SPRAISED",[955.1187])
+		CreateVisualEffect("SPRAISED",[1033.1133])
+		CreateVisualEffect("SPRAISED",[1111.1078])
+		CreateVisualEffect("SPRAISED",[1185.1024])
+		CreateVisualEffect("SPRAISED",[848.1332])
+		CreateVisualEffect("SPRAISED",[925.1277])
+		CreateVisualEffect("SPRAISED",[1003.1223])
+		CreateVisualEffect("SPRAISED",[1081.1169])
+		CreateVisualEffect("SPRAISED",[1159.1114])
+		CreateVisualEffect("SPRAISED",[1237.1060])
+		Wait(3)
+		CreateCreature("S!SHADO3",[800.1296],14)
+		CreateCreature("S!SHADO3",[877.1241],14)
+		CreateCreature("S!SHADO3",[955.1187],14)
+		CreateCreature("S!SHADO3",[1033.1133],14)
+		CreateCreature("S!SHADO3",[1111.1078],14)
+		CreateCreature("S!SHADO3",[1185.1024],14)
+		CreateCreature("S!SHADO3",[848.1332],14)
+		CreateCreature("S!SHADO3",[925.1277],14)
+		CreateCreature("S!SHADO3",[1003.1223],14)
+		CreateCreature("S!SHADO3",[1081.1169],14)
+		CreateCreature("S!SHADO3",[1159.1114],14)
+		CreateCreature("S!SHADO3",[1237.1060],14)
+		ReallyForceSpellRES("S!CLRFO2","S!DRACOL")  // No such index
+		SetGlobalTimer("IaNextUndeadWave","GLOBAL",TWO_ROUNDS)
+		JumpToPoint([3060.100])
+		EndCutSceneMode()
+END
+

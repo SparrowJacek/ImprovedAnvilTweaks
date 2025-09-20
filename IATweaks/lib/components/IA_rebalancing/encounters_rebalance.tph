@@ -1085,7 +1085,7 @@ ACTION_FOR_EACH mind_flayer_cre IN ~DAMIND1~ ~DAMIND2~ ~ELEILL01~ ~ELMIND01~ ~MI
         target = 1
         parameter1 = 0
         parameter2 = 11
-        timing = 2
+        timing = 1
         resist_dispel = 0
       STR_VAR
         resource = ~S!MFPROT~
@@ -1132,7 +1132,7 @@ ACTION_FOR_EACH ulitharid_cre IN ~GORMIND~ ~MINDUL01~ ~PPMIND01~ BEGIN
         target = 1
         parameter1 = 0
         parameter2 = 11
-        timing = 2
+        timing = 1
         resist_dispel = 0
       STR_VAR
         resource = ~S!MFPROT~
@@ -2884,7 +2884,7 @@ COPY_EXISTING ~mindal01.cre~ ~override~
   WRITE_BYTE 0x53 3  // APR
   WRITE_BYTE 0x59 0  // Fire Resistance
   WRITE_BYTE 0x5e 0  // Magic Fire Resistance
-  WRITE_BYTE 0x234 14 // Level 26
+  WRITE_BYTE 0x234 26 // Level 1
 
   // Cast S!MFPROT each time the damage is dealt
   LPF ~ADD_CRE_EFFECT~
@@ -2893,7 +2893,7 @@ COPY_EXISTING ~mindal01.cre~ ~override~
       target = 1
       parameter1 = 0
       parameter2 = 11
-      timing = 2
+      timing = 1
       resist_dispel = 0
     STR_VAR
       resource = ~S!MFPROT~
@@ -2990,7 +2990,7 @@ COPY_EXISTING ~mindal01.cre~ ~override~
 
   ADD_MEMORIZED_SPELL "SPWI602" #5 "wizard" ( 1 ) // Globe of Invulnerability
   ADD_MEMORIZED_SPELL "SPWI607" #5 "wizard" ( 1 ) // Giant Strength
-  ADD_MEMORIZED_SPELL "SPWI613" #5 "wizard" ( 3 ) // PFMW
+  ADD_MEMORIZED_SPELL "SPWI613" #5 "wizard" ( 2 ) // PFMW
   ADD_MEMORIZED_SPELL "SPWI613" #5 "wizard" ( 1 ) // Improved Haste
 
   ADD_MEMORIZED_SPELL "SPWI701" #6 "wizard" ( 1 ) // Spell Turning
@@ -3003,3 +3003,11 @@ COPY_EXISTING ~mindal01.cre~ ~override~
   ADD_MEMORIZED_SPELL "SPWI922" #8 "wizard" ( 4 ) // Dragon's Breath
 
 COMPILE ~IATweaks\scripts\creatures\MINDAL01.BAF~
+
+COPY_EXISTING ~MINDAL01.BCS~ ~override~
+  SET StrRef = RESOLVE_STR_REF (@5125)
+  DECOMPILE_AND_PATCH BEGIN
+    REPLACE_TEXTUALLY
+      ~DisplayString(Myself,0)~
+      ~DisplayString(Myself,%StrRef%)~
+  END

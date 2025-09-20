@@ -1582,6 +1582,16 @@ COPY ~IATweaks\resources\spl\s!mtillu.spl~ ~override~
       parameter1 = %non_detection_state%
       parameter2 = %non_detect_row_id%
   END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 335
+      opcode = 336
+      parameter1 = 1
+      parameter2 = %non_detect_row_id%
+    STR_VAR
+      resource = ~S!NDEC~
+      insert = ~below~
+  END
 COPY ~IATweaks\resources\spl\s!stillu.spl~ ~override~
   LPF ~ALTER_SPELL_HEADER~
     INT_VAR
@@ -1596,6 +1606,16 @@ COPY ~IATweaks\resources\spl\s!stillu.spl~ ~override~
       match_opcode = 335
       parameter1 = %non_detection_state%
       parameter2 = %non_detect_row_id%
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 335
+      opcode = 336
+      parameter1 = 1
+      parameter2 = %non_detect_row_id%
+    STR_VAR
+      resource = ~S!NDEC~
+      insert = ~below~
   END
 COPY ~IATweaks\resources\spl\s!illu01.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!illu02.spl~ ~override~

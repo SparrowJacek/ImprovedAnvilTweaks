@@ -1273,3 +1273,20 @@ END
 
 COPY_EXISTING ~s!dracol.CRE~ ~override~
   WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_DRACOLICH~))
+
+// Tweak Wing Buffet
+COPY ~IATweaks\resources\spl\SPIN695D.spl~ ~override~
+
+COPY_EXISTING ~SPIN695.spl~ ~override~
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 273
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 235
+      opcode = 146
+      parameter1 = 0
+      parameter2 = 1
+      duration = 0
+  END

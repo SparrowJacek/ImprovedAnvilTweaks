@@ -2945,3 +2945,110 @@ COPY_EXISTING ~HLMAGE.cre~ ~override~
   ADD_CRE_ITEM ~HELM06~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~HELMET~
 
 COMPILE ~IATweaks\scripts\creatures\S!HLMAGE.BAF~
+
+// Umar Witch
+
+COPY_EXISTING ~RUMAR01.cre~ ~override~
+  WRITE_SHORT 0x24 55 // HP
+  WRITE_SHORT 0x26 55 // HP
+  WRITE_BYTE 0x59 0 // Resist Fire
+  WRITE_BYTE 0x5a 0 // Resist Cold
+  WRITE_BYTE 0x5b 0 // Resist Electricity
+  WRITE_BYTE 0x5c 0 // Resist Acid
+  WRITE_BYTE 0x5d 50 // Resist Magic
+  WRITE_BYTE 0x5e 0 // Resist Magic Fire
+  WRITE_BYTE 0x5f 0 // Resist Magic Cold
+  WRITE_BYTE 0x60 10 // Resist Slashing
+  WRITE_BYTE 0x61 10 // Resist Crushing
+  WRITE_BYTE 0x62 10 // Resist Piercing
+  WRITE_BYTE 0x63 10 // Resist Missile
+  WRITE_BYTE 0x234 25 // Level 1
+  WRITE_BYTE 0x23d 17 // Constitution
+  WRITE_LONG 0x244 0x10000000 // Kit = Invoker
+  WRITE_ASCII 0x248 ~S!UMAR~ #8
+
+  LPF ~ADD_CRE_EFFECT~ // Sequencer with Remove Magic
+    INT_VAR
+      opcode = 256
+      target = 1
+      resist_dispel = 0
+      timing = 9
+      parameter3 = 0
+    STR_VAR
+      effsource = ~SPWIJ01~
+      resource = ~SPWI302~
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  ADD_CRE_ITEM ~CLCK12~ #0 #0 #0 ~UNSTEALABLE~ ~ARMOR~
+  ADD_CRE_ITEM ~CLCK01~ #0 #0 #0 ~UNSTEALABLE~ ~CLOAK~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL "SPWI102" #0 "wizard" ( 1 ) // Armor
+  ADD_MEMORIZED_SPELL "SPWI112" #0 "wizard" ( 3 ) // Magic Missile
+  ADD_MEMORIZED_SPELL "SPWI113" #0 "wizard" ( 1 ) // Protection From Evil
+  ADD_MEMORIZED_SPELL "SPWI114" #0 "wizard" ( 1 ) // Shield
+
+  ADD_MEMORIZED_SPELL "SPWI209" #1 "wizard" ( 1 ) // Luck
+  ADD_MEMORIZED_SPELL "SPWI211" #1 "wizard" ( 5 ) // Melf's Acid Arrow
+
+  ADD_MEMORIZED_SPELL "SPWI302" #2 "wizard" ( 2 ) // Remove Magic
+  ADD_MEMORIZED_SPELL "SPWI303" #2 "wizard" ( 3 ) // Flame Arrow
+  ADD_MEMORIZED_SPELL "SPWI305" #2 "wizard" ( 1 ) // Haste
+
+  ADD_MEMORIZED_SPELL "SPWI403" #3 "wizard" ( 1 ) // Fire Shield (Blue)
+  ADD_MEMORIZED_SPELL "SPWI408" #3 "wizard" ( 3 ) // Stoneskin
+  ADD_MEMORIZED_SPELL "SPWI418" #3 "wizard" ( 1 ) // Fire Shield (Red)
+  ADD_MEMORIZED_SPELL "SPWI419" #3 "wizard" ( 1 ) // Secret Word
+
+  ADD_MEMORIZED_SPELL "SPWI510" #4 "wizard" ( 1 ) // Spell Immunity
+  ADD_MEMORIZED_SPELL "SPWI513" #4 "wizard" ( 1 ) // Breach
+  ADD_MEMORIZED_SPELL "SPWI514" #4 "wizard" ( 3 ) // Lower Resistance
+  ADD_MEMORIZED_SPELL "SPWI522" #4 "wizard" ( 1 ) // Soul Armor
+
+  ADD_MEMORIZED_SPELL "SPWI602" #5 "wizard" ( 1 ) // Globe of Invulnerability
+  ADD_MEMORIZED_SPELL "SPWI605" #5 "wizard" ( 2 ) // Death Spell
+  ADD_MEMORIZED_SPELL "SPWI606" #5 "wizard" ( 1 ) // Protection From Magic Energy
+  ADD_MEMORIZED_SPELL "SPWI609" #5 "wizard" ( 1 ) // True Sight
+  ADD_MEMORIZED_SPELL "SPWI611" #5 "wizard" ( 2 ) // Protection From Magical Weapons
+
+  ADD_MEMORIZED_SPELL "SPWI701" #6 "wizard" ( 1 ) // Spell Turning
+  ADD_MEMORIZED_SPELL "SPWI704" #6 "wizard" ( 2 ) // Ruby Ray of Reversal
+  ADD_MEMORIZED_SPELL "SPWI714" #6 "wizard" ( 1 ) // Prismatic Spray
+  ADD_MEMORIZED_SPELL "SPWI715" #6 "wizard" ( 2 ) // Power Word, Stun
+  ADD_MEMORIZED_SPELL "SPWI725" #6 "wizard" ( 1 ) // Shield Mind and Body
+
+  ADD_MEMORIZED_SPELL "SPWI803" #7 "wizard" ( 2 ) // Protection from Energy
+  ADD_MEMORIZED_SPELL "SPWI804" #7 "wizard" ( 1 ) // Tenser's Partial Transformation
+  ADD_MEMORIZED_SPELL "SPWI807" #7 "wizard" ( 1 ) // Foreknowledge
+  ADD_MEMORIZED_SPELL "SPWI812" #7 "wizard" ( 2 ) // Abi-Dalzim's Horrid Wilting
+  ADD_MEMORIZED_SPELL "SPWI813" #7 "wizard" ( 1 ) // Maze
+
+  ADD_MEMORIZED_SPELL "SPWI912" #8 "wizard" ( 1 ) // Power Word, Kill
+  ADD_MEMORIZED_SPELL "SPWI920" #8 "wizard" ( 1 ) // Energy Blades
+  ADD_MEMORIZED_SPELL "SPWI921" #8 "wizard" ( 2 ) // Improved Alacrity
+  ADD_MEMORIZED_SPELL "SPWI922" #8 "wizard" ( 2 ) // Dragon's Breath
+
+COMPILE ~IATweaks\scripts\creatures\S!UMAR.BAF~
+
+EXTEND_BOTTOM ~AR1202.BCS~ ~IATweaks/scripts/patches/Umar_move_spawns_to_area.baf~

@@ -268,6 +268,20 @@ COPY ~IATweaks\resources\itm\s!brac21.itm~ ~override~
 
 COPY_EXISTING ~UHRANG01.cre~ ~override~
   ADD_CRE_ITEM ~s!brac21~ #0 #0 #0 ~NONE~ ~INV1~
+  SAY IDENTIFIED_DESC @7037
+
+///////////// Ring of Vitality
+
+COPY ~IATweaks\resources\bam\s!rng21c.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!rng21i.bam~ ~override~
+COPY ~IATweaks\resources\itm\s!ring21.itm~ ~override~
+  SAY NAME2 @7070
+  SAY IDENTIFIED_DESC @7071
+
+// Umar
+
+COPY_EXISTING ~RUMAR01.cre~ ~override~
+  ADD_CRE_ITEM ~s!ring21~ #0 #0 #0 ~NONE~ ~RRING~
 
 /////////////// New Recipes
 

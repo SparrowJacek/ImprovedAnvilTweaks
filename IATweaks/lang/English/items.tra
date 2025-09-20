@@ -785,9 +785,13 @@ Weight: 2~
 
 @7069 = ~Stalker Gauntlets~
 
-@7070 = ~~
+@7070 = ~Ring of Vitality~
 
-@7071 = ~~
+@7071 = ~Often bestowed upon seasoned adventurers by grateful temples, these golden rings are engraved with runes of endurance. Though not uncommon, each carries a quiet blessing that reinforces the body and fortifies the spirit.
+STATISTICS:
+
+Equipped abilities:
++20 Max HP~
 
 @7072 = ~~
 

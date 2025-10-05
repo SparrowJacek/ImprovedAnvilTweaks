@@ -213,6 +213,14 @@ COPY_EXISTING ~spwi511.spl~ ~override~
 COPY_EXISTING ~S!SCRL29.itm~ ~override~
   SAY IDENTIFIED_DESC @6243
 
+// Cone of Cold, increase range
+
+COPY_EXISTING ~spwi503.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      range = 18
+  END
+
 // Spell Turning change description
 
 COPY_EXISTING ~SPWI701.spl~ ~override~
@@ -520,7 +528,8 @@ COPY_EXISTING ~spwi910.spl~ ~override~
   LPF ~ALTER_EFFECT~
     INT_VAR
       match_opcode = 211
-      opcode = 233
+      opcode = 213
+      special = 79
   END
 
 COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~
@@ -585,7 +594,7 @@ END
 
 // Rework Black Blade of Disaster
 
-COPY_EXISTING ~SPWI910.spl~ ~override~
+COPY_EXISTING ~SPWI915.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6251
 
 COPY_EXISTING ~BLAKBLAD.itm~ ~override~

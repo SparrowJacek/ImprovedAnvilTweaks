@@ -1,0 +1,29 @@
+
+IF
+	!GlobalTimerNotExpired("Iasummons","AR1401")
+	Global("IalordSpawn","AR1401",1)
+	TriggerOverride("RUMAR01",Allegiance(Myself,ENEMY))
+	XPGT(Player1,3799999)
+	GlobalLT("Ialord","AR1401",8)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Ialord","AR1401",1)
+		SetGlobalTimer("Iasummons","AR1401",FOUR_ROUNDS)
+		CreateCreatureEffect("S!skelwl","SPFLESHS",[730.1245],SE)
+		CreateCreatureEffect("S!skels","SPFLESHS",[730.1255],SE)
+		CreateCreatureEffect("S!skels","SPFLESHS",[720.1245],SE)
+END
+
+IF
+	!GlobalTimerNotExpired("Iasummons","AR1401")
+	Global("IalordSpawn","AR1401",1)
+	TriggerOverride("RUMAR01",Allegiance(Myself,ENEMY))
+	XPLT(Player1,3800000)
+	GlobalLT("Ialord","AR1401",6)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Ialord","AR1401",1)
+		SetGlobalTimer("Iasummons","AR1401",FOUR_ROUNDS)
+		CreateCreatureEffect("S!skels","SPFLESHS",[730.1255],SE)
+		CreateCreatureEffect("S!skels","SPFLESHS",[720.1245],SE)
+END

@@ -414,7 +414,7 @@ COPY_EXISTING ~UDMASTER.cre~ ~override~
 COPY_EXISTING ~PWILT.pro~ ~override~
   WRITE_SHORT 0x21a 0
 
-// Increase damage for Bigby's Fist
+// Increase damage for Bigby's Fist and make it bypass Mirror Image
 
 COPY_EXISTING ~SPWI818.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6248
@@ -422,6 +422,7 @@ COPY_EXISTING ~SPWI818.spl~ ~override~
     INT_VAR
       match_opcode = 12
       dicenumber = 8
+      savingthrow = 16777216
   END
 
 COPY_EXISTING ~SCRLB1.itm~ ~override~
@@ -1122,6 +1123,7 @@ COPY_EXISTING ~SPWI918.spl~ ~override~
     INT_VAR
       match_opcode = 12
       dicenumber = 8
+      savingthrow = 16777216
   END
 
 COPY_EXISTING ~SCRLB2.itm~ ~override~

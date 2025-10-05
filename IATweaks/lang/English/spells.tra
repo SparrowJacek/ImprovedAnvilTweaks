@@ -1853,7 +1853,7 @@ Casting Time: 6
 Area of Effect: 1 creature
 Saving Throw: None
 
-This spell creates a giant disembodied hand to squeeze and constrict the target. Upon being cast, the spell immediately inflicts 8D6 crushing damage with no saving throw. The target's magic resistance (if any) cannot block the spell's effect.~
+This spell creates a giant disembodied hand to squeeze and constrict the target. Upon being cast, the spell immediately inflicts 8D6 crushing damage with no saving throw, which bypasses Mirror Images due to its size. The target's magic resistance (if any) cannot block the spell's effect.~
 
 @6249 = ~Bigby's Crushing Hand (Evocation)
 Level: 9
@@ -1863,7 +1863,7 @@ Casting Time: 7
 Area of Effect: 1 creature
 Saving Throw: None
 
-This spell creates a huge disembodied fist that crushes the target. Upon being cast, the spell immediately inflicts 8D10 crushing damage with no saving throw. The target's magic resistance (if any) cannot block the spell's effect.~
+This spell creates a huge disembodied fist that crushes the target. Upon being cast, the spell immediately inflicts 8D10 crushing damage with no saving throw, which bypasses Mirror Images due to its size. The target's magic resistance (if any) cannot block the spell's effect.~
 
 @6250 = ~Fist of Nature
 Level: Quest

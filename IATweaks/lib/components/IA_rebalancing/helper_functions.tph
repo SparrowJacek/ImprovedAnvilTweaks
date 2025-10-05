@@ -30,7 +30,7 @@ BEGIN
       READ_BYTE  (fx_off + 0x0d + (index * 0x30)) dispel
       READ_LONG  (fx_off + 0x0e + (index * 0x30)) duration
       READ_ASCII (fx_off + 0x14 + (index * 0x30)) res_name
-      PATCH_IF (match_opcode = opcode_file AND (match_param1 = ~-999~ OR match_param1 = param1) AND (match_param2 = ~-999~ OR match_param2 = param2) AND (match_dispel = ~-999~ OR match_dispel = dispel) AND (min_duration >= duration)) BEGIN
+      PATCH_IF (match_opcode = opcode_file AND (match_param1 = ~-999~ OR match_param1 = param1) AND (match_param2 = ~-999~ OR match_param2 = param2) AND (match_dispel = ~-999~ OR match_dispel = dispel) AND (min_duration <= duration)) BEGIN
         ///PATCH_PRINT ~File uses opcode %match_opcode% with res %res_name% in global effects~///
         SPRINT is_found "TRUE"
         SPRINT opcode_resource "%res_name%"

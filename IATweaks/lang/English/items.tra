@@ -725,6 +725,8 @@ Charge abilities (up to 5 charges each):
 - instant cast of Shield of Archons on self
   constitution score reduced by 4 points for 8 hours
 
+The item does not disappear, when all of its charges are used.
+
 Weight: 3~
 
 @7064 = ~Assassin's Dream +5~

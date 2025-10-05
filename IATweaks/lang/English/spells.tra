@@ -1974,7 +1974,17 @@ By casting this spell, the caster opens a short-lasting connection to the Ethere
 
 @6269 = ~Dominate Undead~
 
-@6270 = ~Shield Bash~
+@6270 = ~Energy Drain
+(Necromancy)
+
+Level: 9
+Range: 15 ft.
+Duration: Special
+Casting Time: 3
+Area of Effect: 1 creature
+Saving Throw: None
+
+The casting of this spell opens a channel between the caster's plane and the Negative Energy Plane. The caster of the spell acts as a conduit between the two planes, sucking life from a victim and transferring it to the Negative Energy Plane, draining <PRO_HIMHER> of 2 levels of experience and dealing 50 magic damage, which is transferred to the caster, healing him and increasing his maximum amount of health points (non-cumulative) for 3 turns. The target of this spell loses levels, Hit Dice, Hit Points, and abilities permanently. These levels can only be restored by a priest's Restoration spell. This spell does not work on creatures that don't have vital energy, like Undead, Golems or Elementals. The spell bypasses magic resistance of the target.~
 
 @6271 = ~Casting abilities weakened~
 

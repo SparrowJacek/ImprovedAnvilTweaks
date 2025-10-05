@@ -1148,7 +1148,59 @@ COPY_EXISTING ~SPWI908.spl~ ~override~
       match_opcode = 101
   END
 
-// Increase damage for Bigby's Hand
+// Improve Energy Drain
+
+COPY_EXISTING ~SPWI914.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6270
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      range = 15
+      projectile = 50
+  END
+  LPF ~ADD_SPELL_EFFECT~ 
+    INT_VAR
+      opcode = 12
+      insert_point = 0
+      target = 2
+      power = 9
+      parameter1 = 50
+      parameter2 = 0
+      duration = 180
+      resist_dispel = 0
+      special = 8 // non-cumulative HP drain
+  END
+  LPF ~ADD_SPELL_EFFECT~ 
+    INT_VAR
+      opcode = 318
+      insert_point = 0
+      target = 2
+      power = 9
+      parameter1 = 0
+      parameter2 = 1 // General = Undead
+      duration = 1
+      resist_dispel = 0
+    STR_VAR
+      resource = "SPWI914"
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      multi_match = 1
+      match_parameeter2 = 1
+      parameter2 = 9 // Elemental
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      multi_match = 1
+      match_parameeter2 = 1
+      parameter2 = 27 // Golem
+  END
+
+COPY_EXISTING ~SCRL9W.itm~ ~override~
+  SAY IDENTIFIED_DESC @6270
+
+// Increase damage for Bigby's Hand and make it bypass Mirror Image
 
 COPY_EXISTING ~SPWI918.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6249

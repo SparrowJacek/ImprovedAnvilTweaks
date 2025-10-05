@@ -1,0 +1,43 @@
+IF
+	Die()
+	!Dead("HLDEMI")
+	Global("IaKangaxxResistancesWeakened","AR0331",0)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaKangaxxResistancesWeakened","AR0331",1)
+		CreateVisualEffectObject("S!REDDHM","HLDEMI")  // Kangaxx the Demilich
+		ReallyForceSpellDeadRES("S!DEMIPR","HLDEMI")
+END
+
+IF
+	Die()
+	!Dead("HLDEMI")
+	Global("IaKangaxxResistancesWeakened","AR0331",1)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaKangaxxResistancesWeakened","AR0331",1)
+		CreateVisualEffectObject("S!REDDHM","HLDEMI")  // Kangaxx the Demilich
+		ReallyForceSpellDeadRES("S!DEMIPR","HLDEMI")
+END
+
+IF
+	!HPLT(Myself,1)
+	AreaCheck("AR0331")
+	InMyArea("HLDEMI")
+	!Dead("HLDEMI")
+	See("HLDEMI")
+	!GlobalTimerNotExpired("IaKangaxxVisual","LOCALS")
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("S!DEMIVS","HLDEMI")
+		SetGlobalTimer("IaKangaxxVisual","LOCALS",3)
+END
+
+IF
+	!HPLT(Myself,1)
+	Dead("HLDEMI")
+	See("HLDEMI")
+THEN
+	RESPONSE #100
+		DestroySelf()
+END

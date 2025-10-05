@@ -3011,3 +3011,92 @@ COPY_EXISTING ~MINDAL01.BCS~ ~override~
       ~DisplayString(Myself,0)~
       ~DisplayString(Myself,%StrRef%)~
   END
+
+// Kangaxx the Demilich fight
+
+// Visual effects
+
+COPY ~IATweaks\resources\bam\s!reddhm.bam~ ~override~
+COPY ~IATweaks\resources\vvc\s!reddhm.vvc~ ~override~
+
+// Spells for debuffing Kangaxx
+
+COPY ~IATweaks\resources\spl\s!demipr.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      target = 2
+      power = 0
+      timing = 1
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6272)
+  END
+
+COPY ~IATweaks\resources\spl\s!demivs.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!demim0.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!demim1.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6271)
+  END
+COPY ~IATweaks\resources\spl\s!demim2.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6271)
+  END
+
+// Skulls
+
+COPY ~IATweaks\resources\spl\s!gobinf.spl~ ~override~
+
+COPY ~IATweaks\resources\cre\s!demimg.cre~ ~override~
+  SAY NAME1 @5128
+  SAY NAME2 @5128
+    
+  LPF ~ADD_CRE_EFFECT~ // normal Haste
+    INT_VAR
+      target = 1
+      opcode = 16
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 146
+      target = 1
+      parameter2 = 1
+      timing = 9
+      resist_dispel = 0
+    STR_VAR
+      resource = ~S!GOBINF~
+  END
+
+COMPILE ~IATweaks\scripts\creatures\S!DEMIMG.BAF~
+
+COPY ~IATweaks\resources\cre\s!demipr.cre~ ~override~
+  SAY NAME1 @5129
+  SAY NAME2 @5129
+    
+  LPF ~ADD_CRE_EFFECT~ // normal Haste
+    INT_VAR
+      target = 1
+      opcode = 16
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 146
+      target = 1
+      parameter2 = 1
+      timing = 9
+      resist_dispel = 0
+    STR_VAR
+      resource = ~S!GOBINF~
+  END
+
+COMPILE ~IATweaks\scripts\creatures\S!DEMIPR.BAF~

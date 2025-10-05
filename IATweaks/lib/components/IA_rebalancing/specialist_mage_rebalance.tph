@@ -1007,6 +1007,11 @@ END
 
 // Rework Spellstrike
 
+COPY ~IATweaks\resources\bam\s!spstri.bam~ ~override~
+COPY ~IATweaks\resources\vvc\s!spstr1.vvc~ ~override~
+COPY ~IATweaks\resources\vvc\s!spstr2.vvc~ ~override~
+COPY ~IATweaks\resources\vvc\s!spstr3.vvc~ ~override~
+COPY ~IATweaks\resources\spl\s!spstrz.spl~ ~override~
 COPY ~IATweaks\resources\eff\s!spstr2.eff~ ~override~
 COPY ~IATweaks\resources\eff\s!spstr2.eff~ ~override\s!spstr3.eff~
   WRITE_ASCII 0x30 ~S!SPSTR2~
@@ -1085,7 +1090,21 @@ COPY ~IATweaks\resources\spl\s!spstr2.spl~ ~override\s!spstr6.spl~
       target = 2
   END
 
+COPY ~IATweaks\resources\spl\s!spstra.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!spstrb.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!spstrc.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!spstrd.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!spstre.spl~ ~override~
+COPY ~IATweaks\resources\bam\spwi903D.bam~ ~override~
 COPY ~IATweaks\resources\eff\SPWI903.eff~ ~override~
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = 26314
+  STR_VAR
+    bam_file = ~SPWI903D~
+  RET
+    spellstrike_icon_id = portrait_icon_id
+END
 COPY ~IATweaks\resources\spl\SPWI903.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6246
   LPF ~ALTER_SPELL_EFFECT~
@@ -1093,6 +1112,11 @@ COPY ~IATweaks\resources\spl\SPWI903.spl~ ~override~
       target = 2
       power = 9
       duration_high = 30
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %spellstrike_icon_id%
   END
 
 COPY_EXISTING ~SCRL9L.itm~ ~override~
@@ -2057,6 +2081,28 @@ COPY_EXISTING ~kitlist.2da~ ~override/kitlist.2da~
   SET_2DA_ENTRY_LATER ~s!specialist_mage_desc~ $kitlist_rows("TRANSMUTER") description_col RESOLVE_STR_REF (@5078)
   SET_2DA_ENTRIES_NOW ~s!specialist_mage_desc~ ~colcount~
   PRETTY_PRINT_2DA
+
+///////////////// Items ////////////////////
+
+// Remove immunity to Incendiary Cloud from Lich ring
+
+COPY_EXISTING ~S!LICH.itm~ ~override~
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 206
+    STR_VAR
+      match_resource = ~SPWI810~
+  END
+
+// Create a version of Lich ring that has no elemental resistances
+
+COPY_EXISTING ~S!LICH.itm~ ~override/S!LICH2.itm~
+  PATCH_FOR_EACH res_opcode IN 28 29 85 BEGIN
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = res_opcode
+    END
+  END
 
 ///////////////// Creatures ////////////////////
 
@@ -3063,3 +3109,235 @@ COPY_EXISTING ~RUMAR01.cre~ ~override~
 COMPILE ~IATweaks\scripts\creatures\S!UMAR.BAF~
 
 EXTEND_BOTTOM ~AR1202.BCS~ ~IATweaks/scripts/patches/Umar_move_spawns_to_area.baf~
+
+// Kangaxx the Lich
+
+COPY ~IATweaks\resources\bam\s!gaxcur.bam~ ~override~
+
+OUTER_SET lich_curse_desc_str_ref = RESOLVE_STR_REF (@6273)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %lich_curse_desc_str_ref%
+  STR_VAR
+    bam_file = ~S!GAXCUR~
+  RET
+    lich_curse_icon_id = portrait_icon_id
+END
+COPY ~IATweaks\resources\spl\s!gaxcur.spl~ ~override~
+  SAY NAME1 @6273
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %lich_curse_icon_id%
+  END
+
+COPY_EXISTING ~HLKANG.cre~ ~override~
+  WRITE_BYTE 0x54 6  // Saves
+  WRITE_BYTE 0x55 1 // Saves
+  WRITE_BYTE 0x56 3  // Saves
+  WRITE_BYTE 0x57 5  // Saves
+  WRITE_BYTE 0x58 2 // Saves
+  WRITE_BYTE 0x59 50 // Resist Fire
+  WRITE_BYTE 0x5a 75 // Resist Cold
+  WRITE_BYTE 0x5b 50 // Resist Electricity
+  WRITE_BYTE 0x5c 50 // Resist Acid
+  WRITE_BYTE 0x5f 75 // Resist Magic Cold
+  WRITE_BYTE 0x234 35 // Level 1
+  WRITE_LONG 0x244 0x10000000 // Kit = Necromancer
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Set casting speed bonus
+    INT_VAR
+      target = 1
+      opcode = 189
+      parameter1 = 2
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Immunity to teleport opcode
+    INT_VAR
+      opcode = 101
+      target = 1
+      parameter2 = 124
+      timing = 9
+      resist_dispel = 0
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Immunity to wing buffet
+    INT_VAR
+      opcode = 101
+      target = 1
+      parameter2 = 235
+      timing = 9
+      resist_dispel = 0
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Cold resistance
+    INT_VAR
+      opcode = 28
+      target = 1
+      parameter1 = 25
+      timing = 9
+      resist_dispel = 0
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~S!LICH~
+  END
+
+  ADD_CRE_ITEM ~S!LICH2~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~RRING~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL "SPWI102" #0 "wizard" ( 1 ) // Armor
+  ADD_MEMORIZED_SPELL "SPWI112" #0 "wizard" ( 8 ) // Magic Missile
+  ADD_MEMORIZED_SPELL "SPWI113" #0 "wizard" ( 1 ) // Protection From Evil
+  ADD_MEMORIZED_SPELL "SPWI114" #0 "wizard" ( 1 ) // Shield
+  ADD_MEMORIZED_SPELL "SPWI119" #0 "wizard" ( 3 ) // Larloch's Minor Drain
+
+  ADD_MEMORIZED_SPELL "SPWI209" #1 "wizard" ( 1 ) // Luck
+  ADD_MEMORIZED_SPELL "SPWI211" #1 "wizard" ( 10 ) // Melf's Acid Arrow
+
+  ADD_MEMORIZED_SPELL "SPWI302" #2 "wizard" ( 2 ) // Remove Magic
+  ADD_MEMORIZED_SPELL "SPWI303" #2 "wizard" ( 7 ) // Flame Arrow
+  ADD_MEMORIZED_SPELL "SPWI308" #2 "wizard" ( 3 ) // Lightning Bolt
+  ADD_MEMORIZED_SPELL "SPWI321" #2 "wizard" ( 2 ) // Spell Thrust
+
+  ADD_MEMORIZED_SPELL "SPWI403" #3 "wizard" ( 1 ) // Fire Shield (Blue)
+  ADD_MEMORIZED_SPELL "SPWI404" #3 "wizard" ( 2 ) // Ice Storm
+  ADD_MEMORIZED_SPELL "SPWI408" #3 "wizard" ( 3 ) // Stoneskin
+  ADD_MEMORIZED_SPELL "SPWI412" #3 "wizard" ( 2 ) // Greater Malison
+  ADD_MEMORIZED_SPELL "SPWI418" #3 "wizard" ( 1 ) // Fire Shield (Red)
+  ADD_MEMORIZED_SPELL "SPWI419" #3 "wizard" ( 2 ) // Secret Word
+
+  ADD_MEMORIZED_SPELL "SPWI503" #4 "wizard" ( 3 ) // Cone of Cold
+  ADD_MEMORIZED_SPELL "SPWI510" #4 "wizard" ( 3 ) // Spell Immunity
+  ADD_MEMORIZED_SPELL "SPWI513" #4 "wizard" ( 5 ) // Breach
+  ADD_MEMORIZED_SPELL "SPWI514" #4 "wizard" ( 3 ) // Lower Resistance
+  ADD_MEMORIZED_SPELL "SPWI522" #4 "wizard" ( 1 ) // Soul Armor
+  ADD_MEMORIZED_SPELL "SPWI523" #4 "wizard" ( 3 ) // Sunfire
+
+  ADD_MEMORIZED_SPELL "SPWI602" #5 "wizard" ( 1 ) // Globe of Invulnerability
+  ADD_MEMORIZED_SPELL "SPWI605" #5 "wizard" ( 3 ) // Death Spell
+  ADD_MEMORIZED_SPELL "SPWI611" #5 "wizard" ( 1 ) // Protection From Magical Weapons
+  ADD_MEMORIZED_SPELL "SPWI612" #5 "wizard" ( 1 ) // Power Word: Silence
+  ADD_MEMORIZED_SPELL "SPWI615" #5 "wizard" ( 5 ) // Chain Lightning
+
+  ADD_MEMORIZED_SPELL "SPWI701" #6 "wizard" ( 2 ) // Spell Turning
+  ADD_MEMORIZED_SPELL "SPWI704" #6 "wizard" ( 6 ) // Ruby Ray of Reversal
+  ADD_MEMORIZED_SPELL "SPWI714" #6 "wizard" ( 2 ) // Prismatic Spray
+  ADD_MEMORIZED_SPELL "SPWI715" #6 "wizard" ( 2 ) // Power Word, Stun
+
+  ADD_MEMORIZED_SPELL "SPWI803" #7 "wizard" ( 1 ) // Protection from Energy
+  ADD_MEMORIZED_SPELL "SPWI807" #7 "wizard" ( 1 ) // Foreknowledge
+  ADD_MEMORIZED_SPELL "SPWI808" #7 "wizard" ( 1 ) // Improved Mantle
+  ADD_MEMORIZED_SPELL "SPWI812" #7 "wizard" ( 3 ) // Abi-Dalzim's Horrid Wilting
+  ADD_MEMORIZED_SPELL "SPWI813" #7 "wizard" ( 1 ) // Maze
+
+  ADD_MEMORIZED_SPELL "SPWI903" #8 "wizard" ( 2 ) // Spellstrike
+  ADD_MEMORIZED_SPELL "SPWI912" #8 "wizard" ( 1 ) // Power Word, Kill
+  ADD_MEMORIZED_SPELL "SPWI918" #8 "wizard" ( 5 ) // Bigby's Crushing Hand
+  ADD_MEMORIZED_SPELL "SPWI919" #8 "wizard" ( 2 ) // Wish
+  ADD_MEMORIZED_SPELL "SPWI921" #8 "wizard" ( 4 ) // Improved Alacrity
+  ADD_MEMORIZED_SPELL "SPWI922" #8 "wizard" ( 2 ) // Dragon's Breath
+
+COMPILE ~IATweaks\scripts\creatures\S!HLKANG.BAF~
+
+// Kangaxx Demilich
+
+COPY_EXISTING ~HLDEMI.cre~ ~override~
+  WRITE_BYTE 0x54 0  // Saves
+  WRITE_BYTE 0x55 0 // Saves
+  WRITE_BYTE 0x56 0  // Saves
+  WRITE_BYTE 0x57 0  // Saves
+  WRITE_BYTE 0x58 0 // Saves
+  WRITE_BYTE 0x60 98 // Resist Slashing
+  WRITE_BYTE 0x61 98 // Resist Crushing
+  WRITE_BYTE 0x62 98 // Resist Piercing
+  WRITE_BYTE 0x234 35 // Level 1
+  WRITE_LONG 0x244 0x10000000 // Kit = Necromancer
+  WRITE_ASCII 0x250 ~S!HLDEMI~ #8
+
+  LPF ~ADD_CRE_EFFECT~ // Permanent casting time of 2 or less
+    INT_VAR
+      opcode = 146
+      target = 1
+      parameter2 = 1
+      timing = 9
+      resist_dispel = 0
+    STR_VAR
+      resource = ~S!DEMIM0~
+      effsource = ~S!DEMIM0~
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Permanent Alacrity
+    INT_VAR
+      target = 1
+      opcode = 188
+      parameter1 = 0
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Immunity to teleport opcode
+    INT_VAR
+      opcode = 101
+      target = 1
+      parameter2 = 124
+      timing = 9
+      resist_dispel = 0
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Immunity to wing buffet
+    INT_VAR
+      opcode = 101
+      target = 1
+      parameter2 = 235
+      timing = 9
+      resist_dispel = 0
+  END
+
+// COMPILE ~IATweaks\scripts\creatures\S!HLDEMI.BAF~

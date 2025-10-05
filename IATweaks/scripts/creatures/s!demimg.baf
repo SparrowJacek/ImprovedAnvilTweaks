@@ -1,0 +1,44 @@
+IF
+	Die()
+	!Dead("HLDEMI")  // Kangaxx the Demilich
+	Global("IaKangaxxMagicWeakened","AR0331",0)  // House Cellar (Kangaxx)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaKangaxxMagicWeakened","AR0331",1)  // House Cellar (Kangaxx)
+		CreateVisualEffectObject("S!REDDHM","HLDEMI")  // Kangaxx the Demilich
+		ReallyForceSpellDeadRES("S!DEMIM1","HLDEMI")  // Casting abilities weakened
+END
+
+IF
+	Die()
+	!Dead("HLDEMI")  // Kangaxx the Demilich
+	Global("IaKangaxxMagicWeakened","AR0331",1)  // House Cellar (Kangaxx)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaKangaxxMagicWeakened","AR0331",1)  // House Cellar (Kangaxx)
+		CreateVisualEffectObject("S!REDDHM","HLDEMI")  // Kangaxx the Demilich
+		ReallyForceSpellDeadRES("S!DEMIM2","HLDEMI")  // Casting abilities weakened
+END
+
+IF
+	!HPLT(Myself,1)
+	AreaCheck("AR0331")  // House Cellar (Kangaxx)
+	InMyArea("HLDEMI")  // Kangaxx the Demilich
+	!Dead("HLDEMI")  // Kangaxx the Demilich
+	See("HLDEMI")  // Kangaxx the Demilich
+	!GlobalTimerNotExpired("IaKangaxxVisual","LOCALS")
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("S!DEMIVS","HLDEMI")  // No such index
+		SetGlobalTimer("IaKangaxxVisual","LOCALS",3)
+END
+
+IF
+	!HPLT(Myself,1)
+	Dead("HLDEMI")  // Kangaxx the Demilich
+	See("HLDEMI")  // Kangaxx the Demilich
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+

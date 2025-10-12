@@ -2,6 +2,42 @@ PRINT @5093
 
 SILENT
 
+// Increase projectile speed for some AoE:
+COPY_EXISTING ~SPKLARBK.pro~ ~override~
+			  ~SPARBKNP.pro~ ~override~
+			  ~SPARBKPA.pro~ ~override~
+			  ~SPKLARBL.pro~ ~override~
+			  ~SPARBLNP.pro~ ~override~
+			  ~SPARBLPA.pro~ ~override~
+			  ~SPKLARCH.pro~ ~override~
+			  ~SPARCHNP.pro~ ~override~
+			  ~SPARCHPA.pro~ ~override~
+			  ~SPKLARGO.pro~ ~override~
+			  ~SPARGONP.pro~ ~override~
+			  ~SPARGOPA.pro~ ~override~
+			  ~SPKLARGR.pro~ ~override~
+			  ~SPARGRNP.pro~ ~override~
+			  ~SPARGRPA.pro~ ~override~
+			  ~SPKLARIC.pro~ ~override~
+			  ~SPARICNP.pro~ ~override~
+			  ~SPARICPA.pro~ ~override~
+			  ~SPKLARMA.pro~ ~override~
+			  ~SPARMANP.pro~ ~override~
+			  ~SPARMAPA.pro~ ~override~
+			  ~SPKLAROR.pro~ ~override~
+			  ~SPARORNP.pro~ ~override~
+			  ~SPARORPA.pro~ ~override~
+			  ~SPKLARPU.pro~ ~override~
+			  ~SPARPUNP.pro~ ~override~
+			  ~SPARPUPA.pro~ ~override~
+			  ~SPKLARRE.pro~ ~override~
+			  ~SPARRENP.pro~ ~override~
+			  ~SPARREPA.pro~ ~override~
+			  ~SPKLARST.pro~ ~override~
+			  ~SPARSTNP.pro~ ~override~
+			  ~SPARSTPA.pro~ ~override~
+  WRITE_SHORT 0xa THIS + 10 
+
 INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
 
 // Add condition for checking if magic damage resistance is less than n

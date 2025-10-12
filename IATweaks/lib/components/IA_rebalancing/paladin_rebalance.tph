@@ -110,3 +110,29 @@ LAF ~S!ADD_HLA_ROW~
     num_allowed = ~1~
 END
 
+// Grant Aura of Courage to Paladins and Cavaliers
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!aocour.pro~
+COPY ~IATweaks\resources\eff\s!courag.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!nofear.SPL~ ~override~
+COPY ~IATweaks\resources\spl\s!courag.SPL~ ~override~
+COPY ~IATweaks\resources\spl\s!aocour.SPL~ ~override~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      projectile = %s!aocour%
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6275)
+  END
+
+ACTION_FOR_EACH paladin_kit_clab IN ~CLABPA01.2da~ ~CLABPA02.2da~ BEGIN
+  LAF ~S!ADD_CLAB_ROW~
+    STR_VAR
+      filename = ~%paladin_kit_clab%~
+      row_desc = ~AURA_OF_COURAGE~
+      level1 = ~AP_S!NOFEAR~
+  END
+END
+

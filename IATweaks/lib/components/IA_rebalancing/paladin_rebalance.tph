@@ -79,3 +79,34 @@ ACTION_FOR_EACH paladin_kit_clab IN ~CLABPA01.2da~ ~CLABPA02.2da~ ~CLABPA04.2da~
   END
 END
 
+// Maka an ability version of Heavenly Shield
+
+COPY_EXISTING ~sppr617.spl~ ~override/s!heashl.spl~
+  SAY UNIDENTIFIED_DESC @6274
+  WRITE_SHORT 0x1c 4
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      location = 4
+  END
+
+// Grant that Heavenly Shield to Paladins
+
+ACTION_FOR_EACH paladin_kit_clab IN ~CLABPA01.2da~ ~CLABPA02.2da~ ~CLABPA04.2da~ ~CLABPA06.2da~ BEGIN
+  LAF ~S!ADD_CLAB_ROW~
+    STR_VAR
+      filename = ~%paladin_kit_clab%~
+      row_desc = ~HEAVENLY_SHIELD~
+      level12 = ~GA_S!HEASHL~
+  END
+END
+
+// Grant Heavenly Shield as a HLA once
+
+LAF ~S!ADD_HLA_ROW~
+  STR_VAR
+    filename = ~LUPA0.2DA~
+    row_desc = ~HEAVENLY_SHIELD~
+    ability = ~GA_S!HEASHL~
+    num_allowed = ~1~
+END
+

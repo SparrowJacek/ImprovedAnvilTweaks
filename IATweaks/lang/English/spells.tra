@@ -1992,3 +1992,8 @@ The casting of this spell opens a channel between the caster's plane and the Neg
 
 @6273 = ~Curse of the Lich~
 
+@6274 = ~Heavenly Shield
+
+By casting this spell the Paladin imbues <PRO_HISHER> shield with divine magic, making it feel lighter in <PRO_HISHER> hand. This allows the caster to use the shield offensively, by searching for openings in enemy's defences and striking with the shield when the time is right. The better the caster's ability to fight using a shield, the greater the benefits of this spell.
+
+Each first hit per round for the next turn deals additional crushing damage if the caster is using a shield. The base value is 2d3 plus additional 2d4 per each point in Sword and Shield style. Each strike is considered as highly magical, even with a non-magical shield, which allows for hitting creatures of magical nature, however spells like Protection from Magical Weapons can block the effects of this spell.~

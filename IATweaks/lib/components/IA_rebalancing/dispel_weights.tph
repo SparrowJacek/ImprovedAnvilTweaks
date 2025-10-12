@@ -68,6 +68,7 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY spell_to_weight_map BEGIN
 	"sppr603"  => 1
 	"sppr613"  => 1
 	"sppr617"  => 1
+	"s!heashl" => 1
 	"sppr650"  => 2
 	"sppr711"  => 3
 	"sppr733"  => 3
@@ -87,6 +88,7 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY spell_to_weight_map BEGIN
 	"spini33"  => 5
 	"spini32"  => 1
 	"ohtyr1"   => 2
+	"s!heashl" => 1
 END
 
 ACTION_DEFINE_ASSOCIATIVE_ARRAY spell_to_opcode_map BEGIN
@@ -152,6 +154,7 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY spell_to_opcode_map BEGIN
 	"sppr603"  => 142
 	"sppr613"  => 156
 	"sppr617"  => 142
+	"s!heashl" => 142
 	"sppr650"  => 325
 	"sppr711"  => 142
 	"sppr733"  => 142
@@ -236,6 +239,7 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY spell_to_type_map BEGIN
 	"sppr603"  => "dispel/combat"
 	"sppr613"  => "dispel/combat"
 	"sppr617"  => "dispel"
+	"s!heashl" => "dispel"
 	"sppr650"  => "dispel/specific"
 	"sppr711"  => "dispel"
 	"sppr733"  => "dispel"

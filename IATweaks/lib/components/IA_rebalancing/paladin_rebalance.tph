@@ -37,9 +37,10 @@ COPY_EXISTING ~weapprof.2da~  ~override/weapprof.2da~
   SET_2DA_ENTRIES_NOW ~_#_#_#weapprof~ ~colcount~
   PRETTY_PRINT_2DA
 
+// Improve Lay on Hands progression
+
 COPY_EXISTING ~spcl211.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6229
-  // Extend duration by 50%
   GET_OFFSET_ARRAY ab_array SPL_V10_HEADERS
   PHP_EACH ab_array AS int => ab_off BEGIN
     GET_OFFSET_ARRAY2 fx_array ab_off SPL_V10_HEAD_EFFECTS
@@ -51,3 +52,16 @@ COPY_EXISTING ~spcl211.spl~ ~override~
     END
   END
 BUT_ONLY
+
+COPY ~IATweaks\resources\2da\layhands.2da~ ~override~
+
+// Grant additional uses of Lay on Hands to Paladin
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABPA01.2da~
+    row_desc = ~LAY_ON_HANDS~
+    level15 = ~GA_SPCL211~
+    level30 = ~GA_SPCL211~
+END
+

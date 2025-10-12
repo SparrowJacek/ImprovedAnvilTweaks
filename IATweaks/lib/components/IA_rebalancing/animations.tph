@@ -344,3 +344,8 @@ ACTION_IF (NOT FILE_EXISTS_IN_GAME ~mobaa1.BAM~) BEGIN
 	COPY ~IATweaks\resources\bam\animations\orcus~ ~override~
 END
 
+// Evil Treant animations and sounds
+
+COPY ~IATweaks\resources\bam\animations\treant~ ~override~
+
+COPY ~IATweaks\resources\wav\sod_treant~ ~override~

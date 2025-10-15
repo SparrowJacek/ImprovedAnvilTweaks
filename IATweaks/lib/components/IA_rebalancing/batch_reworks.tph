@@ -101,3 +101,83 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
   END
 BUT_ONLY
 
+// Regen turned into spells
+
+COPY ~IATweaks\resources\spl\s!regen1.spl~ ~override~
+ACTION_FOR_EACH regen_num IN ~2~ ~3~ ~4~ ~5~ ~6~ ~7~ ~8~ ~9~ BEGIN
+  COPY_EXISTING ~s!regen1.spl~ ~override/s!regen%regen_num%.spl~
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 17
+        parameter1 = %regen_num%
+    END
+END
+
+COPY ~IATweaks\resources\eff\s!regen1.eff~ ~override~
+ACTION_FOR_EACH regen_num IN ~2~ ~3~ ~4~ ~5~ ~6~ ~7~ ~8~ ~9~ BEGIN
+  COPY_EXISTING ~s!regen1.eff~ ~override/s!regen%regen_num%.eff~
+    WRITE_ASCIIE 0x30 ~S!REGEN%regen_num%~ #8
+END
+
+COPY_EXISTING_REGEXP GLOB ~.*\.SPL~ ~override~
+  GET_OFFSET_ARRAY ab_array SPL_V10_HEADERS
+  PHP_EACH ab_array AS int => ab_off BEGIN
+    GET_OFFSET_ARRAY2 fx_array ab_off SPL_V10_HEAD_EFFECTS
+    PHP_EACH fx_array AS int => fx_off BEGIN
+      READ_SHORT (fx_off + 0x00) opcode
+      READ_LONG (fx_off + 0x08) param2
+      PATCH_IF ((opcode = 98) AND (param2 != 1) AND (param2 < 4)) BEGIN
+        READ_LONG (fx_off + 0x04) param1
+        WRITE_SHORT (fx_off + 0x00) 272
+        PATCH_IF ((param2 = 0) OR (param2 = 3)) BEGIN
+          WRITE_ASCII (fx_off + 0x14) ~S!REGEN1~ #8
+        END
+        PATCH_IF (param2 = 2) BEGIN
+          WRITE_LONG (fx_off + 0x04) 1
+          WRITE_ASCIIE (fx_off + 0x14) ~S!REGEN%param1%~ #8
+        END
+      END
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
+  GET_OFFSET_ARRAY ab_array ITM_V10_HEADERS
+  PHP_EACH ab_array AS int => ab_off BEGIN
+    GET_OFFSET_ARRAY2 fx_array ab_off ITM_V10_HEAD_EFFECTS
+    PHP_EACH fx_array AS int => fx_off BEGIN
+      READ_SHORT (fx_off + 0x00) opcode
+      READ_LONG (fx_off + 0x08) param2
+      PATCH_IF ((opcode = 98) AND (param2 != 1) AND (param2 < 4)) BEGIN
+        READ_LONG (fx_off + 0x04) param1
+        WRITE_SHORT (fx_off + 0x00) 272
+        PATCH_IF ((param2 = 0) OR (param2 = 3)) BEGIN
+          WRITE_ASCII (fx_off + 0x14) ~S!REGEN1~ #8
+        END
+        PATCH_IF (param2 = 2) BEGIN
+          WRITE_LONG (fx_off + 0x04) 1
+          WRITE_ASCIIE (fx_off + 0x14) ~S!REGEN%param1%~ #8
+        END
+      END
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~.+\.cre~ ~override~
+  GET_OFFSET_ARRAY fx_array CRE_V10_EFFECTS
+  PHP_EACH fx_array AS int => fx_off BEGIN
+    READ_LONG (fx_off + 0x08) opcode
+    READ_LONG (fx_off + 0x18) param2
+    PATCH_IF ((opcode = 98) AND (param2 != 1) AND (param2 < 4)) BEGIN
+      READ_LONG (fx_off + 0x14) param1
+      WRITE_LONG (fx_off + 0x08) 272
+      PATCH_IF ((param2 = 0) OR (param2 = 3)) BEGIN
+        WRITE_ASCII (fx_off + 0x28) ~S!REGEN1~ #8
+      END
+      PATCH_IF (param2 = 2) BEGIN
+        WRITE_LONG (fx_off + 0x14) 1
+        WRITE_ASCIIE (fx_off + 0x28) ~S!REGEN%param1%~ #8
+      END
+    END
+  END
+BUT_ONLY

@@ -597,6 +597,9 @@ END
 COPY_EXISTING ~SPWI915.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6251
 
+COPY_EXISTING ~SCRL9X.itm~ ~override~
+  SAY IDENTIFIED_DESC @6251
+
 COPY_EXISTING ~BLAKBLAD.itm~ ~override~
   LPF ~DELETE_EFFECT~
     INT_VAR
@@ -612,6 +615,26 @@ COPY_EXISTING ~BLAKBLAD.itm~ ~override~
       dicesize = 6
       dicenumber = 4
   END
+
+// Absolute Immunity
+
+COPY_EXISTING ~SPWI907.spl~ ~overide~
+  SAY UNIDENTIFIED_DESC @6276
+  PATCH_FOR_EACH physical_res_opcode IN 86 87 88 89 BEGIN
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 120
+        opcode = physical_res_opcode
+        multi_match = 1
+        parameter1 = 200
+        parameter2 = 0
+      STR_VAR
+        insert = ~above~
+    END
+  END
+
+COPY_EXISTING ~SCRL9P.itm~ ~override~
+  SAY IDENTIFIED_DESC @6276
 
 // Change Energy Blades icon to that of Priest version
 
@@ -3379,4 +3402,4 @@ COPY_EXISTING ~HLDEMI.cre~ ~override~
       resist_dispel = 0
   END
 
-// COMPILE ~IATweaks\scripts\creatures\S!HLDEMI.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!HLDEMI.BAF~

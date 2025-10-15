@@ -90,6 +90,10 @@ COPY ~IATweaks\resources\spl\s!anfort.spl~ ~override~
     INT_VAR
       duration_high = 120
   END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      resist_dispel = 3
+  END
 COPY ~IATweaks\resources\spl\s!anifor.spl~ ~override~
   SAY NAME1 @6087
   SAY UNIDENTIFIED_DESC @6088

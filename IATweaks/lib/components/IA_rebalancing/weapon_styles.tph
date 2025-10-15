@@ -2,6 +2,8 @@ PRINT @5082
 
 SILENT
 
+INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
+
 // change weapon style bonus descriptions
 COPY_EXISTING ~weapprof.2da~  ~override/weapprof.2da~
   COUNT_2DA_COLS ~colcount~
@@ -33,3 +35,89 @@ COPY_EXISTING ~stylbonu.2da~  ~override/stylbonu.2da~
   // give additional damage to ** in Two-handed Weapon
   SET_2DA_ENTRY 8 1 ~colcount~ ~3~
   PRETTY_PRINT_2DA
+
+// add bonuses for *** in different styles
+COPY_EXISTING ~stylbonu.2da~  ~override/stylbonu.2da~
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SWORDANDSHIELD-3    0                0                0                0                -3               -3               0                0~
+  INSERT_2DA_ROW ~rowcount~ + 1 ~colcount~ ~TWOHANDED-3     3                0                0                0                0                0                -4               1~
+  INSERT_2DA_ROW ~rowcount~ + 2 ~colcount~ ~SINGLEWEAPON-3  2                0                -2               0                -2               0                -2               2~
+  PRETTY_PRINT_2DA
+
+// Add needed splprot entries
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~SHIELD_EQUIPPED~
+    stat                  = ~0x112~
+    value                 = ~%shield_equipped_state%~
+    relation              = ~1~
+  RET
+    is_shield_equipped = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~SWORD_SHIELD_STYLE=n~
+    stat                  = ~112~
+    value                 = ~-1~
+    relation              = ~1~
+  RET
+    sw_sh_style = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~2H_WEAPON_STYLE<n~
+    stat                  = ~111~
+    value                 = ~-1~
+    relation              = ~2~
+  RET
+    two_handed_style = new_line_number
+END
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~SINGLE_WEAPON_STYLE<n~
+    stat                  = ~113~
+    value                 = ~-1~
+    relation              = ~2~
+  RET
+    single_weapon_style = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~TRACKING_NUM_WEAPONS>=n~
+    stat                  = ~33~
+    value                 = ~-1~
+    relation              = ~4~
+  RET
+    tracking_num_weapons = new_line_number
+END
+
+COPY ~IATweaks\resources\eff\s!+05apr.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!swpapr.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!countw.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!+05apr.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      match_parameter1 = 1
+      parameter1 = 0
+      parameter2 = is_shield_equipped
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      match_parameter1 = 2
+      parameter1 = 2
+      parameter2 = tracking_num_weapons
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      match_parameter1 = 3
+      parameter1 = 2
+      parameter2 = single_weapon_style
+  END

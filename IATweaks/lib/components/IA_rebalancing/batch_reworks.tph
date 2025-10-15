@@ -1,0 +1,103 @@
+
+SILENT
+
+INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
+
+// Patch all shields to set shield_equipped state when worn
+
+COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
+  READ_BYTE 0x18 flags_1st_byte
+  READ_SHORT 0x1c item_category
+  SET is_2h = flags_1st_byte BAND 0x02
+  GET_OFFSET_ARRAY ab_array ITM_V10_HEADERS
+  SET num_melee = 0
+  SET num_ranged = 0
+  SET num_launcher = 0
+  PHP_EACH ab_array AS int => ab_off BEGIN
+    READ_BYTE (ab_off + 0x00) attack_type
+    PATCH_IF (attack_type = 1) BEGIN num_melee += 1 END
+    PATCH_IF (attack_type = 2) BEGIN num_ranged += 1 END
+    PATCH_IF (attack_type = 4) BEGIN num_launcher += 1 END
+  END
+  PATCH_IF (item_category = 12)
+    THEN BEGIN
+      LPF ~ADD_ITEM_EQEFFECT~
+        INT_VAR
+          opcode = 328
+          target = 1
+          parameter2 = %shield_equipped_state%
+          timing = 2  
+          special = 1  
+      END
+      LPF ~ADD_ITEM_EQEFFECT~
+        INT_VAR
+          opcode = 321
+          target = 1
+          timing = 0
+        STR_VAR
+          resource = ~S!+05APR~
+      END
+  END
+  // Grant 0,5APR to 2h weapons if 3 points in 2h weapon style
+  PATCH_IF((num_melee > 0) AND (num_ranged = 0) AND (num_launcher = 0) AND (is_2h > 0)) BEGIN
+    LPF ~ADD_ITEM_EQEFFECT~
+      INT_VAR
+        insert_point = ~-1~
+        opcode = 318
+        target = 1
+        parameter1 = 2
+        parameter2 = two_handed_style
+        timing = 10
+        duration = 1
+      STR_VAR
+        resource = EVAL ~%SOURCE_RES%~
+    END
+    LPF ~ADD_ITEM_EQEFFECT~
+      INT_VAR
+        insert_point = ~-1~
+        opcode = 177
+        target = 1
+        parameter1 = 0
+        parameter2 = 2
+        timing = 2
+      STR_VAR
+        resource = ~S!+05APR~
+    END
+  END
+  // Grant 0,5APR to 1 weapons if 3 points in single weapon style
+  PATCH_IF((num_melee > 0) AND (num_ranged = 0) AND (num_launcher = 0) AND (is_2h = 0)) BEGIN
+    LPF ~ADD_ITEM_EQEFFECT~
+      INT_VAR
+        insert_point = ~-1~
+        opcode = 177
+        target = 1
+        parameter1 = 0
+        parameter2 = 2
+        timing = 2
+      STR_VAR
+        resource = ~S!COUNTW~
+    END
+    LPF ~ADD_ITEM_EQEFFECT~
+      INT_VAR
+        insert_point = ~-1~
+        opcode = 272
+        target = 1
+        parameter1 = 1
+        parameter2 = 0
+        timing = 2
+      STR_VAR
+        resource = ~S!SWPAPR~
+    END
+  END
+  PATCH_IF((num_melee > 0) OR (num_ranged > 0) OR (num_launcher > 0)) BEGIN
+    LPF ~ADD_ITEM_EQEFFECT~
+      INT_VAR
+        opcode = 321
+        target = 1
+        timing = 0
+      STR_VAR
+        resource = ~S!+05APR~
+    END
+  END
+BUT_ONLY
+

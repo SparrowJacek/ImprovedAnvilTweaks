@@ -136,3 +136,44 @@ ACTION_FOR_EACH paladin_kit_clab IN ~CLABPA01.2da~ ~CLABPA02.2da~ BEGIN
   END
 END
 
+// Remove casting restrictions from Inquisitor
+
+COPY_EXISTING ~SPCL234.spl~ ~override~
+  LPF ~DELETE_EFFECT~ END
+
+COPY_EXISTING ~SPCL234D.spl~ ~override~
+  LPF ~DELETE_EFFECT~ END
+
+// Remove 4th level spells from Inquisitor
+
+COPY ~IATweaks\resources\spl\s!-pr4lv.spl~ ~override~
+
+OUTER_FOR (k = 0; k <= 9; ++k) BEGIN
+  LAF ~S!ADD_CLAB_ROW~
+    STR_VAR
+      filename = ~CLABPA03.2da~
+      row_desc = ~NO_4TH_LEVEL_SPELLS~
+      level15 = ~AP_S!-PR4LV~
+  END
+END
+
+// Move Inquisitor Usability Flags
+
+LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~kitlist.2da~
+  RET_ARRAY
+    kitlist_cols = 2da_columns_to_ids_mapping
+END
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~kitlist.2da~
+  RET_ARRAY
+    kitlist_rows = 2da_rows_to_ids_mapping
+END
+
+COPY_EXISTING ~kitlist.2da~ ~override/kitlist.2da~
+  COUNT_2DA_COLS ~colcount~
+  SET_2DA_ENTRY $kitlist_rows("INQUISITOR") $kitlist_cols("UNUSABLE") ~colcount~ ~0x00000020~ // Lack of spells is hardcoded to usability flags
+

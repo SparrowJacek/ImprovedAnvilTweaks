@@ -322,6 +322,62 @@ COPY_EXISTING ~spcl221.spl~ ~override~
       resource = ~S!CAVAL2~
   END
 
+// Guardian's Stand
+
+COPY ~IATweaks\resources\spl\s!caval3.spl~ ~override~
+  SAY NAME1 @6277
+  SAY UNIDENTIFIED_DESC @6279
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      parameter1 = shield_equipped_state
+  END
+ADD_PROJECTILE ~IATweaks\resources\pro\s!aly4ft.pro~
+
+COPY ~IATweaks\resources\bam\s!caval4.bam~ ~override~
+OUTER_SET guardian_stand_desc_str_ref = RESOLVE_STR_REF (@6277)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %guardian_stand_desc_str_ref%
+  STR_VAR
+    bam_file = ~S!CAVAL4~
+  RET
+    guardian_stand_icon_id = portrait_icon_id
+END
+
+COPY ~IATweaks\resources\spl\s!caval4.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      header = 0
+      projectile = %s!aly4ft%
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %guardian_stand_icon_id%
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      match_parameter1 = 0
+      parameter1 = shield_equipped_state
+  END
+
+COPY ~IATweaks\resources\bam\s!caval5.bam~ ~override~
+COPY ~IATweaks\resources\spl\s!caval5.spl~ ~override~
+  SAY NAME1 @6278
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABPA02.2da~
+    row_desc = ~GUARDIAN_STAND~
+    level10 = ~GA_S!CAVAL3~
+    level20 = ~GA_S!CAVAL3~
+    level30 = ~GA_S!CAVAL3~
+    level40 = ~GA_S!CAVAL3~
+END
+
+COPY ~IATweaks\resources\spl\s!caval6.spl~ ~override~
 // Remove casting restrictions from Inquisitor
 
 COPY_EXISTING ~SPCL234.spl~ ~override~

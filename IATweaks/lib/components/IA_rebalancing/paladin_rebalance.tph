@@ -191,7 +191,7 @@ END
 COPY ~IATweaks\resources\eff\s!palcrt.eff~ ~override~
 COPY ~IATweaks\resources\spl\s!palcrt.spl~ ~override~
 
-ACTION_FOR_EACH paladin_kit_clab IN ~CLABPA01.2da~ ~CLABPA02.2da~ ~CLABPA04.2da~ BEGIN
+ACTION_FOR_EACH paladin_kit_clab IN ~CLABPA01.2da~ ~CLABPA02.2da~ ~CLABPA03.2da~ ~CLABPA04.2da~ BEGIN
   LAF ~S!ADD_CLAB_ROW~
     STR_VAR
       filename = ~%paladin_kit_clab%~

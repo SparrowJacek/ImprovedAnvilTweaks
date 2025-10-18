@@ -2,6 +2,8 @@ PRINT @5107
 
 SILENT
 
+INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
+
 // Improve Keldorn
 
 ACTION_FOR_EACH keldorn_SoA_file IN ~KELDOR8~ ~KELDOR9~ ~KELDOR10~ ~KELDOR12~ BEGIN
@@ -11,6 +13,59 @@ ACTION_FOR_EACH keldorn_SoA_file IN ~KELDOR8~ ~KELDOR9~ ~KELDOR10~ ~KELDOR12~ BE
     WRITE_BYTE  0x23c 17 // dexterity
 END
 
+// Remove Smite, Deathblow and Greater Deathblow from Paladin HLAs
+
+  COPY_EXISTING ~LUPA0.2da~ ~override~
+    COUNT_2DA_COLS ~colcount~
+    COUNT_2DA_ROWS ~colcount~ ~rowcount~
+    SET smite_row = (0 - 1)
+    SET deathblow_row = (0 - 1)
+    SET greater_deathblow_row = (0 - 1)
+    FOR (i = 0; i < ~rowcount~; ++i) BEGIN
+      READ_2DA_ENTRY i 1 %colcount% current_val
+      PATCH_IF (~%current_val%~ STR_EQ ~GA_SPCL903~) BEGIN
+        SET greater_deathblow_row = i
+      END
+    END
+    PATCH_IF (greater_deathblow_row != (0 - 1)) BEGIN
+      REMOVE_2DA_ROW greater_deathblow_row ~colcount~
+    END
+    BUT_ONLY
+
+  COPY_EXISTING ~LUPA0.2da~ ~override~
+    COUNT_2DA_COLS ~colcount~
+    COUNT_2DA_ROWS ~colcount~ ~rowcount~
+    SET smite_row = (0 - 1)
+    SET deathblow_row = (0 - 1)
+    SET greater_deathblow_row = (0 - 1)
+    FOR (i = 0; i < ~rowcount~; ++i) BEGIN
+      READ_2DA_ENTRY i 1 %colcount% current_val
+      PATCH_IF (~%current_val%~ STR_EQ ~GA_SPCL909~) BEGIN
+        SET smite_row = i
+      END
+    END
+    PATCH_IF (smite_row != (0 - 1)) BEGIN
+      REMOVE_2DA_ROW smite_row ~colcount~
+    END
+    BUT_ONLY
+
+  COPY_EXISTING ~LUPA0.2da~ ~override~
+    COUNT_2DA_COLS ~colcount~
+    COUNT_2DA_ROWS ~colcount~ ~rowcount~
+    SET smite_row = (0 - 1)
+    SET deathblow_row = (0 - 1)
+    SET greater_deathblow_row = (0 - 1)
+    FOR (i = 0; i < ~rowcount~; ++i) BEGIN
+      READ_2DA_ENTRY i 1 %colcount% current_val
+      PATCH_IF (~%current_val%~ STR_EQ ~GA_SPCL902~) BEGIN
+        SET deathblow_row = i
+      END
+    END
+    PATCH_IF (deathblow_row != (0 - 1)) BEGIN
+      REMOVE_2DA_ROW deathblow_row ~colcount~
+    END
+    BUT_ONLY
+  
 // Enable *** in Sword and Shield for Paladins
 
 LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~

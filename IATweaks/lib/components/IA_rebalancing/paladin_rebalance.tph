@@ -66,6 +66,43 @@ END
     END
     BUT_ONLY
   
+// Remove Protection from Evil from all Paladins
+
+ACTION_FOR_EACH paladin_kit_clab IN ~CLABPA01.2da~ ~CLABPA02.2da~ ~CLABPA03.2da~ ~CLABPA04.2da~ BEGIN
+  COPY_EXISTING ~%paladin_kit_clab%~ ~override~
+    REPLACE_EVALUATE
+      ~GA_SPCL213~
+      BEGIN
+      END
+      ~****~
+    PRETTY_PRINT_2DA
+END
+
+// Rework current Protection from Evil to an AoE version
+
+COPY_EXISTING ~SPPR408.spl~ ~override/SPCL213.spl~
+  SAY UNIDENTIFIED_DESC @6283
+  WRITE_SHORT 0x1c 4
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      speed = 2
+      location = 4
+  END
+
+// Grant this new Prot from Evil for evey 10 levels
+
+ACTION_FOR_EACH paladin_kit_clab IN ~CLABPA01.2da~ ~CLABPA02.2da~ ~CLABPA03.2da~ ~CLABPA04.2da~ BEGIN
+  LAF ~S!ADD_CLAB_ROW~
+    STR_VAR
+      filename = ~%paladin_kit_clab%~
+      row_desc = ~PROT_FROM_EVIL~
+      level5 = ~GA_SPCL213~
+      level15 = ~GA_SPCL213~
+      level25 = ~GA_SPCL213~
+      level35 = ~GA_SPCL213~
+  END
+END
+
 // Enable *** in Sword and Shield for Paladins
 
 LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~

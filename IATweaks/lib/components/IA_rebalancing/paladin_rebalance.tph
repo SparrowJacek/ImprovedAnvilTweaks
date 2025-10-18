@@ -286,6 +286,42 @@ LAF ~S!ADD_HLA_ROW~
     num_allowed = ~1~
 END
 
+// Remove bonuses to hit/damage from Cavaliers, grant them ability to prevent regeneration
+
+COPY ~IATweaks\resources\spl\s!norege.spl~ ~override~
+COPY ~IATweaks\resources\eff\s!norege.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!caval1.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!caval2.eff~ ~override~
+
+COPY_EXISTING ~spcl221.spl~ ~override~
+  PATCH_FOR_EACH bonus_vs_creature IN ~dragdam3~ ~draghit~ ~demhit3~ BEGIN
+    LPF ~DELETE_EFFECT~
+      STR_VAR
+        match_resource = EVAL ~%bonus_vs_creature%~
+    END
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 177
+      multi_match = 1
+      opcode = 248
+      parameter1 = 0
+      parameter2 = 0
+    STR_VAR
+      match_resource = ~DEMDAM3~
+      resource = ~S!CAVAL1~
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 248
+      multi_match = 1
+      parameter1 = 0
+      parameter2 = 0
+    STR_VAR
+      match_resource = ~S!CAVAL1~
+      resource = ~S!CAVAL2~
+  END
+
 // Remove casting restrictions from Inquisitor
 
 COPY_EXISTING ~SPCL234.spl~ ~override~

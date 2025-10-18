@@ -378,6 +378,24 @@ LAF ~S!ADD_CLAB_ROW~
 END
 
 COPY ~IATweaks\resources\spl\s!caval6.spl~ ~override~
+
+// Cleansing Light
+
+COPY ~IATweaks\resources\bam\s!caval8.bam~ ~override~
+COPY ~IATweaks\resources\spl\s!caval8.spl~ ~override~
+  SAY NAME1 @6284
+  SAY UNIDENTIFIED_DESC @6285
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABPA02.2da~
+    row_desc = ~CLEANSING_LIGHT~
+    level12 = ~GA_S!CAVAL8~
+    level20 = ~GA_S!CAVAL8~
+    level28 = ~GA_S!CAVAL8~
+    level36 = ~GA_S!CAVAL8~
+END
+
 // Remove casting restrictions from Inquisitor
 
 COPY_EXISTING ~SPCL234.spl~ ~override~

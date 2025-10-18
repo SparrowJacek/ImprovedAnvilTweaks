@@ -2033,9 +2033,22 @@ Both Guardian's Stand and Finish Guardian's Stand can be used instantly, even if
 
 Mastery of the heaviest armors grants the Paladin +1 AC and +5% physical resistance while wearing plate or full plate.~
 
+@6283 = ~Protection From Evil, 10' Radius 
 
-@6278 = ~Shield Bash~
+When this spell is cast, all allied creatures within a 15-ft. radius are affected individually by Protection From Evil. It creates a magical barrier around the recipients at a distance of one foot. The barrier moves with the recipient and has two major effects: First, all attacks made by evil or evilly enchanted creatures against the protected creature receive a penalty of -2 to each attack roll. Second, summoned demons cannot target protected creatures. This effect lasts for 1 turn per Paladin level up to 20 turns.~
 
-@6279 = ~Shield Bash~
+@6284 = ~Cleansing Light~
 
-@6280 = ~Shield Bash~
+@6285 = ~Cleansing Light
+
+The Cavalier calls upon divine strength to purge all effects that weaken resolve or cloud judgment, removing all effects of Doom, Greater Doom, Greater Malison and Aura of Malison and Field of Dark Magic from himself or one touched creature.~
+
+@6286 = ~Shield Bash~
+
+@6287 = ~Shield Bash~
+
+@6288 = ~Shield Bash~
+
+@6289 = ~Shield Bash~
+
+@6290 = ~Shield Bash~

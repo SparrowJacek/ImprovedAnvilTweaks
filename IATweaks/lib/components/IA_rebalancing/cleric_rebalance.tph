@@ -1503,12 +1503,22 @@ COPY_EXISTING ~sppr116.spl~ ~override~
     INT_VAR
       speed = 3
   END
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      header = 2
+      min_level = 6
+  END
 
 COPY_EXISTING ~sppr320.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6217
   LPF ~ALTER_SPELL_HEADER~ 
     INT_VAR
       speed = 4
+  END
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      header = 2
+      min_level = 10
   END
 
 COPY_EXISTING ~sppr419.spl~ ~override~
@@ -1517,12 +1527,22 @@ COPY_EXISTING ~sppr419.spl~ ~override~
     INT_VAR
       speed = 5
   END
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      header = 2
+      min_level = 12
+  END
 
 COPY_EXISTING ~sppr518.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6219
   LPF ~ALTER_SPELL_HEADER~ 
     INT_VAR
       speed = 6
+  END
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      header = 2
+      min_level = 14
   END
 
 COPY_EXISTING ~sppr519.spl~ ~override~
@@ -1534,11 +1554,35 @@ COPY_EXISTING ~sppr519.spl~ ~override~
   LPF ~ALTER_EFFECT~
     INT_VAR
       match_opcode = 17
-      parameter1 = 15
+      parameter1 = 12
+      dicenumber = 1
+      dicesize = 8
+  END
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      header = 2
+      min_level = 14
+  END
+
+COPY_EXISTING ~sppr615.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6280
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      speed = 7
+  END
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      header = 2
+      min_level = 16
   END
 
 COPY_EXISTING ~sppr733.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6221
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      header = 2
+      min_level = 18
+  END
 
 // Update Temple descriptions
 
@@ -3730,6 +3774,7 @@ COPY_EXISTING ~clastext.2da~ ~override/clastext.2da~
   SET_2DA_ENTRY_LATER ~s!cleric_desc~ $clastext_rows("GODHELM") description_col RESOLVE_STR_REF (@5020)
   SET_2DA_ENTRY_LATER ~s!cleric_desc~ $clastext_rows("OHTYR") description_col RESOLVE_STR_REF (@5021)
   SET_2DA_ENTRY_LATER ~s!cleric_desc~ $clastext_rows("OHTEMPUS") description_col RESOLVE_STR_REF (@5022)
+  SET_2DA_ENTRY_LATER ~s!cleric_desc~ $clastext_rows("SHAMAN") description_col RESOLVE_STR_REF (@5134)
   SET_2DA_ENTRIES_NOW ~s!cleric_desc~ ~colcount~
   PRETTY_PRINT_2DA
 

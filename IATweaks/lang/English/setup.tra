@@ -60,13 +60,17 @@ NOTE: Despite the name of this style, any one-handed melee weapon in combination
 
 Proficient (1 slot): The wielder gets a +1 bonus to their thac0 and damage rolls, -1 bonus to AC, -1 bonus to Speed Factor and inflicts critical damage on an attack roll of 19 or 20.
 
-Specialized (2 slots): The wielder gets a +2 bonus to their thac0 and damage, -2 bonus to AC, -2 bonus to Speed Factor and inflicts critical damage on an attack roll of 18, 19 or 20.~
+Specialized (2 slots): The wielder gets a +2 bonus to their thac0 and damage, -2 bonus to AC, -2 bonus to Speed Factor and inflicts critical damage on an attack roll of 18, 19 or 20.
+
+Master (3 slots): The wielder gets all previous bonuses and an additional 1/2 attack per round while using a single weapon.~
 
 @5005 = ~TWO-HANDED: This fighting style allows the character to use a two-handed melee weapon and receive special bonuses.
 
 Proficient (1 slot): The wielder gets a +1 bonus to damage rolls, a -2 bonus to Speed Factor, and the ability to score critical hits on a roll of 19 or 20 (instead of just 20) when using a two-handed weapon.
 
 Specialized (2 slots): The wielder gets a further +2 to damage rolls and a -2 bonus to Speed Factor.
+
+Master (3 slots): The wielder gets all previous bonuses and an additional 1/2 attack per round.
 
 NOTE: Magical two-handed weapons are more powerful than their single-handed counterparts. This counterbalances the fact that you can't use a second weapon or shield when using a two-handed weapon. The Holy Avenger and Vorpal Sword are examples of weapons that are two-handed.~
 
@@ -1083,3 +1087,17 @@ Disadvantages:
 @5129 = ~Skull of Protection~
 
 @5130 = ~~
+
+@5137 = ~TWO-WEAPON: This fighting style allows the character to use two melee weapons at the same time with fewer penalties. A character wielding two weapons without a slot in this fighting style would incur a -4 penalty to attack rolls with the main weapon and a -8 penalty with the off-hand weapon. 
+
+Proficient (1 slot): The wielder's penalties are reduced to -2 with the main weapon and -6 with the off-hand weapon.
+
+Specialized (2 slots): The wielder's penalties are reduced to 0 with the main weapon and -4 with the off-hand weapon.
+
+Master (3 slots): The wielder's penalties are reduced to 0 with the main weapon and -2 with the off-hand weapon, while the AC is improved by 1.~
+
+@5138 = ~~
+
+@5139 = ~~
+
+@5140 = ~~

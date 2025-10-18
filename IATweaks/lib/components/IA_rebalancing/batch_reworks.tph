@@ -161,6 +161,22 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
       END
     END
   END
+  GET_OFFSET_ARRAY ab_array2 ITM_V10_GEN_EFFECTS
+  PHP_EACH ab_array2 AS int => fx_off BEGIN
+    READ_SHORT (fx_off + 0x00) opcode
+    READ_LONG (fx_off + 0x08) param2
+    PATCH_IF ((opcode = 98) AND (param2 != 1) AND (param2 < 4)) BEGIN
+      READ_LONG (fx_off + 0x04) param1
+      WRITE_SHORT (fx_off + 0x00) 272
+      PATCH_IF ((param2 = 0) OR (param2 = 3)) BEGIN
+        WRITE_ASCII (fx_off + 0x14) ~S!REGEN1~ #8
+      END
+      PATCH_IF (param2 = 2) BEGIN
+        WRITE_LONG (fx_off + 0x04) 1
+        WRITE_ASCIIE (fx_off + 0x14) ~S!REGEN%param1%~ #8
+      END
+    END
+  END
 BUT_ONLY
 
 COPY_EXISTING_REGEXP GLOB ~.+\.cre~ ~override~

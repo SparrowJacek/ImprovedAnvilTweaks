@@ -35,6 +35,7 @@ COPY_EXISTING ~stylbonu.2da~  ~override/stylbonu.2da~
   SET_2DA_ENTRY 10 5 ~colcount~ ~-2~
   SET_2DA_ENTRY 10 6 ~colcount~ ~-2~
   // give additional AC to *** in Two Weapon Style
+  SET_2DA_ENTRY 12 5 ~colcount~ ~-1~
   // give additional damage to ** in Two-handed Weapon
   SET_2DA_ENTRY 8 1 ~colcount~ ~3~
   PRETTY_PRINT_2DA

@@ -1086,7 +1086,137 @@ Disadvantages:
 
 @5129 = ~Skull of Protection~
 
-@5130 = ~~
+@5130 = ~Level 4 Spells~ // This has to the exact string that is shown when in Level-up menu.
+
+@5131 = ~PALADIN: A Paladin is a warrior bold and pure, the exemplar of everything good and true. Like the Fighter, the Paladin is a person of action and combat. However, the Paladin lives for the ideals of righteousness, justice, honesty, piety, and chivalry and strives to be a living example of these virtues so that others may learn from <PRO_HIMHER> as well as gain by <PRO_HISHER> actions.
+
+CLASS FEATURES:
+
+- May wear helmets.
+- May wear any armor and use any weapon.
+- May not exceed Specialization (two slots) in any weapon class.
+- May  allocate three slots in Sword and Shield Style, Single Weapon Style and Two Handed Weapon Style.
+- May allocate two slots in Two-Weapon Style.
+- May use Lay On Hands ability once per day to heal a target for 5 Hit Points per level of the Paladin. Starts with one use and gains another one at level 15 and 30.
+- May cast Detect Evil once per day per level (starts at 1st level with 4 uses).
+- May cast Protection From Evil 10' Radius once at level 5, gains additional uses at levels 15, 25 and 35.
+- May Turn Undead as a Cleric two levels lower, starting at level 3.
+- May cast priest spells starting at level 9.
+- Receives a +2 bonus to all Saving Throws.
+- Receives a +2 bonus to critical hit with all swords apart from short swords.
+- Has a passive ability called Aura of Courage, which removes effects of fear from all nearby allies every 6 seconds, if the Paladin is not incapacitated in any way (stunned, feared, charmed, confused etc.)
+- At level 12 gains one use of Heavenly Shield clerical spell and can use it as an innate ability.
+- At level 14 gains passive ability called Plate Armor Mastery.
+
+PLATE ARMOR MASTERY
+
+Mastery of the heaviest armors grants the Paladin +1 AC and +5% physical resistance while wearing plate or full plate.
+
+- Alignment restricted to lawful good.
+- Hit Die: d10~
+
+@5132 = ~INQUISITOR: The Inquisitor has dedicated his life to finding and eliminating practicioners of evil magic and defeating the forces of darkness, and his god has provided him with special abilities towards that end.
+
+Advantages:
+-  May cast 'True Sight' once per day per 4 levels (starts at 1st level with one use)
+-  Immune to Hold and Charm spells
+-  May use 'Dispel Magic' ability once per day per 4 levels (starts at 1st level with one use): ability is used at speed factor 1 and acts at a higher level than his actual level according to the following table:
+- At levels 1 - 3, the dispelling power is 1 level higher than the actual level.
+- At levels 4 - 5, the dispelling power is 2 levels higher than the actual level.
+- At levels 6 - 8, the dispelling power is 3 levels higher than the actual level.
+- At levels 9 - 12, the dispelling power is 4 levels higher than the actual level.
+- At levels 13 - 17, the dispelling power is 5 levels higher than the actual level.
+- At levels 18 - 23, the dispelling power is 6 levels higher than the actual level.
+- At levels 24 - 30, the dispelling power is 7 levels higher than the actual level.
+- At levels 31 and above, the dispelling power is 8 levels higher than the actual level.
+
+For example, a 13th level inquisitor casts dispel magic as if he is 18th level.
+
+Disadvantages:
+-  Does not gain access to Heavenly Shield ability
+-  Does not gain access to Plate Armor Mastery passive ability at level 14
+-  Does not have access to Aura of Courage passive ability
+-  May not use 'lay on hands' ability
+-  Spellcasting limited to 3rd level Divine spells
+-  May not turn undead~
+
+@5133 = ~CAVALIER: This class represents the most common picture of the knight: the gentleman warrior who epitomizes honor, courage and loyalty. He is specialized in battling 'classical' evil monsters such as demons and dragons.
+
+Advantages:
+-  All melee hits against demons, devils and dragons prevent regeneration of those creatures for 3 seconds, items, spells and abilities that instantly heal may still be used
+-  At levels 10, 20, 30 and 40 gains one use of Guardian's Stand ability
+-  At levels 12, 20, 28 and 36 gains one use of Cleansing Light ability
+-  Immune to charm
+-  Immune to poison
+-  20% resistance to fire
+-  20% resistance to acid
+
+GUARDIAN'S STAND
+
+By planting their feet and raising their shield, the Cavalier creates a protective barrier against incoming fire and missiles. Through steady defense and trained reflexes, they deflect much of the harm aimed at those nearby.
+
+While maintaining this stance, the Cavalier is immobile and unable to take other actions. All allies within 4 feet gain 50% resistance to fire and missile damage for up to 6 seconds, or until the Cavalier ends the stance early by using Finish Guardian's Stand.
+
+Both Guardian's Stand and Finish Guardian's Stand can be used instantly, even if the Cavalier's aura is not cleansed.
+
+CLEANSING LIGHT
+
+The Cavalier calls upon divine strength to purge all effects that weaken resolve or cloud judgment, removing all effects of Doom, Greater Doom, Greater Malison and Aura of Malison and Field of Dark Magic from himself or one touched creature.
+
+Disadvantages:
+-  May not use missile weapons
+-  Does not gain access to Plate Armor Mastery passive ability at level 14
+-  May allocate only one slot in Two-Handed Weapon Style and Two-Weapon Style
+-  May not use 'lay on hands' ability more than once per day~
+
+
+@5135 = ~UNDEAD HUNTER: This holy avenger has honed <PRO_HISHER> abilities toward the destruction of the undead and other unnatural creatures and is immune to many of their most devastating abilities.
+
+Advantages:
+- +3 bonus to hit and damage rolls against undead creatures.
+- Immune to hold and level drain.
+- At levels 12, 20, 28 and 36 gains one use of Weaken Undead ability, that works similar to divine spell with the same name.
+
+Disadvantages:
+- Does not gain access to Plate Armor Mastery passive ability at level 14
+- Does not have access to Aura of Courage passive ability
+- May not use 'lay on hands' ability more than once per day~
+
+@5136 = ~BLACKGUARD: The Blackguard epitomizes evil and is nothing short of a mortal fiend. The quintessential black knight, this villain carries a reputation of the foulest sort that is very well deserved. Consorting with demons and devils and serving dark deities, the Blackguard is hated and feared by all. Some people call these villains "anti-paladins" due to their completely evil nature.
+
+Advantages:
+- Immune to level drain and fear.
+- May turn undead as a Paladin of the same level.
+- May use the Absorb Health ability once per day.
+
+ABSORB HEALTH:
+Deals 2 points of damage per level to an enemy, healing the Blackguard the same number of Hit Points.
+
+- May use the Poison Weapon ability once per day. Gains one use at level 1, one use at level 5, and an additional use every 5 levels thereafter.
+
+Poison Weapon
+Each successful hit within the next 5 rounds will inject poison into the target. Each target can only be affected once per round. The amount of poison damage depends on the character's level:
+
+1st - Target suffers 1 poison damage per second for 6 seconds (Save vs. Death at +1 negates)
+5th - Target suffers 1 poison damage per second for 12 seconds (Save vs. Death negates), and also immediately suffers 2 poison damage (no save)
+9th - Target suffers 1 poison damage per second for 18 seconds (Save vs. Death at -1 negates), and also immediately suffers 4 poison damage (no save)
+13th - Target suffers 1 poison damage per second for 24 seconds (Save vs. Death at -2 negates), and also immediately suffers 6 poison damage (no save)
+
+- 3rd level: May use the Aura of Despair ability once per day.
+
+AURA OF DESPAIR: When this ability is activated, all enemies within 15 feet of the Blackguard suffer ill effects based on the Blackguard's level:
+  3rd level - All enemies suffer a -1 penalty to hit and damage rolls and a -2 penalty to Armor Class for 1 turn.
+  6th level - All enemies suffer a -2 penalty to hit and damage rolls and a -2 penalty to Armor Class for 1 turn.
+  15th level - All enemies suffer a -4 penalty to hit and damage rolls and a -4 penalty to Armor Class for 1 turn; enemies with 8 or fewer Hit Dice are panicked as well.
+  20th Level - All enemies suffer a -4 penalty to hit and damage rolls and a -4 penalty to Armor Class for 1 turn; enemies with 18 or fewer Hit Dice are panicked as well.
+
+Disadvantages:
+- Alignment restricted to evil.
+- May not cast Detect Evil.
+- May not cast Protection From Evil as an innate ability.
+- Does not gain access to Plate Armor Mastery passive ability at level 14.
+- Does not have access to Aura of Courage passive ability.
+- May not use the Lay on Hands ability.~
 
 @5137 = ~TWO-WEAPON: This fighting style allows the character to use two melee weapons at the same time with fewer penalties. A character wielding two weapons without a slot in this fighting style would incur a -4 penalty to attack rolls with the main weapon and a -8 penalty with the off-hand weapon. 
 

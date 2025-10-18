@@ -78,15 +78,15 @@ NOTE: Magical two-handed weapons are more powerful than their single-handed coun
 
 CLASS FEATURES:
 
-– May wear helmets.
-– May wear any armor.
-– May only use blunt weapons (war hammer, club, flail, mace, quarterstaff, sling) and daggers.
-– May only become Proficient (one slot) in any weapon class.
-– May become Specialized (two slots) in Sword and Shield fighting style.
-– May only become Proficient (one slot) in any other fighting style.
-– May Turn Undead.
-– May cast priest spells.
-– Hit Die: d8
+- May wear helmets.
+- May wear any armor.
+- May only use blunt weapons (war hammer, club, flail, mace, quarterstaff, sling) and daggers.
+- May only become Proficient (one slot) in any weapon class.
+- May become Specialized (two slots) in Sword and Shield fighting style.
+- May only become Proficient (one slot) in any other fighting style.
+- May Turn Undead.
+- May cast priest spells.
+- Hit Die: d8
 
 Prime Requisites For Dual-Classing: Wisdom~
 
@@ -168,12 +168,12 @@ At higher levels the mechanisms used in traps become more precise and deadly, de
 
 Advantages:
 - From level 20, Armor of Faith cast by this kit will grant 15% resistances, last for 50% longer and will be undispellable.
-– May cast a special version of Hold Undead once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
+- May cast a special version of Hold Undead once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
 - Draw Upon Holy Might cast by Priest of Lathander lasts for 15 rounds and is undispellable.
 - Additional fifth level spell: Protective Chant.
 - Additional sixth level spell: Life Link.
 - Additional seventh level spell: Spare the Dying.
-– May cast Boon of Lathander once per day. Gains one use at level 10 and another use every 6 levels thereafter.
+- May cast Boon of Lathander once per day. Gains one use at level 10 and another use every 6 levels thereafter.
 
 BOON OF LATHANDER: This spell lasts for 1 turn. It gives the caster a +1 bonus to all Saving Throws, +2 to damage and thac0, and +1 extra attack per round.
 
@@ -183,19 +183,19 @@ AEGIS OF FAITH: Through prayer and devotion, the cleric grants themselves a prot
 
 This blessing cannot be dispelled and remains active for its full duration.
 Disadvantages:
-– Alignment restricted to lawful good, neutral good, chaotic good, and true neutral.~
+- Alignment restricted to lawful good, neutral good, chaotic good, and true neutral.~
 
 @5019 = ~PRIEST OF TALOS: Talos is the evil god of storms, destruction, and rebellion. Clerics of the Stormlord warn that Talos must be appeased or he will rain destruction upon the land.
 
 Advantages:
 - From level 20, Armor of Faith cast by this kit will grant 15% resistances, last for 50% longer and will be undispellable.
-– May cast Lightning Bolt of Talos once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
+- May cast Lightning Bolt of Talos once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
 - Gains early access to a HLA Purify Aura, may cast it once at level 5, then gains additional uses at levels 15, 25 and 35.
 - Purify Aura used by Priest of Talos grants additional +1 casting speed for the next spell.
 - Additional fifth level spell: Protective Chant.
 - Additional sixth level spell: Life Link.
 - Additional seventh level spell: Spare the Dying.
-– May cast Storm Shield once per day. Gains one use at level 1 and an additional use every 10 levels thereafter.
+- May cast Storm Shield once per day. Gains one use at level 1 and an additional use every 10 levels thereafter.
 
 STORM SHIELD: This spell lasts 1 round per level of the caster. It protects the caster from lightning, fire, cold, and normal missiles.
 
@@ -204,19 +204,19 @@ STORM SHIELD: This spell lasts 1 round per level of the caster. It protects the 
 AEGIS OF FAITH: Through prayer and devotion, the cleric grants themselves a protective blessing that safeguards their magical defenses. For the next turn, any effects that targets and removes specific protections will be nullified. This spell does not protect against spells and effects that dispel all types of effects at once, like Remove Magic or Purge Magic.
 
 Disadvantages:
-– Alignment restricted to neutral evil, chaotic evil, and chaotic neutral.~
+- Alignment restricted to neutral evil, chaotic evil, and chaotic neutral.~
 
 @5020 = ~PRIEST OF HELM: Followers of the neutral god of watchers and protectors are warriors in their own right and are often seen as defenders of the innocent.
 
 Advantages:
 - From level 20, Armor of Faith cast by this kit will grant 15% resistances, last for 50% longer and will be undispellable.
-– May cast True Sight once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
+- May cast True Sight once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
 - Is immune to Blindness effect.
 - Gains one point in Long Swords at level 1.
 - Additional fifth level spell: Protective Chant.
 - Additional sixth level spell: Life Link.
 - Additional seventh level spell: Spare the Dying.
-– May cast Seeking Sword once per day. Gains one use at level 1 and an additional use every 10 levels thereafter.
+- May cast Seeking Sword once per day. Gains one use at level 1 and an additional use every 10 levels thereafter.
 
 SEEKING SWORD: This spell creates a long sword in the Cleric's inventory that only Priests of Helm can use, it stays in <PRO_HISHER> equipment for 1 round per level, up to 20 rounds. The sword can only be used in main hand and to wield the weapon better, the caster must know how to use Long Swords. The sword gets more powerful as the caster gains experience. While the sword is held — and for 2 rounds after it is removed — the Cleric's spellcasting is hampered, reducing the potency of any divine spells cast during that time.
 
@@ -233,7 +233,7 @@ The sword has the following statistics based on levels:
 AEGIS OF FAITH: Through prayer and devotion, the cleric grants themselves a protective blessing that safeguards their magical defenses. For the next turn, any effects that targets and removes specific protections will be nullified. This spell does not protect against spells and effects that dispel all types of effects at once, like Remove Magic or Purge Magic.
 
 Disadvantages:
-– Alignment restricted to lawful good, lawful neutral, lawful evil, and true neutral.~
+- Alignment restricted to lawful good, lawful neutral, lawful evil, and true neutral.~
 
 @5021 = ~PRIEST OF TYR: Tyr is the deity of law and justice and is primarily concerned with the punishment of wrongdoers and the general furthering of law and good in the world. The belief in justice through (benevolent) force, or at least armed vigilance, is the reason for Tyr's existence. Tyr holds great prominence in the pantheon due to his position as leader of the Triad, a trio of lawful good gods that are collectively devoted to the concepts of courage, justice, perseverance, relief of suffering, duty, obedience, honor, and to some extent, righteous martyrdom.
 
@@ -245,11 +245,11 @@ Advantages:
 - Additional sixth level spell: Life Link.
 - Additional seventh level spell: Spare the Dying.
 - Can pick Critical Strike High Level Ability up to 3 times.
-– May cast Exaltation once per day every 5 levels of the caster (starts at 1st level with one use).
+- May cast Exaltation once per day every 5 levels of the caster (starts at 1st level with one use).
 
 EXALTATION: This spell enables a priest to aid and protect any one being other than themselves. By touch, the caster removes the effects of fear, sleep, feeblemind, unconsciousness, and intoxication, as well as berserk and confused states of mind. In addition, the recipient is protected against spells and other attacks that cause these effects for 1 turn.
 
-– May cast Divine Favor once per day every 10 levels of the caster (starts at 1st level with one use).
+- May cast Divine Favor once per day every 10 levels of the caster (starts at 1st level with one use).
 
 DIVINE FAVOR: This spell grants the caster a +1 bonus to hit and damage rolls every 3 levels of the caster, capped at +6. The spell lasts for 6 rounds.
 
@@ -258,7 +258,7 @@ DIVINE FAVOR: This spell grants the caster a +1 bonus to hit and damage rolls ev
 AEGIS OF FAITH: Through prayer and devotion, the cleric grants themselves a protective blessing that safeguards their magical defenses. For the next turn, any effects that targets and removes specific protections will be nullified. This spell does not protect against spells and effects that dispel all types of effects at once, like Remove Magic or Purge Magic.
 
 Disadvantages:
-– Alignment restricted to lawful good, neutral good, or lawful neutral.~
+- Alignment restricted to lawful good, neutral good, or lawful neutral.~
 
 @5022 = ~PRIEST OF TEMPUS: Tempus, also known as the Lord of Battles or the Foehammer, is random in his favors, yet his chaotic nature favors all sides equally. Lord Tempus may be on an army's side one day and against them the next; such is the nature of war. Tempuran clergy can be found on both sides of a conflict, as none can ever truly know whom the war god will favor.
 
@@ -284,18 +284,18 @@ From level 16 onward, the area is increased to a 15-foot radius.
 AEGIS OF FAITH: Through prayer and devotion, the cleric grants themselves a protective blessing that safeguards their magical defenses. For the next turn, any effects that targets and removes specific protections will be nullified. This spell does not protect against spells and effects that dispel all types of effects at once, like Remove Magic or Purge Magic.
 
 Disadvantages:
-– Alignment restricted to chaotic good, chaotic neutral, chaotic evil, or true neutral.~
+- Alignment restricted to chaotic good, chaotic neutral, chaotic evil, or true neutral.~
 
 @5023 = ~PRIEST OF TALOS: Talos is the evil god of storms, destruction, and rebellion. Clerics of the Stormlord warn that Talos must be appeased or he will rain destruction upon the land.
 
 Advantages:
-– May cast Lightning Bolt of Talos once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
+- May cast Lightning Bolt of Talos once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
 - Gains early access to a HLA Purify Aura, may cast it once at level 5, then gains additional uses at levels 15, 25 and 35.
 - Purify Aura used by Priest of Talos grants additional +1 casting speed for the next spell.
 - Additional fifth level spell: Protective Chant.
 - Additional sixth level spell: Life Link.
 - Additional seventh level spell: Spare the Dying.
-– May cast Storm Shield once per day. Gains one use at level 1 and an additional use every 10 levels thereafter.
+- May cast Storm Shield once per day. Gains one use at level 1 and an additional use every 10 levels thereafter.
 
 STORM SHIELD: This spell lasts 1 round per level of the caster. It protects the caster from normal missiles and sets his lightning, fire and cold resistances to 75%.
 
@@ -304,22 +304,22 @@ STORM SHIELD: This spell lasts 1 round per level of the caster. It protects the 
 AEGIS OF FAITH: Through prayer and devotion, the cleric grants themselves a protective blessing that safeguards their magical defenses. For the next turn, any effects that targets and removes specific protections will be nullified. This spell does not protect against spells and effects that dispel all types of effects at once, like Remove Magic or Purge Magic.
 
 Disadvantages:
-– Alignment restricted to neutral evil, chaotic evil, and chaotic neutral.~
+- Alignment restricted to neutral evil, chaotic evil, and chaotic neutral.~
 
 @5024 = ~THIEF: To accomplish <PRO_HISHER> goals, for good or ill, the Thief is a skilled pilferer. Cunning, nimbleness, and stealth are <PRO_HISHER> hallmarks. Whether <PRO_HESHE> turns <PRO_HISHER> talent against innocent passersby and wealthy merchants or oppressors and monsters is a choice for the Thief to make.
 
 CLASS FEATURES:
 
-– May not wear armor heavier than studded leather.
-– May not equip shields larger than bucklers.
-– May only use the following weapons: long sword, short sword, katana, scimitar, dagger, club, quarterstaff, crossbow, shortbow, dart, sling.
-– May only become Proficient (one slot) in any weapon class.
-– May only become Proficient (one slot) in any fighting style.
-– May distribute 10 points per level (40 at level 1) in thieving abilities: Open Locks, Pick Pockets, Find Traps, Stealth Strike, Hide In Shadows, Detect Illusion, Set Traps.
+- May not wear armor heavier than studded leather.
+- May not equip shields larger than bucklers.
+- May only use the following weapons: long sword, short sword, katana, scimitar, dagger, club, quarterstaff, crossbow, shortbow, dart, sling.
+- May only become Proficient (one slot) in any weapon class.
+- May only become Proficient (one slot) in any fighting style.
+- May distribute 10 points per level (40 at level 1) in thieving abilities: Open Locks, Pick Pockets, Find Traps, Stealth Strike, Hide In Shadows, Detect Illusion, Set Traps.
 - May put up to 100 points into any Thieving Ability and up to 150 into Pick Pockets.
-– Starts with base scores of 40% in Open Locks, Find Traps and Pick Pockets.
-– May backstab for 2x damage.
-– May use the Set Snare ability once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
+- Starts with base scores of 40% in Open Locks, Find Traps and Pick Pockets.
+- May backstab for 2x damage.
+- May use the Set Snare ability once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
 
 SET SNARE: Set a trap in the chosen location when no hostile creatures are in sight. Traps grow more powerful with the Thief's level and can only be triggered by enemies.
   1st level: Deals 2d8+5 missile damage.
@@ -327,8 +327,8 @@ SET SNARE: Set a trap in the chosen location when no hostile creatures are in si
   16th level: Deals 3d8+5 missile damage and 4d8+2 fire damage.
   21st level: Deals 3d8+5 missile damage and 20 poison damage with no save; slays target if a Save vs. Death with a +4 bonus is failed.
 
-– Alignment restricted to any except lawful good.
-– Hit Die: d6
+- Alignment restricted to any except lawful good.
+- Hit Die: d6
 
 Prime Requisites For Dual-Classing: Dexterity~
 
@@ -349,9 +349,9 @@ Disadvantages:
 @5026 = ~BOUNTY HUNTER: This is a hunter of men, skilled in tracking quarry and bringing them back alive—whether for lawful authorities or underworld masters. Bounty Hunters are specially trained at their task and make fearsome opponents. They have honed their trap-making abilities well beyond that of the average Thief.
 
 Advantages:
-– +40% bonus to Find Traps and Set Traps.
+- +40% bonus to Find Traps and Set Traps.
 - May put up to 200 points into Find Traps and Set Traps.
-– May use the Set Special Snare ability once per day in addition to the normal Thief's Set Snare. Gains one use at level 1 and an additional use every 5 levels thereafter.
+- May use the Set Special Snare ability once per day in addition to the normal Thief's Set Snare. Gains one use at level 1 and an additional use every 5 levels thereafter.
 
 SET SPECIAL SNARE: Set a trap in the chosen location when no hostile creatures are in sight. Traps grow more powerful with the Bounty Hunter's level and can only be triggered by enemies.
   1st level: Deals 3d8+5 missile damage and slows target for 5 rounds if a Save vs. Spell with a -4 penalty is failed.
@@ -374,7 +374,7 @@ Advantages:
 - May place 3 slots into the proficiency 'two weapon fighting style'.
 - At level 14 and above, every successful melee hit will have a 10% chance to apply a random effect picked from the following pool: "Mirrored Blade" (+3 AC bonus vs. all weapon types and 5% Magic Resistance for 6 rounds with unlimited stacking), "Life Pick" (heals the swashbuckler for 15 hp).
 - At level 20 and above, every successful melee hit will also have 10% chance to apply a random effect picked from the following pool: "Bloodlet" (4D10 additional Piercing damage), "Maim Target" (4D10 additional crushing damage).
-– Starts with base scores of 40% in Open Locks and Pick Pockets.
+- Starts with base scores of 40% in Open Locks and Pick Pockets.
 
 Disadvantages:
 - No backstab multiplier.
@@ -386,19 +386,19 @@ Disadvantages:
 @5028 = ~SHADOWDANCER: Shadowdancers can harness the power of magic to increase their stealth abilities. Enigmatic and dangerous, these uniquely skilled Thieves are able to blend seamlessly into the shadows in ways that a normal Thief cannot, striking without warning—sometimes with supernatural speed.
 
 Advantages:
-– +40% bonus to Hide In Shadows and Detect Illusions.
-– May cast Shadowstep once per day. Gains one use at level 5 and an additional use every 5 levels thereafter.
+- +40% bonus to Hide In Shadows and Detect Illusions.
+- May cast Shadowstep once per day. Gains one use at level 5 and an additional use every 5 levels thereafter.
 
 SHADOWSTEP: Step into the Shadow Plane and move for 7 seconds while others are frozen in time. The Shadowdancer cannot attack or cast spells while in the Shadow Plane.
 
-– Slippery Mind: +1 bonus to Saving Throws.
+- Slippery Mind: +1 bonus to Saving Throws.
 
 Disadvantages:
-– Alignment restricted to any non-lawful.
+- Alignment restricted to any non-lawful.
 - Only 10 points to distribute at level 1.
 - May put only 100 points into Pick Pockets.
 - Does not get standard Thief bonuses to Open Locks, Find Traps and Pick Pockets.
-– May not use the Set Snare ability.
+- May not use the Set Snare ability.
 - May not invest any points into Set Traps.
 
 Prime Requisites For Dual-Classing: Strength, Dexterity, Charisma~
@@ -406,11 +406,11 @@ Prime Requisites For Dual-Classing: Strength, Dexterity, Charisma~
 @5029 = ~BEAST MASTER: This Ranger is a wanderer and is not comfortable in civilized lands. Therefore, <PRO_HESHE> maintains a natural affinity for animals; they are <PRO_HISHER> friends and comrades-in-arms, and the Beast Master has a limited form of telepathic communication with them.
 
 Advantages:
-– Can reach Mastery (three slots) in all weapons that he can use.
-– Can use Hunter's Mark ability unlimited number of times.
-– Gains access to two additional spells, a 2nd level spell Animal Fortitude and a 3rd level spell Animal Rage.
-– Can cast a special version of Animal Summoning I, which lasts for 15 rounds and can be cast unlimited number of times, but only once per 15 rounds.
-– At levels 10, 12 and 14 gains analogous versions of Animal Summoning II, III and IV respectively.
+- Can reach Mastery (three slots) in all weapons that he can use.
+- Can use Hunter's Mark ability unlimited number of times.
+- Gains access to two additional spells, a 2nd level spell Animal Fortitude and a 3rd level spell Animal Rage.
+- Can cast a special version of Animal Summoning I, which lasts for 15 rounds and can be cast unlimited number of times, but only once per 15 rounds.
+- At levels 10, 12 and 14 gains analogous versions of Animal Summoning II, III and IV respectively.
 - Can pick Animal Summoning V as a HLA.
 - At level 10, gains one use of the Unified Minds ability. Gains an additional use of this skill for every 10 levels thereafter.
 
@@ -429,8 +429,8 @@ This ability has no effect if either the Beast Master or the animal is confused,
 The effects do not stack with multiple uses.
 
 Disadvantages:
-– May only use simple non-bladed weapons.
-– May not wear armor heavier than studded leather.
+- May only use simple non-bladed weapons.
+- May not wear armor heavier than studded leather.
 - Cannot dual class.~
 
 @5030 = ~MONK: Monks are warriors who pursue perfection through contemplation as well as action. They are versatile fighters, especially skilled in combat without weapons or armor. Though Monks cannot cast spells, they have a unique magic of their own: they channel a subtle energy, called ki, which allows them to perform amazing feats. The Monk's best known feat is their ability to stun an opponent with an unarmed blow.
@@ -482,54 +482,54 @@ QUIVERING PALM: The next successful attack forces the opponent to save vs. Spell
 @5032 = ~HUMANS: Humans are the predominant race in Faerûn. Humans rule most of the significant empires and kingdoms in the Forgotten Realms. They are the most social and tolerant of races, excepting perhaps the halflings. Humans may advance as any class and are also the only race that can dual-class. Humans may not multi-class.
 
 Humans have the following traits:
-– +15% Pick Pockets, +10% Open Locks, +5% Find Traps, +5% Stealth Strike, +5% Hide in Shadows, +5% Set Traps.~
+- +15% Pick Pockets, +10% Open Locks, +5% Find Traps, +5% Stealth Strike, +5% Hide in Shadows, +5% Set Traps.~
 
 @5033 = ~DWARVES: Dwarves are short and stocky, easily identifiable by their size and shape. They have ruddy cheeks, dark eyes, and dark hair. Dwarves tend to be dour and taciturn. They are given to hard work and care little for most humor. They enjoy beer, ale, mead, but most of all, they love gold. There are four racial divisions of dwarves within the realms: shield dwarves, gold dwarves, wild dwarves, and duergar.
 
 Dwarves have the following traits:
-– +2 bonus to Saving Throws vs. Paralysis/Poison/Death, vs. Rod/Staff/Wand, and vs. Spell, with additional bonuses based on Constitution.
-– Infravision.
-– +10% Pick Pockets, +10% Open Locks, +20% Find Traps, +5% Detect Illusions, +10% Set Traps.
-– +1 Constitution, -1 Dexterity, -2 Charisma.~
+- +2 bonus to Saving Throws vs. Paralysis/Poison/Death, vs. Rod/Staff/Wand, and vs. Spell, with additional bonuses based on Constitution.
+- Infravision.
+- +10% Pick Pockets, +10% Open Locks, +20% Find Traps, +5% Detect Illusions, +10% Set Traps.
+- +1 Constitution, -1 Dexterity, -2 Charisma.~
 
 @5034 = ~ELVES: Elves tend to be shorter and slimmer than humans. Their features are finely chiseled and delicate, and they speak in melodic tones. Elves are looked upon as being frivolous and aloof. They concern themselves with natural beauty, dancing, frolicking, and other similar pursuits. Their humor is clever, as are their songs and poetry. There are six racial divisions of elves within the realms: gold elves, moon elves, wild elves, sea elves, dark elves (drow), and winged elves (avariel).
 
 Elves have the following traits:
-– 90% resistance against charm and sleep magics.
-– Infravision.
-– +1 THAC0 bonus with bows, short swords, and long swords.
-– +20% Pick Pockets, +15% Open Locks, +5% Find Traps, +5% Stealth Strike, +15% Hide in Shadows, +10% Detect Illusions.
-– +1 Dexterity, -1 Constitution.~
+- 90% resistance against charm and sleep magics.
+- Infravision.
+- +1 THAC0 bonus with bows, short swords, and long swords.
+- +20% Pick Pockets, +15% Open Locks, +5% Find Traps, +5% Stealth Strike, +15% Hide in Shadows, +10% Detect Illusions.
+- +1 Dexterity, -1 Constitution.~
 
 @5035 = ~GNOMES: Kin to dwarves, gnomes are noticeably smaller than their distant cousins. Gnomes, as they proudly maintain, are also less rotund than dwarves. Most have dark tan or brown skin, white hair, and rather large noses. Gnomes have lively and sly senses of humor, especially for practical jokes. They have a love for nature that is only matched by their love for gems and jewelry. There are two racial divisions of gnomes within the realms: rock gnomes and deep gnomes (svirfneblin).
 
 Gnomes have the following traits:
-– +2 bonus to Saving Throws vs. Rod/Staff/Wand and vs. Spell, with additional bonuses based on Constitution.
-– Infravision.
-– +15% Pick Pockets, +15% Open Locks, +15% Find Traps, +5% Stealth Strike, +10% Hide in Shadows, +20% Detect Illusions, +5% Set Traps.
-– +1 Intelligence, -1 Wisdom.~
+- +2 bonus to Saving Throws vs. Rod/Staff/Wand and vs. Spell, with additional bonuses based on Constitution.
+- Infravision.
+- +15% Pick Pockets, +15% Open Locks, +15% Find Traps, +5% Stealth Strike, +10% Hide in Shadows, +20% Detect Illusions, +5% Set Traps.
+- +1 Intelligence, -1 Wisdom.~
 
 @5036 = ~HALFLINGS: Halflings are short, generally plump people, very much like small humans. Their faces are round and broad and often quite florid. Their hair is typically curly, and the tops of their feet are covered with coarse hair. Overall they prefer the comforts of home to dangerous adventuring. They enjoy good living, rough humor, and homespun tales. There are three racial divisions of halflings within the realms: the hairfoot, tallfellow, and stout.
 
 Halflings have the following traits:
-– +2 bonus to Saving Throws vs. Paralysis/Poison/Death, vs. Rod/Staff/Wand, and vs. Spell, with additional bonuses based on Constitution.
-– +1 THAC0 bonus with slings.
-– +20% Pick Pockets, +20% Open Locks, +10% Find Traps, +20% Stealth Strike, +20% Hide in Shadows.
-– +1 Dexterity, -1 Strength, -1 Wisdom.~
+- +2 bonus to Saving Throws vs. Paralysis/Poison/Death, vs. Rod/Staff/Wand, and vs. Spell, with additional bonuses based on Constitution.
+- +1 THAC0 bonus with slings.
+- +20% Pick Pockets, +20% Open Locks, +10% Find Traps, +20% Stealth Strike, +20% Hide in Shadows.
+- +1 Dexterity, -1 Strength, -1 Wisdom.~
 
 @5037 = ~HALF-ELVES: Half-elves are a mix of human and elven blood. They are handsome folk, with good features from each of their parent races. A half-elf has the curiosity, inventiveness, and ambition of their human ancestors and the refined senses, love of nature, and artistic tastes of their elven ancestors.
 
 Half-elves have the following traits:
-– 30% resistance against charm and sleep magics.
-– Infravision.
-– +25% Pick Pockets, +15% Open Locks, +5% Find Traps, +10% Stealth Strike, +10% Hide in Shadows, +5% Detect Illusions.~
+- 30% resistance against charm and sleep magics.
+- Infravision.
+- +25% Pick Pockets, +15% Open Locks, +5% Find Traps, +10% Stealth Strike, +10% Hide in Shadows, +5% Detect Illusions.~
 
 @5038 = ~HALF-ORCS: Half-orcs are born from the union of human and orc parents. They are as tall as humans, but a little heavier due to their muscular builds. Their greenish pigmentation, sloping forehead, jutting jaw, prominent teeth, and coarse body hair make their lineage plain for all to see. In the lands of Amn, half-orcs are tolerated, as unlike in the north the people of Amn haven't had centuries of warfare with orc kind. Half-orcs are known for their great strength.
 
 Half-orcs have the following traits:
-– Infravision.
-– +1 Strength, +1 Constitution, -2 Intelligence.
-– +10% Pick Pockets, +5% Open Locks, +5% Find Traps, +5% Stealth Strike.~
+- Infravision.
+- +1 Strength, +1 Constitution, -2 Intelligence.
+- +10% Pick Pockets, +5% Open Locks, +5% Find Traps, +5% Stealth Strike.~
 
 @5039 = ~STALKER: Stalkers serve as covert intelligence-gatherers, comfortable in both wilderness and urban settings. They are the spies, informants, and interrogators, and their mastery of stealth makes them deadly opponents.
 
@@ -542,7 +542,7 @@ Advantages:
 
 MARKED FOR THE KILL: With a keen hunter's eye, the Stalker identifies and exploits the subtle flaws in an enemy's defenses. The target loses any immunity to backstab until any damage is dealt to him or until one round passes.
 
-This ability does not take up the creature's action and can be used an indefinite number of times, however no more often than once per 5 rounds. This time is decreased to 4 rounds at level 10, 3 rounds at level 20 and finally to 2 rounds at level 30.
+This ability does not take up the Stalker's action and can be used an indefinite number of times, however no more often than once per 5 rounds. This time is decreased to 4 rounds at level 10, 3 rounds at level 20 and finally to 2 rounds at level 30.
 
 Disadvantages:
 -  May not wear armor heavier than studded leather.~
@@ -625,7 +625,7 @@ Advantages:
 - At level 14 and above, every successful melee hit will have a 10% chance to apply a random effect picked from the following pool: "Mirrored Blade" (+3 AC bonus vs. all weapon types and 5% Magic Resistance for 6 rounds with unlimited stacking), "Life Pick" (heals the swashbuckler for 15 hp).
 - At level 20 and above, every successful melee hit will also have 10% chance to apply a random effect picked from the following pool: "Bloodlet" (4D10 additional Piercing damage), "Maim Target" (4D10 additional crushing damage).
 - At levels 12 and 20 gains additional 1/2 attacks per round, just like warrior classes (Fighters, Rangers and Paladins) do at levels 7 and 13.
-– Starts with base scores of 40% in Open Locks and Pick Pockets.
+- Starts with base scores of 40% in Open Locks and Pick Pockets.
 
 Disadvantages:
 - No backstab multiplier.
@@ -723,7 +723,7 @@ Cannot dual class~
 Lloth is the chaotic evil goddess of spiders, deception, and ruthless ambition, revered by the drow of the Underdark. Her priestesses are feared and respected, weaving webs of manipulation and striking down heretics with venomous fury. Their divine magic draws on the cruel and capricious will of their goddess.
 
 Advantages:
-– From level 20, Armor of Faith cast by this kit grants 15% resistances, lasts for 50% longer, and becomes undispellable.
+- From level 20, Armor of Faith cast by this kit grants 15% resistances, lasts for 50% longer, and becomes undispellable.
 - Gains access to 1 new spell of level 2 - Web, 1 new spell of level 4 - Acid Shield, 1 new spell of level 5 - Protective Chant, 1 new spell of level 6 - Life Link and 1 of level 7 - Spare the Dying.
 - Is immune to poison damage and poison effects.
 - Gains 25% resistance to acid.
@@ -734,7 +734,7 @@ Advantages:
 AEGIS OF FAITH: Through prayer and devotion, the cleric grants themselves a protective blessing that safeguards their magical defenses. For the next turn, any effects that targets and removes specific protections will be nullified. This spell does not protect against spells and effects that dispel all types of effects at once, like Remove Magic or Purge Magic.
 
 Disadvantages:
-– Alignment restricted to chaotic evil, neutral evil~
+- Alignment restricted to chaotic evil, neutral evil~
 
 @5069 = ~Truly Horrid Umber Hulk~
 
@@ -764,10 +764,10 @@ Disadvantages:
 @5072 = ~ILLUSIONIST: A Mage who specializes in creating illusions to confuse and mislead.
 
 Advantages:
-– May cast one additional spell per level.
-– Receives a +15% bonus when scribing scrolls from the Illusion school.
-– Receives a +2 bonus when making Saving Throws against spells from the Illusion school.
-– Targets suffer a -2 penalty when making Saving Throws against spells from the Illusion school.
+- May cast one additional spell per level.
+- Receives a +15% bonus when scribing scrolls from the Illusion school.
+- Receives a +2 bonus when making Saving Throws against spells from the Illusion school.
+- Targets suffer a -2 penalty when making Saving Throws against spells from the Illusion school.
 - Mirror Image spell cast by Illusionist creates 5 additional images.
 - When the Illusionist reaches level 15, all his spells that grant invisibility or improved invisibily apply additional Non-Detection spell to all targets.
 - At level 16 Illusionists gain Simulacrum special ability.
@@ -776,8 +776,8 @@ SIMULACRUM:
 This spell creates a duplicate of the caster, which closely resembles the original and acts as a powerful ally. The clone can be controlled freely and can cast spells just like the caster, it will serve the caster for 2 turns. The clone cannot engage in physical combat or use weapons. The spell does not replicate any items the caster is using or wearing. It is created at 60% of the caster's level and can cast spells of up to 3rd level. When the Illusionist reaches level 20, the clone gains access to spells of level 4.
 
 Disadvantages:
-– May not learn or cast any spells of the Necromancy school.
-– Receives a -15% penalty when scribing scrolls from other schools.
+- May not learn or cast any spells of the Necromancy school.
+- Receives a -15% penalty when scribing scrolls from other schools.
 - Cannot dual class.
 
 Requires at least 16 Dexterity.~
@@ -785,10 +785,10 @@ Requires at least 16 Dexterity.~
 @5073 = ~ABJURER: A Mage who specializes in protective magics.
 
 Advantages:
-– May cast one additional spell per level.
-– Receives a +15% bonus when scribing scrolls from the Abjuration school.
-– Receives a +2 bonus when making Saving Throws against spells from the Abjuration school.
-– Targets suffer a -2 penalty when making Saving Throws against spells from the Abjuration school.
+- May cast one additional spell per level.
+- Receives a +15% bonus when scribing scrolls from the Abjuration school.
+- Receives a +2 bonus when making Saving Throws against spells from the Abjuration school.
+- Targets suffer a -2 penalty when making Saving Throws against spells from the Abjuration school.
 - Casts all arcane spells as if 1 level higher.
 - At levels 12, 18 and 24, 30 and 36 Abjurers get Abjuration Mastery ability.
 
@@ -804,8 +804,8 @@ At level 20: Cast spells up to 8th level
 At level 22 and above: Cast any mage abjuration spell
 
 Disadvantages:
-– May not learn or cast any spells of the Alteration school.
-– Receives a -15% penalty when scribing scrolls from other schools.
+- May not learn or cast any spells of the Alteration school.
+- Receives a -15% penalty when scribing scrolls from other schools.
 - Cannot dual class.
 
 Requires at least 15 Wisdom.~
@@ -813,18 +813,18 @@ Requires at least 15 Wisdom.~
 @5074 = ~CONJURER: A Mage who specializes in creating creatures and objects to assist <PRO_HIMHER>.
 
 Advantages:
-– May cast one additional spell per level.
-– Receives a +15% bonus when scribing scrolls from the Conjuration school.
-– Receives a +2 bonus when making Saving Throws against spells from the Conjuration school.
-– Targets suffer a -2 penalty when making Saving Throws against spells from the Conjuration school.
+- May cast one additional spell per level.
+- Receives a +15% bonus when scribing scrolls from the Conjuration school.
+- Receives a +2 bonus when making Saving Throws against spells from the Conjuration school.
+- Targets suffer a -2 penalty when making Saving Throws against spells from the Conjuration school.
 - Maximum limit of creatures summoned at the same time is 6, not 5 when determining if a creature can be summoned by a conjuration spell cast by Conjurer.
 - All creatures, apart from Elementals, Nishruu and Hakeashar, summoned by conjuration spells gain additional +2 damage, thac0, AC, strength and have 20% more hit points.
 - Creatures summoned by Conjurers via Monster Summoning IV-VII spells gain additional +2 movement speed and +1 attack per round.
 - From level 24, all creatures, apart from Nishruu and Hakeashar, summoned by conjuration spells become immune to spells and effects that would unsummon them. 
 
 Disadvantages:
-– May not learn or cast any spells of the Divination school.
-– Receives a -15% penalty when scribing scrolls from other schools.
+- May not learn or cast any spells of the Divination school.
+- Receives a -15% penalty when scribing scrolls from other schools.
 - Cannot dual class.
 
 Requires at least 15 Constitution.~
@@ -832,10 +832,10 @@ Requires at least 15 Constitution.~
 @5075 = ~DIVINER: A Mage who specializes in detection and divining magics.
 
 Advantages:
-– May cast one additional spell per level.
-– Receives a +15% bonus when scribing scrolls from the Divination school.
-– Receives a +2 bonus when making Saving Throws against spells from the Divination school.
-– Targets suffer a -2 penalty when making Saving Throws against spells from the Divination school.
+- May cast one additional spell per level.
+- Receives a +15% bonus when scribing scrolls from the Divination school.
+- Receives a +2 bonus when making Saving Throws against spells from the Divination school.
+- Targets suffer a -2 penalty when making Saving Throws against spells from the Divination school.
 - Diviners automatically learn Foreknowledge spell at level 16 without the need to scribing it into their spellbook.
 - Has access to a unique High Level Ability called See Invisible.
 - At levels 1, 8, and every 8 levels thereafter gains one use of Glimpse of the Future ability.
@@ -843,8 +843,8 @@ Advantages:
 GLIMPSE OF THE FUTURE: This ability targets any single friendly creature without requiring the caster's aura to be cleansed. It sends visions of numerous potential futures to the target, providing insight on how to avoid or mitigate impending danger. The target gains a +20 bonus to all saving throws and armor class for 2 seconds.
 
 Disadvantages:
-– May not learn or cast any spells of the Conjuration school.
-– Receives a -15% penalty when scribing scrolls from other schools.
+- May not learn or cast any spells of the Conjuration school.
+- Receives a -15% penalty when scribing scrolls from other schools.
 - Cannot dual class.
 
 Requires at least 16 Wisdom.~
@@ -852,10 +852,10 @@ Requires at least 16 Wisdom.~
 @5076 = ~ENCHANTER: A Mage who specializes in manipulating the minds of sentient beings.
 
 Advantages:
-– May cast one additional spell per level.
-– Receives a +15% bonus when scribing scrolls from the Enchantment school.
-– Receives a +2 bonus when making Saving Throws against spells from the Enchantment school.
-– Targets suffer a -2 penalty when making Saving Throws against spells from the Enchantment school.
+- May cast one additional spell per level.
+- Receives a +15% bonus when scribing scrolls from the Enchantment school.
+- Receives a +2 bonus when making Saving Throws against spells from the Enchantment school.
+- Targets suffer a -2 penalty when making Saving Throws against spells from the Enchantment school.
 - Gains an additional +1 saving throw against spells from Enchantment school every 6 levels.
 - Gains one use of Focused Mind Blast ability at level 10, gains additional uses at levels 20 and 30.
 
@@ -866,8 +866,8 @@ The caster can achieve a similar effect alone, but the more party members join f
 - Enchanters will automatically learn a unique 4th level spell Emotion: Hope at level 7.
 
 Disadvantages:
-– May not learn or cast any spells of the Invocation school.
-– Receives a -15% penalty when scribing scrolls from other schools.
+- May not learn or cast any spells of the Invocation school.
+- Receives a -15% penalty when scribing scrolls from other schools.
 - Cannot dual class.
 
 Requires at least 16 Charisma.~
@@ -875,18 +875,18 @@ Requires at least 16 Charisma.~
 @5077 = ~INVOKER: A Mage who specializes in the manipulation of raw and elemental energies.
 
 Advantages:
-– May cast one additional spell per level.
-– Receives a +15% bonus when scribing scrolls from the Invocation school.
-– Receives a +2 bonus when making Saving Throws against spells from the Invocation school.
-– Targets suffer a -2 penalty when making Saving Throws against spells from the Invocation school.
+- May cast one additional spell per level.
+- Receives a +15% bonus when scribing scrolls from the Invocation school.
+- Receives a +2 bonus when making Saving Throws against spells from the Invocation school.
+- Targets suffer a -2 penalty when making Saving Throws against spells from the Invocation school.
 - Invokers learn to manipulate elemental energies better than any other arcane casters. At level 10 all elemental damage they deal will be incremented by 5%, this bonus will grow to 10% at level 20 and to 15% at level 30.
 - At level 15 gains one use of Chain Sequencer, gains another use at level 25, though as with any other Sequencer, only one instance of the spell can be active at the same time.
 
 CHAIN SEQUENCER: This is a far more dangerous form of standard Sequencer spell. The caster first chooses one spell of levels 1-3 which will be put into the sequencer and stored as an ability just like with any other Sequencer. When used, that selected spell will be cast on all non-invisible hostile creatures in a 15-ft radius from the center chosen by the caster. It is worth mentioning, that spells which require touch will have no effects.
 
 Disadvantages:
-– May not learn or cast any spells of the Enchantment school.
-– Receives a -15% penalty when scribing scrolls from other schools.
+- May not learn or cast any spells of the Enchantment school.
+- Receives a -15% penalty when scribing scrolls from other schools.
 - Cannot dual class.
 
 Requires at least 16 Constitution.~
@@ -894,10 +894,10 @@ Requires at least 16 Constitution.~
 @5078 = ~TRANSMUTER: A Mage who specializes in magic that alters physical reality.
 
 Advantages:
-– May cast one additional spell per level.
-– Receives a +15% bonus when scribing scrolls from the Alteration school.
-– Receives a +2 bonus when making Saving Throws against spells from the Alteration school.
-– Targets suffer a -2 penalty when making Saving Throws against spells from the Alteration school.
+- May cast one additional spell per level.
+- Receives a +15% bonus when scribing scrolls from the Alteration school.
+- Receives a +2 bonus when making Saving Throws against spells from the Alteration school.
+- Targets suffer a -2 penalty when making Saving Throws against spells from the Alteration school.
 - Transmuter gains additional attacks per round just like warrior classes, when they wield a weapon that they're proficient in (1/2 attack for specialization and 1 attack per round for grandmastery).
 - Transmuter gains a special ability at levels 10/20/30/40, which acts just like Stoneskin, but can be cast on another character, however this version of the spell lasts for 3 turns only.
 - Tenser's Transformation spell cast by Transmuters grants two additional slots in all weapons available to Mages, two slots in Single Weapon Style and in Two-handed Weapon Style and 1 additional base attack per round. Special Abilities button is also available when under the spell's effect.
@@ -913,8 +913,8 @@ DRAGON'S STRENGTH: This spell endows the target with the raw power and vitality 
 This spell grants the recipient 25 strength, +5 base damage in melee, immunity to Fear and a 25% increase in their base health pool, which can not be dispelled for its duration.
 
 Disadvantages:
-– May not learn or cast any spells of the Abjuration school.
-– Receives a -15% penalty when scribing scrolls from other schools.
+- May not learn or cast any spells of the Abjuration school.
+- Receives a -15% penalty when scribing scrolls from other schools.
 - Cannot dual class.
 
 Requires at least 15 Dexterity.~
@@ -970,26 +970,26 @@ Requires at least 15 Dexterity.~
 @5103 = ~BLADE: The Blade is an expert fighter and adventurer whose bardic acting abilities make <PRO_HIMHER> appear more intimidating and fearsome. This Bard's fighting style is flashy and entertaining, but is also lethally dangerous.
 
 Advantages:
-– May place 3 slots in Two-Weapon Style.
-– May use the Offensive Spin and Defensive Spin abilities once per day. Gains one use each at level 1 and an additional use each every 4 levels thereafter.
+- May place 3 slots in Two-Weapon Style.
+- May use the Offensive Spin and Defensive Spin abilities once per day. Gains one use each at level 1 and an additional use each every 4 levels thereafter.
 
 OFFENSIVE SPIN: During the next 4 rounds, the Blade's movement rate doubles and <PRO_HESHE> gains a +2 bonus to hit and damage rolls as well as an extra attack per round. All attacks deal maximum damage for the duration. Offensive Spin may not be used in conjunction with the Haste or Improved Haste spells.
 
 DEFENSIVE SPIN: During the next 4 rounds, the Blade is rooted to the spot and gains a +1 bonus to Armor Class per level, up to a maximum of +10.
 
 Disadvantages:
-– Only has one half the normal Lore value.~
+- Only has one half the normal Lore value.~
 
 @5104 = ~JESTER: This Bard is well versed in the arts of ridicule and hilarity, and uses <PRO_HISHER> abilities to distract and confuse <PRO_HISHER> enemies, cavorting madly during combat. Do not mistake <PRO_HIMHER> for a true fool, however, as <PRO_HESHE> can also be quite deadly.
 
 Advantages:
-– The Jester's song does not help allies. Instead, every opponent within 30 feet must save once per round to avoid falling under its effects:
+- The Jester's song does not help allies. Instead, every opponent within 30 feet must save once per round to avoid falling under its effects:
   1st level: Enemies must save vs. Spell with a +2 bonus or be confused.
   15th level: Enemies must save vs. Spell with a +2 bonus or be confused, and must save vs. Spell or be slowed.
   20th level: Enemies must save vs. Spell with a +2 bonus or be confused, must save vs. Spell at +2 or be knocked unconscious, and must save vs. Spell or be slowed.
 
 Disadvantages:
-– None.~
+- None.~
 
 @5105 = ~SKALD: This Nordic bard is also a warrior of great strength, skill and virtue. His songs are inspiring sagas of battle and valor, and the Skald devotes his life to those pursuits.
 
@@ -1001,25 +1001,25 @@ Advantages:
 20th: gives allies +4 to hit, +4 to damage, -4 to AC
 
 Disadvantages:
-– None.~
+- None.~
 
 @5106 = ~BARD: The Bard is a rogue, but <PRO_HESHE> is very different from the Thief. The Bard's strength is <PRO_HISHER> pleasant and charming personality. With it and <PRO_HISHER> wits, <PRO_HESHE> makes <PRO_HISHER> way through the world. A Bard is a talented musician and a walking storehouse of gossip, tall tales, and lore; <PRO_HESHE> learns a little bit about everything that crosses <PRO_HISHER> path and is a jack-of-all-trades but master of none. While many Bards are scoundrels, their stories and songs are welcome almost everywhere.
 
 CLASS FEATURES:
 
-– May not wear armor heavier than chain mail. (Spells cannot be cast while wearing armor.)
-– May not equip shields larger than bucklers.
-– May only become Proficient (one slot) in any weapon class.
-– May only become Proficient (one slot) in any fighting style.
-– Thieving abilities: Pick Pockets.
-– Increased Lore score.
-– May cast arcane spells starting at 2nd level.
-– May use Bard Song ability. While active, the Bard Song has the following effects:
+- May not wear armor heavier than chain mail. (Spells cannot be cast while wearing armor.)
+- May not equip shields larger than bucklers.
+- May only become Proficient (one slot) in any weapon class.
+- May only become Proficient (one slot) in any fighting style.
+- Thieving abilities: Pick Pockets.
+- Increased Lore score.
+- May cast arcane spells starting at 2nd level.
+- May use Bard Song ability. While active, the Bard Song has the following effects:
   Restore morale to its average value
   Remove Fear
   Protection From Fear
-– Alignment restricted to any neutral.
-– Hit Die: d6~
+- Alignment restricted to any neutral.
+- Hit Die: d6~
 
 @5107 = ~Installing paladin_rebalance component~
 

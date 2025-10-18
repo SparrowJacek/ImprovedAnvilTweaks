@@ -437,3 +437,31 @@ COPY_EXISTING ~kitlist.2da~ ~override/kitlist.2da~
   COUNT_2DA_COLS ~colcount~
   SET_2DA_ENTRY $kitlist_rows("INQUISITOR") $kitlist_cols("UNUSABLE") ~colcount~ ~0x00000020~ // Lack of spells is hardcoded to usability flags
 
+// Ability version of Weaken Undead for Undead Hunters
+
+COPY_EXISTING ~sppr515.spl~ ~override/s!undht1.spl~
+  WRITE_SHORT 0x1c 4
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      location = 4
+  END
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABPA04.2da~
+    row_desc = ~WEAKEN_UNDEAD~
+    level12 = ~GA_S!UNDHT1~
+    level20 = ~GA_S!UNDHT1~
+    level28 = ~GA_S!UNDHT1~
+    level36 = ~GA_S!UNDHT1~
+END
+
+// Additional Lay on Hands
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABPA04.2da~
+    row_desc = ~LAY_ON_HANDS~
+    level1 = ~GA_SPCL211~
+END
+

@@ -103,6 +103,16 @@ ACTION_FOR_EACH paladin_kit_clab IN ~CLABPA01.2da~ ~CLABPA02.2da~ ~CLABPA03.2da~
   END
 END
 
+// Remove all instantces of of Remove Fear from Cavalier
+
+COPY_EXISTING ~CLABPA02.2da~ ~override~
+  REPLACE_EVALUATE
+    ~GA_SPCL222~
+    BEGIN
+    END
+    ~****~
+  PRETTY_PRINT_2DA
+
 // Enable *** in Sword and Shield for Paladins
 
 LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
@@ -171,7 +181,7 @@ ACTION_FOR_EACH paladin_kit_clab IN ~CLABPA01.2da~ ~CLABPA02.2da~ ~CLABPA04.2da~
   END
 END
 
-// Maka an ability version of Heavenly Shield
+// Make an ability version of Heavenly Shield
 
 COPY_EXISTING ~sppr617.spl~ ~override/s!heashl.spl~
   SAY UNIDENTIFIED_DESC @6274

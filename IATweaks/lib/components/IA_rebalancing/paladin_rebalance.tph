@@ -257,6 +257,35 @@ ACTION_FOR_EACH paladin_kit_clab IN ~CLABPA01.2da~ ~CLABPA02.2da~ BEGIN
   END
 END
 
+// Plate Armor Mastery
+
+COPY ~IATweaks\resources\eff\s!plate0.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!plate1.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!plate2.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!plate3.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!plate4.eff~ ~override~
+COPY ~IATweaks\resources\bam\s!platem.bam~ ~override~
+COPY ~IATweaks\resources\spl\s!platem.SPL~ ~override~
+  SAY NAME1 @6281
+  SAY UNIDENTIFIED_DESC @6282
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABPA01.2da~
+    row_desc = ~PLATE_ARMOR_MASTERY~
+    level14 = ~AP_S!PLATEM~
+END
+
+// Grant Plate Armor Mastery as a HLA once
+
+LAF ~S!ADD_HLA_ROW~
+  STR_VAR
+    filename = ~LUPA0.2DA~
+    row_desc = ~PLATE_ARMOR_MASTERY~
+    ability = ~AP_S!PLATEM~
+    num_allowed = ~1~
+END
+
 // Remove casting restrictions from Inquisitor
 
 COPY_EXISTING ~SPCL234.spl~ ~override~

@@ -197,3 +197,18 @@ COPY_EXISTING_REGEXP GLOB ~.+\.cre~ ~override~
     END
   END
 BUT_ONLY
+
+// Change Armor type to proper 3 types
+
+COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
+  READ_ASCII 0x22 equipped_appearance (2)
+  PATCH_IF (~%equipped_appearance%~ STR_EQ ~2A~) BEGIN
+    WRITE_SHORT 0x1c 60 // Leather Armor
+  END
+  PATCH_IF (~%equipped_appearance%~ STR_EQ ~3A~) BEGIN
+    WRITE_SHORT 0x1c 62 // Chain Armor
+  END
+  PATCH_IF (~%equipped_appearance%~ STR_EQ ~4A~) BEGIN
+    WRITE_SHORT 0x1c 64 // Plate Armor
+  END
+BUT_ONLY

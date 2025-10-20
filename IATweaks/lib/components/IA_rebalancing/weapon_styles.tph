@@ -122,7 +122,6 @@ COPY ~IATweaks\resources\spl\s!+05apr.spl~ ~override~
     INT_VAR
       match_opcode = 318
       match_parameter1 = 3
-      parameter1 = 2
       parameter2 = single_weapon_style
   END
 

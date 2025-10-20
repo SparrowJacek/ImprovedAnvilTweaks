@@ -45,7 +45,7 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
         insert_point = ~-1~
         opcode = 318
         target = 1
-        parameter1 = 2
+        parameter1 = 3
         parameter2 = two_handed_style
         timing = 10
         duration = 1

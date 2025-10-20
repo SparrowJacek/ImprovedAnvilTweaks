@@ -3100,3 +3100,55 @@ COPY ~IATweaks\resources\cre\s!demipr.cre~ ~override~
   END
 
 COMPILE ~IATweaks\scripts\creatures\S!DEMIPR.BAF~
+
+// Black Dragon fom Sulda
+
+COPY_EXISTING ~DRAGBLAC.cre~ ~override~
+  WRITE_SHORT 0x24 THIS * 2 // HP
+  WRITE_SHORT 0x26 THIS * 2 // HP
+  WRITE_BYTE 0x52 THIS - 3 // Thac0
+  WRITE_BYTE 0x54 1  // Saves
+  WRITE_BYTE 0x55 3 // Saves
+  WRITE_BYTE 0x56 2  // Saves
+  WRITE_BYTE 0x57 2  // Saves
+  WRITE_BYTE 0x58 4 // Saves
+  WRITE_BYTE 0x5a 75  // Electricity Resistance
+
+  LPF ~ADD_CRE_EFFECT~ // Aura Cleansing
+    INT_VAR
+      target = 1
+      opcode = 188
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Casting Speed
+    INT_VAR
+      target = 1
+      opcode = 189
+      parameter1 = 2
+      resist_dispel = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // normal Haste
+    INT_VAR
+      target = 1
+      opcode = 16
+      timing = 9
+  END
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL "SPWI302" #2 "wizard" ( 3 ) // Remove Magic
+  ADD_MEMORIZED_SPELL "SPWI513" #4 "wizard" ( 5 ) // Breach
+  ADD_MEMORIZED_SPELL "SPWI514" #4 "wizard" ( 3 ) // Lower Resistance
+  ADD_MEMORIZED_SPELL "SPWI605" #5 "wizard" ( 3 ) // Death Spell
+  ADD_MEMORIZED_SPELL "SPWI704" #6 "wizard" ( 5 ) // Ruby Ray of Reversal
+
+COMPILE ~IATweaks\scripts\creatures\DRAGBLAC.BAF~
+
+// Raamilat, Drow from Sulda
+
+COMPILE ~IATweaks\scripts\creatures\S!SURAAM.BAF~

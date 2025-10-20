@@ -2131,3 +2131,19 @@ COPY_EXISTING ~%sense_of_limbo_spell_res%.spl~ ~override~
       match_opcode = 169
       parameter2 = 105
   END
+
+// Black Dragon fom Sulda
+
+COPY_EXISTING ~DRAGBLAC.cre~ ~override~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL "SPWI302" #2 "wizard" ( 3 ) // Remove Magic
+  ADD_MEMORIZED_SPELL "SPWI513" #4 "wizard" ( 5 ) // Breach
+  ADD_MEMORIZED_SPELL "SPWI514" #4 "wizard" ( 3 ) // Lower Resistance
+  ADD_MEMORIZED_SPELL "SPWI605" #5 "wizard" ( 3 ) // Death Spell
+  ADD_MEMORIZED_SPELL "SPWI704" #6 "wizard" ( 5 ) // Ruby Ray of Reversal
+  
+  ADD_MEMORIZED_SPELL ~SPIN692~ #0 ~innate~ ( 5 ) // Greater Silence
+
+COMPILE ~IATweaks\scripts\controversial\DRAGBLAC.BAF~

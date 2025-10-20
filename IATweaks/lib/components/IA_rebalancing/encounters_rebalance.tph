@@ -254,11 +254,11 @@ COPY_EXISTING ~JAGA2.cre~ ~override~ // Kail
   WRITE_BYTE 0x57 9  // Saves
   WRITE_BYTE 0x58 11 // Saves
     
-  LPF ~ADD_CRE_EFFECT~ // ** in Single Weapon
+  LPF ~ADD_CRE_EFFECT~ // *** in Single Weapon
     INT_VAR
       target = 1
       opcode = 233
-      parameter1 = 2
+      parameter1 = 3
       parameter2 = 113
       resist_dispel = 0
       timing = 9
@@ -422,11 +422,11 @@ COPY_EXISTING ~BODFGT03.cre~ ~override~ // Gracen
       timing = 9
   END
     
-  LPF ~ADD_CRE_EFFECT~ // ** in 2h Weapon Style
+  LPF ~ADD_CRE_EFFECT~ // *** in 2h Weapon Style
     INT_VAR
       target = 1
       opcode = 233
-      parameter1 = 2
+      parameter1 = 3
       parameter2 = 111
       resist_dispel = 0
       timing = 9
@@ -473,11 +473,11 @@ COPY_EXISTING ~SEVPAT01.cre~ ~override~ // Mencar
       timing = 9
   END
     
-  LPF ~ADD_CRE_EFFECT~ // ** in Single Weapon Style
+  LPF ~ADD_CRE_EFFECT~ // *** in Single Weapon Style
     INT_VAR
       target = 1
       opcode = 233
-      parameter1 = 2
+      parameter1 = 3
       parameter2 = 113
       resist_dispel = 0
       timing = 9
@@ -502,11 +502,11 @@ COPY_EXISTING ~SEVPAT04.cre~ ~override~ // Smaeluv
       timing = 9
   END
     
-  LPF ~ADD_CRE_EFFECT~ // ** in 2h Weapon Style
+  LPF ~ADD_CRE_EFFECT~ // *** in 2h Weapon Style
     INT_VAR
       target = 1
       opcode = 233
-      parameter1 = 2
+      parameter1 = 3
       parameter2 = 111
       resist_dispel = 0
       timing = 9
@@ -701,11 +701,11 @@ COPY_EXISTING ~BDTURM01.cre~ ~override~
   WRITE_BYTE 0x23d 19 // Constitution
   WRITE_LONG 0x244 0x40010000 // Kit = Berserker
     
-  LPF ~ADD_CRE_EFFECT~ // ** in 2h Weapon
+  LPF ~ADD_CRE_EFFECT~ // *** in 2h Weapon
     INT_VAR
       target = 1
       opcode = 233
-      parameter1 = 2
+      parameter1 = 3
       parameter2 = 111
       resist_dispel = 0
       timing = 9
@@ -2098,11 +2098,11 @@ COPY_EXISTING ~HLOLAF.cre~ ~override~
       timing = 9
   END
     
-  LPF ~ADD_CRE_EFFECT~ // ** in 2h Weapons
+  LPF ~ADD_CRE_EFFECT~ // *** in 2h Weapons
     INT_VAR
       target = 1
       opcode = 233
-      parameter1 = 2
+      parameter1 = 3
       parameter2 = 111
       resist_dispel = 0
       timing = 9
@@ -2686,11 +2686,11 @@ COPY_EXISTING ~HLFIGHT.cre~ ~override/S!WIZSL1.cre~
       timing = 9
   END
     
-  LPF ~ADD_CRE_EFFECT~ // ** in 2h Weapons
+  LPF ~ADD_CRE_EFFECT~ // *** in 2h Weapons
     INT_VAR
       target = 1
       opcode = 233
-      parameter1 = 2
+      parameter1 = 3
       parameter2 = 111
       resist_dispel = 0
       timing = 9
@@ -2822,11 +2822,11 @@ COPY_EXISTING ~HLFIGHT.cre~ ~override~
       timing = 9
   END
     
-  LPF ~ADD_CRE_EFFECT~ // ** in Single Weapon
+  LPF ~ADD_CRE_EFFECT~ // *** in Single Weapon
     INT_VAR
       target = 1
       opcode = 233
-      parameter1 = 2
+      parameter1 = 3
       parameter2 = 113
       resist_dispel = 0
       timing = 9

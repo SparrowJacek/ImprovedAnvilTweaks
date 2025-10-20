@@ -289,6 +289,11 @@ END
 // Remove bonuses to hit/damage from Cavaliers, grant them ability to prevent regeneration
 
 COPY ~IATweaks\resources\spl\s!norege.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@6286)
+  END
 COPY ~IATweaks\resources\eff\s!norege.eff~ ~override~
 COPY ~IATweaks\resources\eff\s!caval1.eff~ ~override~
 COPY ~IATweaks\resources\eff\s!caval2.eff~ ~override~

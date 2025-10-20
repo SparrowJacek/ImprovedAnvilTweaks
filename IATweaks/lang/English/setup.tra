@@ -339,7 +339,8 @@ Advantages:
 - Bonus +1 to hit and +1 damage.
 - Starts with base score of 40% in Stealth Strike and Hide in Shadows.
 - May put up to 200 points into Stealth Strike and Hide in Shadows.
-- May become Specialized (two slots) in Short Sword, Dagger and Single Weapon Style.
+- May become Specialized (two slots) in Short Sword and Dagger.
+- May become Master (three slots) in Single Weapon Style.
 
 Disadvantages:
 - Only 10 points to distribute at level 1.
@@ -1143,7 +1144,7 @@ Disadvantages:
 @5133 = ~CAVALIER: This class represents the most common picture of the knight: the gentleman warrior who epitomizes honor, courage and loyalty. He is specialized in battling 'classical' evil monsters such as demons and dragons.
 
 Advantages:
--  All melee hits against demons, devils and dragons prevent regeneration of those creatures for 3 seconds, items, spells and abilities that instantly heal may still be used
+-  All melee hits against demons, devils and dragons have 10% chance to prevent regeneration of those creatures for 3 seconds, items, spells and abilities that instantly heal may still be used
 -  At levels 10, 20, 30 and 40 gains one use of Guardian's Stand ability
 -  At levels 12, 20, 28 and 36 gains one use of Cleansing Light ability
 -  Immune to charm

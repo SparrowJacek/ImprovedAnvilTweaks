@@ -1451,6 +1451,8 @@ COPY_EXISTING ~sppr103.spl~ ~override~
 
 COPY_EXISTING ~sppr315.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6015
+  // Update casting speed
+  LPF ~ALTER_SPELL_HEADER~ INT_VAR speed = 6 END
 
 COPY_EXISTING ~sppr401.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6016
@@ -1513,7 +1515,7 @@ COPY_EXISTING ~sppr320.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6217
   LPF ~ALTER_SPELL_HEADER~ 
     INT_VAR
-      speed = 4
+      speed = 5
   END
   LPF ~ALTER_SPELL_HEADER~ 
     INT_VAR
@@ -1525,7 +1527,7 @@ COPY_EXISTING ~sppr419.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6218
   LPF ~ALTER_SPELL_HEADER~ 
     INT_VAR
-      speed = 5
+      speed = 6
   END
   LPF ~ALTER_SPELL_HEADER~ 
     INT_VAR
@@ -1537,7 +1539,7 @@ COPY_EXISTING ~sppr518.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6219
   LPF ~ALTER_SPELL_HEADER~ 
     INT_VAR
-      speed = 6
+      speed = 7
   END
   LPF ~ALTER_SPELL_HEADER~ 
     INT_VAR
@@ -1568,7 +1570,7 @@ COPY_EXISTING ~sppr615.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6280
   LPF ~ALTER_SPELL_HEADER~ 
     INT_VAR
-      speed = 7
+      speed = 8
   END
   LPF ~ALTER_SPELL_HEADER~ 
     INT_VAR

@@ -136,7 +136,7 @@ Level: 3
 Sphere: Healing 
 Range: Touch 
 Duration: Permanent 
-Casting Time: 5 
+Casting Time: 6 
 Area of Effect: 1 creature 
 Saving Throw: None 
 
@@ -1528,7 +1528,7 @@ Level: 3
 Sphere: Healing
 Range: Visual range of the caster
 Duration: Permanent
-Casting Time: 4
+Casting Time: 5
 Area of Effect: 1 creature
 Saving Throw: None
 
@@ -1543,7 +1543,7 @@ Level: 4
 Sphere: Healing
 Range: Visual range of the caster
 Duration: Permanent
-Casting Time: 5
+Casting Time: 6
 Area of Effect: 1 creature
 Saving Throw: None
 
@@ -1558,7 +1558,7 @@ Level: 5
 Sphere: Healing
 Range: Visual range of the caster
 Duration: Permanent
-Casting Time: 6
+Casting Time: 7
 Area of Effect: 1 creature
 Saving Throw: None
 
@@ -1962,11 +1962,13 @@ Level: 6
 Sphere: Healing
 Range: Visual range of the caster
 Duration: Permanent
-Casting Time: 6
+Casting Time: 8
 Area of Effect: 1 creature
 Saving Throw: None
 
-Mend Body is the epitome of the shaman's ability to channel spiritual energy into the cure of physical trauma. This spell completely removes all disease and blindness in the recipient, recovers up to 60% of health lost due to wounds or injury and removes casting speed penalties caused by damage done to vocal cords by spells like Greater Silence, though it does not cure the silence effect itself. It also dispels a Feeblemind spell and cures those mental disorders caused by spells or injury to the brain. Naturally, the effects can be negated by later wounds, injuries, and diseases.~
+Mend Body is the epitome of the shaman's ability to channel spiritual energy into the cure of physical trauma. This spell completely removes all disease and blindness in the recipient, recovers up to 60% of health lost due to wounds or injury and removes casting speed penalties caused by damage done to vocal cords by spells like Greater Silence, though it does not cure the silence effect itself. It also dispels a Feeblemind spell and cures those mental disorders caused by spells or injury to the brain. Naturally, the effects can be negated by later wounds, injuries, and diseases.
+
+Starting from level 18 this spell grants aura cleansing for 6 seconds, or till next spell is cast.~
 
 @6266 = ~Sense of Limbo
 (Alteration)
@@ -2038,6 +2040,20 @@ A shield must be equipped for this ability to function. Once the stance ends, it
 
 Both Guardian's Stand and Finish Guardian's Stand can be used instantly, even if the Cavalier's aura is not cleansed.~
 
+@6280 = ~Mend Body
+(Necromancy)
+
+Level: 6
+Sphere: Healing
+Range: Visual range of the caster
+Duration: Permanent
+Casting Time: 8
+Area of Effect: 1 creature
+Saving Throw: None
+
+Mend Body is the epitome of the shaman's ability to channel spiritual energy into the cure of physical trauma. This spell completely removes all disease and blindness in the recipient and recovers up to 60% of health lost due to wounds or injury. It also dispels a Feeblemind spell and cures those mental disorders caused by spells or injury to the brain. Naturally, the effects can be negated by later wounds, injuries, and diseases.
+
+Starting from level 16 this spell grants aura cleansing for 6 seconds, or till next spell is cast.~
 
 @6281 = ~Plate Armor Mastery~
 

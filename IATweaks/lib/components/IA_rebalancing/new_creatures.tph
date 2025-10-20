@@ -87,3 +87,13 @@ COPY ~IATweaks\resources\cre\s!abishr.cre~ ~override~
   ADD_MEMORIZED_SPELL "SPWI304" #2 "wizard" ( 2 ) // Fireball
 
 COMPILE ~IATweaks\scripts\creatures\S!ABISHR.BAF~
+
+// Corrupted Tree of Life Branch
+
+COPY ~IATweaks\resources\itm\s!dendr1.itm~ ~override~
+COPY ~IATweaks\resources\itm\s!dendr2.itm~ ~override~
+COPY ~IATweaks\resources\cre\s!dendr1.cre~ ~override~
+  SAY NAME1 @5138
+  SAY NAME2 @5138
+
+COMPILE ~IATweaks\scripts\creatures\S!DENDR1.BAF~

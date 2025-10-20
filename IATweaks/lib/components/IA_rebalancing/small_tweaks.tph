@@ -1284,6 +1284,8 @@ COPY_EXISTING ~SPIN695.spl~ ~override~
       parameter1 = 0
       parameter2 = 1
       duration = 0
+    STR_VAR
+      resource = ~SPIN695D~
   END
 
 // Add new item that protects from things like Golem item, but only has poison immunity, no other res

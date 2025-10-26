@@ -682,8 +682,17 @@ COPY ~IATweaks\resources\spl\s!ac_st3.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!ac_st4.spl~ ~override~
 
 COPY ~IATweaks\resources\eff\s!ac_st1.eff~ ~override~
+  WRITE_LONG 0x10 326
+  WRITE_LONG 0x1c 252
+  WRITE_LONG 0x20 tracking_binary_not_match
 COPY ~IATweaks\resources\eff\s!ac_st2.eff~ ~override~
+  WRITE_LONG 0x10 326
+  WRITE_LONG 0x1c 240
+  WRITE_LONG 0x20 tracking_binary_not_match
 COPY ~IATweaks\resources\eff\s!ac_st3.eff~ ~override~
+  WRITE_LONG 0x10 326
+  WRITE_LONG 0x1c 192
+  WRITE_LONG 0x20 tracking_binary_not_match
 COPY ~IATweaks\resources\eff\s!ac_st4.eff~ ~override~
 
 ACTION_DEFINE_ASSOCIATIVE_ARRAY item_to_enchantment_mapping BEGIN
@@ -721,17 +730,149 @@ ACTION_PHP_EACH item_to_enchantment_mapping AS item_file => enchantment BEGIN
           match_opcode = opcode_to_delete
       END
     END
-    FOR (i = 1; i <= enchantment; ++i) BEGIN
+    PATCH_IF (enchantment = 1) BEGIN
       LPF ~ADD_ITEM_EQEFFECT~
         INT_VAR
-          insert_point = 0
+          insert_point = ~-1~
           opcode = 272
           target = 1
           parameter1 = 1
           parameter2 = 0
           timing = 2
         STR_VAR
-          resource = EVAL ~S!AC_ST%i%~
+          resource = ~S!AC_ST1~
+      END
+    END
+    PATCH_IF (enchantment = 2) BEGIN
+      LPF ~ADD_ITEM_EQEFFECT~
+        INT_VAR
+          insert_point = 0
+          opcode = 321
+          target = 1
+          parameter1 = 0
+          parameter2 = 0
+          timing = 0
+        STR_VAR
+          resource = ~S!AC_ST1~
+      END
+      LPF ~ADD_ITEM_EQEFFECT~
+        INT_VAR
+          insert_point = ~-1~
+          opcode = 95
+          target = 1
+          parameter1 = 4
+          parameter2 = 0
+          timing = 2
+      END
+      LPF ~ADD_ITEM_EQEFFECT~
+        INT_VAR
+          insert_point = ~-1~
+          opcode = 272
+          target = 1
+          parameter1 = 1
+          parameter2 = 0
+          timing = 2
+        STR_VAR
+          resource = ~S!AC_ST2~
+      END
+    END
+    PATCH_IF (enchantment = 3) BEGIN
+      LPF ~ADD_ITEM_EQEFFECT~
+        INT_VAR
+          insert_point = 0
+          opcode = 321
+          target = 1
+          parameter1 = 0
+          parameter2 = 0
+          timing = 0
+        STR_VAR
+          resource = ~S!AC_ST1~
+      END
+      LPF ~ADD_ITEM_EQEFFECT~
+        INT_VAR
+          insert_point = 0
+          opcode = 321
+          target = 1
+          parameter1 = 0
+          parameter2 = 0
+          timing = 0
+        STR_VAR
+          resource = ~S!AC_ST2~
+      END
+      LPF ~ADD_ITEM_EQEFFECT~
+        INT_VAR
+          insert_point = ~-1~
+          opcode = 95
+          target = 1
+          parameter1 = 16
+          parameter2 = 0
+          timing = 2
+      END
+      LPF ~ADD_ITEM_EQEFFECT~
+        INT_VAR
+          insert_point = ~-1~
+          opcode = 272
+          target = 1
+          parameter1 = 1
+          parameter2 = 0
+          timing = 2
+        STR_VAR
+          resource = ~S!AC_ST3~
+      END
+    END
+    PATCH_IF (enchantment = 4) BEGIN
+      LPF ~ADD_ITEM_EQEFFECT~
+        INT_VAR
+          insert_point = 0
+          opcode = 321
+          target = 1
+          parameter1 = 0
+          parameter2 = 0
+          timing = 0
+        STR_VAR
+          resource = ~S!AC_ST1~
+      END
+      LPF ~ADD_ITEM_EQEFFECT~
+        INT_VAR
+          insert_point = 0
+          opcode = 321
+          target = 1
+          parameter1 = 0
+          parameter2 = 0
+          timing = 0
+        STR_VAR
+          resource = ~S!AC_ST2~
+      END
+      LPF ~ADD_ITEM_EQEFFECT~
+        INT_VAR
+          insert_point = 0
+          opcode = 321
+          target = 1
+          parameter1 = 0
+          parameter2 = 0
+          timing = 0
+        STR_VAR
+          resource = ~S!AC_ST3~
+      END
+      LPF ~ADD_ITEM_EQEFFECT~
+        INT_VAR
+          insert_point = ~-1~
+          opcode = 95
+          target = 1
+          parameter1 = 64
+          parameter2 = 0
+          timing = 2
+      END
+      LPF ~ADD_ITEM_EQEFFECT~
+        INT_VAR
+          insert_point = ~-1~
+          opcode = 272
+          target = 1
+          parameter1 = 1
+          parameter2 = 0
+          timing = 2
+        STR_VAR
+          resource = ~S!AC_ST4~
       END
     END
   BUT_ONLY

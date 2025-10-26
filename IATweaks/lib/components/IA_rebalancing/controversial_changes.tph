@@ -2350,6 +2350,13 @@ COPY ~IATweaks\resources\itm\s!orcusw.itm~ ~override/s!orcus.itm~
   SAY NAME2 @7074
   SAY IDENTIFIED_DESC @7075
 
+COPY ~IATweaks\resources\spl\s!kill.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!kil0hp.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~%s!invbas%~
+  END
+
 // Orcus Contingencies
 
 COPY ~IATweaks\resources\eff\s!orcu1a.eff~ ~override~

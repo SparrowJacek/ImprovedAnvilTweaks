@@ -1197,7 +1197,8 @@ COPY_EXISTING ~SPWI914.spl~ ~override~
       target = 2
       power = 9
       parameter1 = 50
-      parameter2 = 0
+      parameter2 = 4194304
+      timing = 1
       duration = 180
       resist_dispel = 0
       special = 8 // non-cumulative HP drain

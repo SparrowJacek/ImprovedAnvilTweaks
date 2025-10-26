@@ -82,12 +82,22 @@ LAF ~S!ADD_SPLPROT_2DA_ENTRY~
 END
 LAF ~S!ADD_SPLPROT_2DA_ENTRY~
   STR_VAR
+    condition_description = ~SINGLE_WEAPON_STYLE>=n~
+    stat                  = ~113~
+    value                 = ~-1~
+    relation              = ~4~
+  RET
+    single_weapon_style = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
     condition_description = ~SINGLE_WEAPON_STYLE<n~
     stat                  = ~113~
     value                 = ~-1~
     relation              = ~2~
   RET
-    single_weapon_style = new_line_number
+    single_weapon_style_less_than = new_line_number
 END
 
 LAF ~S!ADD_SPLPROT_2DA_ENTRY~
@@ -100,8 +110,31 @@ LAF ~S!ADD_SPLPROT_2DA_ENTRY~
     tracking_num_weapons = new_line_number
 END
 
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~TRACKING_AT_LEAST_ONE_ACTIVE_BIT_IN_COMMON~
+    stat                  = ~33~
+    value                 = ~-1~
+    relation              = ~8~
+  RET
+    tracking_binary_match = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~TRACKING_BO_ACTIVE_BITS_IN_COMMON~
+    stat                  = ~33~
+    value                 = ~-1~
+    relation              = ~9~
+  RET
+    tracking_binary_not_match = new_line_number
+END
+
 COPY ~IATweaks\resources\eff\s!+05apr.eff~ ~override~
 COPY ~IATweaks\resources\eff\s!swpapr.eff~ ~override~
+  WRITE_LONG 0x1c 1
+  WRITE_LONG 0x20 tracking_binary_match
+  // WRITE_LONG 0x20 single_weapon_style
 COPY ~IATweaks\resources\eff\s!countw.eff~ ~override~
 COPY ~IATweaks\resources\spl\s!+05apr.spl~ ~override~
   LPF ~ALTER_EFFECT~
@@ -114,15 +147,8 @@ COPY ~IATweaks\resources\spl\s!+05apr.spl~ ~override~
   LPF ~ALTER_EFFECT~
     INT_VAR
       match_opcode = 318
-      match_parameter1 = 2
-      parameter1 = 2
-      parameter2 = tracking_num_weapons
-  END
-  LPF ~ALTER_EFFECT~
-    INT_VAR
-      match_opcode = 318
       match_parameter1 = 3
-      parameter2 = single_weapon_style
+      parameter2 = single_weapon_style_less_than
   END
 
 LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~

@@ -80,6 +80,18 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
     LPF ~ADD_ITEM_EQEFFECT~
       INT_VAR
         insert_point = ~-1~
+        opcode = 318
+        target = 1
+        parameter1 = 3
+        parameter2 = single_weapon_style_less_than
+        timing = 10
+        duration = 2
+      STR_VAR
+        resource = EVAL ~%SOURCE_RES%~
+    END
+    LPF ~ADD_ITEM_EQEFFECT~
+      INT_VAR
+        insert_point = ~-1~
         opcode = 272
         target = 1
         parameter1 = 1

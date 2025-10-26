@@ -2366,3 +2366,26 @@ COPY ~IATweaks\resources\eff\s!orcu3a.eff~ ~override~
 COPY ~IATweaks\resources\spl\s!orcu3a.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!orcu3b.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!orcu3c.spl~ ~override~
+
+// Cumulative Doom
+
+COPY ~IATweaks\resources\spl\s!doom.spl~ ~override~
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      duration_high = 30
+  END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      power = 0
+  END
+
+// Exploding Skull
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!eskull.pro~
+
+COPY ~IATweaks\resources\spl\s!eskull.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~%s!eskull%~
+  END
+

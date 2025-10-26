@@ -390,6 +390,10 @@ COPY ~IATweaks\resources\bam\s!caval8.bam~ ~override~
 COPY ~IATweaks\resources\spl\s!caval8.spl~ ~override~
   SAY NAME1 @6284
   SAY UNIDENTIFIED_DESC @6285
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      power = 0
+  END
 
 LAF ~S!ADD_CLAB_ROW~
   STR_VAR

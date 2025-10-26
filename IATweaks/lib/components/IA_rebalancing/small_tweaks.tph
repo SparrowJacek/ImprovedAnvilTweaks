@@ -1296,6 +1296,11 @@ COPY_EXISTING ~SPIN695.spl~ ~override~
 
 COPY ~IATweaks\resources\itm\s!immun2.itm~ ~override~
 
+
+// A spell preventing Aura Cleanse, used mostly to ensure that some enemies go into melee from time to time
+
+COPY ~IATweaks\resources\spl\s!noaura.spl~ ~override~
+
 // Assign new animation to Orcus
 
 COPY_EXISTING ~s!orcus.CRE~ ~override~

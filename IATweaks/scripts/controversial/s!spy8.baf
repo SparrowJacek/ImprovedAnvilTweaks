@@ -1,0 +1,28 @@
+IF
+	!GlobalTimerNotExpired("Iaspy8timer","AR0802")  // Netherscroll, Korgan's Book, Edwin
+	!See([EVILCUTOFF])
+	See([PC])
+	GlobalLT("IaVamps","LOCALS",3)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaVamps","LOCALS",1)
+		SetGlobalTimer("Iaspy8timer","AR0802",FIVE_ROUNDS)  // Netherscroll, Korgan's Book, Edwin
+		CreateCreatureObject("S!orvam",LastSeenBy(Myself),0,0,0)  // Master Vampire
+END
+
+IF
+	Global("Iaorcusdead","GLOBAL",1)
+	OR(2)
+		Global("IaVamps","LOCALS",3)
+		Dead("S!orcus")  // Orcus
+	OR(2)
+		Global("IaVamps","LOCALS",3)
+		CombatCounter(0)
+	OR(2)
+		Global("IaVamps","LOCALS",3)
+		Global("Iasuicide","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iasuicide","LOCALS",1)
+		DestroySelf()
+END

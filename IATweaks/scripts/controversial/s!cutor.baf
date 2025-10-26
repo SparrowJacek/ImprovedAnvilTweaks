@@ -1,0 +1,31 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("S!orcus")
+		MoveViewObject("S!orcus",-1)  // Orcus
+		Wait(2)
+		CreateVisualEffect("SPRAISED",[748.328])
+		CreateVisualEffect("SPRAISED",[640.406])
+		CreateVisualEffect("SPRAISED",[682.310])
+		CreateVisualEffect("SPRAISED",[613.359])
+		CreateVisualEffect("SPRAISED",[502.354])
+		CreateVisualEffect("SPRAISED",[667.246])
+		ReallyForceSpellPointRES("S!ESKULL",[929.300])  // Skull Trap
+		ReallyForceSpellPointRES("S!ESKULL",[570.507])  // Skull Trap
+		ReallyForceSpellPointRES("S!ESKULL",[1017.443])  // Skull Trap
+		ReallyForceSpellPointRES("S!ESKULL",[768.596])  // Skull Trap
+		ReallyForceSpellPointRES("S!ESKULL",[903.513])  // Skull Trap
+		ReallyForceSpellPointRES("S!ESKULL",[1101.509])  // Skull Trap
+		ReallyForceSpellPointRES("S!ESKULL",[894.655])  // Skull Trap
+		Face(NNW)
+		Wait(2)
+		CreateCreature("S!skelo1",[748.328],NWW)  // Skeleton Grandlord
+		CreateCreature("S!skelo2",[640.406],NWW)  // Skeleton Grandlord
+		CreateCreature("S!skelo5",[682.310],NWW)  // Skeleton Grandlord
+		CreateCreature("S!skelo6",[613.359],NWW)  // Skeleton Grandlord
+		CreateCreature("S!skelo7",[502.354],NWW)  // Skeleton Grandlord
+		CreateCreature("S!skelo8",[667.246],NWW)  // Skeleton Grandlord
+		SetGlobal("Iaskelos","AR0802",1)  // Netherscroll, Korgan's Book, Edwin
+		EndCutSceneMode()
+END

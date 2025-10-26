@@ -2389,3 +2389,79 @@ COPY ~IATweaks\resources\spl\s!eskull.spl~ ~override~
       projectile = ~%s!eskull%~
   END
 
+//Orcus
+
+COPY_EXISTING ~s!orcus.cre~ ~override~
+  WRITE_SHORT 0x46 THIS - 4 // AC
+  WRITE_SHORT 0x48 THIS - 4 // AC
+  WRITE_BYTE 0x52 THIS + 7 // Thac0
+  WRITE_BYTE 0x5b 80  // Electricity Resistance
+    
+  LPF ~ADD_CRE_EFFECT~ // ***** in 2h Sword
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 5
+      parameter2 = 93
+      resist_dispel = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // *** in 2h Weapons
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 3
+      parameter2 = 111
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Casting Speed
+    INT_VAR
+      target = 1
+      opcode = 189
+      parameter1 = 3
+      resist_dispel = 0
+      timing = 9
+  END
+
+  ADD_CRE_ITEM ~S!ORCUS~ #0 #0 #0 ~UNSTEALABLE~ ~INV14~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL "SPWI513" #4 "wizard" ( 6 ) // Breach
+  ADD_MEMORIZED_SPELL "SPWI605" #5 "wizard" ( 3 ) // Death Spell
+  ADD_MEMORIZED_SPELL "SPWI704" #6 "wizard" ( 6 ) // Ruby Ray of Reversal
+  ADD_MEMORIZED_SPELL "SPWI715" #6 "wizard" ( 2 ) // Power Word, Stun
+  ADD_MEMORIZED_SPELL "SPWI914" #8 "wizard" ( 2 ) // Energy Drain
+
+COMPILE ~IATweaks\scripts\controversial\S!ORCUS.BAF~
+
+// Cutscene script
+
+COMPILE ~IATweaks\scripts\controversial\S!CUTOR.BAF~
+
+// Invisible Helper
+
+COMPILE ~IATweaks\scripts\controversial\S!SPY8.BAF~

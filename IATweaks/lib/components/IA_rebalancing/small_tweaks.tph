@@ -1270,7 +1270,7 @@ COPY_EXISTING ~s!dracol.CRE~ ~override~
   WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_DRACOLICH~))
 
 // Tweak Wing Buffet
-COPY ~IATweaks\resources\spl\SPIN695D.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!wingbu.spl~ ~override~
 
 COPY_EXISTING ~SPIN695.spl~ ~override~
   LPF ~DELETE_EFFECT~
@@ -1285,7 +1285,7 @@ COPY_EXISTING ~SPIN695.spl~ ~override~
       parameter2 = 1
       duration = 0
     STR_VAR
-      resource = ~SPIN695D~
+      resource = ~S!WINGBU~
   END
 
 // Add new item that protects from things like Golem item, but only has poison immunity, no other res

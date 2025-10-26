@@ -1904,13 +1904,13 @@ This spell enables the caster to create a black, blade-shaped planar rift about 
 Activating this ability causes all physical attacks made by the warrior to instantly kill any creature that has fewer than 20 Hit Points at the time of the strike.
 The effect is considered non-magical and thus bypasses most magical immunities to death effects, such as Death Ward or Spell Immunity: Necromancy. Creatures completely immune to physical damage, or those protected by Stoneskins are immune to the effect.
 
- The effect lasts for 2 rounds and cannot be dispelled by any means.~
+ The effect lasts for 3 rounds and cannot be dispelled by any means.~
 
 @6253 = ~Greater Deathblow
 Activating this ability causes all physical attacks made by the warrior to instantly kill any creature that has fewer than 30 Hit Points at the time of the strike.
 The effect is considered non-magical and thus bypasses magical immunities to death effects, such as Death Ward, Spell Immunity: Necromancy, or Protection from Death Magic. Creatures completely immune to physical damage, or those protected by Stoneskins are immune to the effect.
 
-The effect lasts for 3 rounds and cannot be dispelled by any means.
+The effect lasts for 5 rounds and cannot be dispelled by any means.
 
 Requires: Deathblow~
 

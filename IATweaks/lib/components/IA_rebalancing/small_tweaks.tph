@@ -1005,7 +1005,7 @@ COPY ~IATweaks\resources\eff\s!dblow1.eff~ ~override\s!dblow3.eff~
 COPY ~IATweaks\resources\eff\s!dblow1.eff~ ~override\s!dblow4.eff~
   WRITE_ASCII 0x30 ~S!DBLOW4~ #8
 
-COPY ~IATweaks\resources\spl\s!dblow1.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!dblowm.spl~ ~override~
   LPF ~ALTER_EFFECT~
     INT_VAR
       match_opcode = 318
@@ -1021,7 +1021,7 @@ COPY ~IATweaks\resources\spl\s!dblow1.spl~ ~override~
       parameter2 = slashing_and_crushing_and_piercing_equal_or_greater_than_100
   END
 
-COPY_EXISTING ~s!dblow1.spl~ ~override\s!dblow2.spl~
+COPY_EXISTING ~s!dblowm.spl~ ~override\s!dblowr.spl~
   LPF ~ALTER_EFFECT~
     INT_VAR
       match_opcode = 318
@@ -1033,36 +1033,34 @@ COPY_EXISTING ~s!dblow1.spl~ ~override\s!dblow2.spl~
     INT_VAR
       match_opcode = 318
     STR_VAR
-      resource = ~S!DBLOW2~
+      resource = ~S!DBLOWR~
+  END
+
+COPY ~IATweaks\resources\spl\s!dblow1.spl~ ~override~
+COPY_EXISTING ~s!dblow1.spl~ ~override\s!dblow2.spl~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 326
+    STR_VAR
+      resource = ~S!DBLOWR~
   END
 
 COPY_EXISTING ~s!dblow1.spl~ ~override\s!dblow3.spl~
   LPF ~ALTER_EFFECT~
     INT_VAR
-      match_opcode = 318
-      match_parameter2 = 144
+      match_opcode = 326
+      match_parameter2 = 145
       parameter1 = 31
-  END
-  LPF ~ALTER_EFFECT~
-    INT_VAR
-      match_opcode = 318
     STR_VAR
-      resource = ~S!DBLOW3~
+      resource = ~S!DBLOWM~
   END
 
 COPY_EXISTING ~s!dblow3.spl~ ~override\s!dblow4.spl~
   LPF ~ALTER_EFFECT~
     INT_VAR
-      match_opcode = 318
-      match_parameter2 = slashing_and_crushing_and_piercing_equal_or_greater_than_100
-      parameter1 = 0
-      parameter2 = missile_equal_or_greater_than_100
-  END
-  LPF ~ALTER_EFFECT~
-    INT_VAR
-      match_opcode = 318
+      match_opcode = 326
     STR_VAR
-      resource = ~S!DBLOW4~
+      resource = ~S!DBLOWR~
   END
 
 COPY_EXISTING ~SPCL902.spl~ ~override~
@@ -1082,6 +1080,10 @@ COPY_EXISTING ~SPCL902.spl~ ~override~
       match_opcode = 249
     STR_VAR
       resource = ~S!DBLOW2~
+  END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      duration_high = 18
   END
 
 COPY_EXISTING ~SPCL903.spl~ ~override~
@@ -1104,7 +1106,7 @@ COPY_EXISTING ~SPCL903.spl~ ~override~
   END
   LPF ~ALTER_SPELL_EFFECT~
     INT_VAR
-      duration_high = 18
+      duration_high = 30
   END
 
 // Add immunity to this spell to some items and creatures
@@ -1153,6 +1155,8 @@ ACTION_FOR_EACH creature_immune IN
                         ~SENDAI6~ 
                         ~SENDAI7~ 
                         ~SENDAI8~
+                        ~S!ORCUS~
+                        ~S!RAKP~
                         ~GORGIT~
                         ~S!SUPGOL~
                         ~S!SUPGOW~

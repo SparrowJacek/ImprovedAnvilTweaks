@@ -64,7 +64,7 @@ ACTION_FOR_EACH vampire_weapon IN ~VAMP~ ~VAMP1~ ~VAMP2~ ~VAMP3~ ~S!VLORD~ ~S!BO
   COPY_EXISTING ~%vampire_weapon%.itm~ ~override~
     READ_LONG 0x64 headers_offset
     WRITE_BYTE (headers_offset + 0x18) (THIS - 1)
-    WRITE_BYTE (headers_offset + 0x1a) (THIS + 1)
+    WRITE_BYTE (headers_offset + 0x1a) (THIS + 2)
     PATCH_FOR_EACH spl_to_dispel IN ~SPPR413~ ~SPIN738~ ~SPPR508~ ~SPWI725E~ BEGIN
       LPF ~CLONE_EFFECT~
         INT_VAR
@@ -90,10 +90,59 @@ ACTION_FOR_EACH vampire_weapon IN ~VAMP~ ~VAMP1~ ~VAMP2~ ~VAMP3~ ~S!VLORD~ ~S!BO
         target = 2
         timing = 9
         dicenumber = 1
-        dicesize = 6
+        dicesize = 8
         special = 1 // Drain HP
     END
 END
+
+// 41495 - One level drained
+ACTION_FOR_EACH vampire_weapon IN ~VAMP~ ~VAMP1~ BEGIN
+  COPY_EXISTING ~%vampire_weapon%.itm~ ~override~
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 216
+        parameter1 = 1
+    END
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 139
+        parameter1 = 41495
+    END
+  END
+
+ACTION_FOR_EACH vampire_weapon IN ~VAMP2~ ~VAMP3~ BEGIN
+  COPY_EXISTING ~%vampire_weapon%.itm~ ~override~
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 216
+        parameter1 = 2
+    END
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 139
+        parameter1 = 40968
+    END
+  END
+
+ACTION_FOR_EACH vampire_weapon IN ~S!VLORD~ ~S!BODHI~ BEGIN
+  COPY_EXISTING ~%vampire_weapon%.itm~ ~override~
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 216
+        parameter1 = 3
+    END
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 139
+        parameter1 = 40969
+    END
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 12
+        match_parameter2 = 0
+        dicenumber = 2
+    END
+  END
 
 // Vampiric Mist
 

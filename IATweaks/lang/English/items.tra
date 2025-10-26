@@ -803,6 +803,31 @@ Equipped abilities:
 
 @7075 = ~~
 
+@7074 = ~Soul Cleaver~
+
+@7075 = ~Forged from the lifeless metal of the Abyss and quenched in the blood of a thousand souls, this blade hums with the same hateful resonance as its master's Wand. On the Prime Material Plane, where Orcus's demonic essence is muted, he channels his power through Soul Cleaver and each swing drains the will and vitality of those it strikes. Mortal flesh recoils not only from its edge, but from the hopeless certainty it carries — that all life must eventually serve the Lord of Undeath.
+
+No mortal can wield it without being consumed by its power, yet its craftsmanship and dark enchantments make it an object of immense value to collectors and scholars of the forbidden.
+
+STATISTICS:
+
+Combat abilities:
+- 20% chance to cumulatively doom the target without saving throw for 5 rounds
+- 50% chance to cumulatively reduce thte target's maximum HP by 10 for 5 rounds
+- permanent effect of Greater Deathblow
+- 30% chance to remove all instances of Stoneskin effect
+- 50% chance to deal additional 4d4 poison damage (save vs death at -4 to avoid)
+
+THAC0: +5
+Damage: 2d8+5 (slashing)
+Speed Factor: 3
+Proficiency Type: Two handed sword
+Type: 2-handed
+Requires:
+ 25 Strength
+
+Weight: 50~
+
 @7076 = ~~
 
 @7077 = ~~

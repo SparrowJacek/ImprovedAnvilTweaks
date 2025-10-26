@@ -2324,3 +2324,45 @@ COPY ~IATweaks\resources\spl\s!death.spl~ ~override~
       projectile = ~%s!20invi%~
   END
 
+// Circle of Bones
+
+COPY ~IATweaks\resources\bam\s!bonec1.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!bonec2.bam~ ~override~
+COPY ~IATweaks\resources\vvc\s!bonec1.vvc~ ~override~
+COPY ~IATweaks\resources\vvc\s!bonec2.vvc~ ~override~
+COPY ~IATweaks\resources\wav\bone_circle\EFF_P101.WAV~ ~override~
+COPY ~IATweaks\resources\wav\bone_circle\#ARE_P21.WAV~ ~override~
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!5ftfoe.pro~
+
+COPY ~IATweaks\resources\eff\s!bonec1.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!bonec1.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!bonec2.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR 
+      projectile = ~%s!5ftfoe%~
+  END
+
+// Orcus's weapon
+
+COPY ~IATweaks\resources\bam\s!orcusw.bam~ ~override~
+COPY ~IATweaks\resources\itm\s!orcusw.itm~ ~override/s!orcus.itm~
+  SAY NAME2 @7074
+  SAY IDENTIFIED_DESC @7075
+
+// Orcus Contingencies
+
+COPY ~IATweaks\resources\eff\s!orcu1a.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!orcu1a.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!orcu1b.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!orcu1c.spl~ ~override~
+
+COPY ~IATweaks\resources\eff\s!orcu2a.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!orcu2a.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!orcu2b.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!orcu2c.spl~ ~override~
+
+COPY ~IATweaks\resources\eff\s!orcu3a.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!orcu3a.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!orcu3b.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!orcu3c.spl~ ~override~

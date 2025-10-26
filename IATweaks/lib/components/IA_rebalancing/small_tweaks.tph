@@ -1295,3 +1295,8 @@ COPY_EXISTING ~SPIN695.spl~ ~override~
 // Add new item that protects from things like Golem item, but only has poison immunity, no other res
 
 COPY ~IATweaks\resources\itm\s!immun2.itm~ ~override~
+
+// Assign new animation to Orcus
+
+COPY_EXISTING ~s!orcus.CRE~ ~override~
+  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_ORCUS~))

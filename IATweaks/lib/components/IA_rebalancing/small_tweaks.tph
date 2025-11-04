@@ -62,9 +62,6 @@ COPY_EXISTING ~S!IMMUNE.ITM~ ~override~
       match_parameter2 = 112
   END
 
-// Change Cavalier resistance bonus from "set" to "increment"
-COPY_EXISTING ~SPCL221.spl~ ~override~
-  LPF ~ALTER_EFFECT~
 // Make Defensive Stance protect from knockback and rework other bonuses
 
 COPY_EXISTING ~SPDWD02.spl~ ~override~

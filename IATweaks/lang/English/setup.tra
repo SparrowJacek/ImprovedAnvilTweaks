@@ -1291,6 +1291,19 @@ Disadvantages:
 4- Cannot dual class
 5- Spellcasting limited to 3rd level Divine spells~
 
+@5140 = ~FIGHTER: The Fighter is a champion, swords<PRO_MANWOMAN>, soldier, and brawler who lives or dies by <PRO_HISHER> knowledge of weapons and tactics. Fighters can be found at the front of any battle, contesting toe-to-toe with monsters and villains. A good Fighter needs to be strong and healthy if <PRO_HESHE> hopes to survive.
+
+CLASS FEATURES:
+
+– May wear helmets.
+– May wear any armor and use any weapon.
+– May achieve Grand Mastery (five slots) with any weapon class.
+– May achieve Specialization (two slots) in Sword and Shield Style.
+– May allocate three slots in all other Weapon Styles.
+– Hit Die: d10
+
+Prime Requisites For Dual-Classing: Strength~
+
 @5141 = ~RISKBREAKER: Riskbreakers are masters of simultaneous speed and accuracy. They have the ability to move and attack enemies in a way that only a blurred outline of their bodies can be seen. Riskbreakers have limited access to two mage spells as innate abilities. High level Riskbreakers gain unique abilities to break the risk involved in most difficult battles. The trainings required to become a riskbreaker are very demanding and require the riskbreaker to sacrifice a portion of his health and stamina during the process. Only Humans can be Riskbreakers.
 
 Advantages:
@@ -1329,3 +1342,63 @@ Risk Decrement has the following effects:
 - Heals the riskbreaker completely.
 - Applies a massive attack to all enemies around the riskbreaker inflicting 8D10 crushing damage with no saving throw.
 - Has a good chance to throw back all or some of the enemies.~
+
+@5142 = ~BARBARIAN: A Barbarian can be an excellent warrior. While not as disciplined or as skilled as a Fighter, the Barbarian can willingly throw <PRO_HIMHER>self into a berserker rage, becoming a tougher and stronger opponent.
+
+CLASS FEATURES:
+
+– May not wear armor heavier than splint mail.
+– May not exceed Specialization (two slots) with any weapon class.
+- May not put any points into Sword and Shield Style
+– May allocate three slots in all other fighting styles.
+– Moves 2 points faster than other characters.
+– Immune to backstab.
+– May use the Rage ability once per day. Gains one use at level 1 and an additional use every 4 levels thereafter.
+
+RAGE: The enraged status lasts for 5 rounds and provides a +4 bonus to Strength and Constitution, a -2 penalty to Armor Class and a +2 bonus to Saving Throws vs. Spell, as well as immunity to all charm, hold, fear, maze, stun, sleep, confusion, and level drain spells.
+
+– 11th level: Gains 10% resistance to crushing, slashing, piercing, and missile damage. An additional 5% is gained at levels 15 and 19.
+– Hit Die: d12~
+
+@5143 = ~DWARVEN DEFENDER: The Dwarven Defender is a formidable warrior that is reputed to be worth two soldiers of any other race. Trained extensively in the art of dwarven warfare, a handful of these stout fighters can render a defensive line all but unbreakable.
+
+Advantages:
+– May use Defensive Stance once per day. Gains one use at level 1, one use at level 4, and an additional use every 4 levels thereafter.
+– Gains 5% resistance to crushing, slashing, piercing, and missile damage every 5 levels to a maximum of 20% at level 20.
+– Hit Die: d12
+
+Disadvantages:
+– Race restricted to dwarf.
+- May allocate three slots in Sword and Shield Style.
+– May not exceed High Mastery (four slots) in axes and war hammers.
+– May not exceed Specialization (two slots) in any other weapon and weapon style.
+
+DEFENSIVE STANCE: For 1 turn, the Dwarven Defender gains +20% resistance to all forms of physical damage, a +2 bonus to Saving Throws, a 50% movement rate penalty and immunity to any forms of knockback. This effect cannot be removed or dispelled.~
+
+@5144 = ~DWARVEN DEFENDER: The Dwarven Defender is a formidable warrior that is reputed to be worth two soldiers of any other race. Trained extensively in the art of dwarven warfare, a handful of these stout fighters can render a defensive line all but unbreakable.
+
+Advantages:
+– May use Defensive Stance once per day. Gains one use at level 1, one use at level 4, and an additional use every 4 levels thereafter.
+– Gains 3% resistance to crushing, slashing, piercing, and missile damage every 5 levels to a maximum of 12% at level 20.
+– Hit Die: d12
+
+Disadvantages:
+– Race restricted to dwarf.
+- May allocate three slots in Sword and Shield Style.
+– May not exceed High Mastery (four slots) in axes and war hammers.
+– May not exceed Specialization (two slots) in any other weapon and weapon style.
+
+DEFENSIVE STANCE: 
+For 1 turn, the Dwarven Defender gains +20% resistance to all forms of physical damage, a +2 bonus to Armor Class, a -2 penalty to Save vs Breath, a 50% movement rate penalty and immunity to any forms of knockback. This effect cannot be removed or dispelled.~
+
+@5145 = ~~
+
+@5146 = ~~
+
+@5147 = ~~
+
+@5148 = ~~
+
+@5149 = ~~
+
+@5150 = ~~

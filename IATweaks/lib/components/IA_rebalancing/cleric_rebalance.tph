@@ -2315,6 +2315,20 @@ COPY_EXISTING_REGEXP GLOB ~.+\.cre~ ~override~
   REMOVE_MEMORIZED_SPELL ~SPPR507~
   BUT_ONLY
 
+// Immunity to Champion's Strength to some summons
+
+ACTION_FOR_EACH summ_cre_itm IN ~s!smilsu~ ~s!anacsu~ ~s!smiede~ BEGIN
+  COPY_EXISTING ~%summ_cre_itm%.itm~ ~override~
+    LPF ~ADD_ITEM_EQEFFECT~
+      INT_VAR
+        opcode = 324
+        target = 1
+        timing = 0
+      STR_VAR
+        resource = ~SPPR618~
+    END
+END
+
 // Unholy Blight
 
 COPY_EXISTING ~sppr314.spl~ ~override~

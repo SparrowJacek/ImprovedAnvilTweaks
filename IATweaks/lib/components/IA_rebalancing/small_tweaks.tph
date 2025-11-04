@@ -879,6 +879,7 @@ END
 // Prevent most summons from following us
 
 COMPILE ~IATweaks\scripts\creatures\CBEAR.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!berseh.BAF~
 COMPILE ~IATweaks\scripts\creatures\S!berser.BAF~
 COMPILE ~IATweaks\scripts\creatures\S!djinn.BAF~
 COMPILE ~IATweaks\scripts\creatures\S!spidsu.BAF~

@@ -1,4 +1,13 @@
 IF
+	!Allegiance(Myself,ENEMY)
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		Enemy()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
 	Global("Iamoving","LOCALS",1)
 	OR(2)
 		See(NearestEnemyOf(Myself))
@@ -9,6 +18,7 @@ THEN
 END
 
 IF
+	!Allegiance(Myself,ENEMY)
 	Global("Iamoving","LOCALS",1)
 	CombatCounter(0)
 	See([PC])
@@ -38,16 +48,23 @@ END
 IF
 	ActionListEmpty()
 	See(NearestEnemyOf(Myself))
-	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!HasItemEquiped("immune2",LastSeenBy(Myself))  // No such index
+	!HasItemEquiped("immune3",LastSeenBy(Myself))  // No such index
+	!HasItemEquiped("immune4",LastSeenBy(Myself))  // No such index
 THEN
 	RESPONSE #100
 		AttackOneRound(NearestEnemyOf(Myself))
 END
 
 IF
+	!Allegiance(Myself,ENEMY)
 	ActionListEmpty()
 	See(NearestEnemyOf(Player1))
-	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!HasItemEquiped("immune2",LastSeenBy(Myself))  // No such index
+	!HasItemEquiped("immune3",LastSeenBy(Myself))  // No such index
+	!HasItemEquiped("immune4",LastSeenBy(Myself))  // No such index
 THEN
 	RESPONSE #100
 		AttackOneRound(LastSeenBy(Myself))
@@ -56,16 +73,23 @@ END
 IF
 	ActionListEmpty()
 	See(SecondNearestEnemyOf(Myself))
-	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!HasItemEquiped("immune2",LastSeenBy(Myself))  // No such index
+	!HasItemEquiped("immune3",LastSeenBy(Myself))  // No such index
+	!HasItemEquiped("immune4",LastSeenBy(Myself))  // No such index
 THEN
 	RESPONSE #100
 		AttackOneRound(LastSeenBy(Myself))
 END
 
 IF
+	!Allegiance(Myself,ENEMY)
 	ActionListEmpty()
 	See(SecondNearestEnemyOf(Player1))
 	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	!HasItemEquiped("immune2",LastSeenBy(Myself))  // No such index
+	!HasItemEquiped("immune3",LastSeenBy(Myself))  // No such index
+	!HasItemEquiped("immune4",LastSeenBy(Myself))  // No such index
 THEN
 	RESPONSE #100
 		AttackOneRound(LastSeenBy(Myself))
@@ -80,6 +104,7 @@ THEN
 END
 
 IF
+	!Allegiance(Myself,ENEMY)
 	ActionListEmpty()
 	See(NearestEnemyOf(Player1))
 THEN
@@ -88,6 +113,7 @@ THEN
 END
 
 IF
+	!Allegiance(Myself,ENEMY)
 	ActionListEmpty()
 	Global("Iamoving","LOCALS",0)
 	!See(NearestEnemyOf(Myself))
@@ -98,6 +124,7 @@ THEN
 END
 
 IF
+	!Allegiance(Myself,ENEMY)
 	ActionListEmpty()
 	Global("Iamoving","LOCALS",0)
 	CombatCounter(0)

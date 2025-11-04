@@ -3423,3 +3423,7 @@ COMPILE ~IATweaks\scripts\creatures\S!LAYENE.BAF~
 // Shangalar
 
 COMPILE ~IATweaks\scripts\creatures\S!SHANG.BAF~
+
+// Librarian Lich
+
+COMPILE ~IATweaks\scripts\creatures\S!BOLICH.BAF~

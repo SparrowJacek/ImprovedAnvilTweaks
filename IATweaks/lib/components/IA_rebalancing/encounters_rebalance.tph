@@ -3305,3 +3305,143 @@ COPY_EXISTING ~HLSHYR.cre~ ~override~
 
 COMPILE ~IATweaks\scripts\creatures\S!HLSHYR.BAF~
 
+// Valeria from Squirreled Away
+
+COPY_EXISTING ~DEMFIG02.cre~ ~override~
+  WRITE_SHORT 0x24 129 // HP
+  WRITE_SHORT 0x26 129 // HP
+  WRITE_BYTE  0x23d 18 // Constitution
+
+  LPF ~ALTER_EFFECT~ // *** in 2h Weapon
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 111
+      parameter1 = 3
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 1 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 1 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 2 ) // Greater Whirlwind Attack
+
+COMPILE ~IATweaks\scripts\creatures\S!DEMFI2.BAF~
+
+// Exterminator
+
+COPY_EXISTING ~DEMFIG02.cre~ ~override~
+  WRITE_SHORT 0x24 135 // HP
+  WRITE_SHORT 0x26 135 // HP
+  WRITE_BYTE 0x5b 75  // Electricity Resistance
+  WRITE_BYTE 0x5c 75  // Acid Resistance
+  WRITE_BYTE  0x23d 18 // Constitution
+
+  LPF ~ALTER_EFFECT~ // *** in 2h Weapon
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 111
+      parameter1 = 3
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 2 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 2 ) // Greater Whirlwind Attack
+
+COMPILE ~IATweaks\scripts\creatures\S!DEMARC.BAF~
+
+// Falahar from Squirreled Away
+
+COPY_EXISTING ~DEMFIG02.cre~ ~override~
+  WRITE_SHORT 0x24 129 // HP
+  WRITE_SHORT 0x26 129 // HP
+  WRITE_BYTE  0x23d 18 // Constitution
+
+  LPF ~ALTER_EFFECT~ // *** in 2h Weapon
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 111
+      parameter1 = 3
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  ADD_CRE_ITEM ~HALB01~ #0 #0 #0 ~UNSTEALABLE~ ~WEAPON3~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 1 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 1 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 2 ) // Greater Whirlwind Attack
+
+COMPILE ~IATweaks\scripts\creatures\S!DEMFIG.BAF~
+
+// Dracandros from Squirreled Away
+
+COMPILE ~IATweaks\scripts\creatures\DEMMAG.BAF~
+

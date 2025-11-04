@@ -408,6 +408,7 @@ Prime Requisites For Dual-Classing: Strength, Dexterity, Charisma~
 
 Advantages:
 - Can reach Mastery (three slots) in all weapons that he can use.
+- May achieve Mastery (three slots) in Two-Handed Weapon Style.
 - Can use Hunter's Mark ability unlimited number of times.
 - Gains access to two additional spells, a 2nd level spell Animal Fortitude and a 3rd level spell Animal Rage.
 - Can cast a special version of Animal Summoning I, which lasts for 15 rounds and can be cast unlimited number of times, but only once per 15 rounds.
@@ -537,6 +538,7 @@ Half-orcs have the following traits:
 Advantages:
 -  Can backstab with 2x multiplier.
 -  Gains points in both Hide in Shadows and Stealth Strike on level up.
+-  May achieve Mastery (three slots) in Single Weapon Style.
 -  +20% to Hide in Shadows and Stealth Strike abilities.
 -  12th level: May memorize 2 Mage spells: Haste, Protection from Normal Missiles.
 -  Has access to Marked for the Kill ability.
@@ -936,7 +938,7 @@ Requires at least 15 Dexterity.~
 
 @5086 = ~Installing specialist_mage_rebalance component~
 
-@5087 = ~Installing beast_master_rebalance component~
+@5087 = ~Installing ranger_rebalance component~
 
 @5088 = ~Installing thief_rebalance component~
 
@@ -1267,6 +1269,25 @@ Master (3 slots): The wielder's penalties are reduced to 0 with the main weapon 
 
 @5138 = ~Corrupted Tree of Life Branch~
 
-@5139 = ~~
+@5139 = ~VAGRANT: Vagrants do not stay in a place for long. They spend most of their time exploring new wilderness areas and enjoying the beauties of nature. Woodlands and lakes are the most favorite places for vagrants. They are very healthy characters with exceptional stamina. Vagrants can develop a special kind of friendship with swanmays. Swanmays are very rare and special kind of lycanthrope rangers living at lakesides in woodlands and in remote temperate wetlands. High level vagrants can call for swanmays' help.
 
-@5140 = ~~
+Advantages:
+
+1- +1 bonus to Constitution
+2- Immunity to disease and poison
+3- +2 bonus to save vs. Paralyze/Death
+4- 15% resistance to elemental damage for every 6 levels of experience
+5- Can gain grand mastery in using axes
+6- Gains the ability to summon Swanmay at levels 13 and 16
+7- Gains the ability to summon Greater Swanmay at levels 19 and 22
+8- Gains the ability to summon 'Swanmay Queen' at level 25
+The swanmays will loyally fight at the vagrant's side for 20 rounds.
+
+Disadvantages:
+
+1- May not wear armor greater than studded leather
+2- Cannot specialize in ranged weapons
+3- Requires 12 Charisma
+4- Cannot dual class
+5- Spellcasting limited to 3rd level Divine spells~
+

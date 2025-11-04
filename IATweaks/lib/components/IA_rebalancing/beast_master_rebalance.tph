@@ -33,6 +33,7 @@ END
 COPY_EXISTING ~weapprof.2da~  ~override/weapprof.2da~
   COUNT_2DA_COLS ~colcount~
   SET BM_column = $weapprof_cols("BEASTMASTER")
+  SET Stalker_column = $weapprof_cols("STALKER")
   SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ $weapprof_rows("CLUB") %BM_column% ~3~
   SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ $weapprof_rows("SPEAR") %BM_column% ~3~
   SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ $weapprof_rows("MACE") %BM_column% ~3~
@@ -42,6 +43,8 @@ COPY_EXISTING ~weapprof.2da~  ~override/weapprof.2da~
   SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ $weapprof_rows("SHORTBOW") %BM_column% ~3~
   SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ $weapprof_rows("DART") %BM_column% ~0~
   SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ $weapprof_rows("SLING") %BM_column% ~3~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ $weapprof_rows("2HANDED") %BM_column% ~3~
+  SET_2DA_ENTRY_LATER ~_#_#_#weapprof~ $weapprof_rows("SINGLEWEAPON") %Stalker_column% ~3~
   SET_2DA_ENTRIES_NOW ~_#_#_#weapprof~ ~colcount~
   PRETTY_PRINT_2DA
 
@@ -406,7 +409,6 @@ END
 
 // Update kit description
 
-
 LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
   STR_VAR
     2da_table_name = ~clastext.2da~
@@ -423,8 +425,9 @@ END
 
 COPY_EXISTING ~clastext.2da~ ~override/clastext.2da~
   COUNT_2DA_COLS ~colcount~
-  SET_2DA_ENTRY_LATER ~s!bm_desc~ $clastext_rows("BEAST_MASTER") $clastext_cols("DESCSTR") RESOLVE_STR_REF (@5029)
-  SET_2DA_ENTRIES_NOW ~s!bm_desc~ ~colcount~
+  SET_2DA_ENTRY_LATER ~s!ranger_desc~ $clastext_rows("BEAST_MASTER") $clastext_cols("DESCSTR") RESOLVE_STR_REF (@5029)
+  SET_2DA_ENTRY_LATER ~s!ranger_desc~ $clastext_rows("VAGRANT") $clastext_cols("DESCSTR") RESOLVE_STR_REF (@5139)
+  SET_2DA_ENTRIES_NOW ~s!ranger_desc~ ~colcount~
   PRETTY_PRINT_2DA
 
 LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
@@ -445,8 +448,9 @@ END
 
 COPY_EXISTING ~kitlist.2da~ ~override/kitlist.2da~
   COUNT_2DA_COLS ~colcount~
-  SET_2DA_ENTRY_LATER ~s!bm_desc~ $kitlist_rows("BEASTMASTER") $kitlist_cols("HELP") RESOLVE_STR_REF (@5029)
-  SET_2DA_ENTRIES_NOW ~s!bm_desc~ ~colcount~
+  SET_2DA_ENTRY_LATER ~s!ranger_desc~ $kitlist_rows("BEASTMASTER") $kitlist_cols("HELP") RESOLVE_STR_REF (@5029)
+  SET_2DA_ENTRY_LATER ~s!ranger_desc~ $kitlist_rows("VAGRANT") $kitlist_cols("HELP") RESOLVE_STR_REF (@5139)
+  SET_2DA_ENTRIES_NOW ~s!ranger_desc~ ~colcount~
   PRETTY_PRINT_2DA
 
 /////////// Creatures /////////////

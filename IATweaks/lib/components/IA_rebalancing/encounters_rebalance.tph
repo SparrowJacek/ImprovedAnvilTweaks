@@ -384,7 +384,7 @@ COPY_EXISTING ~JAGA1.cre~ ~override~ // Bessen
 
 COPY_EXISTING ~SEWCC.cre~ ~override~
   WRITE_BYTE 0x5a 50  // Cold Resistance
-  WRITE_BYTE 0x5a 75  // Electricity Resistance
+  WRITE_BYTE 0x5b 75  // Electricity Resistance
   WRITE_BYTE 0x5f 50  // Magic Cold Resistance
 
 ////////// Shadow Lover //////////
@@ -490,7 +490,7 @@ COPY_EXISTING ~s!gracen.itm~ ~override~
 ////////// Keep Viper ///////////
 
 COPY_EXISTING ~S!KPVIPE.cre~ ~override~
-  WRITE_BYTE 0x5a 60  // Electricity Resistance
+  WRITE_BYTE 0x5b 60  // Electricity Resistance
 
 ////////// Mutated Spider ///////////
 
@@ -3161,7 +3161,7 @@ COPY_EXISTING ~DRAGBLAC.cre~ ~override~
   WRITE_BYTE 0x56 2  // Saves
   WRITE_BYTE 0x57 2  // Saves
   WRITE_BYTE 0x58 4 // Saves
-  WRITE_BYTE 0x5a 75  // Electricity Resistance
+  WRITE_BYTE 0x5b 75  // Electricity Resistance
 
   LPF ~ADD_CRE_EFFECT~ // Aura Cleansing
     INT_VAR
@@ -3201,3 +3201,107 @@ COMPILE ~IATweaks\scripts\creatures\DRAGBLAC.BAF~
 // Raamilat, Drow from Sulda
 
 COMPILE ~IATweaks\scripts\creatures\S!SURAAM.BAF~
+
+// Revanek from Twisted Rune
+
+COPY_EXISTING ~HLREVAN.cre~ ~override~
+  WRITE_LONG 0x14 25000 // Exp
+  WRITE_SHORT 0x24 138 // HP
+  WRITE_SHORT 0x26 138 // HP
+  WRITE_BYTE 0x52 0 // Thac0
+  WRITE_BYTE 0x23d 18 // Constitution
+
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 0
+  END
+
+  LPF ~ALTER_EFFECT~ // *** in 2h Weapon
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 111
+      parameter1 = 3
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  ADD_CRE_ITEM ~RING06~ #0 #0 #0 ~NONE~ ~RRING~
+  ADD_CRE_ITEM ~SW2H01~ #0 #0 #0 ~UNSTEALABLE~ ~WEAPON2~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 1 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+
+COMPILE ~IATweaks\scripts\creatures\S!REVAN.BAF~
+
+// Shyressa from Twisted Rune
+
+COPY_EXISTING ~HLSHYR.cre~ ~override~
+  WRITE_BYTE 0x52 THIS + 2 // Thac0
+    WRITE_BYTE 0x59 75  // Fire Resistance
+    WRITE_BYTE 0x5c 75  // Acid Resistance
+    WRITE_BYTE 0x5e 75  // Magic Fire Resistance
+
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 0
+  END
+
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 31
+      parameter1 = 25
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 3 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 2 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 3 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+
+COMPILE ~IATweaks\scripts\creatures\S!HLSHYR.BAF~
+

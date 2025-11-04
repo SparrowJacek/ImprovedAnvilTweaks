@@ -1592,6 +1592,7 @@ COPY_EXISTING ~hidespl.2da~ ~override~
   PRETTY_PRINT_2DA
 
 COPY_EXISTING ~SCRL1M.itm~ ~override~
+  SAY IDENTIFIED_DESC @6064
   LPF ~ALTER_EFFECT~
     STR_VAR
       match_resource = ~SPWI310~
@@ -3414,3 +3415,11 @@ COPY_EXISTING ~HLDEMI.cre~ ~override~
   END
 
 COMPILE ~IATweaks\scripts\creatures\S!HLDEMI.BAF~
+
+// Layenne
+
+COMPILE ~IATweaks\scripts\creatures\S!LAYENE.BAF~
+
+// Shangalar
+
+COMPILE ~IATweaks\scripts\creatures\S!SHANG.BAF~

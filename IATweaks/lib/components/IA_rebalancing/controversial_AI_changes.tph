@@ -497,7 +497,6 @@ COPY_EXISTING ~HLCLERIC.cre~ ~override~
   
   ADD_MEMORIZED_SPELL ~SPCLI24~ #0 ~innate~ ( 1 ) // Summon Fallen Archdeva
 
-COMPILE ~IATweaks\scripts\creatures\S!HLCLER.BAF~
 
 //////////////// Alhoon
 
@@ -505,3 +504,29 @@ COMPILE ~IATweaks\scripts\creatures\S!HLCLER.BAF~
 
 COPY_EXISTING ~mindal01.cre~ ~override~
   WRITE_BYTE 0x53 4  // APR
+  
+// Revanek from Twisted Rune
+
+COMPILE ~IATweaks\scripts\controversial\S!REVAN.BAF~
+
+// Shyressa from Twisted Rune
+
+COPY_EXISTING ~HLSHYR.cre~ ~override~
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 3 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 2 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 3 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+
+COMPILE ~IATweaks\scripts\controversial\S!HLSHYR.BAF~
+
+// Shangalar
+
+COPY_EXISTING ~HLSHANG.cre~ ~override~
+
+  ADD_MEMORIZED_SPELL ~SPINI39~ #0 ~innate~ ( 1 ) // Grave Silence
+
+COMPILE ~IATweaks\scripts\controversial\S!SHANG.BAF~
+

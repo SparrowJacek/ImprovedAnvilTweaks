@@ -4,6 +4,10 @@ SILENT
 
 INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
 
+// Better spell progression for Shamans
+
+COPY ~IATweaks\resources\2da\mxsplshm.2da~ ~override~
+
 // Priestess of Shar kit
 
 COPY_EXISTING ~SPWI112.spl~ ~override/s!mmshar.spl~

@@ -65,15 +65,35 @@ COPY_EXISTING ~S!IMMUNE.ITM~ ~override~
 // Change Cavalier resistance bonus from "set" to "increment"
 COPY_EXISTING ~SPCL221.spl~ ~override~
   LPF ~ALTER_EFFECT~
+// Make Defensive Stance protect from knockback and rework other bonuses
+
+COPY_EXISTING ~SPDWD02.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6288
+  WRITE_BYTE 0x27 0
+  LPF ~CLONE_EFFECT~
     INT_VAR
-      match_opcode = 27
-      parameter2 = 0
+      match_opcode = 142
+      opcode = 101
+      parameter2 = 235
   END
-  LPF ~ALTER_EFFECT~
+  PATCH_FOR_EACH opcode_to_remove IN 33 34 35 37 BEGIN
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = opcode_to_remove
+    END
+  END
+  LPF ~CLONE_EFFECT~
     INT_VAR
-      match_opcode = 30
-      parameter2 = 0
+      multi_match = 1
+      match_opcode = 36
+      opcode = 0
   END
+  LPF ~S!ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 36
+      parameter1 = ~-2~
+  END
+  
 
 // Give Improved Alacrity to C/M
 

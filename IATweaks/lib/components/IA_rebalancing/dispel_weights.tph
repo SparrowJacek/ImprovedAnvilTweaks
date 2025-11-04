@@ -81,7 +81,6 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY spell_to_weight_map BEGIN
 	"spdr302"  => 2
 	"spdr401"  => 3
 	"spdr702"  => 4
-	"spdwd02"  => 2
 	"spin103"  => 2
 	"spin104"  => 1
 	"spin106"  => 1
@@ -166,8 +165,7 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY spell_to_opcode_map BEGIN
 	"spcl912"  => 142
 	"spdr302"  => 28 
 	"spdr401"  => 20 
-	"spdr702"  => 30 
-	"spdwd02"  => 142
+	"spdr702"  => 30
 	"spin103"  => 142
 	"spin104"  => 18 
 	"spin106"  => 18 
@@ -252,7 +250,6 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY spell_to_type_map BEGIN
 	"spdr302"  => "dispel/specific"
 	"spdr401"  => "dispel"
 	"spdr702"  => "dispel/specific"
-	"spdwd02"  => "combat"
 	"spin103"  => "dispel"
 	"spin104"  => "dispel"
 	"spin106"  => "dispel"

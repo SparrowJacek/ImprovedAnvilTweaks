@@ -828,12 +828,68 @@ Requires:
 
 Weight: 50~
 
-@7076 = ~~
+@7076 = ~In the halls of Valhalla rest the most valiant of warriors. Their service to war during their lives has rewarded them with honored positions in Valhalla. As part of their service, these warriors must offer their service to any who blow a horn of Valhalla. This horn will summon forth a 5th-level berserk warrior who will fight for the summoner for 3 turns. The horn may be used once per day.
 
-@7077 = ~~
+STATISTICS:
 
-@7078 = ~~
+Charge abilities:
+– Summon 5th-level warrior once per day
+  Duration: 3 turns
 
-@7079 = ~~
+Weight: 1~
 
-@7080 = ~~
+@7077 = ~In the halls of Valhalla rest the most valiant of warriors. Their service to war during their lives has rewarded them with honored positions in Valhalla. As part of their service, these warriors must offer their service to any who blow a horn of Valhalla. This horn will summon forth a 7th-level berserk warrior who will fight for the summoner for 3 turns. The horn may be used once per day.
+
+STATISTICS:
+
+Charge abilities:
+– Summon 7th-level warrior once per day
+  Duration: 3 turns
+
+Weight: 1~
+
+@7078 = ~In the halls of Valhalla rest the most valiant of warriors. Their service to war during their lives has rewarded them with honored positions in Valhalla. As part of their service, these warriors must offer their service to any who blow a horn of Valhalla. This horn will summon forth a 9th-level berserk warrior who will fight for the summoner for 3 turns. The horn may be used once per day.
+
+STATISTICS:
+
+Charge abilities:
+– Summon 9th-level warrior once per day
+  Duration: 3 turns
+
+Weight: 1~
+
+@7079 = ~Amber Horn of Valhalla
+
+In the halls of Valhalla rest the most valiant of warriors. Their service to war during their lives has rewarded them with honored positions in Valhalla. As part of their service these warriors must offer their service to any who blow a horn of Valhalla. This horn will summon an improved hasted fifteenth level berserker warrior for 30 rounds. The warrior has 50% resistance to all damage types and 90% resistance to electricity. The horn may be used once per day.
+
+Not Usable By:
+ Wizard Slayer~
+
+@7080 = ~Reinforced Horn of Valhalla
+
+In the halls of Valhalla rest the most valiant of warriors. Their service to war during their lives has rewarded them with honored positions in Valhalla. As part of their service these warriors must offer their service to any who blow a horn of Valhalla. This horn will summon an improved hasted eighteenth level berserker warrior for 30 rounds. The warrior has 70% resistance to all damage types and 95% resistance to electricity. The warrior will not be considered a summoned creature and thus won't be affected by spells such as Death Fog and Death Spell. The horn may be used once per day.
+
+Not Usable By:
+ Wizard Slayer~
+
+@7081 = ~Ultimate Horn of Valhalla
+
+In the halls of Valhalla rest the most valiant of warriors. Their service to war during their lives has rewarded them with honored positions in Valhalla. As part of their service these warriors must offer their service to any who blow a horn of Valhalla. This horn will summon an improved hasted 21st level berserker warrior for 30 rounds. The warrior has 75% resistance to all damage types and 100% resistance to electricity. The warrior will not be considered a summoned creature and thus won't be affected by spells such as Death Fog and Death Spell. The horn may be used once per day~
+
+@7082 = ~~
+
+@7083 = ~~
+
+@7084 = ~~
+
+@7085 = ~~
+
+@7086 = ~~
+
+@7087 = ~~
+
+@7088 = ~~
+
+@7089 = ~~
+
+@7090 = ~~

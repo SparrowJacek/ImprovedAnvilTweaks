@@ -1305,3 +1305,40 @@ COPY ~IATweaks\resources\spl\s!noaura.spl~ ~override~
 
 COPY_EXISTING ~s!orcus.CRE~ ~override~
   WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_ORCUS~))
+
+// Increase duration of Horns of Valhalla
+
+ACTION_FOR_EACH horn_item IN ~misc3i~ ~misc3j~ ~misc3k~ ~s!shorn~ ~s!shorn2~ ~s!shorn3~ BEGIN
+  COPY_EXISTING ~%horn_item%.itm~ ~override~
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 177
+        match_duration = 60
+        duration = 180
+    END
+    IF_EXISTS
+END
+
+COPY_EXISTING ~misc3i.itm~ ~override~
+  SAY IDENTIFIED_DESC @7076
+  IF_EXISTS
+
+COPY_EXISTING ~misc3j.itm~ ~override~
+  SAY IDENTIFIED_DESC @7077
+  IF_EXISTS
+
+COPY_EXISTING ~misc3k.itm~ ~override~
+  SAY IDENTIFIED_DESC @7078
+  IF_EXISTS
+
+COPY_EXISTING ~s!shorn.itm~ ~override~
+  SAY IDENTIFIED_DESC @7079
+  IF_EXISTS
+
+COPY_EXISTING ~s!shorn2.itm~ ~override~
+  SAY IDENTIFIED_DESC @7080
+  IF_EXISTS
+
+COPY_EXISTING ~s!shorn3.itm~ ~override~
+  SAY IDENTIFIED_DESC @7081
+  IF_EXISTS

@@ -530,3 +530,57 @@ COPY_EXISTING ~HLSHANG.cre~ ~override~
 
 COMPILE ~IATweaks\scripts\controversial\S!SHANG.BAF~
 
+// Valeria from Squirreled Away
+
+COPY_EXISTING ~DEMFIG02.cre~ ~override~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 1 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 2 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+
+COMPILE ~IATweaks\scripts\controversial\S!DEMFI2.BAF~
+
+// Exterminator from Squirreled Away
+
+COPY_EXISTING ~DEMFIG02.cre~ ~override~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 3 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+
+COMPILE ~IATweaks\scripts\controversial\S!DEMARC.BAF~
+
+// Falahar from Squirreled Away
+
+COPY_EXISTING ~DEMFIG01.cre~ ~override~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 1 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 2 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+
+COMPILE ~IATweaks\scripts\controversial\S!DEMFIG.BAF~
+
+// Master Assassin
+
+COMPILE ~IATweaks\scripts\controversial\S!RUNE2.baf~
+COMPILE ~IATweaks\scripts\controversial\S!RUNEF2.baf~
+
+// Guildmaster
+
+COMPILE ~IATweaks\scripts\controversial\S!RUNE1.baf~
+
+// Grandfather of Assassins
+
+COMPILE ~IATweaks\scripts\controversial\S!RUNEF.baf~

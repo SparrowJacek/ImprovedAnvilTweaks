@@ -3451,3 +3451,98 @@ COPY_EXISTING ~SHADRA01.cre~ ~override~
   WRITE_SHORT 0x24 THIS + 50 // HP
   WRITE_SHORT 0x26 THIS + 50 // HP
 
+// Pirate Captain
+
+COPY_EXISTING ~PIRSEA01.cre~ ~override~
+  WRITE_SHORT 0x24 138 // HP
+  WRITE_SHORT 0x26 138 // HP
+  WRITE_SHORT 0x46 6 // AC
+  WRITE_SHORT 0x48 6 // AC
+  WRITE_BYTE 0x52 0 // Thac0
+  WRITE_BYTE 0x59 20 // Fire Resistance
+  WRITE_BYTE 0x5c 20 // Acid Resistance
+  WRITE_BYTE 0x5a 20  // Cold Resistance
+  WRITE_BYTE 0x5b 20  // Electricity Resistance
+  WRITE_BYTE 0x5e 20 // Magic Fire Resistance
+  WRITE_BYTE 0x5f 200  // Magic Cold Resistance
+  WRITE_BYTE 0x60 15 // Resist Slashing
+  WRITE_BYTE 0x61 15 // Resist Crushing
+  WRITE_BYTE 0x62 15 // Resist Piercing
+  WRITE_BYTE 0x63 15 // Resist Missile
+  WRITE_BYTE  0x23d 16 // Constitution
+  WRITE_SHORT 0x246 IDS_OF_SYMBOL(~kit~ ~RISKBREAKER~) // Kit
+
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 31
+  END
+
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 0
+  END
+
+  LPF ~ALTER_EFFECT~ // *** in Single Weapon
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 113
+      parameter1 = 3
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // RB base bonuses
+    INT_VAR
+      opcode = 146
+      target = 1
+      parameter2 = 1
+      timing = 9
+      resist_dispel = 0
+    STR_VAR
+      resource = ~SPCLI05~
+      effsource = ~SPCLI05~
+  END
+
+  // RB AC bonus
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 0
+      target = 1
+      parameter1 = 4
+      parameter2 = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // RB on-hit bonuses
+    INT_VAR
+      opcode = 146
+      target = 1
+      parameter2 = 1
+      timing = 9
+      resist_dispel = 0
+    STR_VAR
+      resource = ~SPCLI09~
+      effsource = ~SPCLI09~
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~DRAGRING~
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~CHAN11~
+  END
+
+  ADD_CRE_ITEM ~CHAN11~ #0 #0 #0 ~UNSTEALABLE~ ~INV15~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPINI34~ #0 ~innate~ ( 2 ) // Risk Decrement
+  ADD_MEMORIZED_SPELL ~SPINI51~ #0 ~innate~ ( 2 ) // Chain Breaker Stance
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 1 ) // Critical Strike
+
+COMPILE ~IATweaks\scripts\creatures\S!PIRCAP.BAF~

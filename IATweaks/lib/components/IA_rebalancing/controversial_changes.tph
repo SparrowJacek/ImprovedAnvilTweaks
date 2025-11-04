@@ -2492,3 +2492,18 @@ COPY_EXISTING ~SHADRA01.cre~ ~override~
   
 COMPILE ~IATweaks\scripts\controversial\SHADRA01.BAF~
 
+// Pirate Captain
+
+COPY_EXISTING ~PIRSEA01.cre~ ~override~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPINI34~ #0 ~innate~ ( 2 ) // Risk Decrement
+  ADD_MEMORIZED_SPELL ~SPINI51~ #0 ~innate~ ( 2 ) // Chain Breaker Stance
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 2 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 2 ) // Critical Strike
+
+COMPILE ~IATweaks\scripts\controversial\S!PIRCAP.BAF~

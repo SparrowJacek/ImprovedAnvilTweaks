@@ -3445,3 +3445,9 @@ COMPILE ~IATweaks\scripts\creatures\S!DEMFIG.BAF~
 
 COMPILE ~IATweaks\scripts\creatures\DEMMAG.BAF~
 
+// Thax, Shadow Dragon
+
+COPY_EXISTING ~SHADRA01.cre~ ~override~
+  WRITE_SHORT 0x24 THIS + 50 // HP
+  WRITE_SHORT 0x26 THIS + 50 // HP
+

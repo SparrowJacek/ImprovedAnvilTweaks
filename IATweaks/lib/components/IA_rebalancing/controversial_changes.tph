@@ -2483,3 +2483,12 @@ COMPILE ~IATweaks\scripts\controversial\S!CUTOR.BAF~
 // Invisible Helper
 
 COMPILE ~IATweaks\scripts\controversial\S!SPY8.BAF~
+
+// Thax, Shadow Dragon
+
+COPY_EXISTING ~SHADRA01.cre~ ~override~
+
+  ADD_MEMORIZED_SPELL ~SPIN692~ #0 ~innate~ ( 2 ) // Greater Silence
+  
+COMPILE ~IATweaks\scripts\controversial\SHADRA01.BAF~
+

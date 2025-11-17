@@ -95,6 +95,7 @@ COPY ~IATweaks\resources\bam\spells\acid_wave\s!awavex.bam~ ~override~
 COPY ~IATweaks\resources\pro\s!harm05.pro~ ~override/s!iceex5.pro~
 ADD_PROJECTILE ~override/s!iceex5.pro~
 
+COPY ~IATweaks\resources\spl\s!iceexp.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!iceexb.spl~ ~override~
   LPF ~ALTER_SPELL_HEADER~ 
     INT_VAR 

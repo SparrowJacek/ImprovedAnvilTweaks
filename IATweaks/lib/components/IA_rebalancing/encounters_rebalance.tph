@@ -3673,3 +3673,29 @@ END
 EXTEND_TOP ~s!icegol.bcs~ ~.../inlined/shout_logic.baf~
   EVALUATE_BUFFER
 
+///////// Green Wyrm
+
+// Green Wyrm Claw
+
+COPY_EXISTING ~S!DRAGGR.itm~ ~override~
+  LPF ~ALTER_ITEM_HEADER~
+    INT_VAR
+      range = 3
+      speed = 0
+  END
+
+// Dragon
+
+COPY_EXISTING ~S!DRAGGR.cre~ ~override~
+  WRITE_SHORT 0x24 437 // HP
+  WRITE_SHORT 0x26 437 // HP
+
+  LPF ~ADD_CRE_EFFECT~ // Aura Cleansing
+    INT_VAR
+      target = 1
+      opcode = 188
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+

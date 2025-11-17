@@ -876,13 +876,29 @@ Not Usable By:
 
 In the halls of Valhalla rest the most valiant of warriors. Their service to war during their lives has rewarded them with honored positions in Valhalla. As part of their service these warriors must offer their service to any who blow a horn of Valhalla. This horn will summon an improved hasted 21st level berserker warrior for 30 rounds. The warrior has 75% resistance to all damage types and 100% resistance to electricity. The warrior will not be considered a summoned creature and thus won't be affected by spells such as Death Fog and Death Spell. The horn may be used once per day~
 
-@7082 = ~~
+@7082 = ~These soft boots make the wearer move as silently as the woodland elves. Thieves love to get their hands on these boots, but the elves are reluctant about exporting them, fearful that they may be used for illegal purposes.
 
-@7083 = ~~
+STATISTICS:
 
-@7084 = ~~
+Equipped abilities :
+– Hide in Shadows: +15%
 
-@7085 = ~~
+Weight: 3~
+
+@7083 = ~Silent Gale Treads~
+
+@7084 = ~These boots are the work of a true master of leather-craft - someone who understands how enchantments cling to hide and cloth the way grain runs in wood.
+By carefully unstitching and re-layering a cloak of stealth and three distinct sets of enchanted boots, the artificer has bonded those magicks into a single integrated design.
+
+The result is a pair of impossibly light boots that shift air around each step, letting the wearer move with startling quiet and surprising swiftness.
+
+STATISTICS:
+Equipped abilities:
+- Hide in Shadows: +25%
+- Stealth Strike: +5%
+- Permanent Haste effect
+
+Weight: 0~
 
 @7086 = ~~
 

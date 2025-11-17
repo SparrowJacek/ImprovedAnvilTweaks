@@ -3224,6 +3224,17 @@ COPY_EXISTING ~boot02.itm~ ~override~
       parameter1 = 5
   END
 
+// Boots of Elvenkind
+
+COPY_EXISTING ~boot07.itm~ ~override~
+  SAY IDENTIFIED_DESC @7082
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 59
+      opcode = 275
+      parameter1 = 15
+  END
+
 // Assassin's Dream +4
 
 COPY ~IATweaks\resources\bam\s!dag01d.bam~ ~override~
@@ -3251,6 +3262,7 @@ COPY ~IATweaks\resources\itm\s!dagg02.itm~ ~override~
         resource = EVAL ~S!-1APR~
     END  
   END
+  
 // Piwafwi Cloaks
 
 COPY_EXISTING ~misc9w.itm~ ~override~

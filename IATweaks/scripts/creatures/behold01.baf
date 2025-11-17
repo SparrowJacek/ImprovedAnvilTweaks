@@ -1,0 +1,719 @@
+
+IF
+	Global("Iapcastts","GLOBAL",1)
+	Global("Iatsinvulner","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",1)
+		ApplySpellRES("SPINI70",Myself)  // No such index
+END
+
+IF
+	Global("Iapcastts","GLOBAL",0)
+	Global("Iatsinvulner","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",0)
+		ApplySpellRES("SPINI71",Myself)  // No such index
+END
+
+IF
+	!GlobalTimerNotExpired("Iaremove","LOCALS")
+	Global("Iapcastts","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaremove","LOCALS",9)
+END
+
+IF
+	!GlobalTimerNotExpired("Iaremove","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See([PC])
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	OR(9)
+		HasBounceEffects(LastSeenBy(Myself))
+		CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+		CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+		CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
+		CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+		CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE2)
+		CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+		CheckStatGT(LastSeenBy(Myself),99,MAGICDAMAGERESISTANCE)
+	RandomNumLT(4,3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaremove","LOCALS",9)
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_ANTIMAGIC_RAY)  // SPIN992.SPL (Anti-Magic Ray)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!GlobalTimerNotExpired("Iaremove","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See(SecondNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	OR(9)
+		HasBounceEffects(LastSeenBy(Myself))
+		CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+		CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+		CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
+		CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+		CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE2)
+		CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+		CheckStatGT(LastSeenBy(Myself),99,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaremove","LOCALS",THREE_ROUNDS)
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_ANTIMAGIC_RAY)  // SPIN992.SPL (Anti-Magic Ray)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!GlobalTimerNotExpired("Iaremove","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See(ThirdNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	OR(9)
+		HasBounceEffects(LastSeenBy(Myself))
+		CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+		CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+		CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
+		CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+		CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE2)
+		CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+		CheckStatGT(LastSeenBy(Myself),99,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaremove","LOCALS",THREE_ROUNDS)
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_ANTIMAGIC_RAY)  // SPIN992.SPL (Anti-Magic Ray)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!GlobalTimerNotExpired("Iaremove","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See(FourthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	OR(9)
+		HasBounceEffects(LastSeenBy(Myself))
+		CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+		CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+		CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
+		CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+		CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE2)
+		CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+		CheckStatGT(LastSeenBy(Myself),99,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaremove","LOCALS",THREE_ROUNDS)
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_ANTIMAGIC_RAY)  // SPIN992.SPL (Anti-Magic Ray)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!GlobalTimerNotExpired("Iaremove","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See(FifthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	OR(9)
+		HasBounceEffects(LastSeenBy(Myself))
+		CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+		CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+		CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
+		CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+		CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE2)
+		CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+		CheckStatGT(LastSeenBy(Myself),99,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaremove","LOCALS",THREE_ROUNDS)
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_ANTIMAGIC_RAY)  // SPIN992.SPL (Anti-Magic Ray)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!GlobalTimerNotExpired("Iaremove","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See(SixthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	OR(9)
+		HasBounceEffects(LastSeenBy(Myself))
+		CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+		CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+		CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
+		CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+		CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE2)
+		CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+		CheckStatGT(LastSeenBy(Myself),99,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaremove","LOCALS",THREE_ROUNDS)
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_ANTIMAGIC_RAY)  // SPIN992.SPL (Anti-Magic Ray)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!GlobalTimerNotExpired("Iaremove","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See([PC])
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	CheckStatGT(LastSeenBy(Myself),0,IMPROVEDHASTE)
+	!HasItemEquiped("S!boot01",LastSeenBy(Myself))  // Boots of The Ranger Lord
+	!HasItemEquiped("S!boot02",LastSeenBy(Myself))  // Improved Boots of The Ranger Lord
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaremove","LOCALS",9)
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_ANTIMAGIC_RAY)  // SPIN992.SPL (Anti-Magic Ray)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!GlobalTimerNotExpired("Iaremove","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See(SecondNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	CheckStatGT(LastSeenBy(Myself),0,IMPROVEDHASTE)
+	!HasItemEquiped("S!boot01",LastSeenBy(Myself))  // Boots of The Ranger Lord
+	!HasItemEquiped("S!boot02",LastSeenBy(Myself))  // Improved Boots of The Ranger Lord
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaremove","LOCALS",THREE_ROUNDS)
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_ANTIMAGIC_RAY)  // SPIN992.SPL (Anti-Magic Ray)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!GlobalTimerNotExpired("Iaremove","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	OR(9)
+		HasBounceEffects(LastSeenBy(Myself))
+		CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+		CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+		CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
+		CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+		CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE2)
+		CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+		CheckStatGT(LastSeenBy(Myself),99,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaremove","LOCALS",9)
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_ANTIMAGIC_RAY)  // SPIN992.SPL (Anti-Magic Ray)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!GlobalTimerNotExpired("Iadeath","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE2)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	!HasBounceEffects(LastSeenBy(Myself))
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iadeath","LOCALS",TWO_ROUNDS)
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_DEATH_RAY)  // SPIN991.SPL (Death Ray)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!GlobalTimerNotExpired("Iadeath","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	See(SecondNearestEnemyOfType([0.0.0.MAGE_ALL]))
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE2)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	!HasBounceEffects(LastSeenBy(Myself))
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iadeath","LOCALS",TWO_ROUNDS)
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_DEATH_RAY)  // SPIN991.SPL (Death Ray)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!GlobalTimerNotExpired("Iadeath","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	See(NearestEnemyOfType([GOODCUTOFF.0.0.0.0.SUMMONED]))
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	OR(3)
+		CheckStat(LastSeenBy(Myself),20,RESISTSLASHING)
+		CheckStat(LastSeenBy(Myself),95,RESISTPIERCING)
+		CheckStatGT(LastSeenBy(Myself),89,RESISTMAGIC)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE2)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iadeath","LOCALS",TWO_ROUNDS)
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_DEATH_RAY)  // SPIN991.SPL (Death Ray)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	See([PC])
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	OR(2)
+		HPGT(Myself,79)
+		StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_CAUSE_SERIOUS_WOUNDS)  // SPIN986.SPL (Cause Serious Wounds)
+		Wait(1)
+		SetInterrupt(TRUE)
+	RESPONSE #200
+	    Continue()
+END
+
+IF
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	See(SecondNearest([PC]))
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	OR(2)
+		HPGT(Myself,79)
+		StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_CAUSE_SERIOUS_WOUNDS)  // SPIN986.SPL (Cause Serious Wounds)
+		Wait(1)
+		SetInterrupt(TRUE)
+	RESPONSE #200
+	    Continue()
+END
+
+IF
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	See(ThirdNearest([PC]))
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	OR(2)
+		HPGT(Myself,79)
+		StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_CAUSE_SERIOUS_WOUNDS)  // SPIN986.SPL (Cause Serious Wounds)
+		Wait(1)
+		SetInterrupt(TRUE)
+	RESPONSE #200
+	    Continue()
+END
+
+IF
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	See(FourthNearest([PC]))
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	OR(2)
+		HPGT(Myself,79)
+		StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_CAUSE_SERIOUS_WOUNDS)  // SPIN986.SPL (Cause Serious Wounds)
+		Wait(1)
+		SetInterrupt(TRUE)
+	RESPONSE #200
+	    Continue()
+END
+
+IF
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	See(NearestEnemyOf(Myself))
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	OR(2)
+		HPGT(Myself,79)
+		StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_CAUSE_SERIOUS_WOUNDS)  // SPIN986.SPL (Cause Serious Wounds)
+		Wait(1)
+		SetInterrupt(TRUE)
+	RESPONSE #200
+	    Continue()
+END
+
+IF
+	GlobalLT("GauthParalyze","LOCALS",2)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	HPGT(Myself,39)
+	See([PC])
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	!HasItemEquiped("sw1h27",LastSeenBy(Myself))  // Arbane's Sword of Agility +2
+	!HasItemEquiped("shld25",LastSeenBy(Myself))  // Shield of Harmony +2
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		IncrementGlobal("GauthParalyze","LOCALS",1)
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_PARALYZATION)  // SPIN990.SPL (Paralyze)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	GlobalLT("GauthParalyze","LOCALS",2)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	HPGT(Myself,39)
+	See(SecondNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	!HasItemEquiped("sw1h27",LastSeenBy(Myself))  // Arbane's Sword of Agility +2
+	!HasItemEquiped("shld25",LastSeenBy(Myself))  // Shield of Harmony +2
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		IncrementGlobal("GauthParalyze","LOCALS",1)
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_PARALYZATION)  // SPIN990.SPL (Paralyze)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	GlobalLT("GauthParalyze","LOCALS",2)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	HPGT(Myself,39)
+	See(ThirdNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	!HasItemEquiped("sw1h27",LastSeenBy(Myself))  // Arbane's Sword of Agility +2
+	!HasItemEquiped("shld25",LastSeenBy(Myself))  // Shield of Harmony +2
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		IncrementGlobal("GauthParalyze","LOCALS",1)
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_PARALYZATION)  // SPIN990.SPL (Paralyze)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	GlobalLT("GauthParalyze","LOCALS",2)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	HPGT(Myself,39)
+	See(FourthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+	!HasItemEquiped("S!sw02",LastSeenBy(Myself))  // True Sword of Arvoreen +5
+	!HasItemEquiped("sw1h27",LastSeenBy(Myself))  // Arbane's Sword of Agility +2
+	!HasItemEquiped("shld25",LastSeenBy(Myself))  // Shield of Harmony +2
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		IncrementGlobal("GauthParalyze","LOCALS",1)
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_PARALYZATION)  // SPIN990.SPL (Paralyze)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	See([PC])
+	!CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
+	CheckStatLT(LastSeenBy(Myself),100,RESISTELECTRICITY)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_LIGHTNING_BOLT)  // SPIN989.SPL (Lightning Bolt)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	See(SecondNearest([PC]))
+	!CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
+	CheckStatLT(LastSeenBy(Myself),100,RESISTELECTRICITY)
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_LIGHTNING_BOLT)  // SPIN989.SPL (Lightning Bolt)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	See(ThirdNearest([PC]))
+	!CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
+	CheckStatLT(LastSeenBy(Myself),100,RESISTELECTRICITY)
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_LIGHTNING_BOLT)  // SPIN989.SPL (Lightning Bolt)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	See(FourthNearest([PC]))
+	!CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
+	CheckStatLT(LastSeenBy(Myself),100,RESISTELECTRICITY)
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_LIGHTNING_BOLT)  // SPIN989.SPL (Lightning Bolt)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	See(NearestEnemyOf(Myself))
+	!CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
+	CheckStatLT(LastSeenBy(Myself),100,RESISTELECTRICITY)
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_LIGHTNING_BOLT)  // SPIN989.SPL (Lightning Bolt)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+
+IF
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	See([PC])
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	OR(2)
+		HPGT(Myself,79)
+		StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_CAUSE_SERIOUS_WOUNDS)  // SPIN986.SPL (Cause Serious Wounds)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	See(SecondNearest([PC]))
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	OR(2)
+		HPGT(Myself,79)
+		StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_CAUSE_SERIOUS_WOUNDS)  // SPIN986.SPL (Cause Serious Wounds)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	See(ThirdNearest([PC]))
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	OR(2)
+		HPGT(Myself,79)
+		StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_CAUSE_SERIOUS_WOUNDS)  // SPIN986.SPL (Cause Serious Wounds)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	See(FourthNearest([PC]))
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	OR(2)
+		HPGT(Myself,79)
+		StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_CAUSE_SERIOUS_WOUNDS)  // SPIN986.SPL (Cause Serious Wounds)
+		Wait(1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	Global("Iapcastts","GLOBAL",0)
+	See(NearestEnemyOf(Myself))
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	OR(2)
+		HPGT(Myself,79)
+		StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_CAUSE_SERIOUS_WOUNDS)  // SPIN986.SPL (Cause Serious Wounds)
+		Wait(1)
+		SetInterrupt(TRUE)
+END

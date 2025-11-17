@@ -3613,3 +3613,13 @@ COPY_EXISTING ~AR2811.are~ ~override~
   END
 
 COMPILE ~IATweaks\scripts\areas\ar2811.BAF~
+
+///////////////////// Beholders
+
+COPY_EXISTING ~SPIN989.spl~ ~override~
+  WRITE_SHORT 0x1c 4 // spell type = innate
+  LPF ~ALTER_SPELL_HEADER~ INT_VAR speed = 0 END
+  LPF ~ALTER_EFFECT~ INT_VAR power = 0 END
+
+COMPILE ~IATweaks\scripts\creatures\behold01.BAF~
+

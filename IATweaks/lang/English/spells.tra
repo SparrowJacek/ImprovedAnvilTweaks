@@ -2077,7 +2077,7 @@ The Cavalier calls upon divine strength to purge all effects that weaken resolve
 
 @6288 = ~Defensive Stance
 
-For 1 turn, the Dwarven Defender gains +20% resistance to all forms of physical damage, a +2 bonus to Saving Throws, a 50% movement rate penalty and immunity to any forms of knockback. This effect cannot be removed or dispelled.~
+For 1 turn, the Dwarven Defender gains +20% resistance to all forms of physical damage, a +2 bonus to Armor Class, a -2 penalty to Save vs Breath, a 50% movement rate penalty and immunity to any forms of knockback. This effect cannot be removed or dispelled.~
 
 @6289 = ~Shield Bash~
 

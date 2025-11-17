@@ -1,4 +1,42 @@
 IF
+	Allegiance(Myself,ENEMY)
+	See([GOODCUTOFF])
+	!GlobalTimerNotExpired("IaShoutTimer","LOCALS")
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaShoutTimer","LOCALS",THREE_ROUNDS)
+		GlobalShout(99)
+		Continue()
+END
+
+IF
+	AttackedBy([GOODCUTOFF],DEFAULT)
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		GlobalShout(99)
+		Continue()
+END
+
+IF
+	HitBy([GOODCUTOFF],CRUSHING)
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		GlobalShout(99)
+		Continue()
+END
+
+IF
+	Heard([ANYONE],99)
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		MoveToObject(LastHeardBy(Myself))
+END
+
+IF
 	See(NearestEnemyOf(Myself))
 	Global("partyfled","LOCALS",1)
 THEN

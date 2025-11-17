@@ -3623,3 +3623,53 @@ COPY_EXISTING ~SPIN989.spl~ ~override~
 
 COMPILE ~IATweaks\scripts\creatures\behold01.BAF~
 
+/////////////////////// Why is it so cold down there
+
+// Turn Ele Golem to 4 Ice Elementals, remove freeze action of main character
+COMPILE ~IATweaks\scripts\areas\ar0412.BAF~
+
+// Make Ice Golem capable of shout/hear actions
+
+<<<<<<<< .../inlined/shout_logic.baf
+IF
+	Allegiance(Myself,ENEMY)
+	See([GOODCUTOFF])
+	!GlobalTimerNotExpired("IaShoutTimer","LOCALS")
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaShoutTimer","LOCALS",THREE_ROUNDS)
+		GlobalShout(99)
+		Continue()
+END
+
+IF
+	AttackedBy([GOODCUTOFF],DEFAULT)
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		GlobalShout(99)
+		Continue()
+END
+
+IF
+	HitBy([GOODCUTOFF],CRUSHING)
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		GlobalShout(99)
+		Continue()
+END
+
+IF
+	Heard([ANYONE],99)
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		MoveToObject(LastHeardBy(Myself))
+END
+
+>>>>>>>>
+EXTEND_TOP ~s!icegol.bcs~ ~.../inlined/shout_logic.baf~
+  EVALUATE_BUFFER
+

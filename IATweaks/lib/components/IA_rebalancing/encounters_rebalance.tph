@@ -188,6 +188,19 @@ ACTION_FOR_EACH eminent_vamp_cre IN ~s!vamemi~ ~s!vamemr~ ~VAMEMI01~ ~VAMPAT01~ 
     WRITE_BYTE 0x5e 25  // Magic Fire Resistance
 END
 
+// scripts of Vampires
+
+COMPILE ~IATweaks\scripts\creatures\S!ORVAM.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!nevm4.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!vamp1.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!vamp2.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!vamp3.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!vamp4.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!mfvamp.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!vlord.BAF~
+COMPILE ~IATweaks\scripts\creatures\mage16c.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!bguard.BAF~
+
 /////////// Rayic (Cowled Wizard that Edwin orders us to kill) ////////////
 
 COPY_EXISTING ~DCOWL1.CRE~ ~override~

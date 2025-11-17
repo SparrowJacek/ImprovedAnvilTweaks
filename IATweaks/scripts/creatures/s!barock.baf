@@ -1,0 +1,5262 @@
+
+
+IF
+	Global("Iapcastts","GLOBAL",1)
+	Global("Iatsinvulner","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",1)
+		ApplySpellRES("SPINI70",Myself)  // No such index
+END
+
+IF
+	Global("Iapcastts","GLOBAL",0)
+	Global("Iatsinvulner","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",0)
+		ApplySpellRES("SPINI71",Myself)  // No such index
+		Continue()
+END
+
+IF
+	Global("Iapcastts","GLOBAL",1)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+
+IF
+    HaveSpell(WARRIOR_GREATER_DEATHBLOW)
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	Global("IaPrep","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaDeathblow","LOCALS",FIVE_ROUNDS)
+		ReallyForceSpell(Myself,WARRIOR_GREATER_DEATHBLOW)
+		RemoveSpell(WARRIOR_GREATER_DEATHBLOW)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	Global("IaPrep","LOCALS",0)
+	HaveSpellRES("SPCL321")
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("SPCL321",Myself)
+		RemoveSpellRES("SPCL321")
+		Continue()
+END
+
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	Global("IaPrep","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("IaPrep","LOCALS",1)
+END
+
+
+IF
+	!See(NearestEnemyOf(Myself))
+	Heard([ANYONE],111)
+THEN
+	RESPONSE #100
+		MoveToObject(LastHeardBy(Myself))
+END
+
+IF
+	AttackedBy([ANYONE],DEFAULT)
+	!See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+	    Shout(111)
+		MoveToObject(LastAttackerOf(Myself))
+END
+
+
+IF
+	Allegiance(Myself,ENEMY)
+	GlobalTimerExpired("IaRestTimer","LOCALS")
+	Global("partyfled","LOCALS",1)
+	Global("IaPrep","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("IaPrep","LOCALS",0)
+		ReallyForceSpellRES("SPWII07",Myself)  // No such index
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	Global("partyfled","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("partyfled","LOCALS",0)
+		Continue()
+END
+
+IF
+	!See([PC])
+	!See([GOODCUTOFF])
+	Global("partyfled","LOCALS",0)
+	Allegiance(Myself,ENEMY)
+	Global("IaPrep","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaRestTimer","LOCALS",SEVEN_HOURS)
+		SetGlobal("partyfled","LOCALS",1)
+END
+
+
+
+IF
+    ActionListEmpty()
+	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
+	See(Player1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaChar1SeenTimer","LOCALS",TWO_TURNS)
+		SetGlobal("IaChar1Seen","LOCALS",1)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
+	See(Player2)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaChar2SeenTimer","LOCALS",TWO_TURNS)
+		SetGlobal("IaChar2Seen","LOCALS",1)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
+	See(Player3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaChar3SeenTimer","LOCALS",TWO_TURNS)
+		SetGlobal("IaChar3Seen","LOCALS",1)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
+	See(Player4)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaChar4SeenTimer","LOCALS",TWO_TURNS)
+		SetGlobal("IaChar4Seen","LOCALS",1)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
+	See(Player5)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaChar5SeenTimer","LOCALS",TWO_TURNS)
+		SetGlobal("IaChar5Seen","LOCALS",1)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
+	See(Player6)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaChar6SeenTimer","LOCALS",TWO_TURNS)
+		SetGlobal("IaChar6Seen","LOCALS",1)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaSeeCharacters","LOCALS",ONE_ROUND)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	GlobalTimerExpired("IaChar1SeenTimer","LOCALS")
+	Global("IaChar1Seen","LOCALS",1)
+	!See(Player1)
+THEN
+	RESPONSE #100
+		SetGlobal("IaChar1Seen","LOCALS",0)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	GlobalTimerExpired("IaChar2SeenTimer","LOCALS")
+	Global("IaChar2Seen","LOCALS",1)
+	!See(Player2)
+THEN
+	RESPONSE #100
+		SetGlobal("IaChar2Seen","LOCALS",0)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	GlobalTimerExpired("IaChar3SeenTimer","LOCALS")
+	Global("IaChar3Seen","LOCALS",1)
+	!See(Player3)
+THEN
+	RESPONSE #100
+		SetGlobal("IaChar3Seen","LOCALS",0)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	GlobalTimerExpired("IaChar4SeenTimer","LOCALS")
+	Global("IaChar4Seen","LOCALS",1)
+	!See(Player4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaChar4Seen","LOCALS",0)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	GlobalTimerExpired("IaChar5SeenTimer","LOCALS")
+	Global("IaChar5Seen","LOCALS",1)
+	!See(Player5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaChar5Seen","LOCALS",0)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	GlobalTimerExpired("IaChar6SeenTimer","LOCALS")
+	Global("IaChar6Seen","LOCALS",1)
+	!See(Player6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaChar6Seen","LOCALS",0)
+		Continue()
+END
+
+
+
+IF
+	!GlobalTimerNotExpired("IaSwapPlaces","LOCALS")
+	Range(SecondNearestEnemyOf(Myself),4)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(SecondNearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhirlwind","LOCALS",1))
+	See("GAROCK")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaSwapPlaces","LOCALS",TWO_ROUNDS)
+		ReallyForceSpellRES("S!SWAPMI",LastSeenBy(Myself))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IaSwapPlaces","LOCALS")
+	Range(SecondNearestEnemyOf(Myself),4)
+	!Dead("ROCK")
+	!TriggerOverride("ROCK",Range(SecondNearestEnemyOf(Myself),5))
+	See("ROCK")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaSwapPlaces","LOCALS",TWO_ROUNDS)
+		ReallyForceSpellRES("S!SWAPMI",LastSeenBy(Myself))
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IaSwapPlaces","LOCALS")
+	Range(SecondNearestEnemyOf(Myself),4)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(SecondNearestEnemyOf(Myself),5))
+	See("GAROCK")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaSwapPlaces","LOCALS",TWO_ROUNDS)
+		ReallyForceSpellRES("S!SWAPMI",LastSeenBy(Myself))
+	RESPONSE #100
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	HPPercentLT(Myself,60)
+	HasItem("potn55",Myself)  // Potion of Superior Healing
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("potn55",Myself)  // Potion of Superior Healing
+END
+
+IF
+	HaveSpellRES("SPCL321")
+	!CheckSpellState(Myself,BERSERKER_RAGE_FATIGUE) 
+	!CheckSpellState(Myself,BERSERKER_RAGE) 
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellRES("SPCL321",Myself)  // Enrage
+	RESPONSE #0
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPCL121")  // Called Shot
+	See([PC])
+	OR(2)
+		!Range(NearestEnemyOf(Myself),5)
+		HPPercent(Myself,100)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!CheckSpellState(Myself,ARCHER_CALL_SHOT)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellRES("SPCL121",Myself)  // Called Shot
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_CRITICAL_STRIKE)
+	!CheckStatGT(Myself,5,CRITICALHITBONUS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(NearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_CRITICAL_STRIKE)  // SPCL905.SPL (Critical Strike)
+		RemoveSpell(WARRIOR_CRITICAL_STRIKE)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_CRITICAL_STRIKE)
+	!CheckStatGT(Myself,5,CRITICALHITBONUS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SecondNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_CRITICAL_STRIKE)  // SPCL905.SPL (Critical Strike)
+		RemoveSpell(WARRIOR_CRITICAL_STRIKE)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_CRITICAL_STRIKE)
+	!CheckStatGT(Myself,5,CRITICALHITBONUS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(ThirdNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_CRITICAL_STRIKE)  // SPCL905.SPL (Critical Strike)
+		RemoveSpell(WARRIOR_CRITICAL_STRIKE)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_GREATER_DEATHBLOW)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	!GlobalTimerNotExpired("IaDeathblow","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",FIVE_ROUNDS)
+		ForceSpell(Myself,WARRIOR_GREATER_DEATHBLOW)
+		RemoveSpell(WARRIOR_GREATER_DEATHBLOW)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_GREATER_DEATHBLOW)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	!GlobalTimerNotExpired("IaDeathblow","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SecondNearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",FIVE_ROUNDS)
+		ForceSpell(Myself,WARRIOR_GREATER_DEATHBLOW)
+		RemoveSpell(WARRIOR_GREATER_DEATHBLOW)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_GREATER_DEATHBLOW)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	!GlobalTimerNotExpired("IaDeathblow","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(ThirdNearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",FIVE_ROUNDS)
+		ForceSpell(Myself,WARRIOR_GREATER_DEATHBLOW)
+		RemoveSpell(WARRIOR_GREATER_DEATHBLOW)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_POWER_ATTACK)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("PowerAttackActiveTimer","LOCALS")
+	See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+	!CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckSpellState(NearestEnemyOf(Myself),STUN_IMMUNITY)
+	CheckStatGT(LastSeenBy(Myself),0,SAVEVSDEATH)
+	OR(2)
+	    CheckStatGT(LastSeenBy(Myself),4,SAVEVSDEATH)
+	    !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("PowerAttackActiveTimer","LOCALS",TWO_ROUNDS)
+		ForceSpell(Myself,WARRIOR_POWER_ATTACK)
+		RemoveSpell(WARRIOR_POWER_ATTACK)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_POWER_ATTACK)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("PowerAttackActiveTimer","LOCALS")
+	See(SecondNearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+	!CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),STUN_IMMUNITY)
+	CheckStatGT(LastSeenBy(Myself),0,SAVEVSDEATH)
+	OR(2)
+	    CheckStatGT(LastSeenBy(Myself),4,SAVEVSDEATH)
+	    !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("PowerAttackActiveTimer","LOCALS",TWO_ROUNDS)
+		ForceSpell(Myself,WARRIOR_POWER_ATTACK)
+		RemoveSpell(WARRIOR_POWER_ATTACK)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_POWER_ATTACK)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("PowerAttackActiveTimer","LOCALS")
+	See(ThirdNearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+	!CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),STUN_IMMUNITY)
+	CheckStatGT(LastSeenBy(Myself),0,SAVEVSDEATH)
+	OR(2)
+	    CheckStatGT(LastSeenBy(Myself),4,SAVEVSDEATH)
+	    !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("PowerAttackActiveTimer","LOCALS",TWO_ROUNDS)
+		ForceSpell(Myself,WARRIOR_POWER_ATTACK)
+		RemoveSpell(WARRIOR_POWER_ATTACK)
+END
+
+
+
+IF
+	Range(ThirdNearestEnemyOf(Myself),5)
+	OR(2)
+		StateCheck(Myself,STATE_HASTED)
+		!CheckStat(Myself,0,IMPROVEDHASTE)
+	!GlobalTimerNotExpired("IaRunAway","LOCALS")
+	CanEquipRanged()
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaRunAway","LOCALS",10)
+		RunAwayFromNoLeaveArea(NearestEnemyOf(Myself),60)
+		SetInterrupt(TRUE)
+END
+
+IF
+	Range(ThirdNearestEnemyOf(Myself),5)
+	!StateCheck(Myself,STATE_HASTED)
+	CheckStat(Myself,0,IMPROVEDHASTE)
+	!GlobalTimerNotExpired("IaRunAway","LOCALS")
+	CanEquipRanged()
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaRunAway","LOCALS",12)
+		RunAwayFromNoLeaveArea(NearestEnemyOf(Myself),75)
+		SetInterrupt(TRUE)
+END
+
+IF
+	Range(NearestEnemyOf(Myself),5)
+	!StateCheck(NearestEnemyOf(Myself),STATE_HARMLESS)
+	!CheckStatGT(NearestEnemyOf(Myself),0,HELD)
+	OR(2)
+		StateCheck(Myself,STATE_HASTED)
+		!CheckStat(Myself,0,IMPROVEDHASTE)
+	!GlobalTimerNotExpired("IaRunAway","LOCALS")
+	CanEquipRanged()
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaRunAway","LOCALS",10)
+		RunAwayFromNoLeaveArea(NearestEnemyOf(Myself),60)
+		SetInterrupt(TRUE)
+END
+
+IF
+	Range(NearestEnemyOf(Myself),5)
+	!StateCheck(NearestEnemyOf(Myself),STATE_HARMLESS)
+	!CheckStatGT(NearestEnemyOf(Myself),0,HELD)
+	!StateCheck(Myself,STATE_HASTED)
+	CheckStat(Myself,0,IMPROVEDHASTE)
+	!GlobalTimerNotExpired("IaRunAway","LOCALS")
+	CanEquipRanged()
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaRunAway","LOCALS",10)
+		RunAwayFromNoLeaveArea(NearestEnemyOf(Myself),75)
+		SetInterrupt(TRUE)
+END
+
+
+
+IF
+    Global("IaAttacking","LOCALS",1)
+    GlobalTimerExpired("IaRangedAttack","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",0)
+		NoAction()
+		Continue()
+END
+
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.MAGE_ALL])
+	TriggerOverride([PC.0.0.MAGE_ALL],Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT([PC.0.0.MAGE_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.MAGE_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.MAGE_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.MAGE_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.MAGE_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.MAGE_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.MAGE_ALL]))
+	TriggerOverride(SecondNearest([PC.0.0.MAGE_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.MAGE_ALL]))
+	TriggerOverride(ThirdNearest([PC.0.0.MAGE_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.MAGE_ALL]))
+	TriggerOverride(FourthNearest([PC.0.0.MAGE_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.MAGE_ALL]))
+	TriggerOverride(FifthNearest([PC.0.0.MAGE_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.MAGE_ALL]))
+	TriggerOverride(SixthNearest([PC.0.0.MAGE_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.DRUID_ALL])
+	TriggerOverride([PC.0.0.DRUID_ALL],Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT([PC.0.0.DRUID_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.DRUID_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.DRUID_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.DRUID_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.DRUID_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.DRUID_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.DRUID_ALL]))
+	TriggerOverride(SecondNearest([PC.0.0.DRUID_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.DRUID_ALL]))
+	TriggerOverride(ThirdNearest([PC.0.0.DRUID_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.DRUID_ALL]))
+	TriggerOverride(FourthNearest([PC.0.0.DRUID_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.DRUID_ALL]))
+	TriggerOverride(FifthNearest([PC.0.0.DRUID_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.DRUID_ALL]))
+	TriggerOverride(SixthNearest([PC.0.0.DRUID_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.THIEF_ALL])
+	TriggerOverride([PC.0.0.THIEF_ALL],Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT([PC.0.0.THIEF_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.THIEF_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.THIEF_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.THIEF_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.THIEF_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.THIEF_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.THIEF_ALL]))
+	TriggerOverride(SecondNearest([PC.0.0.THIEF_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.THIEF_ALL]))
+	TriggerOverride(ThirdNearest([PC.0.0.THIEF_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.THIEF_ALL]))
+	TriggerOverride(FourthNearest([PC.0.0.THIEF_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.THIEF_ALL]))
+	TriggerOverride(FifthNearest([PC.0.0.THIEF_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.THIEF_ALL]))
+	TriggerOverride(SixthNearest([PC.0.0.THIEF_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.BARD])
+	TriggerOverride([PC.0.0.BARD],Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT([PC.0.0.BARD],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.BARD],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.BARD],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.BARD],0,STONESKINS)
+	!StateCheck([PC.0.0.BARD],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.BARD])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.BARD]))
+	TriggerOverride(SecondNearest([PC.0.0.BARD]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.BARD]))
+	TriggerOverride(ThirdNearest([PC.0.0.BARD]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.BARD]))
+	TriggerOverride(FourthNearest([PC.0.0.BARD]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.BARD]))
+	TriggerOverride(FifthNearest([PC.0.0.BARD]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.BARD]))
+	TriggerOverride(SixthNearest([PC.0.0.BARD]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.CLERIC_ALL])
+	TriggerOverride([PC.0.0.CLERIC_ALL],Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT([PC.0.0.CLERIC_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.CLERIC_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.CLERIC_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.CLERIC_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.CLERIC_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.CLERIC_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.CLERIC_ALL]))
+	TriggerOverride(SecondNearest([PC.0.0.CLERIC_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.CLERIC_ALL]))
+	TriggerOverride(ThirdNearest([PC.0.0.CLERIC_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.CLERIC_ALL]))
+	TriggerOverride(FourthNearest([PC.0.0.CLERIC_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.CLERIC_ALL]))
+	TriggerOverride(FifthNearest([PC.0.0.CLERIC_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.CLERIC_ALL]))
+	TriggerOverride(SixthNearest([PC.0.0.CLERIC_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	TriggerOverride([PC],Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT([PC],75,RESISTMISSILE)
+    CheckStatLT([PC],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC],MISSILE_IMMUNITY)
+	!CheckStatGT([PC],0,STONESKINS)
+	!StateCheck([PC],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC]))
+	TriggerOverride(SecondNearest([PC]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC]))
+	TriggerOverride(ThirdNearest([PC]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC]))
+	TriggerOverride(FourthNearest([PC]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC]))
+	TriggerOverride(FifthNearest([PC]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC]))
+	TriggerOverride(SixthNearest([PC]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.MAGE_ALL])
+	TriggerOverride([PC.0.0.MAGE_ALL],Range(NearestAllyOf(Myself),15))
+	CheckStatLT([PC.0.0.MAGE_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.MAGE_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.MAGE_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.MAGE_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.MAGE_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.MAGE_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.MAGE_ALL]))
+	TriggerOverride(SecondNearest([PC.0.0.MAGE_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.MAGE_ALL]))
+	TriggerOverride(ThirdNearest([PC.0.0.MAGE_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.MAGE_ALL]))
+	TriggerOverride(FourthNearest([PC.0.0.MAGE_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.MAGE_ALL]))
+	TriggerOverride(FifthNearest([PC.0.0.MAGE_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.MAGE_ALL]))
+	TriggerOverride(SixthNearest([PC.0.0.MAGE_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.DRUID_ALL])
+	TriggerOverride([PC.0.0.DRUID_ALL],Range(NearestAllyOf(Myself),15))
+	CheckStatLT([PC.0.0.DRUID_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.DRUID_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.DRUID_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.DRUID_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.DRUID_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.DRUID_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.DRUID_ALL]))
+	TriggerOverride(SecondNearest([PC.0.0.DRUID_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.DRUID_ALL]))
+	TriggerOverride(ThirdNearest([PC.0.0.DRUID_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.DRUID_ALL]))
+	TriggerOverride(FourthNearest([PC.0.0.DRUID_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.DRUID_ALL]))
+	TriggerOverride(FifthNearest([PC.0.0.DRUID_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.DRUID_ALL]))
+	TriggerOverride(SixthNearest([PC.0.0.DRUID_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.THIEF_ALL])
+	TriggerOverride([PC.0.0.THIEF_ALL],Range(NearestAllyOf(Myself),15))
+	CheckStatLT([PC.0.0.THIEF_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.THIEF_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.THIEF_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.THIEF_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.THIEF_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.THIEF_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.THIEF_ALL]))
+	TriggerOverride(SecondNearest([PC.0.0.THIEF_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.THIEF_ALL]))
+	TriggerOverride(ThirdNearest([PC.0.0.THIEF_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.THIEF_ALL]))
+	TriggerOverride(FourthNearest([PC.0.0.THIEF_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.THIEF_ALL]))
+	TriggerOverride(FifthNearest([PC.0.0.THIEF_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.THIEF_ALL]))
+	TriggerOverride(SixthNearest([PC.0.0.THIEF_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.BARD])
+	TriggerOverride([PC.0.0.BARD],Range(NearestAllyOf(Myself),15))
+	CheckStatLT([PC.0.0.BARD],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.BARD],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.BARD],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.BARD],0,STONESKINS)
+	!StateCheck([PC.0.0.BARD],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.BARD])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.BARD]))
+	TriggerOverride(SecondNearest([PC.0.0.BARD]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.BARD]))
+	TriggerOverride(ThirdNearest([PC.0.0.BARD]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.BARD]))
+	TriggerOverride(FourthNearest([PC.0.0.BARD]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.BARD]))
+	TriggerOverride(FifthNearest([PC.0.0.BARD]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.BARD]))
+	TriggerOverride(SixthNearest([PC.0.0.BARD]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.CLERIC_ALL])
+	TriggerOverride([PC.0.0.CLERIC_ALL],Range(NearestAllyOf(Myself),15))
+	CheckStatLT([PC.0.0.CLERIC_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.CLERIC_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.CLERIC_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.CLERIC_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.CLERIC_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.CLERIC_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.CLERIC_ALL]))
+	TriggerOverride(SecondNearest([PC.0.0.CLERIC_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.CLERIC_ALL]))
+	TriggerOverride(ThirdNearest([PC.0.0.CLERIC_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.CLERIC_ALL]))
+	TriggerOverride(FourthNearest([PC.0.0.CLERIC_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.CLERIC_ALL]))
+	TriggerOverride(FifthNearest([PC.0.0.CLERIC_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.CLERIC_ALL]))
+	TriggerOverride(SixthNearest([PC.0.0.CLERIC_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	TriggerOverride([PC],Range(NearestAllyOf(Myself),15))
+	CheckStatLT([PC],75,RESISTMISSILE)
+    CheckStatLT([PC],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC],MISSILE_IMMUNITY)
+	!CheckStatGT([PC],0,STONESKINS)
+	!StateCheck([PC],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC]))
+	TriggerOverride(SecondNearest([PC]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC]))
+	TriggerOverride(ThirdNearest([PC]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC]))
+	TriggerOverride(FourthNearest([PC]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC]))
+	TriggerOverride(FifthNearest([PC]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC]))
+	TriggerOverride(SixthNearest([PC]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.MAGE_ALL])
+	TriggerOverride([PC.0.0.MAGE_ALL],Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT([PC.0.0.MAGE_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.MAGE_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.MAGE_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.MAGE_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.MAGE_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.MAGE_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.MAGE_ALL]))
+	TriggerOverride(SecondNearest([PC.0.0.MAGE_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.MAGE_ALL]))
+	TriggerOverride(ThirdNearest([PC.0.0.MAGE_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.MAGE_ALL]))
+	TriggerOverride(FourthNearest([PC.0.0.MAGE_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.MAGE_ALL]))
+	TriggerOverride(FifthNearest([PC.0.0.MAGE_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.MAGE_ALL]))
+	TriggerOverride(SixthNearest([PC.0.0.MAGE_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.DRUID_ALL])
+	TriggerOverride([PC.0.0.DRUID_ALL],Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT([PC.0.0.DRUID_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.DRUID_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.DRUID_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.DRUID_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.DRUID_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.DRUID_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.DRUID_ALL]))
+	TriggerOverride(SecondNearest([PC.0.0.DRUID_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.DRUID_ALL]))
+	TriggerOverride(ThirdNearest([PC.0.0.DRUID_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.DRUID_ALL]))
+	TriggerOverride(FourthNearest([PC.0.0.DRUID_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.DRUID_ALL]))
+	TriggerOverride(FifthNearest([PC.0.0.DRUID_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.DRUID_ALL]))
+	TriggerOverride(SixthNearest([PC.0.0.DRUID_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.THIEF_ALL])
+	TriggerOverride([PC.0.0.THIEF_ALL],Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT([PC.0.0.THIEF_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.THIEF_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.THIEF_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.THIEF_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.THIEF_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.THIEF_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.THIEF_ALL]))
+	TriggerOverride(SecondNearest([PC.0.0.THIEF_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.THIEF_ALL]))
+	TriggerOverride(ThirdNearest([PC.0.0.THIEF_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.THIEF_ALL]))
+	TriggerOverride(FourthNearest([PC.0.0.THIEF_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.THIEF_ALL]))
+	TriggerOverride(FifthNearest([PC.0.0.THIEF_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.THIEF_ALL]))
+	TriggerOverride(SixthNearest([PC.0.0.THIEF_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.BARD])
+	TriggerOverride([PC.0.0.BARD],Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT([PC.0.0.BARD],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.BARD],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.BARD],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.BARD],0,STONESKINS)
+	!StateCheck([PC.0.0.BARD],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.BARD])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.BARD]))
+	TriggerOverride(SecondNearest([PC.0.0.BARD]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.BARD]))
+	TriggerOverride(ThirdNearest([PC.0.0.BARD]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.BARD]))
+	TriggerOverride(FourthNearest([PC.0.0.BARD]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.BARD]))
+	TriggerOverride(FifthNearest([PC.0.0.BARD]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.BARD]))
+	TriggerOverride(SixthNearest([PC.0.0.BARD]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.CLERIC_ALL])
+	TriggerOverride([PC.0.0.CLERIC_ALL],Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT([PC.0.0.CLERIC_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.CLERIC_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.CLERIC_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.CLERIC_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.CLERIC_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.CLERIC_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.CLERIC_ALL]))
+	TriggerOverride(SecondNearest([PC.0.0.CLERIC_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.CLERIC_ALL]))
+	TriggerOverride(ThirdNearest([PC.0.0.CLERIC_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.CLERIC_ALL]))
+	TriggerOverride(FourthNearest([PC.0.0.CLERIC_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.CLERIC_ALL]))
+	TriggerOverride(FifthNearest([PC.0.0.CLERIC_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.CLERIC_ALL]))
+	TriggerOverride(SixthNearest([PC.0.0.CLERIC_ALL]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	TriggerOverride([PC],Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT([PC],75,RESISTMISSILE)
+    CheckStatLT([PC],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC],MISSILE_IMMUNITY)
+	!CheckStatGT([PC],0,STONESKINS)
+	!StateCheck([PC],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC]))
+	TriggerOverride(SecondNearest([PC]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC]))
+	TriggerOverride(ThirdNearest([PC]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC]))
+	TriggerOverride(FourthNearest([PC]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC]))
+	TriggerOverride(FifthNearest([PC]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC]))
+	TriggerOverride(SixthNearest([PC]),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.MAGE_ALL])
+	TriggerOverride([PC.0.0.MAGE_ALL],Range(NearestAllyOf(Myself),15))
+	CheckStatLT([PC.0.0.MAGE_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.MAGE_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.MAGE_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.MAGE_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.MAGE_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.MAGE_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.MAGE_ALL]))
+	TriggerOverride(SecondNearest([PC.0.0.MAGE_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.MAGE_ALL]))
+	TriggerOverride(ThirdNearest([PC.0.0.MAGE_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.MAGE_ALL]))
+	TriggerOverride(FourthNearest([PC.0.0.MAGE_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.MAGE_ALL]))
+	TriggerOverride(FifthNearest([PC.0.0.MAGE_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.MAGE_ALL]))
+	TriggerOverride(SixthNearest([PC.0.0.MAGE_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.DRUID_ALL])
+	TriggerOverride([PC.0.0.DRUID_ALL],Range(NearestAllyOf(Myself),15))
+	CheckStatLT([PC.0.0.DRUID_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.DRUID_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.DRUID_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.DRUID_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.DRUID_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.DRUID_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.DRUID_ALL]))
+	TriggerOverride(SecondNearest([PC.0.0.DRUID_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.DRUID_ALL]))
+	TriggerOverride(ThirdNearest([PC.0.0.DRUID_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.DRUID_ALL]))
+	TriggerOverride(FourthNearest([PC.0.0.DRUID_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.DRUID_ALL]))
+	TriggerOverride(FifthNearest([PC.0.0.DRUID_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.DRUID_ALL]))
+	TriggerOverride(SixthNearest([PC.0.0.DRUID_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.THIEF_ALL])
+	TriggerOverride([PC.0.0.THIEF_ALL],Range(NearestAllyOf(Myself),15))
+	CheckStatLT([PC.0.0.THIEF_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.THIEF_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.THIEF_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.THIEF_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.THIEF_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.THIEF_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.THIEF_ALL]))
+	TriggerOverride(SecondNearest([PC.0.0.THIEF_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.THIEF_ALL]))
+	TriggerOverride(ThirdNearest([PC.0.0.THIEF_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.THIEF_ALL]))
+	TriggerOverride(FourthNearest([PC.0.0.THIEF_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.THIEF_ALL]))
+	TriggerOverride(FifthNearest([PC.0.0.THIEF_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.THIEF_ALL]))
+	TriggerOverride(SixthNearest([PC.0.0.THIEF_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.BARD])
+	TriggerOverride([PC.0.0.BARD],Range(NearestAllyOf(Myself),15))
+	CheckStatLT([PC.0.0.BARD],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.BARD],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.BARD],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.BARD],0,STONESKINS)
+	!StateCheck([PC.0.0.BARD],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.BARD])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.BARD]))
+	TriggerOverride(SecondNearest([PC.0.0.BARD]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.BARD]))
+	TriggerOverride(ThirdNearest([PC.0.0.BARD]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.BARD]))
+	TriggerOverride(FourthNearest([PC.0.0.BARD]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.BARD]))
+	TriggerOverride(FifthNearest([PC.0.0.BARD]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.BARD]))
+	TriggerOverride(SixthNearest([PC.0.0.BARD]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.CLERIC_ALL])
+	TriggerOverride([PC.0.0.CLERIC_ALL],Range(NearestAllyOf(Myself),15))
+	CheckStatLT([PC.0.0.CLERIC_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.CLERIC_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.CLERIC_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.CLERIC_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.CLERIC_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.CLERIC_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.CLERIC_ALL]))
+	TriggerOverride(SecondNearest([PC.0.0.CLERIC_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.CLERIC_ALL]))
+	TriggerOverride(ThirdNearest([PC.0.0.CLERIC_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.CLERIC_ALL]))
+	TriggerOverride(FourthNearest([PC.0.0.CLERIC_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.CLERIC_ALL]))
+	TriggerOverride(FifthNearest([PC.0.0.CLERIC_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.CLERIC_ALL]))
+	TriggerOverride(SixthNearest([PC.0.0.CLERIC_ALL]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	TriggerOverride([PC],Range(NearestAllyOf(Myself),15))
+	CheckStatLT([PC],75,RESISTMISSILE)
+    CheckStatLT([PC],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC],MISSILE_IMMUNITY)
+	!CheckStatGT([PC],0,STONESKINS)
+	!StateCheck([PC],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC]))
+	TriggerOverride(SecondNearest([PC]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC]))
+	TriggerOverride(ThirdNearest([PC]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC]))
+	TriggerOverride(FourthNearest([PC]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC]))
+	TriggerOverride(FifthNearest([PC]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC]))
+	TriggerOverride(SixthNearest([PC]),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.MAGE_ALL])
+	CheckStatLT([PC.0.0.MAGE_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.MAGE_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.MAGE_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.MAGE_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.MAGE_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.MAGE_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(ThirdNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(FourthNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(FifthNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(SixthNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.DRUID_ALL])
+	CheckStatLT([PC.0.0.DRUID_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.DRUID_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.DRUID_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.DRUID_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.DRUID_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.DRUID_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(ThirdNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(FourthNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(FifthNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(SixthNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.THIEF_ALL])
+	CheckStatLT([PC.0.0.THIEF_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.THIEF_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.THIEF_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.THIEF_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.THIEF_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.THIEF_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(ThirdNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(FourthNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(FifthNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(SixthNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.BARD])
+	CheckStatLT([PC.0.0.BARD],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.BARD],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.BARD],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.BARD],0,STONESKINS)
+	!StateCheck([PC.0.0.BARD],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.BARD])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.BARD]))
+	CheckStatLT(SecondNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.BARD]))
+	CheckStatLT(ThirdNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.BARD]))
+	CheckStatLT(FourthNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.BARD]))
+	CheckStatLT(FifthNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.BARD]))
+	CheckStatLT(SixthNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.CLERIC_ALL])
+	CheckStatLT([PC.0.0.CLERIC_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.CLERIC_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.CLERIC_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.CLERIC_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.CLERIC_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.CLERIC_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(ThirdNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(FourthNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(FifthNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(SixthNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	CheckStatLT([PC],75,RESISTMISSILE)
+    CheckStatLT([PC],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC],MISSILE_IMMUNITY)
+	!CheckStatGT([PC],0,STONESKINS)
+	!StateCheck([PC],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC]))
+	CheckStatLT(SecondNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC]))
+	CheckStatLT(ThirdNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC]))
+	CheckStatLT(FourthNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC]))
+	CheckStatLT(FifthNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC]))
+	CheckStatLT(SixthNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.MAGE_ALL])
+	CheckStatLT([PC.0.0.MAGE_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.MAGE_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.MAGE_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.MAGE_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.MAGE_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.MAGE_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(ThirdNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(FourthNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(FifthNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(SixthNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.MAGE_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.MAGE_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.DRUID_ALL])
+	CheckStatLT([PC.0.0.DRUID_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.DRUID_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.DRUID_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.DRUID_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.DRUID_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.DRUID_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(ThirdNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(FourthNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(FifthNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(SixthNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.DRUID_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.DRUID_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.THIEF_ALL])
+	CheckStatLT([PC.0.0.THIEF_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.THIEF_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.THIEF_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.THIEF_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.THIEF_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.THIEF_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(ThirdNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(FourthNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(FifthNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(SixthNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.THIEF_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.THIEF_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.BARD])
+	CheckStatLT([PC.0.0.BARD],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.BARD],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.BARD],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.BARD],0,STONESKINS)
+	!StateCheck([PC.0.0.BARD],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.BARD])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.BARD]))
+	CheckStatLT(SecondNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.BARD]))
+	CheckStatLT(ThirdNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.BARD]))
+	CheckStatLT(FourthNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.BARD]))
+	CheckStatLT(FifthNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.BARD]))
+	CheckStatLT(SixthNearest([PC.0.0.BARD]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.BARD]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.BARD]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.BARD]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.BARD]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.BARD]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.CLERIC_ALL])
+	CheckStatLT([PC.0.0.CLERIC_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.CLERIC_ALL],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.CLERIC_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.CLERIC_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.CLERIC_ALL],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC.0.0.CLERIC_ALL])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(ThirdNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(FourthNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(FifthNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(SixthNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.CLERIC_ALL]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC.0.0.CLERIC_ALL]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	CheckStatLT([PC],75,RESISTMISSILE)
+    CheckStatLT([PC],2,SCRIPTINGSTATE6)
+	!CheckSpellState([PC],MISSILE_IMMUNITY)
+	!CheckStatGT([PC],0,STONESKINS)
+	!StateCheck([PC],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound([PC])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC]))
+	CheckStatLT(SecondNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC]))
+	CheckStatLT(ThirdNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC]))
+	CheckStatLT(FourthNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC]))
+	CheckStatLT(FifthNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC]))
+	CheckStatLT(SixthNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC]),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearest([PC]))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	TriggerOverride(NearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(NearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(NearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(NearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(NearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	TriggerOverride(SecondNearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(SecondNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOf(Myself))
+	TriggerOverride(ThirdNearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOf(Myself))
+	TriggerOverride(FourthNearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(FourthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOf(Myself))
+	TriggerOverride(FifthNearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(FifthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOf(Myself))
+	TriggerOverride(SixthNearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(SixthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SixthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	TriggerOverride(NearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(NearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(NearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(NearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(NearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	TriggerOverride(SecondNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(SecondNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOf(Myself))
+	TriggerOverride(ThirdNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOf(Myself))
+	TriggerOverride(FourthNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(FourthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOf(Myself))
+	TriggerOverride(FifthNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(FifthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOf(Myself))
+	TriggerOverride(SixthNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(SixthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SixthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	TriggerOverride(NearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(NearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(NearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(NearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(NearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	TriggerOverride(SecondNearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(SecondNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOf(Myself))
+	TriggerOverride(ThirdNearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOf(Myself))
+	TriggerOverride(FourthNearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(FourthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOf(Myself))
+	TriggerOverride(FifthNearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(FifthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOf(Myself))
+	TriggerOverride(SixthNearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(SixthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SixthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	TriggerOverride(NearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(NearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(NearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(NearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(NearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	TriggerOverride(SecondNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(SecondNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOf(Myself))
+	TriggerOverride(ThirdNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOf(Myself))
+	TriggerOverride(FourthNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(FourthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOf(Myself))
+	TriggerOverride(FifthNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(FifthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOf(Myself))
+	TriggerOverride(SixthNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(SixthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SixthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(NearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(NearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(NearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(NearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(SecondNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOf(Myself))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOf(Myself))
+	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(FourthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOf(Myself))
+	CheckStatLT(FifthNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(FifthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOf(Myself))
+	CheckStatLT(SixthNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(SixthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SixthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(NearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(NearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(NearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(NearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(SecondNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOf(Myself))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOf(Myself))
+	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(FourthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOf(Myself))
+	CheckStatLT(FifthNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(FifthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOf(Myself))
+	CheckStatLT(SixthNearestEnemyOf(Myself),75,RESISTMISSILE)
+    CheckStatLT(SixthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SixthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	TriggerOverride(NearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(NearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(NearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(NearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(NearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(NearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	TriggerOverride(SecondNearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(SecondNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOf(Myself))
+	TriggerOverride(ThirdNearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(ThirdNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOf(Myself))
+	TriggerOverride(FourthNearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(FourthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOf(Myself))
+	TriggerOverride(FifthNearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(FifthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOf(Myself))
+	TriggerOverride(SixthNearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(SixthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SixthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	TriggerOverride(NearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(NearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(NearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(NearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(NearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(NearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	TriggerOverride(SecondNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(SecondNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOf(Myself))
+	TriggerOverride(ThirdNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(ThirdNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOf(Myself))
+	TriggerOverride(FourthNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(FourthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOf(Myself))
+	TriggerOverride(FifthNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(FifthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOf(Myself))
+	TriggerOverride(SixthNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(SixthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SixthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	TriggerOverride(NearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(NearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(NearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(NearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(NearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(NearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	TriggerOverride(SecondNearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(SecondNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOf(Myself))
+	TriggerOverride(ThirdNearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(ThirdNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOf(Myself))
+	TriggerOverride(FourthNearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(FourthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOf(Myself))
+	TriggerOverride(FifthNearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(FifthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOf(Myself))
+	TriggerOverride(SixthNearestEnemyOf(Myself),Range(SecondNearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(SixthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SixthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	TriggerOverride(NearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(NearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(NearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(NearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(NearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(NearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	TriggerOverride(SecondNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SecondNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(SecondNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOf(Myself))
+	TriggerOverride(ThirdNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(ThirdNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOf(Myself))
+	TriggerOverride(FourthNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FourthNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(FourthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOf(Myself))
+	TriggerOverride(FifthNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(FifthNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(FifthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOf(Myself))
+	TriggerOverride(SixthNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	CheckStatLT(SixthNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(SixthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SixthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	CheckStatLT(NearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(NearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(NearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(NearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(NearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	CheckStatLT(SecondNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(SecondNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOf(Myself))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(ThirdNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOf(Myself))
+	CheckStatLT(FourthNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(FourthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOf(Myself))
+	CheckStatLT(FifthNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(FifthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOf(Myself))
+	CheckStatLT(SixthNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(SixthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SixthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	CheckStatLT(NearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(NearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(NearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(NearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(NearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	CheckStatLT(SecondNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(SecondNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SecondNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOf(Myself))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(ThirdNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(ThirdNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FourthNearestEnemyOf(Myself))
+	CheckStatLT(FourthNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(FourthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FourthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(FifthNearestEnemyOf(Myself))
+	CheckStatLT(FifthNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(FifthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(FifthNearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SixthNearestEnemyOf(Myself))
+	CheckStatLT(SixthNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(SixthNearestEnemyOf(Myself),2,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SixthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobalTimer("IaRangedAttack","LOCALS",3)
+		AttackOneRound(SixthNearestEnemyOf(Myself))
+END
+
+
+IF
+	Allegiance(Myself,ENEMY)
+    ActionListEmpty()
+	Global("IaChar1Seen","LOCALS",1)
+	!See(Player1)
+	!HPLT(Player1,0)
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    ActionListEmpty()
+	Global("IaChar2Seen","LOCALS",1)
+	!See(Player2)
+	!HPLT(Player2,0)
+	InMyArea(Player2)
+THEN
+	RESPONSE #100
+		MoveToObject(Player2)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    ActionListEmpty()
+	Global("IaChar3Seen","LOCALS",1)
+	!See(Player3)
+	!HPLT(Player3,0)
+	InMyArea(Player3)
+THEN
+	RESPONSE #100
+		MoveToObject(Player3)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    ActionListEmpty()
+	Global("IaChar4Seen","LOCALS",1)
+	!See(Player4)
+	!HPLT(Player4,0)
+	InMyArea(Player4)
+THEN
+	RESPONSE #100
+		MoveToObject(Player4)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    ActionListEmpty()
+	Global("IaChar5Seen","LOCALS",1)
+	!See(Player5)
+	!HPLT(Player5,0)
+	InMyArea(Player5)
+THEN
+	RESPONSE #100
+		MoveToObject(Player5)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    ActionListEmpty()
+	Global("IaChar6Seen","LOCALS",1)
+	!See(Player6)
+	!HPLT(Player6,0)
+	InMyArea(Player6)
+THEN
+	RESPONSE #100
+		MoveToObject(Player6)
+END
+
+
+IF
+	Global("IaPrep","LOCALS",1)
+	!See(Player1)
+	InMyArea(Player1)
+	HPLT(Player1,1)
+	WeaponEffectiveVs(Player1,MAINHAND)
+	WeaponCanDamage(Player1,MAINHAND)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+
+IF
+	Global("IaPrep","LOCALS",1)
+	!See(Player2)
+	InMyArea(Player2)
+	HPLT(Player2,1)
+	WeaponEffectiveVs(Player2,MAINHAND)
+	WeaponCanDamage(Player2,MAINHAND)
+THEN
+	RESPONSE #100
+		MoveToObject(Player2)
+END
+
+IF
+	Global("IaPrep","LOCALS",1)
+	!See(Player3)
+	InMyArea(Player3)
+	HPLT(Player3,1)
+	WeaponEffectiveVs(Player3,MAINHAND)
+	WeaponCanDamage(Player3,MAINHAND)
+THEN
+	RESPONSE #100
+		MoveToObject(Player3)
+END
+
+IF
+	Global("IaPrep","LOCALS",1)
+	!See(Player4)
+	InMyArea(Player4)
+	HPLT(Player4,1)
+	WeaponEffectiveVs(Player4,MAINHAND)
+	WeaponCanDamage(Player4,MAINHAND)
+THEN
+	RESPONSE #100
+		MoveToObject(Player4)
+END
+
+IF
+	Global("IaPrep","LOCALS",1)
+	!See(Player5)
+	InMyArea(Player5)
+	HPLT(Player5,1)
+	WeaponEffectiveVs(Player5,MAINHAND)
+	WeaponCanDamage(Player5,MAINHAND)
+THEN
+	RESPONSE #100
+		MoveToObject(Player5)
+END
+
+IF
+	Global("IaPrep","LOCALS",1)
+	!See(Player6)
+	InMyArea(Player6)
+	HPLT(Player6,1)
+	WeaponEffectiveVs(Player6,MAINHAND)
+	WeaponCanDamage(Player6,MAINHAND)
+THEN
+	RESPONSE #100
+		MoveToObject(Player6)
+END

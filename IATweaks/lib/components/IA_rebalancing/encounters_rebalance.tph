@@ -3741,3 +3741,19 @@ COPY ~IATweaks\resources\spl\s!whrwn4.spl~ ~override~
       projectile = ~%s!whrwn4%~
   END
 
+ADD_PROJECTILE ~IATweaks\resources\pro\s!splita.PRO~
+
+COPY_EXISTING ~s!splita.PRO~ ~override~
+  WRITE_SHORT 0x3c missile_immunity
+  WRITE_SHORT 0x40 1
+  WRITE_SHORT 0x42 scriptingstate6_greater_than
+
+COPY ~IATweaks\resources\itm\s!barock.itm~ ~override~
+  LPF ~ALTER_ITEM_HEADER~ 
+    INT_VAR
+      projectile = ~%s!splita%~
+  END
+
+COPY ~IATweaks\resources\spl\s!swapmi.spl~ ~override~
+  SAY NAME1 @6289
+

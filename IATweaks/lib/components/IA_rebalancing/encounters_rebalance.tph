@@ -3699,3 +3699,12 @@ COPY_EXISTING ~S!DRAGGR.cre~ ~override~
       timing = 9
   END
 
+///////////// Minotaurs in WK
+
+// Invisible Creature that controls Garock when he's spinning
+
+COPY ~IATweaks\resources\cre\s!invwk4.CRE~ ~override~
+  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_INVISIBLE~))
+
+COMPILE ~IATweaks\scripts\creatures\s!invwk4.BAF~
+

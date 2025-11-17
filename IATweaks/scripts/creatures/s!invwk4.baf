@@ -1,0 +1,728 @@
+
+IF
+	Dead("ROCK")
+	Dead("GAROCK")
+	Dead("S!BAROCK")
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	!GlobalTimerNotExpired("IaShouldStopGarock","LOCALS")
+	Global("IaStoppingGarock","LOCALS",0)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),15))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaShouldStopGarock","LOCALS",1)
+		SetGlobal("IaStoppingGarock","LOCALS",1)
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	!GlobalTimerNotExpired("IaShouldStopGarock","LOCALS")
+	Global("IaStoppingGarock","LOCALS",1)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),15))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN2","GAROCK")
+		ClearActions("GAROCK")
+END
+
+IF
+	Global("IaStoppingGarock","LOCALS",1)
+	!Dead("GAROCK")
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+THEN
+	RESPONSE #100
+		SetGlobal("IaStoppingGarock","LOCALS",0)
+END
+
+
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride([PC],Range(NearestAllyOf(Myself),5))
+	CheckStatLT([PC],100,RESISTSLASHING)
+	!CheckStatGT([PC],0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride(SecondNearest([PC]),Range(NearestAllyOf(Myself),5))
+	CheckStatLT(SecondNearest([PC]),100,RESISTSLASHING)
+	!CheckStatGT(SecondNearest([PC]),0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride(ThirdNearest([PC]),Range(NearestAllyOf(Myself),5))
+	CheckStatLT(ThirdNearest([PC]),100,RESISTSLASHING)
+	!CheckStatGT(ThirdNearest([PC]),0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride(FourthNearest([PC]),Range(NearestAllyOf(Myself),5))
+	CheckStatLT(FourthNearest([PC]),100,RESISTSLASHING)
+	!CheckStatGT(FourthNearest([PC]),0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride(FifthNearest([PC]),Range(NearestAllyOf(Myself),5))
+	CheckStatLT(FifthNearest([PC]),100,RESISTSLASHING)
+	!CheckStatGT(FifthNearest([PC]),0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride(SixthNearest([PC]),Range(NearestAllyOf(Myself),5))
+	CheckStatLT(SixthNearest([PC]),100,RESISTSLASHING)
+	!CheckStatGT(SixthNearest([PC]),0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride([PC],Range(NearestAllyOf(Myself),5))
+	CheckStatLT([PC],100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride(SecondNearest([PC]),Range(NearestAllyOf(Myself),5))
+	CheckStatLT(SecondNearest([PC]),100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride(ThirdNearest([PC]),Range(NearestAllyOf(Myself),5))
+	CheckStatLT(ThirdNearest([PC]),100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride(FourthNearest([PC]),Range(NearestAllyOf(Myself),5))
+	CheckStatLT(FourthNearest([PC]),100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride(FifthNearest([PC]),Range(NearestAllyOf(Myself),5))
+	CheckStatLT(FifthNearest([PC]),100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride(SixthNearest([PC]),Range(NearestAllyOf(Myself),5))
+	CheckStatLT(SixthNearest([PC]),100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT([PC],100,RESISTSLASHING)
+	!CheckStatGT([PC],0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT(SecondNearest([PC]),100,RESISTSLASHING)
+	!CheckStatGT(SecondNearest([PC]),0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT(ThirdNearest([PC]),100,RESISTSLASHING)
+	!CheckStatGT(ThirdNearest([PC]),0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT(FourthNearest([PC]),100,RESISTSLASHING)
+	!CheckStatGT(FourthNearest([PC]),0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT(FifthNearest([PC]),100,RESISTSLASHING)
+	!CheckStatGT(FifthNearest([PC]),0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT(SixthNearest([PC]),100,RESISTSLASHING)
+	!CheckStatGT(SixthNearest([PC]),0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT([PC],100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT(SecondNearest([PC]),100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT(ThirdNearest([PC]),100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT(FourthNearest([PC]),100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT(FifthNearest([PC]),100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT(SixthNearest([PC]),100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride(NearestEnemyOf(Myself),Range(NearestAllyOf(Myself),5))
+	CheckStatLT(NearestEnemyOf(Myself),100,RESISTSLASHING)
+	!CheckStatGT(NearestEnemyOf(Myself),0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride(SecondNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),5))
+	CheckStatLT(SecondNearestEnemyOf(Myself),100,RESISTSLASHING)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride(ThirdNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),5))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),100,RESISTSLASHING)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride(FourthNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),5))
+	CheckStatLT(FourthNearestEnemyOf(Myself),100,RESISTSLASHING)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride(FifthNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),5))
+	CheckStatLT(FifthNearestEnemyOf(Myself),100,RESISTSLASHING)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride(SixthNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),5))
+	CheckStatLT(SixthNearestEnemyOf(Myself),100,RESISTSLASHING)
+	!CheckStatGT(SixthNearestEnemyOf(Myself),0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride(NearestEnemyOf(Myself),Range(NearestAllyOf(Myself),5))
+	CheckStatLT(NearestEnemyOf(Myself),100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride(SecondNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),5))
+	CheckStatLT(SecondNearestEnemyOf(Myself),100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride(ThirdNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),5))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride(FourthNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),5))
+	CheckStatLT(FourthNearestEnemyOf(Myself),100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride(FifthNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),5))
+	CheckStatLT(FifthNearestEnemyOf(Myself),100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	TriggerOverride(SixthNearestEnemyOf(Myself),Range(NearestAllyOf(Myself),5))
+	CheckStatLT(SixthNearestEnemyOf(Myself),100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT(NearestEnemyOf(Myself),100,RESISTSLASHING)
+	!CheckStatGT(NearestEnemyOf(Myself),0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT(SecondNearestEnemyOf(Myself),100,RESISTSLASHING)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT(ThirdNearestEnemyOf(Myself),100,RESISTSLASHING)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT(FourthNearestEnemyOf(Myself),100,RESISTSLASHING)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT(FifthNearestEnemyOf(Myself),100,RESISTSLASHING)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT(SixthNearestEnemyOf(Myself),100,RESISTSLASHING)
+	!CheckStatGT(SixthNearestEnemyOf(Myself),0,STONESKINS)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT(NearestEnemyOf(Myself),100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT(SecondNearestEnemyOf(Myself),100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT(ThirdNearestEnemyOf(Myself),100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT(FourthNearestEnemyOf(Myself),100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT(FifthNearestEnemyOf(Myself),100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+
+IF
+	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
+	CheckStatLT(SixthNearestEnemyOf(Myself),100,RESISTSLASHING)
+	!Dead("GAROCK")
+	!TriggerOverride("GAROCK",Range(NearestEnemyOf(Myself),5))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	TriggerOverride("GAROCK",See(NearestEnemyOf(Myself)))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaPushGarock","LOCALS",2)
+		ReallyForceSpellRES("S!WHRWN3",LastSeenBy("GAROCK"))
+END
+

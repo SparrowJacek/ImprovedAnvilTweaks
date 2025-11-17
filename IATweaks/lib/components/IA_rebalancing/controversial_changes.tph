@@ -2243,6 +2243,7 @@ LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_SENSE_OF_LIMBO~ RET sense
 
 COPY_EXISTING ~%sense_of_limbo_spell_res%.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6266
+  WRITE_BYTE 0x1b 0
   LPF ~ALTER_SPELL_HEADER~
     INT_VAR
       target = 1

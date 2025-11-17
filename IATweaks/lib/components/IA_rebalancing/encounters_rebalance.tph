@@ -4203,3 +4203,98 @@ COPY_EXISTING ~GAROCK.cre~ ~override~
 
 COMPILE ~IATweaks\scripts\creatures\s!garock.BAF~
 
+// Ensure doors are locked till all 3 Minotaurs are dead and no Pocket Plane is used
+
+OUTER_SET no_pocket_plane_wk_4 = RESOLVE_STR_REF (@5147)
+COPY ~IATweaks\resources\spl\s!pcket1.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 206
+      parameter1 = no_pocket_plane_wk_4
+  END
+COPY ~IATweaks\resources\spl\s!pcket2.spl~ ~override~
+
+OUTER_SET new_text_torches_lit_wk_4 = RESOLVE_STR_REF (@5146)
+<<<<<<<< .../inlined/old-ar3017.baf
+IF
+	Global("Torches","GLOBAL",6)
+	OpenState("DOOR05",FALSE)
+THEN
+	RESPONSE #100
+		ScreenShake([20.20],20)
+		Wait(1)
+		PlaySound("EFF_M36B")
+		Wait(2)
+		DisplayStringHead(Player1,70424)
+		OpenDoor("DOOR05")
+		AmbientActivate("AMB_Flame01",FALSE)
+		AmbientActivate("AMB_Flame02",FALSE)
+		AmbientActivate("AMB_Flame03",FALSE)
+		AmbientActivate("AMB_Flame04",FALSE)
+		AmbientActivate("AMB_Flame05",FALSE)
+		AmbientActivate("AMB_Flame06",FALSE)
+		AddXP2DA("PLOT6C")
+		TakePartyItem("PLOT04A")
+		TakePartyItem("PLOT04B")
+		TakePartyItem("PLOT04C")
+		TakePartyItem("PLOT04F")
+END
+>>>>>>>>
+<<<<<<<< .../inlined/new-ar3017.baf
+IF
+	Global("Torches","GLOBAL",6)
+	OpenState("DOOR05",FALSE)
+	Global("IaFightMinotaurs","AR3017",0)
+THEN
+	RESPONSE #100
+		SetGlobal("IaFightMinotaurs","AR3017",1)
+		ReallyForceSpellRES("S!PCKET1",Player1)
+		ScreenShake([20.20],20)
+		Wait(1)
+		PlaySound("EFF_M36B")
+		Wait(2)
+		DisplayStringHead(Player1,%new_text_torches_lit_wk_4%)
+		AmbientActivate("AMB_Flame01",FALSE)
+		AmbientActivate("AMB_Flame02",FALSE)
+		AmbientActivate("AMB_Flame03",FALSE)
+		AmbientActivate("AMB_Flame04",FALSE)
+		AmbientActivate("AMB_Flame05",FALSE)
+		AmbientActivate("AMB_Flame06",FALSE)
+		AddXP2DA("PLOT6C")
+		TakePartyItem("PLOT04A")
+		TakePartyItem("PLOT04B")
+		TakePartyItem("PLOT04C")
+		TakePartyItem("PLOT04F")
+		CreateVisualEffectObject("OHRSGONE",Player1)
+		CreateVisualEffectObject("OHRSGONE",Player2)
+		CreateVisualEffectObject("OHRSGONE",Player3)
+		CreateVisualEffectObject("OHRSGONE",Player4)
+		CreateVisualEffectObject("OHRSGONE",Player5)
+		CreateVisualEffectObject("OHRSGONE",Player6)
+		SmallWait(12)
+		ActionOverride(Player1,JumpToPoint([1109.2249]))
+		ActionOverride(Player2,JumpToPoint([1060.2287]))
+		ActionOverride(Player3,JumpToPoint([1165.2214]))
+		ActionOverride(Player4,JumpToPoint([1162.2288]))
+		ActionOverride(Player5,JumpToPoint([1106.2325]))
+		ActionOverride(Player6,JumpToPoint([1214.2250]))
+END
+
+IF
+	Global("Torches","GLOBAL",6)
+	OpenState("DOOR05",FALSE)
+	Dead("ROCK")
+	Dead("GAROCK")
+	Dead("S!BAROCK")
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("S!PCKET2",Player1)
+		ScreenShake([20.20],20)
+		OpenDoor("DOOR05")
+		OpenDoor("DOOR06")
+END
+>>>>>>>>
+
+COPY_EXISTING ~AR3017.BCS~ ~override~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/old-ar3017.baf~ ~.../inlined/new-ar3017.baf~
+  BUT_ONLY

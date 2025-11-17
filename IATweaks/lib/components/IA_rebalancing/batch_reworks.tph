@@ -224,3 +224,25 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
     WRITE_SHORT 0x1c 64 // Plate Armor
   END
 BUT_ONLY
+
+// Grant immunity to Disease and Intoxication to all Golems and Undead
+
+COPY_EXISTING_REGEXP GLOB ~.+\.cre~ ~override~
+  READ_BYTE 0x271 general
+  READ_BYTE 0x272 race
+  PATCH_IF ((general = 4) OR 
+            (race = 144)) BEGIN
+    LPF ~ADD_CRE_EFFECT~ 
+      INT_VAR
+        opcode = 101
+        timing = 9
+        parameter2 = 94
+    END
+    LPF ~ADD_CRE_EFFECT~ 
+      INT_VAR
+        opcode = 101
+        timing = 9
+        parameter2 = 78
+    END
+  END
+BUT_ONLY

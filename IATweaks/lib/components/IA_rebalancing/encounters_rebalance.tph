@@ -854,8 +854,8 @@ ACTION_FOR_EACH noble_troll_file IN ~TROLDE01~ ~S!NTROL2~ ~S!NTROLL~ ~S!NTROLR~ 
     opcode = 31
     timing = 9
     target = 1
-    parameter1 = 0
-    parameter2 = 25
+    parameter1 = 25
+    parameter2 = 0
   END
 
     LPF ~DELETE_EFFECT~
@@ -3500,6 +3500,26 @@ COPY_EXISTING ~PIRSEA01.cre~ ~override~
       match_opcode = 233
       match_parameter2 = 113
       parameter1 = 3
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
   END
 
   LPF ~ADD_CRE_EFFECT~ // RB base bonuses

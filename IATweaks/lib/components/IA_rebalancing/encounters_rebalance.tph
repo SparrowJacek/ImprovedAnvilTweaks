@@ -3579,3 +3579,37 @@ COPY_EXISTING ~PIRSEA01.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 1 ) // Critical Strike
 
 COMPILE ~IATweaks\scripts\creatures\S!PIRCAP.BAF~
+
+// Harper's House in Sulda
+
+COPY_EXISTING ~AR2811.are~ ~override~
+
+  LPF fj_are_structure
+    INT_VAR
+      fj_loc_x       = 450
+      fj_loc_y       = 294
+      fj_dest_x      = 450
+      fj_dest_y      = 294
+      fj_animation   = 29458
+      fj_orientation = 5
+    STR_VAR
+      fj_structure_type = actor
+      fj_name           = ~Greater Elemental Golem~
+      fj_cre_resref     = ~S!GELEGS~
+  END
+
+  LPF fj_are_structure
+    INT_VAR
+      fj_loc_x       = 319
+      fj_loc_y       = 319
+      fj_dest_x      = 319
+      fj_dest_y      = 319
+      fj_animation   = 32528
+      fj_orientation = 7
+    STR_VAR
+      fj_structure_type = actor
+      fj_name           = ~Noble Rakshasa~
+      fj_cre_resref     = ~S!RAK1S~
+  END
+
+COMPILE ~IATweaks\scripts\areas\ar2811.BAF~

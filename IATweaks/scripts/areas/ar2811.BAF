@@ -1,0 +1,87 @@
+IF
+	InMyArea(Player1)
+	Global("Iaexit","AR2811",0)  // House in Suldanessellar
+THEN
+	RESPONSE #100
+		SetGlobal("Iaexit","AR2811",1)  // House in Suldanessellar
+		TriggerActivation("Tran2800",FALSE)
+END
+
+IF
+	InMyArea(Player1)
+	Global("Iacreature","AR2811",0)  // House in Suldanessellar
+THEN
+	RESPONSE #100
+		SetGlobal("Iacreature","AR2811",1)  // House in Suldanessellar
+		SetGlobalTimer("Iareopen","AR2811",ONE_ROUND)  // House in Suldanessellar
+END
+
+IF
+	InMyArea(Player1)
+	Global("Iaexit","AR2811",1)  // House in Suldanessellar
+	GlobalTimerExpired("Iareopen","AR2811")  // House in Suldanessellar
+	Dead("S!rak1s")  // Noble Rakshasa
+	Dead("S!gelegs")  // Greater Elemental Golem
+	CombatCounter(0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iaexit","AR2811",2)  // House in Suldanessellar
+		TriggerActivation("Tran2800",TRUE)
+END
+
+IF
+	InMyArea(Player1)
+	Global("Iaitem","AR2811",0)  // House in Suldanessellar
+	Global("Iapcastts","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iaitem","AR2811",1)  // House in Suldanessellar
+		ActionOverride("Drawer 1",CreateItem("S!scrl05",0,0,0))  // Disrupt Undead
+		ActionOverride("Drawer 1",CreateItem("scrlb2",0,0,0))  // Bigby's Crushing Hand
+		ActionOverride("Drawer 1",CreateItem("S!scrl24",0,0,0))  // Rigid Thinking
+		ActionOverride("Drawer 1",CreateItem("s!misc27",0,0,0))
+		ActionOverride("Drawer 1",CreateItem("s!misc27",0,0,0))
+		ActionOverride("Drawer 1",CreateItem("misc23",0,0,0))  // Jasper Gem
+END
+
+IF
+	InMyArea(Player1)
+	Global("Iaitem2","AR2811",0)  // House in Suldanessellar
+	Global("Iaexit","AR2811",2)  // House in Suldanessellar
+	Class(Player1,MAGE_ALL)
+	!Class(Player1,FIGHTER_ALL)
+	!Class(Player1,CLERIC_ALL)
+	!Class(Player1,THIEF_ALL)
+	Alignment(Player1,MASK_GOOD)
+	Reputation(Player1,20)
+	Kit(Player1,MAGESCHOOL_NECROMANCER)
+	!GlobalGT("Iap1notgood","GLOBAL",0)
+	Global("Iapcastts","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iaitem2","AR2811",1)  // House in Suldanessellar
+		ActionOverride("Table 1",CreateItem("S!scrl10",0,0,0))  // Time Stop
+END
+
+IF
+	InMyArea(Player1)
+	Global("Iaitem3","AR2811",0)  // House in Suldanessellar
+	Global("Iapcastts","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iaitem3","AR2811",1)  // House in Suldanessellar
+		ActionOverride("Drawer 1",CreateItem("scrl7q",0,0,0))  // Improved Haste
+END
+
+IF
+	InMyArea(Player1)
+	Global("Iaitem4","AR2811",0)  // House in Suldanessellar
+	Global("Iapcastts","GLOBAL",0)
+	Global("Iawoodlandsplace","GLOBAL",3)
+THEN
+	RESPONSE #100
+		SetGlobal("Iaitem4","AR2811",1)  // House in Suldanessellar
+		SetGlobal("Iawoodlandsplace","GLOBAL",4)
+		ActionOverride("Table 1",CreateItem("staf14",20,20,20))  // Staff of the Woodlands +4
+END
+

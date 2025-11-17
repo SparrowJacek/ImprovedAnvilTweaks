@@ -32,17 +32,6 @@ THEN
 		ReallyForceSpellRES("SPWII45",Myself)  // No such index
 END
 
-
-IF
-	Detect([PC])
-	Global("IaAmbers","LOCALS",0)
-THEN
-	RESPONSE #100
-		CreateCreatureObject("S!ambere",Myself,0,0,0)  // Amber Golem
-		CreateCreatureObject("S!ambere",Myself,0,0,0)  // Amber Golem
-		SetGlobal("IaAmbers","LOCALS",1)
-END
-
 IF
 	Global("IaSpawnElementals1","LOCALS",0)
 	HPPercentLT(Myself,83)

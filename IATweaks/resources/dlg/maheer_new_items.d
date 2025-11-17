@@ -23,3 +23,38 @@ APPEND SHOP03
     ~ EXIT
   END
 END
+
+// Silent Gale Treads
+
+EXTEND_BOTTOM SHOP03 22
+IF ~  PartyHasItem("boot07")
+~ THEN REPLY @10004  GOTO 301
+END
+
+APPEND SHOP03
+  IF ~~ THEN BEGIN 301
+    SAY @10005
+    IF ~~ THEN REPLY @10001 GOTO 22
+    IF ~  PartyHasItem("boot07")
+    PartyHasItem("boot02")
+    PartyHasItem("boot01")
+    PartyHasItem("clck23")
+    PartyHasItem("s!misc06")
+    PartyGoldGT(49999)
+    ~ THEN REPLY @10003 DO ~TakePartyGold(50000)
+    DestroyGold(50000)
+    TakePartyItemNum("boot07",1)
+    DestroyItem("boot07")
+    TakePartyItemNum("boot02",1)
+    DestroyItem("boot02")
+    TakePartyItemNum("boot01",1)
+    DestroyItem("boot01")
+    TakePartyItemNum("clck23",1)
+    DestroyItem("clck23")
+    TakePartyItemNum("s!misc06",1)
+    DestroyItem("s!misc06")
+    GiveItemCreate("s!boot20",Player1,1,1,1)
+    CreateVisualEffectObject("spcrtwpn","maheer")
+    ~ EXIT
+  END
+END

@@ -3708,3 +3708,36 @@ COPY ~IATweaks\resources\cre\s!invwk4.CRE~ ~override~
 
 COMPILE ~IATweaks\scripts\creatures\s!invwk4.BAF~
 
+COPY_EXISTING ~INAREANP.PRO~ ~override/S!WHRWND.PRO~ // Whirlwind ability projectile
+  WRITE_SHORT 0x204 85 // Range = 5 feet
+  WRITE_SHORT 0x206 85
+
+ADD_PROJECTILE ~override\S!WHRWND.PRO~
+
+COPY ~IATweaks\resources\bam\s!whrwnd.bam~ ~override~
+COPY ~IATweaks\resources\vvc\s!whrwnd.vvc~ ~override~
+
+COPY ~IATweaks\resources\spl\s!whrwnd.spl~ ~override~
+  // SAY NAME1 @6290
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      projectile = %S!WHRWND%
+  END
+
+COPY ~IATweaks\resources\eff\s!whrwnd.eff~ ~override~
+
+COPY ~IATweaks\resources\spl\s!whrwn1.spl~ ~override~
+  SAY NAME1 @6290
+
+COPY ~IATweaks\resources\spl\s!whrwn2.spl~ ~override~
+
+COPY ~IATweaks\resources\spl\s!whrwn3.spl~ ~override~
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!whrwn4.PRO~
+
+COPY ~IATweaks\resources\spl\s!whrwn4.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      projectile = ~%s!whrwn4%~
+  END
+

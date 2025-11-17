@@ -2517,3 +2517,6 @@ COPY_EXISTING ~S!DRAGGR.cre~ ~override~
 
 COMPILE ~IATweaks\scripts\controversial\S!DRAGGR.BAF~
 
+// Rock the Minotaur
+
+COMPILE ~IATweaks\scripts\controversial\S!ROCK.BAF~

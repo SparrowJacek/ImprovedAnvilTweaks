@@ -3757,3 +3757,449 @@ COPY ~IATweaks\resources\itm\s!barock.itm~ ~override~
 COPY ~IATweaks\resources\spl\s!swapmi.spl~ ~override~
   SAY NAME1 @6289
 
+COPY_EXISTING ~S!ROCK.itm~ ~override~
+  PATCH_FOR_EACH spell_level IN 2 3 4 5 6 7 BEGIN
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = 102
+        match_parameter1 = spell_level
+    END
+  END
+
+COPY_EXISTING ~ROCK.cre~ ~override~
+  WRITE_LONG 0x14 50000 // Exp for creature
+  WRITE_SHORT 0x24 325 // HP
+  WRITE_SHORT 0x26 325 // HP
+  WRITE_SHORT 0x46 THIS - 5 // AC
+  WRITE_SHORT 0x48 THIS - 5 // AC
+  WRITE_BYTE 0x52 THIS - 2 // Thac0
+  WRITE_BYTE 0x59 80  // Fire Resistance
+  WRITE_BYTE 0x5a 90  // Cold Resistance
+  WRITE_BYTE 0x5b 90  // Electricity Resistance
+  WRITE_BYTE 0x5c 90  // Acid Resistance
+  WRITE_BYTE 0x5e 80  // Magic Fire Resistance
+  WRITE_BYTE 0x5f 90  // Magic Cold Resistance
+  WRITE_BYTE 0x60 60 // Resist Slashing
+  WRITE_BYTE 0x61 70 // Resist Crushing
+  WRITE_BYTE 0x62 70 // Resist Piercing
+  WRITE_BYTE 0x63 70 // Resist Missile
+  WRITE_BYTE 0x234 32 // Level 1
+  WRITE_BYTE 0x238 20 // Strength
+  WRITE_BYTE 0x23c 18 // Dexterity
+  WRITE_BYTE 0x23d 17 // Constitution
+  WRITE_SHORT 0x246 IDS_OF_SYMBOL(~kit~ ~RISKBREAKER~) // Kit
+  WRITE_ASCII 0x258 ~S!ROCK~ #8
+  WRITE_ASCII 0x268 ~~ #8
+  WRITE_BYTE 0x272 171 // Race = Minotaur
+
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // Color
+    INT_VAR
+      target = 1
+      opcode = 51
+      parameter1 = 5046016
+      parameter2 = 2
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 325
+      target = 1
+      parameter1 = 6
+      parameter2 = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 0
+      target = 1
+      parameter1 = 6
+      parameter2 = 1
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 0
+      target = 1
+      parameter1 = 6
+      parameter2 = 2
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 0
+      target = 1
+      parameter1 = 6
+      parameter2 = 4
+      timing = 9
+  END
+
+  // +40 MDR
+  LPF ~ADD_CRE_EFFECT~ INT_VAR
+    opcode = 31
+    timing = 9
+    target = 1
+    parameter1 = 40
+    parameter2 = 0
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // RB base bonuses
+    INT_VAR
+      opcode = 146
+      target = 1
+      parameter2 = 1
+      timing = 9
+      resist_dispel = 0
+    STR_VAR
+      resource = ~SPCLI05~
+      effsource = ~SPCLI05~
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // RB on-hit bonuses
+    INT_VAR
+      opcode = 146
+      target = 1
+      parameter2 = 1
+      timing = 9
+      resist_dispel = 0
+    STR_VAR
+      resource = ~SPCLI09~
+      effsource = ~SPCLI09~
+  END
+
+  ADD_CRE_ITEM ~S!IMMUNE~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~AMULET~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPINI34~ #0 ~innate~ ( 3 ) // Risk Decrement
+  ADD_MEMORIZED_SPELL ~SPINI51~ #0 ~innate~ ( 2 ) // Chain Breaker Stance
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 3 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 3 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL903~ #0 ~innate~ ( 3 ) // Greater Deathblow
+
+COMPILE ~IATweaks\scripts\creatures\s!rock.BAF~
+
+
+OUTER_SET barock_name_str_ref = RESOLVE_STR_REF (@5145)
+COPY_EXISTING ~GAROCK.cre~ ~override/S!BAROCK.cre~
+  WRITE_LONG 0x8 barock_name_str_ref
+  WRITE_LONG 0xc barock_name_str_ref
+  WRITE_LONG 0x14 45000 // Exp for creature
+  WRITE_SHORT 0x24 265 // HP
+  WRITE_SHORT 0x26 265 // HP
+  WRITE_SHORT 0x46 THIS - 4 // AC
+  WRITE_SHORT 0x48 THIS - 4 // AC
+  WRITE_BYTE 0x59 90  // Fire Resistance
+  WRITE_BYTE 0x5a 75  // Cold Resistance
+  WRITE_BYTE 0x5b 90  // Electricity Resistance
+  WRITE_BYTE 0x5c 90  // Acid Resistance
+  WRITE_BYTE 0x5e 90  // Magic Fire Resistance
+  WRITE_BYTE 0x5f 75  // Magic Cold Resistance
+  WRITE_BYTE 0x60 90 // Resist Slashing
+  WRITE_BYTE 0x61 90 // Resist Crushing
+  WRITE_BYTE 0x62 80 // Resist Piercing
+  WRITE_BYTE 0x63 80 // Resist Missile
+  WRITE_BYTE 0x234 30 // Level 1
+  WRITE_BYTE 0x238 20 // Strength
+  WRITE_BYTE 0x23c 22 // Dexterity
+  WRITE_BYTE 0x23d 19 // Constitution
+  WRITE_SHORT 0x246 IDS_OF_SYMBOL(~kit~ ~BERSERKER~) // Kit
+  WRITE_ASCII 0x258 ~S!BAROCK~ #8
+  WRITE_ASCII 0x268 ~~ #8
+  WRITE_ASCII 0x280 ~S!BAROCK~ #20
+  WRITE_ASCII 0x2cc ~~ #8
+  WRITE_BYTE 0x272 171 // Race = Minotaur
+
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // +3 movement speed
+    INT_VAR
+      opcode = 126
+      target = 1
+      parameter1 = 3
+      parameter2 = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // Color
+    INT_VAR
+      target = 1
+      opcode = 51
+      parameter1 = 14072320
+      parameter2 = 2
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 325
+      target = 1
+      parameter1 = 6
+      parameter2 = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 0
+      target = 1
+      parameter1 = 6
+      parameter2 = 1
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 0
+      target = 1
+      parameter1 = 6
+      parameter2 = 8
+      timing = 9
+  END
+
+  // +40 MDR
+  LPF ~ADD_CRE_EFFECT~ INT_VAR
+    opcode = 31
+    timing = 9
+    target = 1
+    parameter1 = 40
+    parameter2 = 0
+  END
+
+  // Immunity to Fatigue
+  LPF ~ADD_CRE_EFFECT~ 
+    INT_VAR
+      opcode = 206
+      timing = 9
+      target = 1
+    STR_VAR
+      resource = ~SPCL321D~
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~AX1H17~
+  END
+
+  ADD_CRE_ITEM ~S!IMMUNE~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~AMULET~
+  ADD_CRE_ITEM ~S!BAROCK~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~WEAPON1~ EQUIP
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL321~ #0 ~innate~ ( 4 ) // Enrage
+  ADD_MEMORIZED_SPELL ~SPCL121~ #0 ~innate~ ( 4 ) // Called Shot
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 3 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 3 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL903~ #0 ~innate~ ( 3 ) // Greater Deathblow
+
+COMPILE ~IATweaks\scripts\creatures\s!barock.BAF~
+
+COPY_EXISTING ~AR3017.are~ ~override~
+  LPF ALTER_AREA_DOOR
+    INT_VAR
+      lock_difficulty = 100
+      flag_locked = 1
+    STR_VAR
+      door_name = ~Door06~
+  END
+
+  // add him to the area
+  LPF fj_are_structure
+    INT_VAR
+      fj_loc_x       = 810
+      fj_loc_y       = 2184
+      fj_dest_x      = 810
+      fj_dest_y      = 2184
+      fj_animation   = 57456
+      fj_orientation = 10
+    STR_VAR
+      fj_structure_type = actor
+      fj_name           = ~S!Barock~
+      fj_cre_resref     = ~S!BAROCK~
+  END
+
+  // add invisible creature
+  LPF fj_are_structure
+    INT_VAR
+      fj_loc_x       = 354
+      fj_loc_y       = 2230
+      fj_dest_x      = 354
+      fj_dest_y      = 2230
+      fj_animation   = 0
+      fj_orientation = 10
+    STR_VAR
+      fj_structure_type = actor
+      fj_name           = ~S!INVWK4~
+      fj_cre_resref     = ~S!INVWK4~
+  END
+
+COPY_EXISTING ~GAROCK.cre~ ~override~
+  WRITE_LONG 0x14 45000 // Exp for creature
+  WRITE_SHORT 0x24 305 // HP
+  WRITE_SHORT 0x26 305 // HP
+  WRITE_SHORT 0x46 THIS - 4 // AC
+  WRITE_SHORT 0x48 THIS - 4 // AC
+  WRITE_BYTE 0x52 THIS - 4 // Thac0
+  WRITE_BYTE 0x59 90  // Fire Resistance
+  WRITE_BYTE 0x5a 90  // Cold Resistance
+  WRITE_BYTE 0x5b 75  // Electricity Resistance
+  WRITE_BYTE 0x5c 90  // Acid Resistance
+  WRITE_BYTE 0x5e 90  // Magic Fire Resistance
+  WRITE_BYTE 0x5f 90  // Magic Cold Resistance
+  WRITE_BYTE 0x60 90 // Resist Slashing
+  WRITE_BYTE 0x61 85 // Resist Crushing
+  WRITE_BYTE 0x62 95 // Resist Piercing
+  WRITE_BYTE 0x63 95 // Resist Missile
+  WRITE_BYTE 0x234 30 // Level 1
+  WRITE_BYTE 0x238 20 // Strength
+  WRITE_BYTE 0x23c 18 // Dexterity
+  WRITE_BYTE 0x23d 20 // Constitution
+  WRITE_SHORT 0x246 IDS_OF_SYMBOL(~kit~ ~BARBARIAN~) // Kit
+  WRITE_ASCII 0x258 ~S!GAROCK~ #8
+  WRITE_ASCII 0x268 ~~ #8
+  WRITE_BYTE 0x272 171 // Race = Minotaur
+
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  LPF ~ALTER_EFFECT~ // ** in Axes
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 92
+      parameter1 = 2
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // *** in Single Weapon
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 3
+      parameter2 = 113
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // +1 movement speed
+    INT_VAR
+      opcode = 126
+      target = 1
+      parameter1 = 1
+      parameter2 = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 325
+      target = 1
+      parameter1 = 6
+      parameter2 = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 0
+      target = 1
+      parameter1 = 6
+      parameter2 = 2
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 0
+      target = 1
+      parameter1 = 6
+      parameter2 = 4
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 0
+      target = 1
+      parameter1 = 6
+      parameter2 = 8
+      timing = 9
+  END
+
+  // +40 MDR
+  LPF ~ADD_CRE_EFFECT~ INT_VAR
+    opcode = 31
+    timing = 9
+    target = 1
+    parameter1 = 40
+    parameter2 = 0
+  END
+
+  ADD_CRE_ITEM ~S!IMMUNE~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~AMULET~
+  ADD_CRE_ITEM ~AX1H01~ #0 #0 #0 ~NONE~ ~WEAPON1~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL152~ #0 ~innate~ ( 4 ) // Barbarian Rage
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 3 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 3 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL903~ #0 ~innate~ ( 3 ) // Greater Deathblow
+
+COMPILE ~IATweaks\scripts\creatures\s!garock.BAF~
+

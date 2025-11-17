@@ -289,6 +289,18 @@ COPY ~IATweaks\resources\itm\s!boot20.itm~ ~override~
   SAY NAME2 @7083
   SAY IDENTIFIED_DESC @7084
 
+//////////// Ring of Enduring Heart
+
+COPY ~IATweaks\resources\bam\s!rng22i.bam~ ~override~
+COPY ~IATweaks\resources\itm\s!ring22.itm~ ~override~
+  SAY NAME2 @7085
+  SAY IDENTIFIED_DESC @7086
+
+// Orcus
+
+COPY_EXISTING ~S!ORCUS.cre~ ~override~
+  ADD_CRE_ITEM ~s!ring22~ #0 #0 #0 ~UNSTEALABLE~ ~INV10~
+
 /////////////// New Recipes
 
 COMPILE ~IATweaks/resources/dlg/crom_new_items.d~

@@ -2945,8 +2945,8 @@ COPY ~IATweaks\resources\spl\s!mfsplt.spl~ ~override~
 
 COPY_EXISTING ~mindal01.cre~ ~override~
   WRITE_BYTE 0x53 3  // APR
-  WRITE_BYTE 0x59 0  // Fire Resistance
-  WRITE_BYTE 0x5e 0  // Magic Fire Resistance
+  WRITE_BYTE 0x59 10  // Fire Resistance
+  WRITE_BYTE 0x5e 10  // Magic Fire Resistance
   WRITE_BYTE 0x234 26 // Level 1
 
   // Cast S!MFPROT each time the damage is dealt

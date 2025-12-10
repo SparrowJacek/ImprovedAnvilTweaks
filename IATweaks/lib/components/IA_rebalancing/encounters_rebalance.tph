@@ -4338,6 +4338,28 @@ THEN
 END
 >>>>>>>>
 
+<<<<<<<< .../inlined/wk4-salamanders-old.baf
+IF
+	Global("IceSalamanderSpawn","AR3017",1)
+THEN
+	RESPONSE #100
+		SetGlobal("IceSalamanderSpawn","AR3017",2)
+		CreateVisualEffect("spanisum",[1055.1991])
+		CreateVisualEffect("spanisum",[1149.2167])
+		CreateVisualEffect("spanisum",[677.2195])
+		CreateVisualEffect("spanisum",[916.2358])
+		Wait(2)
+		CreateCreature("ICSALCOL",[1055.1991],S)
+		CreateCreature("ICSALCOL",[1149.2167],S)
+		CreateCreature("ICSALCOL",[677.2195],S)
+		CreateCreature("ICSALCOL",[916.2358],S)
+END
+>>>>>>>>
+<<<<<<<< .../inlined/ia-empty.baf
+>>>>>>>>
 COPY_EXISTING ~AR3017.BCS~ ~override~
   REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/old-ar3017.baf~ ~.../inlined/new-ar3017.baf~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/wk4-salamanders-old.baf~ ~.../inlined/ia-empty.baf~
+  BUT_ONLY
+
   BUT_ONLY

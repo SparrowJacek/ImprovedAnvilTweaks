@@ -1,0 +1,51 @@
+IF
+	Clicked([ANYONE])
+	Range(LastTrigger,10)
+	Global("PedCDone","AR3019",0)  // Watcher's Keep -- Helmite Level -- Last Seals
+	!PartyHasItem("PLOT05C")  // Spirit Key
+THEN
+	RESPONSE #100
+		DisplayString(Myself,70452)  // There is a large keyhole in the pedestal next to the seal.
+END
+
+IF
+	Clicked([ANYONE])
+	Range(LastTrigger,10)
+	Global("PedCDone","AR3019",2)  // Watcher's Keep -- Helmite Level -- Last Seals
+THEN
+	RESPONSE #100
+		DisplayString(Myself,70896)  // There is nothing more that you can do with this.
+END
+
+IF
+	PartyHasItem("PLOT05C")  // Spirit Key
+	Clicked([ANYONE])
+	Range(LastTrigger,10)
+	Global("PedCDone","AR3019",0)  // Watcher's Keep -- Helmite Level -- Last Seals
+THEN
+	RESPONSE #100
+		SetGlobal("PedCDone","AR3019",1)  // Watcher's Keep -- Helmite Level -- Last Seals
+		DisplayString(LastTrigger,@5150)
+		TakePartyItem("PLOT05c")  // Spirit Key
+		AddXP2DA("PLOT5B")
+END
+
+IF
+	Clicked([ANYONE])
+	Range(LastTrigger,10)
+	Global("PedCDone","AR3019",1)  // Watcher's Keep -- Helmite Level -- Last Seals
+THEN
+	RESPONSE #100
+		IncrementGlobal("SealOpen","AR3019",1)  // Watcher's Keep -- Helmite Level -- Last Seals
+		SetGlobal("PedCDone","AR3019",2)  // Watcher's Keep -- Helmite Level -- Last Seals
+		DisplayString(Myself,70453)  // The key turns easily. This lock is now open.
+END
+
+IF
+	Clicked([ANYONE])
+	!Range(LastTrigger,10)
+THEN
+	RESPONSE #100
+		DisplayString(Myself,14702)  // You are too far away to use that.
+END
+

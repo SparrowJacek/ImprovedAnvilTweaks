@@ -4430,4 +4430,472 @@ COPY_EXISTING ~S!SPYRAN.BCS~ ~override~
   REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/old-wk-golem-spawn-2.baf~ ~.../inlined/new-wk-golem-spawn-2.baf~
   BUT_ONLY
 
+//////////////// Mind Flayers in WK 4
+
+COPY_EXISTING ~mindal01.cre~ ~override/s!alhon1.cre~
+  WRITE_SHORT 0x24 THIS + 10 // HP
+  WRITE_SHORT 0x26 THIS + 10 // HP
+  WRITE_BYTE 0x234 29 // Level 1
+  WRITE_ASCII 0x248 ~S!ALHON1~ #8
+  WRITE_ASCII 0x260 ~~ #8
+  WRITE_ASCII 0x280 ~S!ALHON1~ #20
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL "SPWI112" #0 "wizard" ( 6 ) // Magic Missile
+
+  ADD_MEMORIZED_SPELL "SPWI209" #1 "wizard" ( 1 ) // Luck
+  ADD_MEMORIZED_SPELL "SPWI211" #1 "wizard" ( 3 ) // Melf's Acid Arrow
+  ADD_MEMORIZED_SPELL "SPWI212" #1 "wizard" ( 2 ) // Mirror Image
+
+  ADD_MEMORIZED_SPELL "SPWI302" #2 "wizard" ( 2 ) // Remove Magic
+  ADD_MEMORIZED_SPELL "SPWI303" #2 "wizard" ( 3 ) // Flame Arrow
+  ADD_MEMORIZED_SPELL "SPWI314" #2 "wizard" ( 2 ) // Vampiric Touch
+
+  ADD_MEMORIZED_SPELL "SPWI403" #3 "wizard" ( 1 ) // Fire Shield (Blue)
+  ADD_MEMORIZED_SPELL "SPWI405" #3 "wizard" ( 1 ) // Improved Invisibility
+  ADD_MEMORIZED_SPELL "SPWI414" #3 "wizard" ( 1 ) // Spirit Armor
+  ADD_MEMORIZED_SPELL "SPWI418" #3 "wizard" ( 1 ) // Fire Shield (Red)
+  ADD_MEMORIZED_SPELL "SPWI419" #3 "wizard" ( 3 ) // Secret Word
+
+  ADD_MEMORIZED_SPELL "SPWI510" #4 "wizard" ( 1 ) // Spell Immunity
+  ADD_MEMORIZED_SPELL "SPWI513" #4 "wizard" ( 4 ) // Breach
+  ADD_MEMORIZED_SPELL "SPWI514" #4 "wizard" ( 2 ) // Lower Resistance
+
+  ADD_MEMORIZED_SPELL "SPWI602" #5 "wizard" ( 1 ) // Globe of Invulnerability
+  ADD_MEMORIZED_SPELL "SPWI607" #5 "wizard" ( 1 ) // Giant Strength
+  ADD_MEMORIZED_SPELL "SPWI613" #5 "wizard" ( 2 ) // PFMW
+  ADD_MEMORIZED_SPELL "SPWI613" #5 "wizard" ( 1 ) // Improved Haste
+
+  ADD_MEMORIZED_SPELL "SPWI701" #6 "wizard" ( 1 ) // Spell Turning
+  ADD_MEMORIZED_SPELL "SPWI704" #6 "wizard" ( 3 ) // Ruby Ray of Reversal
+  ADD_MEMORIZED_SPELL "SPWI714" #6 "wizard" ( 2 ) // Prismatic Spray
+
+  ADD_MEMORIZED_SPELL "SPWI812" #7 "wizard" ( 6 ) // Abi-Dalzim's Horrid Wilting
+
+  ADD_MEMORIZED_SPELL "SPWI915" #8 "wizard" ( 1 ) // Black Blade of Disaster
+  ADD_MEMORIZED_SPELL "SPWI922" #8 "wizard" ( 4 ) // Dragon's Breath
+
+COMPILE ~IATweaks\scripts\creatures\s!alhon1.BAF~
+
+COPY_EXISTING ~s!alhon1.cre~ ~override/s!alhon2.cre~
+  WRITE_BYTE 0x53 2  // APR
+  WRITE_ASCII 0x248 ~S!ALHON2~ #8
+  WRITE_ASCII 0x260 ~~ #8
+  WRITE_ASCII 0x280 ~S!ALHON2~ #20
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL "SPWI112" #0 "wizard" ( 6 ) // Magic Missile
+
+  ADD_MEMORIZED_SPELL "SPWI209" #1 "wizard" ( 1 ) // Luck
+  ADD_MEMORIZED_SPELL "SPWI211" #1 "wizard" ( 3 ) // Melf's Acid Arrow
+  ADD_MEMORIZED_SPELL "SPWI212" #1 "wizard" ( 2 ) // Mirror Image
+
+  ADD_MEMORIZED_SPELL "SPWI302" #2 "wizard" ( 2 ) // Remove Magic
+  ADD_MEMORIZED_SPELL "SPWI303" #2 "wizard" ( 3 ) // Flame Arrow
+  ADD_MEMORIZED_SPELL "SPWI314" #2 "wizard" ( 2 ) // Vampiric Touch
+
+  ADD_MEMORIZED_SPELL "SPWI403" #3 "wizard" ( 1 ) // Fire Shield (Blue)
+  ADD_MEMORIZED_SPELL "SPWI405" #3 "wizard" ( 1 ) // Improved Invisibility
+  ADD_MEMORIZED_SPELL "SPWI414" #3 "wizard" ( 1 ) // Spirit Armor
+  ADD_MEMORIZED_SPELL "SPWI418" #3 "wizard" ( 1 ) // Fire Shield (Red)
+  ADD_MEMORIZED_SPELL "SPWI419" #3 "wizard" ( 3 ) // Secret Word
+
+  ADD_MEMORIZED_SPELL "SPWI510" #4 "wizard" ( 1 ) // Spell Immunity
+  ADD_MEMORIZED_SPELL "SPWI513" #4 "wizard" ( 3 ) // Breach
+  ADD_MEMORIZED_SPELL "SPWI514" #4 "wizard" ( 1 ) // Lower Resistance
+  ADD_MEMORIZED_SPELL "SPWI523" #4 "wizard" ( 2 ) // Sunfire
+
+  ADD_MEMORIZED_SPELL "SPWI602" #5 "wizard" ( 1 ) // Globe of Invulnerability
+  ADD_MEMORIZED_SPELL "SPWI607" #5 "wizard" ( 1 ) // Giant Strength
+  ADD_MEMORIZED_SPELL "SPWI613" #5 "wizard" ( 2 ) // PFMW
+  ADD_MEMORIZED_SPELL "SPWI613" #5 "wizard" ( 1 ) // Improved Haste
+
+  ADD_MEMORIZED_SPELL "SPWI701" #6 "wizard" ( 1 ) // Spell Turning
+  ADD_MEMORIZED_SPELL "SPWI704" #6 "wizard" ( 2 ) // Ruby Ray of Reversal
+  ADD_MEMORIZED_SPELL "SPWI714" #6 "wizard" ( 1 ) // Prismatic Spray
+  ADD_MEMORIZED_SPELL "SPWI715" #6 "wizard" ( 2 ) // Power Word, Stun
+
+  ADD_MEMORIZED_SPELL "SPWI812" #7 "wizard" ( 6 ) // Abi-Dalzim's Horrid Wilting
+
+  ADD_MEMORIZED_SPELL "SPWI915" #8 "wizard" ( 1 ) // Black Blade of Disaster
+  ADD_MEMORIZED_SPELL "SPWI912" #8 "wizard" ( 2 ) // Power Word, Kill
+  ADD_MEMORIZED_SPELL "SPWI918" #8 "wizard" ( 3 ) // Bigby's Crushing Hand
+
+COMPILE ~IATweaks\scripts\creatures\s!alhon2.BAF~
+
+// Vampiric Mind Flayers
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!bldfog.PRO~
+
+COPY_EXISTING ~CLEARAIR.2da~ ~override~
+  COUNT_2DA_COLS numcolumns
+  COUNT_2DA_ROWS numcolumns numrows
+  INSERT_2DA_ROW numrows numcolumns EVAL ~Blood_fog        %s!bldfog%~
+
+COPY ~IATweaks\resources\bam\s!bldfog.bam~ ~override~
+COPY ~IATweaks\resources\spl\s!bldfog.spl~ ~override~
+  SAY NAME1 @6292
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      projectile = ~%s!bldfog%~
+  END
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!blooda.PRO~
+ADD_PROJECTILE ~IATweaks\resources\pro\s!bloodb.PRO~
+COPY_EXISTING ~s!blooda.pro~ ~override~
+  WRITE_SHORT 0x21a ~%s!bloodb%~
+
+COPY ~IATweaks\resources\bam\s!bloodb.bam~ ~override~
+COPY ~IATweaks\resources\spl\s!bloodb.spl~ ~override~
+  SAY NAME1 @6291
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      projectile = ~%s!blooda%~
+  END
+
+COPY_EXISTING ~MINDFL02.itm~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 216
+      parameter1 = 1
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = 41495
+  END
+  LPF ~ADD_ITEM_EFFECT~
+    INT_VAR
+      type = 1
+      opcode = 93
+      insert_point = 0
+      parameter1 = 1
+      parameter2 = 0
+      duration = 30
+      target = 2
+      timing = 0
+  END
+  LPF ~ADD_ITEM_EFFECT~
+    INT_VAR
+      type = 1
+      opcode = 285
+      insert_point = 0
+      parameter1 = 1
+      parameter2 = 0
+      duration = 30
+      target = 1
+      timing = 0
+  END
+  LPF ~ADD_ITEM_EFFECT~
+    INT_VAR
+      type = 1
+      opcode = 284
+      insert_point = 0
+      parameter1 = 1
+      parameter2 = 0
+      duration = 30
+      target = 1
+      timing = 0
+  END
+
+COPY_EXISTING ~MINDVAM.cre~ ~override/s!mfvam1.cre~
+  WRITE_LONG 0x14 35000 // Exp for creature
+  WRITE_SHORT 0x24 186 // HP
+  WRITE_SHORT 0x26 186 // HP
+  WRITE_SHORT 0x46 THIS - 10 // AC
+  WRITE_SHORT 0x48 THIS - 10 // AC
+  WRITE_BYTE 0x52 THIS - 15 // Thac0
+  WRITE_BYTE 0x53 3  // APR
+  WRITE_BYTE 0x59 60 // Resist Fire
+  WRITE_BYTE 0x5a 100 // Resist Cold
+  WRITE_BYTE 0x5b 100 // Resist Electricity
+  WRITE_BYTE 0x5c 60 // Resist Acid
+  WRITE_BYTE 0x5e 60 // Resist Magic Fire
+  WRITE_BYTE 0x5f 100 // Resist Magic Cold
+  WRITE_BYTE 0x60 60 // Resist Slashing
+  WRITE_BYTE 0x61 60 // Resist Crushing
+  WRITE_BYTE 0x62 60 // Resist Piercing
+  WRITE_BYTE 0x63 60 // Resist Missile
+  WRITE_BYTE 0x234 25 // Level 1
+  WRITE_BYTE 0x238 20 // Strength
+  WRITE_BYTE 0x23c 16 // Dexterity
+  WRITE_BYTE 0x23a 22 // intelligence
+  WRITE_BYTE 0x240 0 // Morale Break
+  WRITE_ASCII 0x248 ~S!MFVAM1~ #8
+  WRITE_ASCII 0x260 ~~ #8
+  WRITE_BYTE 0x272 124 // Race
+  WRITE_ASCII 0x280 ~S!MFVAM1~ #20
+
+  // Cast S!MFPROT each time the damage is dealt
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 232
+      target = 1
+      parameter1 = 0
+      parameter2 = 11
+      timing = 1
+      resist_dispel = 0
+    STR_VAR
+      resource = ~S!MFPROT~
+  END
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 146
+      target = 1
+      parameter2 = 1
+      timing = 9
+      resist_dispel = 0
+    STR_VAR
+      resource = ~S!MFPROT~
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Immunity to Turn Undead
+    INT_VAR
+      opcode = 297
+      target = 1
+      timing = 9
+      parameter2 = 1
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Increase movement speed
+    INT_VAR
+      target = 1
+      opcode = 126
+      parameter1 = 2
+      parameter2 = 0
+      resist_dispel = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // Improved Haste
+    INT_VAR
+      target = 1
+      opcode = 16
+      parameter2 = 1
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 325
+      target = 1
+      parameter1 = 6
+      parameter2 = 0
+      timing = 9
+  END
+
   BUT_ONLY
+  IF_EXISTS
+
+COMPILE ~IATweaks\scripts\creatures\S!MFVAM1.BAF~
+
+COPY_EXISTING ~s!mfvam1.cre~ ~override/s!mfvam2.cre~
+  WRITE_ASCII 0x280 ~S!MFVAM2 ~ #20
+
+// Change some creatures
+
+COPY_EXISTING ~AR3021.are~ ~override~
+
+  LPF ~S!ALTER_AREA_ACTOR~
+    INT_VAR
+      creature_x = 740
+      creature_y = 522
+    STR_VAR
+     actor_name = ~Umber Hulk~
+     cre_file = ~S!UMBTH1~
+  END
+
+  LPF ~S!ALTER_AREA_ACTOR~
+    INT_VAR
+      creature_x = 579
+      creature_y = 652
+    STR_VAR
+     actor_name = ~Umber Hulk~
+     cre_file = ~S!UMBTH1~
+  END
+
+  LPF ~S!ALTER_AREA_ACTOR~
+    INT_VAR
+      creature_x = 760
+      creature_y = 749
+    STR_VAR
+     actor_name = ~Umber Hulk~
+     cre_file = ~S!UMBTH1~
+  END
+
+  LPF ~S!ALTER_AREA_ACTOR~
+    INT_VAR
+      creature_x = 1251
+      creature_y = 1736
+    STR_VAR
+     actor_name = ~Mind Flayer~
+     cre_file = ~S!ALHON1~
+  END
+
+  LPF ~S!ALTER_AREA_ACTOR~
+    INT_VAR
+      creature_x = 1481
+      creature_y = 1986
+    STR_VAR
+     actor_name = ~Mind Flayer~
+     cre_file = ~S!ALHON2~
+  END
+
+  GET_OFFSET_ARRAY doors ARE_V10_DOORS
+
+  PHP_EACH doors AS int1 => door_off BEGIN
+    READ_ASCII door_off + 0x20 door_id
+
+    PATCH_IF NOT (~%door_id%~ STRING_CONTAINS_REGEXP ~DOOR07~) BEGIN
+      WRITE_ASCII  door_off        ~s!door01~ #32
+      WRITE_ASCII  door_off + 0x20 ~s!door01~ #8
+      WRITE_LONG   door_off + 0x28 2
+      WRITE_ASCII  door_off + 0x78 ~~ #8
+    END
+  END
+
+<<<<<<<< .../inlined/old-wk4-vampiric-mind-flayers-fight.baf
+IF
+	PartyHasItem("Plot04B")
+	Global("SpawnVamp","AR3021",0)
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		MoveViewObject("REDOIL",INSTANT)
+		SetGlobal("SpawnVamp","AR3021",1)
+		ScreenShake([20.20],20)
+		PlaySound("EFF_M36B")
+		Wait(2)
+		PlaySound("amthund")
+		CreateVisualEffect("CALLLIGH",[662.997])
+		CreateVisualEffect("CALLLIGH",[329.981])
+		Wait(1)
+		OpenDoor("Egg01")
+		OpenDoor("Egg02")
+		CreateVisualEffect("SPSTRENH",[662.997])
+		CreateVisualEffect("SPSTRENH",[329.981])
+		Wait(1)
+		CreateCreature("MindVam",[662.997],SWW)
+		CreateCreature("MindVam",[329.981],SE)
+		EndCutSceneMode()
+END
+>>>>>>>>
+<<<<<<<< .../inlined/new-wk4-vampiric-mind-flayers-fight.baf
+IF
+	PartyHasItem("Plot04B")
+	Global("SpawnVamp","AR3021",0)
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		MoveViewObject("REDOIL",INSTANT)
+		SetGlobal("SpawnVamp","AR3021",1)
+		ReallyForceSpellRES("S!PCKET1",Player1)
+		TriggerActivation("Tran3017",FALSE)
+		ScreenShake([20.20],20)
+		PlaySound("EFF_M36B")
+		Wait(2)
+		PlaySound("amthund")
+		CreateVisualEffect("CALLLIGH",[662.997])
+		CreateVisualEffect("CALLLIGH",[329.981])
+		Wait(1)
+		OpenDoor("Egg01")
+		OpenDoor("Egg02")
+		CloseDoor("s!door01")
+		Lock("s!door01")
+		CreateVisualEffect("SPSTRENH",[662.997])
+		CreateVisualEffect("SPSTRENH",[329.981])
+		Wait(1)
+		CreateCreature("S!MFVAM1",[662.997],SWW)
+		CreateCreature("S!MFVAM2",[329.981],SE)
+		EndCutSceneMode()
+END
+
+IF
+	OpenState("s!door01",FALSE)
+  Dead("S!MFVAM1")
+  Dead("S!MFVAM2")
+THEN
+	RESPONSE #100
+		Unlock("s!door01")
+		OpenDoor("s!door01")
+		ReallyForceSpellRES("S!PCKET2",Player1)
+		TriggerActivation("Tran3017",TRUE)
+END
+>>>>>>>>
+
+OUTER_SET new_text_illithid_rod_wk_4 = RESOLVE_STR_REF (@5149)
+
+<<<<<<<< .../inlined/old-wk4-illithid-rod.baf
+IF
+	PartyHasItem("Plot04g")
+	PartyHasItem("Plot04h")
+THEN
+	RESPONSE #100
+		TakePartyItem("Plot04g")
+		TakePartyItem("Plot04h")
+		DisplayStringHead(Player1,71011)
+		AddXP2DA("Plot6e")
+		GiveItemCreate("Plot04i",Player1,0,0,0)
+END
+>>>>>>>>
+<<<<<<<< .../inlined/new-wk4-illithid-rod.baf
+IF
+	PartyHasItem("Plot04g")
+	PartyHasItem("Plot04h")
+THEN
+	RESPONSE #100
+		TakePartyItem("Plot04g")
+		TakePartyItem("Plot04h")
+		DisplayStringHead(Player1,%new_text_illithid_rod_wk_4%)
+		AddXP2DA("Plot6e")
+		OpenDoor("s!door01")
+END
+>>>>>>>>
+
+<<<<<<<< .../inlined/wk4-blood-fog.baf
+IF
+	InMyArea(Player1)
+	Global("IaBloodFog","AR3021",1)
+	OR(7)
+		SpellCastPriest(Player1,CLERIC_ZONE_OF_SWEET_AIR)
+		SpellCastPriest(Player2,CLERIC_ZONE_OF_SWEET_AIR)
+		SpellCastPriest(Player3,CLERIC_ZONE_OF_SWEET_AIR)
+		SpellCastPriest(Player4,CLERIC_ZONE_OF_SWEET_AIR)
+		SpellCastPriest(Player5,CLERIC_ZONE_OF_SWEET_AIR)
+		SpellCastPriest(Player6,CLERIC_ZONE_OF_SWEET_AIR)
+		GlobalTimerExpired("IaBloodFogTimer","AR3021")
+THEN
+	RESPONSE #100
+		SetGlobal("IaBloodFog","AR3021",0)
+END
+>>>>>>>>
+
+EXTEND_TOP ~AR3021.BCS~ ~.../inlined/wk4-blood-fog.baf~
+
+COPY_EXISTING ~AR3021.BCS~ ~override~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/old-wk4-vampiric-mind-flayers-fight.baf~ ~.../inlined/new-wk4-vampiric-mind-flayers-fight.baf~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/old-wk4-illithid-rod.baf~ ~.../inlined/new-wk4-illithid-rod.baf~
+  BUT_ONLY
+

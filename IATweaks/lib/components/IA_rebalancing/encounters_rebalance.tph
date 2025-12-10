@@ -1840,12 +1840,13 @@ COMPILE ~IATweaks\scripts\others\S!MFDOOR.BAF~
 
 COPY_EXISTING ~AR2400.are~ ~override~
 
-  LPF ALTER_AREA_ACTOR
+  LPF ~S!ALTER_AREA_ACTOR~
     INT_VAR
-      x_coord = 627
-      y_coord = 838
+      creature_x = 973
+      creature_y = 2083
     STR_VAR
-     actor_name = ~Ist'tar Jae'llat~
+     actor_name = ~Umber Hulk~
+     cre_file = ~S!UMBTH1~
   END
 
   GET_OFFSET_ARRAY doors ARE_V10_DOORS

@@ -5273,3 +5273,181 @@ COPY_EXISTING ~HLCLERIC.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPCLI24~ #0 ~innate~ ( 1 ) // Summon Fallen Archdeva
 
 COMPILE ~IATweaks\scripts\creatures\S!HLCLER.BAF~
+
+// Ameralis Zauviir
+
+COPY_EXISTING ~GORWOM04.cre~ ~override~
+  WRITE_LONG 0x14 35000 // Exp
+  WRITE_SHORT 0x24 194 // HP
+  WRITE_SHORT 0x26 194 // HP
+  WRITE_SHORT 0x46 10 // AC
+  WRITE_SHORT 0x48 10 // AC
+  WRITE_BYTE 0x52 4 // Thac0
+  WRITE_BYTE 0x60 40 // Resist Slashing
+  WRITE_BYTE 0x61 40 // Resist Crushing
+  WRITE_BYTE 0x62 40 // Resist Piercing
+  WRITE_BYTE 0x63 40 // Resist Missile
+  WRITE_BYTE 0x234 33 // Level 1
+  WRITE_BYTE 0x239 100 // Exceptional Strength
+  WRITE_BYTE 0x23c 19 // Dexterity
+  WRITE_BYTE 0x23d 20 // Constitution
+  WRITE_LONG 0x244 0x40130000 // Kit = Talos
+  WRITE_ASCII 0x248 ~S!HLSTAL~ #8
+  WRITE_ASCII 0x268 ~~ #8
+
+  LPF ~ADD_CRE_EFFECT~ // Casting Speed
+    INT_VAR
+      target = 1
+      opcode = 189
+      parameter1 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // * in Flails
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 1
+      parameter2 = 100
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // ** in Sword and Shield
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 2
+      parameter2 = 112
+      resist_dispel = 0
+      timing = 9
+  END
+
+  // +50 MDR
+  LPF ~ADD_CRE_EFFECT~ INT_VAR
+    opcode = 31
+    timing = 9
+    target = 1
+    parameter1 = 50
+    parameter2 = 0
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 325
+      target = 1
+      parameter1 = 7
+      parameter2 = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // +2 movement speed
+    INT_VAR
+      opcode = 126
+      target = 1
+      parameter1 = 2
+      parameter2 = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // normal Haste
+    INT_VAR
+      target = 1
+      opcode = 16
+      timing = 9
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 146
+      target = 1
+      parameter2 = 1
+      timing = 9
+      resist_dispel = 0
+      special = 30
+    STR_VAR
+      resource = ~S!SPLDU2~
+      effsource = ~S!SPLDU2~
+  END
+
+  ADD_CRE_ITEM ~CLCK02~ #0 #0 #0 ~NONE~ ~CLOAK~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPPR101~ #0 ~priest~ ( 1 ) // Bless
+  ADD_MEMORIZED_SPELL ~SPPR102~ #0 ~priest~ ( 1 ) // Command
+  ADD_MEMORIZED_SPELL ~SPPR107~ #0 ~priest~ ( 1 ) // Protection from Evil
+  ADD_MEMORIZED_SPELL ~SPPR108~ #0 ~priest~ ( 1 ) // Remove Fear
+  ADD_MEMORIZED_SPELL ~SPPR109~ #0 ~priest~ ( 2 ) // Sanctuary
+  ADD_MEMORIZED_SPELL ~SPPR111~ #0 ~priest~ ( 2 ) // Armor of Faith
+  ADD_MEMORIZED_SPELL ~SPPR113~ #0 ~priest~ ( 4 ) // Doom
+
+  ADD_MEMORIZED_SPELL ~SPPR201~ #1 ~priest~ ( 1 ) // Aid
+  ADD_MEMORIZED_SPELL ~SPPR203~ #1 ~priest~ ( 2 ) // Chant
+  ADD_MEMORIZED_SPELL ~SPPR206~ #1 ~priest~ ( 1 ) // Flame Blade
+  ADD_MEMORIZED_SPELL ~SPPR208~ #1 ~priest~ ( 2 ) // Hold Person
+  // ADD_MEMORIZED_SPELL ~SPPR209~ #1 ~priest~ ( 1 ) // Know Alignment
+  ADD_MEMORIZED_SPELL ~SPPR214~ #1 ~priest~ ( 2 ) // DUHM
+
+  ADD_MEMORIZED_SPELL ~SPPRI02~ #2 ~priest~ ( 3 ) // Dispel Magic caster-friendly
+  ADD_MEMORIZED_SPELL ~SPPR308~ #2 ~priest~ ( 1 ) // Remove Paralysis
+  ADD_MEMORIZED_SPELL ~SPPR314~ #2 ~priest~ ( 4 ) // Unholy Blight
+  ADD_MEMORIZED_SPELL ~SPPR318~ #2 ~priest~ ( 2 ) // Zone of Sweet Air
+
+  ADD_MEMORIZED_SPELL ~SPPR403~ #3 ~priest~ ( 2 ) // Free Actions
+  ADD_MEMORIZED_SPELL ~SPPR406F~ #3 ~priest~ ( 2 ) // Defensive Harmony
+  ADD_MEMORIZED_SPELL ~SPPR407~ #3 ~priest~ ( 1 ) // Protection from Lightning
+  ADD_MEMORIZED_SPELL ~SPPR409~ #3 ~priest~ ( 3 ) // Death Ward
+  ADD_MEMORIZED_SPELL ~SPPR412~ #3 ~priest~ ( 1 ) // Holy Power
+  // ADD_MEMORIZED_SPELL ~SPPR420~ #1 ~priest~ ( 2 ) // Resist Fire and Cold
+
+  ADD_MEMORIZED_SPELL ~SPPR505~ #4 ~priest~ ( 1 ) // True Seeing
+  ADD_MEMORIZED_SPELL ~SPPR508~ #4 ~priest~ ( 1 ) // Chaotic Commands
+  ADD_MEMORIZED_SPELL ~SPPR511~ #4 ~priest~ ( 1 ) // Slay Living
+  ADD_MEMORIZED_SPELL ~SPPR512~ #4 ~priest~ ( 2 ) // Greater Command
+  ADD_MEMORIZED_SPELL ~SPPR513~ #4 ~priest~ ( 1 ) // Righteous Magic
+  ADD_MEMORIZED_SPELL ~SPPR514~ #4 ~priest~ ( 3 ) // Mass Cure
+  
+  ADD_MEMORIZED_SPELL ~SPPR607~ #5 ~priest~ ( 2 ) // Heal
+  ADD_MEMORIZED_SPELL ~SPPR608~ #5 ~priest~ ( 3 ) // Harm
+  ADD_MEMORIZED_SPELL ~SPPR613~ #5 ~priest~ ( 1 ) // Protection from Missiles
+  ADD_MEMORIZED_SPELL ~SPPR617~ #5 ~priest~ ( 1 ) // Heavenly Shield
+  ADD_MEMORIZED_SPELL ~SPPR618~ #5 ~priest~ ( 1 ) // Champion's Might
+  ADD_MEMORIZED_SPELL ~SPPR698~ #5 ~priest~ ( 1 ) // Blade Barrier
+
+  ADD_MEMORIZED_SPELL ~SPPR701~ #6 ~priest~ ( 1 ) // Shield of Archons
+  ADD_MEMORIZED_SPELL ~SPPR711~ #6 ~priest~ ( 2 ) // Regeneration
+  ADD_MEMORIZED_SPELL ~SPPR721~ #6 ~priest~ ( 3 ) // Energy Blades
+  ADD_MEMORIZED_SPELL ~SPPR729~ #6 ~priest~ ( 1 ) // Foreknowledge
+  ADD_MEMORIZED_SPELL ~SPPR730~ #6 ~priest~ ( 1 ) // Aura of Flaming Death
+  ADD_MEMORIZED_SPELL ~SPPRI26~ #6 ~priest~ ( 1 ) // Continual Cure
+  ADD_MEMORIZED_SPELL ~SPPRI27~ #6 ~priest~ ( 1 ) // Divine Health
+
+  ADD_MEMORIZED_SPELL ~S!AEGIS~ #0 ~innate~ ( 1 ) // Aegis of Faith
+  ADD_MEMORIZED_SPELL ~SPCL721~ #0 ~innate~ ( 3 ) // Storm Shield
+  ADD_MEMORIZED_SPELL ~SPCL722~ #0 ~innate~ ( 6 ) // Lightning Bolt of Talos
+  ADD_MEMORIZED_SPELL ~SPCL943~ #0 ~innate~ ( 6 ) // Purify Aura
+  ADD_MEMORIZED_SPELL ~S!DIVINT~ #0 ~innate~ ( 1 ) // Divine Intervention
+
+COMPILE ~IATweaks\scripts\creatures\S!AMERAL.BAF~

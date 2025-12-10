@@ -4362,4 +4362,72 @@ COPY_EXISTING ~AR3017.BCS~ ~override~
   REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/wk4-salamanders-old.baf~ ~.../inlined/ia-empty.baf~
   BUT_ONLY
 
+// Less Golems in WK level 4 and 5
+
+<<<<<<<< .../inlined/old-wk-golem-spawn-1.baf
+IF
+	AreaCheck("AR3017")
+	Global("Iareplace","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iareplace","LOCALS",1)
+		CreateCreatureObject("S!elernd",Myself,0,0,0)
+		CreateCreatureObject("S!elernd",Myself,0,0,0)
+		CreateCreatureObject("S!elernd",Myself,0,0,0)
+		CreateCreatureObject("S!bonrnd",Myself,0,0,0)
+		CreateCreatureObject("S!bonrnd",Myself,0,0,0)
+		DestroySelf()
+END
+>>>>>>>>
+<<<<<<<< .../inlined/new-wk-golem-spawn-1.baf
+IF
+	AreaCheck("AR3017")
+	Global("Iareplace","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iareplace","LOCALS",1)
+		CreateCreatureObject("S!elernd",Myself,0,0,0)
+		CreateCreatureObject("S!bonrnd",Myself,0,0,0)
+		CreateCreatureObject("S!bonrnd",Myself,0,0,0)
+		DestroySelf()
+END
+>>>>>>>>
+
+<<<<<<<< .../inlined/old-wk-golem-spawn-2.baf
+IF
+	AreaCheck("AR3019")
+	Global("Iareplace","LOCALS",0)
+	Global("Iaspyran3019","AR3019",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iareplace","LOCALS",1)
+		CreateCreatureObject("S!elernd",Myself,0,0,0)
+		CreateCreatureObject("S!elernd",Myself,0,0,0)
+		CreateCreatureObject("S!elernd",Myself,0,0,0)
+		CreateCreatureObject("S!elernd",Myself,0,0,0)
+		CreateCreatureObject("S!bonrnd",Myself,0,0,0)
+		CreateCreatureObject("S!bonrnd",Myself,0,0,0)
+		DestroySelf()
+END
+>>>>>>>>
+<<<<<<<< .../inlined/new-wk-golem-spawn-2.baf
+IF
+	AreaCheck("AR3017")
+	Global("Iareplace","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iareplace","LOCALS",1)
+		CreateCreatureObject("S!mitgol",Myself,0,0,0)
+		CreateCreatureObject("S!mitgol",Myself,0,0,0)
+		CreateCreatureObject("S!bonrnd",Myself,0,0,0)
+		CreateCreatureObject("S!bonrnd",Myself,0,0,0)
+		DestroySelf()
+END
+>>>>>>>>
+
+COPY_EXISTING ~S!SPYRAN.BCS~ ~override~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/old-wk-golem-spawn-1.baf~ ~.../inlined/new-wk-golem-spawn-1.baf~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/old-wk-golem-spawn-2.baf~ ~.../inlined/new-wk-golem-spawn-2.baf~
+  BUT_ONLY
+
   BUT_ONLY

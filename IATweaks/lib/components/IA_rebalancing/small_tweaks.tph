@@ -1360,3 +1360,32 @@ COPY_EXISTING ~s!shorn2.itm~ ~override~
 COPY_EXISTING ~s!shorn3.itm~ ~override~
   SAY IDENTIFIED_DESC @7081
   IF_EXISTS
+
+// Prevent shields from infinite reflections
+
+ACTION_FOR_EACH shield_spl_file IN ~SPAURU~ ~SPWI403D~ ~SPWI418D~ ~SPPR730D~ ~SPPR953D~ ~KELDORN~ ~SPWII25~ ~LEAT23A~ BEGIN
+  COPY_EXISTING ~%shield_spl_file%.spl~ ~override~
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = 206
+      STR_VAR
+        match_resource = EVAL ~%shield_spl_file%~
+    END
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        multi_match = 1
+        match_opcode = 12
+        opcode = 206
+        power = 0
+        timing = 10
+        duration = 5
+        probability1 = 100
+        probability2 = 0
+        dicenumber = 0
+        dicesize = 0
+        savingthrow = 0
+      STR_VAR
+        insert = ~last~
+        resource = EVAL ~%shield_spl_file%~
+    END
+END

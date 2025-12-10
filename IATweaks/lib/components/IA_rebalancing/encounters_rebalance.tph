@@ -3704,6 +3704,7 @@ COPY_EXISTING ~S!DRAGGR.cre~ ~override~
 
 // Invisible Creature that controls Garock when he's spinning
 
+COPY ~IATweaks\resources\spl\s!invtel.spl~ ~override~
 COPY ~IATweaks\resources\cre\s!invwk4.CRE~ ~override~
   WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_INVISIBLE~))
 
@@ -3934,6 +3935,25 @@ COPY_EXISTING ~GAROCK.cre~ ~override/S!BAROCK.cre~
   WRITE_ASCII 0x2cc ~~ #8
   WRITE_BYTE 0x272 171 // Race = Minotaur
 
+  // Immunity to Whirlwind pull
+  LPF ~ADD_CRE_EFFECT~ 
+    INT_VAR
+      opcode = 206
+      timing = 9
+      target = 1
+    STR_VAR
+      resource = ~S!WHRWN4~
+  END
+
+  // Immunity to Wing Buffet
+  LPF ~ADD_CRE_EFFECT~ 
+    INT_VAR
+      opcode = 101
+      parameter2 = 235
+      timing = 9
+      target = 1
+  END
+
   LPF ~ADD_CRE_EFFECT~ // Set persistent AI
     INT_VAR
       target = 1
@@ -4100,6 +4120,25 @@ COPY_EXISTING ~GAROCK.cre~ ~override~
   WRITE_ASCII 0x258 ~S!GAROCK~ #8
   WRITE_ASCII 0x268 ~~ #8
   WRITE_BYTE 0x272 171 // Race = Minotaur
+
+  // Immunity to Whirlwind pull
+  LPF ~ADD_CRE_EFFECT~ 
+    INT_VAR
+      opcode = 206
+      timing = 9
+      target = 1
+    STR_VAR
+      resource = ~S!WHRWN4~
+  END
+
+  // Immunity to Wing Buffet
+  LPF ~ADD_CRE_EFFECT~ 
+    INT_VAR
+      opcode = 101
+      parameter2 = 235
+      timing = 9
+      target = 1
+  END
 
   LPF ~ADD_CRE_EFFECT~ // Set persistent AI
     INT_VAR
@@ -4272,13 +4311,16 @@ THEN
 		CreateVisualEffectObject("OHRSGONE",Player4)
 		CreateVisualEffectObject("OHRSGONE",Player5)
 		CreateVisualEffectObject("OHRSGONE",Player6)
-		SmallWait(12)
+		FadeToColor([25.0],0)
+		SmallWait(30)
 		ActionOverride(Player1,JumpToPoint([1109.2249]))
 		ActionOverride(Player2,JumpToPoint([1060.2287]))
 		ActionOverride(Player3,JumpToPoint([1165.2214]))
 		ActionOverride(Player4,JumpToPoint([1162.2288]))
 		ActionOverride(Player5,JumpToPoint([1106.2325]))
 		ActionOverride(Player6,JumpToPoint([1214.2250]))
+		FadeFromColor([10.0],0)
+		JumpToPoint([1885.1736])
 END
 
 IF

@@ -1446,7 +1446,7 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
           STR_VAR
             resource = ~S!HISBAS~
         END
-        PATCH_FOR_EACH thief_class IN 4 9 10 13 15 BEGIN
+        PATCH_FOR_EACH thief_class IN 4 9 10 12 13 15 18 BEGIN
           LPF ~ADD_ITEM_EQEFFECT~
             INT_VAR
               opcode = 177 

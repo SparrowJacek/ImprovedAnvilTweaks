@@ -1,0 +1,125 @@
+IF
+	Global("SealOpen","AR3019",3)  // Watcher's Keep -- Helmite Level -- Last Seals
+	Global("IaSealWave","AR3019",0)
+THEN
+	RESPONSE #100
+		ClearAllActions()
+		StartCutSceneMode()
+		AddAreaFlag(NOREST)
+		ReallyForceSpellRES("S!PCKET1",Player1)
+		CloseDoor("DOOR01")
+		Lock("DOOR01")
+		CloseDoor("DOOR02")
+		Lock("DOOR02")
+		CloseDoor("DOOR03")
+		Lock("DOOR03")
+		TriggerActivation("Tran3000",FALSE)
+		TriggerActivation("Tran3017",FALSE)
+		TriggerActivation("Tran3024",FALSE)
+		TriggerActivation("Tran3025",FALSE)
+		TriggerActivation("Tran3026",FALSE)
+		IncrementGlobal("IaSealWave","AR3019",1)
+		MoveViewPoint([2277.1866],BD_NORMAL)
+		Wait(2)
+		CreateVisualEffect("spraised",[2463.2061])
+		CreateCreature("GORLIC01",[2463.2061],W)  // Azamantes
+		Wait(2)
+		CreateVisualEffect("spraised",[2168.2067])
+		CreateVisualEffect("spraised",[2395.1598])
+		CreateVisualEffect("spraised",[2564.1846])
+		CreateCreature("GORSKU01",[2168.2067],W)  // Flaming Skull
+		CreateCreature("GORSKU01",[2395.1598],W)  // Flaming Skull
+		CreateCreature("GORSKU01",[2564.1846],W)  // Flaming Skull
+		SetGlobalTimer("IaNextSealWaveTimer","AR3019",SIX_ROUNDS)
+		EndCutSceneMode()
+END
+
+IF
+	Global("IaSealWave","AR3019",1)
+	Dead("GORLIC01")
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaSealWave","AR3019",1)
+		PlaySound("SIRIN04")
+		PlaySound("SIRIN06")
+		Wait(6)
+		CreateVisualEffect("SPMETSWA",[2068.1802])
+		CreateVisualEffect("SPMETSWA",[2470.1782])
+		SmallWait(5)
+		CreateVisualEffect("SPMETSWA",[2083.1884])
+		CreateVisualEffect("SPMETSWA",[2461.1859])
+		SmallWait(5)
+		CreateVisualEffect("SPMETSWA",[2126.1944])
+		CreateVisualEffect("SPMETSWA",[2431.1926])
+		SmallWait(5)
+		CreateVisualEffect("SPMETSWA",[2197.1982])
+		CreateVisualEffect("SPMETSWA",[2379.1977])
+		SmallWait(5)
+		CreateVisualEffect("SPMETSWA",[2286.1995])
+		SmallWait(7)
+		CreateVisualEffect("SPFLESHS",[2020.1832])
+		CreateVisualEffect("SPFLESHS",[2520.1804])
+		CreateVisualEffect("SPFLESHS",[2054.1952])
+		CreateVisualEffect("SPFLESHS",[2495.1931])
+		CreateVisualEffect("SPFLESHS",[2166.2031])
+		CreateVisualEffect("SPFLESHS",[2396.2027])
+		PlaySound("amthund")
+		Wait(1)
+		ForceSpell(Player1,CLERIC_ZONE_OF_SWEET_AIR)
+		CreateCreature("GorWom01",[2020.1832],SEE)  // Nalmissra
+		CreateCreature("GorWom02",[2520.1804],SWW)  // The Huntress
+		CreateCreature("GorWom03",[2054.1952],E)  // Y'tossi
+		CreateCreature("GorWom04",[2495.1931],W)  // Ameralis Zauviir
+		CreateCreature("GorWom05",[2166.2031],NE)  // Hive Mother
+		CreateCreature("GorWom06",[2396.2027],NWW)  // Xei Win Toh
+END
+
+IF
+	Global("IaSealWave","AR3019",2)
+	Dead("GorWom01")
+	Dead("GorWom02")
+	Dead("GorWom03")
+	Dead("GorWom04")
+	Dead("GorWom05")
+	Dead("GorWom06")
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaSealWave","AR3019",1)
+		Wait(6)
+		CreateVisualEffect("spraised",[2115.1597])
+		CreateVisualEffect("spraised",[2168.2067])
+		CreateVisualEffect("spraised",[2395.1598])
+		CreateVisualEffect("spraised",[2564.1846])
+		CreateVisualEffect("spraised",[2003.1847])
+		CreateVisualEffect("spraised",[2463.2061])
+		Wait(2)
+		ForceSpell(Player1,CLERIC_ZONE_OF_SWEET_AIR)
+		CreateCreature("GORGUA01",[2115.1597],W)  // Aurumach Rilmani
+		CreateCreature("GORGUA02",[2168.2067],W)  // Ferrumach Rilmani
+		CreateCreature("GORGUA02",[2395.1598],W)  // Ferrumach Rilmani
+		CreateCreature("GORGUA02",[2564.1846],W)  // Ferrumach Rilmani
+		CreateCreature("GORGUA02",[2003.1847],W)  // Ferrumach Rilmani
+		CreateCreature("GORGUA02",[2463.2061],W)  // Ferrumach Rilmani
+END
+
+IF
+	Global("IaSealWave","AR3019",3)
+	Dead("GORGUA01")
+	Global("IaWheelCanTurnFinalSeal","AR3019",0)
+THEN
+	RESPONSE #100
+		IncrementGlobal("IaWheelCanTurnFinalSeal","AR3019",1)
+		ReallyForceSpellRES("S!PCKET2",Player1)
+		RemoveAreaFlag(NOREST)
+		TriggerActivation("Tran3000",TRUE)
+		TriggerActivation("Tran3017",TRUE)
+		TriggerActivation("Tran3024",TRUE)
+		TriggerActivation("Tran3025",TRUE)
+		TriggerActivation("Tran3026",TRUE)
+		OpenDoor("DOOR01")
+		Unlock("DOOR01")
+		OpenDoor("DOOR02")
+		Unlock("DOOR02")
+		OpenDoor("DOOR03")
+		Unlock("DOOR03")
+END

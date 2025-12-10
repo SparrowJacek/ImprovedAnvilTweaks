@@ -4899,3 +4899,43 @@ COPY_EXISTING ~AR3021.BCS~ ~override~
   REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/old-wk4-illithid-rod.baf~ ~.../inlined/new-wk4-illithid-rod.baf~
   BUT_ONLY
 
+////////////////// Seals in WK level 5
+
+<<<<<<<< .../inlined/old-wk5-final-portal.baf
+IF
+	Global("SealOpen","AR3019",3)
+	Global("SealClosed","AR3019",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SealClosed","AR3019",2)
+		SetGlobal("WheelCanTurnFinalSeal","GLOBAL",1)
+		TriggerActivation("Pedestal1",FALSE)
+		TriggerActivation("Pedestal2",FALSE)
+		TriggerActivation("Pedestal3",FALSE)
+END
+>>>>>>>>
+<<<<<<<< .../inlined/new-wk5-final-portal.baf
+IF
+	Global("SealOpen","AR3019",3)
+	Global("SealClosed","AR3019",1)
+  Global("IaWheelCanTurnFinalSeal","AR3019",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SealClosed","AR3019",2)
+		SetGlobal("WheelCanTurnFinalSeal","GLOBAL",1)
+		TriggerActivation("Pedestal1",FALSE)
+		TriggerActivation("Pedestal2",FALSE)
+		TriggerActivation("Pedestal3",FALSE)
+END
+>>>>>>>>
+
+EXTEND_TOP ~AR3019.BCS~ ~IATweaks/scripts/patches/AR3019_seals.baf~
+
+COPY_EXISTING ~AR3019.BCS~ ~override~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/old-wk5-final-portal.baf~ ~.../inlined/new-wk5-final-portal.baf~
+  BUT_ONLY
+
+COMPILE ~IATweaks\scripts\others\ITFPEDA.baf~
+COMPILE ~IATweaks\scripts\others\ITFPEDB.baf~
+COMPILE ~IATweaks\scripts\others\ITFPEDC.baf~
+

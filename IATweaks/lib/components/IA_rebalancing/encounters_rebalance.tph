@@ -4939,3 +4939,552 @@ COMPILE ~IATweaks\scripts\others\ITFPEDA.baf~
 COMPILE ~IATweaks\scripts\others\ITFPEDB.baf~
 COMPILE ~IATweaks\scripts\others\ITFPEDC.baf~
 
+// The Huntress
+
+COPY_EXISTING ~GORWOM02.cre~ ~override~
+  WRITE_LONG 0x14 35000 // Exp
+  WRITE_SHORT 0x24 186 // HP
+  WRITE_SHORT 0x26 186 // HP
+  WRITE_BYTE 0x45 200 // Hide in Shadows
+  WRITE_SHORT 0x46 (0 - 12)// AC
+  WRITE_SHORT 0x48 (0 - 12) // AC
+  WRITE_BYTE 0x53 3  // APR
+  WRITE_BYTE 0x54 3  // Saves
+  WRITE_BYTE 0x55 5  // Saves
+  WRITE_BYTE 0x56 4  // Saves
+  WRITE_BYTE 0x57 4  // Saves
+  WRITE_BYTE 0x58 6  // Saves
+  WRITE_BYTE 0x5a 60 // Resist Cold
+  WRITE_BYTE 0x5b 60 // Resist Electricity
+  WRITE_BYTE 0x5c 60 // Resist Acid
+  WRITE_BYTE 0x5d 30 // Resist Magic
+  WRITE_BYTE 0x5f 60 // Resist Magic Cold
+  WRITE_BYTE 0x234 30 // Level 1
+  WRITE_BYTE 0x23c 22 // Dexterity
+  WRITE_BYTE 0x23d 20 // Constitution
+  WRITE_BYTE 0x241 1 // Racial Enemy = Human
+  WRITE_ASCII 0x248 ~S!HUNTRE~ #8
+  WRITE_ASCII 0x268 ~~ #8
+  WRITE_BYTE 0x273 12 // Class = Ranger
+
+  // +80 MDR
+  LPF ~ADD_CRE_EFFECT~ INT_VAR
+    opcode = 31
+    timing = 9
+    target = 1
+    parameter1 = 80
+    parameter2 = 0
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // normal Haste
+    INT_VAR
+      target = 1
+      opcode = 16
+      timing = 9
+  END
+    
+  LPF ~ALTER_EFFECT~ // ***** in Long Bows
+    INT_VAR
+      target = 1
+      match_opcode = 233
+      parameter1 = 5
+      match_parameter2 = 104
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // +3 movement speed
+    INT_VAR
+      opcode = 126
+      target = 1
+      parameter1 = 3
+      parameter2 = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 325
+      target = 1
+      parameter1 = 7
+      parameter2 = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // * in 2h Weapon
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 1
+      parameter2 = 111
+      resist_dispel = 0
+      timing = 9
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  // thac0 and damage bonuses to ranged
+  FOR (i=0; i<10; ++i) BEGIN
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 167
+        target = 1
+        parameter1 = 1
+        parameter2 = 0
+        timing = 9
+      STR_VAR
+        effsource = ~SPCL122~
+    END
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 286
+        target = 1
+        parameter1 = 1
+        parameter2 = 0
+        timing = 9
+      STR_VAR
+        effsource = ~SPCL122~
+    END
+  END
+
+  // permanent effects of Called Shot
+  PATCH_FOR_EACH called_shot_file IN ~ARCHMOV~ ~ARCHHIT~ ~ARCHSLOW~ ~ARCHSTUN~  BEGIN
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 249
+        target = 1
+        timing = 9
+      STR_VAR
+        resource = EVAL ~%called_shot_file%~
+    END
+  END
+  
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~PLAT16~
+  END
+  ADD_CRE_ITEM ~S!LEAT02~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~ARMOR~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_CRE_ITEM ~AROW01~ #80 #0 #0 ~UNSTEALABLE~ ~QUIVER3~ // Arrow
+  ADD_CRE_ITEM ~POTN10~ #3 #0 #0 ~UNSTEALABLE~ ~INV11~ // Potion of Invisibility
+  ADD_CRE_ITEM ~POTN55~ #2 #0 #0 ~UNSTEALABLE~ ~INV14~ // Superior Healing Potion
+  ADD_CRE_ITEM ~POTN37~ #0 #0 #0 ~UNSTEALABLE~ ~INV15~ // Oil of Resurgence
+
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 3 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 2 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL922~ #0 ~innate~ ( 1 ) // Contact with Nature
+
+COMPILE ~IATweaks\scripts\creatures\S!HUNTRE.BAF~
+
+// Xei Win Toh
+
+COPY_EXISTING ~GORWOM06.cre~ ~override~
+  WRITE_LONG 0x14 40000 // Exp
+  WRITE_SHORT 0x24 194 // HP
+  WRITE_SHORT 0x26 194 // HP
+  WRITE_SHORT 0x46 10 // AC
+  WRITE_SHORT 0x48 10 // AC
+  WRITE_BYTE 0x52 0 // Thac0
+  WRITE_BYTE 0x53 1  // APR
+  WRITE_BYTE 0x54 3  // Saves
+  WRITE_BYTE 0x55 5  // Saves
+  WRITE_BYTE 0x56 4  // Saves
+  WRITE_BYTE 0x57 4  // Saves
+  WRITE_BYTE 0x58 6  // Saves
+  WRITE_BYTE 0x59 40  // Fire Resistance
+  WRITE_BYTE 0x5a 60 // Resist Cold
+  WRITE_BYTE 0x5b 60 // Resist Electricity
+  WRITE_BYTE 0x5c 80 // Resist Acid
+  WRITE_BYTE 0x5e 40 // Magic Fire Resistance
+  WRITE_BYTE 0x5f 60 // Resist Magic Cold
+  WRITE_BYTE 0x60 50 // Resist Slashing
+  WRITE_BYTE 0x61 50 // Resist Crushing
+  WRITE_BYTE 0x62 50 // Resist Piercing
+  WRITE_BYTE 0x63 50 // Resist Missile
+  WRITE_BYTE 0x234 33 // Level 1
+  WRITE_BYTE 0x239 100 // Exceptional Strength
+  WRITE_BYTE 0x23d 20 // Constitution
+  WRITE_LONG 0x244 0x40030000 // Kit = Kensai
+  WRITE_ASCII 0x248 ~S!XEIWIN~ #8
+  WRITE_ASCII 0x268 ~~ #8
+
+  // +80 MDR
+  LPF ~ADD_CRE_EFFECT~ INT_VAR
+    opcode = 31
+    timing = 9
+    target = 1
+    parameter1 = 80
+    parameter2 = 0
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 325
+      target = 1
+      parameter1 = 7
+      parameter2 = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // +2 movement speed
+    INT_VAR
+      opcode = 126
+      target = 1
+      parameter1 = 2
+      parameter2 = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // normal Haste
+    INT_VAR
+      target = 1
+      opcode = 16
+      timing = 9
+  END
+
+  LPF ~ALTER_EFFECT~ // ***** in Bastard Swords
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 89
+      parameter1 = 5
+  END
+
+  LPF ~ALTER_EFFECT~ // *** in Dual Wield
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 111
+      parameter1 = 3
+      parameter2 = 114
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  // thac0 and damage bonuses to melee
+  FOR (i=0; i<11; ++i) BEGIN
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 285
+        target = 1
+        parameter1 = 1
+        parameter2 = 0
+        timing = 9
+      STR_VAR
+        effsource = ~SPCL141~
+    END
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 284
+        target = 1
+        parameter1 = 1
+        parameter2 = 0
+        timing = 9
+      STR_VAR
+        effsource = ~SPCL141~
+    END
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // AC
+    INT_VAR
+      opcode = 0
+      target = 1
+      parameter1 = 2
+      parameter2 = 0
+      resist_dispel = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL142~
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Weapon speed
+    INT_VAR
+      opcode = 190
+      target = 1
+      parameter1 = 7
+      parameter2 = 0
+      resist_dispel = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL143~
+  END
+
+  ADD_CRE_ITEM ~CLCK01~ #0 #0 #0 ~NONE~ ~CLOAK~
+  ADD_CRE_ITEM ~SW1H01~ #1 #0 #0 ~NONE~ ~INV9~ // Bastard sword
+  ADD_CRE_ITEM ~POTN37~ #1 #0 #0 ~NONE~ ~INV10~ // Oil of Resurgence
+  ADD_CRE_ITEM ~POTN11~ #2 #0 #0 ~NONE~ ~INV11~ // Potion of Invulnerability
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL144~ #0 ~innate~ ( 6 ) // Kai
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 3 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 2 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 3 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL903~ #0 ~innate~ ( 1 ) // Greater Deathblow
+
+COMPILE ~IATweaks\scripts\creatures\S!XEIWIN.BAF~
+
+COPY_EXISTING ~SHARARM.itm~ ~override~
+  WRITE_ASCII 0x22 ~~ #2 // no animation
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 0
+  END
+
+COPY_EXISTING ~SHARSWD.itm~ ~override~
+  LPF ~ALTER_ITEM_HEADER~
+    INT_VAR
+      range = 2
+      speed = 0
+  END
+
+// Nalmissra
+
+COPY_EXISTING ~GORWOM01.cre~ ~override~
+  WRITE_LONG 0x14 30000 // Exp
+  WRITE_SHORT 0x24 125 // HP
+  WRITE_SHORT 0x26 125 // HP
+  WRITE_BYTE 0x5b 25 // Resist Electricity
+  WRITE_BYTE 0x5d 25 // Resist Magic
+  WRITE_BYTE 0x60 50 // Resist Slashing
+  WRITE_BYTE 0x61 50 // Resist Crushing
+  WRITE_BYTE 0x62 50 // Resist Piercing
+  WRITE_BYTE 0x63 50 // Resist Missile
+  WRITE_BYTE 0x234 25 // Level 1
+  WRITE_ASCII 0x248 ~S!NALMIS~ #8
+  WRITE_ASCII 0x268 ~~ #8
+  WRITE_BYTE 0x273 1 // Class = Mage
+
+  LPF ~ALTER_EFFECT~ INT_VAR // lower Regeneration rate
+    match_opcode = 98
+    parameter1 = 1
+  END
+
+  // +75 MDR
+  LPF ~ADD_CRE_EFFECT~ INT_VAR
+    opcode = 31
+    timing = 9
+    target = 1
+    parameter1 = 75
+    parameter2 = 0
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 325
+      target = 1
+      parameter1 = 3
+      parameter2 = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // +2 movement speed
+    INT_VAR
+      opcode = 126
+      target = 1
+      parameter1 = 2
+      parameter2 = 0
+      timing = 9
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  PATCH_FOR_EACH race_id IN 1 185 2 138 4 2 199 142 110 6 161 3 5 7 111 112 162 122 113 143 131 153 129 154 BEGIN
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 100
+        target = 1
+        parameter1 = race_id
+        parameter2 = 4
+        timing = 9
+    END
+  END
+
+COMPILE ~IATweaks\scripts\creatures\S!NALMIS.BAF~
+
+// Y'tossi
+
+COPY_EXISTING ~GORWOM03.cre~ ~override~
+  WRITE_SHORT 0x24 234 // HP
+  WRITE_SHORT 0x26 234 // HP
+  WRITE_BYTE 0x52 0 // Thac0
+  WRITE_BYTE 0x54 3  // Saves
+  WRITE_BYTE 0x55 5  // Saves
+  WRITE_BYTE 0x56 4  // Saves
+  WRITE_BYTE 0x57 4  // Saves
+  WRITE_BYTE 0x58 6  // Saves
+  WRITE_BYTE 0x60 75 // Resist Slashing
+  WRITE_BYTE 0x61 75 // Resist Crushing
+  WRITE_BYTE 0x62 75 // Resist Piercing
+  WRITE_BYTE 0x63 75 // Resist Missile
+  WRITE_BYTE 0x234 25 // Level 1
+  WRITE_BYTE 0x239 100 // Exceptional Strength
+  WRITE_BYTE 0x23d 20 // Constitution
+
+  // +50 MDR
+  LPF ~ADD_CRE_EFFECT~ INT_VAR
+    opcode = 31
+    timing = 9
+    target = 1
+    parameter1 = 50
+    parameter2 = 0
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 325
+      target = 1
+      parameter1 = 4
+      parameter2 = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // +2 movement speed
+    INT_VAR
+      opcode = 126
+      target = 1
+      parameter1 = 2
+      parameter2 = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+// Hive Mother
+
+COPY_EXISTING ~GORWOM05.cre~ ~override~
+  WRITE_SHORT 0x24 240 // HP
+  WRITE_SHORT 0x26 240 // HP
+  WRITE_BYTE 0x60 65 // Resist Slashing
+  WRITE_BYTE 0x61 65 // Resist Crushing
+  WRITE_BYTE 0x62 65 // Resist Piercing
+  WRITE_BYTE 0x63 65 // Resist Missile
+  WRITE_BYTE 0x234 25 // Level 1
+  WRITE_BYTE 0x23d 20 // Constitution
+
+  // +50 MDR
+  LPF ~ADD_CRE_EFFECT~ INT_VAR
+    opcode = 31
+    timing = 9
+    target = 1
+    parameter1 = 50
+    parameter2 = 0
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 325
+      target = 1
+      parameter1 = 4
+      parameter2 = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // +2 movement speed
+    INT_VAR
+      opcode = 126
+      target = 1
+      parameter1 = 2
+      parameter2 = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Casting Speed
+    INT_VAR
+      target = 1
+      opcode = 189
+      parameter1 = 3
+      resist_dispel = 0
+      timing = 9
+  END
+

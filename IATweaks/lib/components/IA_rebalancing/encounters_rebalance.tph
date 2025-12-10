@@ -5488,3 +5488,397 @@ COPY_EXISTING ~GORWOM05.cre~ ~override~
       timing = 9
   END
 
+/////////// Rilmaani
+
+// 10% res for 3 seconds per each hit
+
+COPY ~IATweaks\resources\spl\s!rilm01.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_duration = 4
+      duration = 3
+  END
+
+// Ferrumach
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY bonus_vs_align BEGIN
+  18=>2
+  50=>2
+  19=>4
+  49=>4
+  33=>6
+  35=>6
+  17=>8
+  51=>8
+END
+
+COPY_EXISTING ~spini29.spl~ ~override/s!rilm02.spl~
+  SAY NAME1 @6293
+  LPF ~ALTER_SPELL_HEADER~
+    INT_VAR
+      projectile = 55
+  END
+
+COPY ~IATweaks\resources\spl\s!rilm03.spl~ ~override~
+  SAY NAME1 @6294
+
+COPY_EXISTING ~GORGUA02.cre~ ~override~
+  WRITE_LONG 0x14 25000 // Exp
+  WRITE_SHORT 0x24 200 // HP
+  WRITE_SHORT 0x26 200 // HP
+  WRITE_SHORT 0x46 THIS - 13 // AC
+  WRITE_SHORT 0x48 THIS - 13 // AC
+  WRITE_BYTE 0x52 0 // Thac0
+  WRITE_BYTE 0x53 1  // APR
+  WRITE_BYTE 0x54 3  // Saves
+  WRITE_BYTE 0x55 5  // Saves
+  WRITE_BYTE 0x56 4  // Saves
+  WRITE_BYTE 0x57 4  // Saves
+  WRITE_BYTE 0x58 6  // Saves
+  WRITE_BYTE 0x59 50  // Fire Resistance
+  WRITE_BYTE 0x5a 50 // Resist Cold
+  WRITE_BYTE 0x5c 75 // Resist Acid
+  WRITE_BYTE 0x5e 50 // Magic Fire Resistance
+  WRITE_BYTE 0x5f 50 // Resist Magic Cold
+  WRITE_BYTE 0x60 50 // Resist Slashing
+  WRITE_BYTE 0x61 50 // Resist Crushing
+  WRITE_BYTE 0x62 50 // Resist Piercing
+  WRITE_BYTE 0x63 50 // Resist Missile
+  WRITE_BYTE 0x234 28 // Level 1
+  WRITE_BYTE 0x238 19 // Strength
+  WRITE_BYTE 0x239 100 // Exceptional Strength
+  WRITE_BYTE 0x23c 19 // Dexterity
+  WRITE_BYTE 0x23d 20 // Constitution
+  WRITE_BYTE 0x240 0 // Morale Break
+  
+  LPF ~ADD_CRE_EFFECT~ // 100% poison res
+    INT_VAR
+      target = 1
+      opcode = 173
+      parameter1 = 100
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Casting Speed
+    INT_VAR
+      target = 1
+      opcode = 189
+      parameter1 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // +10 res when hit
+    INT_VAR
+      target = 1
+      opcode = 232
+      parameter1 = 0
+      parameter2 = 11
+      resist_dispel = 0
+      timing = 9
+    STR_VAR
+      resource = ~S!RILM01~
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // purge magic when die
+    INT_VAR
+      target = 1
+      opcode = 232
+      parameter1 = 1
+      parameter2 = 16
+      resist_dispel = 0
+      timing = 9
+    STR_VAR
+      resource = ~S!RILM02~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 325
+      target = 1
+      parameter1 = 7
+      parameter2 = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // normal Haste
+    INT_VAR
+      target = 1
+      opcode = 16
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // ***** in Halberds
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 5
+      parameter2 = 99
+      resist_dispel = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // *** in 2h weapons
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 3
+      parameter2 = 111
+      resist_dispel = 0
+      timing = 9
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  PHP_EACH bonus_vs_align AS align => align_bonus BEGIN
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        target = 1
+        opcode = 178
+        parameter1 = align
+        parameter2 = 8
+        resist_dispel = 0
+        timing = 9
+        special = align_bonus
+    END
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        target = 1
+        opcode = 179
+        parameter1 = align
+        parameter2 = 8
+        resist_dispel = 0
+        timing = 9
+        special = align_bonus
+    END
+  END
+
+  // Immunity to Fatigue
+  LPF ~ADD_CRE_EFFECT~ 
+    INT_VAR
+      opcode = 206
+      timing = 9
+      target = 1
+    STR_VAR
+      resource = ~SPCL321D~
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Immunity to Haste/Slow
+    INT_VAR
+      opcode = 146
+      target = 1
+      parameter2 = 1
+      timing = 9
+      resist_dispel = 0
+    STR_VAR
+      resource = ~SPWSL03~
+  END
+  
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~PLAT16~
+  END
+  
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~HALB02~
+  END
+
+  ADD_CRE_ITEM ~HALB05~ #0 #0 #0 ~IDENTIFIED&UNSTEALABLE&UNDROPPABLE~ ~WEAPON1~ EQUIP
+  ADD_CRE_ITEM ~HALB01~ #1 #0 #0 ~NONE~ ~WEAPON4~ // Halberd
+  ADD_CRE_ITEM ~POTN37~ #1 #0 #0 ~NONE~ ~INV10~ // Oil of Resurgence
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL321~ #0 ~innate~ ( 5 ) // Enrage
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 1 ) // Critical Strike
+
+COMPILE ~IATweaks\scripts\creatures\GORGUA02.BAF~
+
+// Aurumach
+
+COPY ~IATweaks\resources\spl\s!rilm04.spl~ ~override~
+
+COPY_EXISTING ~aurstaf.itm~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 232
+      parameter2 = 11
+    STR_VAR
+      match_resource = ~SPAURU~
+  END
+
+COPY_EXISTING ~GORGUA01.cre~ ~override~
+  WRITE_BYTE 0x10 THIS BOR 0b00010000 // original class = Fighter
+  WRITE_LONG 0x14 55000 // Exp
+  WRITE_SHORT 0x24 200 // HP
+  WRITE_SHORT 0x26 200 // HP
+  WRITE_BYTE 0x52 0 // Thac0
+  WRITE_BYTE 0x53 2  // APR
+  WRITE_BYTE 0x54 3  // Saves
+  WRITE_BYTE 0x55 5  // Saves
+  WRITE_BYTE 0x56 4  // Saves
+  WRITE_BYTE 0x57 4  // Saves
+  WRITE_BYTE 0x58 6  // Saves
+  WRITE_BYTE 0x59 100  // Fire Resistance
+  WRITE_BYTE 0x5a 100 // Resist Cold
+  WRITE_BYTE 0x5c 100 // Resist Acid
+  WRITE_BYTE 0x5e 100 // Magic Fire Resistance
+  WRITE_BYTE 0x5f 100 // Resist Magic Cold
+  WRITE_BYTE 0x60 100 // Resist Slashing
+  WRITE_BYTE 0x61 100 // Resist Crushing
+  WRITE_BYTE 0x62 100 // Resist Piercing
+  WRITE_BYTE 0x63 100 // Resist Missile
+  WRITE_BYTE 0x234 30 // Level 1
+  WRITE_BYTE 0x235 31 // Level 1
+  WRITE_BYTE 0x240 0 // Morale Break
+  WRITE_BYTE 0x273 7 // Class = Fighter/Mage
+
+  // -50 MDR
+  LPF ~ADD_CRE_EFFECT~ INT_VAR
+    opcode = 31
+    timing = 9
+    target = 1
+    parameter1 = 50
+    parameter2 = 0
+  END
+  LPF ~S!ALTER_EFFECT~ INT_VAR
+    match_opcode = 31
+    parameter1 = ~-50~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 325
+      target = 1
+      parameter1 = 6
+      parameter2 = 0
+      timing = 9
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // normal Haste
+    INT_VAR
+      target = 1
+      opcode = 16
+      timing = 9
+  END
+    
+  LPF ~ALTER_EFFECT~ // ***** in Staves
+    INT_VAR
+      match_opcode = 233
+      parameter1 = 5
+      match_parameter2 = 102
+  END
+    
+  LPF ~ADD_CRE_EFFECT~ // *** in 2h weapons
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 3
+      parameter2 = 111
+      resist_dispel = 0
+      timing = 9
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  PHP_EACH bonus_vs_align AS align => align_bonus BEGIN
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        target = 1
+        opcode = 178
+        parameter1 = align
+        parameter2 = 8
+        resist_dispel = 0
+        timing = 9
+        special = align_bonus
+    END
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        target = 1
+        opcode = 179
+        parameter1 = align
+        parameter2 = 8
+        resist_dispel = 0
+        timing = 9
+        special = align_bonus
+    END
+  END
+
+  // Immunity to Fatigue
+  LPF ~ADD_CRE_EFFECT~ 
+    INT_VAR
+      opcode = 206
+      timing = 9
+      target = 1
+    STR_VAR
+      resource = ~SPCL321D~
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Reflect damage
+    INT_VAR
+      opcode = 146
+      target = 1
+      parameter2 = 1
+      timing = 9
+      resist_dispel = 0
+    STR_VAR
+      resource = ~S!RILM04~
+  END
+
+  ADD_CRE_ITEM ~DRAGRING~ #1 #0 #0 ~NONE~ ~AMULET~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL321~ #0 ~innate~ ( 5 ) // Enrage
+
+COMPILE ~IATweaks\scripts\creatures\GORGUA01.BAF~

@@ -1065,7 +1065,7 @@ COPY ~IATweaks\resources\spl\s!mfbls1.spl~ ~override~
   END
   PATCH_FOR_EACH header_num IN 1 2 3 BEGIN
     SET min_level = (header_num + 3) * 5
-    SET dice_thrown = (header_num * 2) + 6
+    SET dice_thrown = (header_num * 2) + 4
     LPF ~S!CLONE_SPELL_HEADER~
       INT_VAR
         level_req = min_level
@@ -1086,7 +1086,7 @@ COPY ~IATweaks\resources\spl\s!mfbls2.spl~ ~override~
   END
   PATCH_FOR_EACH header_num IN 1 2 3 BEGIN
     SET min_level = (header_num + 3) * 5
-    SET dice_thrown = header_num + 3
+    SET dice_thrown = header_num + 2
     LPF ~S!CLONE_SPELL_HEADER~
       INT_VAR
         level_req = min_level

@@ -584,3 +584,11 @@ COMPILE ~IATweaks\scripts\controversial\S!RUNE1.baf~
 // Grandfather of Assassins
 
 COMPILE ~IATweaks\scripts\controversial\S!RUNEF.baf~
+
+// Saladrex
+
+COPY_EXISTING ~GORSAL.cre~ ~override~
+
+  ADD_MEMORIZED_SPELL ~SPIN692~ #0 ~innate~ ( 5 ) // Greater Silence
+
+COMPILE ~IATweaks\scripts\controversial\GORSAL.BAF~

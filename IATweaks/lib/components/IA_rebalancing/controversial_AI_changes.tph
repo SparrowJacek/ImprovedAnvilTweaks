@@ -618,3 +618,15 @@ COPY_EXISTING ~GROMNIR.cre~ ~override~
 
 COMPILE ~IATweaks\scripts\controversial\s!gromni.BAF~
 
+// Fire Giants
+
+ACTION_FOR_EACH elite_fire_giant_cre IN ~HGWAR02~ ~S!HGWAR~ BEGIN
+  COPY_EXISTING ~%elite_fire_giant_cre%.cre~ ~override~
+
+    ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+    ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+    ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 3 ) // Critical Strike
+    ADD_MEMORIZED_SPELL ~SPCL909~ #0 ~innate~ ( 1 ) // Smite
+END
+
+COMPILE ~IATweaks\scripts\controversial\s!egiant.BAF~

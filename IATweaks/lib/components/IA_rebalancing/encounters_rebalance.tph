@@ -4363,6 +4363,12 @@ COPY_EXISTING ~AR3017.BCS~ ~override~
 
 // Less Golems in WK level 4 and 5
 
+COPY_EXISTING ~s!mitgol.cre~ ~override/s!mitgo2.cre~
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~s!smisc~
+  END
+
 <<<<<<<< .../inlined/old-wk-golem-spawn-1.baf
 IF
 	AreaCheck("AR3017")
@@ -4411,13 +4417,14 @@ END
 >>>>>>>>
 <<<<<<<< .../inlined/new-wk-golem-spawn-2.baf
 IF
-	AreaCheck("AR3017")
+	AreaCheck("AR3019")
 	Global("Iareplace","LOCALS",0)
+	Global("Iaspyran3019","AR3019",1)
 THEN
 	RESPONSE #100
 		SetGlobal("Iareplace","LOCALS",1)
-		CreateCreatureObject("S!mitgol",Myself,0,0,0)
-		CreateCreatureObject("S!mitgol",Myself,0,0,0)
+		CreateCreatureObject("S!mitgo2",Myself,0,0,0)
+		CreateCreatureObject("S!mitgo2",Myself,0,0,0)
 		CreateCreatureObject("S!bonrnd",Myself,0,0,0)
 		CreateCreatureObject("S!bonrnd",Myself,0,0,0)
 		DestroySelf()

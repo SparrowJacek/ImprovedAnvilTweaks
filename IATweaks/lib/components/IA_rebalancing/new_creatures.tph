@@ -98,14 +98,14 @@ COPY ~IATweaks\resources\cre\s!dendr1.cre~ ~override~
 
 COMPILE ~IATweaks\scripts\creatures\S!DENDR1.BAF~
 
-COPY ~IATweaks\resources\cre\s!dendr1.cre~ ~override\s!woogo1.cre~
+COPY_EXISTING ~s!dendr1.cre~ ~override\s!woogo1.cre~
   WRITE_ASCII 0x280 ~S!WOOGO1~ #20
 
-COPY ~IATweaks\resources\cre\s!dendr1.cre~ ~override\s!woogo2.cre~
+COPY_EXISTING ~s!dendr1.cre~ ~override\s!woogo2.cre~
   WRITE_ASCII 0x280 ~S!WOOGO2~ #20
 
-COPY ~IATweaks\resources\cre\s!dendr1.cre~ ~override\s!woogo3.cre~
+COPY_EXISTING ~s!dendr1.cre~ ~override\s!woogo3.cre~
   WRITE_ASCII 0x280 ~S!WOOGO3~ #20
 
-COPY ~IATweaks\resources\cre\s!dendr1.cre~ ~override\s!woogo4.cre~
+COPY_EXISTING ~s!dendr1.cre~ ~override\s!woogo4.cre~
   WRITE_ASCII 0x280 ~S!WOOGO4~ #20

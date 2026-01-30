@@ -592,3 +592,12 @@ COPY_EXISTING ~GORSAL.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPIN692~ #0 ~innate~ ( 5 ) // Greater Silence
 
 COMPILE ~IATweaks\scripts\controversial\GORSAL.BAF~
+
+// Ancient Dragon
+
+COPY_EXISTING ~fsdragon.cre~ ~override~
+
+  ADD_MEMORIZED_SPELL ~SPIN692~ #0 ~innate~ ( 5 ) // Greater Silence
+
+COMPILE ~IATweaks\scripts\controversial\s!fsdrag.BAF~
+

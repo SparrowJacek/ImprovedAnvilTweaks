@@ -2669,23 +2669,6 @@ COPY_EXISTING ~AR1203.BCS~ ~override~
       ~DisplayStringNoName(Player1,%StrRef%)~
   END
 
-// // Flamestrike creature
-
-// COMPILE ~IATweaks\scripts\creatures\S!FLSTRK.BAF~
-// COPY_EXISTING ~s!firag1.cre~ ~override\s!flstrk.cre~
-//   WRITE_ASCII 0x248 ~S!FLSTRK~ #8
-//   WRITE_ASCII 0x280 ~S!FLSTRK~ #20
-// ADD_PROJECTILE ~IATweaks\resources\pro\s!flstrk.PRO~
-
-// COPY ~IATweaks\resources\bam\s!sumcir.bam~ ~override~
-// COPY ~IATweaks\resources\vvc\s!sumcir.vvc~ ~override~
-// COPY ~IATweaks\resources\spl\s!flstr1.spl~ ~override~
-// COPY ~IATweaks\resources\spl\s!flstrk.spl~ ~override~
-//   LPF ~ALTER_SPELL_HEADER~ 
-//     INT_VAR
-//       projectile = ~%s!flstrk%~
-//   END
-
 // Archer from Illithid Hideout
 
 COPY ~IATweaks\resources\cre\hlarch.cre~ ~override~
@@ -5882,3 +5865,70 @@ COPY_EXISTING ~GORGUA01.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPCL321~ #0 ~innate~ ( 5 ) // Enrage
 
 COMPILE ~IATweaks\scripts\creatures\GORGUA01.BAF~
+
+/////////// Ancient Dragon
+
+// Invisible Creature casting Flamestrike
+
+COPY ~IATweaks\resources\spl\s!flstrk.spl~ ~override~
+COPY ~IATweaks\resources\cre\s!flstrk.CRE~ ~override~
+  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_INVISIBLE~))
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!flstrk.PRO~
+
+COPY ~IATweaks\resources\bam\s!sumcir.bam~ ~override~
+COPY ~IATweaks\resources\vvc\s!sumcir.vvc~ ~override~
+COPY ~IATweaks\resources\spl\s!flstr1.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!flstrk.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      projectile = ~%s!flstrk%~
+  END
+
+COMPILE ~IATweaks\scripts\creatures\s!flstrk.BAF~
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!firest.PRO~
+
+COPY ~IATweaks\resources\spl\s!firest.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      projectile = ~%s!firest%~
+  END
+
+// Ancient Dragon Claw
+
+COPY_EXISTING ~s!dclaw.itm~ ~override~
+  LPF ~ALTER_ITEM_HEADER~
+    INT_VAR
+      range = 3
+      speed = 0
+  END
+
+COPY_EXISTING ~fsdragon.cre~ ~override~
+  WRITE_SHORT 0x24 550 // HP
+  WRITE_SHORT 0x26 550 // HP
+  WRITE_BYTE 0x59 125  // Fire Resistance
+  WRITE_BYTE 0x5e 125  // Magic Fire Resistance
+
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 206
+    STR_VAR
+      match_resource = ~spwi911~
+  END
+
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 206
+    STR_VAR
+      match_resource = ~spwi810~
+  END
+
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 206
+    STR_VAR
+      match_resource = ~sppr705~
+  END
+
+COMPILE ~IATweaks\scripts\creatures\s!fsdrag.BAF~

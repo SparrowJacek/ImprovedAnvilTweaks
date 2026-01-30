@@ -1,0 +1,5934 @@
+IF
+	Dead("FSDRAGON")
+THEN
+    RESPONSE #50
+		DestroySelf()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer0_0","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[764.1238])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_0","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer0_0","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[764.1238])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_0","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer0_0","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[764.1238])
+		Continue()
+    RESPONSE #750
+		SetGlobalTimerRandom("IaFireTimer0_0","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer1_0","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[823.1194])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_0","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer1_0","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[823.1194])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_0","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer1_0","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[823.1194])
+		Continue()
+    RESPONSE #749
+		SetGlobalTimerRandom("IaFireTimer1_0","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer2_0","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[882.1151])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_0","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer2_0","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[882.1151])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_0","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer2_0","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[882.1151])
+		Continue()
+    RESPONSE #748
+		SetGlobalTimerRandom("IaFireTimer2_0","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer3_0","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[942.1107])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_0","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer3_0","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[942.1107])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_0","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer3_0","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[942.1107])
+		Continue()
+    RESPONSE #747
+		SetGlobalTimerRandom("IaFireTimer3_0","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer4_0","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1001.1064])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_0","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer4_0","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1001.1064])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_0","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer4_0","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1001.1064])
+		Continue()
+    RESPONSE #746
+		SetGlobalTimerRandom("IaFireTimer4_0","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer5_0","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1061.1020])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_0","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer5_0","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1061.1020])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_0","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer5_0","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1061.1020])
+		Continue()
+    RESPONSE #745
+		SetGlobalTimerRandom("IaFireTimer5_0","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer6_0","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1120.977])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_0","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer6_0","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1120.977])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_0","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer6_0","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1120.977])
+		Continue()
+    RESPONSE #744
+		SetGlobalTimerRandom("IaFireTimer6_0","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer7_0","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1180.934])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_0","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer7_0","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1180.934])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_0","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer7_0","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_0","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1180.934])
+		Continue()
+    RESPONSE #743
+		SetGlobalTimerRandom("IaFireTimer7_0","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer0_1","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[829.1286])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_1","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer0_1","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[829.1286])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_1","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer0_1","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[829.1286])
+		Continue()
+    RESPONSE #750
+		SetGlobalTimerRandom("IaFireTimer0_1","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer1_1","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[888.1242])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_1","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer1_1","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[888.1242])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_1","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer1_1","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[888.1242])
+		Continue()
+    RESPONSE #749
+		SetGlobalTimerRandom("IaFireTimer1_1","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer2_1","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[947.1199])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_1","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer2_1","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[947.1199])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_1","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer2_1","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[947.1199])
+		Continue()
+    RESPONSE #748
+		SetGlobalTimerRandom("IaFireTimer2_1","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer3_1","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1007.1155])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_1","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer3_1","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1007.1155])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_1","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer3_1","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1007.1155])
+		Continue()
+    RESPONSE #747
+		SetGlobalTimerRandom("IaFireTimer3_1","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer4_1","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1066.1112])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_1","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer4_1","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1066.1112])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_1","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer4_1","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1066.1112])
+		Continue()
+    RESPONSE #746
+		SetGlobalTimerRandom("IaFireTimer4_1","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer5_1","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1126.1068])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_1","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer5_1","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1126.1068])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_1","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer5_1","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1126.1068])
+		Continue()
+    RESPONSE #745
+		SetGlobalTimerRandom("IaFireTimer5_1","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer6_1","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1185.1025])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_1","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer6_1","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1185.1025])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_1","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer6_1","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1185.1025])
+		Continue()
+    RESPONSE #744
+		SetGlobalTimerRandom("IaFireTimer6_1","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer7_1","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1245.982])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_1","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer7_1","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1245.982])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_1","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer7_1","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_1","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1245.982])
+		Continue()
+    RESPONSE #743
+		SetGlobalTimerRandom("IaFireTimer7_1","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer0_2","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[894.1334])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_2","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer0_2","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[894.1334])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_2","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer0_2","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[894.1334])
+		Continue()
+    RESPONSE #750
+		SetGlobalTimerRandom("IaFireTimer0_2","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer1_2","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[953.1290])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_2","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer1_2","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[953.1290])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_2","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer1_2","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[953.1290])
+		Continue()
+    RESPONSE #749
+		SetGlobalTimerRandom("IaFireTimer1_2","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer2_2","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1012.1247])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_2","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer2_2","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1012.1247])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_2","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer2_2","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1012.1247])
+		Continue()
+    RESPONSE #748
+		SetGlobalTimerRandom("IaFireTimer2_2","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer3_2","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1072.1203])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_2","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer3_2","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1072.1203])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_2","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer3_2","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1072.1203])
+		Continue()
+    RESPONSE #747
+		SetGlobalTimerRandom("IaFireTimer3_2","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer4_2","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1131.1160])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_2","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer4_2","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1131.1160])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_2","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer4_2","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1131.1160])
+		Continue()
+    RESPONSE #746
+		SetGlobalTimerRandom("IaFireTimer4_2","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer5_2","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1191.1116])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_2","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer5_2","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1191.1116])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_2","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer5_2","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1191.1116])
+		Continue()
+    RESPONSE #745
+		SetGlobalTimerRandom("IaFireTimer5_2","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer6_2","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1250.1073])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_2","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer6_2","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1250.1073])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_2","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer6_2","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1250.1073])
+		Continue()
+    RESPONSE #744
+		SetGlobalTimerRandom("IaFireTimer6_2","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer7_2","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1310.1030])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_2","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer7_2","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1310.1030])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_2","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer7_2","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_2","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1310.1030])
+		Continue()
+    RESPONSE #743
+		SetGlobalTimerRandom("IaFireTimer7_2","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer0_3","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[960.1382])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_3","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer0_3","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[960.1382])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_3","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer0_3","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[960.1382])
+		Continue()
+    RESPONSE #750
+		SetGlobalTimerRandom("IaFireTimer0_3","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer1_3","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1019.1338])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_3","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer1_3","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1019.1338])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_3","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer1_3","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1019.1338])
+		Continue()
+    RESPONSE #749
+		SetGlobalTimerRandom("IaFireTimer1_3","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer2_3","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1078.1295])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_3","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer2_3","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1078.1295])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_3","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer2_3","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1078.1295])
+		Continue()
+    RESPONSE #748
+		SetGlobalTimerRandom("IaFireTimer2_3","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer3_3","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1138.1251])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_3","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer3_3","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1138.1251])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_3","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer3_3","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1138.1251])
+		Continue()
+    RESPONSE #747
+		SetGlobalTimerRandom("IaFireTimer3_3","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer4_3","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1197.1208])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_3","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer4_3","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1197.1208])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_3","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer4_3","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1197.1208])
+		Continue()
+    RESPONSE #746
+		SetGlobalTimerRandom("IaFireTimer4_3","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer5_3","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1257.1164])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_3","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer5_3","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1257.1164])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_3","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer5_3","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1257.1164])
+		Continue()
+    RESPONSE #745
+		SetGlobalTimerRandom("IaFireTimer5_3","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer6_3","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1316.1121])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_3","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer6_3","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1316.1121])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_3","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer6_3","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1316.1121])
+		Continue()
+    RESPONSE #744
+		SetGlobalTimerRandom("IaFireTimer6_3","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer7_3","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1376.1078])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_3","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer7_3","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1376.1078])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_3","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer7_3","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_3","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1376.1078])
+		Continue()
+    RESPONSE #743
+		SetGlobalTimerRandom("IaFireTimer7_3","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer0_4","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1025.1430])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_4","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer0_4","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1025.1430])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_4","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer0_4","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1025.1430])
+		Continue()
+    RESPONSE #750
+		SetGlobalTimerRandom("IaFireTimer0_4","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer1_4","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1084.1386])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_4","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer1_4","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1084.1386])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_4","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer1_4","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1084.1386])
+		Continue()
+    RESPONSE #749
+		SetGlobalTimerRandom("IaFireTimer1_4","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer2_4","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1143.1343])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_4","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer2_4","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1143.1343])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_4","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer2_4","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1143.1343])
+		Continue()
+    RESPONSE #748
+		SetGlobalTimerRandom("IaFireTimer2_4","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer3_4","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1203.1299])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_4","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer3_4","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1203.1299])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_4","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer3_4","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1203.1299])
+		Continue()
+    RESPONSE #747
+		SetGlobalTimerRandom("IaFireTimer3_4","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer4_4","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1262.1256])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_4","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer4_4","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1262.1256])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_4","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer4_4","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1262.1256])
+		Continue()
+    RESPONSE #746
+		SetGlobalTimerRandom("IaFireTimer4_4","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer5_4","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1322.1212])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_4","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer5_4","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1322.1212])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_4","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer5_4","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1322.1212])
+		Continue()
+    RESPONSE #745
+		SetGlobalTimerRandom("IaFireTimer5_4","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer6_4","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1381.1169])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_4","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer6_4","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1381.1169])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_4","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer6_4","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1381.1169])
+		Continue()
+    RESPONSE #744
+		SetGlobalTimerRandom("IaFireTimer6_4","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer7_4","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1441.1126])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_4","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer7_4","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1441.1126])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_4","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer7_4","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_4","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1441.1126])
+		Continue()
+    RESPONSE #743
+		SetGlobalTimerRandom("IaFireTimer7_4","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer0_5","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1090.1478])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_5","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer0_5","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1090.1478])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_5","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer0_5","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1090.1478])
+		Continue()
+    RESPONSE #750
+		SetGlobalTimerRandom("IaFireTimer0_5","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer1_5","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1149.1434])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_5","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer1_5","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1149.1434])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_5","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer1_5","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1149.1434])
+		Continue()
+    RESPONSE #749
+		SetGlobalTimerRandom("IaFireTimer1_5","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer2_5","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1208.1391])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_5","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer2_5","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1208.1391])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_5","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer2_5","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1208.1391])
+		Continue()
+    RESPONSE #748
+		SetGlobalTimerRandom("IaFireTimer2_5","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer3_5","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1268.1347])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_5","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer3_5","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1268.1347])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_5","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer3_5","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1268.1347])
+		Continue()
+    RESPONSE #747
+		SetGlobalTimerRandom("IaFireTimer3_5","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer4_5","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1327.1304])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_5","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer4_5","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1327.1304])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_5","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer4_5","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1327.1304])
+		Continue()
+    RESPONSE #746
+		SetGlobalTimerRandom("IaFireTimer4_5","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer5_5","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1387.1260])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_5","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer5_5","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1387.1260])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_5","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer5_5","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1387.1260])
+		Continue()
+    RESPONSE #745
+		SetGlobalTimerRandom("IaFireTimer5_5","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer6_5","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1446.1217])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_5","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer6_5","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1446.1217])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_5","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer6_5","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1446.1217])
+		Continue()
+    RESPONSE #744
+		SetGlobalTimerRandom("IaFireTimer6_5","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer7_5","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1506.1174])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_5","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer7_5","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1506.1174])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_5","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer7_5","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_5","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1506.1174])
+		Continue()
+    RESPONSE #743
+		SetGlobalTimerRandom("IaFireTimer7_5","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer0_6","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1156.1526])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_6","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer0_6","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1156.1526])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_6","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer0_6","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1156.1526])
+		Continue()
+    RESPONSE #750
+		SetGlobalTimerRandom("IaFireTimer0_6","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer1_6","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1215.1482])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_6","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer1_6","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1215.1482])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_6","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer1_6","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1215.1482])
+		Continue()
+    RESPONSE #749
+		SetGlobalTimerRandom("IaFireTimer1_6","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer2_6","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1274.1439])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_6","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer2_6","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1274.1439])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_6","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer2_6","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1274.1439])
+		Continue()
+    RESPONSE #748
+		SetGlobalTimerRandom("IaFireTimer2_6","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer3_6","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1334.1395])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_6","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer3_6","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1334.1395])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_6","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer3_6","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1334.1395])
+		Continue()
+    RESPONSE #747
+		SetGlobalTimerRandom("IaFireTimer3_6","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer4_6","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1393.1352])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_6","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer4_6","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1393.1352])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_6","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer4_6","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1393.1352])
+		Continue()
+    RESPONSE #746
+		SetGlobalTimerRandom("IaFireTimer4_6","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer5_6","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1453.1308])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_6","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer5_6","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1453.1308])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_6","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer5_6","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1453.1308])
+		Continue()
+    RESPONSE #745
+		SetGlobalTimerRandom("IaFireTimer5_6","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer6_6","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1512.1265])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_6","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer6_6","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1512.1265])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_6","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer6_6","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1512.1265])
+		Continue()
+    RESPONSE #744
+		SetGlobalTimerRandom("IaFireTimer6_6","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer7_6","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1572.1222])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_6","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer7_6","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1572.1222])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_6","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer7_6","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_6","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1572.1222])
+		Continue()
+    RESPONSE #743
+		SetGlobalTimerRandom("IaFireTimer7_6","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer0_7","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1221.1574])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_7","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer0_7","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1221.1574])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_7","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer0_7","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1221.1574])
+		Continue()
+    RESPONSE #750
+		SetGlobalTimerRandom("IaFireTimer0_7","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer1_7","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1280.1530])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_7","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer1_7","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1280.1530])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_7","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer1_7","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1280.1530])
+		Continue()
+    RESPONSE #749
+		SetGlobalTimerRandom("IaFireTimer1_7","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer2_7","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1339.1487])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_7","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer2_7","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1339.1487])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_7","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer2_7","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1339.1487])
+		Continue()
+    RESPONSE #748
+		SetGlobalTimerRandom("IaFireTimer2_7","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer3_7","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1399.1443])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_7","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer3_7","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1399.1443])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_7","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer3_7","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1399.1443])
+		Continue()
+    RESPONSE #747
+		SetGlobalTimerRandom("IaFireTimer3_7","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer4_7","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1458.1400])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_7","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer4_7","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1458.1400])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_7","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer4_7","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1458.1400])
+		Continue()
+    RESPONSE #746
+		SetGlobalTimerRandom("IaFireTimer4_7","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer5_7","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1518.1356])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_7","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer5_7","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1518.1356])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_7","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer5_7","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1518.1356])
+		Continue()
+    RESPONSE #745
+		SetGlobalTimerRandom("IaFireTimer5_7","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer6_7","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1577.1313])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_7","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer6_7","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1577.1313])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_7","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer6_7","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1577.1313])
+		Continue()
+    RESPONSE #744
+		SetGlobalTimerRandom("IaFireTimer6_7","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer7_7","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1637.1270])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_7","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer7_7","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1637.1270])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_7","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer7_7","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_7","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1637.1270])
+		Continue()
+    RESPONSE #743
+		SetGlobalTimerRandom("IaFireTimer7_7","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer0_8","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1287.1622])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_8","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer0_8","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1287.1622])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_8","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer0_8","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1287.1622])
+		Continue()
+    RESPONSE #750
+		SetGlobalTimerRandom("IaFireTimer0_8","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer1_8","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1346.1578])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_8","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer1_8","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1346.1578])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_8","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer1_8","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1346.1578])
+		Continue()
+    RESPONSE #749
+		SetGlobalTimerRandom("IaFireTimer1_8","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer2_8","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1405.1535])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_8","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer2_8","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1405.1535])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_8","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer2_8","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1405.1535])
+		Continue()
+    RESPONSE #748
+		SetGlobalTimerRandom("IaFireTimer2_8","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer3_8","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1465.1491])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_8","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer3_8","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1465.1491])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_8","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer3_8","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1465.1491])
+		Continue()
+    RESPONSE #747
+		SetGlobalTimerRandom("IaFireTimer3_8","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer4_8","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1524.1448])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_8","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer4_8","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1524.1448])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_8","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer4_8","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1524.1448])
+		Continue()
+    RESPONSE #746
+		SetGlobalTimerRandom("IaFireTimer4_8","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer5_8","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1584.1404])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_8","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer5_8","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1584.1404])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_8","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer5_8","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1584.1404])
+		Continue()
+    RESPONSE #745
+		SetGlobalTimerRandom("IaFireTimer5_8","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer6_8","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1643.1361])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_8","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer6_8","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1643.1361])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_8","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer6_8","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1643.1361])
+		Continue()
+    RESPONSE #744
+		SetGlobalTimerRandom("IaFireTimer6_8","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer7_8","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1703.1318])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_8","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer7_8","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1703.1318])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_8","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer7_8","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_8","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1703.1318])
+		Continue()
+    RESPONSE #743
+		SetGlobalTimerRandom("IaFireTimer7_8","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer0_9","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1352.1670])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_9","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer0_9","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1352.1670])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_9","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer0_9","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1352.1670])
+		Continue()
+    RESPONSE #750
+		SetGlobalTimerRandom("IaFireTimer0_9","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer1_9","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1411.1626])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_9","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer1_9","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1411.1626])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_9","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer1_9","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1411.1626])
+		Continue()
+    RESPONSE #749
+		SetGlobalTimerRandom("IaFireTimer1_9","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer2_9","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1470.1583])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_9","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer2_9","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1470.1583])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_9","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer2_9","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1470.1583])
+		Continue()
+    RESPONSE #748
+		SetGlobalTimerRandom("IaFireTimer2_9","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer3_9","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1530.1539])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_9","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer3_9","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1530.1539])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_9","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer3_9","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1530.1539])
+		Continue()
+    RESPONSE #747
+		SetGlobalTimerRandom("IaFireTimer3_9","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer4_9","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1589.1496])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_9","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer4_9","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1589.1496])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_9","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer4_9","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1589.1496])
+		Continue()
+    RESPONSE #746
+		SetGlobalTimerRandom("IaFireTimer4_9","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer5_9","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1649.1452])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_9","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer5_9","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1649.1452])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_9","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer5_9","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1649.1452])
+		Continue()
+    RESPONSE #745
+		SetGlobalTimerRandom("IaFireTimer5_9","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer6_9","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1708.1409])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_9","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer6_9","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1708.1409])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_9","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer6_9","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1708.1409])
+		Continue()
+    RESPONSE #744
+		SetGlobalTimerRandom("IaFireTimer6_9","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer7_9","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1768.1366])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_9","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer7_9","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1768.1366])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_9","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer7_9","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_9","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1768.1366])
+		Continue()
+    RESPONSE #743
+		SetGlobalTimerRandom("IaFireTimer7_9","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer0_10","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1417.1718])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_10","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer0_10","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1417.1718])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_10","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer0_10","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1417.1718])
+		Continue()
+    RESPONSE #750
+		SetGlobalTimerRandom("IaFireTimer0_10","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer1_10","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1476.1674])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_10","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer1_10","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1476.1674])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_10","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer1_10","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1476.1674])
+		Continue()
+    RESPONSE #749
+		SetGlobalTimerRandom("IaFireTimer1_10","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer2_10","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1535.1631])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_10","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer2_10","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1535.1631])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_10","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer2_10","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1535.1631])
+		Continue()
+    RESPONSE #748
+		SetGlobalTimerRandom("IaFireTimer2_10","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer3_10","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1595.1587])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_10","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer3_10","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1595.1587])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_10","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer3_10","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1595.1587])
+		Continue()
+    RESPONSE #747
+		SetGlobalTimerRandom("IaFireTimer3_10","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer4_10","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1654.1544])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_10","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer4_10","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1654.1544])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_10","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer4_10","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1654.1544])
+		Continue()
+    RESPONSE #746
+		SetGlobalTimerRandom("IaFireTimer4_10","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer5_10","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1714.1500])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_10","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer5_10","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1714.1500])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_10","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer5_10","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1714.1500])
+		Continue()
+    RESPONSE #745
+		SetGlobalTimerRandom("IaFireTimer5_10","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer6_10","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1773.1457])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_10","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer6_10","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1773.1457])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_10","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer6_10","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1773.1457])
+		Continue()
+    RESPONSE #744
+		SetGlobalTimerRandom("IaFireTimer6_10","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer7_10","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1833.1414])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_10","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer7_10","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1833.1414])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_10","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer7_10","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_10","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1833.1414])
+		Continue()
+    RESPONSE #743
+		SetGlobalTimerRandom("IaFireTimer7_10","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer0_11","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1483.1766])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_11","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer0_11","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1483.1766])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_11","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer0_11","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1483.1766])
+		Continue()
+    RESPONSE #750
+		SetGlobalTimerRandom("IaFireTimer0_11","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer1_11","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1542.1722])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_11","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer1_11","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1542.1722])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_11","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer1_11","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1542.1722])
+		Continue()
+    RESPONSE #749
+		SetGlobalTimerRandom("IaFireTimer1_11","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer2_11","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1601.1679])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_11","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer2_11","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1601.1679])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_11","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer2_11","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1601.1679])
+		Continue()
+    RESPONSE #748
+		SetGlobalTimerRandom("IaFireTimer2_11","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer3_11","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1661.1635])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_11","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer3_11","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1661.1635])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_11","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer3_11","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1661.1635])
+		Continue()
+    RESPONSE #747
+		SetGlobalTimerRandom("IaFireTimer3_11","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer4_11","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1720.1592])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_11","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer4_11","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1720.1592])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_11","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer4_11","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1720.1592])
+		Continue()
+    RESPONSE #746
+		SetGlobalTimerRandom("IaFireTimer4_11","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer5_11","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1780.1548])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_11","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer5_11","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1780.1548])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_11","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer5_11","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1780.1548])
+		Continue()
+    RESPONSE #745
+		SetGlobalTimerRandom("IaFireTimer5_11","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer6_11","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1839.1505])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_11","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer6_11","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1839.1505])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_11","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer6_11","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1839.1505])
+		Continue()
+    RESPONSE #744
+		SetGlobalTimerRandom("IaFireTimer6_11","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer7_11","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1899.1462])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_11","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer7_11","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1899.1462])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_11","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer7_11","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_11","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1899.1462])
+		Continue()
+    RESPONSE #743
+		SetGlobalTimerRandom("IaFireTimer7_11","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer0_12","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1548.1814])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_12","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer0_12","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1548.1814])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_12","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer0_12","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1548.1814])
+		Continue()
+    RESPONSE #750
+		SetGlobalTimerRandom("IaFireTimer0_12","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer1_12","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1607.1770])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_12","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer1_12","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1607.1770])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_12","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer1_12","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1607.1770])
+		Continue()
+    RESPONSE #749
+		SetGlobalTimerRandom("IaFireTimer1_12","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer2_12","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1666.1727])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_12","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer2_12","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1666.1727])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_12","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer2_12","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1666.1727])
+		Continue()
+    RESPONSE #748
+		SetGlobalTimerRandom("IaFireTimer2_12","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer3_12","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1726.1683])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_12","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer3_12","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1726.1683])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_12","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer3_12","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1726.1683])
+		Continue()
+    RESPONSE #747
+		SetGlobalTimerRandom("IaFireTimer3_12","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer4_12","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1785.1640])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_12","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer4_12","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1785.1640])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_12","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer4_12","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1785.1640])
+		Continue()
+    RESPONSE #746
+		SetGlobalTimerRandom("IaFireTimer4_12","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer5_12","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1845.1596])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_12","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer5_12","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1845.1596])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_12","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer5_12","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1845.1596])
+		Continue()
+    RESPONSE #745
+		SetGlobalTimerRandom("IaFireTimer5_12","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer6_12","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1904.1553])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_12","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer6_12","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1904.1553])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_12","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer6_12","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1904.1553])
+		Continue()
+    RESPONSE #744
+		SetGlobalTimerRandom("IaFireTimer6_12","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer7_12","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1964.1510])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_12","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer7_12","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1964.1510])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_12","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer7_12","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_12","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1964.1510])
+		Continue()
+    RESPONSE #743
+		SetGlobalTimerRandom("IaFireTimer7_12","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer0_13","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1614.1862])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_13","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer0_13","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1614.1862])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_13","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer0_13","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1614.1862])
+		Continue()
+    RESPONSE #750
+		SetGlobalTimerRandom("IaFireTimer0_13","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer1_13","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1673.1818])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_13","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer1_13","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1673.1818])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_13","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer1_13","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1673.1818])
+		Continue()
+    RESPONSE #749
+		SetGlobalTimerRandom("IaFireTimer1_13","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer2_13","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1732.1775])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_13","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer2_13","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1732.1775])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_13","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer2_13","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1732.1775])
+		Continue()
+    RESPONSE #748
+		SetGlobalTimerRandom("IaFireTimer2_13","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer3_13","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1792.1731])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_13","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer3_13","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1792.1731])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_13","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer3_13","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1792.1731])
+		Continue()
+    RESPONSE #747
+		SetGlobalTimerRandom("IaFireTimer3_13","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer4_13","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1851.1688])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_13","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer4_13","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1851.1688])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_13","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer4_13","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1851.1688])
+		Continue()
+    RESPONSE #746
+		SetGlobalTimerRandom("IaFireTimer4_13","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer5_13","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1911.1644])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_13","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer5_13","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1911.1644])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_13","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer5_13","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1911.1644])
+		Continue()
+    RESPONSE #745
+		SetGlobalTimerRandom("IaFireTimer5_13","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer6_13","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1970.1601])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_13","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer6_13","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1970.1601])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_13","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer6_13","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1970.1601])
+		Continue()
+    RESPONSE #744
+		SetGlobalTimerRandom("IaFireTimer6_13","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer7_13","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2030.1558])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_13","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer7_13","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2030.1558])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_13","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer7_13","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_13","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2030.1558])
+		Continue()
+    RESPONSE #743
+		SetGlobalTimerRandom("IaFireTimer7_13","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer0_14","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1679.1910])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_14","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer0_14","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1679.1910])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_14","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer0_14","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1679.1910])
+		Continue()
+    RESPONSE #750
+		SetGlobalTimerRandom("IaFireTimer0_14","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer1_14","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1738.1866])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_14","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer1_14","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1738.1866])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_14","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer1_14","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1738.1866])
+		Continue()
+    RESPONSE #749
+		SetGlobalTimerRandom("IaFireTimer1_14","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer2_14","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1797.1823])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_14","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer2_14","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1797.1823])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_14","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer2_14","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1797.1823])
+		Continue()
+    RESPONSE #748
+		SetGlobalTimerRandom("IaFireTimer2_14","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer3_14","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1857.1779])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_14","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer3_14","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1857.1779])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_14","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer3_14","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1857.1779])
+		Continue()
+    RESPONSE #747
+		SetGlobalTimerRandom("IaFireTimer3_14","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer4_14","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1916.1736])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_14","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer4_14","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1916.1736])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_14","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer4_14","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1916.1736])
+		Continue()
+    RESPONSE #746
+		SetGlobalTimerRandom("IaFireTimer4_14","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer5_14","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1976.1692])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_14","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer5_14","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1976.1692])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_14","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer5_14","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1976.1692])
+		Continue()
+    RESPONSE #745
+		SetGlobalTimerRandom("IaFireTimer5_14","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer6_14","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2035.1649])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_14","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer6_14","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2035.1649])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_14","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer6_14","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2035.1649])
+		Continue()
+    RESPONSE #744
+		SetGlobalTimerRandom("IaFireTimer6_14","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer7_14","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2095.1606])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_14","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer7_14","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2095.1606])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_14","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer7_14","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_14","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2095.1606])
+		Continue()
+    RESPONSE #743
+		SetGlobalTimerRandom("IaFireTimer7_14","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer0_15","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1744.1958])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_15","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer0_15","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1744.1958])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_15","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer0_15","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1744.1958])
+		Continue()
+    RESPONSE #750
+		SetGlobalTimerRandom("IaFireTimer0_15","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer1_15","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1803.1914])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_15","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer1_15","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1803.1914])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_15","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer1_15","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1803.1914])
+		Continue()
+    RESPONSE #749
+		SetGlobalTimerRandom("IaFireTimer1_15","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer2_15","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1862.1871])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_15","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer2_15","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1862.1871])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_15","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer2_15","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1862.1871])
+		Continue()
+    RESPONSE #748
+		SetGlobalTimerRandom("IaFireTimer2_15","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer3_15","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1922.1827])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_15","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer3_15","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1922.1827])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_15","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer3_15","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1922.1827])
+		Continue()
+    RESPONSE #747
+		SetGlobalTimerRandom("IaFireTimer3_15","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer4_15","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1981.1784])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_15","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer4_15","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1981.1784])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_15","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer4_15","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1981.1784])
+		Continue()
+    RESPONSE #746
+		SetGlobalTimerRandom("IaFireTimer4_15","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer5_15","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2041.1740])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_15","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer5_15","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2041.1740])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_15","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer5_15","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2041.1740])
+		Continue()
+    RESPONSE #745
+		SetGlobalTimerRandom("IaFireTimer5_15","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer6_15","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2100.1697])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_15","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer6_15","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2100.1697])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_15","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer6_15","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2100.1697])
+		Continue()
+    RESPONSE #744
+		SetGlobalTimerRandom("IaFireTimer6_15","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer7_15","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2160.1654])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_15","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer7_15","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2160.1654])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_15","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer7_15","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_15","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2160.1654])
+		Continue()
+    RESPONSE #743
+		SetGlobalTimerRandom("IaFireTimer7_15","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer0_16","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1810.2006])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_16","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer0_16","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1810.2006])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_16","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer0_16","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1810.2006])
+		Continue()
+    RESPONSE #750
+		SetGlobalTimerRandom("IaFireTimer0_16","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer1_16","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1869.1962])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_16","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer1_16","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1869.1962])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_16","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer1_16","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1869.1962])
+		Continue()
+    RESPONSE #749
+		SetGlobalTimerRandom("IaFireTimer1_16","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer2_16","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1928.1919])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_16","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer2_16","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1928.1919])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_16","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer2_16","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1928.1919])
+		Continue()
+    RESPONSE #748
+		SetGlobalTimerRandom("IaFireTimer2_16","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer3_16","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1988.1875])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_16","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer3_16","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1988.1875])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_16","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer3_16","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1988.1875])
+		Continue()
+    RESPONSE #747
+		SetGlobalTimerRandom("IaFireTimer3_16","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer4_16","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2047.1832])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_16","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer4_16","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2047.1832])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_16","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer4_16","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2047.1832])
+		Continue()
+    RESPONSE #746
+		SetGlobalTimerRandom("IaFireTimer4_16","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer5_16","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2107.1788])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_16","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer5_16","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2107.1788])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_16","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer5_16","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2107.1788])
+		Continue()
+    RESPONSE #745
+		SetGlobalTimerRandom("IaFireTimer5_16","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer6_16","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2166.1745])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_16","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer6_16","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2166.1745])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_16","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer6_16","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2166.1745])
+		Continue()
+    RESPONSE #744
+		SetGlobalTimerRandom("IaFireTimer6_16","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer7_16","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2226.1702])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_16","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer7_16","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2226.1702])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_16","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer7_16","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_16","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2226.1702])
+		Continue()
+    RESPONSE #743
+		SetGlobalTimerRandom("IaFireTimer7_16","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer0_17","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1875.2054])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_17","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer0_17","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1875.2054])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_17","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer0_17","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1875.2054])
+		Continue()
+    RESPONSE #750
+		SetGlobalTimerRandom("IaFireTimer0_17","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer1_17","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1934.2010])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_17","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer1_17","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1934.2010])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_17","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer1_17","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1934.2010])
+		Continue()
+    RESPONSE #749
+		SetGlobalTimerRandom("IaFireTimer1_17","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer2_17","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1993.1967])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_17","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer2_17","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1993.1967])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_17","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer2_17","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1993.1967])
+		Continue()
+    RESPONSE #748
+		SetGlobalTimerRandom("IaFireTimer2_17","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer3_17","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2053.1923])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_17","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer3_17","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2053.1923])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_17","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer3_17","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2053.1923])
+		Continue()
+    RESPONSE #747
+		SetGlobalTimerRandom("IaFireTimer3_17","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer4_17","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2112.1880])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_17","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer4_17","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2112.1880])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_17","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer4_17","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2112.1880])
+		Continue()
+    RESPONSE #746
+		SetGlobalTimerRandom("IaFireTimer4_17","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer5_17","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2172.1836])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_17","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer5_17","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2172.1836])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_17","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer5_17","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2172.1836])
+		Continue()
+    RESPONSE #745
+		SetGlobalTimerRandom("IaFireTimer5_17","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer6_17","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2231.1793])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_17","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer6_17","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2231.1793])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_17","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer6_17","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2231.1793])
+		Continue()
+    RESPONSE #744
+		SetGlobalTimerRandom("IaFireTimer6_17","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer7_17","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2291.1750])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_17","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer7_17","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2291.1750])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_17","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer7_17","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_17","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2291.1750])
+		Continue()
+    RESPONSE #743
+		SetGlobalTimerRandom("IaFireTimer7_17","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer0_18","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1941.2103])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_18","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer0_18","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1941.2103])
+		Continue()
+    RESPONSE #850
+		SetGlobalTimerRandom("IaFireTimer0_18","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer0_18","AR3024")
+THEN
+    RESPONSE #50
+		SetGlobalTimer("IaFireTimer0_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[1941.2103])
+		Continue()
+    RESPONSE #750
+		SetGlobalTimerRandom("IaFireTimer0_18","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer1_18","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2000.2059])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_18","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer1_18","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2000.2059])
+		Continue()
+    RESPONSE #849
+		SetGlobalTimerRandom("IaFireTimer1_18","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer1_18","AR3024")
+THEN
+    RESPONSE #51
+		SetGlobalTimer("IaFireTimer1_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2000.2059])
+		Continue()
+    RESPONSE #749
+		SetGlobalTimerRandom("IaFireTimer1_18","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer2_18","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2059.2016])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_18","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer2_18","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2059.2016])
+		Continue()
+    RESPONSE #848
+		SetGlobalTimerRandom("IaFireTimer2_18","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer2_18","AR3024")
+THEN
+    RESPONSE #52
+		SetGlobalTimer("IaFireTimer2_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2059.2016])
+		Continue()
+    RESPONSE #748
+		SetGlobalTimerRandom("IaFireTimer2_18","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer3_18","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2119.1972])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_18","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer3_18","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2119.1972])
+		Continue()
+    RESPONSE #847
+		SetGlobalTimerRandom("IaFireTimer3_18","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer3_18","AR3024")
+THEN
+    RESPONSE #53
+		SetGlobalTimer("IaFireTimer3_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2119.1972])
+		Continue()
+    RESPONSE #747
+		SetGlobalTimerRandom("IaFireTimer3_18","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer4_18","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2178.1929])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_18","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer4_18","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2178.1929])
+		Continue()
+    RESPONSE #846
+		SetGlobalTimerRandom("IaFireTimer4_18","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer4_18","AR3024")
+THEN
+    RESPONSE #54
+		SetGlobalTimer("IaFireTimer4_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2178.1929])
+		Continue()
+    RESPONSE #746
+		SetGlobalTimerRandom("IaFireTimer4_18","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer5_18","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2238.1885])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_18","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer5_18","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2238.1885])
+		Continue()
+    RESPONSE #845
+		SetGlobalTimerRandom("IaFireTimer5_18","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer5_18","AR3024")
+THEN
+    RESPONSE #55
+		SetGlobalTimer("IaFireTimer5_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2238.1885])
+		Continue()
+    RESPONSE #745
+		SetGlobalTimerRandom("IaFireTimer5_18","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer6_18","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2297.1842])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_18","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer6_18","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2297.1842])
+		Continue()
+    RESPONSE #844
+		SetGlobalTimerRandom("IaFireTimer6_18","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer6_18","AR3024")
+THEN
+    RESPONSE #56
+		SetGlobalTimer("IaFireTimer6_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2297.1842])
+		Continue()
+    RESPONSE #744
+		SetGlobalTimerRandom("IaFireTimer6_18","AR3024",1,3)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",0)
+    !GlobalTimerNotExpired("IaFireTimer7_18","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2357.1799])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_18","AR3024",3,5)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",1)
+    !GlobalTimerNotExpired("IaFireTimer7_18","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2357.1799])
+		Continue()
+    RESPONSE #843
+		SetGlobalTimerRandom("IaFireTimer7_18","AR3024",2,4)
+		Continue()
+END
+
+IF
+    Global("IaAncientDragonFight","AR3024",2)
+    !GlobalTimerNotExpired("IaFireTimer7_18","AR3024")
+THEN
+    RESPONSE #57
+		SetGlobalTimer("IaFireTimer7_18","AR3024",ONE_ROUND)
+		ReallyForceSpellPointRES("S!FLSTR1",[2357.1799])
+		Continue()
+    RESPONSE #743
+		SetGlobalTimerRandom("IaFireTimer7_18","AR3024",1,3)
+		Continue()
+END

@@ -1,0 +1,34 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("S!NYALEE")  // Nyalee
+		SmallWait(12)
+		ReallyForceSpellRES("S!CLRFOG",Myself)  // No such index
+		MoveViewObject(Myself,INSTANT)
+		Face(S)
+		FadeFromColor([10.0],0)
+		CreateCreature("S!YAGAOL",[1533.1406],N)  // Yaga-Shura
+		ActionOverride("s!yagaolder",MoveToPoint([1093.1138]))
+		Wait(5)
+		ActionOverride("s!yagaolder",Face(NNW))
+		Face(S)
+		Wait(1)
+		DisplayStringHead(Myself,@5164)  // I hardly know you, boy. You return with blood on your body and violence in your eyes.
+		Wait(6)
+		ActionOverride("s!yagaolder",DisplayStringHead(Myself,@5165))  // The weak fall. Strength is all that matters.
+		Wait(5)
+		DisplayStringHead(Myself,@5166)  // (Lifts both hands helplessly) This is not what I taught you...
+		Wait(5)
+		ActionOverride("s!yagaolder",DisplayStringHead(Myself,@5167))  // Then perhaps I outgrew your lessons, "mother".
+		Wait(5)
+		ActionOverride("s!yagaolder",MoveToPoint([1533.1406]))
+		DisplayStringHead(Myself,@5168)  // (A single tear falls down Nyalee's cheek, but she says nothing)
+		Wait(3)
+		FadeToColor([10.0],0)
+		SmallWait(12)
+		ActionOverride("s!yagaolder",DestroySelf())
+		ReallyForceSpellRES("S!CLRFO2",Myself)  // No such index
+		StartCutScene("s!nyal00")
+END
+

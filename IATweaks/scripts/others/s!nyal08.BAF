@@ -1,0 +1,39 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("S!NYALEE")  // Nyalee
+		SmallWait(12)
+		ReallyForceSpellRES("S!CLRFOG",Myself)  // No such index
+		MoveViewObject(Myself,INSTANT)
+		FadeFromColor([15.0],0)
+		SetSequence(SEQ_DIE)
+		CreateCreatureEffect("S!YAGAOL","SPPORTAL",[1180.920],SWW)  // Yaga-Shura
+		ActionOverride("s!yagaolder",DisplayStringHead(Myself,@5169))  // (A version of Yaga-Shura appears, but his aura is different, more noble)
+		Wait(6)
+		ActionOverride("s!yagaolder",DisplayStringHead(Myself,@5170))  // (Gently) My heritage was mine to bear, not yours to fear.
+		Wait(6)
+		DisplayStringHead(Myself,@5171)  // Nyalee feared everything, boy... Feared losing you... feared keeping you... Feared the world... and herself most of all...
+		Wait(8)
+		ActionOverride("s!yagaolder",DisplayStringHead(Myself,@5172))  // You carried me as best you could.
+		Wait(3)
+		DisplayStringHead(Myself,@5173)  // No... Nyalee carried only her madness... Fed it to you like milk... Made you strong, aye... but hollow...
+		Wait(7)
+		ActionOverride("s!yagaolder",DisplayStringHead(Myself,@5174))  // You gave me more than my heritage ever did.
+		Wait(3)
+		DisplayStringHead(Myself,@5175)  // (bare whisper) It's too late now... Nyalee is so tired... My boy... My sweet boy...
+		Wait(3)
+		ActionOverride("s!yagaolder",MoveToPoint([1029.1025]))
+		Wait(3)
+		ActionOverride("s!yagaolder",Face(N))
+		ActionOverride("s!yagaolder",SetSequence(SEQ_DIE))
+		Wait(2)
+		ActionOverride("s!yagaolder",DisplayStringHead(Myself,@5176))  // Rest now, Mother. I'm here, right next to you.
+		Wait(5)
+		FadeToColor([10.0],0)
+		SmallWait(12)
+		ActionOverride("s!yagaolder",DestroySelf())
+		ReallyForceSpellRES("S!CLRFO2",Myself)  // No such index
+		StartCutScene("s!nyal00")
+END
+

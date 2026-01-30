@@ -1,0 +1,37 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("S!NYALEE")  // Nyalee
+		SmallWait(12)
+		ReallyForceSpellRES("S!CLRFOG",Myself)  // No such index
+		SetSequence(SEQ_DIE)
+		MoveViewObject(Myself,INSTANT)
+		FadeFromColor([12.0],0)
+		CreateCreatureEffect("S!YAGAYO","SPPORTAL",[900.1048],N)  // Yaga-Shura
+		Wait(3)
+		ActionOverride("s!yagayoung",MoveToObject("S!NYALEE"))  // Nyalee
+		Wait(3)
+		ActionOverride("s!yagayoung",DisplayStringHead(Myself,@5159))  // Mother? Mother, wake up... please wake up. You... you always wake up.
+		Wait(6)
+		ActionOverride("s!yagayoung",DisplayStringHead(Myself,@5160))  // You said you wouldn't leave me. You promised. You said I was chosen... your strong boy... your good boy... (He shakes her shoulder with clumsy, oversized hands)
+		Wait(3)
+		ActionOverride("s!yagayoung",Swing())
+		Wait(1)
+		ActionOverride("s!yagayoung",Swing())
+		Wait(6)
+		ActionOverride("s!yagayoung",DisplayStringHead(Myself,@5161))  // (His voice cracks) Don't leave me alone again! I'll be a good boy! I'll listen! Just— just... open your eyes, Mother... please...
+		Wait(8)
+		DisplayStringHead(Myself,@5162)  // (whispering, distant) ...My boy...
+		Wait(6)
+		ActionOverride("s!yagayoung",DisplayStringHead(Myself,@5163))  // (relief flooding him) Mother!
+		Wait(3)
+		FadeToColor([10.0],0)
+		SmallWait(12)
+		SetSequence(SEQ_AWAKE)
+		ActionOverride("s!yagayoung",DestroySelf())
+		SmallWait(6)
+		ReallyForceSpellRES("S!CLRFO2",Myself)  // No such index
+		StartCutScene("s!nyal00")
+END
+

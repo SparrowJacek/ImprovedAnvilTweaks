@@ -1,0 +1,18 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player1)
+		StorePartyLocations()
+		FadeToColor([10.0],0)
+		Wait(1)
+		LeaveAreaLUAPanic("ARIANY","",[2520.1860],NW)
+		LeaveAreaLUA("ARIANY","",[2520.1860],NW)
+		ActionOverride(Player2,LeaveAreaLUA("ARIANY","",[2520.1860],SW))
+		ActionOverride(Player3,LeaveAreaLUA("ARIANY","",[2520.1860],SE))
+		ActionOverride(Player4,LeaveAreaLUA("ARIANY","",[2520.1860],S))
+		ActionOverride(Player5,LeaveAreaLUA("ARIANY","",[2520.1860],W))
+		ActionOverride(Player6,LeaveAreaLUA("ARIANY","",[2520.1860],SW))
+		StartCutScene("s!nyal08")
+END
+

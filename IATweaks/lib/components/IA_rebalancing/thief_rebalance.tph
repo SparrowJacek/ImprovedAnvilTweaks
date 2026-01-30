@@ -3563,7 +3563,7 @@ COPY_EXISTING ~HLASSA.cre~ ~override~
       target = 1
       opcode = 233
       parameter2 = 96
-      parameter1 = 5
+      parameter1 = 2
       resist_dispel = 0
       timing = 9
   END
@@ -3572,7 +3572,7 @@ COPY_EXISTING ~HLASSA.cre~ ~override~
     INT_VAR
       target = 1
       opcode = 233
-      parameter1 = 5
+      parameter1 = 2
       parameter2 = 113
       resist_dispel = 0
       timing = 9

@@ -3918,6 +3918,22 @@ COPY_EXISTING ~GAROCK.cre~ ~override/S!BAROCK.cre~
   WRITE_ASCII 0x2cc ~~ #8
   WRITE_BYTE 0x272 171 // Race = Minotaur
 
+  LPF ~ADD_CRE_EFFECT~ // Bonus damage
+    INT_VAR
+      target = 1
+      opcode = 73
+      parameter1 = 6
+      parameter2 = 0
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~S!ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 73
+      parameter1 = ~-4~
+  END
+
   // Immunity to Whirlwind pull
   LPF ~ADD_CRE_EFFECT~ 
     INT_VAR

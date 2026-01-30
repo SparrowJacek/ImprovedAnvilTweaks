@@ -349,3 +349,24 @@ END
 COPY ~IATweaks\resources\bam\animations\treant~ ~override~
 
 COPY ~IATweaks\resources\wav\sod_treant~ ~override~
+
+// Small Fire Giant (scale=0.5)
+// INI not included in BG2EE
+// resref: S!YS
+// requires patching during mod install because of dynamic allocation
+// WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_YAGA_SMALL~))
+
+LAF FIND_FREE_ANIM_SLOT INT_VAR slotMin = 0x7000 slotMax = 0x7fff RET slot END
+ACTION_IF (slot <= 0) BEGIN
+  FAIL ~No free creature animation slot found.~
+END
+
+LAF TO_HEX_NUMBER INT_VAR value = slot minDigits = 4 RET hexNumber END
+APPEND ~animate.ids~ ~0x%hexNumber% ANVIL_YAGA_SMALL~ UNLESS ~ANVIL_YAGA_SMALL~
+CLEAR_IDS_MAP
+
+COPY ~IATweaks\resources\ini\young_yaga_shura.INI~ ~override\%hexNumber%.ini~
+
+ACTION_IF (NOT FILE_EXISTS_IN_GAME ~s!ysa1.BAM~) BEGIN
+	COPY ~IATweaks\resources\bam\animations\young_yaga_shura~ ~override~
+END

@@ -601,3 +601,20 @@ COPY_EXISTING ~fsdragon.cre~ ~override~
 
 COMPILE ~IATweaks\scripts\controversial\s!fsdrag.BAF~
 
+// Gromnir
+
+COPY_EXISTING ~GROMNIR.cre~ ~override~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL152~ #0 ~innate~ ( 6 ) // Barbarian Rage
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 4 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 2 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 3 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL908~ #0 ~innate~ ( 1 ) // War Cry
+  ADD_MEMORIZED_SPELL ~SPCL909~ #0 ~innate~ ( 1 ) // Smite
+
+COMPILE ~IATweaks\scripts\controversial\s!gromni.BAF~
+

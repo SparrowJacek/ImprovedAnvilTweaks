@@ -6086,3 +6086,67 @@ COPY_EXISTING ~zilarc01.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPCL922~ #0 ~innate~ ( 1 ) // Contact with Nature
 
 COMPILE ~IATweaks\scripts\creatures\S!ZILARC.BAF~
+
+// Make Skeleton Grandlord appear more often in Illasera Fight
+
+<<<<<<<< .../inlined/old-ar4000.baf
+IF
+	Global("Iaskelgrs","AR4000",1)
+	GlobalLT("Iaskelgated","AR4000",9)
+	OR(2)
+		GlobalGT("Iabeltplace","GLOBAL",0)
+		XPGT(Player1,2999999)
+	!GlobalTimerNotExpired("Iasgrlords","AR4000")
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaskelgated","AR4000",1)
+		SetGlobalTimer("Iasgrlords","AR4000",9)
+		CreateCreature("S!skelgr",[2470.1516],NWW)
+END
+
+IF
+	Global("Iaskelgrs","AR4000",1)
+	GlobalLT("Iaskelgated","AR4000",9)
+	Global("Iabeltplace","GLOBAL",0)
+	XPLT(Player1,3000000)
+	!GlobalTimerNotExpired("Iasgrlords","AR4000")
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaskelgated","AR4000",1)
+		SetGlobalTimer("Iasgrlords","AR4000",9)
+		CreateCreature("S!skels",[2470.1516],NWW)
+END
+>>>>>>>>
+<<<<<<<< .../inlined/new-ar4000.baf
+IF
+	Global("Iaskelgrs","AR4000",1)
+	GlobalLT("Iaskelgated","AR4000",9)
+	OR(2)
+		GlobalGT("Iabeltplace","GLOBAL",0)
+		XPGT(Player1,2999999)
+	!GlobalTimerNotExpired("Iasgrlords","AR4000")
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaskelgated","AR4000",1)
+		SetGlobalTimer("Iasgrlords","AR4000",3)
+		CreateCreature("S!skelgr",[2470.1516],NWW)
+END
+
+IF
+	Global("Iaskelgrs","AR4000",1)
+	GlobalLT("Iaskelgated","AR4000",9)
+	Global("Iabeltplace","GLOBAL",0)
+	XPLT(Player1,3000000)
+	!GlobalTimerNotExpired("Iasgrlords","AR4000")
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaskelgated","AR4000",1)
+		SetGlobalTimer("Iasgrlords","AR4000",6)
+		CreateCreature("S!skels",[2470.1516],NWW)
+END
+>>>>>>>>
+
+COPY_EXISTING ~AR4000.BCS~ ~override~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/old-ar4000.baf~ ~.../inlined/new-ar4000.baf~
+  BUT_ONLY
+

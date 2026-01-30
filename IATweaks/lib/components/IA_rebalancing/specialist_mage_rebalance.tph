@@ -120,6 +120,16 @@ LAF ~S!ADD_SPLPROT_2DA_ENTRY~
     kit_equals_row = new_line_number
 END
 
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~KIT!=n~
+    stat                  = ~152~
+    value                 = ~-1~
+    relation              = ~5~
+  RET
+    kit_not_equals_row = new_line_number
+END
+
 // Add proper CLAB file if it does not exist
 
 ACTION_FOR_EACH mage_kit_clab_file IN ~CLABMA01.2da~ ~CLABMA02.2da~ ~CLABMA03.2da~ ~CLABMA04.2da~ ~CLABMA05.2da~ ~CLABMA06.2da~ ~CLABMA07.2da~ ~CLABMA08.2da~ ~CLABMA09.2da~ BEGIN
@@ -572,7 +582,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.spl~ ~override~
 
   BUT_ONLY
 
-// Make PFMW/AI grant immunity to Swanmay Wing Swings
+// Make PFMW/AI grant immunity to Swanmay Wing Swings and Garock spin
 
 ACTION_FOR_EACH pfmw_type_spell IN ~SPWI611~ ~SPWI808~ ~SPWI907~ BEGIN
   COPY_EXISTING ~%pfmw_type_spell%.spl~ ~override~
@@ -599,6 +609,14 @@ ACTION_FOR_EACH pfmw_type_spell IN ~SPWI611~ ~SPWI808~ ~SPWI907~ BEGIN
         match_opcode = 206
       STR_VAR
         resource = ~SPWII36~
+    END
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        silent = 1
+        multi_match = 1
+        match_opcode = 206
+      STR_VAR
+        resource = ~S!WHRWND~
     END
 END
 
@@ -1502,16 +1520,6 @@ END
 ////// Illusionist ////////
 
 // Mirror Image
-
-LAF ~S!ADD_SPLPROT_2DA_ENTRY~
-  STR_VAR
-    condition_description = ~KIT!=n~
-    stat                  = ~152~
-    value                 = ~-1~
-    relation              = ~5~
-  RET
-    kit_not_equals_row = new_line_number
-END
 
 COPY_EXISTING ~spwi212.spl~ ~override~
   LPF ~CLONE_EFFECT~

@@ -4063,3 +4063,189 @@ COPY_EXISTING ~S!RUNEF.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
 
 COMPILE ~IATweaks\scripts\creatures\S!RUNEF.baf~
+
+// Illasera
+
+COPY ~IATweaks\resources\itm\s!illase.itm~ ~override~
+
+COPY_EXISTING ~ILLASERA.cre~ ~override~
+  WRITE_LONG 0x14 55000 // Exp
+  WRITE_SHORT 0x24 192 // HP
+  WRITE_SHORT 0x26 192 // HP
+  WRITE_BYTE 0x45 200 // Hide in Shadows
+  WRITE_BYTE 0x53 4  // APR
+  WRITE_BYTE 0x64 0 // Detect Illusions
+  WRITE_BYTE 0x65 0 // Set Traps
+  WRITE_BYTE 0x67 0 // Pick Locks
+  WRITE_BYTE 0x68 150 // Stealth Strike
+  WRITE_BYTE 0x69 0 // Find Traps
+  WRITE_BYTE 0x6a 100 // Pick Pockets
+  WRITE_BYTE 0x23c 22 // Dexterity
+  WRITE_BYTE 0x23d 17 // Constitution
+  WRITE_BYTE 0x234 28 // 1st Class Level
+  WRITE_BYTE 0x235 29 // 2nd Class Level
+    
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 263
+  END
+    
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 193
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Permanent Alacrity
+    INT_VAR
+      target = 1
+      opcode = 188
+      parameter1 = 0
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // *** in Single Weapon Style
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 3
+      parameter2 = 113
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // +15 movement speed
+    INT_VAR
+      opcode = 126
+      target = 1
+      parameter1 = 15
+      parameter2 = 0
+      timing = 9
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // All saving throws
+    INT_VAR
+      opcode = 325
+      target = 1
+      parameter1 = 5
+      parameter2 = 0
+      timing = 9
+  END
+
+  PATCH_FOR_EACH poison_weapon_eff IN ~SPCL422~ ~SPCL422A~ ~SPCL422B~ BEGIN
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        target = 1
+        opcode = 248
+        parameter2 = 1
+        resist_dispel = 0
+        timing = 9
+      STR_VAR
+        resource = EVAL ~%poison_weapon_eff%~
+    END
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        target = 1
+        opcode = 249
+        parameter2 = 1
+        resist_dispel = 0
+        timing = 9
+      STR_VAR
+        resource = EVAL ~%poison_weapon_eff%~
+    END
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 73
+      target = 1
+      parameter1 = 1
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL421~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 278
+      target = 1
+      parameter1 = 1
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL421~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 59
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40SS~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 275
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40HIS~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 144
+      target = 1
+      timing = 9
+    STR_VAR
+      effsource = ~S!DISSTE~
+  END
+
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 16
+      parameter2 = 1
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~SW1H75~
+  END
+
+  ADD_CRE_ITEM ~S!ILLASE~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~WEAPON1~ EQUIP
+  ADD_CRE_ITEM ~SW1H43~ #0 #0 #0 ~UNSTEALABLE~ ~WEAPON3~
+  ADD_CRE_ITEM ~SW1H75~ #0 #0 #0 ~UNSTEALABLE~ ~INV10~
+  ADD_CRE_ITEM ~SCRL7M~ #2 #0 #0 ~UNSTEALABLE~ ~INV11~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~S!GGRACE~ #0 ~innate~ ( 2 ) // Ghost's Grace
+  ADD_MEMORIZED_SPELL ~SPCL914~ #0 ~innate~ ( 3 ) // Greater Evasion
+  ADD_MEMORIZED_SPELL ~SPCL916~ #0 ~innate~ ( 2 ) // Assassination
+  ADD_MEMORIZED_SPELL ~SPCL917~ #0 ~innate~ ( 3 ) // Avoid Death
+
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 2 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 3 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+
+COMPILE ~IATweaks\scripts\creatures\ILLASERA.baf~
+

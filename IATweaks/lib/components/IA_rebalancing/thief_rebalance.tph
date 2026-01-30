@@ -4249,3 +4249,141 @@ COPY_EXISTING ~ILLASERA.cre~ ~override~
 
 COMPILE ~IATweaks\scripts\creatures\ILLASERA.baf~
 
+// Eler Had from Gromnir Fight
+
+COPY_EXISTING ~GROMG09.cre~ ~override~
+  WRITE_LONG 0x14 30000 // Exp
+  WRITE_SHORT 0x24 134 // HP
+  WRITE_SHORT 0x26 134 // HP
+  WRITE_BYTE 0x45 160 // Hide in Shadows
+  WRITE_BYTE 0x52 0 // Thac0
+  WRITE_BYTE 0x53 7  // 1,5 APR
+  WRITE_BYTE 0x54 8 // Saves
+  WRITE_BYTE 0x55 4 // Saves
+  WRITE_BYTE 0x56 7 // Saves
+  WRITE_BYTE 0x57 11 // Saves
+  WRITE_BYTE 0x58 5 // Saves
+  WRITE_BYTE 0x64 0 // Detect Illusions
+  WRITE_BYTE 0x65 0 // Set Traps
+  WRITE_BYTE 0x67 0 // Pick Locks
+  WRITE_BYTE 0x68 160 // Stealth Strike
+  WRITE_BYTE 0x69 0 // Find Traps
+  WRITE_BYTE 0x6a 15 // Pick Pockets
+  WRITE_BYTE 0x234 32 // 1st Class Level
+  WRITE_BYTE 0x235 1 // 2nd Class Level
+  WRITE_BYTE 0x23c 21 // Dexterity
+  WRITE_LONG 0x244 0x400a0000 // Kit = Assassin
+  WRITE_BYTE 0x270 255 // Allegiance = Enemy
+  WRITE_BYTE 0x273 4 // Class = Thief
+
+  LPF ~ADD_CRE_EFFECT~ // *** in Single Weapon Style
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 3
+      parameter2 = 113
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // All saving throws
+    INT_VAR
+      opcode = 325
+      target = 1
+      parameter1 = 5
+      parameter2 = 0
+      timing = 9
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 73
+      target = 1
+      parameter1 = 1
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL421~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 278
+      target = 1
+      parameter1 = 1
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL421~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 59
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40SS~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 275
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40HIS~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 144
+      target = 1
+      timing = 9
+    STR_VAR
+      effsource = ~S!DISSTE~
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~SW1H74~
+  END
+
+  ADD_CRE_ITEM ~SW1H10~ #0 #0 #0 ~UNSTEALABLE~ ~WEAPON1~ EQUIP
+  ADD_CRE_ITEM ~SW1H07~ #0 #0 #0 ~NONE~ ~WEAPON3~
+  ADD_CRE_ITEM ~POTN39~ #0 #0 #0 ~UNSTEALABLE~ ~INV13~ // Potion of Perception
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL423~ #0 ~innate~ ( 6 ) // Poison Weapon
+  ADD_MEMORIZED_SPELL ~S!GGRACE~ #0 ~innate~ ( 2 ) // Ghost's Grace
+  ADD_MEMORIZED_SPELL ~SPCL913~ #0 ~innate~ ( 1 ) // Evasion
+  ADD_MEMORIZED_SPELL ~SPCL914~ #0 ~innate~ ( 2 ) // Greater Evasion
+  ADD_MEMORIZED_SPELL ~SPCL916~ #0 ~innate~ ( 1 ) // Assassination
+  ADD_MEMORIZED_SPELL ~SPCL917~ #0 ~innate~ ( 2 ) // Avoid Death
+
+COMPILE ~IATweaks\scripts\creatures\S!GROASA.baf~

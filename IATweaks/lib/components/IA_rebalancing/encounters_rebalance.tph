@@ -6597,3 +6597,4 @@ COPY_EXISTING ~amtgen01.cre~ ~override~
   
 COMPILE ~IATweaks\scripts\creatures\S!jamis.BAF~
 
+// Draconis cutscene

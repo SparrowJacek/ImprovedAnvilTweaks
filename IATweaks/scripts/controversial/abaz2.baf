@@ -1,0 +1,1601 @@
+
+IF
+	OR(3)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		HitBy([GOODCUTOFF],CRUSHING)
+		HPPercentLT(Myself,100)
+	Allegiance(Myself,NEUTRAL)
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		Enemy()
+		MoveToObject(Player1)
+END
+
+IF
+	Heard([EVILCUTOFF],151)
+	!Allegiance(Myself,ENEMY)
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		Enemy()
+		MoveToObject(Player1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+		Detect([PC])
+		See(NearestEnemyOf(Myself))
+	Global("Prep","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Prep","LOCALS",1)
+		ReallyForceSpell(Myself,WIZARD_STONE_SKIN)  // SPWI408.SPL (Stoneskin)
+		ReallyForceSpellRES("SPWII41",Myself)  // Improved Invisibility
+		ReallyForceSpell(Myself,WIZARD_SPELL_SHIELD)  // SPWI519.SPL (Spell Shield)
+		ReallyForceSpell(Myself,WIZARD_PROTECTION_FROM_ENERGY)  // SPWI803.SPL (Protection From Energy)
+		ReallyForceSpell(Myself,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)  // SPWI606.SPL (Protection From Magic Energy)
+		ReallyForceSpell(Myself,WIZARD_MIRROR_IMAGE)  // SPWI212.SPL (Mirror Image)
+		ReallyForceSpell(Myself,WIZARD_BLUR)  // SPWI201.SPL (Blur)
+		ReallyForceSpell(Myself,WIZARD_SPELL_IMMUNITY_DIVINATION)  // SPWI592.SPL (Immunity: Divination)
+		ReallyForceSpell(Myself,WIZARD_FIRE_SHIELD_RED)  // SPWI418.SPL (Fire Shield (Red))
+		ReallyForceSpell(Myself,WIZARD_GLOBE_OF_INVULNERABILITY)  // SPWI602.SPL (Globe of Invulnerability)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	Global("partyfled","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("partyfled","LOCALS",0)
+END
+
+IF
+	OR(2)
+		Detect([PC])
+		See(NearestEnemyOf(Myself))
+	Global("EnemySeen","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("EnemySeen","LOCALS",1)
+END
+
+IF
+	Global("Iapcastts","GLOBAL",1)
+	Global("Iatsinvulner","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",1)
+		ApplySpellRES("SPINI70",Myself)  // No such index
+END
+
+IF
+	Global("Iapcastts","GLOBAL",0)
+	Global("Iatsinvulner","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",0)
+		ApplySpellRES("SPINI71",Myself)  // No such index
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	OR(2)
+		CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+		Global("Iapcastts","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	OR(2)
+		Range(LastSeenBy(Myself),4)
+		AttackedBy([GOODCUTOFF],RANGED)
+	OR(2)
+		!GlobalTimerNotExpired("pfmw","LOCALS")
+		CheckStat(Myself,0,SCRIPTINGSTATE6)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	GlobalLT("Iaprotection","LOCALS",4)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaprotection","LOCALS",1)
+		SetGlobalTimer("pfmw","LOCALS",FOUR_ROUNDS)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(Myself,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // SPWI611.SPL (Protection From Magical Weapons)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HPPercentLT(Myself,80)
+	CheckStatLT(Myself,50,RESISTSLASHING)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	GlobalLT("HardinessUsed","LOCALS",9)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		IncrementGlobal("HardinessUsed","LOCALS",1)
+		ForceSpellRES("SPCL907",Myself)  // Hardiness
+		Wait(1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	CheckStatLT(Myself,1,STONESKINS)
+	GlobalLT("Iastoneskin","LOCALS",3)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iastoneskin","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(Myself,WIZARD_STONE_SKIN)  // SPWI408.SPL (Stoneskin)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("truesight","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See([PC])
+	OR(3)
+		StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+		StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("truesight","LOCALS",TEN_ROUNDS)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(Myself,WIZARD_TRUE_SIGHT)  // SPWI609.SPL (True Sight)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("truesight","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SecondNearest([PC]))
+	OR(3)
+		StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+		StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("truesight","LOCALS",TEN_ROUNDS)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(Myself,WIZARD_TRUE_SIGHT)  // SPWI609.SPL (True Sight)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaexrm","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See([PC])
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	OR(2)
+		StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+		StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaexrm","LOCALS",FOUR_ROUNDS)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iaexrm","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SecondNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	OR(2)
+		StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+		StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iaexrm","LOCALS",FOUR_ROUNDS)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+END
+
+IF
+	HPPercentLT(Myself,75)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	HasItem("POTN55",Myself)  // Potion of Superior Healing
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("POTN55",Myself)  // Potion of Superior Healing
+END
+
+IF
+	HPPercentLT(Myself,75)
+	!GlobalTimerNotExpired("DrankPTimer2","LOCALS")
+	CheckStatGT(Myself,0,SCRIPTINGSTATE9)
+	HasItem("POTN55",Myself)  // Potion of Superior Healing
+THEN
+	RESPONSE #100
+		SetGlobalTimer("DrankPTimer2","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("POTN55",Myself)  // Potion of Superior Healing
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(Player1)
+	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player1,STATE_INVISIBLE)
+	GlobalLT("Iareversal","LOCALS",4)
+	GlobalGT("Iap1nr","GLOBAL",0)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iareversal","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		IncrementGlobal("Iap1nr","GLOBAL",-1)
+		SpellNoDec(Player1,WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(Player1)
+	Range(Player1,5)
+	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player1,STATE_INVISIBLE)
+	!CheckStat(Player1,1,SCRIPTINGSTATE7)
+	!CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
+	GlobalLT("Iacastbreach","LOCALS",3)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	Global("Iap1nb","GLOBAL",1)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iacastbreach","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobal("Iap1nb","GLOBAL",0)
+		SpellNoDec(Player1,WIZARD_BREACH)  // SPWI513.SPL (Breach)
+		AttackOneRound(Player1)
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iafmbreach","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	GlobalLT("Iacastbreach","LOCALS",4)
+	See(Player1)
+	Range(Player1,5)
+	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player1,STATE_INVISIBLE)
+	!CheckStat(Player1,1,SCRIPTINGSTATE7)
+	!CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
+	OR(2)
+		CheckStatGT(Player1,2,SCRIPTINGSTATE6)
+		CheckSpellState(Player1,BREACH_TRIGGERING_PHYSICAL_PROTECTION)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iacastbreach","LOCALS",1)
+		SetGlobal("Iap1nb","GLOBAL",0)
+		SetGlobalTimer("Iafmbreach","LOCALS",TWO_ROUNDS)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(Player1,WIZARD_BREACH)  // SPWI513.SPL (Breach)
+		AttackOneRound(Player1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(Player2)
+	!StateCheck(Player2,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player2,STATE_INVISIBLE)
+	GlobalLT("Iareversal","LOCALS",4)
+	GlobalGT("Iap2nr","GLOBAL",0)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iareversal","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		IncrementGlobal("Iap2nr","GLOBAL",-1)
+		SpellNoDec(Player2,WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(Player2)
+	Range(Player2,5)
+	!StateCheck(Player2,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player2,STATE_INVISIBLE)
+	!CheckStat(Player2,1,SCRIPTINGSTATE7)
+	!CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
+	GlobalLT("Iacastbreach","LOCALS",3)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	Global("Iap2nb","GLOBAL",1)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iacastbreach","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobal("Iap2nb","GLOBAL",0)
+		SpellNoDec(Player2,WIZARD_BREACH)  // SPWI513.SPL (Breach)
+		AttackOneRound(Player2)
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iafmbreach","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	GlobalLT("Iacastbreach","LOCALS",4)
+	See(Player2)
+	Range(Player2,5)
+	!StateCheck(Player2,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player2,STATE_INVISIBLE)
+	!CheckStat(Player2,1,SCRIPTINGSTATE7)
+	!CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
+	OR(2)
+		CheckStatGT(Player2,2,SCRIPTINGSTATE6)
+		CheckSpellState(Player2,BREACH_TRIGGERING_PHYSICAL_PROTECTION)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iacastbreach","LOCALS",1)
+		SetGlobal("Iap2nb","GLOBAL",0)
+		SetGlobalTimer("Iafmbreach","LOCALS",TWO_ROUNDS)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(Player2,WIZARD_BREACH)  // SPWI513.SPL (Breach)
+		AttackOneRound(Player2)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(Player3)
+	!StateCheck(Player3,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player3,STATE_INVISIBLE)
+	GlobalLT("Iareversal","LOCALS",4)
+	GlobalGT("Iap3nr","GLOBAL",0)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iareversal","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		IncrementGlobal("Iap3nr","GLOBAL",-1)
+		SpellNoDec(Player3,WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(Player3)
+	Range(Player3,5)
+	!StateCheck(Player3,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player3,STATE_INVISIBLE)
+	!CheckStat(Player3,1,SCRIPTINGSTATE7)
+	!CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
+	GlobalLT("Iacastbreach","LOCALS",3)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	Global("Iap3nb","GLOBAL",1)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iacastbreach","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobal("Iap3nb","GLOBAL",0)
+		SpellNoDec(Player3,WIZARD_BREACH)  // SPWI513.SPL (Breach)
+		AttackOneRound(Player3)
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iafmbreach","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	GlobalLT("Iacastbreach","LOCALS",4)
+	See(Player3)
+	Range(Player3,5)
+	!StateCheck(Player3,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player3,STATE_INVISIBLE)
+	!CheckStat(Player3,1,SCRIPTINGSTATE7)
+	!CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
+	OR(2)
+		CheckStatGT(Player3,2,SCRIPTINGSTATE6)
+		CheckSpellState(Player3,BREACH_TRIGGERING_PHYSICAL_PROTECTION)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iacastbreach","LOCALS",1)
+		SetGlobal("Iap3nb","GLOBAL",0)
+		SetGlobalTimer("Iafmbreach","LOCALS",TWO_ROUNDS)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(Player3,WIZARD_BREACH)  // SPWI513.SPL (Breach)
+		AttackOneRound(Player3)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(Player4)
+	!StateCheck(Player4,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player4,STATE_INVISIBLE)
+	GlobalLT("Iareversal","LOCALS",4)
+	GlobalGT("Iap4nr","GLOBAL",0)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iareversal","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		IncrementGlobal("Iap4nr","GLOBAL",-1)
+		SpellNoDec(Player4,WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(Player4)
+	Range(Player4,5)
+	!StateCheck(Player4,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player4,STATE_INVISIBLE)
+	!CheckStat(Player4,1,SCRIPTINGSTATE7)
+	!CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
+	GlobalLT("Iacastbreach","LOCALS",3)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	Global("Iap4nb","GLOBAL",1)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iacastbreach","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobal("Iap4nb","GLOBAL",0)
+		SpellNoDec(Player4,WIZARD_BREACH)  // SPWI513.SPL (Breach)
+		AttackOneRound(Player4)
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iafmbreach","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	GlobalLT("Iacastbreach","LOCALS",4)
+	See(Player4)
+	Range(Player4,5)
+	!StateCheck(Player4,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player4,STATE_INVISIBLE)
+	!CheckStat(Player4,1,SCRIPTINGSTATE7)
+	!CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
+	OR(2)
+		CheckStatGT(Player4,2,SCRIPTINGSTATE6)
+		CheckSpellState(Player4,BREACH_TRIGGERING_PHYSICAL_PROTECTION)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iacastbreach","LOCALS",1)
+		SetGlobal("Iap4nb","GLOBAL",0)
+		SetGlobalTimer("Iafmbreach","LOCALS",TWO_ROUNDS)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(Player4,WIZARD_BREACH)  // SPWI513.SPL (Breach)
+		AttackOneRound(Player4)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(Player5)
+	!StateCheck(Player5,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player5,STATE_INVISIBLE)
+	GlobalLT("Iareversal","LOCALS",4)
+	GlobalGT("Iap5nr","GLOBAL",0)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iareversal","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		IncrementGlobal("Iap5nr","GLOBAL",-1)
+		SpellNoDec(Player5,WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(Player5)
+	Range(Player5,5)
+	!StateCheck(Player5,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player5,STATE_INVISIBLE)
+	!CheckStat(Player5,1,SCRIPTINGSTATE7)
+	!CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
+	GlobalLT("Iacastbreach","LOCALS",3)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	Global("Iap5nb","GLOBAL",1)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iacastbreach","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobal("Iap5nb","GLOBAL",0)
+		SpellNoDec(Player5,WIZARD_BREACH)  // SPWI513.SPL (Breach)
+		AttackOneRound(Player5)
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iafmbreach","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	GlobalLT("Iacastbreach","LOCALS",4)
+	See(Player5)
+	Range(Player5,5)
+	!StateCheck(Player5,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player5,STATE_INVISIBLE)
+	!CheckStat(Player5,1,SCRIPTINGSTATE7)
+	!CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
+	OR(2)
+		CheckStatGT(Player5,2,SCRIPTINGSTATE6)
+		CheckSpellState(Player5,BREACH_TRIGGERING_PHYSICAL_PROTECTION)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iacastbreach","LOCALS",1)
+		SetGlobal("Iap5nb","GLOBAL",0)
+		SetGlobalTimer("Iafmbreach","LOCALS",TWO_ROUNDS)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(Player5,WIZARD_BREACH)  // SPWI513.SPL (Breach)
+		AttackOneRound(Player5)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(Player6)
+	!StateCheck(Player6,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player6,STATE_INVISIBLE)
+	GlobalLT("Iareversal","LOCALS",4)
+	GlobalGT("Iap6nr","GLOBAL",0)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iareversal","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		IncrementGlobal("Iap6nr","GLOBAL",-1)
+		SpellNoDec(Player6,WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(Player6)
+	Range(Player6,5)
+	!StateCheck(Player6,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player6,STATE_INVISIBLE)
+	!CheckStat(Player6,1,SCRIPTINGSTATE7)
+	!CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
+	GlobalLT("Iacastbreach","LOCALS",3)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	Global("Iap6nb","GLOBAL",1)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iacastbreach","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobal("Iap6nb","GLOBAL",0)
+		SpellNoDec(Player6,WIZARD_BREACH)  // SPWI513.SPL (Breach)
+		AttackOneRound(Player6)
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Iafmbreach","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	GlobalLT("Iacastbreach","LOCALS",4)
+	See(Player6)
+	Range(Player6,5)
+	!StateCheck(Player6,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player6,STATE_INVISIBLE)
+	!CheckStat(Player6,1,SCRIPTINGSTATE7)
+	!CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
+	OR(2)
+		CheckStatGT(Player6,2,SCRIPTINGSTATE6)
+		CheckSpellState(Player6,BREACH_TRIGGERING_PHYSICAL_PROTECTION)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iacastbreach","LOCALS",1)
+		SetGlobal("Iap6nb","GLOBAL",0)
+		SetGlobalTimer("Iafmbreach","LOCALS",TWO_ROUNDS)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(Player6,WIZARD_BREACH)  // SPWI513.SPL (Breach)
+		AttackOneRound(Player6)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SecondNearest([PC]))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	Global("Iadispel","LOCALS",0)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iadispel","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See([PC])
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	Global("Iadispel","LOCALS",0)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iadispel","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(Player1)
+	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player1,STATE_INVISIBLE)
+	GlobalLT("Iareversal","LOCALS",4)
+	Global("Iap1nr","GLOBAL",0)
+	Global("Iacheckp1fr","LOCALS",0)
+	OR(2)
+		CheckStatGT(Player1,0,MINORGLOBE)
+		HasBounceEffects(Player1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iacheckp1fr","LOCALS",1)
+		SetGlobalTimer("Iarubyonp1t","LOCALS",ONE_ROUND)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(Player1)
+	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player1,STATE_INVISIBLE)
+	GlobalLT("Iareversal","LOCALS",4)
+	Global("Iap1nr","GLOBAL",0)
+	Global("Iacheckp1fr","LOCALS",1)
+	GlobalTimerExpired("Iarubyonp1t","LOCALS")
+	OR(2)
+		CheckStatGT(Player1,0,MINORGLOBE)
+		HasBounceEffects(Player1)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iareversal","LOCALS",1)
+		SetGlobal("Iacheckp1fr","LOCALS",0)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(Player1,WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(Player2)
+	!StateCheck(Player2,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player2,STATE_INVISIBLE)
+	GlobalLT("Iareversal","LOCALS",4)
+	Global("Iap2nr","GLOBAL",0)
+	Global("Iacheckp2fr","LOCALS",0)
+	OR(2)
+		CheckStatGT(Player2,0,MINORGLOBE)
+		HasBounceEffects(Player2)
+THEN
+	RESPONSE #100
+		SetGlobal("Iacheckp2fr","LOCALS",1)
+		SetGlobalTimer("Iarubyonp2t","LOCALS",ONE_ROUND)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(Player2)
+	!StateCheck(Player2,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player2,STATE_INVISIBLE)
+	GlobalLT("Iareversal","LOCALS",4)
+	Global("Iap2nr","GLOBAL",0)
+	Global("Iacheckp2fr","LOCALS",1)
+	GlobalTimerExpired("Iarubyonp2t","LOCALS")
+	OR(2)
+		CheckStatGT(Player2,0,MINORGLOBE)
+		HasBounceEffects(Player2)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iareversal","LOCALS",1)
+		SetGlobal("Iacheckp2fr","LOCALS",0)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(Player2,WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(Player3)
+	!StateCheck(Player3,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player3,STATE_INVISIBLE)
+	GlobalLT("Iareversal","LOCALS",4)
+	Global("Iap3nr","GLOBAL",0)
+	Global("Iacheckp3fr","LOCALS",0)
+	OR(2)
+		CheckStatGT(Player3,0,MINORGLOBE)
+		HasBounceEffects(Player3)
+THEN
+	RESPONSE #100
+		SetGlobal("Iacheckp3fr","LOCALS",1)
+		SetGlobalTimer("Iarubyonp3t","LOCALS",ONE_ROUND)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(Player3)
+	!StateCheck(Player3,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player3,STATE_INVISIBLE)
+	GlobalLT("Iareversal","LOCALS",4)
+	Global("Iap3nr","GLOBAL",0)
+	Global("Iacheckp3fr","LOCALS",1)
+	GlobalTimerExpired("Iarubyonp3t","LOCALS")
+	OR(2)
+		CheckStatGT(Player3,0,MINORGLOBE)
+		HasBounceEffects(Player3)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iareversal","LOCALS",1)
+		SetGlobal("Iacheckp3fr","LOCALS",0)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(Player3,WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(Player4)
+	!StateCheck(Player4,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player4,STATE_INVISIBLE)
+	GlobalLT("Iareversal","LOCALS",4)
+	Global("Iap4nr","GLOBAL",0)
+	Global("Iacheckp4fr","LOCALS",0)
+	OR(2)
+		CheckStatGT(Player4,0,MINORGLOBE)
+		HasBounceEffects(Player4)
+THEN
+	RESPONSE #100
+		SetGlobal("Iacheckp4fr","LOCALS",1)
+		SetGlobalTimer("Iarubyonp4t","LOCALS",ONE_ROUND)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(Player4)
+	!StateCheck(Player4,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player4,STATE_INVISIBLE)
+	GlobalLT("Iareversal","LOCALS",4)
+	Global("Iap4nr","GLOBAL",0)
+	Global("Iacheckp4fr","LOCALS",1)
+	GlobalTimerExpired("Iarubyonp4t","LOCALS")
+	OR(2)
+		CheckStatGT(Player4,0,MINORGLOBE)
+		HasBounceEffects(Player4)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iareversal","LOCALS",1)
+		SetGlobal("Iacheckp4fr","LOCALS",0)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(Player4,WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(Player5)
+	!StateCheck(Player5,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player5,STATE_INVISIBLE)
+	GlobalLT("Iareversal","LOCALS",4)
+	Global("Iap5nr","GLOBAL",0)
+	Global("Iacheckp5fr","LOCALS",0)
+	OR(2)
+		CheckStatGT(Player5,0,MINORGLOBE)
+		HasBounceEffects(Player5)
+THEN
+	RESPONSE #100
+		SetGlobal("Iacheckp5fr","LOCALS",1)
+		SetGlobalTimer("Iarubyonp5t","LOCALS",ONE_ROUND)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(Player5)
+	!StateCheck(Player5,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player5,STATE_INVISIBLE)
+	GlobalLT("Iareversal","LOCALS",4)
+	Global("Iap5nr","GLOBAL",0)
+	Global("Iacheckp5fr","LOCALS",1)
+	GlobalTimerExpired("Iarubyonp5t","LOCALS")
+	OR(2)
+		CheckStatGT(Player5,0,MINORGLOBE)
+		HasBounceEffects(Player5)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iareversal","LOCALS",1)
+		SetGlobal("Iacheckp5fr","LOCALS",0)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(Player5,WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(Player6)
+	!StateCheck(Player6,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player6,STATE_INVISIBLE)
+	GlobalLT("Iareversal","LOCALS",4)
+	Global("Iap6nr","GLOBAL",0)
+	Global("Iacheckp6fr","LOCALS",0)
+	OR(2)
+		CheckStatGT(Player6,0,MINORGLOBE)
+		HasBounceEffects(Player6)
+THEN
+	RESPONSE #100
+		SetGlobal("Iacheckp6fr","LOCALS",1)
+		SetGlobalTimer("Iarubyonp6t","LOCALS",ONE_ROUND)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(Player6)
+	!StateCheck(Player6,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player6,STATE_INVISIBLE)
+	GlobalLT("Iareversal","LOCALS",4)
+	Global("Iap6nr","GLOBAL",0)
+	Global("Iacheckp6fr","LOCALS",1)
+	GlobalTimerExpired("Iarubyonp6t","LOCALS")
+	OR(2)
+		CheckStatGT(Player6,0,MINORGLOBE)
+		HasBounceEffects(Player6)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iareversal","LOCALS",1)
+		SetGlobal("Iacheckp6fr","LOCALS",0)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(Player6,WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+END
+
+IF
+	See(NearestEnemyOfType([GOODCUTOFF.0.0.0.0.SUMMONED]))
+	GlobalLT("Iadeath","LOCALS",2)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	OR(3)
+		CheckStat(LastSeenBy(Myself),20,RESISTSLASHING)
+		CheckStat(LastSeenBy(Myself),95,RESISTPIERCING)
+		CheckStatGT(LastSeenBy(Myself),89,RESISTMAGIC)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iadeath","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_DEATH_SPELL)  // SPWI605.SPL (Death Spell)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See([PC])
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	CheckStatGT(LastSeenBy(Myself),24,RESISTMAGIC)
+	GlobalLT("Ialower","LOCALS",2)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Ialower","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_LOWER_RESISTANCE)  // SPWI514.SPL (Lower Resistance)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SecondNearest([PC]))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	CheckStatGT(LastSeenBy(Myself),24,RESISTMAGIC)
+	GlobalLT("Ialower","LOCALS",2)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Ialower","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_LOWER_RESISTANCE)  // SPWI514.SPL (Lower Resistance)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("Iacastcomet","LOCALS")
+	See([PC])
+	CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
+	GlobalLT("Iacomet","LOCALS",6)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iacomet","LOCALS",1)
+		SetGlobalTimer("Iacastcomet","LOCALS",TWO_ROUNDS)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_COMET)  // SPWI925.SPL (Comet)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("Iacastcomet","LOCALS")
+	See(SecondNearest([PC]))
+	CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
+	GlobalLT("Iacomet","LOCALS",6)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iacomet","LOCALS",1)
+		SetGlobalTimer("Iacastcomet","LOCALS",TWO_ROUNDS)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_COMET)  // SPWI925.SPL (Comet)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See([PC])
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	Global("Iadispelpot","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iadispelpot","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See([PC])
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	CheckStat(LastSeenBy(Myself),0,SCRIPTINGSTATE3)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	Global("Iagmalison","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iagmalison","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_GREATER_MALISON)  // SPWI412.SPL (Greater Malison)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SecondNearest([PC]))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	Global("Iadispelpot","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iadispelpot","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SecondNearest([PC]))
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	CheckStat(LastSeenBy(Myself),0,SCRIPTINGSTATE3)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	Global("Iagmalison","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iagmalison","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_GREATER_MALISON)  // SPWI412.SPL (Greater Malison)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(NearestEnemyOfType([PC.0.0.MAGE_ALL]))
+	CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE2)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	Global("Ianoward","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Ianoward","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+END
+
+IF
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(NearestEnemyOfType([PC.0.0.MAGE_ALL]))
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE2)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	Global("Iacontingency","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iacontingency","LOCALS",1)
+		DisplayString(Myself,26328)  // Chain Contingency
+		ReallyForceSpell(LastSeenBy(Myself),WIZARD_FINGER_OF_DEATH)  // SPWI713.SPL (Finger of Death)
+		ReallyForceSpell(LastSeenBy(Myself),WIZARD_FINGER_OF_DEATH)  // SPWI713.SPL (Finger of Death)
+		ReallyForceSpell(LastSeenBy(Myself),WIZARD_FINGER_OF_DEATH)  // SPWI713.SPL (Finger of Death)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See([PC])
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTELECTRICITY)
+	!CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
+	Global("Iatrigger","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatrigger","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		DisplayString(Myself,39968)  // Spell Trigger—Fired
+		ReallyForceSpell(LastSeenBy(Myself),WIZARD_CHAIN_LIGHTNING)  // SPWI615.SPL (Chain Lightning)
+		ReallyForceSpell(LastSeenBy(Myself),WIZARD_CHAIN_LIGHTNING)  // SPWI615.SPL (Chain Lightning)
+		ReallyForceSpell(LastSeenBy(Myself),WIZARD_CHAIN_LIGHTNING)  // SPWI615.SPL (Chain Lightning)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SecondNearest([PC]))
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	Global("Iasequencor","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iasequencor","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		DisplayString(Myself,39969)  // Spell Sequencer—Fired
+		ReallyForceSpell(LastSeenBy(Myself),WIZARD_SLOW)  // SPWI312.SPL (Slow)
+		ReallyForceSpell(LastSeenBy(Myself),WIZARD_EMOTION_HOPELESSNESS)  // SPWI411.SPL (Emotion: Hopelessness)
+		ReallyForceSpell(LastSeenBy(Myself),WIZARD_CONFUSION)  // SPWI401.SPL (Confusion)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See([PC])
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	Global("Iasequencor","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iasequencor","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		DisplayString(Myself,39969)  // Spell Sequencer—Fired
+		ReallyForceSpell(LastSeenBy(Myself),WIZARD_SLOW)  // SPWI312.SPL (Slow)
+		ReallyForceSpell(LastSeenBy(Myself),WIZARD_EMOTION_HOPELESSNESS)  // SPWI411.SPL (Emotion: Hopelessness)
+		ReallyForceSpell(LastSeenBy(Myself),WIZARD_CONFUSION)  // SPWI401.SPL (Confusion)
+END
+
+IF
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("truesight","LOCALS")
+	See(NearestEnemyOfType([0.0.0.0.0.ILLUSIONARY]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("truesight","LOCALS",TEN_ROUNDS)
+		SpellNoDec(Myself,WIZARD_TRUE_SIGHT)  // SPWI609.SPL (True Sight)
+END
+
+IF
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(NearestEnemyOfType([0.0.0.0.0.ILLUSIONARY]))
+	Global("Iaremove","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iaremove","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SecondNearest([PC]))
+	Global("Iahorrid","LOCALS",0)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iahorrid","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See([PC])
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+	Global("Iahorrid","LOCALS",0)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iahorrid","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See([PC])
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE8)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	!CheckStatGT(Myself,8,CRITICALHITBONUS)
+	Range(LastSeenBy(Myself),4)
+	Global("SmiteUsed","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobal("SmiteUsed","LOCALS",1)
+		ForceSpellRES("SPCL909",Myself)  // Smite
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See([PC])
+	Global("Iahorrid","LOCALS",1)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iahorrid","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SecondNearest([PC]))
+	Global("Iahorrid","LOCALS",1)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iahorrid","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See([PC])
+	Range(LastSeenBy(Myself),5)
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	!CheckStatGT(Myself,8,CRITICALHITBONUS)
+	GlobalLT("Iacritical","LOCALS",6)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",7)
+		IncrementGlobal("Iacritical","LOCALS",1)
+		ForceSpell(Myself,WARRIOR_CRITICAL_STRIKE)  // SPCL905.SPL (Critical Strike)
+		AttackOneRound(LastSeenBy(Myself))
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SecondNearest([PC]))
+	Global("Iahorrid","LOCALS",2)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iahorrid","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See([PC])
+	Global("Iahorrid","LOCALS",2)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iahorrid","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	Range(LastSeenBy(Myself),5)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaWhirlwindTimer","LOCALS")
+	GlobalLT("GWhirlwindUsed","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",7)
+		SetGlobalTimer("IaWhirlwindTimer","LOCALS",THREE_ROUNDS)
+		IncrementGlobal("GWhirlwindUsed","LOCALS",1)
+		ForceSpellRES("SPCL901",Myself)  // Greater Whirlwind Attack
+		AttackOneRound(LastSeenBy(Myself))
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See([PC])
+	Global("Iahorrid","LOCALS",3)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iahorrid","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SecondNearest([PC]))
+	Global("Iahorrid","LOCALS",3)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iahorrid","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaWhirlwindTimer","LOCALS")
+	See([PC])
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	Range(LastSeenBy(Myself),5)
+	Global("WhirlwindUsed","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaWhirlwindTimer","LOCALS",THREE_ROUNDS)
+		SetGlobal("WhirlwindUsed","LOCALS",1)
+		ReallyForceSpellRES("SPCL900",Myself)  // Whirlwind Attack
+		AttackOneRound(LastSeenBy(Myself))
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SecondNearest([PC]))
+	Global("Iahorrid","LOCALS",4)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iahorrid","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See([PC])
+	Global("Iahorrid","LOCALS",4)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iahorrid","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	Global("Iaspray","LOCALS",0)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE7)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaspray","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_PRISMATIC_SPRAY)  // SPWI714.SPL (Prismatic Spray)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SecondNearest([PC]))
+	Global("Iahorrid","LOCALS",5)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iahorrid","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See([PC])
+	Global("Iahorrid","LOCALS",5)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iahorrid","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+END
+
+IF
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	Global("partyfled","LOCALS",0)
+	Allegiance(Myself,ENEMY)
+	Global("EnemySeen","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("chase","LOCALS",TEN_ROUNDS)
+		SetGlobal("partyfled","LOCALS",1)
+END
+
+IF
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	InMyArea(Player1)
+	Global("partyfled","LOCALS",1)
+	GlobalTimerNotExpired("chase","LOCALS")
+	Global("EnemySeen","LOCALS",1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	InMyArea(Player1)
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	GlobalTimerExpired("chase","LOCALS")
+	Global("partyfled","LOCALS",1)
+	Global("EnemySeen","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("prep","LOCALS",0)
+		SetGlobal("EnemySeen","LOCALS",0)
+		ReallyForceSpellRES("SPWII07",Myself)  // No such index
+		MoveToObject(Player1)
+END
+
+IF
+	GlobalLT("KaiUsed","LOCALS",5)
+	See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),6)
+	!GlobalTimerNotExpired("KaiAttack","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("KaiAttack","LOCALS",TWO_MINUTES)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		IncrementGlobal("KaiUsed","LOCALS",1)
+		ForceSpellRES("SPCL144",Myself)  // Kai
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	GlobalLT("Iaspray","LOCALS",4)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE7)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iaspray","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_PRISMATIC_SPRAY)  // SPWI714.SPL (Prismatic Spray)
+END
+
+IF
+	!GlobalTimerNotExpired("Iatouch","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),4)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	GlobalLT("Iavtouch","LOCALS",5)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iavtouch","LOCALS",1)
+		SetGlobalTimer("Iatouch","LOCALS",TWO_ROUNDS)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_VAMPIRIC_TOUCH)  // SPWI314.SPL (Vampiric Touch)
+END
+
+IF
+	!GlobalTimerNotExpired("Iatouch","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SecondNearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),2)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	GlobalLT("Iavtouch","LOCALS",5)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iavtouch","LOCALS",1)
+		SetGlobalTimer("Iatouch","LOCALS",TWO_ROUNDS)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_VAMPIRIC_TOUCH)  // SPWI314.SPL (Vampiric Touch)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See([PC])
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	GlobalLT("Iammissile","LOCALS",7)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iammissile","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)  // SPWI112.SPL (Magic Missile)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SecondNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	GlobalLT("Iammissile","LOCALS",7)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iammissile","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)  // SPWI112.SPL (Magic Missile)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(ThirdNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	GlobalLT("Iammissile","LOCALS",7)
+	CheckStatLT(LastSeenBy(Myself),100,MAGICDAMAGERESISTANCE)
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),4,SCRIPTINGSTATE7)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Iammissile","LOCALS",1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDec(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)  // SPWI112.SPL (Magic Missile)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	CheckStatLT(LastSeenBy(Myself),90,RESISTSLASHING)
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	RandomNumGT(6,4)
+	Range(LastSeenBy(Myself),6)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END

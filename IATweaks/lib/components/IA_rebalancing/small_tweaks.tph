@@ -1319,3 +1319,32 @@ ACTION_FOR_EACH shield_spl_file IN ~SPAURU~ ~SPWI403D~ ~SPWI418D~ ~SPPR730D~ ~SP
         resource = EVAL ~%shield_spl_file%~
     END
 END
+
+// Armor of the Viper - make it available
+
+<<<<<<<< .../inlined/ar2207-viper-old.baf
+IF
+	InMyArea(Player1)
+	Global("Iaitemmgone","AR2207",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iaitemmgone","AR2207",1)
+		ActionOverride("Shelf 3",DestroyItem("leat18"))
+		ActionOverride("Shelf 3",CreateItem("misc07",999,0,0))
+		ActionOverride("Shelf 3",CreateItem("S!scrl30",1,0,0))
+END
+>>>>>>>>
+<<<<<<<< .../inlined/ar2207-viper-new.baf
+IF
+	InMyArea(Player1)
+	Global("Iaitemmgone","AR2207",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iaitemmgone","AR2207",1)
+		ActionOverride("Shelf 3",CreateItem("misc07",999,0,0))
+		ActionOverride("Shelf 3",CreateItem("S!scrl30",1,0,0))
+END
+>>>>>>>>
+
+COPY_EXISTING ~AR2207.BCS~ ~override~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/ar2207-viper-old.baf~ ~.../inlined/ar2207-viper-new.baf~

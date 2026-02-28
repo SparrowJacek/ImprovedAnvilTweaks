@@ -6598,3 +6598,362 @@ COPY_EXISTING ~amtgen01.cre~ ~override~
 COMPILE ~IATweaks\scripts\creatures\S!jamis.BAF~
 
 // Draconis cutscene
+
+COMPILE ~IATweaks\scripts\others\cut226a.BAF~
+
+// Draconis 
+
+COPY_EXISTING ~bazdra02.cre~ ~override~
+  WRITE_SHORT 0x24 487 // HP
+  WRITE_SHORT 0x26 487 // HP
+
+  LPF ~ADD_CRE_EFFECT~ // Aura Cleansing
+    INT_VAR
+      target = 1
+      opcode = 188
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+// Draconis Dragon Claw
+
+COPY_EXISTING ~dragbrow.itm~ ~override~
+  LPF ~ALTER_ITEM_HEADER~
+    INT_VAR
+      range = 3
+      speed = 0
+      dicenumber = 3
+  END
+
+
+<<<<<<<< .../inlined/ar6005-exit-old.baf
+IF
+	Global("DisableExit","AR6005",0)
+THEN
+	RESPONSE #100
+		SetGlobal("DisableExit","AR6005",1)
+		TriggerActivation("Tran6004",FALSE)
+		TriggerActivation("Info6004",TRUE)
+END
+
+IF
+	Dead("Abazigal")
+	Global("HadBhaal25Dream2","GLOBAL",0)
+THEN
+	RESPONSE #100
+		ClearAllActions()
+		TriggerActivation("Tran6004",TRUE)
+		TriggerActivation("Info6004",FALSE)
+		SetGlobal("HadBhaal25Dream2","GLOBAL",1)
+		StartCutSceneMode()
+		StartCutScene("cut234a")
+END
+
+IF
+	Dead("Abazigal")
+	Dead("Sendai")
+	Global("HadBhaal25Dream2","GLOBAL",1)
+	Global("HadBhaal25Dream3","GLOBAL",0)
+THEN
+	RESPONSE #100
+		ClearAllActions()
+		TriggerActivation("Tran6004",TRUE)
+		TriggerActivation("Info6004",FALSE)
+		SetGlobal("HadBhaal25Dream3","GLOBAL",1)
+		StartCutSceneMode()
+		StartCutScene("cut235a")
+END
+>>>>>>>>
+<<<<<<<< .../inlined/ar6005-exit-new.baf
+IF
+	Global("DisableExit","AR6005",0)
+THEN
+	RESPONSE #100
+		SetGlobal("DisableExit","AR6005",1)
+		ReallyForceSpellRES("S!PCKET1",Player1)
+    AddAreaFlag(NOSAVE)
+    AddAreaFlag(NOREST)
+		TriggerActivation("Tran6004",FALSE)
+		TriggerActivation("Info6004",TRUE)
+END
+
+IF
+	Dead("Abazigal")
+	Global("HadBhaal25Dream2","GLOBAL",0)
+THEN
+	RESPONSE #100
+		ClearAllActions()
+		ReallyForceSpellRES("S!PCKET2",Player1)
+    RemoveAreaFlag(NOSAVE)
+    RemoveAreaFlag(NOREST)
+		TriggerActivation("Tran6004",TRUE)
+		TriggerActivation("Info6004",FALSE)
+		SetGlobal("HadBhaal25Dream2","GLOBAL",1)
+		StartCutSceneMode()
+		StartCutScene("cut234a")
+END
+
+IF
+	Dead("Abazigal")
+	Dead("Sendai")
+	Global("HadBhaal25Dream2","GLOBAL",1)
+	Global("HadBhaal25Dream3","GLOBAL",0)
+THEN
+	RESPONSE #100
+		ClearAllActions()
+		ReallyForceSpellRES("S!PCKET2",Player1)
+    RemoveAreaFlag(NOSAVE) 
+    RemoveAreaFlag(NOREST) 
+		TriggerActivation("Tran6004",TRUE)
+		TriggerActivation("Info6004",FALSE)
+		SetGlobal("HadBhaal25Dream3","GLOBAL",1)
+		StartCutSceneMode()
+		StartCutScene("cut235a")
+END
+>>>>>>>>
+<<<<<<<< .../inlined/ar6005-no-spawns.baf
+
+IF
+	InMyArea(Player1)
+	Global("IaNoSpawns","AR6005",0)  // Abazigal's Hideout
+THEN
+	RESPONSE #100
+		SetGlobal("IaNoSpawns","AR6005",1)  // Abazigal's Hideout
+		SetGlobal("Iadebuff","AR6005",1)  // Abazigal's Hideout
+		SetGlobal("Iasalam","AR6005",6)  // Abazigal's Hideout
+END
+>>>>>>>>
+
+EXTEND_TOP ~AR6005.BCS~ ~.../inlined/ar6005-no-spawns.baf~
+
+COPY_EXISTING ~AR6005.BCS~ ~override~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/ar6005-exit-old.baf~ ~.../inlined/ar6005-exit-new.baf~
+
+// Abazigal and White/Silver Dragon Claw
+
+
+// Draconis Dragon Claw
+
+COPY_EXISTING ~dragsil1.itm~ ~override~
+  LPF ~ALTER_ITEM_HEADER~
+    INT_VAR
+      range = 3
+      speed = 0
+      dicenumber = 2
+  END
+
+COPY_EXISTING ~dragblue.itm~ ~override~
+  LPF ~ALTER_ITEM_HEADER~
+    INT_VAR
+      range = 3
+      speed = 0
+  END
+
+////////////// Abazigal fight
+
+// Disrupt Aura spell
+
+COPY ~IATweaks\resources\bam\S!noaur2.bam~ ~override~
+COPY ~IATweaks\resources\vvc\S!noaur2.vvc~ ~override~
+COPY ~IATweaks\resources\spl\S!noaur2.spl~ ~override~
+  SAY NAME1 @6296
+
+// Fly spell
+
+COPY ~IATweaks\resources\spl\S!drgfly.spl~ ~override~
+
+// Until Death do Us Part spell
+
+COPY ~IATweaks\resources\spl\s!lifeld.spl~ ~override~
+  SAY NAME1 @6295
+
+// White Dragon's Breath
+
+COPY ~IATweaks\resources\spl\s!wdragb.spl~ ~override~
+  SAY NAME1 @6298
+
+// Abazigal
+
+COPY_EXISTING ~DRAGBLUE.cre~ ~override~
+  WRITE_SHORT 0x24 550
+  WRITE_SHORT 0x26 550
+  WRITE_BYTE 0x59 85 // Fire Resistance
+  WRITE_BYTE 0x5a 100  // Cold Resistance
+  WRITE_BYTE 0x5b 125  // Electricity Resistance
+  WRITE_BYTE 0x5c 75 // Acid Resistance
+  WRITE_BYTE 0x5e 85 // Magic Fire Resistance
+  WRITE_BYTE 0x5f 100  // Magic Cold Resistance
+  WRITE_BYTE 0x60 80 // Resist Slashing
+  WRITE_BYTE 0x61 85 // Resist Crushing
+  WRITE_BYTE 0x62 80 // Resist Piercing
+  WRITE_BYTE 0x63 90 // Resist Missile
+  WRITE_BYTE 0x234 36 // Level 1
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+    
+  LPF ~ALTER_EFFECT~ // Improved Haste
+    INT_VAR
+      match_opcode = 16
+      parameter2 = 1
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Increase movement speed
+    INT_VAR
+      target = 1
+      opcode = 126
+      parameter1 = 4
+      parameter2 = 0
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Aura Cleansing
+    INT_VAR
+      target = 1
+      opcode = 188
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Casting Speed
+    INT_VAR
+      target = 1
+      opcode = 189
+      parameter1 = 3
+      resist_dispel = 0
+      timing = 9
+  END
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL "SPWI302" #2 "wizard" ( 4 ) // Remove Magic
+  ADD_MEMORIZED_SPELL "SPWI513" #4 "wizard" ( 6 ) // Breach
+  ADD_MEMORIZED_SPELL "SPWI514" #4 "wizard" ( 5 ) // Lower Resistance
+  ADD_MEMORIZED_SPELL "SPWI605" #5 "wizard" ( 4 ) // Death Spell
+  ADD_MEMORIZED_SPELL "SPWI704" #6 "wizard" ( 7 ) // Ruby Ray of Reversal
+  ADD_MEMORIZED_SPELL "SPWI812" #7 "wizard" ( 1 ) // Abi-Dalzim's Horrid Wilting
+  ADD_MEMORIZED_SPELL "SPIN532" #0 "innate" ( 5 ) // Lower Electricity Resistance
+
+COMPILE ~IATweaks\scripts\creatures\ABAZDRAG.BAF~
+
+// Abazigal's Wife
+
+COPY ~IATweaks\resources\cre\S!DRAGWH.cre~ ~override~
+  SAY NAME1 @5186
+  SAY NAME2 @5186
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Aura Cleansing
+    INT_VAR
+      target = 1
+      opcode = 188
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Casting Speed
+    INT_VAR
+      target = 1
+      opcode = 189
+      parameter1 = 2
+      resist_dispel = 0
+      timing = 9
+  END
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL "SPWI302" #2 "wizard" ( 3 ) // Remove Magic
+  ADD_MEMORIZED_SPELL "SPWI513" #4 "wizard" ( 3 ) // Breach
+  ADD_MEMORIZED_SPELL "SPWI514" #4 "wizard" ( 2 ) // Lower Resistance
+  ADD_MEMORIZED_SPELL "SPWI605" #5 "wizard" ( 2 ) // Death Spell
+  ADD_MEMORIZED_SPELL "SPWI704" #6 "wizard" ( 5 ) // Ruby Ray of Reversal
+  ADD_MEMORIZED_SPELL "SPWI812" #7 "wizard" ( 1 ) // Abi-Dalzim's Horrid Wilting
+  ADD_MEMORIZED_SPELL "SPINI03" #0 "innate" ( 4 ) // Lower Cold Resistance
+
+COMPILE ~IATweaks\scripts\creatures\S!DRAGWH.BAF~
+
+<<<<<<<< .../inlined/abazigal-change-old.baf
+IF
+	HPPercentLT(Myself,25)
+	Global("STARTEDCHANGE","LOCALS",0)
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		ClearAllActions()
+		ReallyForceSpellRES("abzaway",Myself)
+		Wait(1)
+		EndCutSceneMode()
+		ReallyForceSpellRES("JWSP02",Myself)
+		SetGlobal("STARTEDCHANGE","LOCALS",1)
+END
+>>>>>>>>
+<<<<<<<< .../inlined/abazigal-change-new.baf
+IF
+	HPPercentLT(Myself,25)
+	Global("STARTEDCHANGE","LOCALS",0)
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		ClearAllActions()
+		ReallyForceSpellRES("abzaway",Myself)
+		Wait(1)
+		EndCutSceneMode()
+		ReallyForceSpellRES("JWSP02",Myself)
+		SetGlobal("STARTEDCHANGE","LOCALS",1)
+    CreateCreatureObject("S!DRAGWH",Myself,0,0,0) 
+END
+>>>>>>>>
+
+COPY_EXISTING ~ABAZIGAL.BCS~ ~override~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/abazigal-change-old.baf~ ~.../inlined/abazigal-change-new.baf~
+  
+// Move Abazigal closer to the entrance
+
+COPY_EXISTING ~AR6005.are~ ~override~
+  LPF ~ALTER_AREA_ACTOR~
+    INT_VAR
+      x_coord = 1789
+      y_coord = 813
+    STR_VAR
+     actor_name = ~Abazigal~
+  END

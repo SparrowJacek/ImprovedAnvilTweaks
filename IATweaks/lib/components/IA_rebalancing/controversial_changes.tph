@@ -2392,7 +2392,7 @@ COPY_EXISTING ~DRAGBLAC.cre~ ~override~
 
 COMPILE ~IATweaks\scripts\controversial\DRAGBLAC.BAF~
 
-// Orcus fight
+////////////// Orcus fight
 
 // Soul Siphon
 
@@ -2593,3 +2593,64 @@ COMPILE ~IATweaks\scripts\controversial\S!DRAGGR.BAF~
 // Rock the Minotaur
 
 COMPILE ~IATweaks\scripts\controversial\S!ROCK.BAF~
+
+// Draconis
+
+COMPILE ~IATweaks\scripts\controversial\draconis.BAF~
+
+// Draconis Dragon
+
+COPY_EXISTING ~bazdra02.cre~ ~override~
+
+  REMOVE_MEMORIZED_SPELLS
+  
+  ADD_MEMORIZED_SPELL ~SPIN692~ #0 ~innate~ ( 6 ) // Greater Silence
+
+COMPILE ~IATweaks\scripts\controversial\DRAGBROW.BAF~
+
+// Abazigal Dragon
+
+COPY_EXISTING ~dragblue.cre~ ~override~
+
+  REMOVE_MEMORIZED_SPELLS
+  
+  ADD_MEMORIZED_SPELL "SPWI302" #2 "wizard" ( 4 ) // Remove Magic
+  ADD_MEMORIZED_SPELL "SPWI513" #4 "wizard" ( 6 ) // Breach
+  ADD_MEMORIZED_SPELL "SPWI514" #4 "wizard" ( 5 ) // Lower Resistance
+  ADD_MEMORIZED_SPELL "SPWI605" #5 "wizard" ( 4 ) // Death Spell
+  ADD_MEMORIZED_SPELL "SPWI704" #6 "wizard" ( 7 ) // Ruby Ray of Reversal
+  ADD_MEMORIZED_SPELL "SPWI812" #7 "wizard" ( 1 ) // Abi-Dalzim's Horrid Wilting
+  ADD_MEMORIZED_SPELL "SPIN532" #0 "innate" ( 5 ) // Lower Electricity Resistance
+  ADD_MEMORIZED_SPELL ~SPIN692~ #0 ~innate~ ( 4 ) // Greater Silence
+
+COMPILE ~IATweaks\scripts\controversial\DRAGBROW.BAF~
+
+// Abazigal's Wife
+
+COPY_EXISTING ~S!DRAGWH.cre~ ~override~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL "SPWI302" #2 "wizard" ( 3 ) // Remove Magic
+  ADD_MEMORIZED_SPELL "SPWI513" #4 "wizard" ( 3 ) // Breach
+  ADD_MEMORIZED_SPELL "SPWI514" #4 "wizard" ( 2 ) // Lower Resistance
+  ADD_MEMORIZED_SPELL "SPWI605" #5 "wizard" ( 2 ) // Death Spell
+  ADD_MEMORIZED_SPELL "SPWI704" #6 "wizard" ( 5 ) // Ruby Ray of Reversal
+  ADD_MEMORIZED_SPELL "SPWI812" #7 "wizard" ( 1 ) // Abi-Dalzim's Horrid Wilting
+  ADD_MEMORIZED_SPELL "SPINI03" #0 "innate" ( 4 ) // Lower Cold Resistance
+  ADD_MEMORIZED_SPELL ~SPIN692~ #0 ~innate~ ( 1 ) // Greater Silence
+
+COMPILE ~IATweaks\scripts\creatures\S!DRAGWH.BAF~
+
+// Rozvankee
+COPY_EXISTING ~S!ROZVAN.cre~ ~override~
+
+  LPF ~ADD_CRE_EFFECT~ // Backstab multiplier
+    INT_VAR
+      target = 1
+      opcode = 263
+      parameter1 = 3
+      parameter2 = 0
+      resist_dispel = 0
+      timing = 9
+  END

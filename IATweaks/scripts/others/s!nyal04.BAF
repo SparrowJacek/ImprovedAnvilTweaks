@@ -21,7 +21,7 @@ THEN
 		ActionOverride("s!yagayoung",Swing())
 		Wait(6)
 		ActionOverride("s!yagayoung",DisplayStringHead(Myself,@5161))  // (His voice cracks) Don't leave me alone again! I'll be a good boy! I'll listen! Just— just... open your eyes, Mother... please...
-		Wait(8)
+		Wait(9)
 		DisplayStringHead(Myself,@5162)  // (whispering, distant) ...My boy...
 		Wait(6)
 		ActionOverride("s!yagayoung",DisplayStringHead(Myself,@5163))  // (relief flooding him) Mother!
@@ -32,6 +32,6 @@ THEN
 		ActionOverride("s!yagayoung",DestroySelf())
 		SmallWait(6)
 		ReallyForceSpellRES("S!CLRFO2",Myself)  // No such index
-		StartCutScene("s!nyal00")
+		StartCutScene("s!nyal09")
 END
 

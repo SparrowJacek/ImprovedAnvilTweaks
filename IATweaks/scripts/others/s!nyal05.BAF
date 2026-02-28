@@ -5,6 +5,7 @@ THEN
 		CutSceneId(Player1)
 		StorePartyLocations()
 		FadeToColor([10.0],0)
+		ActionOverride("hgnya01",ChangeAIScript("s!nyale4",RACE))
 		Wait(1)
 		LeaveAreaLUAPanic("ARIANY","",[2520.1860],NW)
 		LeaveAreaLUA("ARIANY","",[2520.1860],NW)

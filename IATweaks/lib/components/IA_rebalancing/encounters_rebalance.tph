@@ -6170,3 +6170,301 @@ COPY_EXISTING ~gromnir.cre~ ~override~
 
   ADD_CRE_ITEM ~S!GRMNIR~ #0 #0 #0 ~NONE~ ~RRING~
 
+////////////// Nyalee
+
+// Add trigger to prevent players from escaping the area, when Nyalee is alive
+
+COPY_EXISTING ~AR5202.are~ ~override~
+
+  LPF fj_are_structure
+    INT_VAR
+      fj_type = 1
+      fj_box_left = 2070
+      fj_box_top = 1640
+      fj_box_right = 2560
+      fj_box_bottom = 1920
+      fj_cursor_idx = 22
+      fj_flags = 256 // Deactivated
+      fj_info_point_strref = RESOLVE_STR_REF (@5152)
+      fj_loc_x = 2300
+      fj_loc_y = 1800
+      fj_vertex_0 = (2070 + (1640 << 16))
+      fj_vertex_1 = (2070 + (1920 << 16))
+      fj_vertex_2 = (2560 + (1920 << 16))
+      fj_vertex_3 = (2560 + (1640 << 16))
+    STR_VAR
+      fj_structure_type = region
+      fj_name           = ~IaNoEscape~
+  END
+
+// Young Yaga-Shura creature
+
+COPY ~IATweaks\resources\cre\s!yagayo.CRE~ ~override~
+  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_YAGA_SMALL~))
+
+// Push away from target spot spell
+
+ADD_PROJECTILE ~IATweaks\resources\pro\s!wbnyal.PRO~
+
+COPY ~IATweaks\resources\eff\s!wbnyal.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!wbnyal.spl~ ~override~
+  LPF ~ALTER_SPELL_HEADER~ 
+    INT_VAR
+      projectile = ~%s!wbnyal%~
+  END
+
+// Nyalee beating heart animation
+
+COPY ~IATweaks\resources\vvc\s!nyalh1.vvc~ ~override~
+
+// Nyalee script
+
+COMPILE ~IATweaks\scripts\creatures\S!NYALE1.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!NYALE2.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!NYALE3.BAF~
+COMPILE ~IATweaks\scripts\creatures\S!NYALE4.BAF~
+
+// Nyalee cutscene scripts
+
+COMPILE ~IATweaks\scripts\others\S!NYAL00.BAF~
+COMPILE ~IATweaks\scripts\others\S!NYAL01.BAF~
+COMPILE ~IATweaks\scripts\others\S!NYAL02.BAF~
+COMPILE ~IATweaks\scripts\others\S!NYAL03.BAF~
+COMPILE ~IATweaks\scripts\others\S!NYAL04.BAF~
+COMPILE ~IATweaks\scripts\others\S!NYAL05.BAF~
+COMPILE ~IATweaks\scripts\others\S!NYAL06.BAF~
+COMPILE ~IATweaks\scripts\others\S!NYAL07.BAF~
+COMPILE ~IATweaks\scripts\others\S!NYAL08.BAF~
+COMPILE ~IATweaks\scripts\others\S!NYAL09.BAF~
+
+// Spell for forced sleep
+
+COPY ~IATweaks\resources\eff\s!sleepc.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!sleepc.spl~ ~override~
+
+// Older Yaga-Shura
+
+COPY ~IATweaks\resources\cre\s!yagaol.CRE~ ~override~
+
+// Nyalee for cutscenes
+
+COPY ~IATweaks\resources\cre\s!nyalee.CRE~ ~override~
+
+// Copy of Forest of Mir area
+
+COPY ~IATweaks\resources\are\ariany.are~ ~override~
+
+// Improved Shambling Mounds
+
+COPY ~IATweaks\resources\itm\s!mound.itm~ ~override~
+COPY ~IATweaks\resources\cre\s!mound1.cre~ ~override~
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+COMPILE ~IATweaks\scripts\creatures\s!mound1.BAF~
+
+// Evil Swanmay Queens
+
+COPY_EXISTING ~S!SWANQ.cre~ ~override/s!swanq1.cre~
+  WRITE_LONG 0x14 30000 // Exp
+  WRITE_ASCII 0x248 ~S!RANCM4~ #8
+  WRITE_BYTE 0x270 255 // enemy
+  WRITE_ASCII 0x280 ~S!SWANQ1~ #20
+
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+COPY_EXISTING ~s!swanq1.cre~ ~override/s!swanq2.cre~
+  WRITE_ASCII 0x280 ~S!SWANQ2~ #20
+
+COPY_EXISTING ~s!swanq1.cre~ ~override/s!swanq3.cre~
+  WRITE_ASCII 0x280 ~S!SWANQ3~ #20
+
+COPY_EXISTING ~s!swanq1.cre~ ~override/s!swanq4.cre~
+  WRITE_ASCII 0x280 ~S!SWANQ4~ #20
+
+// Casting speed spells
+
+COPY ~IATweaks\resources\spl\s!casti4.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!casti4.spl~ ~override/s!casti3.spl~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 189
+      parameter1 = 3
+  END
+COPY ~IATweaks\resources\spl\s!casti4.spl~ ~override/s!casti2.spl~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 189
+      parameter1 = 2
+  END
+
+// Change summons that Nyalee creates when turning hostile
+// Prevent dialogue from removing Nyalee's minhp1 item
+
+COMPILE ~IATweaks/resources/dlg/nyalee.d~
+
+// Nyalee herself
+
+COPY_EXISTING ~hgnya01.cre~ ~override~
+  WRITE_LONG 0x14 55000 // Exp
+  WRITE_SHORT 0x24 194 // HP
+  WRITE_SHORT 0x26 194 // HP
+  WRITE_BYTE 0x5c 85  // Acid Resistance
+  WRITE_BYTE 0x60 65 // Resist Slashing
+  WRITE_BYTE 0x61 65 // Resist Crushing
+  WRITE_BYTE 0x62 65 // Resist Piercing
+  WRITE_BYTE 0x63 75 // Resist Missile
+  WRITE_BYTE 0x234 35 // Level 1
+  WRITE_BYTE 0x238 18 // Strength
+  WRITE_LONG 0x244 0x40290000 // Kit = Tempus
+  WRITE_ASCII 0x258 ~S!NYALE1~ #8
+
+  LPF ~ADD_CRE_EFFECT~ // 0 movement speed
+    INT_VAR
+      opcode = 126
+      target = 1
+      parameter1 = 0
+      parameter2 = 1
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Immunity to Wing Buffet
+    INT_VAR
+      opcode = 101
+      parameter2 = 235
+      timing = 9
+      target = 1
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Immunity to Wing Buffet
+    INT_VAR
+      opcode = 101
+      parameter2 = 235
+      timing = 9
+      target = 1
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Add ENEMY_GROUP spellstate
+    INT_VAR
+      target = 1
+      opcode = 328
+      parameter1 = 0
+      parameter2 = enemy_group_state
+      resist_dispel = 0
+      timing = 9
+      special = 1
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // +50% spell duration
+    INT_VAR
+      opcode = 146
+      target = 1
+      parameter2 = 1
+      timing = 9
+      resist_dispel = 0
+      special = 30
+    STR_VAR
+      resource = ~S!SPLDU2~
+      effsource = ~S!SPLDU2~
+  END
+
+  LPF ~ALTER_EFFECT~ // Casting Speed <= 5
+    INT_VAR
+      match_opcode = 189
+      parameter1 = 5
+      parameter2 = 2
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Permanent Alacrity
+    INT_VAR
+      target = 1
+      opcode = 188
+      parameter1 = 0
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+  
+<<<<<<<< .../inlined/ar5202-old.baf
+IF
+	InMyArea(Player1)
+	PartyHasItem("hgheart2")
+	Global("Iahordebegin","AR5202",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iahordebegin","AR5202",1)
+		SetGlobalTimer("Iahorde","AR5202",3)
+END
+>>>>>>>>
+<<<<<<<< .../inlined/ar5202-new.baf
+IF
+	Global("IaNyaleeFight","AR5202",1)
+THEN
+	RESPONSE #100
+    ReallyForceSpellRES("S!PCKET1",Player1)
+    TriggerActivation("IaNoEscape",TRUE)
+		SetGlobal("IaNyaleeFight","AR5202",2)
+END
+
+IF
+	Global("IaNyaleeFight","AR5202",2)
+  Dead("HGNYA01")
+THEN
+	RESPONSE #100
+    ReallyForceSpellRES("S!PCKET2",Player1)
+    TriggerActivation("IaNoEscape",FALSE)
+		SetGlobal("IaNyaleeFight","AR5202",3)
+END
+>>>>>>>>
+
+EXTEND_TOP ~AR5202.BCS~ ~IATweaks/scripts/patches/ar5202_nyalee_cutscenes.baf~
+
+COPY_EXISTING ~AR5202.BCS~ ~override~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/ar5202-old.baf~ ~.../inlined/ar5202-new.baf~
+  BUT_ONLY
+

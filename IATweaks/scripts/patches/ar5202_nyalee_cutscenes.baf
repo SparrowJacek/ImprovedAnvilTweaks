@@ -1,0 +1,55 @@
+IF
+	Global("IaNyaleeCutscene","GLOBAL",0)
+	HPPercentLT("hgnya01",50)
+THEN
+	RESPONSE #100
+		ActionOverride("hgnya01",ChangeAIScript("s!nyale2",RACE))
+		SetGlobal("IaNyaleeCutscene","GLOBAL",1)
+		StartCutSceneMode()
+		ClearAllActions()
+		Wait(1)
+		StartCutScene("s!nyal01")
+END
+
+IF
+	Global("IaNyaleeCutscene","GLOBAL",1)
+	HPPercentLT("hgnya01",5)
+THEN
+	RESPONSE #100
+		ActionOverride("hgnya01",ChangeAIScript("s!nyale3",RACE))
+		SetGlobal("IaNyaleeCutscene","GLOBAL",2)
+		StartCutSceneMode()
+		ClearAllActions()
+		SaveGame(0)
+		Wait(1)
+		StartCutScene("s!nyal03")
+END
+
+IF
+	Global("IaNyaleeCutscene","GLOBAL",2)
+	HPPercentLT("hgnya01",50)
+THEN
+	RESPONSE #100
+		ActionOverride("hgnya01",ChangeAIScript("s!nyale4",RACE))
+		SetGlobal("IaNyaleeCutscene","GLOBAL",3)
+		StartCutSceneMode()
+		ClearAllActions()
+		Wait(1)
+		StartCutScene("s!nyal05")
+END
+
+IF
+	OR(2)
+		Dead("hgnya01")
+		HPLT("hgnya01",1)
+	Global("IaNyaleeCutscene","GLOBAL",3)
+THEN
+	RESPONSE #100
+		SetGlobal("IaNyaleeCutscene","GLOBAL",4)
+		StartCutSceneMode()
+		ClearAllActions()
+		SaveGame(0)
+		ActionOverride("hgnya01",DestroyItem("minhp1"))
+		Wait(1)
+		StartCutScene("s!nyal07")
+END

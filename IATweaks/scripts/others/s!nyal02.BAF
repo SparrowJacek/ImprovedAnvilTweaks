@@ -18,12 +18,13 @@ THEN
 		ActionOverride("s!yagayoung",DisplayStringHead(Myself,@5156))  // But what if... what if you left? Like the others?
 		Wait(5)
 		DisplayStringHead(Myself,@5157)  // (Nyalee raises her voice, firm but warm) I am your mother in all but blood. I do not leave my own.
-		Wait(7)
+		Wait(8)
 		ActionOverride("s!yagayoung",DisplayStringHead(Myself,@5158))  // (Yaga-Shura slowly relaxes, shoulders lowering) ...Thank you, Mother.
 		Wait(3)
 		FadeToColor([10.0],0)
-		SmallWait(12)
+		SmallWait(8)
 		ActionOverride("s!yagayoung",DestroySelf())
+		SmallWait(4)
 		ReallyForceSpellRES("S!CLRFO2",Myself)  // No such index
 		StartCutScene("s!nyal00")
 END

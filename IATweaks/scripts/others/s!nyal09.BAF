@@ -1,0 +1,22 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player1)
+		RestorePartyLocations()
+		MultiPlayerSync()
+		FadeFromColor([15.0],0)
+		MoveViewObject("HGNYA01",INSTANT)
+		Wait(1)
+		ActionOverride("hgnya01",DisplayStringHead(Myself,@5162))
+		Wait(2)
+		CreateVisualEffectObject("ICRAISEI","hgnya01")
+		Wait(2)
+		ActionOverride("hgnya01",SetSequence(SEQ_AWAKE))
+		Wait(1)
+		ActionOverride("hgnya01",ReallyForceSpell(Myself,CLERIC_HEAL))
+		Wait(1)
+		ActionOverride("hgnya01",ForceSpell(Myself,CLERIC_IRONSKIN))
+		EndCutSceneMode()
+END
+

@@ -43,7 +43,6 @@
 @65 = ~Place BG1 stat books in Irenicus dungeon~
 @66 = ~Create containers (gem bag, etc.) in Irenicus Dungeon~
 
-@5000 = ~IA rebalancing (should be installed before Simplified Economy)~
 @5000 = ~IA Rebalancing~
 @5001 = ~Rework summoning limit to not block casting spells like Wish if you have reached summon limit~
 @5002 = ~Rework weapon style bonuses, improve sword and shield, 2h weapon and single weapon styles~
@@ -1480,6 +1479,15 @@ It's too late now... Nyalee is so tired... My boy... My sweet boy...~
 
 @5176 = ~Rest now, Mother. I'm here, right next to you.~
 
+@5177 = ~(Nyalee's body can't keep up with the amout of energy she is unleashing and starts decomposing)~
+
+@5178 = ~No! That boy is a lie! Nyalee knows the boy is good, the boy is kind! The boy is just scared again!~
+
+@5179 = ~There's still time! Nyalee can still make everything right!~
+
+@5180 = ~With every beat of her newly restored heart, Nyalee's long lost emotions and memories are returning to her. This time their flood is so strong, that even your mind is drawn into one of such memories.~
+
+@5181 = ~Nyalee's heart finally stops, but with its final beat, you are sucked into another vision. As you see the scene unfolding in your mind, you understand that it's not a memory, but Nyalee's deepest desire, something she clung to till her last moment.~
 
 @5182 = ~Green Abishai~
 

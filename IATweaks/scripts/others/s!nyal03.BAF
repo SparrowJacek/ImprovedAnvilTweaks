@@ -4,6 +4,9 @@ THEN
 	RESPONSE #100
 		CutSceneId(Player1)
 		StorePartyLocations()
+		ActionOverride("HGNYA01",SetSequence(SEQ_DIE))
+		Wait(2)
+		ActionOverride("hgnya01",ChangeAIScript("s!nyale3",RACE))
 		FadeToColor([10.0],0)
 		Wait(1)
 		LeaveAreaLUAPanic("ARIANY","",[2520.1860],NW)

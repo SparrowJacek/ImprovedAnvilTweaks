@@ -26,8 +26,9 @@ THEN
 		DisplayStringHead(Myself,@5168)  // (A single tear falls down Nyalee's cheek, but she says nothing)
 		Wait(3)
 		FadeToColor([10.0],0)
-		SmallWait(12)
+		SmallWait(8)
 		ActionOverride("s!yagaolder",DestroySelf())
+		SmallWait(4)
 		ReallyForceSpellRES("S!CLRFO2",Myself)  // No such index
 		StartCutScene("s!nyal00")
 END

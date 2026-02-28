@@ -104,7 +104,7 @@ APPEND WSMITH01
     PartyHasItem("s!misc02")
     PartyGoldGT(59999)
     ~ THEN REPLY @8001 DO ~TakePartyGold(60000)
-    DestroyGold(50000)
+    DestroyGold(60000)
     TakePartyItemNum("s!clubni",1)
     DestroyItem("s!clubni")
     TakePartyItemNum("s!surehi",1)
@@ -148,3 +148,37 @@ CreateVisualEffect("spcrtwpn",[401.348])~
 END
 
 REPLACE_SAY WSMITH01 98 @8010
+
+// The Martyr's Answer +4
+
+EXTEND_BOTTOM WSMITH01 13
+IF ~  PartyHasItem("blun25")
+~ THEN REPLY @8011  GOTO 302
+END
+
+APPEND WSMITH01
+  IF ~~ THEN BEGIN 302
+    SAY @8012
+    IF ~~ THEN REPLY @8000 GOTO 13
+    IF ~  Global("Iamartyranswer","GLOBAL",0)
+    PartyHasItem("wa2amu")
+    PartyHasItem("blun25")
+    PartyHasItem("wamace")
+    PartyHasItem("s!misc06")
+    PartyGoldGT(59999)
+    ~ THEN REPLY @8001 DO ~TakePartyGold(60000)
+    DestroyGold(60000)
+    TakePartyItemNum("wa2amu",1)
+    DestroyItem("wa2amu")
+    TakePartyItemNum("blun25",1)
+    DestroyItem("blun25")
+    TakePartyItemNum("wamace",1)
+    DestroyItem("wamace")
+    TakePartyItemNum("s!misc06",1)
+    DestroyItem("s!misc06")
+    SetGlobal("Iamartyranswer","GLOBAL",1)
+    GiveItemCreate("s!blun10",Player1,1,1,1)
+    CreateVisualEffect("spcrtwpn",[401.348])
+    ~ EXIT
+  END
+END

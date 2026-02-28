@@ -301,6 +301,24 @@ COPY ~IATweaks\resources\itm\s!ring22.itm~ ~override~
 COPY_EXISTING ~S!ORCUS.cre~ ~override~
   ADD_CRE_ITEM ~s!ring22~ #0 #0 #0 ~UNSTEALABLE~ ~INV10~
 
+//////////// Cloak of the Second Strike
+
+COPY ~IATweaks\resources\itm\s!clck32.itm~ ~override~
+  SAY NAME2 @7087
+  SAY IDENTIFIED_DESC @7088
+
+// Thief from Mencar's party
+
+COPY_EXISTING ~SEVPAT05.cre~ ~override~
+  ADD_CRE_ITEM ~S!CLCK32~ #0 #0 #0 ~UNSTEALABLE~ ~CLOAK~
+
+//////////// The Martyr's Answer +4~
+
+COPY ~IATweaks\resources\bam\s!blun10.bam~ ~override~
+COPY ~IATweaks\resources\itm\s!blun10.itm~ ~override~
+  SAY NAME2 @7126
+  SAY IDENTIFIED_DESC @7127
+
 /////////////// New Recipes
 
 COMPILE ~IATweaks/resources/dlg/crom_new_items.d~

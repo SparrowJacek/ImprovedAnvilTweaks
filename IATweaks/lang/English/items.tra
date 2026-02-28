@@ -910,10 +910,37 @@ Equipped abilities:
 - +30 Max HP
 - Regenerate 1 Hit Point per round~
 
-@7087 = ~~
 
-@7088 = ~~
 
-@7089 = ~~
+STATISTICS:
+Equipped abilities:
+- +1/2 extra attack per round~
+
+
+@7126 = ~The Martyr's Answer +4~
+
+@7127 = ~Some weapons are made for war. This one was made for the moment when war is already lost and someone must stand anyway. The sacrifice of Jerrod and the relentless purpose of the Mace of Disruption have been bound into a single relic. It does not blaze, nor does it hunger — it simply ends that which should not be.
+
+STATISTICS:
+
+Equipped abilities:
+- Charisma: +2
+- Hit Points: +10
+- Protection From Evil
+
+Combat Abilities:
+- deals additional 3-8 crushing damage to all Undead and Demons
+- lesserr Undead must make a saving throw vs. death (-4 penalty) or be utterly destroyed
+- instantly kills any Undead or Demon that has fewer than 20 Hit Points at the time of the strike
+
+THACO: +4
+Damage: 1D6 +5
+Damage type: crushing
+Weight: 8
+Speed Factor: 4
+Proficiency Type: Mace
+Type: 1-handed
+Requires: 8 Strength~
+
 
 @7090 = ~~

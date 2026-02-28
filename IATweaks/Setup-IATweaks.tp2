@@ -256,6 +256,13 @@ REQUIRE_PREDICATE (MOD_IS_INSTALLED ~ImprovedAnvil/Setup-ImprovedAnvil.tp2~ ~0~)
 
 INCLUDE "IATweaks/lib/components/bulian/toughest_encounters_ch23.tph"
 
+BEGIN @65 DESIGNATED 305
+GROUP @3
+
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~ImprovedAnvil/Setup-ImprovedAnvil.tp2~ ~0~) @0
+
+INCLUDE "IATweaks/lib/components/bulian/stat_books.tph"
+
 // IA Rebalance
 
 BEGIN @5194 DESIGNATED 400
@@ -347,8 +354,8 @@ INCLUDE "IATweaks/lib/components/IA_rebalancing/elemental_spells.tph"
 INCLUDE "IATweaks/lib/components/IA_rebalancing/new_creatures.tph"
 INCLUDE "IATweaks/lib/components/IA_rebalancing/dispel_weights.tph"
 INCLUDE "IATweaks/lib/components/IA_rebalancing/encounters_rebalance.tph"
-INCLUDE "IATweaks/lib/components/IA_rebalancing/additional_items.tph"
 INCLUDE "IATweaks/lib/components/IA_rebalancing/sibel_items.tph"
+INCLUDE "IATweaks/lib/components/IA_rebalancing/additional_items.tph"
 INCLUDE "IATweaks/lib/components/IA_rebalancing/small_tweaks.tph"
 INCLUDE "IATweaks/lib/components/IA_rebalancing/usable_item_changes.tph"
 INCLUDE "IATweaks/lib/components/IA_rebalancing/standarized_protection_spellstates_items.tph"
@@ -381,10 +388,10 @@ INCLUDE "IATweaks/lib/components/IA_rebalancing/elemental_spells.tph"
 INCLUDE "IATweaks/lib/components/IA_rebalancing/new_creatures.tph"
 INCLUDE "IATweaks/lib/components/IA_rebalancing/dispel_weights.tph"
 INCLUDE "IATweaks/lib/components/IA_rebalancing/encounters_rebalance.tph"
+INCLUDE "IATweaks/lib/components/IA_rebalancing/sibel_items.tph"
 INCLUDE "IATweaks/lib/components/IA_rebalancing/controversial_changes.tph"
 INCLUDE "IATweaks/lib/components/IA_rebalancing/controversial_AI_changes.tph"
 INCLUDE "IATweaks/lib/components/IA_rebalancing/additional_items.tph"
-INCLUDE "IATweaks/lib/components/IA_rebalancing/sibel_items.tph"
 INCLUDE "IATweaks/lib/components/IA_rebalancing/small_tweaks.tph"
 INCLUDE "IATweaks/lib/components/IA_rebalancing/usable_item_changes.tph"
 INCLUDE "IATweaks/lib/components/IA_rebalancing/standarized_protection_spellstates_items.tph"

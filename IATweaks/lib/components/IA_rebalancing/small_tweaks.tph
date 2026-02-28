@@ -1241,6 +1241,9 @@ COPY_EXISTING ~SPIN695.spl~ ~override~
 
 COPY ~IATweaks\resources\itm\s!immun2.itm~ ~override~
 
+// Prevent info about additional spells of level 4 from appearing for some Ranger kits and Inquisitors
+
+LAF ~S!HIDE_LEVEL_4_PRIEST_SPELLS_INFO_FROM_LEVEL_UP_WINDOW~ END
 
 // A spell preventing Aura Cleanse, used mostly to ensure that some enemies go into melee from time to time
 

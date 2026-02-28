@@ -2013,6 +2013,10 @@ ACTION_FOR_EACH invulnerability_potion IN ~potn11~ ~potn40~ BEGIN
     END
 END
 
+// Gauntlets of Blessed Might
+
+COPY_EXISTING ~s!brac04.itm~ ~override~
+  WRITE_BYTE 0x29 64 // prevent Barbarians from using it
 
 //////////// Dracolich fight
 

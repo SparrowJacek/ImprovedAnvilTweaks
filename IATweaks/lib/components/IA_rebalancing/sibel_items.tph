@@ -1,0 +1,163 @@
+PRINT @5198
+
+SILENT
+
+INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
+
+// Barb Dream
+
+COPY_EXISTING ~s!schan1.itm~ ~override~
+  SAY IDENTIFIED_DESC @7112
+  PATCH_FOR_EACH physical_res_opcode IN 86 87 88 89 BEGIN
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = physical_res_opcode
+        parameter1 = 10
+    END
+  END
+
+// Reinforced Plate
+
+COPY_EXISTING ~s!splat1.itm~ ~override~
+  SAY IDENTIFIED_DESC @7113
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 98
+      parameter1 = 1
+  END
+
+// Boots of RB Lord
+
+COPY_EXISTING ~s!sboo03.itm~ ~override~
+  SAY IDENTIFIED_DESC @7114
+  LPF ~DELETE_EFFECT~
+    INT_VAR
+      match_opcode = 1
+  END
+
+// Reinforced Amber Ioun Stone
+
+COPY_EXISTING ~s!sioun2.itm~ ~override~
+  SAY IDENTIFIED_DESC @7115
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 0
+      parameter1 = 2
+  END
+
+// Shield of Missionaire +5
+
+COPY_EXISTING ~s!sshld1.itm~ ~override~
+  SAY IDENTIFIED_DESC @7125
+  WRITE_BYTE 0x20 (THIS BOR 0b00010000) // Make it usable by Paladins
+
+// Shield of Missionaire +6
+
+COPY_EXISTING ~s!sshld2.itm~ ~override~
+  SAY IDENTIFIED_DESC @7116
+  WRITE_BYTE 0x20 (THIS BOR 0b00010000) // Make it usable by Paladins
+  PATCH_FOR_EACH physical_res_opcode IN 86 87 88 89 BEGIN
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = physical_res_opcode
+        parameter1 = 10
+    END
+  END
+  PATCH_FOR_EACH other_res_opcode IN 27 28 29 30 31 BEGIN
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = physical_res_opcode
+        parameter1 = 20
+    END
+  END
+
+// Hammer-Axe
+
+COPY ~IATweaks\resources\itm\S!saxe02.itm~ ~override~
+  SAY IDENTIFIED_DESC @7117
+
+// Axe of Gleaming Lava
+
+COPY_EXISTING ~s!saxe01.itm~ ~override~
+  SAY IDENTIFIED_DESC @7118
+  LPF ~ALTER_ITEM_HEADER~
+    INT_VAR
+      header_type = 1
+      dicenumber = 1
+  END
+
+// Rimed Club +5
+
+COPY_EXISTING ~s!sblu03.itm~ ~override~
+  SAY IDENTIFIED_DESC @7119
+  LPF ~ALTER_ITEM_HEADER~
+    INT_VAR
+      header_type = 1
+      dicenumber = 1
+  END
+
+// Lakesider
+
+COPY_EXISTING ~s!saxe03.itm~ ~override~
+  SAY IDENTIFIED_DESC @7120
+  LPF ~ALTER_ITEM_HEADER~
+    INT_VAR
+      header_type = 1
+      dicenumber = 1
+  END
+
+// Phosphorus +5
+
+COPY_EXISTING ~s!sblu04.itm~ ~override~
+  SAY IDENTIFIED_DESC @7121
+  LPF ~ALTER_ITEM_HEADER~
+    INT_VAR
+      header_type = 1
+      dicenumber = 2
+  END
+
+// Adorned Blade of Roses +5
+
+COPY_EXISTING ~s!ssw02.itm~ ~override~
+  SAY IDENTIFIED_DESC @7122
+  LPF ~ALTER_ITEM_HEADER~
+    INT_VAR
+      header_type = 1
+      dicenumber = 1
+  END
+
+// Damascus Steel Blade
+
+COPY_EXISTING ~s!ssw01.itm~ ~override~
+  SAY IDENTIFIED_DESC @7123
+  WRITE_BYTE 0x2f 0 // Allow Kensai to use it
+  LPF ~ALTER_ITEM_HEADER~
+    INT_VAR
+      header_type = 1
+      dicenumber = 1
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 0
+      parameter1 = 6
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 0
+      multi_match = 1
+      opcode = 177
+      parameter1 = (IDS_OF_SYMBOL(~kit~ ~WIZARDSLAYER~))
+      parameter2 = 9
+    STR_VAR
+      resource = ~S!+05APR~
+  END
+
+// Fruitful Attempt
+
+COPY_EXISTING ~s!srin01.itm~ ~override~
+  SAY IDENTIFIED_DESC @7124
+
+// Lady Elowen, changed prices
+
+COMPILE ~IATweaks/resources/dlg/elowen.d~
+USING ~%LANGUAGE%elowen_reworked_items.tra~

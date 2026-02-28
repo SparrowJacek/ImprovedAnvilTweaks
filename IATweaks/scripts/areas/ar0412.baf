@@ -1,0 +1,162 @@
+IF
+	Dead("tolger2")  // Tolgerias
+	Global("AddEntry16302","AR0412",2)  // Sphere: Ice and Fire Room
+THEN
+	RESPONSE #100
+		AddJournalEntry(16302,QUEST)  // The hunt for Valygar Corthala We have been assaulted by Tolgerias, the Cowled Wizard who was hunting Valygar in an obvious attempt to gain access to the planar sphere. The wizard is dead now... although further repercussions from the Cowled Wizards seem likely.
+		SetGlobal("AddEntry16302","AR0412",5)  // Sphere: Ice and Fire Room
+END
+
+IF
+	Global("Iaexit","AR0412",0)  // Sphere: Ice and Fire Room
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iaexit","AR0412",1)  // Sphere: Ice and Fire Room
+		TriggerActivation("Tran0411",FALSE)
+END
+
+IF
+	Global("Iahelmgone","AR0412",0)  // Sphere: Ice and Fire Room
+THEN
+	RESPONSE #100
+		SetGlobal("Iahelmgone","AR0412",1)  // Sphere: Ice and Fire Room
+		ActionOverride("Container 1",DestroyItem("helm04"))  // Gift of Peace
+		ActionOverride("Container 1",CreateItem("clck09",0,0,0))  // Mage Robe of Cold Resistance
+		ActionOverride("Container 1",CreateItem("misc23",0,0,0))  // Jasper Gem
+END
+
+IF
+	Global("Iacreature","AR0412",0)  // Sphere: Ice and Fire Room
+	Global("GypsyJob","GLOBAL",7)
+	InMyArea(Player1)
+	Global("Iatimer","AR0412",0)  // Sphere: Ice and Fire Room
+THEN
+	RESPONSE #100
+		SetGlobal("Iatimer","AR0412",1)  // Sphere: Ice and Fire Room
+		SetGlobalTimer("Iacold","AR0412",4)  // Sphere: Ice and Fire Room
+END
+
+IF
+	Global("Iacreature","AR0412",0)  // Sphere: Ice and Fire Room
+	Global("GypsyJob","GLOBAL",7)
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iacreature","AR0412",1)  // Sphere: Ice and Fire Room
+		CreateCreature("S!icego1",[1134.1070],SSW)  // Ice Golem
+		CreateCreature("S!iceel1",[1104.1070],SSW)  // Ice Elemental
+		CreateCreature("S!iceel1",[1164.1070],SSW)  // Ice Elemental
+		CreateCreature("S!iceel1",[1194.1070],SSW)  // Ice Elemental
+		CreateCreature("S!iceel1",[1074.1070],SSW)  // Ice Elemental
+		TriggerActivation("Tran0413a",FALSE)
+		TriggerActivation("Tran0413b",FALSE)
+		TriggerActivation("Tran0411",FALSE)
+		ActionOverride("Container 1",CreateItem("misc07",30000,0,0))  // Gold
+END
+
+IF
+	Global("Iacreature","AR0412",1)  // Sphere: Ice and Fire Room
+	Global("GypsyJob","GLOBAL",7)
+	Dead("S!icego1")  // Ice Golem
+THEN
+	RESPONSE #100
+		SetGlobal("Iacreature","AR0412",2)  // Sphere: Ice and Fire Room
+		SetGlobal("GypsyJob","GLOBAL",8)
+		TriggerActivation("Tran0413a",TRUE)
+		TriggerActivation("Tran0413b",TRUE)
+		TriggerActivation("Tran0411",TRUE)
+END
+
+IF
+	Global("Iacreature","AR0412",1)  // Sphere: Ice and Fire Room
+	Global("GypsyJob","GLOBAL",7)
+	InMyArea(Player1)
+	GlobalTimerExpired("Iacold","AR0412")  // Sphere: Ice and Fire Room
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Iacold","AR0412",13)  // Sphere: Ice and Fire Room
+		ReallyForceSpellRES("SPINI36",Player1)
+END
+
+IF
+	OpenState("Door 0410A",TRUE)
+	Global("Door1Opened","AR0412",0)  // Sphere: Ice and Fire Room
+THEN
+	RESPONSE #100
+		SetGlobal("Door1Opened","AR0412",1)  // Sphere: Ice and Fire Room
+END
+
+IF
+	OpenState("Door 0412A",TRUE)
+	Global("Door2Opened","AR0412",0)  // Sphere: Ice and Fire Room
+THEN
+	RESPONSE #100
+		SetGlobal("Door2Opened","AR0412",1)  // Sphere: Ice and Fire Room
+END
+
+IF
+	OpenState("Door 0410A",FALSE)
+	Global("Door1Opened","AR0412",1)  // Sphere: Ice and Fire Room
+THEN
+	RESPONSE #100
+		OpenDoor("Door 0410A")
+END
+
+IF
+	OpenState("Door 0412A",FALSE)
+	Global("Door2Opened","AR0412",1)  // Sphere: Ice and Fire Room
+THEN
+	RESPONSE #100
+		OpenDoor("Door 0412A")
+END
+
+IF
+	Global("Iaexit","AR0412",1)  // Sphere: Ice and Fire Room
+	Global("PowerObsidianSphere","GLOBAL",1)
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iaexit","AR0412",2)  // Sphere: Ice and Fire Room
+		TriggerActivation("Tran0411",TRUE)
+END
+
+IF
+	Global("Iaexit","AR0412",1)  // Sphere: Ice and Fire Room
+	OR(2)
+		Dead("tolger2")  // Tolgerias
+		Dead("TOLGER")  // Tolgerias
+	CombatCounter(0)
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iaexit","AR0412",2)  // Sphere: Ice and Fire Room
+		TriggerActivation("Tran0411",TRUE)
+END
+
+IF
+	Global("Ianticheat","AR0412",0)  // Sphere: Ice and Fire Room
+	Exists("tolger2")  // Tolgerias
+	!Dead("tolger2")  // Tolgerias
+	!Allegiance("tolger2",ENEMY)  // Tolgerias
+	HPPercentLT("tolger2",100)  // Tolgerias
+THEN
+	RESPONSE #100
+		SetGlobal("Ianticheat","AR0412",1)  // Sphere: Ice and Fire Room
+		ChangeEnemyAlly("tolger2",ENEMY)  // Tolgerias
+		ApplySpellRES("SPWII07","tolger2")  // No such index
+END
+
+IF
+	Global("Ianticheat","AR0412",0)  // Sphere: Ice and Fire Room
+	Exists("TOLGER")  // Tolgerias
+	!Dead("TOLGER")  // Tolgerias
+	!Allegiance("TOLGER",ENEMY)  // Tolgerias
+	HPPercentLT("TOLGER",100)  // Tolgerias
+THEN
+	RESPONSE #100
+		SetGlobal("Ianticheat","AR0412",1)  // Sphere: Ice and Fire Room
+		ChangeEnemyAlly("TOLGER",ENEMY)  // Tolgerias
+		ApplySpellRES("SPWII07","TOLGER")  // No such index
+END
+

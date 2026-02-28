@@ -728,3 +728,8 @@ COMPILE ~IATweaks\scripts\controversial\sengua05.BAF~
 // Sendai main body (F/M/C)
   
 COMPILE ~IATweaks\scripts\controversial\senbattl.BAF~
+
+// Pasha
+  
+COMPILE ~IATweaks\scripts\controversial\s!pasha.BAF~
+COMPILE ~IATweaks\scripts\controversial\s!pasha2.BAF~

@@ -1,0 +1,87 @@
+/// Custom kits: makes Aerie into a Shaman ///
+
+SILENT
+
+ACTION_FOR_EACH aerie_file IN ~AERIE6~ ~AERIE7~ ~AERIE9~ ~AERIE10~ ~AERIE11~ ~AERIE12~ BEGIN
+  COPY_EXISTING ~%aerie_file%.cre~ ~override~
+    WRITE_SHORT 0x24   56 // current HP
+    WRITE_SHORT 0x26   56 // max HP
+    WRITE_BYTE  0x23c  16 // dexterity
+    WRITE_LONG  0x244  0  // kit
+    WRITE_BYTE  0x235  7  // Level 1
+    WRITE_BYTE  0x235  1  // Level 2
+    WRITE_BYTE  0x273  21 // shaman class
+
+    SPRINT ~opcode_to_delete~ ~233~
+    LAUNCH_PATCH_MACRO ~DELETE_CRE_EFFECT~
+
+    // club
+    LPF ~ADD_CRE_EFFECT~ INT_VAR
+      opcode = 233
+      timing = 9
+      parameter1 = 1
+      parameter2 = 115
+    END
+
+    // quarterstaff
+    LPF ~ADD_CRE_EFFECT~ INT_VAR
+      opcode = 233
+      timing = 9
+      parameter1 = 1
+      parameter2 = 102
+    END
+
+    // sword & shield
+    LPF ~ADD_CRE_EFFECT~ INT_VAR
+      opcode = 233
+      timing = 9
+      parameter1 = 1
+      parameter2 = 112
+    END
+
+    REMOVE_KNOWN_SPELLS
+    REMOVE_MEMORIZED_SPELLS
+
+    ADD_MEMORIZED_SPELL ~SPPR101~ #0 ~priest~ ( 6 ) // Bless
+    ADD_MEMORIZED_SPELL ~SPPR103~ #0 ~priest~ ( 6 ) // Cure Light Wounds
+    ADD_MEMORIZED_SPELL ~SPPR111~ #0 ~priest~ ( 6 ) // Armor of Faith
+    ADD_MEMORIZED_SPELL ~SPPR113~ #0 ~priest~ ( 6 ) // Doom
+    ADD_MEMORIZED_SPELL ~SPPR116~ #0 ~priest~ ( 6 ) // Mend
+    ADD_MEMORIZED_SPELL ~SPPR117~ #0 ~priest~ ( 6 ) // Wisdom of Ages
+
+    ADD_MEMORIZED_SPELL ~SPPR206~ #1 ~priest~ ( 6 ) // Flame Blade
+    ADD_MEMORIZED_SPELL ~SPPR212~ #1 ~priest~ ( 6 ) // Slow Poison
+    ADD_MEMORIZED_SPELL ~SPPR218~ #1 ~priest~ ( 6 ) // Alicorn Lance
+    
+    ADD_MEMORIZED_SPELL ~SPPR303~ #2 ~priest~ ( 4 ) // Dispel Magic
+    ADD_MEMORIZED_SPELL ~SPPR315~ #2 ~priest~ ( 4 ) // Cure Medium Wounds
+    ADD_MEMORIZED_SPELL ~SPPR320~ #2 ~priest~ ( 4 ) // Mend
+END
+
+// Aerie alternative improved item
+
+COPY ~IATweaks\resources\spl\s!natres.spl~ ~override~
+COPY ~IATweaks\resources\bam\s!leat20.bam~ ~override~
+COPY ~IATweaks\resources\itm\s!leat20.itm~ ~override~
+  SAY NAME2 @7128
+  SAY IDENTIFIED_DESC @7129
+
+COMPILE ~IATweaks/resources/dlg/crom_aerie_shaman.d~
+USING ~%LANGUAGE%crom_new_items.tra~
+
+COMPILE ~IATweaks/resources/dlg/cesp_aerie_shaman.d~
+USING ~%LANGUAGE%crom_new_items.tra~ ~%LANGUAGE%cespy_new_items.tra~
+
+COPY_EXISTING ~spcli15.spl~ ~override~
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 215
+      multi_match = 1
+      target = 1
+      opcode = 146
+      parameter1 = 0
+      parameter2 = 1
+    STR_VAR
+      resource = ~S!NATRES~
+  END
+    

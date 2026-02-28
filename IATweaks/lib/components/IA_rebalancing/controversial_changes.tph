@@ -724,7 +724,7 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY item_to_enchantment_mapping BEGIN
   "RING39"=>2
   "RING41"=>3
   "s!ring01"=>4
-  "s!ring03"=>3
+  // "s!ring03"=>3
   "s!ring05"=>1
   // Samara Fruit
   // Holy Symbol of Lathander

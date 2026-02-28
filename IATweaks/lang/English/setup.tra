@@ -44,6 +44,7 @@
 @66 = ~Create containers (gem bag, etc.) in Irenicus Dungeon~
 
 @5000 = ~IA rebalancing (should be installed before Simplified Economy)~
+@5000 = ~IA Rebalancing~
 @5001 = ~Rework summoning limit to not block casting spells like Wish if you have reached summon limit~
 @5002 = ~Rework weapon style bonuses, improve sword and shield, 2h weapon and single weapon styles~
 @5003 = ~SWORD AND SHIELD: Anyone can pick up a shield and get its basic protection bonuses, but by spending slots on this fighting style, an adventurer can maximize the benefits received.
@@ -90,9 +91,9 @@ CLASS FEATURES:
 
 Prime Requisites For Dual-Classing: Wisdom~
 
-@5007 = ~Rebalance Clerics and their kits~
+@5007 = ~~
 
-@5008 = ~Rebalance specialist Mage kits~
+@5008 = ~~
 
 @5009 = ~Base ~ // Used to inform players that the value of Thieving Abilities they see during character creation does not include dex or race bonuses: "Base Hide in Shadows" etc.
 
@@ -190,7 +191,7 @@ Disadvantages:
 Advantages:
 - From level 20, Armor of Faith cast by this kit will grant 15% resistances, last for 50% longer and will be undispellable.
 - May cast Lightning Bolt of Talos once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
-- Gains early access to a HLA Purify Aura, may cast it once at level 5, then gains additional uses at levels 15, 25 and 35.
+- Gains early access to a High Level Ability Purify Aura, may cast it once at level 5, then gains additional uses at levels 15, 25 and 35.
 - Purify Aura used by Priest of Talos grants additional +1 casting speed for the next spell.
 - Additional fifth level spell: Protective Chant.
 - Additional sixth level spell: Life Link.
@@ -290,7 +291,7 @@ Disadvantages:
 
 Advantages:
 - May cast Lightning Bolt of Talos once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
-- Gains early access to a HLA Purify Aura, may cast it once at level 5, then gains additional uses at levels 15, 25 and 35.
+- Gains early access to a High Level Ability Purify Aura, may cast it once at level 5, then gains additional uses at levels 15, 25 and 35.
 - Purify Aura used by Priest of Talos grants additional +1 casting speed for the next spell.
 - Additional fifth level spell: Protective Chant.
 - Additional sixth level spell: Life Link.
@@ -413,7 +414,7 @@ Advantages:
 - Gains access to two additional spells, a 2nd level spell Animal Fortitude and a 3rd level spell Animal Rage.
 - Can cast a special version of Animal Summoning I, which lasts for 15 rounds and can be cast unlimited number of times, but only once per 15 rounds.
 - At levels 10, 12 and 14 gains analogous versions of Animal Summoning II, III and IV respectively.
-- Can pick Animal Summoning V as a HLA.
+- Can pick Animal Summoning V as a High Level Ability.
 - At level 10, gains one use of the Unified Minds ability. Gains an additional use of this skill for every 10 levels thereafter.
 
 HUNTER'S MARK:
@@ -431,6 +432,7 @@ This ability has no effect if either the Beast Master or the animal is confused,
 The effects do not stack with multiple uses.
 
 Disadvantages:
+- Spellcasting limited to 3rd level Divine spells
 - May only use simple non-bladed weapons.
 - May not wear armor heavier than studded leather.
 - Cannot dual class.~
@@ -545,7 +547,7 @@ Advantages:
 
 MARKED FOR THE KILL: With a keen hunter's eye, the Stalker identifies and exploits the subtle flaws in an enemy's defenses. The target loses any immunity to backstab until any damage is dealt to him or until one round passes.
 
-This ability does not take up the Stalker's action and can be used an indefinite number of times, however no more often than once per 4 rounds. This time is decreased to 3 rounds at level 10, 2 rounds at level 20 and finally to 1 rounds at level 30.
+This ability does not take up the Stalker's action and can be used an indefinite number of times, however no more often than once per 4 rounds. This time is decreased to 3 rounds at level 10, 2 rounds at level 20 and finally to 1 round at level 30.
 
 Disadvantages:
 -  May not wear armor heavier than studded leather.~
@@ -696,6 +698,7 @@ The swanmays will loyally fight at the vagrant's side for 50 rounds.
 Disadvantages:
 
 May not wear armor greater than studded leather
+Spellcasting limited to 3rd level Divine spells
 Cannot specialize in ranged weapons
 Requires 12 Charisma
 Cannot dual class~
@@ -750,7 +753,7 @@ Advantages:
 - Can cast one more spell per level
 - Gains +1 bonus to casting speed
 - Can use all weapons favored by kuo-toa
-- Can pick Natural Restoral HLA 3 times
+- Can pick Natural Restoral High Level Ability 3 times
 - From level 15 can use Aegis of Faith ability.
 
 AEGIS OF FAITH: Through prayer and devotion, the cleric grants themselves a protective blessing that safeguards their magical defenses. For the next turn, any effects that targets and removes specific protections will be nullified. This spell does not protect against spells and effects that dispel all types of effects at once, like Remove Magic or Purge Magic.
@@ -1032,7 +1035,7 @@ CLASS FEATURES:
 
 @5110 = ~Priestess of Shar~
 
-@5111 = ~PRIESTESS OF SHAR: Shar is the goddess of darkness, loss, and secrets, revered by those who dwell in shadow and silence. She embodies night, forgetfulness, and hidden knowledge, offering comfort to the grieving and power to those who seek to hide or destroy the light. Shar’s faithful uphold her ideals through quiet manipulation, forbidden magic, and the eradication of joy and memory. As mistress of the night and twin to Selûne, she represents the ever-present allure of oblivion and the silence that follows sorrow.
+@5111 = ~PRIESTESS OF SHAR: Shar is the goddess of darkness, loss, and secrets, revered by those who dwell in shadow and silence. She embodies night, forgetfulness, and hidden knowledge, offering comfort to the grieving and power to those who seek to hide or destroy the light. Shar's faithful uphold her ideals through quiet manipulation, forbidden magic, and the eradication of joy and memory. As mistress of the night and twin to Selûne, she represents the ever-present allure of oblivion and the silence that follows sorrow.
 
 Advantages:
 - From level 20, Armor of Faith cast by this kit will grant 15% resistances, last for 50% longer and will be undispellable.
@@ -1044,7 +1047,7 @@ Advantages:
 - Additional fifth level spells: Immunity: Divination, Protective Chant
 - Additional sixth level spell: Life Link
 - Additional seventh level spells: Spare the Dying, Prismatic Spray
-- Gains early access to a HLA Purify Aura, may cast it once at level 10.
+- Gains early access to a High Level Ability Purify Aura, may cast it once at level 10.
 - From level 15 can use Aegis of Faith ability.
 
 AEGIS OF FAITH: Through prayer and devotion, the cleric grants themselves a protective blessing that safeguards their magical defenses. For the next turn, any effects that targets and removes specific protections will be nullified. This spell does not protect against spells and effects that dispel all types of effects at once, like Remove Magic or Purge Magic.
@@ -1071,7 +1074,7 @@ Disadvantages:
 
 @5120 = ~I want to grant the effects of Improved Haste to my whole party.~
 
-@5121 = ~As your fingers close around Daystar and its weight settles into your pack, a chill brushes the back of your neck. You feel… noticed. Far beneath the resting stones of the city's dead, something ancient shifts — drawn not to you, but to what you now carry.~
+@5121 = ~As your fingers close around Daystar and its weight settles into your pack, a chill brushes the back of your neck. You feel... noticed. Far beneath the resting stones of the city's dead, something ancient shifts — drawn not to you, but to what you now carry.~
 
 @5122 = ~Red Abishai~
 
@@ -1399,9 +1402,11 @@ For 1 turn, the Dwarven Defender gains +20% resistance to all forms of physical 
 
 @5148 = ~The seal guardians bind this place - escape is impossible.~
 
-@5149 = ~~
+@5149 = ~You lock the two halves of the rod together. The illithid rod dissolves in your hands, but you sense that some door has been opened in this area.~
 
-@5150 = ~~
+@5150 = ~You place the key into the lock. Click again to turn the key~
+
+@5151 = ~A terrible grace coils through the air as the succubus emerges. Your fury falters, your thoughts snagging on invisible velvet chains. She does not defend herself with armor or magic, yet every attempt to strike her feels wrong, as if your will recoils. Your blades hesitate. Your spells falter. Around her, only the mindless and the dead remain indifferent - she is untouchable, not by force, but by the irresistible weight of her being.~
 
 @5152 = ~Nyalee's powers created an impenetrable barrier of twisted and gnarled tree branches infused with magic. You won't be able to pass until she is defeated.~
 
@@ -1459,7 +1464,7 @@ My heritage was mine to bear, not yours to fear.~
 
 @5171 = ~Nyalee feared everything, boy...
 Feared losing you... feared keeping you...
-Feared the world... and herself most of all...~
+Feared the world... and... you most of all...~
 
 @5172 = ~You carried me as best you could.~
 

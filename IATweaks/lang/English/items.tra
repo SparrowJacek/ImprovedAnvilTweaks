@@ -357,7 +357,7 @@ Weight: 1~
 STATISTICS:
 
 Combat abilities:
-- Applies cumulative -1 penalty to AC and thac0 for 2 rounds and additional 3 crushing damage when successful backstab is performed (no save)
+- Applies cumulative -1 penalty to AC and thac0 for 2 rounds and reduces enemy crushing resistance by 2% for 1 round if the enemy is not immune to that damage type (no save)
 - Critical hit chance increased by 5%
 - Each critical hit performed with this weapon grants additional 3 crushing damage
 - Wielder gains additional +2 thac0 at night or in dungeons
@@ -735,7 +735,7 @@ Weight: 3~
 
 Stories tell of daggers wielded by the most infamous thieves and assassins of the Realms, each imbued with a fragment of their wielder's cunning, precision, and malice. Over decades, these weapons absorbed the essence of their masters, carrying echoes of their infamous deeds.
 
-With the help of the Manual of Elaboration, master craftsman was able to extract and weave their lingering magical auras into a single blade. The result is this dagger, a creation not of steel and shards but of pure essence. When held, the weapon seems to move with a will of its own, subtly guiding its owner’s hand with the wisdom of long-dead assassins.
+With the help of the Manual of Elaboration, master craftsman was able to extract and weave their lingering magical auras into a single blade. The result is this dagger, a creation not of steel and shards but of pure essence. When held, the weapon seems to move with a will of its own, subtly guiding its owner's hand with the wisdom of long-dead assassins.
 
 To wield this blade is to carry the weight of countless lives taken and to feel the shadows of its former masters at your side. It is said that those who hold it too long may find their own spirit overshadowed by the whispers of the past.
 
@@ -765,7 +765,7 @@ Require: 3 Strength~
 @7066 = ~Bracers of Brute Force~
 
 @7067 = ~Bracers of Brute Force
-Though deceptively elegant in design, these heavy metal wristbands are etched with ancient sigils of war and rage. Worn by a long-forgotten duelist who favored brute strength over finesse, they channel raw power into each blow. However, their unbalanced weight and aggressive enchantment throw off the wearer’s aim, making precision strikes more difficult.
+Though deceptively elegant in design, these heavy metal wristbands are etched with ancient sigils of war and rage. Worn by a long-forgotten duelist who favored brute strength over finesse, they channel raw power into each blow. However, their unbalanced weight and aggressive enchantment throw off the wearer's aim, making precision strikes more difficult.
 
 STATISTICS:
 

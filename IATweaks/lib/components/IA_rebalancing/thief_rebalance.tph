@@ -197,6 +197,27 @@ COPY_EXISTING ~weapprof.2da~ ~override~
 
 COPY ~IATweaks\resources\2da\skilldex.2da~ ~override~
 
+// Move Backstab to sequencer opcode to allow multiple effects
+
+COPY ~IATweaks\resources\spl\s!bstab1.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!bkstab.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 328
+      parameter2 = %successfully_backstabbed%
+  END
+
+// Apply sequencer activation on backstab to all kits that can backstab
+
+ACTION_FOR_EACH kit_that_can_backstab IN ~CLABRN03~ ~CLABTH01~ ~CLABTH02~ ~CLABTH03~ ~CLABTH05~ BEGIN
+  LAF ~S!ADD_CLAB_ROW~
+    STR_VAR
+      filename = ~%kit_that_can_backstab%.2da~
+      row_desc = ~BACKSTAB_AS_SEQUENCER~
+      level1 = ~AP_S!BSTAB1~
+  END
+END
+
 // Race thieving bonuses
 
 ACTION_DEFINE_ASSOCIATIVE_ARRAY race_to_thieving_bonuses_mapping BEGIN
@@ -486,6 +507,23 @@ COPY_EXISTING ~SPCLI14.spl~ ~override~
 
 ////// Assassin ///////
 
+COPY ~IATweaks\resources\spl\s!staba1.spl~ ~override~
+COPY ~IATweaks\resources\eff\s!staba1.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!staba2.spl~ ~override~
+  PATCH_FOR_EACH header_num IN 1 2 3 4 5 6 7 8 BEGIN
+    SET min_level = header_num * 5
+    LPF ~S!CLONE_SPELL_HEADER~
+      INT_VAR
+        level_req = min_level
+    END
+    LPF ~S!ALTER_EFFECT~
+      INT_VAR
+        header = header_num
+        match_opcode = 146
+        probability1 = 10 + min_level
+    END
+  END
+
 LAF ~S!ADD_CLAB_ROW~
   STR_VAR
     filename = ~CLABTH02.2da~
@@ -498,6 +536,13 @@ LAF ~S!ADD_CLAB_ROW~
     filename = ~CLABTH02.2da~
     row_desc = ~HIDE_IN_SHADOWS_BONUS~
     level1 = ~AP_S!40HIS~
+END
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABTH02.2da~
+    row_desc = ~BLOCK_REGEN_BACKSTATB~
+    level1 = ~AP_S!STABA1~
 END
 
 ////// Bounty Hunter ///////

@@ -1220,6 +1220,7 @@ COPY ~IATweaks\resources\spl\SPPR704.spl~ ~override~
       multi_match = 1
       match_opcode = 321
       opcode = 206
+      timing = 0
       duration = 60
     STR_VAR
       resource = ~SPPR704~
@@ -1489,6 +1490,19 @@ COPY_EXISTING ~s!scrl12.itm~ ~override~
 
 COPY_EXISTING ~scrl61.itm~ ~override~
   SAY IDENTIFIED_DESC @6017
+
+// Allow Shamans to pick Natural Restoral 3 times
+
+COPY_EXISTING ~LUSH0.2da~ ~override~
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  FOR (i = 0; i < ~rowcount~; ++i) BEGIN
+    READ_2DA_ENTRY i 1 %colcount% current_val
+    PATCH_IF (~%current_val%~ STR_EQ ~GA_SPCLI15~) BEGIN
+      SET_2DA_ENTRY i 6 ~colcount~ 3
+    END
+  END
+  BUT_ONLY
 
 // Mend spells
 

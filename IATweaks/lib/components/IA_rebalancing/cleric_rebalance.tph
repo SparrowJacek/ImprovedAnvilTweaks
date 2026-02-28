@@ -3809,6 +3809,7 @@ COPY_EXISTING ~clastext.2da~ ~override/clastext.2da~
   SET_2DA_ENTRY_LATER ~s!cleric_desc~ $clastext_rows("OHTYR") description_col RESOLVE_STR_REF (@5021)
   SET_2DA_ENTRY_LATER ~s!cleric_desc~ $clastext_rows("OHTEMPUS") description_col RESOLVE_STR_REF (@5022)
   SET_2DA_ENTRY_LATER ~s!cleric_desc~ $clastext_rows("SHAMAN") description_col RESOLVE_STR_REF (@5134)
+  SET_2DA_ENTRY_LATER ~s!cleric_desc~ $clastext_rows("AURAMASTER") description_col RESOLVE_STR_REF (@5188)
   SET_2DA_ENTRIES_NOW ~s!cleric_desc~ ~colcount~
   PRETTY_PRINT_2DA
 
@@ -3836,6 +3837,7 @@ COPY_EXISTING ~kitlist.2da~ ~override/kitlist.2da~
   SET_2DA_ENTRY_LATER ~s!cleric_desc~ $kitlist_rows("HELM") description_col RESOLVE_STR_REF (@5020)
   SET_2DA_ENTRY_LATER ~s!cleric_desc~ $kitlist_rows("OHTYR") description_col RESOLVE_STR_REF (@5021)
   SET_2DA_ENTRY_LATER ~s!cleric_desc~ $kitlist_rows("OHTEMPUS") description_col RESOLVE_STR_REF (@5022)
+  SET_2DA_ENTRY_LATER ~s!cleric_desc~ $kitlist_rows("AURAMASTER") description_col RESOLVE_STR_REF (@5188)
   SET_2DA_ENTRIES_NOW ~s!cleric_desc~ ~colcount~
   PRETTY_PRINT_2DA
 

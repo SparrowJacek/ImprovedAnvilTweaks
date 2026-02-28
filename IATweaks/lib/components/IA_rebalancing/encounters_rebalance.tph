@@ -6496,3 +6496,84 @@ COPY_EXISTING ~AR5202.BCS~ ~override~
   REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/ar5202-old.baf~ ~.../inlined/ar5202-new.baf~
   BUT_ONLY
 
+/////////////// Yaga Shura
+
+// Lower chance of knockback and its range of Fire Giant weapons
+
+ACTION_FOR_EACH fire_giant_weapon IN ~GIAFIR~ ~GIAFIR2~ BEGIN
+  COPY_EXISTING ~%fire_giant_weapon%.itm~ ~override~
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 39
+        probability1 = 20
+        duration = 3
+    END
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 235
+        probability1 = 20
+        parameter1 = 20
+    END
+END
+
+// Yaga-Shura
+
+COPY_EXISTING ~yaga01.cre~ ~override~
+    
+  LPF ~ALTER_EFFECT~ // ***** in Hammers
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 97
+      parameter1 = 5
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // ** in Sword and Shield
+    INT_VAR
+      target = 1
+      opcode = 233
+      parameter1 = 2
+      parameter2 = 112
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ADD_CRE_EFFECT~ // Casting Speed
+    INT_VAR
+      target = 1
+      opcode = 189
+      parameter1 = 4
+      resist_dispel = 0
+      timing = 9
+  END
+
+  // Immunity to Fatigue
+  LPF ~ADD_CRE_EFFECT~ 
+    INT_VAR
+      opcode = 206
+      timing = 9
+      target = 1
+    STR_VAR
+      resource = ~SPCL321D~
+  END
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL321~ #0 ~innate~ ( 4 ) // Enrage
+  
+COMPILE ~IATweaks\scripts\creatures\S!yaga.BAF~
+
+// Yaga-Shura Elite Bodyguard
+
+COPY_EXISTING ~yaga02.cre~ ~override~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 3 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 2 ) // Greater Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 3 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL909~ #0 ~innate~ ( 1 ) // Smite
+  
+COMPILE ~IATweaks\scripts\creatures\S!yaga02.BAF~
+

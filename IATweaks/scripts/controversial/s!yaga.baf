@@ -1,0 +1,778 @@
+
+IF
+	GlobalGT("YagaShuraHeart","GLOBAL",0)
+	Global("Iapcastts","GLOBAL",0)
+	HasItem("invulner",Myself)  // Ring
+THEN
+	RESPONSE #100
+		DestroyItem("invulner")  // Ring
+		Continue()
+END
+
+IF
+	NumberOfTimesTalkedTo(0)
+	Global("Iapcastts","GLOBAL",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		StartDialogueNoSet([PC])
+END
+
+IF
+	Global("YagaShuraSpawn","AR5203",1)  // Yaga-Shura's Camp
+	Global("Iacreature","AR5203",2)  // Yaga-Shura's Camp
+	Global("Iapcastts","GLOBAL",0)
+	HasItem("sureHP1",Myself)  // Ring
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		ReallyForceSpellRES("SPWII07",Myself)  // No such index
+		DestroyItem("sureHP1")  // Ring
+		SetInterrupt(TRUE)
+END
+
+IF
+	GlobalGT("YagaShuraHeart","GLOBAL",0)
+	GlobalLT("YagaShuraHeart","GLOBAL",3)
+	HPPercentLT(Myself,100)
+	Global("Iapcastts","GLOBAL",0)
+THEN
+	RESPONSE #100
+		StartDialogueNoSet(Player1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	Global("Iayaga01","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iayaga01","LOCALS",1)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	Global("partyfled","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("partyfled","LOCALS",0)
+END
+
+IF
+	GlobalGT("YagaShuraSpawn","AR5203",0)  // Yaga-Shura's Camp
+	GlobalLT("Iacreature","AR5203",2)  // Yaga-Shura's Camp
+	HasItem("sureHP1",Myself)  // Ring
+	HPPercentLT(Myself,75)
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("SPWII07",Myself)  // No such index
+END
+
+IF
+	Detect([PC])
+	Global("Iaitem","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iaitem","LOCALS",1)
+		GiveItemCreate("s!misc67",Myself,0,0,0)  // Blood of a Greater Bhaalspawn
+		Continue()
+END
+
+
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaFissureTimer","LOCALS")
+	See(Player1) 
+	TriggerOverride(Player1, Range(NearestAllyOf(Myself), 10))
+	CheckStatLT(Player1,70,RESISTFIRE)
+	CheckStatLT(NearestAllyOf(Myself),100,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaFissureTimer","LOCALS",15)
+		ForceSpellRES("S!FISSUR", Player1)
+	RESPONSE #100
+	    Continue()
+END
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaFissureTimer","LOCALS")
+	See(Player1) 
+	TriggerOverride(Player1, Range(SecondNearestAllyOf(Myself), 10))
+	CheckStatLT(Player1,70,RESISTFIRE)
+	CheckStatLT(SecondNearestAllyOf(Myself),100,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaFissureTimer","LOCALS",15)
+		ForceSpellRES("S!FISSUR", Player1)
+	RESPONSE #100
+	    Continue()
+END
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaFissureTimer","LOCALS")
+	See(Player1) 
+	TriggerOverride(Player1, Range(ThirdNearestAllyOf(Myself), 10))
+	CheckStatLT(Player1,70,RESISTFIRE)
+	CheckStatLT(ThirdNearestAllyOf(Myself),100,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaFissureTimer","LOCALS",15)
+		ForceSpellRES("S!FISSUR", Player1)
+	RESPONSE #100
+	    Continue()
+END
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaFissureTimer","LOCALS")
+	See(Player2) 
+	TriggerOverride(Player2, Range(NearestAllyOf(Myself), 10))
+	CheckStatLT(Player2,70,RESISTFIRE)
+	CheckStatLT(NearestAllyOf(Myself),100,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaFissureTimer","LOCALS",15)
+		ForceSpellRES("S!FISSUR", Player2)
+	RESPONSE #100
+	    Continue()
+END
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaFissureTimer","LOCALS")
+	See(Player2) 
+	TriggerOverride(Player2, Range(SecondNearestAllyOf(Myself), 10))
+	CheckStatLT(Player2,70,RESISTFIRE)
+	CheckStatLT(SecondNearestAllyOf(Myself),100,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaFissureTimer","LOCALS",15)
+		ForceSpellRES("S!FISSUR", Player2)
+	RESPONSE #100
+	    Continue()
+END
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaFissureTimer","LOCALS")
+	See(Player2) 
+	TriggerOverride(Player2, Range(ThirdNearestAllyOf(Myself), 10))
+	CheckStatLT(Player2,70,RESISTFIRE)
+	CheckStatLT(ThirdNearestAllyOf(Myself),100,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaFissureTimer","LOCALS",15)
+		ForceSpellRES("S!FISSUR", Player2)
+	RESPONSE #100
+	    Continue()
+END
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaFissureTimer","LOCALS")
+	See(Player3) 
+	TriggerOverride(Player3, Range(NearestAllyOf(Myself), 10))
+	CheckStatLT(Player3,70,RESISTFIRE)
+	CheckStatLT(NearestAllyOf(Myself),100,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaFissureTimer","LOCALS",15)
+		ForceSpellRES("S!FISSUR", Player3)
+	RESPONSE #100
+	    Continue()
+END
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaFissureTimer","LOCALS")
+	See(Player3) 
+	TriggerOverride(Player3, Range(SecondNearestAllyOf(Myself), 10))
+	CheckStatLT(Player3,70,RESISTFIRE)
+	CheckStatLT(SecondNearestAllyOf(Myself),100,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaFissureTimer","LOCALS",15)
+		ForceSpellRES("S!FISSUR", Player3)
+	RESPONSE #100
+	    Continue()
+END
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaFissureTimer","LOCALS")
+	See(Player3) 
+	TriggerOverride(Player3, Range(ThirdNearestAllyOf(Myself), 10))
+	CheckStatLT(Player3,70,RESISTFIRE)
+	CheckStatLT(ThirdNearestAllyOf(Myself),100,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaFissureTimer","LOCALS",15)
+		ForceSpellRES("S!FISSUR", Player3)
+	RESPONSE #100
+	    Continue()
+END
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaFissureTimer","LOCALS")
+	See(Player4) 
+	TriggerOverride(Player4, Range(NearestAllyOf(Myself), 10))
+	CheckStatLT(Player4,70,RESISTFIRE)
+	CheckStatLT(NearestAllyOf(Myself),100,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaFissureTimer","LOCALS",15)
+		ForceSpellRES("S!FISSUR", Player4)
+	RESPONSE #100
+	    Continue()
+END
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaFissureTimer","LOCALS")
+	See(Player4) 
+	TriggerOverride(Player4, Range(SecondNearestAllyOf(Myself), 10))
+	CheckStatLT(Player4,70,RESISTFIRE)
+	CheckStatLT(SecondNearestAllyOf(Myself),100,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaFissureTimer","LOCALS",15)
+		ForceSpellRES("S!FISSUR", Player4)
+	RESPONSE #100
+	    Continue()
+END
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaFissureTimer","LOCALS")
+	See(Player4) 
+	TriggerOverride(Player4, Range(ThirdNearestAllyOf(Myself), 10))
+	CheckStatLT(Player4,70,RESISTFIRE)
+	CheckStatLT(ThirdNearestAllyOf(Myself),100,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaFissureTimer","LOCALS",15)
+		ForceSpellRES("S!FISSUR", Player4)
+	RESPONSE #100
+	    Continue()
+END
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaFissureTimer","LOCALS")
+	See(Player5) 
+	TriggerOverride(Player5, Range(NearestAllyOf(Myself), 10))
+	CheckStatLT(Player5,70,RESISTFIRE)
+	CheckStatLT(NearestAllyOf(Myself),100,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaFissureTimer","LOCALS",15)
+		ForceSpellRES("S!FISSUR", Player5)
+	RESPONSE #100
+	    Continue()
+END
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaFissureTimer","LOCALS")
+	See(Player5) 
+	TriggerOverride(Player5, Range(SecondNearestAllyOf(Myself), 10))
+	CheckStatLT(Player5,70,RESISTFIRE)
+	CheckStatLT(SecondNearestAllyOf(Myself),100,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaFissureTimer","LOCALS",15)
+		ForceSpellRES("S!FISSUR", Player5)
+	RESPONSE #100
+	    Continue()
+END
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaFissureTimer","LOCALS")
+	See(Player5) 
+	TriggerOverride(Player5, Range(ThirdNearestAllyOf(Myself), 10))
+	CheckStatLT(Player5,70,RESISTFIRE)
+	CheckStatLT(ThirdNearestAllyOf(Myself),100,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaFissureTimer","LOCALS",15)
+		ForceSpellRES("S!FISSUR", Player5)
+	RESPONSE #100
+	    Continue()
+END
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaFissureTimer","LOCALS")
+	See(Player6) 
+	TriggerOverride(Player6, Range(NearestAllyOf(Myself), 10))
+	CheckStatLT(Player6,70,RESISTFIRE)
+	CheckStatLT(NearestAllyOf(Myself),100,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaFissureTimer","LOCALS",15)
+		ForceSpellRES("S!FISSUR", Player6)
+	RESPONSE #100
+	    Continue()
+END
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaFissureTimer","LOCALS")
+	See(Player6) 
+	TriggerOverride(Player6, Range(SecondNearestAllyOf(Myself), 10))
+	CheckStatLT(Player6,70,RESISTFIRE)
+	CheckStatLT(SecondNearestAllyOf(Myself),100,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaFissureTimer","LOCALS",15)
+		ForceSpellRES("S!FISSUR", Player6)
+	RESPONSE #100
+	    Continue()
+END
+IF
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaFissureTimer","LOCALS")
+	See(Player6) 
+	TriggerOverride(Player6, Range(ThirdNearestAllyOf(Myself), 10))
+	CheckStatLT(Player6,70,RESISTFIRE)
+	CheckStatLT(ThirdNearestAllyOf(Myself),100,RESISTFIRE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaFissureTimer","LOCALS",15)
+		ForceSpellRES("S!FISSUR", Player6)
+	RESPONSE #100
+	    Continue()
+END
+IF
+	HaveSpellRES("SPCL321")
+	!CheckSpellState(Myself,BERSERKER_RAGE_FATIGUE) 
+	!CheckSpellState(Myself,BERSERKER_RAGE) 
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellRES("SPCL321",Myself)  // Enrage
+	RESPONSE #0
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_HARDINESS)
+	!CheckSpellState(Myself,HARDINESS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	OR(3)
+	    See(ThirdNearestEnemyOf(Myself))
+	    See(SecondNearestEnemyOf(Myself))
+	    See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_HARDINESS)  // SPCL907.SPL (Hardiness)
+		RemoveSpell(WARRIOR_HARDINESS)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	HPPercentLT(Myself,75)
+	HasItem("potn55",Myself)  // Potion of Superior Healing
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("potn55",Myself)  // Potion of Superior Healing
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	HPPercentLT(Myself,75)
+	HasItem("potn52",Myself)  // Potion of Extra Healing
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("potn52",Myself)  // Potion of Extra Healing
+END
+
+IF
+	HaveSpell(WARRIOR_GREATER_WHIRLWIND)
+	Detect(NearestEnemyOf(Myself))
+	See(NearestEnemyOf(Myself))
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaWhirlwindTimer","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaWhirlwindTimer","LOCALS",THREE_ROUNDS)
+		ForceSpell(Myself,WARRIOR_GREATER_WHIRLWIND)
+		RemoveSpell(WARRIOR_GREATER_WHIRLWIND)
+	RESPONSE #0
+	    Continue()
+END
+
+IF
+	HaveSpell(WARRIOR_WHIRLWIND)
+	Detect(NearestEnemyOf(Myself))
+	CheckStat(Myself,0,IMPROVEDHASTE)
+	See(NearestEnemyOf(Myself))
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaWhirlwindTimer","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaWhirlwindTimer","LOCALS",THREE_ROUNDS)
+		ForceSpell(Myself,WARRIOR_WHIRLWIND)
+		RemoveSpell(WARRIOR_WHIRLWIND)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_CRITICAL_STRIKE)
+	!CheckStatGT(Myself,8,CRITICALHITBONUS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_CRITICAL_STRIKE)  // SPCL905.SPL (Critical Strike)
+		RemoveSpell(WARRIOR_CRITICAL_STRIKE)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_CRITICAL_STRIKE)
+	!CheckStatGT(Myself,8,CRITICALHITBONUS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SecondNearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_CRITICAL_STRIKE)  // SPCL905.SPL (Critical Strike)
+		RemoveSpell(WARRIOR_CRITICAL_STRIKE)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_CRITICAL_STRIKE)
+	!CheckStatGT(Myself,8,CRITICALHITBONUS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(ThirdNearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_CRITICAL_STRIKE)  // SPCL905.SPL (Critical Strike)
+		RemoveSpell(WARRIOR_CRITICAL_STRIKE)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_POWER_ATTACK)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("PowerAttackActiveTimer","LOCALS")
+	See([PC])
+	Range(LastSeenBy(Myself),5)
+	!CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckSpellState([PC],STUN_IMMUNITY)
+    CheckStatGT(LastSeenBy(Myself),0,SAVEVSDEATH)
+	OR(2)
+	    CheckStatGT(LastSeenBy(Myself),4,SAVEVSDEATH)
+	    !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("PowerAttackActiveTimer","LOCALS",TWO_ROUNDS)
+		ForceSpell(Myself,WARRIOR_POWER_ATTACK)
+		RemoveSpell(WARRIOR_POWER_ATTACK)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_POWER_ATTACK)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("PowerAttackActiveTimer","LOCALS")
+	See(SecondNearest([PC]))
+	Range(LastSeenBy(Myself),5)
+	!CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckSpellState([PC],STUN_IMMUNITY)
+    CheckStatGT(LastSeenBy(Myself),0,SAVEVSDEATH)
+	OR(2)
+	    CheckStatGT(LastSeenBy(Myself),4,SAVEVSDEATH)
+	    !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("PowerAttackActiveTimer","LOCALS",TWO_ROUNDS)
+		ForceSpell(Myself,WARRIOR_POWER_ATTACK)
+		RemoveSpell(WARRIOR_POWER_ATTACK)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_POWER_ATTACK)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("PowerAttackActiveTimer","LOCALS")
+	See(ThirdNearest([PC]))
+	Range(LastSeenBy(Myself),5)
+	!CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckSpellState([PC],STUN_IMMUNITY)
+    CheckStatGT(LastSeenBy(Myself),0,SAVEVSDEATH)
+	OR(2)
+	    CheckStatGT(LastSeenBy(Myself),4,SAVEVSDEATH)
+	    !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("PowerAttackActiveTimer","LOCALS",TWO_ROUNDS)
+		ForceSpell(Myself,WARRIOR_POWER_ATTACK)
+		RemoveSpell(WARRIOR_POWER_ATTACK)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_POWER_ATTACK)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("PowerAttackActiveTimer","LOCALS")
+	See(FourthNearest([PC]))
+	Range(LastSeenBy(Myself),5)
+	!CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckSpellState([PC],STUN_IMMUNITY)
+    CheckStatGT(LastSeenBy(Myself),0,SAVEVSDEATH)
+	OR(2)
+	    CheckStatGT(LastSeenBy(Myself),4,SAVEVSDEATH)
+	    !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("PowerAttackActiveTimer","LOCALS",TWO_ROUNDS)
+		ForceSpell(Myself,WARRIOR_POWER_ATTACK)
+		RemoveSpell(WARRIOR_POWER_ATTACK)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_POWER_ATTACK)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("PowerAttackActiveTimer","LOCALS")
+	See(FifthNearest([PC]))
+	Range(LastSeenBy(Myself),5)
+	!CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckSpellState([PC],STUN_IMMUNITY)
+    CheckStatGT(LastSeenBy(Myself),0,SAVEVSDEATH)
+	OR(2)
+	    CheckStatGT(LastSeenBy(Myself),4,SAVEVSDEATH)
+	    !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("PowerAttackActiveTimer","LOCALS",TWO_ROUNDS)
+		ForceSpell(Myself,WARRIOR_POWER_ATTACK)
+		RemoveSpell(WARRIOR_POWER_ATTACK)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_POWER_ATTACK)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("PowerAttackActiveTimer","LOCALS")
+	See(SixthNearest([PC]))
+	Range(LastSeenBy(Myself),5)
+	!CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckSpellState([PC],STUN_IMMUNITY)
+    CheckStatGT(LastSeenBy(Myself),0,SAVEVSDEATH)
+	OR(2)
+	    CheckStatGT(LastSeenBy(Myself),4,SAVEVSDEATH)
+	    !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("PowerAttackActiveTimer","LOCALS",TWO_ROUNDS)
+		ForceSpell(Myself,WARRIOR_POWER_ATTACK)
+		RemoveSpell(WARRIOR_POWER_ATTACK)
+	RESPONSE #50
+	    Continue()
+END
+
+
+IF
+	!See([PC])
+	!See([GOODCUTOFF])
+	Global("partyfled","LOCALS",0)
+	Allegiance(Myself,ENEMY)
+	Global("Iayaga01","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("chase","LOCALS",EIGHTEEN_MINUTES)
+		SetGlobal("partyfled","LOCALS",1)
+END
+
+IF
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_CHARMED)
+	!See([PC])
+	!See([GOODCUTOFF])
+	Global("partyfled","LOCALS",1)
+	GlobalTimerNotExpired("chase","LOCALS")
+	InMyArea(Player1)
+	Allegiance(Myself,ENEMY)
+	Global("Iayaga01","LOCALS",1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	!See([PC])
+	!See([GOODCUTOFF])
+	Allegiance(Myself,ENEMY)
+	GlobalTimerExpired("chase","LOCALS")
+	Global("partyfled","LOCALS",1)
+	Global("Iayaga01","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iayaga01","LOCALS",0)
+		SetGlobal("Iayaga02","LOCALS",0)
+		SetGlobal("Iayaga03","LOCALS",0)
+		SetGlobal("Iayaga04","LOCALS",0)
+		SetGlobal("Iayaga05","LOCALS",0)
+		ReallyForceSpellRES("SPWII07",Myself)  // No such index
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),100,RESISTCRUSHING)
+THEN
+	RESPONSE #100
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(SecondNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),100,RESISTCRUSHING)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),2,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),100,RESISTCRUSHING)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	AreaCheck("AR5203")  // Yaga-Shura's Camp
+	GlobalGT("YagaShuraSpawn","AR5203",0)  // Yaga-Shura's Camp
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_STUNNED)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_CHARMED)
+	!See([PC])
+	!See([GOODCUTOFF])
+	InMyArea(Player1)
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END

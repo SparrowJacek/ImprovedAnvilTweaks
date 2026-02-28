@@ -630,3 +630,51 @@ ACTION_FOR_EACH elite_fire_giant_cre IN ~HGWAR02~ ~S!HGWAR~ BEGIN
 END
 
 COMPILE ~IATweaks\scripts\controversial\s!egiant.BAF~
+
+// Yaga-Shura
+
+COPY_EXISTING ~yaga01.cre~ ~override~
+
+REMOVE_MEMORIZED_SPELLS
+
+ADD_MEMORIZED_SPELL ~SPCL321~ #0 ~innate~ ( 4 ) // Enrage
+ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 1 ) // Hardiness
+ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 3 ) // Critical Strike
+ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  
+COMPILE ~IATweaks\scripts\controversial\S!yaga.BAF~
+
+// Yaga-Shura Elite Bodyguard
+
+COPY_EXISTING ~yaga02.cre~ ~override~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 3 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 4 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL909~ #0 ~innate~ ( 1 ) // Smite
+  
+COMPILE ~IATweaks\scripts\creatures\S!yaga02.BAF~
+
+// Yaga Elite Assassin
+
+COPY_EXISTING ~YAGA05.cre~ ~override~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 3 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL423~ #0 ~innate~ ( 6 ) // Poison Weapon
+  ADD_MEMORIZED_SPELL ~S!GGRACE~ #0 ~innate~ ( 1 ) // Ghost's Grace
+  ADD_MEMORIZED_SPELL ~SPCL913~ #0 ~innate~ ( 1 ) // Evasion
+  ADD_MEMORIZED_SPELL ~SPCL914~ #0 ~innate~ ( 1 ) // Greater Evasion
+  ADD_MEMORIZED_SPELL ~SPCL916~ #0 ~innate~ ( 1 ) // Assassination
+  ADD_MEMORIZED_SPELL ~SPCL917~ #0 ~innate~ ( 1 ) // Avoid Death
+
+COMPILE ~IATweaks\scripts\controversial\S!yaga05.baf~

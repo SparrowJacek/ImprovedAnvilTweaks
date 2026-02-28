@@ -4488,3 +4488,126 @@ COPY_EXISTING ~GROMG09.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPCL917~ #0 ~innate~ ( 2 ) // Avoid Death
 
 COMPILE ~IATweaks\scripts\creatures\S!GROASA.baf~
+
+// Yaga Elite Assassin
+
+COPY_EXISTING ~YAGA05.cre~ ~override~
+  WRITE_BYTE 0x10 64 // Original class = Thief
+  WRITE_SHORT 0x24 123 // HP
+  WRITE_SHORT 0x26 123 // HP
+  WRITE_BYTE 0x45 160 // Hide in Shadows
+  WRITE_BYTE 0x64 0 // Detect Illusions
+  WRITE_BYTE 0x65 0 // Set Traps
+  WRITE_BYTE 0x67 0 // Pick Locks
+  WRITE_BYTE 0x68 70 // Stealth Strike
+  WRITE_BYTE 0x69 0 // Find Traps
+  WRITE_BYTE 0x6a 0 // Pick Pockets
+  WRITE_BYTE 0x234 23 // 1st Class Level
+  WRITE_BYTE 0x235 24 // 2nd Class Level
+  WRITE_BYTE 0x23c 20 // Dexterity
+  WRITE_BYTE 0x23d 18 // constitution
+  WRITE_LONG 0x244 0x400a0000 // Kit = Assassin
+  WRITE_BYTE 0x272 1 // Race
+    
+  LPF ~DELETE_EFFECT~ // backstab multiplier
+    INT_VAR
+      match_opcode = 263
+  END
+  
+  LPF ~ADD_CRE_EFFECT~ // Set persistent AI
+    INT_VAR
+      target = 1
+      opcode = 293
+      parameter2 = 1
+      resist_dispel = 0
+      timing = 9
+  END
+
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 91
+      parameter1 = 5
+  END
+
+  LPF ~ALTER_EFFECT~ // *** in Single Weapon
+    INT_VAR
+      match_opcode = 233
+      match_parameter2 = 112
+      parameter2 = 113
+      parameter1 = 3
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 73
+      target = 1
+      parameter1 = 1
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL421~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 278
+      target = 1
+      parameter1 = 1
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~SPCL421~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 59
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40SS~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 275
+      target = 1
+      parameter1 = 40
+      parameter2 = 0
+      timing = 9
+    STR_VAR
+      effsource = ~S!40HIS~
+  END
+
+  LPF ~ADD_CRE_EFFECT~
+    INT_VAR
+      opcode = 144
+      target = 1
+      timing = 9
+    STR_VAR
+      effsource = ~S!DISSTE~
+  END
+
+  LPF ~DELETE_CRE_ITEM~
+    STR_VAR
+      item_to_delete = ~SHLD04~
+  END
+
+  ADD_CRE_ITEM ~SW1H07~ #0 #0 #0 ~NONE~ ~WEAPON3~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 2 ) // Greater Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL423~ #0 ~innate~ ( 6 ) // Poison Weapon
+  ADD_MEMORIZED_SPELL ~S!GGRACE~ #0 ~innate~ ( 1 ) // Ghost's Grace
+  ADD_MEMORIZED_SPELL ~SPCL913~ #0 ~innate~ ( 1 ) // Evasion
+  ADD_MEMORIZED_SPELL ~SPCL914~ #0 ~innate~ ( 1 ) // Greater Evasion
+  ADD_MEMORIZED_SPELL ~SPCL916~ #0 ~innate~ ( 1 ) // Assassination
+  ADD_MEMORIZED_SPELL ~SPCL917~ #0 ~innate~ ( 1 ) // Avoid Death
+
+COMPILE ~IATweaks\scripts\creatures\S!yaga05.baf~

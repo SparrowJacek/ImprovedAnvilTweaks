@@ -702,6 +702,19 @@ COMPILE ~IATweaks\scripts\controversial\S!amtmag.BAF~
   
 COMPILE ~IATweaks\scripts\controversial\abaz2.BAF~
 
+////////// Demogorgon enemies
+
+// Rozvankee
+  
+COMPILE ~IATweaks\scripts\controversial\s!rozvan.BAF~
+
+// Kazuul
+  
+COMPILE ~IATweaks\scripts\controversial\s!kazuul.BAF~
+
+// Kargoth
+  
+COMPILE ~IATweaks\scripts\controversial\s!kargot.BAF~
 
 ///////// Sendai minions
   

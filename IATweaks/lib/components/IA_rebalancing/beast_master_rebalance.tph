@@ -4,6 +4,39 @@ SILENT
 
 INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
 
+// Grant level 4 spells to Rangers
+
+COPY ~IATweaks\resources\2da\mxsplran.2da~ ~override~
+
+// Archers can pick any alignment and won't fall:
+
+COPY_EXISTING ~ALIGNMNT.2da~ ~override~
+  REPLACE_EVALUATE
+    ~FERALAN.*~
+    BEGIN
+    END
+    ~FERALAN 1 1 1 1 1 1 1 1 1~
+  PRETTY_PRINT_2DA
+
+APPEND ~FALLEN.2da~ ~FERALAN 0~
+
+// Prevent Beast Master and Vagant from gaining 4th level spells
+
+OUTER_FOR (k = 0; k <= 9; ++k) BEGIN
+  LAF ~S!ADD_CLAB_ROW~
+    STR_VAR
+      filename = ~CLABRN04.2da~
+      row_desc = ~NO_4TH_LEVEL_SPELLS~
+      level14 = ~AP_S!-PR4LV~
+  END
+  LAF ~S!ADD_CLAB_ROW~
+    STR_VAR
+      filename = ~VAGRAN.2da~
+      row_desc = ~NO_4TH_LEVEL_SPELLS~
+      level14 = ~AP_S!-PR4LV~
+  END
+END
+
 // Remove Dualclassing possibility from Beastmaster kit
 
 COPY_EXISTING ~DUALCLAS.2da~ ~override~
@@ -427,6 +460,7 @@ COPY_EXISTING ~clastext.2da~ ~override/clastext.2da~
   COUNT_2DA_COLS ~colcount~
   SET_2DA_ENTRY_LATER ~s!ranger_desc~ $clastext_rows("BEAST_MASTER") $clastext_cols("DESCSTR") RESOLVE_STR_REF (@5029)
   SET_2DA_ENTRY_LATER ~s!ranger_desc~ $clastext_rows("VAGRANT") $clastext_cols("DESCSTR") RESOLVE_STR_REF (@5139)
+  SET_2DA_ENTRY_LATER ~s!ranger_desc~ $clastext_rows("ARCHER") $clastext_cols("DESCSTR") RESOLVE_STR_REF (@5189)
   SET_2DA_ENTRIES_NOW ~s!ranger_desc~ ~colcount~
   PRETTY_PRINT_2DA
 
@@ -450,6 +484,7 @@ COPY_EXISTING ~kitlist.2da~ ~override/kitlist.2da~
   COUNT_2DA_COLS ~colcount~
   SET_2DA_ENTRY_LATER ~s!ranger_desc~ $kitlist_rows("BEASTMASTER") $kitlist_cols("HELP") RESOLVE_STR_REF (@5029)
   SET_2DA_ENTRY_LATER ~s!ranger_desc~ $kitlist_rows("VAGRANT") $kitlist_cols("HELP") RESOLVE_STR_REF (@5139)
+  SET_2DA_ENTRY_LATER ~s!ranger_desc~ $kitlist_rows("FERALAN") $kitlist_cols("HELP") RESOLVE_STR_REF (@5189)
   SET_2DA_ENTRIES_NOW ~s!ranger_desc~ ~colcount~
   PRETTY_PRINT_2DA
 

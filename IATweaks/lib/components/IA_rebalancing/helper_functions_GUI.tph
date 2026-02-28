@@ -1,3 +1,4 @@
+INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
 
 DEFINE_ACTION_FUNCTION ~S!EXTRACT_LUA_TABLE_FROM_2DA~
   INT_VAR
@@ -629,4 +630,95 @@ end
     ELSE BEGIN
         PATCH_WARN ~WARNING: Couldn't find proper regex, Stoneskins showing button won't be installed.~
     END
+END
+
+
+DEFINE_ACTION_FUNCTION ~S!HIDE_LEVEL_4_PRIEST_SPELLS_INFO_FROM_LEVEL_UP_WINDOW~
+BEGIN
+
+    LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
+    STR_VAR
+        2da_table_name = ~clastext.2da~
+    RET_ARRAY
+        clastext_cols = 2da_columns_to_ids_mapping
+    END
+
+    LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+    STR_VAR
+        2da_table_name = ~clastext.2da~
+    RET_ARRAY
+        clastext_rows = 2da_rows_to_ids_mapping
+    END
+
+	COPY_EXISTING ~clastext.2da~ ~override~
+		COUNT_2DA_COLS numcolumns
+        READ_2DA_ENTRY $clastext_rows("BEAST_MASTER") $clastext_cols("LOWER") numcolumns temp
+        SPRINT kits_to_be_blocked ~Infinity_FetchString(%temp%)~
+        READ_2DA_ENTRY $clastext_rows("BEAST_MASTER") $clastext_cols("MIXED") numcolumns temp
+        SPRINT kits_to_be_blocked ~%kits_to_be_blocked%, Infinity_FetchString(%temp%)~
+        READ_2DA_ENTRY $clastext_rows("INQUISITOR") $clastext_cols("LOWER") numcolumns temp
+        SPRINT kits_to_be_blocked ~%kits_to_be_blocked%, Infinity_FetchString(%temp%)~
+        READ_2DA_ENTRY $clastext_rows("INQUISITOR") $clastext_cols("MIXED") numcolumns temp
+        SPRINT kits_to_be_blocked ~%kits_to_be_blocked%, Infinity_FetchString(%temp%)~
+        READ_2DA_ENTRY $clastext_rows("VAGRANT") $clastext_cols("LOWER") numcolumns temp
+        SPRINT kits_to_be_blocked ~%kits_to_be_blocked%, Infinity_FetchString(%temp%)~
+        READ_2DA_ENTRY $clastext_rows("VAGRANT") $clastext_cols("MIXED") numcolumns temp
+        SPRINT kits_to_be_blocked ~%kits_to_be_blocked%, Infinity_FetchString(%temp%)~
+    SET additional_priest_spells_strref = 5373
+    SET level_4_spells = RESOLVE_STR_REF (@5130)
+    TEXT_SPRINT hide_level_4_priest_spells_function ~~~~~
+function clean_priest_spells(text)
+  text = text .. "\n"
+  local additional_spells = Infinity_FetchString(%additional_priest_spells_strref%)
+  local level_4_spells = Infinity_FetchString(%level_4_spells%)
+  local block = text:match(additional_spells .. "[^\n]*\n(.-)\n%s*\n")
+
+  if not block then
+    return text -- no Priest block found
+  end
+
+  -- Remove the Level 4 Spells line within that block
+  local cleaned = block:gsub("[ \t]*" .. level_4_spells .. ":%s*%d+%s*\r?\n?", "")
+
+  local pattern = additional_spells .. "[^\n]*\n" .. block .. "\n%s*\n"
+  text = text:gsub(pattern, additional_spells .. "\n" .. cleaned .. "\n\n", 1)
+
+  return text
+end
+
+function contains_any_insensitive(haystack, needles)
+  local lower_haystack = haystack:lower()
+  for _, needle in ipairs(needles) do
+    if lower_haystack:find(needle:lower(), 1, true) then
+      return true
+    end
+  end
+  return false
+end
+~~~~~
+    TEXT_SPRINT hide_level_4_priest_spells_condition ~~~~~
+            local kit_strings = {%kits_to_be_blocked%}
+			if(contains_any_insensitive(chargen.classlevel.first.details, kit_strings)) then
+				return clean_priest_spells(chargen.levelInfo)
+			end
+~~~~~
+    COPY_EXISTING ~UI.MENU~ ~override~
+        SET ofs = INDEX_BUFFER(~[ %TAB%]*function[ %TAB%]*proficiencyOrGeneralHelp()~)
+        PATCH_IF %ofs% >= 0 BEGIN
+            SET strlen = STRING_LENGTH ~%hide_level_4_priest_spells_function%~
+            INSERT_BYTES ofs strlen
+            WRITE_ASCIIE ofs ~%hide_level_4_priest_spells_function%~ (strlen)
+            SET ofs2 = INDEX_BUFFER(~[ %TAB%]*return[ %TAB%]*chargen.levelInfo~)
+            PATCH_IF %ofs2% >= 0 THEN BEGIN
+                SET strlen = STRING_LENGTH ~%hide_level_4_priest_spells_condition%~
+                INSERT_BYTES ofs2 strlen
+                WRITE_ASCIIE ofs2 ~%hide_level_4_priest_spells_condition%~ (strlen)
+                END
+            ELSE BEGIN
+                PATCH_WARN ~WARNING: Spells per level will show non-true values for some kits1.~
+            END
+        END
+        ELSE BEGIN
+            PATCH_WARN ~WARNING: Spells per level will show non-true values for some kits2.~
+        END
 END

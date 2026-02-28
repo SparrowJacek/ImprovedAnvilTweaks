@@ -3299,6 +3299,62 @@ COPY_EXISTING ~clck23.itm~ ~override~
       parameter1 = 10
   END
 
+// Items that just need description update
+
+COPY_EXISTING ~chan12.itm~ ~override~
+  SAY IDENTIFIED_DESC @7089
+
+COPY_EXISTING ~chan13.itm~ ~override~
+  SAY IDENTIFIED_DESC @7090
+
+COPY_EXISTING ~chan14.itm~ ~override~
+  SAY IDENTIFIED_DESC @7091
+
+COPY_EXISTING ~chan15.itm~ ~override~
+  SAY IDENTIFIED_DESC @7092
+
+COPY_EXISTING ~chan16.itm~ ~override~
+  SAY IDENTIFIED_DESC @7093
+
+COPY_EXISTING ~chan19.itm~ ~override~
+  SAY IDENTIFIED_DESC @7094
+
+COPY_EXISTING ~clolth.itm~ ~override~
+  SAY IDENTIFIED_DESC @7095
+
+COPY_EXISTING ~dleat10.itm~ ~override~
+  SAY IDENTIFIED_DESC @7096
+
+COPY_EXISTING ~dwchan01.itm~ ~override~
+  SAY IDENTIFIED_DESC @7097
+
+COPY_EXISTING ~dwchan02.itm~ ~override~
+  SAY IDENTIFIED_DESC @7098
+
+COPY_EXISTING ~leat10.itm~ ~override~
+  SAY IDENTIFIED_DESC @7096
+
+COPY_EXISTING ~ohleat50.itm~ ~override~
+  SAY IDENTIFIED_DESC @7100
+
+COPY_EXISTING ~ohleat51.itm~ ~override~
+  SAY IDENTIFIED_DESC @7101
+
+COPY_EXISTING ~ohleat52.itm~ ~override~
+  SAY IDENTIFIED_DESC @7102
+
+COPY_EXISTING ~ring04.itm~ ~override~
+  SAY IDENTIFIED_DESC @7103
+
+// Remove Stealth Strike bonus from Human Flesh
+
+COPY_EXISTING ~leat21.itm~ ~override~
+SAY IDENTIFIED_DESC @7099
+  LPF DELETE_EFFECT
+    INT_VAR
+      match_opcode = 59
+  END
+
 // Make Armors of Stamina protect from Stealth spell
 
 ACTION_FOR_EACH stamina_armor_itm IN ~LEAT09~ ~S!LEAT06~ BEGIN

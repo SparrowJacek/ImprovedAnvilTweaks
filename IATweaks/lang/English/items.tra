@@ -918,6 +918,260 @@ STATISTICS:
 Equipped abilities:
 - +1/2 extra attack per round~
 
+@7089 = ~The delicate yet sturdy craftsmanship of the elven races allows them to design many beautiful yet utilitarian goods. Among these is elven chain mail, which is so finely wrought that it can be worn under normal clothing without revealing its presence. This and its lightness allows it to be worn by Thieves and Fighter/Mages with few restrictions.
+
+STATISTICS:
+
+Equipped abilities:
+– Open Locks: -5%
+– Find Traps: -5%
+– Pick Pockets: -20%
+– Stealth Strike: -10%
+– Spellcasting is not disabled
+
+Armor Class: 5 (3 vs. slashing, 7 vs. crushing)
+Requires:
+ 5 Strength
+
+Weight: 7~
+
+@7090 = ~Woven by the finest of elven craftsmen, this mail feels more akin to cloth than to metal. The armor may be worn by Thieves with few penalties and by Fighter/Mages without removing their spellcasting ability.
+
+STATISTICS:
+
+Equipped abilities:
+– Open Locks: -5%
+– Find Traps: -5%
+– Pick Pockets: -20%
+– Stealth Strike: -10%
+– Spellcasting is not disabled
+
+Armor Class: 4 (2 vs. slashing, 6 vs. crushing)
+Requires:
+ 5 Strength
+
+Weight: 8~
+
+@7091 = ~This light but strong mail is of sylvan elf construction, and therefore its elegance is only exceeded by its rarity. Normally granted only to especially brave elves, seldom is this armor be found outside of a wood elf tribe, and rarer still on someone not of elven lineage.
+
+STATISTICS:
+
+Equipped abilities:
+– Open Locks: -5%
+– Find Traps: -5%
+– Pick Pockets: -20%
+– Stealth Strike: -10%
+– Spellcasting is not disabled
+
+Armor Class: 3 (1 vs. slashing, 5 vs. crushing)
+Requires:
+ 5 Strength
+
+Weight: 10~
+
+@7092 = ~The Bards of Melody were a small band of half-elf bardic warriors who entertained and defended scattered elven communities throughout Calimshan. Enchantments allowed only minstrels to wear their armor, the magical links sliding together to produce beautiful melodies as they danced or fought. Unfortunately, the Bards of Melody were disbanded hundreds of years ago, and the secret of "playing" the armor faded with them.
+
+STATISTICS:
+
+Equipped abilities:
+– Open Locks: -5%
+– Find Traps: -5%
+– Pick Pockets: -20%
+– Stealth Strike: -10%
+– Spellcasting is not disabled
+
+Armor Class: 2 (0 vs. slashing, 4 vs. crushing)
+Requires:
+ 5 Strength
+
+Weight: 12~
+
+@7093 = ~The lore of this suit is difficult to determine, either due to the exotic circumstances from which it sprang or the wish of its previous owner to conceal its location. Secrecy would certainly be desirable, as even rumors of such a mail as this could provoke deadly interest. It is the pinnacle of elven craft and a truly blessed item.
+
+STATISTICS:
+
+Equipped abilities:
+– Open Locks: -5%
+– Find Traps: -5%
+– Pick Pockets: -20%
+– Stealth Strike: -10%
+– Spellcasting is not disabled
+
+Armor Class: 1 (-1 vs. slashing, 3 vs. crushing)
+Requires:
+ 5 Strength
+
+Weight: 15~
+
+@7094 = ~While in exile from Myth Drannor, Aslyferund learned the secret of fashioning powerful elven armor by gilding and heavily enchanting normal elven chain. Alas, his refusal to divulge the secret lead to his murder by a rival smith.
+
+STATISTICS:
+
+Equipped abilities:
+– Immunity to normal weapons
+– Open Locks: -5%
+– Find Traps: -5%
+– Pick Pockets: -20%
+– Stealth Strike: -10%
+– Spellcasting is not disabled
+
+Armor Class: 0 (-2 vs. slashing, 2 vs. crushing)
+Requires:
+ 5 Strength
+
+Weight: 15~
+
+@7095 = ~Woven by the finest of elven craftsmen, this mail feels more akin to cloth than to metal. The armor may be worn by Thieves with few penalties and by Fighter/Mages without removing their spellcasting ability.
+
+STATISTICS:
+
+Equipped abilities:
+– Open Locks: -5%
+– Find Traps: -5%
+– Pick Pockets: -20%
+– Stealth Strike: -10%
+– Spellcasting is not disabled
+
+Armor Class: 4 (2 vs. slashing, 6 vs. crushing)
+Requires:
+ 5 Strength
+
+Weight: 8~
+
+@7096 = ~Hide armor is made from the thick hide of a very large animal (an elephant for example) or from many layers of normal leather from common animals, like cows. Hide armor is far too bulky, inflexible and heavy to be used much in advanced human cultures. However, among the barbaric humanoid masses throughout the dark forests and misty jungles of the world, hide armor is common. Even though it does offer more protection than leather armor, one must get by the offensive odor and shoddy appearance in order to wear it effectively. Even though Thieves can wear this armor, it has a negative effect on their abilities.
+
+STATISTICS:
+
+Equipped abilities:
+– Open Locks: -10%
+– Find Traps: -10%
+– Pick Pockets: -10%
+– Stealth Strike: -20%
+
+Armor Class: 6 (8 vs. piercing and missile)
+Requires:
+ 6 Strength
+
+Weight: 40~
+
+@7097 = ~The delicate yet sturdy craftsmanship of the elven races allows them to design many beautiful yet utilitarian goods. Among these is elven chain mail, which is so finely wrought that it can be worn under normal clothing without revealing its presence. This and its lightness allows it to be worn by Thieves and Fighter/Mages with few restrictions.
+
+This item, like most drow equipment, is created using adamantine, an alloy of adamantite that quickly turns to dust if removed from the Underdark.
+
+This magical drow chain mail gives the wearer a bonus of 5% to Magic Resistance and takes 1 off of the Speed Factor of all spells cast by the wearer of the armor.
+
+STATISTICS:
+
+Equipped abilities:
+– Magic Resistance: +5%
+– Improves casting time by 1
+– Open Locks: -5%
+– Find Traps: -5%
+– Pick Pockets: -20%
+– Stealth Strike: -10%
+– Spellcasting is not disabled
+
+Armor Class: 2 (0 vs. slashing, 4 vs. crushing)
+Requires:
+ 5 Strength
+
+Weight: 12~
+
+@7098 = ~The sturdy craftsmanship of the drow allows them to design many beautiful yet utilitarian goods. Among these is drow chain mail, which is so finely wrought that it can be worn under normal clothing without revealing its presence. This and its lightness allows it to be worn by Thieves and Fighter/Mages with few restrictions.
+
+This item, like most drow equipment, is created using adamantine, an alloy of adamantite that quickly turns to dust if removed from the Underdark.
+
+STATISTICS:
+
+Equipped abilities:
+– Open Locks: -5%
+– Find Traps: -5%
+– Pick Pockets: -20%
+– Stealth Strike: -10%
+– Spellcasting is not disabled
+
+Armor Class: 0 (4 vs. crushing)
+Requires:
+ 5 Strength
+
+Weight: 12~
+
+@7099 = ~Made from human skin and treated with the blood of a noble dragon, this armor emits the stench of bitter death. The malevolent armor can only be used by a truly evil person.
+
+STATISTICS:
+
+Equipped abilities:
+– Saving Throws: +4
+– Magic Resistance: +20%
+
+Armor Class: 3 (5 vs. piercing and missile)
+Requires:
+ 3 Strength
+
+Weight: 5~
+
+@7100 = ~Hide armor is made from the thick hide of a very large animal (an elephant for example) or from many layers of normal leather from common animals, like cows. Hide armor is far too bulky, inflexible and heavy to be used much in advanced human cultures. However, among the barbaric humanoid masses throughout the dark forests and misty jungles of the world, hide armor is common. Even though it does offer more protection than leather armor, one must get by the offensive odor and shoddy appearance in order to wear it effectively. Even though Thieves can wear this armor, it has a negative effect on their abilities.
+This particular suit is enchanted, granting the wearer an additional bonus to protection.
+
+STATISTICS:
+
+Equipped abilities:
+– Open Locks: -10%
+– Find Traps: -10%
+– Pick Pockets: -10%
+– Stealth Strike: -20%
+
+Armor Class: 5 (7 vs. piercing and missile)
+Requires:
+ 6 Strength
+
+Weight: 25~
+
+@7101 = ~Hide armor is made from the thick hide of a very large animal (an elephant for example) or from many layers of normal leather from common animals, like cows. Hide armor is far too bulky, inflexible and heavy to be used much in advanced human cultures. However, among the barbaric humanoid masses throughout the dark forests and misty jungles of the world, hide armor is common. Even though it does offer more protection than leather armor, one must get by the offensive odor and shoddy appearance in order to wear it effectively. Even though Thieves can wear this armor, it has a negative effect on their abilities.
+This particular suit is enchanted, granting the wearer an additional bonus to protection.
+
+STATISTICS:
+
+Equipped abilities:
+– Open Locks: -10%
+– Find Traps: -10%
+– Pick Pockets: -10%
+– Stealth Strike: -20%
+
+Armor Class: 4 (6 vs. piercing and missile)
+Requires:
+ 6 Strength
+
+Weight: 15~
+
+@7102 = ~Hide armor is made from the thick hide of a very large animal (an elephant for example) or from many layers of normal leather from common animals, like cows. Hide armor is far too bulky, inflexible and heavy to be used much in advanced human cultures. However, among the barbaric humanoid masses throughout the dark forests and misty jungles of the world, hide armor is common. Even though it does offer more protection than leather armor, one must get by the offensive odor and shoddy appearance in order to wear it effectively. Even though Thieves can wear this armor, it has a negative effect on their abilities.
+This particular suit is enchanted, granting the wearer an additional bonus to protection.
+
+STATISTICS:
+
+Equipped abilities:
+– Open Locks: -10%
+– Find Traps: -10%
+– Pick Pockets: -10%
+– Stealth Strike: -20%
+
+Armor Class: 3 (5 vs. piercing and missile)
+Requires:
+ 6 Strength
+
+Weight: 10~
+
+@7103 = ~Ring of Clumsiness: The Jester's Folly
+The most notorious owner of this ring made a substantial living exploiting its cursed nature. Gregoria the Foole, a Jester by trade, would use his incomparable sleight of hand to switch this ring with that of a patsy taken from his audience. The rest of his performance would involve the mocking of the newly clumsy individual, much to the delight of their comrades. The ring was removed (by a method known only to the wily Jester) only once the stooge had promised no reprisals for the treatment he had received, though Gregoria frequently still had to make a hasty retreat. His last known performance was rumored to have been an ill-humored mage in Zhentil Keep: a show from which he did not flee quite fast enough.
+
+STATISTICS:
+
+Equipped abilities:
+– Dexterity: -50%
+– Stealth Strike: -50%
+– 75% chance of spellcasting failure
+– May only be removed with a Remove Curse spell
+
 
 @7126 = ~The Martyr's Answer +4~
 

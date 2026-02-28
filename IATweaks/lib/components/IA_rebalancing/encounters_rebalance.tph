@@ -1041,18 +1041,19 @@ COPY ~IATweaks\resources\spl\s!mfblst.spl~ ~override~
     INT_VAR 
       projectile = ~S!MFAREA~
   END
-  PATCH_FOR_EACH header_num IN 1 2 3 BEGIN
-    SET min_level = (header_num + 3) * 5
-    LPF ~S!CLONE_SPELL_HEADER~
-      INT_VAR
-        level_req = min_level
-    END
-    LPF ~S!ALTER_EFFECT~
-      INT_VAR
-        header = header_num
-        match_opcode = 148
-    END
-  END
+  // PATCH_FOR_EACH header_num IN 1 2 3 BEGIN
+  //   SET min_level = (header_num + 3) * 5
+  //   LPF ~S!CLONE_SPELL_HEADER~
+  //     INT_VAR
+  //       level_req = min_level
+  //   END
+  //   LPF ~S!ALTER_EFFECT~
+  //     INT_VAR
+  //       header = header_num
+  //       match_opcode = 148
+  //       parameter1 = min_level
+  //   END
+  // END
 
 COPY_EXISTING ~s!mindbl.pro~ ~override/s!mfblst.pro~
   WRITE_SHORT 0x200 64 // Affect only enemies

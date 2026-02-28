@@ -109,3 +109,11 @@ COPY_EXISTING ~s!dendr1.cre~ ~override\s!woogo3.cre~
 
 COPY_EXISTING ~s!dendr1.cre~ ~override\s!woogo4.cre~
   WRITE_ASCII 0x280 ~S!WOOGO4~ #20
+
+// Green Abishai
+COPY ~IATweaks\resources\itm\s!abishg.itm~ ~override~
+COPY ~IATweaks\resources\cre\s!abishg.cre~ ~override~
+  SAY NAME1 @5182
+  SAY NAME2 @5182
+
+COMPILE ~IATweaks\scripts\creatures\S!ABISHG.BAF~

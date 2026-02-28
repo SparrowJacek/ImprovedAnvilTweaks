@@ -454,18 +454,6 @@ COPY_EXISTING ~ARCHSLOW.eff~ ~override~
 
 COPY ~IATweaks\resources\spl\ARCHSLOW.spl~ ~override~
 
-// Archers can pick any alignment and won't fall:
-
-COPY_EXISTING ~ALIGNMNT.2da~ ~override~
-  REPLACE_EVALUATE
-    ~FERALAN.*~
-    BEGIN
-    END
-    ~FERALAN 1 1 1 1 1 1 1 1 1~
-  PRETTY_PRINT_2DA
-
-APPEND ~FALLEN.2da~ ~FERALAN 0~
-
 // Cloak of Atonement
 
 COPY ~IATweaks\resources\bam\s!atone1.bam~ ~override~

@@ -1510,3 +1510,22 @@ Disadvantages:
 7- Does not gain the regular druidic immunity to poison and partial resistance to elemental damage
 8- Cannot cast Nature's Beauty spell~
 
+@5189 = ~ARCHER: The Archer is the epitome of skill with the bow—the ultimate marks<PRO_MANWOMAN>, able to make almost any shot, no matter how difficult. To become so skilled with the bow, the Archer has had to sacrifice some of <PRO_HISHER> proficiency with melee weapons and armor.
+
+Advantages:
+– +1 to hit and damage rolls with any missile weapon every 3 levels.
+– May achieve Grand Mastery (5 slots) in longbows, shortbows, and crossbows.
+– May use the Called Shot ability once per day. Gains one use at level 4 and an additional use every 4 levels thereafter.
+- May be of any alignment and will never become fallen.
+
+CALLED SHOT: All successful ranged attacks within the next 10 seconds have the following cumulative effects besides normal damage, according to the level of the Archer:
+ 4th level: -1 penalty to target's THAC0.
+ 8th level: -1 penalty to target's Saving Throws vs. Spell.
+ 12th level: -1 penalty to the target's Strength score.
+ 16th level: +2 bonus to damage roll.
+
+Disadvantages:
+– May only wear leather, studded leather, and hide armor.
+– May only become Proficient (one slot) with melee weapons.
+– May not use the Charm Animal ability.~
+

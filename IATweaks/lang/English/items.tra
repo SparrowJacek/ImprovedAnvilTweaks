@@ -1173,6 +1173,330 @@ Equipped abilities:
 – May only be removed with a Remove Curse spell
 
 
+@7112 = ~Barbarian's Dream
+
+This outstanding chain mail is the final result of combining four powerful chain armors. It was further reinforced with amber by the artificer Lady Elowen.
+
+STATISTICS:
+
+Equipped abilities:
+- Fire Resistance: +20%
+- Resistance to Electricity: +40%
+- Resistance to damage from all weapon types: +10%
+
+Armor Class: -2
+Weight: 7
+Requires: 8 Strength~
+
+@7113 = ~Reinforced Full Plate +5
+
+Full plate armor is the best armor a warrior can buy, both in appearance and protection. The Full Plate +2 was merged with the Improved Ankheg Plate Mail, and further reinforced with amber by the artificer Lady Elowen.
+
+STATISTICS:
+
+Equipped abilities:
+- Resistance to Acid, Cold and Fire: +25%
+- Resitance to Electricity: +65%
+- Regeneration: 1HP per second
+
+Armor Class: -4
+Weight: 40
+Requires: 15 Strength~
+
+@7114 = ~Boots of The Riskbreaker Lord
+
+Legends say that Hermes himself had made these boots and bestowed them on one of his mortal followers. Along with the gift came a promise that the boots may be improved once the follower's Riskbreaker strength has grown, something which apparently had never happened.
+
+The Artificer Lady Elowen fulfilled the original promise by elevating the legendary boots to their true potential.
+
+STATISTICS:
+
+Equipped Abilities:
+- Bonus to Movement Speed: +4
+- Armor Class Bonus: +4
+- Bonus to all Saving Throws: +4
+- APR bonus: +1/2
+- Regeneration: 1 HP per second
+- Magic Damage Resistance: +25%
+- Immunity to the 3rd level Haste and Slow spells (including Golem Slow)
+
+Usable By:
+ Riskbreaker~
+
+@7115 = ~Reinforced Amber Ioun Stone
+
+This headwear is strengthened with reinforced amber and wrapped in a protective outer shell, made of amber as well.
+
+STATISTICS:
+
+Equipped abilities:
+- Armor Class bonus: +2
+- Resistance to Electricity: +15%
+- +20 Max HP
+- Mental Agility: +1 bonus to casting speed
+
+Special: Protects against critical hits
+
+Usable By:
+ Cleric
+ Druid~
+
+@7116 = ~Shield of The Missionnaire +6
+
+According to Lady Elowen, a story of a shield once belonged to a human cleric inspired her to create this piece. The clergyman was sent to the northern barbarian tribes as a messenger. Rumors say that his last words before death were: "I wish I was half as tough as they are".
+
+An extra coating has been added to make the shield a bit more resilient.
+
+STATISTICS:
+
+Equipped Abilities:
+- Armor Class Bonus: +7
+- Resistance to Elemental Damage: +20%
+- Resistance to Magic Damage: +20%
+- Resistance to Physical Damage: +10%
+
+Usably By:
+ Human Cleric
+ Human Paladin~
+
+@7117 = ~Hammer Axe +5: Riskbreaker's Dream
+
+Even though crafting a hammer axe is a very demanding job, using it efficiently is even harder and requires the skill of a Riskbreaker lord. The dwarven Rune of Clangeddin needs to be consumed in order to fuse an axe with a war hammer. Through Lady Elowen’s craft the two weapons were bound into a single form that may be consciously shifted by the wielder, allowing the head to change between a cleaving blade and a crushing hammer as the situation demands. Despite this dual nature, the weapon is handled entirely as an axe.
+
+STATISTICS:
+
+Special Abilities:
+- +5% extra chance to 'Hard Hit'
+- +5% extra chance to 'Risk Increment'
+- +5% extra chance to 'Avert Risk'
+
+Equipped Abilities:
+- Strength bonus: +1
+- Armor Class bonus: +2
+- Resistance to Fire: +25%
+- Resistance to Electricity: +25%
+
+Wielded as an Axe:
+
+THAC0: +5
+Damage: 1D8 +5
+Damage Type: Slashing
+
+Wielded as a Hammer:
+
+THAC0: +5
+Damage: 1D6 +6
+Damage Type: Slashing
+
+Proficiency Type: Axe
+
+Usable By:
+ Riskbreaker~
+
+@7118 = ~Axe of Gleaming Lava +5
+
+Reforging Stonefire battle axe with Volcanic ore has proven to be worth its cost. The weapon has been strengthened by amber, and a ring of protection was embedded into the pommel.
+
+STATISTICS:
+
+Special Abilities:
+- +10% chance per hit to inflict 8D10 additional fire damage.
+- +10% chance per hit to inflict 8D10 additional electrical damage.
+
+Equipped Abilities:
+- Resistance to Fire: +25%
+- Resistance to Electricity: +25%
+- Armor Class Bonus: +2
+
+THAC0: +5
+Damage: 1D8 +5
+Damage Type: Slashing
+Proficiency Type: Axe
+
+Usable by:
+ Ranger
+ Paladin
+ Fighter (single- and multi-class)~
+
+@7119 = ~Rimed Club +5
+
+The surface of this powerful club is covered with permanent frosty rimes. While in combat, the club seems to be alive and breathing. The weapon was further improved and combined with the powers of Ice Star +4 by the artificer Lady Elowen.
+
+STATISTICS:
+
+Equipped abilities:
+- Resistance to Cold: +50%
+- Resistance to Fire and Electricity: +20%
+
+Special abilities:
+- 10% chance per successful hit to inflict 10D6 additional cold damage
+- 10% chance per successful hit to inflict 5D6 additional electrical damage
+
+THAC0: +5
+Damage: 1D6 +5
+
+Not Usable By:
+ Mage~
+
+@7120 = ~Lakesider's Dream +5
+
+Despite its simple structure and lack of any particular adornments, this axe looks very beautiful. The axe's blade reflects the slow and calm waves of the surface of an unknown lake. The original relic had been given to you by swanmays as a sign of their gratitude for your precious help to their community. Adorned with the exquisite water opal gem and imbued with the enchanted water taken from the magic pond in Lord Wetlander's residence, the axe has now reached its full potential.
+
+STATISTICS:
+
+Equipped abilities:
+- Adds 40 hit points to the wielder while equipped
+
+Special abilities:
+- Has 15% chance per hit to inflict 10D8 additional magic damage
+- Has 15% chance per hit to inflict 5D8 additional electrical damage
+
+THAC0: +5 bonus
+Damage: 1D8 +5
+Damage type: slashing
+Weight: 7
+Speed Factor: 4
+Proficiency Type: Axe
+Type: 1-handed
+Requirements: 19 Constitution and 12 Charisma
+
+Usable By:
+ Vagrant~
+
+@7121 = ~Phosphorus +5
+
+'Phosphorus' is an alternate name for Morning star. The morning star is a wooden shaft topped with a metal head made up of a spiked iron sheath. Morning stars have an overall length of about four feet. Strong enchantments, however, have made this particular morning star lighter, faster, and far more deadly than a normal weapon of this kind. Due to other ingredients used in its fabrication, the mighty weapon also grants the strength of a Storm Giant to its wielder.
+
+The flail was further improved by the artificer Lady Elowen.
+
+STATISTICS:
+
+Equipped abilities:
+- Strength: Set to 24
+- Armor Class bonus: +4
+- Resistance to Electricity: +40%
+
+THACO: +5
+Damage: 2D4 +5
+Damage type: crushing
+Weight: 8
+Speed Factor: 3
+Proficiency Type: Flail/Morningstar
+Type: 1-handed
+Requires: 11 Strength
+Not Usable By:
+ Druid
+ Mage
+ Thief~
+
+@7122 = ~Adorned Blade of Roses +5
+
+This blade possesses an unearthly splendor, and it is likely that Sune, the goddess of beauty and passion, had a hand in its creation. The effect it has on the wielder is immediate, and more than once in its history has this sword been the secret behind a lackluster soldier's sudden elevation at court.
+
+The weapon was further improved by the artificer Lady Elowen.
+
+STATISTICS:
+
+Equipped abilities:
+- Armor Class bonus: +2
+- Charisma: +4
+- Dexterity: +2
+- Resistance to Electricity: +20%
+
+Special abilities:
+- 10% chance per successful hit to inflict 5D8 additional piercing damage
+- 10% chance per successful hit to inflict 5D8 additional electrical damage
+
+THAC0: +5
+Damage: 1d8+5 (slashing)
+Speed Factor: 2
+Proficiency Type: Long Sword
+Type: One-handed
+Requires:
+ 6 Strength
+
+Weight: 3
+
+Not usable By:
+ Druid
+ Cleric
+ Mage
+ Fighter/Mage~
+
+@7123 = ~Damascus Steel Blade
+
+The mighty Warlord's Blade has been upgraded one more time using the essence of the eastern scimitar and a chunk of reinforced amber. The immunities from Lilarcor had to be sacrificed to achieve a greater result.
+
+STATISTICS:
+
+Equipped abilities:
+- Armor Class bonus: +3
+- Resistance to damage from all weapon types: +10%
+- Regeneration: 1HP every two seconds
+- Strength: +2
+- Dexterity: +2
+- 1/2 extra attack per round (additional 1/2 for Wizard Slayer)
+- Resistance to Electricity: +20%
+
+Special Abilities:
+- 10% chance per successful hit to inflict 5D12 additional crushing damage
+- 10% chance per successful hit to inflict 5D12 additional electrical damage
+
+THAC0: +5 bonus
+Damage: 1D12 + 5
+Damage type: slashing
+Weight: 11
+Speed Factor: 5
+Proficiency Type: Two handed sword
+Type: 2-handed
+Requires: 14 Strength
+
+Not Usable By:
+ Druid
+ Cleric
+ Mage
+ Thief
+ Monk
+ Beast Master~
+
+@7124 = ~Fruitful Attempt
+
+This wondrous ring of protection was imbued with the strange powers of the Samara fruit, recovered at great cost by merchant Reginald.
+
+STATISTICS:
+
+Equipped abilities:
+- Armor Class bonus: +5, that stacks with simiar bonuses from rings and cloaks
+- Saving Throws: +2, that stacks with simiar bonuses from rings and cloaks
+- Resistance to Electricity: +15%
+- Mental Agility: +1 Casting Speed bonus
+
+Special Ability:
+- May cast Chaotic Commands on the entire party once per day
+
+Usable By:
+ Cleric
+ Druid
+
+Not usable by:
+ Cleric/Mage~
+
+@7125 = ~Shield of The Missionnaire +5
+
+According to Lady Elowen, a story of a shield once belonged to a human cleric inspired her to create this piece. The clergyman was sent to the northern barbarian tribes as a messenger. Rumors say that his last words before death were: "I wish I was half as tough as they are".
+
+STATISTICS:
+
+Equipped Abilities:
+- Armor Class Bonus: +6
+- Resistance to Elemental Damage: +10%
+- Resistance to Magic Damage: +10%
+- Resistance to Physical Damage: +10%
+
+Usable By:
+ Human Cleric
+ Human Paladin~
+
 @7126 = ~The Martyr's Answer +4~
 
 @7127 = ~Some weapons are made for war. This one was made for the moment when war is already lost and someone must stand anyway. The sacrifice of Jerrod and the relentless purpose of the Mace of Disruption have been bound into a single relic. It does not blaze, nor does it hunger — it simply ends that which should not be.

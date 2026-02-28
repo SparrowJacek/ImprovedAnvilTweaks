@@ -6577,3 +6577,23 @@ COPY_EXISTING ~yaga02.cre~ ~override~
   
 COMPILE ~IATweaks\scripts\creatures\S!yaga02.BAF~
 
+// Oasis Jamis
+
+COPY_EXISTING ~amtgen01.cre~ ~override~
+  WRITE_BYTE 0x5a 75  // Cold Resistance
+  WRITE_BYTE 0x5b 75  // Electricity Resistance
+  WRITE_BYTE 0x5f 75  // Magic Cold Resistance
+
+  ADD_CRE_ITEM ~SW1H04~ #0 #0 #0 ~UNSTEALABLE~ ~WEAPON3~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 4 ) // Greater Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 4 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 1 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL909~ #0 ~innate~ ( 1 ) // Smite
+  
+COMPILE ~IATweaks\scripts\creatures\S!jamis.BAF~
+

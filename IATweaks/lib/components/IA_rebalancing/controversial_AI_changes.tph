@@ -678,3 +678,23 @@ COPY_EXISTING ~YAGA05.cre~ ~override~
   ADD_MEMORIZED_SPELL ~SPCL917~ #0 ~innate~ ( 1 ) // Avoid Death
 
 COMPILE ~IATweaks\scripts\controversial\S!yaga05.baf~
+
+// Oasis Jamis
+
+COPY_EXISTING ~amtgen01.cre~ ~override~
+
+  REMOVE_MEMORIZED_SPELLS
+
+  ADD_MEMORIZED_SPELL ~SPCL907~ #0 ~innate~ ( 2 ) // Hardiness
+  ADD_MEMORIZED_SPELL ~SPCL900~ #0 ~innate~ ( 1 ) // Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL901~ #0 ~innate~ ( 1 ) // Greater Whirlwind Attack
+  ADD_MEMORIZED_SPELL ~SPCL905~ #0 ~innate~ ( 4 ) // Critical Strike
+  ADD_MEMORIZED_SPELL ~SPCL906~ #0 ~innate~ ( 3 ) // Power Attack
+  ADD_MEMORIZED_SPELL ~SPCL909~ #0 ~innate~ ( 1 ) // Smite
+  
+COMPILE ~IATweaks\scripts\controversial\S!jamis.BAF~
+
+// Oasis Battlemage
+  
+COMPILE ~IATweaks\scripts\controversial\S!amtmag.BAF~
+

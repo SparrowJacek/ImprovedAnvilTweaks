@@ -710,7 +710,7 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY item_to_enchantment_mapping BEGIN
   "CLCK06"=>1
   // "CLCK32" - +1 all, can be made +2
   "NPCLCK"=>1
-  "s!clck01"=>4
+  // "s!clck01"=>4
   "s!clck02"=>3
   // "s!clck07" - +3 all 
   // "s!clck08"=>3 - probably make it a pure +1AC
@@ -898,6 +898,18 @@ COPY_EXISTING ~itemexcl.2da~  ~override~
   END
   SET_2DA_ENTRIES_NOW ~_#_#_#itemexcl~ ~colcount~
   PRETTY_PRINT_2DA
+
+// Master of High Forest, turn to +3 but keep stacking
+
+COPY_EXISTING ~s!clck01.itm~ ~override~
+  SAY IDENTIFIED_DESC @7105
+  PATCH_FOR_EACH opcode_num IN 0 33 34 35 36 37 BEGIN
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = opcode_num
+        parameter1 = 3
+    END
+  END
 
 // Ray of Fragmentation
 

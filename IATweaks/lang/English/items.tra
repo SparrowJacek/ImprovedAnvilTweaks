@@ -1194,6 +1194,85 @@ Weight:  3
 Usable By:
  Cernd~
 
+@7106 = ~This beautiful cloak is made from the pelt of a yeti. The cloak was sewn by master Maheer in Athkatla, and it retains some of the natural resistances inherent to yeti. Further enhanced by Cromwell, the garment now provides better protection.
+
+STATISTICS:
+
+Equipped abilities:
+- Armor Class: +2 bonus, that stacks with simiar bonuses from rings and cloaks
+- Saving Throw: +2 bonus, that stacks with simiar bonuses from rings and cloaks
+- Cold Resistance: +50%
+
+Weight: 1~
+
+@7107 = ~Cloak of Arcane Immortality
+
+As the result of the combination of three powerful cloaks, this magical item is probably the ultimate possible cloak for any character who qualifies the requirements to wear it.
+
+Equipped Abilities:
+
+- Armor Class: +3 bonus, that stacks with simiar bonuses from rings and cloaks
+- Saving Throw: +3 bonus, that stacks with simiar bonuses from rings and cloaks
+- Regeneration: 3 hit points per round
+- Max HP Bonus: +15
+
+Requirements: 18 Wisdom and Intelligence
+
+Usable by:
+ Good aligned Necromancers~
+
+@7108 = ~Cloak of the Daywalker
+
+With the help of Adamantite Dust to absorb the magical aura from Dragomir's Cloak and an additional Cloak of Protection, Dragomir’s Cloak has reached its full potential.
+
+Equipped abilities:
+- Armor Class: +2 bonus, that stacks with simiar bonuses from rings and cloaks
+- Saving Throw: +2 bonus, that stacks with simiar bonuses from rings and cloaks
+- Constitution: +2
+- Increases attacks per round by 1/2
+
+Allows a vampire to travel outside during the day and in full view of the sun.~
+
+@7109 = ~This artefact was presented to you by Helm's messenger as a token of gratitude for your bravery and willingness to confront Demogorgon, the prince of demons. The apparition claimed the present to be a powerful ward blessed by The Watcher himself.
+
+STATISTICS:
+
+Armor Class: +4 bonus, that stacks with simiar bonuses from rings and cloaks
+Saving Throws: +4 bonus, that stacks with simiar bonuses from rings and cloaks
+
+Not Usable By:
+ Wizard Slayer~
+
+@7110 = ~De'Arnise Signet Ring (Enhanced)
+
+This ring was given to Nalia by her father upon her ascension to adulthood. Bonded to her blood as it is, the ring's powers cannot be used by anyone else.
+
+After enhancements the ring has the following statistics:
+
+Armor Class: +3 bonus, that stacks with simiar bonuses from rings and cloaks
+Saving Throw: +3 bonus, that stacks with simiar bonuses from rings and cloaks
+Fire resistance: +90%
+Nalia can memorize two additional spells per spell level.
+
+Usable By:
+ Nalia~
+
+@7111 = ~Enhanced Cloak of Dragomir
+
+The Cloak of Dragomir and Cloak of the Dead have been combined and lined with a Cloak of Protection, and the resulting combination, though imperfect, enables Hexxat to move much more freely during the day.
+
+Equipped abilities:
+– Armor Class: +1, that stacks with simiar bonuses from rings and cloaks
+– Saving Throws: +1, that stacks with simiar bonuses from rings and cloaks
+– Constitution: +1
+– Increases attacks per round by 1/2
+
+Allows a vampire to travel outside during the day and in full view of the sun, albeit with the following penalties:
+– Strength: -1
+– Dexterity: -1
+– Intelligence: -1
+– Wisdom: -1
+– Charisma: -1~
 
 @7112 = ~Barbarian's Dream
 

@@ -911,6 +911,36 @@ COPY_EXISTING ~s!clck01.itm~ ~override~
     END
   END
 
+// Improved Yeti Cloak
+
+COPY_EXISTING ~s!clck12.itm~ ~override~
+  SAY IDENTIFIED_DESC @7106
+
+// Cloak of Arcane Immortality
+
+COPY_EXISTING ~s!clck07.itm~ ~override~
+  SAY IDENTIFIED_DESC @7107
+
+// Cloak of Daywalker
+
+COPY_EXISTING ~s!clck09.itm~ ~override~
+  SAY IDENTIFIED_DESC @7108
+
+// Helm's Gift
+
+COPY_EXISTING ~s!ring07.itm~ ~override~
+  SAY IDENTIFIED_DESC @7109
+
+// Improved Nalya's Ring
+
+COPY_EXISTING ~s!ring03.itm~ ~override~
+  SAY IDENTIFIED_DESC @7110
+
+// Cloak of Daywalker
+
+COPY_EXISTING ~s!clck08.itm~ ~override~
+  SAY IDENTIFIED_DESC @7111
+
 // Ray of Fragmentation
 
 ADD_PROJECTILE ~IATweaks\resources\pro\s!roffra.pro~

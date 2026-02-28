@@ -6153,6 +6153,34 @@ COPY_EXISTING ~AR4000.BCS~ ~override~
 
 ///////////////// Gromnir
 
+// Make Karun use only 1 SI:Div
+<<<<<<<< .../inlined/karun-no-refresh-si-div.baf
+IF
+	Allegiance(Myself,ENEMY)
+	Global("Iarefreshsi","LOCALS",0)
+	Global("IaOneSiDiv","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iarefreshsi","LOCALS",1)
+		SetGlobal("IaOneSiDiv","LOCALS",1)
+END
+>>>>>>>>
+
+EXTEND_TOP ~s!karun.bcs~ ~.../inlined/karun-no-refresh-si-div.baf~
+
+// Make Karun print info regarding his immunity to Dispel/Remove
+
+COPY_EXISTING ~gromg08.cre~ ~override~
+  PATCH_FOR_EACH dispel_magic_res IN ~SPWI302~ ~SPCL231~ ~SPIN112~ ~SPIN703~ ~SPWI326~ ~SPPR303~ BEGIN
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 206
+        opcode = 324
+      STR_VAR
+        match_resource = EVAL ~%dispel_magic_res%~
+    END
+  END
+
 COPY ~IATweaks\resources\itm\s!grmnir.itm~ ~override~
 
 COPY_EXISTING ~gromnir.cre~ ~override~

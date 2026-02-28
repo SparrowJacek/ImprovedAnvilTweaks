@@ -208,7 +208,11 @@ COPY ~IATweaks\resources\bam\s!belt10.bam~ ~override~
 COPY ~IATweaks\resources\itm\s!belt10.itm~ ~override~
   SAY NAME2 @7025
   SAY IDENTIFIED_DESC @7026
-// TODO ADD THIS ITEM SOMEWHERE!
+
+// Turmish Battlepriest
+
+COPY_EXISTING ~BDTURM04.cre~ ~override~
+  ADD_CRE_ITEM ~s!belt10~ #0 #0 #0 ~NONE~ ~GLOVES~
 
 //////////// Bracers of Brute Force
 

@@ -942,5 +942,25 @@ Proficiency Type: Mace
 Type: 1-handed
 Requires: 8 Strength~
 
+@7128 = ~Armor of the Ascendant Viper +6~
 
-@7090 = ~~
+@7129 = ~The treacherous flaw once hidden within the Armor of the Viper has been purged in the process of creation of this armor. With the Elven Stone of Arcana and the Elven Stone of Holiness set into its lining, Aerie may call upon the lingering spirits of ancient spellcasters, drawing strength from their essence. In addition, all venom that touches the armor is drawn into the stones and unraveled in the spirit world, leaving the wearer untouched.
+
+STATISTICS:
+
+Equipped Abilities:
+- Immunity to Poison
+- Aerie can memorize two additional spells per spell level
+- Base duration of clerical spells increased by 20%
+- When casting Natural Restoral, Aerie's aura is cleansed as if she cast a Mend spell
+
+Armor Class: 1 (-1 vs. slashing, 0 vs. piercing and missile)
+Requires:
+ 6 Strength
+
+Weight: 6
+
+Usable by:
+  Aerie~
+
+@7130 = ~~

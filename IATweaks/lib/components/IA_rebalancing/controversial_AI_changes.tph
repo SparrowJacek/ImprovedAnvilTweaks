@@ -698,3 +698,16 @@ COMPILE ~IATweaks\scripts\controversial\S!jamis.BAF~
   
 COMPILE ~IATweaks\scripts\controversial\S!amtmag.BAF~
 
+
+///////// Sendai minions
+  
+COMPILE ~IATweaks\scripts\controversial\s!senarc.BAF~
+COMPILE ~IATweaks\scripts\controversial\sengua04.BAF~
+COMPILE ~IATweaks\scripts\controversial\sengua03.BAF~
+COMPILE ~IATweaks\scripts\controversial\sengua05.BAF~
+
+////////// Sendai
+
+// Sendai main body (F/M/C)
+  
+COMPILE ~IATweaks\scripts\controversial\senbattl.BAF~

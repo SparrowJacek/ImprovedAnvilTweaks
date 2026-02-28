@@ -369,6 +369,38 @@ COPY_EXISTING ~s!robe02.itm~ ~override~
     END
   END
 
+// Add slight resistance bonuses to Armor and Shield
+
+COPY_EXISTING ~SPWI102.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6195
+  PATCH_FOR_EACH elemental_res_opcode IN 27 28 29 30 84 85 BEGIN
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        multi_match = 1
+        match_opcode = 0
+        opcode = elemental_res_opcode
+        parameter1 = 10
+        parameter2 = 0
+    END
+  END
+
+COPY_EXISTING ~scrl67.itm~ ~override~
+  SAY IDENTIFIED_DESC @6195
+
+COPY_EXISTING ~SPWI114.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6196
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      multi_match = 1
+      match_opcode = 0
+      opcode = 31
+      paramter1 = 15
+      parameter2 = 0
+  END
+
+COPY_EXISTING ~scrl79.itm~ ~override~
+  SAY IDENTIFIED_DESC @6196
+
 ////////// Reworked Improved Haste ////////////
 
 COPY ~IATweaks\resources\bam\s!imphsd.bam~ ~override~
@@ -1961,31 +1993,26 @@ COPY_EXISTING ~spwish12.spl~ ~override~
   END
   IF_EXISTS
 
-// Add slight resistance bonuses to Armor and Shield
+/////////// Small Item Changes
 
-COPY_EXISTING ~SPWI102.spl~ ~override~
-  SAY UNIDENTIFIED_DESC @6195
-  PATCH_FOR_EACH elemental_res_opcode IN 27 28 29 30 84 85 BEGIN
+// Potion of Invulnerability
+
+ACTION_FOR_EACH invulnerability_potion IN ~potn11~ ~potn40~ BEGIN
+  COPY_EXISTING ~%invulnerability_potion%.itm~ ~override~
+    SAY IDENTIFIED_DESC @7104
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 0
+        parameter1 = 1
+    END
     LPF ~CLONE_EFFECT~
       INT_VAR
-        multi_match = 1
         match_opcode = 0
-        opcode = elemental_res_opcode
-        parameter1 = 10
+        parameter1 = 2
         parameter2 = 0
     END
-  END
+END
 
-COPY_EXISTING ~SPWI114.spl~ ~override~
-  SAY UNIDENTIFIED_DESC @6196
-  LPF ~CLONE_EFFECT~
-    INT_VAR
-      multi_match = 1
-      match_opcode = 0
-      opcode = 31
-      paramter1 = 15
-      parameter2 = 0
-  END
 
 //////////// Dracolich fight
 

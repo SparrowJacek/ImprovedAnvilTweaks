@@ -1172,6 +1172,14 @@ Equipped abilities:
 – 75% chance of spellcasting failure
 – May only be removed with a Remove Curse spell
 
+Weight: 0~
+
+@7104 = ~This potion makes the imbiber very hard to hit. The effect of the elixir last for 5 turns but can only be used by warriors.
+
+STATISTICS:
+
+Base Armor Class: set to 1
+Additional bonus to Armor Class: +2~
 
 @7105 = ~Master of the High Forest
 

@@ -107,7 +107,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player1)
 THEN
 	RESPONSE #100
@@ -118,7 +117,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player2)
 THEN
 	RESPONSE #100
@@ -129,7 +127,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player3)
 THEN
 	RESPONSE #100
@@ -140,7 +137,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player4)
 THEN
 	RESPONSE #100
@@ -151,7 +147,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player5)
 THEN
 	RESPONSE #100
@@ -162,21 +157,11 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player6)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("IaChar6SeenTimer","LOCALS",TWO_TURNS)
 		SetGlobal("IaChar6Seen","LOCALS",1)
-		Continue()
-END
-
-IF
-    ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
-THEN
-	RESPONSE #100
-		SetGlobalTimer("IaSeeCharacters","LOCALS",ONE_ROUND)
 		Continue()
 END
 
@@ -3610,8 +3595,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -3633,8 +3618,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -3656,8 +3641,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -3679,8 +3664,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -3702,8 +3687,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -3725,8 +3710,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -3751,8 +3736,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -3777,8 +3762,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -3803,8 +3788,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -3829,8 +3814,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -3855,8 +3840,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -3881,8 +3866,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -3904,8 +3889,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -3927,8 +3912,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -3950,8 +3935,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -3973,8 +3958,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -3996,8 +3981,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -4019,8 +4004,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -5174,8 +5159,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #200
 	    Continue()
 END
@@ -5201,8 +5186,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #200
 	    Continue()
 END
@@ -5228,8 +5213,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #200
 	    Continue()
 END
@@ -5255,8 +5240,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #200
 	    Continue()
 END
@@ -5282,8 +5267,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #200
 	    Continue()
 END
@@ -5309,8 +5294,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #200
 	    Continue()
 END
@@ -6431,8 +6416,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_SECRET_WORD)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #150
 	    Continue()
 END
@@ -6460,8 +6445,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_SECRET_WORD)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #150
 	    Continue()
 END
@@ -6489,8 +6474,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_SECRET_WORD)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #150
 	    Continue()
 END
@@ -6518,8 +6503,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_SECRET_WORD)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #150
 	    Continue()
 END
@@ -6547,8 +6532,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_SECRET_WORD)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #150
 	    Continue()
 END
@@ -6576,8 +6561,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_SECRET_WORD)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #150
 	    Continue()
 END
@@ -6600,8 +6585,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -6625,8 +6610,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -6650,8 +6635,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -6675,8 +6660,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -6700,8 +6685,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -6725,8 +6710,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -8614,8 +8599,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -8640,8 +8625,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -8666,8 +8651,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -8692,8 +8677,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -8718,8 +8703,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -8744,8 +8729,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -9358,8 +9343,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -9384,8 +9369,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -9410,8 +9395,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -9436,8 +9421,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -9462,8 +9447,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -9488,8 +9473,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -9511,8 +9496,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -9534,8 +9519,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -9557,8 +9542,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -9580,8 +9565,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -9603,8 +9588,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -9626,8 +9611,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END

@@ -10,7 +10,17 @@ THEN
 	    Continue()
 END
 
-    
+
+IF
+	See(NearestEnemyOf(Myself))
+	Global("EnemySeen","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("EnemySeen","LOCALS",1)
+		Shout(89)
+		Continue()
+END
+
 IF
     Global("Iapcastts","GLOBAL",1)
     Global("Iatsinvulner","LOCALS",0)
@@ -216,7 +226,7 @@ IF
 	!GlobalTimerNotExpired("IaBreakCharge","LOCALS")
 	See(FarthestEnemyOf(Myself))
 	!Range(LastSeenBy(Myself),10)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
 	!GlobalTimerNotExpired("IaNextCharge","LOCALS")
 	CheckStatLT(LastSeenBy(Myself),100,RESISTCRUSHING)
 THEN
@@ -226,8 +236,57 @@ THEN
 		SetGlobalTimerRandom("IaNextCharge","LOCALS",8,13)
 		ReallyForceSpellRES("S!CHARG4",LastSeenBy(Myself))
 		ReallyForceSpellRES("S!CHARG1",Myself)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		SpellNoDecRES("S!CHARG3",LastSeenBy(Myself))
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!CHARG6",Myself)
+		ReallyForceSpellRES("S!CHARG5",LastSeenBy(Myself))
+		SetGlobalTimer("IaBreakCharge","LOCALS",0)
+	RESPONSE #0
+	    Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IaBreakCharge","LOCALS")
+	See(SecondFarthestEnemyOf(Myself))
+	!Range(LastSeenBy(Myself),10)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaNextCharge","LOCALS")
+	CheckStatLT(LastSeenBy(Myself),100,RESISTCRUSHING)
+THEN
+	RESPONSE #100
+		SetGlobal("IaCharge","LOCALS",1)
+		SetGlobalTimer("IaBreakCharge","LOCALS",3)
+		SetGlobalTimerRandom("IaNextCharge","LOCALS",8,13)
+		ReallyForceSpellRES("S!CHARG4",LastSeenBy(Myself))
+		ReallyForceSpellRES("S!CHARG1",Myself)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDecRES("S!CHARG3",LastSeenBy(Myself))
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!CHARG6",Myself)
+		ReallyForceSpellRES("S!CHARG5",LastSeenBy(Myself))
+		SetGlobalTimer("IaBreakCharge","LOCALS",0)
+	RESPONSE #0
+	    Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IaBreakCharge","LOCALS")
+	See(ThirdFarthestEnemyOf(Myself))
+	!Range(LastSeenBy(Myself),10)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaNextCharge","LOCALS")
+	CheckStatLT(LastSeenBy(Myself),100,RESISTCRUSHING)
+THEN
+	RESPONSE #100
+		SetGlobal("IaCharge","LOCALS",1)
+		SetGlobalTimer("IaBreakCharge","LOCALS",3)
+		SetGlobalTimerRandom("IaNextCharge","LOCALS",8,13)
+		ReallyForceSpellRES("S!CHARG4",LastSeenBy(Myself))
+		ReallyForceSpellRES("S!CHARG1",Myself)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellNoDecRES("S!CHARG3",LastSeenBy(Myself))
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ReallyForceSpellRES("S!CHARG6",Myself)
 		ReallyForceSpellRES("S!CHARG5",LastSeenBy(Myself))
 		SetGlobalTimer("IaBreakCharge","LOCALS",0)
@@ -242,7 +301,7 @@ IF
 	Range(LastSeenBy(Myself),10)
 	!Range(LastSeenBy(Myself),7)
 	!Range(ThirdNearest([ANYONE]),4)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
 THEN
 	RESPONSE #100
 		SetGlobalTimer("IaRunToCharge","LOCALS",10)
@@ -250,7 +309,7 @@ THEN
 END
 
 IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
 	!GlobalTimerNotExpired("IaBreakCharge","LOCALS")
 	!StateCheck(Myself,STATE_CONFUSED)
 	!StateCheck(Myself,STATE_HELPLESS)
@@ -261,18 +320,21 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!CheckSpellState(LastSeenBy(Myself),CONFUSION_IMMUNITY)
 	CheckStatLT(LastSeenBy(Myself),25,RESISTMAGIC)
-	CheckStatGT(LastSeenBy(Myself),1,SAVEVSSPELL)
+    CheckStatGT(LastSeenBy(Myself),1,SAVEVSSPELL)
+    OR(2)
+        CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
 	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
 THEN
 	RESPONSE #100
 		ReallyForceSpellRES("S!CHARG6",Myself)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ForceSpell(LastSeenBy(Myself),HULK_CONFUSION)  // SPIN839.SPL (Confusion)
 END
 
 IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
 	!GlobalTimerNotExpired("IaBreakCharge","LOCALS")
 	!StateCheck(Myself,STATE_CONFUSED)
 	!StateCheck(Myself,STATE_HELPLESS)
@@ -283,18 +345,21 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!CheckSpellState(LastSeenBy(Myself),CONFUSION_IMMUNITY)
 	CheckStatLT(LastSeenBy(Myself),25,RESISTMAGIC)
-	CheckStatGT(LastSeenBy(Myself),1,SAVEVSSPELL)
+    CheckStatGT(LastSeenBy(Myself),1,SAVEVSSPELL)
+    OR(2)
+        CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
 	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
 THEN
 	RESPONSE #100
 		ReallyForceSpellRES("S!CHARG6",Myself)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ForceSpell(LastSeenBy(Myself),HULK_CONFUSION)  // SPIN839.SPL (Confusion)
 END
 
 IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
 	!GlobalTimerNotExpired("IaBreakCharge","LOCALS")
 	!StateCheck(Myself,STATE_CONFUSED)
 	!StateCheck(Myself,STATE_HELPLESS)
@@ -305,18 +370,21 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!CheckSpellState(LastSeenBy(Myself),CONFUSION_IMMUNITY)
 	CheckStatLT(LastSeenBy(Myself),25,RESISTMAGIC)
-	CheckStatGT(LastSeenBy(Myself),1,SAVEVSSPELL)
+    CheckStatGT(LastSeenBy(Myself),1,SAVEVSSPELL)
+    OR(2)
+        CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
 	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
 THEN
 	RESPONSE #100
 		ReallyForceSpellRES("S!CHARG6",Myself)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ForceSpell(LastSeenBy(Myself),HULK_CONFUSION)  // SPIN839.SPL (Confusion)
 END
 
 IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
 	!GlobalTimerNotExpired("IaBreakCharge","LOCALS")
 	!StateCheck(Myself,STATE_CONFUSED)
 	!StateCheck(Myself,STATE_HELPLESS)
@@ -327,18 +395,21 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!CheckSpellState(LastSeenBy(Myself),CONFUSION_IMMUNITY)
 	CheckStatLT(LastSeenBy(Myself),25,RESISTMAGIC)
-	CheckStatGT(LastSeenBy(Myself),1,SAVEVSSPELL)
+    CheckStatGT(LastSeenBy(Myself),1,SAVEVSSPELL)
+    OR(2)
+        CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
 	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
 THEN
 	RESPONSE #100
 		ReallyForceSpellRES("S!CHARG6",Myself)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ForceSpell(LastSeenBy(Myself),HULK_CONFUSION)  // SPIN839.SPL (Confusion)
 END
 
 IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
 	!GlobalTimerNotExpired("IaBreakCharge","LOCALS")
 	!StateCheck(Myself,STATE_CONFUSED)
 	!StateCheck(Myself,STATE_HELPLESS)
@@ -349,18 +420,21 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!CheckSpellState(LastSeenBy(Myself),CONFUSION_IMMUNITY)
 	CheckStatLT(LastSeenBy(Myself),25,RESISTMAGIC)
-	CheckStatGT(LastSeenBy(Myself),1,SAVEVSSPELL)
+    CheckStatGT(LastSeenBy(Myself),1,SAVEVSSPELL)
+    OR(2)
+        CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
 	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
 THEN
 	RESPONSE #100
 		ReallyForceSpellRES("S!CHARG6",Myself)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ForceSpell(LastSeenBy(Myself),HULK_CONFUSION)  // SPIN839.SPL (Confusion)
 END
 
 IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
 	!GlobalTimerNotExpired("IaBreakCharge","LOCALS")
 	!StateCheck(Myself,STATE_CONFUSED)
 	!StateCheck(Myself,STATE_HELPLESS)
@@ -371,13 +445,16 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!CheckSpellState(LastSeenBy(Myself),CONFUSION_IMMUNITY)
 	CheckStatLT(LastSeenBy(Myself),25,RESISTMAGIC)
-	CheckStatGT(LastSeenBy(Myself),1,SAVEVSSPELL)
+    CheckStatGT(LastSeenBy(Myself),1,SAVEVSSPELL)
+    OR(2)
+        CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
 	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
 THEN
 	RESPONSE #100
 		ReallyForceSpellRES("S!CHARG6",Myself)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ForceSpell(LastSeenBy(Myself),HULK_CONFUSION)  // SPIN839.SPL (Confusion)
 END
 
@@ -706,7 +783,7 @@ THEN
 END
 
 IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
 	!GlobalTimerNotExpired("IaBreakCharge","LOCALS")
 	!StateCheck(Myself,STATE_CONFUSED)
 	!StateCheck(Myself,STATE_HELPLESS)
@@ -717,18 +794,21 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!CheckSpellState(LastSeenBy(Myself),CONFUSION_IMMUNITY)
 	CheckStatLT(LastSeenBy(Myself),25,RESISTMAGIC)
-	CheckStatGT(LastSeenBy(Myself),0,SAVEVSSPELL)
+    CheckStatGT(LastSeenBy(Myself),0,SAVEVSSPELL)
+    OR(2)
+        CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
 	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
 THEN
 	RESPONSE #100
 		ReallyForceSpellRES("S!CHARG6",Myself)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ForceSpell(LastSeenBy(Myself),HULK_CONFUSION)  // SPIN839.SPL (Confusion)
 END
 
 IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
 	!GlobalTimerNotExpired("IaBreakCharge","LOCALS")
 	!StateCheck(Myself,STATE_CONFUSED)
 	!StateCheck(Myself,STATE_HELPLESS)
@@ -739,18 +819,21 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!CheckSpellState(LastSeenBy(Myself),CONFUSION_IMMUNITY)
 	CheckStatLT(LastSeenBy(Myself),25,RESISTMAGIC)
-	CheckStatGT(LastSeenBy(Myself),0,SAVEVSSPELL)
+    CheckStatGT(LastSeenBy(Myself),0,SAVEVSSPELL)
+    OR(2)
+        CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
 	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
 THEN
 	RESPONSE #100
 		ReallyForceSpellRES("S!CHARG6",Myself)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ForceSpell(LastSeenBy(Myself),HULK_CONFUSION)  // SPIN839.SPL (Confusion)
 END
 
 IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
 	!GlobalTimerNotExpired("IaBreakCharge","LOCALS")
 	!StateCheck(Myself,STATE_CONFUSED)
 	!StateCheck(Myself,STATE_HELPLESS)
@@ -761,18 +844,21 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!CheckSpellState(LastSeenBy(Myself),CONFUSION_IMMUNITY)
 	CheckStatLT(LastSeenBy(Myself),25,RESISTMAGIC)
-	CheckStatGT(LastSeenBy(Myself),0,SAVEVSSPELL)
+    CheckStatGT(LastSeenBy(Myself),0,SAVEVSSPELL)
+    OR(2)
+        CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
 	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
 THEN
 	RESPONSE #100
 		ReallyForceSpellRES("S!CHARG6",Myself)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ForceSpell(LastSeenBy(Myself),HULK_CONFUSION)  // SPIN839.SPL (Confusion)
 END
 
 IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
 	!GlobalTimerNotExpired("IaBreakCharge","LOCALS")
 	!StateCheck(Myself,STATE_CONFUSED)
 	!StateCheck(Myself,STATE_HELPLESS)
@@ -783,18 +869,21 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!CheckSpellState(LastSeenBy(Myself),CONFUSION_IMMUNITY)
 	CheckStatLT(LastSeenBy(Myself),25,RESISTMAGIC)
-	CheckStatGT(LastSeenBy(Myself),0,SAVEVSSPELL)
+    CheckStatGT(LastSeenBy(Myself),0,SAVEVSSPELL)
+    OR(2)
+        CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
 	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
 THEN
 	RESPONSE #100
 		ReallyForceSpellRES("S!CHARG6",Myself)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ForceSpell(LastSeenBy(Myself),HULK_CONFUSION)  // SPIN839.SPL (Confusion)
 END
 
 IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
 	!GlobalTimerNotExpired("IaBreakCharge","LOCALS")
 	!StateCheck(Myself,STATE_CONFUSED)
 	!StateCheck(Myself,STATE_HELPLESS)
@@ -805,18 +894,21 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!CheckSpellState(LastSeenBy(Myself),CONFUSION_IMMUNITY)
 	CheckStatLT(LastSeenBy(Myself),25,RESISTMAGIC)
-	CheckStatGT(LastSeenBy(Myself),0,SAVEVSSPELL)
+    CheckStatGT(LastSeenBy(Myself),0,SAVEVSSPELL)
+    OR(2)
+        CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
 	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
 THEN
 	RESPONSE #100
 		ReallyForceSpellRES("S!CHARG6",Myself)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ForceSpell(LastSeenBy(Myself),HULK_CONFUSION)  // SPIN839.SPL (Confusion)
 END
 
 IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
 	!GlobalTimerNotExpired("IaBreakCharge","LOCALS")
 	!StateCheck(Myself,STATE_CONFUSED)
 	!StateCheck(Myself,STATE_HELPLESS)
@@ -827,18 +919,21 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!CheckSpellState(LastSeenBy(Myself),CONFUSION_IMMUNITY)
 	CheckStatLT(LastSeenBy(Myself),25,RESISTMAGIC)
-	CheckStatGT(LastSeenBy(Myself),0,SAVEVSSPELL)
+    CheckStatGT(LastSeenBy(Myself),0,SAVEVSSPELL)
+    OR(2)
+        CheckStatGT(LastSeenBy(Myself),4,SAVEVSSPELL)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
 	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
 THEN
 	RESPONSE #100
 		ReallyForceSpellRES("S!CHARG6",Myself)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ForceSpell(LastSeenBy(Myself),HULK_CONFUSION)  // SPIN839.SPL (Confusion)
 END
 
 IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
 	!GlobalTimerNotExpired("IaBreakCharge","LOCALS")
 	!StateCheck(Myself,STATE_CONFUSED)
 	!StateCheck(Myself,STATE_HELPLESS)
@@ -849,18 +944,21 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!CheckSpellState(LastSeenBy(Myself),CONFUSION_IMMUNITY)
 	CheckStatLT(LastSeenBy(Myself),80,RESISTMAGIC)
-	CheckStatGT(LastSeenBy(Myself),-1,SAVEVSSPELL)
+    CheckStatGT(LastSeenBy(Myself),-1,SAVEVSSPELL)
+    OR(2)
+        CheckStatGT(LastSeenBy(Myself),3,SAVEVSSPELL)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
 	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
 THEN
 	RESPONSE #100
 		ReallyForceSpellRES("S!CHARG6",Myself)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ForceSpell(LastSeenBy(Myself),HULK_CONFUSION)  // SPIN839.SPL (Confusion)
 END
 
 IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
 	!GlobalTimerNotExpired("IaBreakCharge","LOCALS")
 	!StateCheck(Myself,STATE_CONFUSED)
 	!StateCheck(Myself,STATE_HELPLESS)
@@ -871,18 +969,21 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!CheckSpellState(LastSeenBy(Myself),CONFUSION_IMMUNITY)
 	CheckStatLT(LastSeenBy(Myself),80,RESISTMAGIC)
-	CheckStatGT(LastSeenBy(Myself),-1,SAVEVSSPELL)
+    CheckStatGT(LastSeenBy(Myself),-1,SAVEVSSPELL)
+    OR(2)
+        CheckStatGT(LastSeenBy(Myself),3,SAVEVSSPELL)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
 	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
 THEN
 	RESPONSE #100
 		ReallyForceSpellRES("S!CHARG6",Myself)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ForceSpell(LastSeenBy(Myself),HULK_CONFUSION)  // SPIN839.SPL (Confusion)
 END
 
 IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
 	!GlobalTimerNotExpired("IaBreakCharge","LOCALS")
 	!StateCheck(Myself,STATE_CONFUSED)
 	!StateCheck(Myself,STATE_HELPLESS)
@@ -893,18 +994,21 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!CheckSpellState(LastSeenBy(Myself),CONFUSION_IMMUNITY)
 	CheckStatLT(LastSeenBy(Myself),80,RESISTMAGIC)
-	CheckStatGT(LastSeenBy(Myself),-1,SAVEVSSPELL)
+    CheckStatGT(LastSeenBy(Myself),-1,SAVEVSSPELL)
+    OR(2)
+        CheckStatGT(LastSeenBy(Myself),3,SAVEVSSPELL)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
 	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
 THEN
 	RESPONSE #100
 		ReallyForceSpellRES("S!CHARG6",Myself)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ForceSpell(LastSeenBy(Myself),HULK_CONFUSION)  // SPIN839.SPL (Confusion)
 END
 
 IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
 	!GlobalTimerNotExpired("IaBreakCharge","LOCALS")
 	!StateCheck(Myself,STATE_CONFUSED)
 	!StateCheck(Myself,STATE_HELPLESS)
@@ -915,18 +1019,21 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!CheckSpellState(LastSeenBy(Myself),CONFUSION_IMMUNITY)
 	CheckStatLT(LastSeenBy(Myself),80,RESISTMAGIC)
-	CheckStatGT(LastSeenBy(Myself),-1,SAVEVSSPELL)
+    CheckStatGT(LastSeenBy(Myself),-1,SAVEVSSPELL)
+    OR(2)
+        CheckStatGT(LastSeenBy(Myself),3,SAVEVSSPELL)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
 	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
 THEN
 	RESPONSE #100
 		ReallyForceSpellRES("S!CHARG6",Myself)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ForceSpell(LastSeenBy(Myself),HULK_CONFUSION)  // SPIN839.SPL (Confusion)
 END
 
 IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
 	!GlobalTimerNotExpired("IaBreakCharge","LOCALS")
 	!StateCheck(Myself,STATE_CONFUSED)
 	!StateCheck(Myself,STATE_HELPLESS)
@@ -937,18 +1044,21 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!CheckSpellState(LastSeenBy(Myself),CONFUSION_IMMUNITY)
 	CheckStatLT(LastSeenBy(Myself),80,RESISTMAGIC)
-	CheckStatGT(LastSeenBy(Myself),-1,SAVEVSSPELL)
+    CheckStatGT(LastSeenBy(Myself),-1,SAVEVSSPELL)
+    OR(2)
+        CheckStatGT(LastSeenBy(Myself),3,SAVEVSSPELL)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
 	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
 THEN
 	RESPONSE #100
 		ReallyForceSpellRES("S!CHARG6",Myself)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ForceSpell(LastSeenBy(Myself),HULK_CONFUSION)  // SPIN839.SPL (Confusion)
 END
 
 IF
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
+	!GlobalTimerNotExpired("IaAction","LOCALS")
 	!GlobalTimerNotExpired("IaBreakCharge","LOCALS")
 	!StateCheck(Myself,STATE_CONFUSED)
 	!StateCheck(Myself,STATE_HELPLESS)
@@ -959,13 +1069,16 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
 	!CheckSpellState(LastSeenBy(Myself),CONFUSION_IMMUNITY)
 	CheckStatLT(LastSeenBy(Myself),80,RESISTMAGIC)
-	CheckStatGT(LastSeenBy(Myself),-1,SAVEVSSPELL)
+    CheckStatGT(LastSeenBy(Myself),-1,SAVEVSSPELL)
+    OR(2)
+        CheckStatGT(LastSeenBy(Myself),3,SAVEVSSPELL)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
 	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
 THEN
 	RESPONSE #100
 		ReallyForceSpellRES("S!CHARG6",Myself)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ForceSpell(LastSeenBy(Myself),HULK_CONFUSION)  // SPIN839.SPL (Confusion)
 END
 
@@ -1601,3 +1714,32 @@ THEN
 	    Continue()
 END
 
+
+IF
+	Global("EnemySeen","LOCALS",0)
+	Heard([EVILCUTOFF],89)
+	!See([GOODCUTOFF])
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	Global("EnemySeen","LOCALS",0)
+	Heard([EVILCUTOFF],89)
+	!See(NearestEnemyOf(Myself))
+	See(LastHeardBy(Myself))
+THEN
+	RESPONSE #100
+		MoveToObject(LastHeardBy(Myself))
+END
+
+IF
+	AttackedBy([ANYONE],DEFAULT)
+	!See(LastAttackerOf(Myself))
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		MoveToObject(LastAttackerOf(Myself))
+END

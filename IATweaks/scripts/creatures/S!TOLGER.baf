@@ -52,6 +52,7 @@ END
 IF
 	Global("Iatolger01","LOCALS",0)
 	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
 	HasItem("POTN34",Myself)
 THEN
 	RESPONSE #100
@@ -63,6 +64,7 @@ END
 IF
 	Global("Iatolger01","LOCALS",0)
 	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
 	HasItem("POTN33",Myself)  // Barbarian Essence
 THEN
 	RESPONSE #100
@@ -74,6 +76,7 @@ END
 IF
 	Global("Iatolger01","LOCALS",0)
 	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
 	HasItem("POTN33",Myself)  // Barbarian Essence
 THEN
 	RESPONSE #100

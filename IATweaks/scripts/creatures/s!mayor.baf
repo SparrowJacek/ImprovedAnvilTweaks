@@ -39,6 +39,7 @@ THEN
 	RESPONSE #100
 		SetGlobal("Ialord","LOCALS",1)
 		CreateCreatureObject("S!skelgr",Myself,0,0,0)  // Skeleton Grandlord
+		Continue()
 END
 
 IF
@@ -52,6 +53,22 @@ THEN
 		SetGlobalTimer("devilsummon","LOCALS",THREE_ROUNDS)
 		ReallyForceSpellRES("SPWII32",Myself)  // Gate to Bone Devil
 		CreateCreatureObjectDoor("S!bdevit",LastSeenBy(Myself),0,0,0)  // Bone Devil
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Detect([PC])
+	Global("IaSpawn","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("IaSpawn","LOCALS",1)
+		CreateCreature("S!shlich",[588.654],S)  // Shade Lich
+		CreateCreature("S!skelg5",[588.654],S)  // Skeleton Grandlord
+		CreateCreature("S!skelwl",[588.654],S)  // Skeleton Warlord
+		CreateCreature("S!skelg5",[588.654],S)  // Skeleton Grandlord
+		CreateCreature("S!skelwl",[588.654],S)  // Skeleton Warlord
+		Continue()
 END
 
 IF
@@ -91,6 +108,7 @@ THEN
 		SetGlobal("Iarynnplace","GLOBAL",5)
 		SetGlobal("Iatreasure","LOCALS",1)
 		GiveItemCreate("staf20",Myself,0,0,0)  // Staff of Rhynn +4
+		Continue()
 END
 
 IF
@@ -104,6 +122,7 @@ THEN
 		SetGlobal("Iafortitplace","GLOBAL",4)
 		SetGlobal("Iatreasure2","LOCALS",1)
 		GiveItemCreate("belt09",Myself,0,0,0)  // Girdle of Fortitude
+		Continue()
 END
 
 IF

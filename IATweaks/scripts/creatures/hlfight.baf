@@ -50,7 +50,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player1)
 THEN
 	RESPONSE #100
@@ -61,7 +60,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player2)
 THEN
 	RESPONSE #100
@@ -72,7 +70,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player3)
 THEN
 	RESPONSE #100
@@ -83,7 +80,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player4)
 THEN
 	RESPONSE #100
@@ -94,7 +90,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player5)
 THEN
 	RESPONSE #100
@@ -105,21 +100,11 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player6)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("IaChar6SeenTimer","LOCALS",TWO_TURNS)
 		SetGlobal("IaChar6Seen","LOCALS",1)
-		Continue()
-END
-
-IF
-    ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
-THEN
-	RESPONSE #100
-		SetGlobalTimer("IaSeeCharacters","LOCALS",ONE_ROUND)
 		Continue()
 END
 

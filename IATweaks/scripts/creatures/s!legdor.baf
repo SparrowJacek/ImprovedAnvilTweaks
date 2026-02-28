@@ -1,0 +1,4976 @@
+
+
+IF
+	Global("Iapcastts","GLOBAL",1)
+	Global("Iatsinvulner","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",1)
+		ApplySpellRES("SPINI70",Myself)  // No such index
+END
+
+IF
+	Global("Iapcastts","GLOBAL",0)
+	Global("Iatsinvulner","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",0)
+		ApplySpellRES("SPINI71",Myself)  // No such index
+		Continue()
+END
+
+IF
+	Global("Iapcastts","GLOBAL",1)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("SamiaBattle","AR1202",0)  // Firkraag's Maze
+THEN
+	RESPONSE #100
+		SetGlobal("SamiaBattle","AR1202",1)  // Firkraag's Maze
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	InMyArea(Player1)
+	Global("SamiaBattle","AR1202",1)  // Firkraag's Maze
+THEN
+	RESPONSE #100
+		Enemy()
+		MoveToObject(Player1)
+END
+
+
+IF
+    HaveSpellRES("SPPR508")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	Global("IaPrep","LOCALS",0)
+	!Dead("DESHAR")
+	InMyArea("DESHAR")
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("SPPR508","DESHAR") //  Chaotic Commands
+		RemoveSpellRES("SPPR508")
+		Continue()
+END
+
+
+IF
+    HaveSpellRES("SPPR508")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	Global("IaPrep","LOCALS",0)
+	!Dead("SAMIA")
+	InMyArea("SAMIA")
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("SPPR508","SAMIA") //  Chaotic Commands
+		RemoveSpellRES("SPPR508")
+		Continue()
+END
+
+
+IF
+    HaveSpellRES("SPPR403")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	Global("IaPrep","LOCALS",0)
+	!Dead("DESHAR")
+	InMyArea("DESHAR")
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("SPPR403","DESHAR") //  Free Action
+		RemoveSpellRES("SPPR403")
+		Continue()
+END
+
+
+IF
+    HaveSpellRES("SPPR403")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	Global("IaPrep","LOCALS",0)
+	!Dead("SAMIA")
+	InMyArea("SAMIA")
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("SPPR403","SAMIA") //  Free Action
+		RemoveSpellRES("SPPR403")
+		Continue()
+END
+
+
+IF
+    HaveSpellRES("SPPR409")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	Global("IaPrep","LOCALS",0)
+	!Dead("SAMIA")
+	InMyArea("SAMIA")
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("SPPR409","SAMIA") //  Death Ward
+		RemoveSpellRES("SPPR409")
+		Continue()
+END
+
+
+IF
+    HaveSpellRES("SPPR210")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	Global("IaPrep","LOCALS",0)
+	!Dead("SAMIA")
+	InMyArea("SAMIA")
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("SPPR210","SAMIA") //  Resist Fire and Cold
+		RemoveSpellRES("SPPR210")
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	Global("IaPrep","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobal("IaPrep","LOCALS",1)
+		ReallyForceSpellRES("PTN33X",Myself)  // No such index
+		ReallyForceSpellRES("PTN33X",Myself)  // No such index
+		ReallyForceSpellRES("SPPR101",Myself) //  Bless
+		ReallyForceSpellRES("SPPR108",Myself) //  Remove Fear
+		ReallyForceSpellRES("SPPR111",Myself) //  Armor of Faith
+		ReallyForceSpellRES("SPPR201",Myself) //  Aid
+		ReallyForceSpellRES("SPPR203",Myself) //  Chant
+		ReallyForceSpellRES("SPPR206",Myself) //  Flame Blade
+		ReallyForceSpellRES("SPPR412",Myself) //  Holy Power
+		ReallyForceSpellRES("SPPR214",Myself) //  Draw Upon Holy Might
+		ReallyForceSpellRES("SPPR403",Myself) //  Free Action
+		ReallyForceSpellRES("SPPR406F",Myself) //  Defensive Harmony
+		ReallyForceSpellRES("SPPR407",Myself) //  Protection From Lightning
+		ReallyForceSpellRES("SPPR408",Myself) //  Protection From Evil, 10' Radius
+		ReallyForceSpellRES("SPPR409",Myself) //  Death Ward
+		ReallyForceSpellRES("SPPR508",Myself) //  Chaotic Commands
+		ReallyForceSpellRES("SPPR509",Myself) //  Magic Resistance
+		ReallyForceSpellRES("SPPR511",Myself) //  Slay Living
+		ReallyForceSpellRES("SPPR513",Myself) //  Righteous Magic
+		ReallyForceSpellRES("SPPR613",Myself) //  Protection From Missiles
+		ReallyForceSpellRES("SPPR617",Myself) //  Heavenly Shield
+		ReallyForceSpellRES("SPPR618",Myself) //  Champion's Might
+		ReallyForceSpellRES("SPPR701",Myself) //  Shield of the Archons
+		SetGlobalTimer("IaDefensiveHarmonyTimer","LOCALS",SIX_ROUNDS)
+		RemoveSpellRES("SPPR101")
+		RemoveSpellRES("SPPR108")
+		RemoveSpellRES("SPPR111")
+		RemoveSpellRES("SPPR201")
+		RemoveSpellRES("SPPR203")
+		RemoveSpellRES("SPPR206")
+		RemoveSpellRES("SPPR214")
+		RemoveSpellRES("SPPR403")
+		RemoveSpellRES("SPPR406F")
+		RemoveSpellRES("SPPR407")
+		RemoveSpellRES("SPPR408")
+		RemoveSpellRES("SPPR409")
+		RemoveSpellRES("SPPR412")
+		RemoveSpellRES("SPPR508")
+		RemoveSpellRES("SPPR509")
+		RemoveSpellRES("SPPR511")
+		RemoveSpellRES("SPPR513")
+		RemoveSpellRES("SPPR613")
+		RemoveSpellRES("SPPR617")
+		RemoveSpellRES("SPPR618")
+		RemoveSpellRES("SPPR701")
+		SetInterrupt(TRUE)
+END
+
+
+IF
+    HaveSpellRES("SPPR210")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	Global("IaPrep","LOCALS",0)
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("SPPR210",Myself) //  Resist Fire and Cold
+		RemoveSpellRES("SPPR210")
+		Continue()
+END
+
+IF
+    HaveSpellRES("SPPR420")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	Global("IaPrep","LOCALS",0)
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("SPPR420",Myself) //  Resist Fire and Cold
+		RemoveSpellRES("SPPR420")
+		Continue()
+END
+
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	Global("IaPrep","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("IaPrep","LOCALS",1)
+END
+
+
+
+IF
+	Allegiance(Myself,ENEMY)
+	GlobalTimerExpired("IaRestTimer","LOCALS")
+	Global("partyfled","LOCALS",1)
+	Global("IaPrep","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("IaPrep","LOCALS",0)
+		ReallyForceSpellRES("SPWII07",Myself)  // No such index
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	Global("partyfled","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("partyfled","LOCALS",0)
+		Continue()
+END
+
+IF
+	!See([PC])
+	!See([GOODCUTOFF])
+	Global("partyfled","LOCALS",0)
+	Allegiance(Myself,ENEMY)
+	Global("IaPrep","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaRestTimer","LOCALS",SEVEN_HOURS)
+		SetGlobal("partyfled","LOCALS",1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("Iapcastts","GLOBAL",0)
+	Global("IaPrep","LOCALS",1)
+	HasItem("BHAALHP1",Myself)  // No such index
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		ReallyForceSpellRES("SPWII07",Myself)  // No such index
+		DestroyItem("BHAALHP1")  // No such index
+		SetInterrupt(TRUE)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	AreaCheck("AR1202")  // Firkraag's Maze
+	Detect([PC])
+	Global("Iatreasure","LOCALS",0)
+	Global("Iabeltplace","GLOBAL",2)
+	Global("Iapcastts","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iabeltplace","GLOBAL",5)
+		SetGlobal("Iatreasure","LOCALS",1)
+		GiveItemCreate("belt10",Myself,0,0,0)  // Belt of Inertial Barrier
+		XEquipItem("belt10",Myself,SLOT_BELT,EQUIP)
+		Continue()
+END
+
+IF
+	Global("Iasentinelplace","GLOBAL",2)
+	Global("Iatreasure2","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iasentinelplace","GLOBAL",5)
+		SetGlobal("Iatreasure2","LOCALS",1)
+		GiveItemCreate("shld22",Myself,0,0,0)  // Sentinel +4
+		XEquipItem("shld22",Myself,SLOT_SHIELD,EQUIP)
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	InMyArea(Player1)
+	Global("Iasamiadamaged","AR1202",0)  // Firkraag's Maze
+	OR(5)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		AttackedBy([PC],DEFAULT)
+		SpellCastOnMe([GOODCUTOFF],0)
+		SpellCastOnMe([PC],0)
+		TookDamage()
+THEN
+	RESPONSE #100
+		Enemy()
+		SetGlobal("Iasamiadamaged","AR1202",1)  // Firkraag's Maze
+		MoveToObject(Player1)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	InMyArea(Player1)
+	Global("Iasamiadamaged","AR1202",1)  // Firkraag's Maze
+	Global("Iahostile","LOCALS",0)
+THEN
+	RESPONSE #100
+		Enemy()
+		SetGlobal("Iahostile","LOCALS",1)
+		MoveToObject(Player1)
+END
+
+
+IF
+    ActionListEmpty()
+	See(Player1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaChar1SeenTimer","LOCALS",TWO_TURNS)
+		SetGlobal("IaChar1Seen","LOCALS",1)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	See(Player2)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaChar2SeenTimer","LOCALS",TWO_TURNS)
+		SetGlobal("IaChar2Seen","LOCALS",1)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	See(Player3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaChar3SeenTimer","LOCALS",TWO_TURNS)
+		SetGlobal("IaChar3Seen","LOCALS",1)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	See(Player4)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaChar4SeenTimer","LOCALS",TWO_TURNS)
+		SetGlobal("IaChar4Seen","LOCALS",1)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	See(Player5)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaChar5SeenTimer","LOCALS",TWO_TURNS)
+		SetGlobal("IaChar5Seen","LOCALS",1)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	See(Player6)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaChar6SeenTimer","LOCALS",TWO_TURNS)
+		SetGlobal("IaChar6Seen","LOCALS",1)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	GlobalTimerExpired("IaChar1SeenTimer","LOCALS")
+	Global("IaChar1Seen","LOCALS",1)
+	!See(Player1)
+THEN
+	RESPONSE #100
+		SetGlobal("IaChar1Seen","LOCALS",0)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	GlobalTimerExpired("IaChar2SeenTimer","LOCALS")
+	Global("IaChar2Seen","LOCALS",1)
+	!See(Player2)
+THEN
+	RESPONSE #100
+		SetGlobal("IaChar2Seen","LOCALS",0)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	GlobalTimerExpired("IaChar3SeenTimer","LOCALS")
+	Global("IaChar3Seen","LOCALS",1)
+	!See(Player3)
+THEN
+	RESPONSE #100
+		SetGlobal("IaChar3Seen","LOCALS",0)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	GlobalTimerExpired("IaChar4SeenTimer","LOCALS")
+	Global("IaChar4Seen","LOCALS",1)
+	!See(Player4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaChar4Seen","LOCALS",0)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	GlobalTimerExpired("IaChar5SeenTimer","LOCALS")
+	Global("IaChar5Seen","LOCALS",1)
+	!See(Player5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaChar5Seen","LOCALS",0)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	GlobalTimerExpired("IaChar6SeenTimer","LOCALS")
+	Global("IaChar6Seen","LOCALS",1)
+	!See(Player6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaChar6Seen","LOCALS",0)
+		Continue()
+END
+
+
+IF
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	OR(2)
+		StateCheck(Myself,STATE_POISONED)
+		StateCheck(Myself,STATE_DISEASED)
+	GlobalTimerNotExpired("IaContinualCure","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",2)
+END
+
+
+IF
+    HaveSpell(CLERIC_HEAL)
+	Allegiance(Myself,ENEMY)
+	!CheckStatGT(Myself,25,SPELLFAILUREPRIEST)
+	Global("Iapcastts","GLOBAL",0)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	HPPercentLT(Myself,40)
+	Range(NearestEnemyOf(Myself),10)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(Myself,CLERIC_HEAL)  // SPPR607.SPL (Heal)
+	RESPONSE #0
+	    Continue()
+END
+
+IF
+    HaveSpell(CLERIC_HEAL)
+	Allegiance(Myself,ENEMY)
+	!CheckStatGT(Myself,25,SPELLFAILUREPRIEST)
+	Global("Iapcastts","GLOBAL",0)
+	CheckSpellState(Myself,SANCTUARY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	HPPercentLT(Myself,40)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(Myself,CLERIC_HEAL)  // SPPR607.SPL (Heal)
+	RESPONSE #100
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_ARMOR_OF_FAITH)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(NearestEnemyOf(Myself))
+	!CheckSpellState(Myself,ARMOR_OF_FAITH)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(Myself,CLERIC_ARMOR_OF_FAITH)  // SPPR111.SPL (Armor of Faith)
+	RESPONSE #100
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_DRAW_UPON_HOLY_MIGHT)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(NearestEnemyOf(Myself))
+	!CheckSpellState(Myself,DRAW_UPON_HOLY_MIGHT)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(Myself,CLERIC_DRAW_UPON_HOLY_MIGHT)
+	RESPONSE #100
+	    Continue()
+END
+
+IF
+	HaveSpellRES("SPPR406F")
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaDefensiveHarmonyTimer","LOCALS")
+	Range(NearestAllyOf(Myself), 10)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaDefensiveHarmonyTimer","LOCALS",SIX_ROUNDS)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SpellRES("SPPR406F",Myself)  // Defensive Harmony
+	RESPONSE #0
+	    Continue()
+END
+
+IF
+    HaveSpell(CLERIC_ZONE_OF_SWEET_AIR)
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_STUNNED)
+	!CheckStatGT(Myself,50,SPELLFAILUREPRIEST)
+	InMyArea(Player1)
+	Global("Iapccloud","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iapccloud","MYAREA",0)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		RemoveSpell(CLERIC_ZONE_OF_SWEET_AIR)
+		ForceSpell(Myself,CLERIC_ZONE_OF_SWEET_AIR)  // SPPR318.SPL (Zone of Sweet Air)
+END
+
+IF
+	HaveSpell(CLERIC_SUMMON_FALLEN_DEVA)
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!StateCheck(Myself,STATE_SILENCED)
+	See(NearestEnemyOf(Myself))
+	!Range(LastSeenBy(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(Myself,CLERIC_SUMMON_FALLEN_DEVA)  // SPPR727.SPL (Summon Fallen Deva)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_DISEASE)
+	OR(2)
+	    CheckSpellState(Myself,DEAFENED)
+	    StateCheck(Myself,STATE_BLIND)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpell(Myself,CLERIC_CURE_DISEASE)  // SPPR317.SPL (Cure Disease)
+END
+
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC]))
+    CheckStatGT(SixthNearest([PC]),15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	TriggerOverride(SixthNearest([PC]), Range([PC], 15))
+	TriggerOverride(SixthNearest([PC]), CheckStatGT([PC],5,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(SixthNearest([PC]), CheckStat([PC],1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC]))
+    CheckStatGT(SixthNearest([PC]),15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	TriggerOverride(SixthNearest([PC]), Range(SecondNearest([PC]), 15))
+	TriggerOverride(SixthNearest([PC]), CheckStatGT(SecondNearest([PC]),5,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(SixthNearest([PC]), CheckStat(SecondNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC]))
+    CheckStatGT(SixthNearest([PC]),15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	TriggerOverride(SixthNearest([PC]), Range(ThirdNearest([PC]), 15))
+	TriggerOverride(SixthNearest([PC]), CheckStatGT(ThirdNearest([PC]),5,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(SixthNearest([PC]), CheckStat(ThirdNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC]))
+    CheckStatGT(FifthNearest([PC]),15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	TriggerOverride(FifthNearest([PC]), Range([PC], 15))
+	TriggerOverride(FifthNearest([PC]), CheckStatGT([PC],5,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(FifthNearest([PC]), CheckStat([PC],1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC]))
+    CheckStatGT(FifthNearest([PC]),15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	TriggerOverride(FifthNearest([PC]), Range(SecondNearest([PC]), 15))
+	TriggerOverride(FifthNearest([PC]), CheckStatGT(SecondNearest([PC]),5,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(FifthNearest([PC]), CheckStat(SecondNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC]))
+    CheckStatGT(FifthNearest([PC]),15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	TriggerOverride(FifthNearest([PC]), Range(ThirdNearest([PC]), 15))
+	TriggerOverride(FifthNearest([PC]), CheckStatGT(ThirdNearest([PC]),5,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(FifthNearest([PC]), CheckStat(ThirdNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC]))
+    CheckStatGT(FourthNearest([PC]),15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	TriggerOverride(FourthNearest([PC]), Range([PC], 15))
+	TriggerOverride(FourthNearest([PC]), CheckStatGT([PC],5,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(FourthNearest([PC]), CheckStat([PC],1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC]))
+    CheckStatGT(FourthNearest([PC]),15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	TriggerOverride(FourthNearest([PC]), Range(SecondNearest([PC]), 15))
+	TriggerOverride(FourthNearest([PC]), CheckStatGT(SecondNearest([PC]),5,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(FourthNearest([PC]), CheckStat(SecondNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC]))
+    CheckStatGT(FourthNearest([PC]),15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	TriggerOverride(FourthNearest([PC]), Range(ThirdNearest([PC]), 15))
+	TriggerOverride(FourthNearest([PC]), CheckStatGT(ThirdNearest([PC]),5,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(FourthNearest([PC]), CheckStat(ThirdNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC]))
+    CheckStatGT(ThirdNearest([PC]),15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	TriggerOverride(ThirdNearest([PC]), Range([PC], 15))
+	TriggerOverride(ThirdNearest([PC]), CheckStatGT([PC],5,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(ThirdNearest([PC]), CheckStat([PC],1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC]))
+    CheckStatGT(ThirdNearest([PC]),15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	TriggerOverride(ThirdNearest([PC]), Range(SecondNearest([PC]), 15))
+	TriggerOverride(ThirdNearest([PC]), CheckStatGT(SecondNearest([PC]),5,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(ThirdNearest([PC]), CheckStat(SecondNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC]))
+    CheckStatGT(ThirdNearest([PC]),15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	TriggerOverride(ThirdNearest([PC]), Range(ThirdNearest([PC]), 15))
+	TriggerOverride(ThirdNearest([PC]), CheckStatGT(ThirdNearest([PC]),5,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(ThirdNearest([PC]), CheckStat(ThirdNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC]))
+    CheckStatGT(SecondNearest([PC]),15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	TriggerOverride(SecondNearest([PC]), Range([PC], 15))
+	TriggerOverride(SecondNearest([PC]), CheckStatGT([PC],5,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(SecondNearest([PC]), CheckStat([PC],1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC]))
+    CheckStatGT(SecondNearest([PC]),15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	TriggerOverride(SecondNearest([PC]), Range(SecondNearest([PC]), 15))
+	TriggerOverride(SecondNearest([PC]), CheckStatGT(SecondNearest([PC]),5,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(SecondNearest([PC]), CheckStat(SecondNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC]))
+    CheckStatGT(SecondNearest([PC]),15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	TriggerOverride(SecondNearest([PC]), Range(ThirdNearest([PC]), 15))
+	TriggerOverride(SecondNearest([PC]), CheckStatGT(ThirdNearest([PC]),5,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(SecondNearest([PC]), CheckStat(ThirdNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See([PC])
+    CheckStatGT([PC],15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	TriggerOverride([PC], Range([PC], 15))
+	TriggerOverride([PC], CheckStatGT([PC],5,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride([PC], CheckStat([PC],1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See([PC])
+    CheckStatGT([PC],15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	TriggerOverride([PC], Range(SecondNearest([PC]), 15))
+	TriggerOverride([PC], CheckStatGT(SecondNearest([PC]),5,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride([PC], CheckStat(SecondNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See([PC])
+    CheckStatGT([PC],15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	TriggerOverride([PC], Range(ThirdNearest([PC]), 15))
+	TriggerOverride([PC], CheckStatGT(ThirdNearest([PC]),5,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride([PC], CheckStat(ThirdNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC]))
+    CheckStatGT(SixthNearest([PC]),15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC]))
+    CheckStatGT(FifthNearest([PC]),15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC]))
+    CheckStatGT(FourthNearest([PC]),15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC]))
+    CheckStatGT(ThirdNearest([PC]),15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC]))
+    CheckStatGT(SecondNearest([PC]),15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See([PC])
+    CheckStatGT([PC],15,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See(SixthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	CheckStatGT(SixthNearest([PC]),5,DISPELLABLEBUFFSPOWER)
+	TriggerOverride(SixthNearest([PC]), Range([PC], 15))
+	TriggerOverride(SixthNearest([PC]), CheckStatGT([PC],3,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(SixthNearest([PC]), CheckStat([PC],1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See(SixthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	CheckStatGT(SixthNearest([PC]),5,DISPELLABLEBUFFSPOWER)
+	TriggerOverride(SixthNearest([PC]), Range(SecondNearest([PC]), 15))
+	TriggerOverride(SixthNearest([PC]), CheckStatGT(SecondNearest([PC]),3,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(SixthNearest([PC]), CheckStat(SecondNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See(SixthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	CheckStatGT(SixthNearest([PC]),5,DISPELLABLEBUFFSPOWER)
+	TriggerOverride(SixthNearest([PC]), Range(ThirdNearest([PC]), 15))
+	TriggerOverride(SixthNearest([PC]), CheckStatGT(ThirdNearest([PC]),3,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(SixthNearest([PC]), CheckStat(ThirdNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See(FifthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	CheckStatGT(FifthNearest([PC]),5,DISPELLABLEBUFFSPOWER)
+	TriggerOverride(FifthNearest([PC]), Range([PC], 15))
+	TriggerOverride(FifthNearest([PC]), CheckStatGT([PC],3,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(FifthNearest([PC]), CheckStat([PC],1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See(FifthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	CheckStatGT(FifthNearest([PC]),5,DISPELLABLEBUFFSPOWER)
+	TriggerOverride(FifthNearest([PC]), Range(SecondNearest([PC]), 15))
+	TriggerOverride(FifthNearest([PC]), CheckStatGT(SecondNearest([PC]),3,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(FifthNearest([PC]), CheckStat(SecondNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See(FifthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	CheckStatGT(FifthNearest([PC]),5,DISPELLABLEBUFFSPOWER)
+	TriggerOverride(FifthNearest([PC]), Range(ThirdNearest([PC]), 15))
+	TriggerOverride(FifthNearest([PC]), CheckStatGT(ThirdNearest([PC]),3,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(FifthNearest([PC]), CheckStat(ThirdNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See(FourthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	CheckStatGT(FourthNearest([PC]),5,DISPELLABLEBUFFSPOWER)
+	TriggerOverride(FourthNearest([PC]), Range([PC], 15))
+	TriggerOverride(FourthNearest([PC]), CheckStatGT([PC],3,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(FourthNearest([PC]), CheckStat([PC],1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See(FourthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	CheckStatGT(FourthNearest([PC]),5,DISPELLABLEBUFFSPOWER)
+	TriggerOverride(FourthNearest([PC]), Range(SecondNearest([PC]), 15))
+	TriggerOverride(FourthNearest([PC]), CheckStatGT(SecondNearest([PC]),3,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(FourthNearest([PC]), CheckStat(SecondNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See(FourthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	CheckStatGT(FourthNearest([PC]),5,DISPELLABLEBUFFSPOWER)
+	TriggerOverride(FourthNearest([PC]), Range(ThirdNearest([PC]), 15))
+	TriggerOverride(FourthNearest([PC]), CheckStatGT(ThirdNearest([PC]),3,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(FourthNearest([PC]), CheckStat(ThirdNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See(ThirdNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	CheckStatGT(ThirdNearest([PC]),5,DISPELLABLEBUFFSPOWER)
+	TriggerOverride(ThirdNearest([PC]), Range([PC], 15))
+	TriggerOverride(ThirdNearest([PC]), CheckStatGT([PC],3,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(ThirdNearest([PC]), CheckStat([PC],1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See(ThirdNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	CheckStatGT(ThirdNearest([PC]),5,DISPELLABLEBUFFSPOWER)
+	TriggerOverride(ThirdNearest([PC]), Range(SecondNearest([PC]), 15))
+	TriggerOverride(ThirdNearest([PC]), CheckStatGT(SecondNearest([PC]),3,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(ThirdNearest([PC]), CheckStat(SecondNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See(ThirdNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	CheckStatGT(ThirdNearest([PC]),5,DISPELLABLEBUFFSPOWER)
+	TriggerOverride(ThirdNearest([PC]), Range(ThirdNearest([PC]), 15))
+	TriggerOverride(ThirdNearest([PC]), CheckStatGT(ThirdNearest([PC]),3,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(ThirdNearest([PC]), CheckStat(ThirdNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See(SecondNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	CheckStatGT(SecondNearest([PC]),5,DISPELLABLEBUFFSPOWER)
+	TriggerOverride(SecondNearest([PC]), Range([PC], 15))
+	TriggerOverride(SecondNearest([PC]), CheckStatGT([PC],3,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(SecondNearest([PC]), CheckStat([PC],1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See(SecondNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	CheckStatGT(SecondNearest([PC]),5,DISPELLABLEBUFFSPOWER)
+	TriggerOverride(SecondNearest([PC]), Range(SecondNearest([PC]), 15))
+	TriggerOverride(SecondNearest([PC]), CheckStatGT(SecondNearest([PC]),3,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(SecondNearest([PC]), CheckStat(SecondNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See(SecondNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	CheckStatGT(SecondNearest([PC]),5,DISPELLABLEBUFFSPOWER)
+	TriggerOverride(SecondNearest([PC]), Range(ThirdNearest([PC]), 15))
+	TriggerOverride(SecondNearest([PC]), CheckStatGT(ThirdNearest([PC]),3,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride(SecondNearest([PC]), CheckStat(ThirdNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See([PC])
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	CheckStatGT([PC],5,DISPELLABLEBUFFSPOWER)
+	TriggerOverride([PC], Range([PC], 15))
+	TriggerOverride([PC], CheckStatGT([PC],3,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride([PC], CheckStat([PC],1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See([PC])
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	CheckStatGT([PC],5,DISPELLABLEBUFFSPOWER)
+	TriggerOverride([PC], Range(SecondNearest([PC]), 15))
+	TriggerOverride([PC], CheckStatGT(SecondNearest([PC]),3,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride([PC], CheckStat(SecondNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	See([PC])
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	CheckStatGT([PC],5,DISPELLABLEBUFFSPOWER)
+	TriggerOverride([PC], Range(ThirdNearest([PC]), 15))
+	TriggerOverride([PC], CheckStatGT(ThirdNearest([PC]),3,DISPELLABLEBUFFSPOWER))
+	!TriggerOverride([PC], CheckStat(ThirdNearest([PC]),1,SCRIPTINGSTATE7))
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #0
+	    Continue()
+END
+IF
+    HaveSpell(CLERIC_FLAME_STRIKE)
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SixthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+    CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),20,RESISTMAGIC)
+	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+	    SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_FLAME_STRIKE)
+	    SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+    HaveSpell(CLERIC_FLAME_STRIKE)
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	See(FifthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+    CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),20,RESISTMAGIC)
+	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+	    SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_FLAME_STRIKE)
+	    SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+    HaveSpell(CLERIC_FLAME_STRIKE)
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	See(FourthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+    CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),20,RESISTMAGIC)
+	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+	    SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_FLAME_STRIKE)
+	    SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+    HaveSpell(CLERIC_FLAME_STRIKE)
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	See(ThirdNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+    CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),20,RESISTMAGIC)
+	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+	    SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_FLAME_STRIKE)
+	    SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+    HaveSpell(CLERIC_FLAME_STRIKE)
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SecondNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+    CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),20,RESISTMAGIC)
+	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+	    SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_FLAME_STRIKE)
+	    SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+    HaveSpell(CLERIC_FLAME_STRIKE)
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	See([PC])
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+    CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),20,RESISTMAGIC)
+	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+	    SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_FLAME_STRIKE)
+	    SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	See(NearestAllyOf(Myself))
+	OR(2)
+		StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+		CheckStatGT(LastSeenBy(Myself),0,HELD)
+	HaveSpell(CLERIC_REMOVE_PARALYSIS)  // SPPR308.SPL (Remove Paralysis)
+	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+	!StateCheck(Myself,STATE_SILENCED)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!SEEAOE",Myself)
+		Spell(LastSeenBy(Myself),CLERIC_REMOVE_PARALYSIS)  // SPPR308.SPL (Remove Paralysis)
+		ForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+END
+
+IF
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SecondNearestAllyOf(Myself))
+	OR(2)
+		StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+		CheckStatGT(LastSeenBy(Myself),0,HELD)
+	HaveSpell(CLERIC_REMOVE_PARALYSIS)  // SPPR308.SPL (Remove Paralysis)
+	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+	!StateCheck(Myself,STATE_SILENCED)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!SEEAOE",Myself)
+		Spell(LastSeenBy(Myself),CLERIC_REMOVE_PARALYSIS)  // SPPR308.SPL (Remove Paralysis)
+		ForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+END
+
+IF
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	See(ThirdNearestAllyOf(Myself))
+	OR(2)
+		StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+		CheckStatGT(LastSeenBy(Myself),0,HELD)
+	HaveSpell(CLERIC_REMOVE_PARALYSIS)  // SPPR308.SPL (Remove Paralysis)
+	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+	!StateCheck(Myself,STATE_SILENCED)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!SEEAOE",Myself)
+		Spell(LastSeenBy(Myself),CLERIC_REMOVE_PARALYSIS)  // SPPR308.SPL (Remove Paralysis)
+		ForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+END
+
+IF
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	See(FourthNearestAllyOf(Myself))
+	OR(2)
+		StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+		CheckStatGT(LastSeenBy(Myself),0,HELD)
+	HaveSpell(CLERIC_REMOVE_PARALYSIS)  // SPPR308.SPL (Remove Paralysis)
+	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+	!StateCheck(Myself,STATE_SILENCED)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!SEEAOE",Myself)
+		Spell(LastSeenBy(Myself),CLERIC_REMOVE_PARALYSIS)  // SPPR308.SPL (Remove Paralysis)
+		ForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+END
+
+IF
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	See(FifthNearestAllyOf(Myself))
+	OR(2)
+		StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+		CheckStatGT(LastSeenBy(Myself),0,HELD)
+	HaveSpell(CLERIC_REMOVE_PARALYSIS)  // SPPR308.SPL (Remove Paralysis)
+	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+	!StateCheck(Myself,STATE_SILENCED)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!SEEAOE",Myself)
+		Spell(LastSeenBy(Myself),CLERIC_REMOVE_PARALYSIS)  // SPPR308.SPL (Remove Paralysis)
+		ForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+END
+
+IF
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SixthNearestAllyOf(Myself))
+	OR(2)
+		StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+		CheckStatGT(LastSeenBy(Myself),0,HELD)
+	HaveSpell(CLERIC_REMOVE_PARALYSIS)  // SPPR308.SPL (Remove Paralysis)
+	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+	!StateCheck(Myself,STATE_SILENCED)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!SEEAOE",Myself)
+		Spell(LastSeenBy(Myself),CLERIC_REMOVE_PARALYSIS)  // SPPR308.SPL (Remove Paralysis)
+		ForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+END
+
+IF
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SeventhNearestAllyOf(Myself))
+	OR(2)
+		StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+		CheckStatGT(LastSeenBy(Myself),0,HELD)
+	HaveSpell(CLERIC_REMOVE_PARALYSIS)  // SPPR308.SPL (Remove Paralysis)
+	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+	!StateCheck(Myself,STATE_SILENCED)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ForceSpellRES("S!SEEAOE",Myself)
+		Spell(LastSeenBy(Myself),CLERIC_REMOVE_PARALYSIS)  // SPPR308.SPL (Remove Paralysis)
+		ForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+END
+
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See([PC])
+    CheckStatGT([PC],5,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #100
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC]))
+    CheckStatGT(SecondNearest([PC]),5,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #100
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC]))
+    CheckStatGT(ThirdNearest([PC]),5,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #100
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC]))
+    CheckStatGT(FourthNearest([PC]),5,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #100
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC]))
+    CheckStatGT(FifthNearest([PC]),5,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #100
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC]))
+    CheckStatGT(SixthNearest([PC]),5,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #100
+	    Continue()
+END
+IF
+    HaveSpell(CLERIC_FLAME_STRIKE)
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SixthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+    CheckStatLT(LastSeenBy(Myself),80,RESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),30,RESISTMAGIC)
+	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+	    SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_FLAME_STRIKE)
+	    SetInterrupt(TRUE)
+	RESPONSE #150
+	    Continue()
+END
+
+IF
+    HaveSpell(CLERIC_FLAME_STRIKE)
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	See(FifthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+    CheckStatLT(LastSeenBy(Myself),80,RESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),30,RESISTMAGIC)
+	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+	    SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_FLAME_STRIKE)
+	    SetInterrupt(TRUE)
+	RESPONSE #150
+	    Continue()
+END
+
+IF
+    HaveSpell(CLERIC_FLAME_STRIKE)
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	See(FourthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+    CheckStatLT(LastSeenBy(Myself),80,RESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),30,RESISTMAGIC)
+	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+	    SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_FLAME_STRIKE)
+	    SetInterrupt(TRUE)
+	RESPONSE #150
+	    Continue()
+END
+
+IF
+    HaveSpell(CLERIC_FLAME_STRIKE)
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	See(ThirdNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+    CheckStatLT(LastSeenBy(Myself),80,RESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),30,RESISTMAGIC)
+	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+	    SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_FLAME_STRIKE)
+	    SetInterrupt(TRUE)
+	RESPONSE #150
+	    Continue()
+END
+
+IF
+    HaveSpell(CLERIC_FLAME_STRIKE)
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SecondNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+    CheckStatLT(LastSeenBy(Myself),80,RESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),30,RESISTMAGIC)
+	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+	    SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_FLAME_STRIKE)
+	    SetInterrupt(TRUE)
+	RESPONSE #150
+	    Continue()
+END
+
+IF
+    HaveSpell(CLERIC_FLAME_STRIKE)
+	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	See([PC])
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+    CheckStatLT(LastSeenBy(Myself),80,RESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),30,RESISTMAGIC)
+	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+	    SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_FLAME_STRIKE)
+	    SetInterrupt(TRUE)
+	RESPONSE #150
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_DOOM)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	Range([PC],25)
+    !StateCheck([PC],STATE_NOT_TARGETABLE)
+	!StateCheck([PC],STATE_STUNNED)
+	!StateCheck([PC],STATE_HELPLESS)
+	!StateCheck([PC],STATE_CONFUSED)
+	!StateCheck([PC],STATE_PANIC)
+	CheckStatLT([PC],30,RESISTMAGIC)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState([PC],SI_TRANSMUTATION)
+	!CheckSpellState([PC],DOOM)
+	CheckStat([PC],0,MINORGLOBE)
+	!CheckStat([PC],2,SCRIPTINGSTATE3)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+	RESPONSE #25
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_DOOM)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	Range(SecondNearest([PC]),25)
+    !StateCheck(SecondNearest([PC]),STATE_NOT_TARGETABLE)
+	!StateCheck(SecondNearest([PC]),STATE_STUNNED)
+	!StateCheck(SecondNearest([PC]),STATE_HELPLESS)
+	!StateCheck(SecondNearest([PC]),STATE_CONFUSED)
+	!StateCheck(SecondNearest([PC]),STATE_PANIC)
+	CheckStatLT(SecondNearest([PC]),30,RESISTMAGIC)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(SecondNearest([PC]),SI_TRANSMUTATION)
+	!CheckSpellState(SecondNearest([PC]),DOOM)
+	CheckStat(SecondNearest([PC]),0,MINORGLOBE)
+	!CheckStat(SecondNearest([PC]),2,SCRIPTINGSTATE3)
+	See(SecondNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+	RESPONSE #25
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_DOOM)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	Range(ThirdNearest([PC]),25)
+    !StateCheck(ThirdNearest([PC]),STATE_NOT_TARGETABLE)
+	!StateCheck(ThirdNearest([PC]),STATE_STUNNED)
+	!StateCheck(ThirdNearest([PC]),STATE_HELPLESS)
+	!StateCheck(ThirdNearest([PC]),STATE_CONFUSED)
+	!StateCheck(ThirdNearest([PC]),STATE_PANIC)
+	CheckStatLT(ThirdNearest([PC]),30,RESISTMAGIC)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(ThirdNearest([PC]),SI_TRANSMUTATION)
+	!CheckSpellState(ThirdNearest([PC]),DOOM)
+	CheckStat(ThirdNearest([PC]),0,MINORGLOBE)
+	!CheckStat(ThirdNearest([PC]),2,SCRIPTINGSTATE3)
+	See(ThirdNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+	RESPONSE #25
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_DOOM)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	Range(FourthNearest([PC]),25)
+    !StateCheck(FourthNearest([PC]),STATE_NOT_TARGETABLE)
+	!StateCheck(FourthNearest([PC]),STATE_STUNNED)
+	!StateCheck(FourthNearest([PC]),STATE_HELPLESS)
+	!StateCheck(FourthNearest([PC]),STATE_CONFUSED)
+	!StateCheck(FourthNearest([PC]),STATE_PANIC)
+	CheckStatLT(FourthNearest([PC]),30,RESISTMAGIC)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(FourthNearest([PC]),SI_TRANSMUTATION)
+	!CheckSpellState(FourthNearest([PC]),DOOM)
+	CheckStat(FourthNearest([PC]),0,MINORGLOBE)
+	!CheckStat(FourthNearest([PC]),2,SCRIPTINGSTATE3)
+	See(FourthNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+	RESPONSE #25
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_DOOM)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	Range(FifthNearest([PC]),25)
+    !StateCheck(FifthNearest([PC]),STATE_NOT_TARGETABLE)
+	!StateCheck(FifthNearest([PC]),STATE_STUNNED)
+	!StateCheck(FifthNearest([PC]),STATE_HELPLESS)
+	!StateCheck(FifthNearest([PC]),STATE_CONFUSED)
+	!StateCheck(FifthNearest([PC]),STATE_PANIC)
+	CheckStatLT(FifthNearest([PC]),30,RESISTMAGIC)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(FifthNearest([PC]),SI_TRANSMUTATION)
+	!CheckSpellState(FifthNearest([PC]),DOOM)
+	CheckStat(FifthNearest([PC]),0,MINORGLOBE)
+	!CheckStat(FifthNearest([PC]),2,SCRIPTINGSTATE3)
+	See(FifthNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+	RESPONSE #25
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_DOOM)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	Range(SixthNearest([PC]),25)
+    !StateCheck(SixthNearest([PC]),STATE_NOT_TARGETABLE)
+	!StateCheck(SixthNearest([PC]),STATE_STUNNED)
+	!StateCheck(SixthNearest([PC]),STATE_HELPLESS)
+	!StateCheck(SixthNearest([PC]),STATE_CONFUSED)
+	!StateCheck(SixthNearest([PC]),STATE_PANIC)
+	CheckStatLT(SixthNearest([PC]),30,RESISTMAGIC)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(SixthNearest([PC]),SI_TRANSMUTATION)
+	!CheckSpellState(SixthNearest([PC]),DOOM)
+	CheckStat(SixthNearest([PC]),0,MINORGLOBE)
+	!CheckStat(SixthNearest([PC]),2,SCRIPTINGSTATE3)
+	See(SixthNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+	RESPONSE #25
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_DOOM)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	Range([PC],25)
+    !StateCheck([PC],STATE_NOT_TARGETABLE)
+	!StateCheck([PC],STATE_STUNNED)
+	!StateCheck([PC],STATE_HELPLESS)
+	!StateCheck([PC],STATE_CONFUSED)
+	!StateCheck([PC],STATE_PANIC)
+	CheckStatLT([PC],60,RESISTMAGIC)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState([PC],SI_TRANSMUTATION)
+	!CheckSpellState([PC],DOOM)
+	CheckStat([PC],0,MINORGLOBE)
+	!CheckStat([PC],2,SCRIPTINGSTATE3)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+	RESPONSE #150
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_DOOM)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	Range(SecondNearest([PC]),25)
+    !StateCheck(SecondNearest([PC]),STATE_NOT_TARGETABLE)
+	!StateCheck(SecondNearest([PC]),STATE_STUNNED)
+	!StateCheck(SecondNearest([PC]),STATE_HELPLESS)
+	!StateCheck(SecondNearest([PC]),STATE_CONFUSED)
+	!StateCheck(SecondNearest([PC]),STATE_PANIC)
+	CheckStatLT(SecondNearest([PC]),60,RESISTMAGIC)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(SecondNearest([PC]),SI_TRANSMUTATION)
+	!CheckSpellState(SecondNearest([PC]),DOOM)
+	CheckStat(SecondNearest([PC]),0,MINORGLOBE)
+	!CheckStat(SecondNearest([PC]),2,SCRIPTINGSTATE3)
+	See(SecondNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+	RESPONSE #150
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_DOOM)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	Range(ThirdNearest([PC]),25)
+    !StateCheck(ThirdNearest([PC]),STATE_NOT_TARGETABLE)
+	!StateCheck(ThirdNearest([PC]),STATE_STUNNED)
+	!StateCheck(ThirdNearest([PC]),STATE_HELPLESS)
+	!StateCheck(ThirdNearest([PC]),STATE_CONFUSED)
+	!StateCheck(ThirdNearest([PC]),STATE_PANIC)
+	CheckStatLT(ThirdNearest([PC]),60,RESISTMAGIC)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(ThirdNearest([PC]),SI_TRANSMUTATION)
+	!CheckSpellState(ThirdNearest([PC]),DOOM)
+	CheckStat(ThirdNearest([PC]),0,MINORGLOBE)
+	!CheckStat(ThirdNearest([PC]),2,SCRIPTINGSTATE3)
+	See(ThirdNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+	RESPONSE #150
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_DOOM)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	Range(FourthNearest([PC]),25)
+    !StateCheck(FourthNearest([PC]),STATE_NOT_TARGETABLE)
+	!StateCheck(FourthNearest([PC]),STATE_STUNNED)
+	!StateCheck(FourthNearest([PC]),STATE_HELPLESS)
+	!StateCheck(FourthNearest([PC]),STATE_CONFUSED)
+	!StateCheck(FourthNearest([PC]),STATE_PANIC)
+	CheckStatLT(FourthNearest([PC]),60,RESISTMAGIC)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(FourthNearest([PC]),SI_TRANSMUTATION)
+	!CheckSpellState(FourthNearest([PC]),DOOM)
+	CheckStat(FourthNearest([PC]),0,MINORGLOBE)
+	!CheckStat(FourthNearest([PC]),2,SCRIPTINGSTATE3)
+	See(FourthNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+	RESPONSE #150
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_DOOM)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	Range(FifthNearest([PC]),25)
+    !StateCheck(FifthNearest([PC]),STATE_NOT_TARGETABLE)
+	!StateCheck(FifthNearest([PC]),STATE_STUNNED)
+	!StateCheck(FifthNearest([PC]),STATE_HELPLESS)
+	!StateCheck(FifthNearest([PC]),STATE_CONFUSED)
+	!StateCheck(FifthNearest([PC]),STATE_PANIC)
+	CheckStatLT(FifthNearest([PC]),60,RESISTMAGIC)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(FifthNearest([PC]),SI_TRANSMUTATION)
+	!CheckSpellState(FifthNearest([PC]),DOOM)
+	CheckStat(FifthNearest([PC]),0,MINORGLOBE)
+	!CheckStat(FifthNearest([PC]),2,SCRIPTINGSTATE3)
+	See(FifthNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+	RESPONSE #150
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_DOOM)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	Range(SixthNearest([PC]),25)
+    !StateCheck(SixthNearest([PC]),STATE_NOT_TARGETABLE)
+	!StateCheck(SixthNearest([PC]),STATE_STUNNED)
+	!StateCheck(SixthNearest([PC]),STATE_HELPLESS)
+	!StateCheck(SixthNearest([PC]),STATE_CONFUSED)
+	!StateCheck(SixthNearest([PC]),STATE_PANIC)
+	CheckStatLT(SixthNearest([PC]),60,RESISTMAGIC)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(SixthNearest([PC]),SI_TRANSMUTATION)
+	!CheckSpellState(SixthNearest([PC]),DOOM)
+	CheckStat(SixthNearest([PC]),0,MINORGLOBE)
+	!CheckStat(SixthNearest([PC]),2,SCRIPTINGSTATE3)
+	See(SixthNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+	RESPONSE #150
+	    Continue()
+END
+
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See([PC])
+    CheckStatGT([PC],2,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #200
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC]))
+    CheckStatGT(SecondNearest([PC]),2,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #200
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC]))
+    CheckStatGT(ThirdNearest([PC]),2,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #200
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC]))
+    CheckStatGT(FourthNearest([PC]),2,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #200
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC]))
+    CheckStatGT(FifthNearest([PC]),2,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #200
+	    Continue()
+END
+IF
+    HaveSpellRES("SPPRI02")
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaRemoveMagicWait","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC]))
+    CheckStatGT(SixthNearest([PC]),2,DISPELLABLEBUFFSPOWER)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("IaRemoveMagicWait","LOCALS",12)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		SpellRES("SPPRI02",LastSeenBy(Myself))  // Dispel Magic
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #200
+	    Continue()
+END
+IF
+    HaveSpell(CLERIC_HOLD_PERSON)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("Iaholdp","LOCALS")
+	See([PC])
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!CheckSpellState(Myself,HOLD_IMMUNITY)
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaholdp","LOCALS",THREE_ROUNDS)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_HOLD_PERSON)  // SPPR208.SPL (Hold Person)
+END
+
+IF
+    HaveSpell(CLERIC_HOLD_PERSON)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("Iaholdp","LOCALS")
+	See(SecondNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!CheckSpellState(Myself,HOLD_IMMUNITY)
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaholdp","LOCALS",THREE_ROUNDS)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_HOLD_PERSON)  // SPPR208.SPL (Hold Person)
+END
+
+IF
+    HaveSpell(CLERIC_HOLD_PERSON)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("Iaholdp","LOCALS")
+	See(ThirdNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!CheckSpellState(Myself,HOLD_IMMUNITY)
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaholdp","LOCALS",THREE_ROUNDS)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_HOLD_PERSON)  // SPPR208.SPL (Hold Person)
+END
+
+IF
+    HaveSpell(CLERIC_HOLD_PERSON)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("Iaholdp","LOCALS")
+	See(FourthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!CheckSpellState(Myself,HOLD_IMMUNITY)
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaholdp","LOCALS",THREE_ROUNDS)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_HOLD_PERSON)  // SPPR208.SPL (Hold Person)
+END
+
+IF
+    HaveSpell(CLERIC_HOLD_PERSON)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("Iaholdp","LOCALS")
+	See(FifthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!CheckSpellState(Myself,HOLD_IMMUNITY)
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaholdp","LOCALS",THREE_ROUNDS)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_HOLD_PERSON)  // SPPR208.SPL (Hold Person)
+END
+
+IF
+    HaveSpell(CLERIC_HOLD_PERSON)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("Iaholdp","LOCALS")
+	See(SixthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE5)
+	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4)
+	!CheckSpellState(Myself,HOLD_IMMUNITY)
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",5)
+		SetGlobalTimer("Iaholdp","LOCALS",THREE_ROUNDS)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_HOLD_PERSON)  // SPPR208.SPL (Hold Person)
+END
+
+IF
+	HaveSpell(CLERIC_COMMAND)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !StateCheck([PC],STATE_NOT_TARGETABLE)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!Race([PC],ELF)
+	!Race([PC],HALF_ELF)
+	!StateCheck([PC],STATE_HELPLESS)
+	!StateCheck([PC],STATE_CONFUSED)
+	!StateCheck([PC],STATE_PANIC)
+	!CheckStat([PC],2,SCRIPTINGSTATE3)
+	!CheckStat([PC],1,SCRIPTINGSTATE4)
+	!CheckStatGT([PC],0,SCRIPTINGSTATE8)
+	!CheckSpellState([PC],SI_ENCHANTMENT)
+	!CheckStatGT([PC],0,MINORGLOBE)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	CheckStatLT([PC],50,RESISTMAGIC)
+    CheckStatGT([PC],5,SAVEVSSPELL)
+	OR(2)
+	    CheckStatGT([PC],9,SAVEVSSPELL)
+	    !StateCheck([PC],STATE_IMPROVEDINVISIBILITY)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)  // SPPR102.SPL (Command)
+	RESPONSE #200
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_COMMAND)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !StateCheck(SecondNearest([PC]),STATE_NOT_TARGETABLE)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!Race(SecondNearest([PC]),ELF)
+	!Race(SecondNearest([PC]),HALF_ELF)
+	!StateCheck(SecondNearest([PC]),STATE_HELPLESS)
+	!StateCheck(SecondNearest([PC]),STATE_CONFUSED)
+	!StateCheck(SecondNearest([PC]),STATE_PANIC)
+	!CheckStat(SecondNearest([PC]),2,SCRIPTINGSTATE3)
+	!CheckStat(SecondNearest([PC]),1,SCRIPTINGSTATE4)
+	!CheckStatGT(SecondNearest([PC]),0,SCRIPTINGSTATE8)
+	!CheckSpellState(SecondNearest([PC]),SI_ENCHANTMENT)
+	!CheckStatGT(SecondNearest([PC]),0,MINORGLOBE)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	CheckStatLT(SecondNearest([PC]),50,RESISTMAGIC)
+    CheckStatGT(SecondNearest([PC]),5,SAVEVSSPELL)
+	OR(2)
+	    CheckStatGT(SecondNearest([PC]),9,SAVEVSSPELL)
+	    !StateCheck(SecondNearest([PC]),STATE_IMPROVEDINVISIBILITY)
+	See(SecondNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)  // SPPR102.SPL (Command)
+	RESPONSE #200
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_COMMAND)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !StateCheck(ThirdNearest([PC]),STATE_NOT_TARGETABLE)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!Race(ThirdNearest([PC]),ELF)
+	!Race(ThirdNearest([PC]),HALF_ELF)
+	!StateCheck(ThirdNearest([PC]),STATE_HELPLESS)
+	!StateCheck(ThirdNearest([PC]),STATE_CONFUSED)
+	!StateCheck(ThirdNearest([PC]),STATE_PANIC)
+	!CheckStat(ThirdNearest([PC]),2,SCRIPTINGSTATE3)
+	!CheckStat(ThirdNearest([PC]),1,SCRIPTINGSTATE4)
+	!CheckStatGT(ThirdNearest([PC]),0,SCRIPTINGSTATE8)
+	!CheckSpellState(ThirdNearest([PC]),SI_ENCHANTMENT)
+	!CheckStatGT(ThirdNearest([PC]),0,MINORGLOBE)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	CheckStatLT(ThirdNearest([PC]),50,RESISTMAGIC)
+    CheckStatGT(ThirdNearest([PC]),5,SAVEVSSPELL)
+	OR(2)
+	    CheckStatGT(ThirdNearest([PC]),9,SAVEVSSPELL)
+	    !StateCheck(ThirdNearest([PC]),STATE_IMPROVEDINVISIBILITY)
+	See(ThirdNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)  // SPPR102.SPL (Command)
+	RESPONSE #200
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_COMMAND)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !StateCheck(FourthNearest([PC]),STATE_NOT_TARGETABLE)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!Race(FourthNearest([PC]),ELF)
+	!Race(FourthNearest([PC]),HALF_ELF)
+	!StateCheck(FourthNearest([PC]),STATE_HELPLESS)
+	!StateCheck(FourthNearest([PC]),STATE_CONFUSED)
+	!StateCheck(FourthNearest([PC]),STATE_PANIC)
+	!CheckStat(FourthNearest([PC]),2,SCRIPTINGSTATE3)
+	!CheckStat(FourthNearest([PC]),1,SCRIPTINGSTATE4)
+	!CheckStatGT(FourthNearest([PC]),0,SCRIPTINGSTATE8)
+	!CheckSpellState(FourthNearest([PC]),SI_ENCHANTMENT)
+	!CheckStatGT(FourthNearest([PC]),0,MINORGLOBE)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	CheckStatLT(FourthNearest([PC]),50,RESISTMAGIC)
+    CheckStatGT(FourthNearest([PC]),5,SAVEVSSPELL)
+	OR(2)
+	    CheckStatGT(FourthNearest([PC]),9,SAVEVSSPELL)
+	    !StateCheck(FourthNearest([PC]),STATE_IMPROVEDINVISIBILITY)
+	See(FourthNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)  // SPPR102.SPL (Command)
+	RESPONSE #200
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_COMMAND)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !StateCheck(FifthNearest([PC]),STATE_NOT_TARGETABLE)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!Race(FifthNearest([PC]),ELF)
+	!Race(FifthNearest([PC]),HALF_ELF)
+	!StateCheck(FifthNearest([PC]),STATE_HELPLESS)
+	!StateCheck(FifthNearest([PC]),STATE_CONFUSED)
+	!StateCheck(FifthNearest([PC]),STATE_PANIC)
+	!CheckStat(FifthNearest([PC]),2,SCRIPTINGSTATE3)
+	!CheckStat(FifthNearest([PC]),1,SCRIPTINGSTATE4)
+	!CheckStatGT(FifthNearest([PC]),0,SCRIPTINGSTATE8)
+	!CheckSpellState(FifthNearest([PC]),SI_ENCHANTMENT)
+	!CheckStatGT(FifthNearest([PC]),0,MINORGLOBE)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	CheckStatLT(FifthNearest([PC]),50,RESISTMAGIC)
+    CheckStatGT(FifthNearest([PC]),5,SAVEVSSPELL)
+	OR(2)
+	    CheckStatGT(FifthNearest([PC]),9,SAVEVSSPELL)
+	    !StateCheck(FifthNearest([PC]),STATE_IMPROVEDINVISIBILITY)
+	See(FifthNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)  // SPPR102.SPL (Command)
+	RESPONSE #200
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_COMMAND)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !StateCheck(SixthNearest([PC]),STATE_NOT_TARGETABLE)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!Race(SixthNearest([PC]),ELF)
+	!Race(SixthNearest([PC]),HALF_ELF)
+	!StateCheck(SixthNearest([PC]),STATE_HELPLESS)
+	!StateCheck(SixthNearest([PC]),STATE_CONFUSED)
+	!StateCheck(SixthNearest([PC]),STATE_PANIC)
+	!CheckStat(SixthNearest([PC]),2,SCRIPTINGSTATE3)
+	!CheckStat(SixthNearest([PC]),1,SCRIPTINGSTATE4)
+	!CheckStatGT(SixthNearest([PC]),0,SCRIPTINGSTATE8)
+	!CheckSpellState(SixthNearest([PC]),SI_ENCHANTMENT)
+	!CheckStatGT(SixthNearest([PC]),0,MINORGLOBE)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	CheckStatLT(SixthNearest([PC]),50,RESISTMAGIC)
+    CheckStatGT(SixthNearest([PC]),5,SAVEVSSPELL)
+	OR(2)
+	    CheckStatGT(SixthNearest([PC]),9,SAVEVSSPELL)
+	    !StateCheck(SixthNearest([PC]),STATE_IMPROVEDINVISIBILITY)
+	See(SixthNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)  // SPPR102.SPL (Command)
+	RESPONSE #200
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_DOOM)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	Range([PC],25)
+    !StateCheck([PC],STATE_NOT_TARGETABLE)
+	!StateCheck([PC],STATE_STUNNED)
+	!StateCheck([PC],STATE_HELPLESS)
+	!StateCheck([PC],STATE_CONFUSED)
+	!StateCheck([PC],STATE_PANIC)
+	CheckStatLT([PC],80,RESISTMAGIC)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState([PC],SI_TRANSMUTATION)
+	!CheckSpellState([PC],DOOM)
+	CheckStat([PC],0,MINORGLOBE)
+	!CheckStat([PC],2,SCRIPTINGSTATE3)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+	RESPONSE #250
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_DOOM)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	Range(SecondNearest([PC]),25)
+    !StateCheck(SecondNearest([PC]),STATE_NOT_TARGETABLE)
+	!StateCheck(SecondNearest([PC]),STATE_STUNNED)
+	!StateCheck(SecondNearest([PC]),STATE_HELPLESS)
+	!StateCheck(SecondNearest([PC]),STATE_CONFUSED)
+	!StateCheck(SecondNearest([PC]),STATE_PANIC)
+	CheckStatLT(SecondNearest([PC]),80,RESISTMAGIC)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(SecondNearest([PC]),SI_TRANSMUTATION)
+	!CheckSpellState(SecondNearest([PC]),DOOM)
+	CheckStat(SecondNearest([PC]),0,MINORGLOBE)
+	!CheckStat(SecondNearest([PC]),2,SCRIPTINGSTATE3)
+	See(SecondNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+	RESPONSE #250
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_DOOM)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	Range(ThirdNearest([PC]),25)
+    !StateCheck(ThirdNearest([PC]),STATE_NOT_TARGETABLE)
+	!StateCheck(ThirdNearest([PC]),STATE_STUNNED)
+	!StateCheck(ThirdNearest([PC]),STATE_HELPLESS)
+	!StateCheck(ThirdNearest([PC]),STATE_CONFUSED)
+	!StateCheck(ThirdNearest([PC]),STATE_PANIC)
+	CheckStatLT(ThirdNearest([PC]),80,RESISTMAGIC)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(ThirdNearest([PC]),SI_TRANSMUTATION)
+	!CheckSpellState(ThirdNearest([PC]),DOOM)
+	CheckStat(ThirdNearest([PC]),0,MINORGLOBE)
+	!CheckStat(ThirdNearest([PC]),2,SCRIPTINGSTATE3)
+	See(ThirdNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+	RESPONSE #250
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_DOOM)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	Range(FourthNearest([PC]),25)
+    !StateCheck(FourthNearest([PC]),STATE_NOT_TARGETABLE)
+	!StateCheck(FourthNearest([PC]),STATE_STUNNED)
+	!StateCheck(FourthNearest([PC]),STATE_HELPLESS)
+	!StateCheck(FourthNearest([PC]),STATE_CONFUSED)
+	!StateCheck(FourthNearest([PC]),STATE_PANIC)
+	CheckStatLT(FourthNearest([PC]),80,RESISTMAGIC)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(FourthNearest([PC]),SI_TRANSMUTATION)
+	!CheckSpellState(FourthNearest([PC]),DOOM)
+	CheckStat(FourthNearest([PC]),0,MINORGLOBE)
+	!CheckStat(FourthNearest([PC]),2,SCRIPTINGSTATE3)
+	See(FourthNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+	RESPONSE #250
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_DOOM)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	Range(FifthNearest([PC]),25)
+    !StateCheck(FifthNearest([PC]),STATE_NOT_TARGETABLE)
+	!StateCheck(FifthNearest([PC]),STATE_STUNNED)
+	!StateCheck(FifthNearest([PC]),STATE_HELPLESS)
+	!StateCheck(FifthNearest([PC]),STATE_CONFUSED)
+	!StateCheck(FifthNearest([PC]),STATE_PANIC)
+	CheckStatLT(FifthNearest([PC]),80,RESISTMAGIC)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(FifthNearest([PC]),SI_TRANSMUTATION)
+	!CheckSpellState(FifthNearest([PC]),DOOM)
+	CheckStat(FifthNearest([PC]),0,MINORGLOBE)
+	!CheckStat(FifthNearest([PC]),2,SCRIPTINGSTATE3)
+	See(FifthNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+	RESPONSE #250
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_DOOM)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	Range(SixthNearest([PC]),25)
+    !StateCheck(SixthNearest([PC]),STATE_NOT_TARGETABLE)
+	!StateCheck(SixthNearest([PC]),STATE_STUNNED)
+	!StateCheck(SixthNearest([PC]),STATE_HELPLESS)
+	!StateCheck(SixthNearest([PC]),STATE_CONFUSED)
+	!StateCheck(SixthNearest([PC]),STATE_PANIC)
+	CheckStatLT(SixthNearest([PC]),80,RESISTMAGIC)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	!CheckSpellState(SixthNearest([PC]),SI_TRANSMUTATION)
+	!CheckSpellState(SixthNearest([PC]),DOOM)
+	CheckStat(SixthNearest([PC]),0,MINORGLOBE)
+	!CheckStat(SixthNearest([PC]),2,SCRIPTINGSTATE3)
+	See(SixthNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+	RESPONSE #250
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_COMMAND)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !StateCheck([PC],STATE_NOT_TARGETABLE)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!Race([PC],ELF)
+	!Race([PC],HALF_ELF)
+	!StateCheck([PC],STATE_HELPLESS)
+	!StateCheck([PC],STATE_CONFUSED)
+	!StateCheck([PC],STATE_PANIC)
+	!CheckStat([PC],2,SCRIPTINGSTATE3)
+	!CheckStat([PC],1,SCRIPTINGSTATE4)
+	!CheckStatGT([PC],0,SCRIPTINGSTATE8)
+	!CheckSpellState([PC],SI_ENCHANTMENT)
+	!CheckStatGT([PC],0,MINORGLOBE)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	CheckStatLT([PC],60,RESISTMAGIC)
+    CheckStatGT([PC],2,SAVEVSSPELL)
+	OR(2)
+	    CheckStatGT([PC],6,SAVEVSSPELL)
+	    !StateCheck([PC],STATE_IMPROVEDINVISIBILITY)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)  // SPPR102.SPL (Command)
+	RESPONSE #200
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_COMMAND)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !StateCheck(SecondNearest([PC]),STATE_NOT_TARGETABLE)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!Race(SecondNearest([PC]),ELF)
+	!Race(SecondNearest([PC]),HALF_ELF)
+	!StateCheck(SecondNearest([PC]),STATE_HELPLESS)
+	!StateCheck(SecondNearest([PC]),STATE_CONFUSED)
+	!StateCheck(SecondNearest([PC]),STATE_PANIC)
+	!CheckStat(SecondNearest([PC]),2,SCRIPTINGSTATE3)
+	!CheckStat(SecondNearest([PC]),1,SCRIPTINGSTATE4)
+	!CheckStatGT(SecondNearest([PC]),0,SCRIPTINGSTATE8)
+	!CheckSpellState(SecondNearest([PC]),SI_ENCHANTMENT)
+	!CheckStatGT(SecondNearest([PC]),0,MINORGLOBE)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	CheckStatLT(SecondNearest([PC]),60,RESISTMAGIC)
+    CheckStatGT(SecondNearest([PC]),2,SAVEVSSPELL)
+	OR(2)
+	    CheckStatGT(SecondNearest([PC]),6,SAVEVSSPELL)
+	    !StateCheck(SecondNearest([PC]),STATE_IMPROVEDINVISIBILITY)
+	See(SecondNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)  // SPPR102.SPL (Command)
+	RESPONSE #200
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_COMMAND)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !StateCheck(ThirdNearest([PC]),STATE_NOT_TARGETABLE)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!Race(ThirdNearest([PC]),ELF)
+	!Race(ThirdNearest([PC]),HALF_ELF)
+	!StateCheck(ThirdNearest([PC]),STATE_HELPLESS)
+	!StateCheck(ThirdNearest([PC]),STATE_CONFUSED)
+	!StateCheck(ThirdNearest([PC]),STATE_PANIC)
+	!CheckStat(ThirdNearest([PC]),2,SCRIPTINGSTATE3)
+	!CheckStat(ThirdNearest([PC]),1,SCRIPTINGSTATE4)
+	!CheckStatGT(ThirdNearest([PC]),0,SCRIPTINGSTATE8)
+	!CheckSpellState(ThirdNearest([PC]),SI_ENCHANTMENT)
+	!CheckStatGT(ThirdNearest([PC]),0,MINORGLOBE)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	CheckStatLT(ThirdNearest([PC]),60,RESISTMAGIC)
+    CheckStatGT(ThirdNearest([PC]),2,SAVEVSSPELL)
+	OR(2)
+	    CheckStatGT(ThirdNearest([PC]),6,SAVEVSSPELL)
+	    !StateCheck(ThirdNearest([PC]),STATE_IMPROVEDINVISIBILITY)
+	See(ThirdNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)  // SPPR102.SPL (Command)
+	RESPONSE #200
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_COMMAND)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !StateCheck(FourthNearest([PC]),STATE_NOT_TARGETABLE)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!Race(FourthNearest([PC]),ELF)
+	!Race(FourthNearest([PC]),HALF_ELF)
+	!StateCheck(FourthNearest([PC]),STATE_HELPLESS)
+	!StateCheck(FourthNearest([PC]),STATE_CONFUSED)
+	!StateCheck(FourthNearest([PC]),STATE_PANIC)
+	!CheckStat(FourthNearest([PC]),2,SCRIPTINGSTATE3)
+	!CheckStat(FourthNearest([PC]),1,SCRIPTINGSTATE4)
+	!CheckStatGT(FourthNearest([PC]),0,SCRIPTINGSTATE8)
+	!CheckSpellState(FourthNearest([PC]),SI_ENCHANTMENT)
+	!CheckStatGT(FourthNearest([PC]),0,MINORGLOBE)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	CheckStatLT(FourthNearest([PC]),60,RESISTMAGIC)
+    CheckStatGT(FourthNearest([PC]),2,SAVEVSSPELL)
+	OR(2)
+	    CheckStatGT(FourthNearest([PC]),6,SAVEVSSPELL)
+	    !StateCheck(FourthNearest([PC]),STATE_IMPROVEDINVISIBILITY)
+	See(FourthNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)  // SPPR102.SPL (Command)
+	RESPONSE #200
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_COMMAND)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !StateCheck(FifthNearest([PC]),STATE_NOT_TARGETABLE)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!Race(FifthNearest([PC]),ELF)
+	!Race(FifthNearest([PC]),HALF_ELF)
+	!StateCheck(FifthNearest([PC]),STATE_HELPLESS)
+	!StateCheck(FifthNearest([PC]),STATE_CONFUSED)
+	!StateCheck(FifthNearest([PC]),STATE_PANIC)
+	!CheckStat(FifthNearest([PC]),2,SCRIPTINGSTATE3)
+	!CheckStat(FifthNearest([PC]),1,SCRIPTINGSTATE4)
+	!CheckStatGT(FifthNearest([PC]),0,SCRIPTINGSTATE8)
+	!CheckSpellState(FifthNearest([PC]),SI_ENCHANTMENT)
+	!CheckStatGT(FifthNearest([PC]),0,MINORGLOBE)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	CheckStatLT(FifthNearest([PC]),60,RESISTMAGIC)
+    CheckStatGT(FifthNearest([PC]),2,SAVEVSSPELL)
+	OR(2)
+	    CheckStatGT(FifthNearest([PC]),6,SAVEVSSPELL)
+	    !StateCheck(FifthNearest([PC]),STATE_IMPROVEDINVISIBILITY)
+	See(FifthNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)  // SPPR102.SPL (Command)
+	RESPONSE #200
+	    Continue()
+END
+
+IF
+	HaveSpell(CLERIC_COMMAND)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !StateCheck(SixthNearest([PC]),STATE_NOT_TARGETABLE)
+	Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_SILENCED)
+	!Race(SixthNearest([PC]),ELF)
+	!Race(SixthNearest([PC]),HALF_ELF)
+	!StateCheck(SixthNearest([PC]),STATE_HELPLESS)
+	!StateCheck(SixthNearest([PC]),STATE_CONFUSED)
+	!StateCheck(SixthNearest([PC]),STATE_PANIC)
+	!CheckStat(SixthNearest([PC]),2,SCRIPTINGSTATE3)
+	!CheckStat(SixthNearest([PC]),1,SCRIPTINGSTATE4)
+	!CheckStatGT(SixthNearest([PC]),0,SCRIPTINGSTATE8)
+	!CheckSpellState(SixthNearest([PC]),SI_ENCHANTMENT)
+	!CheckStatGT(SixthNearest([PC]),0,MINORGLOBE)
+    !CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+	CheckStatLT(SixthNearest([PC]),60,RESISTMAGIC)
+    CheckStatGT(SixthNearest([PC]),2,SAVEVSSPELL)
+	OR(2)
+	    CheckStatGT(SixthNearest([PC]),6,SAVEVSSPELL)
+	    !StateCheck(SixthNearest([PC]),STATE_IMPROVEDINVISIBILITY)
+	See(SixthNearest([PC]))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaFiveSeconds","LOCALS",ONE_MINUTE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)  // SPPR102.SPL (Command)
+	RESPONSE #200
+	    Continue()
+END
+
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See([PC.0.0.MAGE_ALL])
+	CheckStatLT([PC.0.0.MAGE_ALL],75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT([PC.0.0.MAGE_ALL],0,SCRIPTINGSTATE6)
+	Range([PC.0.0.MAGE_ALL],10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SecondNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SecondNearest([PC.0.0.MAGE_ALL]),0,SCRIPTINGSTATE6)
+	Range(SecondNearest([PC.0.0.MAGE_ALL]),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(ThirdNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(ThirdNearest([PC.0.0.MAGE_ALL]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(ThirdNearest([PC.0.0.MAGE_ALL]),0,SCRIPTINGSTATE6)
+	Range(ThirdNearest([PC.0.0.MAGE_ALL]),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FourthNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(FourthNearest([PC.0.0.MAGE_ALL]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FourthNearest([PC.0.0.MAGE_ALL]),0,SCRIPTINGSTATE6)
+	Range(FourthNearest([PC.0.0.MAGE_ALL]),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FifthNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(FifthNearest([PC.0.0.MAGE_ALL]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FifthNearest([PC.0.0.MAGE_ALL]),0,SCRIPTINGSTATE6)
+	Range(FifthNearest([PC.0.0.MAGE_ALL]),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SixthNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(SixthNearest([PC.0.0.MAGE_ALL]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SixthNearest([PC.0.0.MAGE_ALL]),0,SCRIPTINGSTATE6)
+	Range(SixthNearest([PC.0.0.MAGE_ALL]),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See([PC.0.0.DRUID_ALL])
+	CheckStatLT([PC.0.0.DRUID_ALL],75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT([PC.0.0.DRUID_ALL],0,SCRIPTINGSTATE6)
+	Range([PC.0.0.DRUID_ALL],10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SecondNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SecondNearest([PC.0.0.DRUID_ALL]),0,SCRIPTINGSTATE6)
+	Range(SecondNearest([PC.0.0.DRUID_ALL]),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(ThirdNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(ThirdNearest([PC.0.0.DRUID_ALL]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(ThirdNearest([PC.0.0.DRUID_ALL]),0,SCRIPTINGSTATE6)
+	Range(ThirdNearest([PC.0.0.DRUID_ALL]),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FourthNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(FourthNearest([PC.0.0.DRUID_ALL]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FourthNearest([PC.0.0.DRUID_ALL]),0,SCRIPTINGSTATE6)
+	Range(FourthNearest([PC.0.0.DRUID_ALL]),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FifthNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(FifthNearest([PC.0.0.DRUID_ALL]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FifthNearest([PC.0.0.DRUID_ALL]),0,SCRIPTINGSTATE6)
+	Range(FifthNearest([PC.0.0.DRUID_ALL]),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SixthNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(SixthNearest([PC.0.0.DRUID_ALL]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SixthNearest([PC.0.0.DRUID_ALL]),0,SCRIPTINGSTATE6)
+	Range(SixthNearest([PC.0.0.DRUID_ALL]),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See([PC.0.0.THIEF_ALL])
+	CheckStatLT([PC.0.0.THIEF_ALL],75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT([PC.0.0.THIEF_ALL],0,SCRIPTINGSTATE6)
+	Range([PC.0.0.THIEF_ALL],10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SecondNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SecondNearest([PC.0.0.THIEF_ALL]),0,SCRIPTINGSTATE6)
+	Range(SecondNearest([PC.0.0.THIEF_ALL]),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(ThirdNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(ThirdNearest([PC.0.0.THIEF_ALL]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(ThirdNearest([PC.0.0.THIEF_ALL]),0,SCRIPTINGSTATE6)
+	Range(ThirdNearest([PC.0.0.THIEF_ALL]),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FourthNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(FourthNearest([PC.0.0.THIEF_ALL]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FourthNearest([PC.0.0.THIEF_ALL]),0,SCRIPTINGSTATE6)
+	Range(FourthNearest([PC.0.0.THIEF_ALL]),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FifthNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(FifthNearest([PC.0.0.THIEF_ALL]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FifthNearest([PC.0.0.THIEF_ALL]),0,SCRIPTINGSTATE6)
+	Range(FifthNearest([PC.0.0.THIEF_ALL]),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SixthNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(SixthNearest([PC.0.0.THIEF_ALL]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SixthNearest([PC.0.0.THIEF_ALL]),0,SCRIPTINGSTATE6)
+	Range(SixthNearest([PC.0.0.THIEF_ALL]),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See([PC])
+	CheckStatLT([PC],75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT([PC],0,SCRIPTINGSTATE6)
+	Range([PC],10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SecondNearest([PC]))
+	CheckStatLT(SecondNearest([PC]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SecondNearest([PC]),0,SCRIPTINGSTATE6)
+	Range(SecondNearest([PC]),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(ThirdNearest([PC]))
+	CheckStatLT(ThirdNearest([PC]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(ThirdNearest([PC]),0,SCRIPTINGSTATE6)
+	Range(ThirdNearest([PC]),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FourthNearest([PC]))
+	CheckStatLT(FourthNearest([PC]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FourthNearest([PC]),0,SCRIPTINGSTATE6)
+	Range(FourthNearest([PC]),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FifthNearest([PC]))
+	CheckStatLT(FifthNearest([PC]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FifthNearest([PC]),0,SCRIPTINGSTATE6)
+	Range(FifthNearest([PC]),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SixthNearest([PC]))
+	CheckStatLT(SixthNearest([PC]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SixthNearest([PC]),0,SCRIPTINGSTATE6)
+	Range(SixthNearest([PC]),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(NearestEnemyOf(Myself))
+	CheckStatLT(NearestEnemyOf(Myself),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(NearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(NearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(NearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(NearestEnemyOf(Myself),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SecondNearestEnemyOf(Myself))
+	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SecondNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(SecondNearestEnemyOf(Myself),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(ThirdNearestEnemyOf(Myself))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(ThirdNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(ThirdNearestEnemyOf(Myself),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FourthNearestEnemyOf(Myself))
+	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FourthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(FourthNearestEnemyOf(Myself),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FifthNearestEnemyOf(Myself))
+	CheckStatLT(FifthNearestEnemyOf(Myself),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FifthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(FifthNearestEnemyOf(Myself),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SixthNearestEnemyOf(Myself))
+	CheckStatLT(SixthNearestEnemyOf(Myself),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SixthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(SixthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SixthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(SixthNearestEnemyOf(Myself),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(NearestEnemyOf(Myself))
+	CheckStatLT(NearestEnemyOf(Myself),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(NearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(NearestEnemyOf(Myself),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SecondNearestEnemyOf(Myself))
+	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SecondNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(SecondNearestEnemyOf(Myself),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(ThirdNearestEnemyOf(Myself))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(ThirdNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(ThirdNearestEnemyOf(Myself),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FourthNearestEnemyOf(Myself))
+	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FourthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(FourthNearestEnemyOf(Myself),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FifthNearestEnemyOf(Myself))
+	CheckStatLT(FifthNearestEnemyOf(Myself),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FifthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(FifthNearestEnemyOf(Myself),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SixthNearestEnemyOf(Myself))
+	CheckStatLT(SixthNearestEnemyOf(Myself),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SixthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(SixthNearestEnemyOf(Myself),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(NearestEnemyOf(Myself))
+	CheckStatLT(NearestEnemyOf(Myself),100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(NearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(NearestEnemyOf(Myself),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SecondNearestEnemyOf(Myself))
+	CheckStatLT(SecondNearestEnemyOf(Myself),100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SecondNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(SecondNearestEnemyOf(Myself),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(ThirdNearestEnemyOf(Myself))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(ThirdNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(ThirdNearestEnemyOf(Myself),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FourthNearestEnemyOf(Myself))
+	CheckStatLT(FourthNearestEnemyOf(Myself),100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FourthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(FourthNearestEnemyOf(Myself),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FifthNearestEnemyOf(Myself))
+	CheckStatLT(FifthNearestEnemyOf(Myself),100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FifthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(FifthNearestEnemyOf(Myself),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SixthNearestEnemyOf(Myself))
+	CheckStatLT(SixthNearestEnemyOf(Myself),100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SixthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(SixthNearestEnemyOf(Myself),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See([PC.0.0.MAGE_ALL])
+	CheckStatLT([PC.0.0.MAGE_ALL],75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT([PC.0.0.MAGE_ALL],0,SCRIPTINGSTATE6)
+        CheckStatGT([PC.0.0.MAGE_ALL],3,SCRIPTINGSTATE6)
+    !CheckStatGT([PC.0.0.MAGE_ALL],0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SecondNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT(SecondNearest([PC.0.0.MAGE_ALL]),0,SCRIPTINGSTATE6)
+        CheckStatGT(SecondNearest([PC.0.0.MAGE_ALL]),3,SCRIPTINGSTATE6)
+    !CheckStatGT(SecondNearest([PC.0.0.MAGE_ALL]),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See([PC.0.0.DRUID_ALL])
+	CheckStatLT([PC.0.0.DRUID_ALL],75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT([PC.0.0.DRUID_ALL],0,SCRIPTINGSTATE6)
+        CheckStatGT([PC.0.0.DRUID_ALL],3,SCRIPTINGSTATE6)
+    !CheckStatGT([PC.0.0.DRUID_ALL],0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SecondNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT(SecondNearest([PC.0.0.DRUID_ALL]),0,SCRIPTINGSTATE6)
+        CheckStatGT(SecondNearest([PC.0.0.DRUID_ALL]),3,SCRIPTINGSTATE6)
+    !CheckStatGT(SecondNearest([PC.0.0.DRUID_ALL]),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See([PC.0.0.THIEF_ALL])
+	CheckStatLT([PC.0.0.THIEF_ALL],75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT([PC.0.0.THIEF_ALL],0,SCRIPTINGSTATE6)
+        CheckStatGT([PC.0.0.THIEF_ALL],3,SCRIPTINGSTATE6)
+    !CheckStatGT([PC.0.0.THIEF_ALL],0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SecondNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT(SecondNearest([PC.0.0.THIEF_ALL]),0,SCRIPTINGSTATE6)
+        CheckStatGT(SecondNearest([PC.0.0.THIEF_ALL]),3,SCRIPTINGSTATE6)
+    !CheckStatGT(SecondNearest([PC.0.0.THIEF_ALL]),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See([PC])
+	CheckStatLT([PC],75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT([PC],0,SCRIPTINGSTATE6)
+        CheckStatGT([PC],3,SCRIPTINGSTATE6)
+    !CheckStatGT([PC],0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SecondNearest([PC]))
+	CheckStatLT(SecondNearest([PC]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT(SecondNearest([PC]),0,SCRIPTINGSTATE6)
+        CheckStatGT(SecondNearest([PC]),3,SCRIPTINGSTATE6)
+    !CheckStatGT(SecondNearest([PC]),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(ThirdNearest([PC]))
+	CheckStatLT(ThirdNearest([PC]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT(ThirdNearest([PC]),0,SCRIPTINGSTATE6)
+        CheckStatGT(ThirdNearest([PC]),3,SCRIPTINGSTATE6)
+    !CheckStatGT(ThirdNearest([PC]),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FourthNearest([PC]))
+	CheckStatLT(FourthNearest([PC]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT(FourthNearest([PC]),0,SCRIPTINGSTATE6)
+        CheckStatGT(FourthNearest([PC]),3,SCRIPTINGSTATE6)
+    !CheckStatGT(FourthNearest([PC]),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FifthNearest([PC]))
+	CheckStatLT(FifthNearest([PC]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT(FifthNearest([PC]),0,SCRIPTINGSTATE6)
+        CheckStatGT(FifthNearest([PC]),3,SCRIPTINGSTATE6)
+    !CheckStatGT(FifthNearest([PC]),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SixthNearest([PC]))
+	CheckStatLT(SixthNearest([PC]),75,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT(SixthNearest([PC]),0,SCRIPTINGSTATE6)
+        CheckStatGT(SixthNearest([PC]),3,SCRIPTINGSTATE6)
+    !CheckStatGT(SixthNearest([PC]),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See([PC.0.0.MAGE_ALL])
+	CheckStatLT([PC.0.0.MAGE_ALL],100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT([PC.0.0.MAGE_ALL],0,SCRIPTINGSTATE6)
+        CheckStatGT([PC.0.0.MAGE_ALL],3,SCRIPTINGSTATE6)
+    !CheckStatGT([PC.0.0.MAGE_ALL],0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SecondNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT(SecondNearest([PC.0.0.MAGE_ALL]),0,SCRIPTINGSTATE6)
+        CheckStatGT(SecondNearest([PC.0.0.MAGE_ALL]),3,SCRIPTINGSTATE6)
+    !CheckStatGT(SecondNearest([PC.0.0.MAGE_ALL]),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See([PC.0.0.DRUID_ALL])
+	CheckStatLT([PC.0.0.DRUID_ALL],100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT([PC.0.0.DRUID_ALL],0,SCRIPTINGSTATE6)
+        CheckStatGT([PC.0.0.DRUID_ALL],3,SCRIPTINGSTATE6)
+    !CheckStatGT([PC.0.0.DRUID_ALL],0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SecondNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT(SecondNearest([PC.0.0.DRUID_ALL]),0,SCRIPTINGSTATE6)
+        CheckStatGT(SecondNearest([PC.0.0.DRUID_ALL]),3,SCRIPTINGSTATE6)
+    !CheckStatGT(SecondNearest([PC.0.0.DRUID_ALL]),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See([PC.0.0.THIEF_ALL])
+	CheckStatLT([PC.0.0.THIEF_ALL],100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT([PC.0.0.THIEF_ALL],0,SCRIPTINGSTATE6)
+        CheckStatGT([PC.0.0.THIEF_ALL],3,SCRIPTINGSTATE6)
+    !CheckStatGT([PC.0.0.THIEF_ALL],0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SecondNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT(SecondNearest([PC.0.0.THIEF_ALL]),0,SCRIPTINGSTATE6)
+        CheckStatGT(SecondNearest([PC.0.0.THIEF_ALL]),3,SCRIPTINGSTATE6)
+    !CheckStatGT(SecondNearest([PC.0.0.THIEF_ALL]),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See([PC])
+	CheckStatLT([PC],100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT([PC],0,SCRIPTINGSTATE6)
+        CheckStatGT([PC],3,SCRIPTINGSTATE6)
+    !CheckStatGT([PC],0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SecondNearest([PC]))
+	CheckStatLT(SecondNearest([PC]),100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT(SecondNearest([PC]),0,SCRIPTINGSTATE6)
+        CheckStatGT(SecondNearest([PC]),3,SCRIPTINGSTATE6)
+    !CheckStatGT(SecondNearest([PC]),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(ThirdNearest([PC]))
+	CheckStatLT(ThirdNearest([PC]),100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT(ThirdNearest([PC]),0,SCRIPTINGSTATE6)
+        CheckStatGT(ThirdNearest([PC]),3,SCRIPTINGSTATE6)
+    !CheckStatGT(ThirdNearest([PC]),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FourthNearest([PC]))
+	CheckStatLT(FourthNearest([PC]),100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT(FourthNearest([PC]),0,SCRIPTINGSTATE6)
+        CheckStatGT(FourthNearest([PC]),3,SCRIPTINGSTATE6)
+    !CheckStatGT(FourthNearest([PC]),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FifthNearest([PC]))
+	CheckStatLT(FifthNearest([PC]),100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT(FifthNearest([PC]),0,SCRIPTINGSTATE6)
+        CheckStatGT(FifthNearest([PC]),3,SCRIPTINGSTATE6)
+    !CheckStatGT(FifthNearest([PC]),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SixthNearest([PC]))
+	CheckStatLT(SixthNearest([PC]),100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT(SixthNearest([PC]),0,SCRIPTINGSTATE6)
+        CheckStatGT(SixthNearest([PC]),3,SCRIPTINGSTATE6)
+    !CheckStatGT(SixthNearest([PC]),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See([GOODCUTOFF])
+	CheckStatLT([GOODCUTOFF],100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT([GOODCUTOFF],0,SCRIPTINGSTATE6)
+        CheckStatGT([GOODCUTOFF],3,SCRIPTINGSTATE6)
+    !CheckStatGT([GOODCUTOFF],0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SecondNearest([GOODCUTOFF]))
+	CheckStatLT(SecondNearest([GOODCUTOFF]),100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT(SecondNearest([GOODCUTOFF]),0,SCRIPTINGSTATE6)
+        CheckStatGT(SecondNearest([GOODCUTOFF]),3,SCRIPTINGSTATE6)
+    !CheckStatGT(SecondNearest([GOODCUTOFF]),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(ThirdNearest([GOODCUTOFF]))
+	CheckStatLT(ThirdNearest([GOODCUTOFF]),100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT(ThirdNearest([GOODCUTOFF]),0,SCRIPTINGSTATE6)
+        CheckStatGT(ThirdNearest([GOODCUTOFF]),3,SCRIPTINGSTATE6)
+    !CheckStatGT(ThirdNearest([GOODCUTOFF]),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FourthNearest([GOODCUTOFF]))
+	CheckStatLT(FourthNearest([GOODCUTOFF]),100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT(FourthNearest([GOODCUTOFF]),0,SCRIPTINGSTATE6)
+        CheckStatGT(FourthNearest([GOODCUTOFF]),3,SCRIPTINGSTATE6)
+    !CheckStatGT(FourthNearest([GOODCUTOFF]),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FifthNearest([GOODCUTOFF]))
+	CheckStatLT(FifthNearest([GOODCUTOFF]),100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT(FifthNearest([GOODCUTOFF]),0,SCRIPTINGSTATE6)
+        CheckStatGT(FifthNearest([GOODCUTOFF]),3,SCRIPTINGSTATE6)
+    !CheckStatGT(FifthNearest([GOODCUTOFF]),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SixthNearest([GOODCUTOFF]))
+	CheckStatLT(SixthNearest([GOODCUTOFF]),100,RESISTCRUSHING) // PIERCING/CRUSHING/SLASHING
+	OR(2)
+        !CheckStatGT(SixthNearest([GOODCUTOFF]),0,SCRIPTINGSTATE6)
+        CheckStatGT(SixthNearest([GOODCUTOFF]),3,SCRIPTINGSTATE6)
+    !CheckStatGT(SixthNearest([GOODCUTOFF]),0,SCRIPTINGSTATE6)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+
+
+IF
+	!GlobalTimerNotExpired("IaWeaponUnusable","LOCALS")
+	OR(2)
+        !WeaponEffectiveVs(NearestEnemyOf(Myself),MAINHAND)
+        !WeaponCanDamage(NearestEnemyOf(Myself),MAINHAND)
+THEN
+	RESPONSE #100
+	    SetGlobalTimer("IaWeaponUnusable","LOCALS",ONE_ROUND)
+		ClearActions(Myself)
+END
+
+
+IF
+	Allegiance(Myself,ENEMY)
+    ActionListEmpty()
+	Global("IaChar1Seen","LOCALS",1)
+	!See(Player1)
+	!HPLT(Player1,0)
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    ActionListEmpty()
+	Global("IaChar2Seen","LOCALS",1)
+	!See(Player2)
+	!HPLT(Player2,0)
+	InMyArea(Player2)
+THEN
+	RESPONSE #100
+		MoveToObject(Player2)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    ActionListEmpty()
+	Global("IaChar3Seen","LOCALS",1)
+	!See(Player3)
+	!HPLT(Player3,0)
+	InMyArea(Player3)
+THEN
+	RESPONSE #100
+		MoveToObject(Player3)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    ActionListEmpty()
+	Global("IaChar4Seen","LOCALS",1)
+	!See(Player4)
+	!HPLT(Player4,0)
+	InMyArea(Player4)
+THEN
+	RESPONSE #100
+		MoveToObject(Player4)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    ActionListEmpty()
+	Global("IaChar5Seen","LOCALS",1)
+	!See(Player5)
+	!HPLT(Player5,0)
+	InMyArea(Player5)
+THEN
+	RESPONSE #100
+		MoveToObject(Player5)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    ActionListEmpty()
+	Global("IaChar6Seen","LOCALS",1)
+	!See(Player6)
+	!HPLT(Player6,0)
+	InMyArea(Player6)
+THEN
+	RESPONSE #100
+		MoveToObject(Player6)
+END
+
+
+IF
+	See(NearestEnemyOf(Myself))
+	ActionListEmpty()
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(SecondNearestEnemyOf(Myself))
+	ActionListEmpty()
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(ThirdNearestEnemyOf(Myself))
+	ActionListEmpty()
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(FourthNearestEnemyOf(Myself))
+	ActionListEmpty()
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(FifthNearestEnemyOf(Myself))
+	ActionListEmpty()
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(SixthNearestEnemyOf(Myself))
+	ActionListEmpty()
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

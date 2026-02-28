@@ -1,11 +1,12 @@
 IF
 	Allegiance(Myself,ENEMY)
 	See([GOODCUTOFF])
-	!GlobalGT("IaShout","LOCALS",0)
+	!GlobalTimerNotExpired("IaShoutTimer","LOCALS")
 THEN
 	RESPONSE #100
+		SetGlobalTimer("IaShoutTimer","LOCALS",THREE_ROUNDS)
 		GlobalShout(99)
-		SetGlobal("IaShout","LOCALS",1)
+		Continue()
 END
 
 IF

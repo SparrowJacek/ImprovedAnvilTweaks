@@ -29,17 +29,15 @@ IF
 	Global("Iapcastts","GLOBAL",0)
 THEN
 	RESPONSE #100
+	    AddAreaFlag(NOREST)
 		StartDialogueNoSet([PC])
 END
 
 IF
-	See([PC])
-	HPPercentLT(Myself,65)
-	NumberOfTimesTalkedTo(1)
-	Global("Iapcastts","GLOBAL",0)
+	Die()
 THEN
 	RESPONSE #100
-		StartDialogueNoSet([PC])
+	    RemoveAreaFlag(NOREST)
 END
 
 IF
@@ -262,7 +260,7 @@ IF
     !GlobalTimerNotExpired("IaSilencePlayer1","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(Player1)
-	OR(5)
+	OR(6)
 		Class(LastSeenBy(Myself),BARD_ALL)
 		Class(LastSeenBy(Myself),SORCERER)
 		Class(LastSeenBy(Myself),CLERIC_ALL)
@@ -302,7 +300,7 @@ IF
     !GlobalTimerNotExpired("IaSilencePlayer2","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(Player2)
-	OR(5)
+	OR(6)
 		Class(LastSeenBy(Myself),BARD_ALL)
 		Class(LastSeenBy(Myself),SORCERER)
 		Class(LastSeenBy(Myself),CLERIC_ALL)
@@ -342,7 +340,7 @@ IF
     !GlobalTimerNotExpired("IaSilencePlayer3","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(Player3)
-	OR(5)
+	OR(6)
 		Class(LastSeenBy(Myself),BARD_ALL)
 		Class(LastSeenBy(Myself),SORCERER)
 		Class(LastSeenBy(Myself),CLERIC_ALL)
@@ -382,7 +380,7 @@ IF
     !GlobalTimerNotExpired("IaSilencePlayer4","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(Player4)
-	OR(5)
+	OR(6)
 		Class(LastSeenBy(Myself),BARD_ALL)
 		Class(LastSeenBy(Myself),SORCERER)
 		Class(LastSeenBy(Myself),CLERIC_ALL)
@@ -422,7 +420,7 @@ IF
     !GlobalTimerNotExpired("IaSilencePlayer5","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(Player5)
-	OR(5)
+	OR(6)
 		Class(LastSeenBy(Myself),BARD_ALL)
 		Class(LastSeenBy(Myself),SORCERER)
 		Class(LastSeenBy(Myself),CLERIC_ALL)
@@ -462,7 +460,7 @@ IF
     !GlobalTimerNotExpired("IaSilencePlayer6","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(Player6)
-	OR(5)
+	OR(6)
 		Class(LastSeenBy(Myself),BARD_ALL)
 		Class(LastSeenBy(Myself),SORCERER)
 		Class(LastSeenBy(Myself),CLERIC_ALL)
@@ -998,6 +996,9 @@ END
 
 IF
 	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	See([PC])
 	OR(3)
 		CheckStatLT(LastSeenBy(Myself),8,SAVEVSBREATH)
@@ -1007,12 +1008,16 @@ IF
 	!GlobalTimerNotExpired("Iagdoom","LOCALS")
 THEN
 	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		SetGlobalTimer("Iagdoom","LOCALS",15)
 		ForceSpellRES("SPINI68",LastSeenBy(Myself))  // Greater Doom
 END
 
 IF
 	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	See(SecondNearest([PC]))
 	OR(3)
 		CheckStatLT(LastSeenBy(Myself),8,SAVEVSBREATH)
@@ -1022,12 +1027,16 @@ IF
 	!GlobalTimerNotExpired("Iagdoom","LOCALS")
 THEN
 	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		SetGlobalTimer("Iagdoom","LOCALS",15)
 		ForceSpellRES("SPINI68",LastSeenBy(Myself))  // Greater Doom
 END
 
 IF
 	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	See(ThirdNearest([PC]))
 	OR(3)
 		CheckStatLT(LastSeenBy(Myself),8,SAVEVSBREATH)
@@ -1037,6 +1046,7 @@ IF
 	!GlobalTimerNotExpired("Iagdoom","LOCALS")
 THEN
 	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		SetGlobalTimer("Iagdoom","LOCALS",15)
 		ForceSpellRES("SPINI68",LastSeenBy(Myself))  // Greater Doom
 END

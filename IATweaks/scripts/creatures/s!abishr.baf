@@ -35,6 +35,10 @@ IF
 	Global("IaPrep","LOCALS",1)
 THEN
 	RESPONSE #100
+		SetGlobal("Iacontin","LOCALS",0)
+		SetGlobal("IaSpellTrigger","LOCALS",0)
+		SetGlobal("IaSpellSequencer","LOCALS",0)
+		SetGlobal("IaMinorSequencer","LOCALS",0)
 		SetGlobal("IaPrep","LOCALS",0)
 		ReallyForceSpellRES("SPWII07",Myself)  // No such index
 END
@@ -68,7 +72,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player1)
 THEN
 	RESPONSE #100
@@ -79,7 +82,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player2)
 THEN
 	RESPONSE #100
@@ -90,7 +92,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player3)
 THEN
 	RESPONSE #100
@@ -101,7 +102,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player4)
 THEN
 	RESPONSE #100
@@ -112,7 +112,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player5)
 THEN
 	RESPONSE #100
@@ -123,21 +122,11 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player6)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("IaChar6SeenTimer","LOCALS",TWO_TURNS)
 		SetGlobal("IaChar6Seen","LOCALS",1)
-		Continue()
-END
-
-IF
-    ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
-THEN
-	RESPONSE #100
-		SetGlobalTimer("IaSeeCharacters","LOCALS",ONE_ROUND)
 		Continue()
 END
 
@@ -229,8 +218,9 @@ IF
 	OR(2)
         CheckStatGT(LastSeenBy(Myself),42,TICKSTOFINISHCASTINGHIGHPRIORITYSPELL)
         CheckStatGT(Myself,0,MENTALSPEED)
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	OR(2)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTPIERCING)
@@ -263,8 +253,9 @@ IF
 	OR(2)
         CheckStatGT(LastSeenBy(Myself),42,TICKSTOFINISHCASTINGHIGHPRIORITYSPELL)
         CheckStatGT(Myself,0,MENTALSPEED)
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	OR(2)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTPIERCING)
@@ -297,8 +288,9 @@ IF
 	OR(2)
         CheckStatGT(LastSeenBy(Myself),42,TICKSTOFINISHCASTINGHIGHPRIORITYSPELL)
         CheckStatGT(Myself,0,MENTALSPEED)
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	OR(2)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTPIERCING)
@@ -331,8 +323,9 @@ IF
 	OR(2)
         CheckStatGT(LastSeenBy(Myself),42,TICKSTOFINISHCASTINGHIGHPRIORITYSPELL)
         CheckStatGT(Myself,0,MENTALSPEED)
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	OR(2)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTPIERCING)
@@ -365,8 +358,9 @@ IF
 	OR(2)
         CheckStatGT(LastSeenBy(Myself),42,TICKSTOFINISHCASTINGHIGHPRIORITYSPELL)
         CheckStatGT(Myself,0,MENTALSPEED)
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	OR(2)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTPIERCING)
@@ -399,8 +393,9 @@ IF
 	OR(2)
         CheckStatGT(LastSeenBy(Myself),42,TICKSTOFINISHCASTINGHIGHPRIORITYSPELL)
         CheckStatGT(Myself,0,MENTALSPEED)
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	OR(2)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTPIERCING)
@@ -433,8 +428,9 @@ IF
 	OR(2)
         CheckStatGT(LastSeenBy(Myself),42,TICKSTOFINISHCASTINGDANGEROUSSPELL)
         CheckStatGT(Myself,0,MENTALSPEED)
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	OR(2)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTPIERCING)
@@ -467,8 +463,9 @@ IF
 	OR(2)
         CheckStatGT(LastSeenBy(Myself),42,TICKSTOFINISHCASTINGDANGEROUSSPELL)
         CheckStatGT(Myself,0,MENTALSPEED)
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	OR(2)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTPIERCING)
@@ -501,8 +498,9 @@ IF
 	OR(2)
         CheckStatGT(LastSeenBy(Myself),42,TICKSTOFINISHCASTINGDANGEROUSSPELL)
         CheckStatGT(Myself,0,MENTALSPEED)
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	OR(2)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTPIERCING)
@@ -535,8 +533,9 @@ IF
 	OR(2)
         CheckStatGT(LastSeenBy(Myself),42,TICKSTOFINISHCASTINGDANGEROUSSPELL)
         CheckStatGT(Myself,0,MENTALSPEED)
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	OR(2)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTPIERCING)
@@ -569,8 +568,9 @@ IF
 	OR(2)
         CheckStatGT(LastSeenBy(Myself),42,TICKSTOFINISHCASTINGDANGEROUSSPELL)
         CheckStatGT(Myself,0,MENTALSPEED)
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	OR(2)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTPIERCING)
@@ -603,8 +603,9 @@ IF
 	OR(2)
         CheckStatGT(LastSeenBy(Myself),42,TICKSTOFINISHCASTINGDANGEROUSSPELL)
         CheckStatGT(Myself,0,MENTALSPEED)
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	OR(2)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
 	    CheckStatLT(LastSeenBy(Myself),100,RESISTPIERCING)
@@ -631,8 +632,9 @@ IF
 	    CheckStatGT(Myself,0,AURACLEANSING)
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	See([PC])
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
     HPLT(LastSeenBy(Myself),60)
 	OR(2)
 	    HPLT(LastSeenBy(Myself),30)
@@ -663,8 +665,9 @@ IF
 	    CheckStatGT(Myself,0,AURACLEANSING)
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	See(SecondNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
     HPLT(LastSeenBy(Myself),60)
 	OR(2)
 	    HPLT(LastSeenBy(Myself),30)
@@ -695,8 +698,9 @@ IF
 	    CheckStatGT(Myself,0,AURACLEANSING)
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	See(ThirdNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
     HPLT(LastSeenBy(Myself),60)
 	OR(2)
 	    HPLT(LastSeenBy(Myself),30)
@@ -727,8 +731,9 @@ IF
 	    CheckStatGT(Myself,0,AURACLEANSING)
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	See(FourthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
     HPLT(LastSeenBy(Myself),60)
 	OR(2)
 	    HPLT(LastSeenBy(Myself),30)
@@ -759,8 +764,9 @@ IF
 	    CheckStatGT(Myself,0,AURACLEANSING)
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	See(FifthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
     HPLT(LastSeenBy(Myself),60)
 	OR(2)
 	    HPLT(LastSeenBy(Myself),30)
@@ -791,8 +797,9 @@ IF
 	    CheckStatGT(Myself,0,AURACLEANSING)
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	See(SixthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
     HPLT(LastSeenBy(Myself),60)
 	OR(2)
 	    HPLT(LastSeenBy(Myself),30)
@@ -823,8 +830,9 @@ IF
 	    CheckStatGT(Myself,0,AURACLEANSING)
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	See(SixthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	OR(2)
 	    CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
 	    CheckStatLT(LastSeenBy(Myself),20,RESISTPIERCING)
@@ -848,8 +856,9 @@ IF
 	    CheckStatGT(Myself,0,AURACLEANSING)
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	See(FifthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	OR(2)
 	    CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
 	    CheckStatLT(LastSeenBy(Myself),20,RESISTPIERCING)
@@ -873,8 +882,9 @@ IF
 	    CheckStatGT(Myself,0,AURACLEANSING)
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	See(FourthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	OR(2)
 	    CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
 	    CheckStatLT(LastSeenBy(Myself),20,RESISTPIERCING)
@@ -898,8 +908,9 @@ IF
 	    CheckStatGT(Myself,0,AURACLEANSING)
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	See(ThirdNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	OR(2)
 	    CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
 	    CheckStatLT(LastSeenBy(Myself),20,RESISTPIERCING)
@@ -923,8 +934,9 @@ IF
 	    CheckStatGT(Myself,0,AURACLEANSING)
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	See(SecondNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	OR(2)
 	    CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
 	    CheckStatLT(LastSeenBy(Myself),20,RESISTPIERCING)
@@ -948,8 +960,9 @@ IF
 	    CheckStatGT(Myself,0,AURACLEANSING)
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	See([PC])
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	OR(2)
 	    CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
 	    CheckStatLT(LastSeenBy(Myself),20,RESISTPIERCING)
@@ -973,8 +986,7 @@ IF
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(SixthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,RRESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
 	CheckStatLT(LastSeenBy(Myself),30,RESISTMAGIC)
 	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
@@ -997,8 +1009,7 @@ IF
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(FifthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,RRESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
 	CheckStatLT(LastSeenBy(Myself),30,RESISTMAGIC)
 	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
@@ -1021,8 +1032,7 @@ IF
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(FourthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,RRESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
 	CheckStatLT(LastSeenBy(Myself),30,RESISTMAGIC)
 	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
@@ -1045,8 +1055,7 @@ IF
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(ThirdNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,RRESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
 	CheckStatLT(LastSeenBy(Myself),30,RESISTMAGIC)
 	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
@@ -1069,8 +1078,7 @@ IF
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(SecondNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,RRESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
 	CheckStatLT(LastSeenBy(Myself),30,RESISTMAGIC)
 	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
@@ -1093,8 +1101,7 @@ IF
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See([PC])
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,RRESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
 	CheckStatLT(LastSeenBy(Myself),30,RESISTMAGIC)
 	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
@@ -5488,7 +5495,7 @@ IF
 THEN
 	RESPONSE #100
 	    SetGlobalTimer("IaWeaponUnusable","LOCALS",ONE_ROUND)
-		ClearAllActions()
+		ClearActions(Myself)
 END
 
 
@@ -5497,7 +5504,7 @@ IF
     ActionListEmpty()
 	Global("IaChar1Seen","LOCALS",1)
 	!See(Player1)
-	!Dead(Player1)
+	!HPLT(Player1,0)
 	InMyArea(Player1)
 THEN
 	RESPONSE #100
@@ -5509,7 +5516,7 @@ IF
     ActionListEmpty()
 	Global("IaChar2Seen","LOCALS",1)
 	!See(Player2)
-	!Dead(Player2)
+	!HPLT(Player2,0)
 	InMyArea(Player2)
 THEN
 	RESPONSE #100
@@ -5521,7 +5528,7 @@ IF
     ActionListEmpty()
 	Global("IaChar3Seen","LOCALS",1)
 	!See(Player3)
-	!Dead(Player3)
+	!HPLT(Player3,0)
 	InMyArea(Player3)
 THEN
 	RESPONSE #100
@@ -5533,7 +5540,7 @@ IF
     ActionListEmpty()
 	Global("IaChar4Seen","LOCALS",1)
 	!See(Player4)
-	!Dead(Player4)
+	!HPLT(Player4,0)
 	InMyArea(Player4)
 THEN
 	RESPONSE #100
@@ -5545,7 +5552,7 @@ IF
     ActionListEmpty()
 	Global("IaChar5Seen","LOCALS",1)
 	!See(Player5)
-	!Dead(Player5)
+	!HPLT(Player5,0)
 	InMyArea(Player5)
 THEN
 	RESPONSE #100
@@ -5557,7 +5564,7 @@ IF
     ActionListEmpty()
 	Global("IaChar6Seen","LOCALS",1)
 	!See(Player6)
-	!Dead(Player6)
+	!HPLT(Player6,0)
 	InMyArea(Player6)
 THEN
 	RESPONSE #100

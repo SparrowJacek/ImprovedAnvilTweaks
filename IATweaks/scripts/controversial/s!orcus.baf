@@ -63,7 +63,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player1)
 THEN
 	RESPONSE #100
@@ -74,7 +73,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player2)
 THEN
 	RESPONSE #100
@@ -85,7 +83,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player3)
 THEN
 	RESPONSE #100
@@ -96,7 +93,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player4)
 THEN
 	RESPONSE #100
@@ -107,7 +103,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player5)
 THEN
 	RESPONSE #100
@@ -118,21 +113,11 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player6)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("IaChar6SeenTimer","LOCALS",TWO_TURNS)
 		SetGlobal("IaChar6Seen","LOCALS",1)
-		Continue()
-END
-
-IF
-    ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
-THEN
-	RESPONSE #100
-		SetGlobalTimer("IaSeeCharacters","LOCALS",ONE_ROUND)
 		Continue()
 END
 
@@ -651,6 +636,199 @@ THEN
 		CreateCreatureObject("S!skels",Myself,0,0,0)
 		CreateCreatureObject("S!skels",Myself,0,0,0)
 		Continue()
+END
+
+
+IF
+	GlobalGT("IaSilenc","LOCALS",0)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaSilenceOfTheDeadTimer","LOCALS")
+    !GlobalTimerNotExpired("IaSilence[PC.0.0.SHAMAN]","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See([PC.0.0.SHAMAN])
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!HasItemEquiped("S!amul05",LastSeenBy(Myself))  // Amulet of Hades
+	!HasItemEquiped("S!amul06",LastSeenBy(Myself))  // Lord of the Underworld
+	!Kit(LastSeenBy(Myself),AURAMASTER)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE4)
+	!StateCheck(LastSeenBy(Myself),STATE_SILENCED)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+	    IncrementGlobal("IaSilenc","LOCALS",-1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSilenceOfTheDeadTimer","LOCALS",20)
+		ForceSpellRES("SPINI78", LastSeenBy(Myself))
+	RESPONSE #100
+	    Continue()
+END
+
+IF
+	GlobalGT("IaSilenc","LOCALS",0)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaSilenceOfTheDeadTimer","LOCALS")
+    !GlobalTimerNotExpired("IaSilenceSecondNearest([PC.0.0.SHAMAN])","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC.0.0.SHAMAN]))
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!HasItemEquiped("S!amul05",LastSeenBy(Myself))  // Amulet of Hades
+	!HasItemEquiped("S!amul06",LastSeenBy(Myself))  // Lord of the Underworld
+	!Kit(LastSeenBy(Myself),AURAMASTER)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE4)
+	!StateCheck(LastSeenBy(Myself),STATE_SILENCED)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+	    IncrementGlobal("IaSilenc","LOCALS",-1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSilenceOfTheDeadTimer","LOCALS",20)
+		ForceSpellRES("SPINI78", LastSeenBy(Myself))
+	RESPONSE #100
+	    Continue()
+END
+
+IF
+	GlobalGT("IaSilenc","LOCALS",0)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaSilenceOfTheDeadTimer","LOCALS")
+    !GlobalTimerNotExpired("IaSilenceThirdNearest([PC.0.0.SHAMAN])","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC.0.0.SHAMAN]))
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!HasItemEquiped("S!amul05",LastSeenBy(Myself))  // Amulet of Hades
+	!HasItemEquiped("S!amul06",LastSeenBy(Myself))  // Lord of the Underworld
+	!Kit(LastSeenBy(Myself),AURAMASTER)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE4)
+	!StateCheck(LastSeenBy(Myself),STATE_SILENCED)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+	    IncrementGlobal("IaSilenc","LOCALS",-1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSilenceOfTheDeadTimer","LOCALS",20)
+		ForceSpellRES("SPINI78", LastSeenBy(Myself))
+	RESPONSE #100
+	    Continue()
+END
+
+IF
+	GlobalGT("IaSilenc","LOCALS",0)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaSilenceOfTheDeadTimer","LOCALS")
+    !GlobalTimerNotExpired("IaSilenceFourthNearest([PC.0.0.SHAMAN])","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC.0.0.SHAMAN]))
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!HasItemEquiped("S!amul05",LastSeenBy(Myself))  // Amulet of Hades
+	!HasItemEquiped("S!amul06",LastSeenBy(Myself))  // Lord of the Underworld
+	!Kit(LastSeenBy(Myself),AURAMASTER)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE4)
+	!StateCheck(LastSeenBy(Myself),STATE_SILENCED)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+	    IncrementGlobal("IaSilenc","LOCALS",-1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSilenceOfTheDeadTimer","LOCALS",20)
+		ForceSpellRES("SPINI78", LastSeenBy(Myself))
+	RESPONSE #100
+	    Continue()
+END
+
+IF
+	GlobalGT("IaSilenc","LOCALS",0)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaSilenceOfTheDeadTimer","LOCALS")
+    !GlobalTimerNotExpired("IaSilenceFifthNearest([PC.0.0.SHAMAN])","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC.0.0.SHAMAN]))
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!HasItemEquiped("S!amul05",LastSeenBy(Myself))  // Amulet of Hades
+	!HasItemEquiped("S!amul06",LastSeenBy(Myself))  // Lord of the Underworld
+	!Kit(LastSeenBy(Myself),AURAMASTER)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE4)
+	!StateCheck(LastSeenBy(Myself),STATE_SILENCED)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+	    IncrementGlobal("IaSilenc","LOCALS",-1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSilenceOfTheDeadTimer","LOCALS",20)
+		ForceSpellRES("SPINI78", LastSeenBy(Myself))
+	RESPONSE #100
+	    Continue()
+END
+
+IF
+	GlobalGT("IaSilenc","LOCALS",0)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaSilenceOfTheDeadTimer","LOCALS")
+    !GlobalTimerNotExpired("IaSilenceSixthNearest([PC.0.0.SHAMAN])","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC.0.0.SHAMAN]))
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!HasItemEquiped("S!amul05",LastSeenBy(Myself))  // Amulet of Hades
+	!HasItemEquiped("S!amul06",LastSeenBy(Myself))  // Lord of the Underworld
+	!Kit(LastSeenBy(Myself),AURAMASTER)
+	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE7)
+	!CheckStat(LastSeenBy(Myself),3,SCRIPTINGSTATE4)
+	!StateCheck(LastSeenBy(Myself),STATE_SILENCED)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+	    IncrementGlobal("IaSilenc","LOCALS",-1)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaSilenceOfTheDeadTimer","LOCALS",20)
+		ForceSpellRES("SPINI78", LastSeenBy(Myself))
+	RESPONSE #100
+	    Continue()
 END
 
 
@@ -2115,6 +2293,7 @@ IF
 	!GlobalTimerNotExpired("Iagdoom","LOCALS")
 THEN
 	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		SetGlobalTimer("Iagdoom","LOCALS",20)
 		ForceSpellRES("SPINI68",LastSeenBy(Myself))  // Greater Doom
 END
@@ -2133,6 +2312,7 @@ IF
 	!GlobalTimerNotExpired("Iagdoom","LOCALS")
 THEN
 	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		SetGlobalTimer("Iagdoom","LOCALS",20)
 		ForceSpellRES("SPINI68",LastSeenBy(Myself))  // Greater Doom
 END
@@ -2151,6 +2331,7 @@ IF
 	!GlobalTimerNotExpired("Iagdoom","LOCALS")
 THEN
 	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		SetGlobalTimer("Iagdoom","LOCALS",20)
 		ForceSpellRES("SPINI68",LastSeenBy(Myself))  // Greater Doom
 END

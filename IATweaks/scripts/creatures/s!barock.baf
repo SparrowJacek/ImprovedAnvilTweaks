@@ -117,7 +117,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player1)
 THEN
 	RESPONSE #100
@@ -128,7 +127,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player2)
 THEN
 	RESPONSE #100
@@ -139,7 +137,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player3)
 THEN
 	RESPONSE #100
@@ -150,7 +147,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player4)
 THEN
 	RESPONSE #100
@@ -161,7 +157,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player5)
 THEN
 	RESPONSE #100
@@ -172,21 +167,11 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player6)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("IaChar6SeenTimer","LOCALS",TWO_TURNS)
 		SetGlobal("IaChar6Seen","LOCALS",1)
-		Continue()
-END
-
-IF
-    ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
-THEN
-	RESPONSE #100
-		SetGlobalTimer("IaSeeCharacters","LOCALS",ONE_ROUND)
 		Continue()
 END
 
@@ -262,8 +247,9 @@ IF
 	!GlobalTimerNotExpired("IaSwapPlaces","LOCALS")
 	Range(SecondNearestEnemyOf(Myself),4)
 	!Dead("GAROCK")
+	!Range("GAROCK",4)
 	!TriggerOverride("GAROCK",Range(SecondNearestEnemyOf(Myself),5))
-	TriggerOverride("GAROCK",Global("IaWhirlwind","LOCALS",1))
+	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
 	See("GAROCK")
 THEN
 	RESPONSE #100
@@ -277,6 +263,7 @@ IF
 	!GlobalTimerNotExpired("IaSwapPlaces","LOCALS")
 	Range(SecondNearestEnemyOf(Myself),4)
 	!Dead("ROCK")
+	!Range("ROCK",4)
 	!TriggerOverride("ROCK",Range(SecondNearestEnemyOf(Myself),5))
 	See("ROCK")
 THEN
@@ -291,6 +278,7 @@ IF
 	!GlobalTimerNotExpired("IaSwapPlaces","LOCALS")
 	Range(SecondNearestEnemyOf(Myself),4)
 	!Dead("GAROCK")
+	!Range("GAROCK",4)
 	!TriggerOverride("GAROCK",Range(SecondNearestEnemyOf(Myself),5))
 	See("GAROCK")
 THEN
@@ -457,6 +445,7 @@ IF
 	Allegiance(Myself,ENEMY)
 	HaveSpell(WARRIOR_POWER_ATTACK)
 	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaSmite","LOCALS")
 	!GlobalTimerNotExpired("PowerAttackActiveTimer","LOCALS")
 	See(NearestEnemyOf(Myself))
 	Range(LastSeenBy(Myself),5)
@@ -481,6 +470,7 @@ IF
 	Allegiance(Myself,ENEMY)
 	HaveSpell(WARRIOR_POWER_ATTACK)
 	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaSmite","LOCALS")
 	!GlobalTimerNotExpired("PowerAttackActiveTimer","LOCALS")
 	See(SecondNearestEnemyOf(Myself))
 	Range(LastSeenBy(Myself),5)
@@ -505,6 +495,7 @@ IF
 	Allegiance(Myself,ENEMY)
 	HaveSpell(WARRIOR_POWER_ATTACK)
 	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaSmite","LOCALS")
 	!GlobalTimerNotExpired("PowerAttackActiveTimer","LOCALS")
 	See(ThirdNearestEnemyOf(Myself))
 	Range(LastSeenBy(Myself),5)
@@ -5259,4 +5250,13 @@ IF
 THEN
 	RESPONSE #100
 		MoveToObject(Player6)
+END
+
+IF
+	AttackedBy([ANYONE],DEFAULT)
+	!See(LastAttackerOf(Myself))
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		MoveToObject(LastAttackerOf(Myself))
 END

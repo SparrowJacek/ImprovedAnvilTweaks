@@ -1,0 +1,5171 @@
+IF
+	Allegiance(Myself,ENEMY)
+	HPLT(Myself,10)
+	Global("Iagrestore","AR0530",0)  // Storehouse
+THEN
+	RESPONSE #100
+		SetGlobal("Iagrestore","AR0530",1)  // Storehouse
+		Continue()
+END
+
+IF
+	Global("Iagrestore","AR0530",2)  // Storehouse
+	Global("Iapcastts","GLOBAL",0)
+	HasItem("bhaalhp1",Myself)  // No such index
+THEN
+	RESPONSE #100
+		DestroyItem("bhaalhp1")  // No such index
+		Continue()
+END
+
+
+IF
+	Allegiance(Myself,ENEMY)
+	GlobalTimerExpired("IaRestTimer","LOCALS")
+	Global("partyfled","LOCALS",1)
+	Global("IaPrep","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("IaPrep","LOCALS",0)
+		ReallyForceSpellRES("SPWII07",Myself)  // No such index
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	Global("partyfled","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("partyfled","LOCALS",0)
+		Continue()
+END
+
+IF
+	!See([PC])
+	!See([GOODCUTOFF])
+	Global("partyfled","LOCALS",0)
+	Allegiance(Myself,ENEMY)
+	Global("IaPrep","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaRestTimer","LOCALS",SEVEN_HOURS)
+		SetGlobal("partyfled","LOCALS",1)
+END
+
+
+
+IF
+	Global("Iapcastts","GLOBAL",1)
+	Global("Iatsinvulner","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",1)
+		ApplySpellRES("SPINI70",Myself)  // No such index
+END
+
+IF
+	Global("Iapcastts","GLOBAL",0)
+	Global("Iatsinvulner","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatsinvulner","LOCALS",0)
+		ApplySpellRES("SPINI71",Myself)  // No such index
+		Continue()
+END
+
+IF
+	Global("Iapcastts","GLOBAL",1)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+
+
+IF
+    ActionListEmpty()
+	See(Player1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaChar1SeenTimer","LOCALS",TWO_TURNS)
+		SetGlobal("IaChar1Seen","LOCALS",1)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	See(Player2)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaChar2SeenTimer","LOCALS",TWO_TURNS)
+		SetGlobal("IaChar2Seen","LOCALS",1)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	See(Player3)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaChar3SeenTimer","LOCALS",TWO_TURNS)
+		SetGlobal("IaChar3Seen","LOCALS",1)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	See(Player4)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaChar4SeenTimer","LOCALS",TWO_TURNS)
+		SetGlobal("IaChar4Seen","LOCALS",1)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	See(Player5)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaChar5SeenTimer","LOCALS",TWO_TURNS)
+		SetGlobal("IaChar5Seen","LOCALS",1)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	See(Player6)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaChar6SeenTimer","LOCALS",TWO_TURNS)
+		SetGlobal("IaChar6Seen","LOCALS",1)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	GlobalTimerExpired("IaChar1SeenTimer","LOCALS")
+	Global("IaChar1Seen","LOCALS",1)
+	!See(Player1)
+THEN
+	RESPONSE #100
+		SetGlobal("IaChar1Seen","LOCALS",0)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	GlobalTimerExpired("IaChar2SeenTimer","LOCALS")
+	Global("IaChar2Seen","LOCALS",1)
+	!See(Player2)
+THEN
+	RESPONSE #100
+		SetGlobal("IaChar2Seen","LOCALS",0)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	GlobalTimerExpired("IaChar3SeenTimer","LOCALS")
+	Global("IaChar3Seen","LOCALS",1)
+	!See(Player3)
+THEN
+	RESPONSE #100
+		SetGlobal("IaChar3Seen","LOCALS",0)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	GlobalTimerExpired("IaChar4SeenTimer","LOCALS")
+	Global("IaChar4Seen","LOCALS",1)
+	!See(Player4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaChar4Seen","LOCALS",0)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	GlobalTimerExpired("IaChar5SeenTimer","LOCALS")
+	Global("IaChar5Seen","LOCALS",1)
+	!See(Player5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaChar5Seen","LOCALS",0)
+		Continue()
+END
+
+IF
+    ActionListEmpty()
+	GlobalTimerExpired("IaChar6SeenTimer","LOCALS")
+	Global("IaChar6Seen","LOCALS",1)
+	!See(Player6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaChar6Seen","LOCALS",0)
+		Continue()
+END
+
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(NearestEnemyOf(Myself))
+	!CheckStat(Myself,2,SCRIPTINGSTATE3)
+	HasItem("potn35",Myself)  // Potion of Magic Shielding
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("potn35",Myself)  // Potion of Magic Shielding
+END
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_HARDINESS)
+	!CheckSpellState(Myself,HARDINESS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	OR(3)
+	    See(ThirdNearestEnemyOf(Myself))
+	    See(SecondNearestEnemyOf(Myself))
+	    See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_HARDINESS)  // SPCL907.SPL (Hardiness)
+		RemoveSpell(WARRIOR_HARDINESS)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	HPPercentLT(Myself,50)
+	HasItem("potn55",Myself)  // Potion of Superior Healing
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
+		UseItem("potn55",Myself)  // Potion of Superior Healing
+END
+
+IF
+	HaveSpell(WARRIOR_GREATER_WHIRLWIND)
+	Detect(NearestEnemyOf(Myself))
+	CheckStat(Myself,0,IMPROVEDHASTE)
+	See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_GREATER_WHIRLWIND)
+		RemoveSpell(WARRIOR_GREATER_WHIRLWIND)
+	RESPONSE #0
+	    Continue()
+END
+
+IF
+	HaveSpell(WARRIOR_WHIRLWIND)
+	!HaveSpell(WARRIOR_GREATER_WHIRLWIND)
+	Detect(NearestEnemyOf(Myself))
+	CheckStat(Myself,0,IMPROVEDHASTE)
+	See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_WHIRLWIND)
+		RemoveSpell(WARRIOR_WHIRLWIND)
+	RESPONSE #0
+	    Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_CRITICAL_STRIKE)
+	!CheckStatGT(Myself,5,CRITICALHITBONUS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_CRITICAL_STRIKE)  // SPCL905.SPL (Critical Strike)
+		RemoveSpell(WARRIOR_CRITICAL_STRIKE)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_CRITICAL_STRIKE)
+	!CheckStatGT(Myself,5,CRITICALHITBONUS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(SecondNearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_CRITICAL_STRIKE)  // SPCL905.SPL (Critical Strike)
+		RemoveSpell(WARRIOR_CRITICAL_STRIKE)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_CRITICAL_STRIKE)
+	!CheckStatGT(Myself,5,CRITICALHITBONUS)
+	!StateCheck(Myself,STATE_CONFUSED)
+	!StateCheck(Myself,STATE_HELPLESS)
+	!StateCheck(Myself,STATE_PANIC)
+	!StateCheck(Myself,STATE_STUNNED)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	See(ThirdNearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	CheckStatLT(LastSeenBy(Myself),1,STONESKINS)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ForceSpell(Myself,WARRIOR_CRITICAL_STRIKE)  // SPCL905.SPL (Critical Strike)
+		RemoveSpell(WARRIOR_CRITICAL_STRIKE)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_POWER_ATTACK)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaSmite","LOCALS")
+	!GlobalTimerNotExpired("PowerAttackActiveTimer","LOCALS")
+	See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckSpellState(NearestEnemyOf(Myself),STUN_IMMUNITY)
+	CheckStatGT(LastSeenBy(Myself),0,SAVEVSDEATH)
+	OR(2)
+	    CheckStatGT(LastSeenBy(Myself),4,SAVEVSDEATH)
+	    !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("PowerAttackActiveTimer","LOCALS",TWO_ROUNDS)
+		ForceSpell(Myself,WARRIOR_POWER_ATTACK)
+		RemoveSpell(WARRIOR_POWER_ATTACK)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_POWER_ATTACK)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaSmite","LOCALS")
+	!GlobalTimerNotExpired("PowerAttackActiveTimer","LOCALS")
+	See(SecondNearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),STUN_IMMUNITY)
+	CheckStatGT(LastSeenBy(Myself),0,SAVEVSDEATH)
+	OR(2)
+	    CheckStatGT(LastSeenBy(Myself),4,SAVEVSDEATH)
+	    !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("PowerAttackActiveTimer","LOCALS",TWO_ROUNDS)
+		ForceSpell(Myself,WARRIOR_POWER_ATTACK)
+		RemoveSpell(WARRIOR_POWER_ATTACK)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WARRIOR_POWER_ATTACK)
+	!GlobalTimerNotExpired("IaAction","LOCALS")
+	!GlobalTimerNotExpired("IaSmite","LOCALS")
+	!GlobalTimerNotExpired("PowerAttackActiveTimer","LOCALS")
+	See(ThirdNearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE6)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),STUN_IMMUNITY)
+	CheckStatGT(LastSeenBy(Myself),0,SAVEVSDEATH)
+	OR(2)
+	    CheckStatGT(LastSeenBy(Myself),4,SAVEVSDEATH)
+	    !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("PowerAttackActiveTimer","LOCALS",TWO_ROUNDS)
+		ForceSpell(Myself,WARRIOR_POWER_ATTACK)
+		RemoveSpell(WARRIOR_POWER_ATTACK)
+END
+
+
+IF
+	Allegiance(Myself,ENEMY)
+	CanEquipRanged()
+	See([PC])
+    CheckStatGT([PC],20,TICKSTOFINISHCASTINGDANGEROUSSPELL)
+    OR(2)
+	    CheckStatLT([PC],100,RESISTMISSILE)
+	    CheckStatLT([PC],100,RESISTELECTRICITY)
+    CheckStat([PC],0,SCRIPTINGSTATE6)
+	!CheckSpellState([PC],MISSILE_IMMUNITY)
+    OR(2)
+	    CheckStatLT([PC],100,RESISTELECTRICITY)
+	    !CheckStatGT([PC],0,STONESKINS)
+	!StateCheck([PC],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobal("IaInterrupting","LOCALS",1)
+		SetGlobalTimer("IaInterruptingTimer","LOCALS",2)
+		EquipRanged()
+		AttackReevaluate([PC],30)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	CanEquipRanged()
+	See(SecondNearest([PC]))
+    CheckStatGT(SecondNearest([PC]),20,TICKSTOFINISHCASTINGDANGEROUSSPELL)
+    OR(2)
+	    CheckStatLT(SecondNearest([PC]),100,RESISTMISSILE)
+	    CheckStatLT(SecondNearest([PC]),100,RESISTELECTRICITY)
+    CheckStat(SecondNearest([PC]),0,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC]),MISSILE_IMMUNITY)
+    OR(2)
+	    CheckStatLT(SecondNearest([PC]),100,RESISTELECTRICITY)
+	    !CheckStatGT(SecondNearest([PC]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobal("IaInterrupting","LOCALS",1)
+		SetGlobalTimer("IaInterruptingTimer","LOCALS",2)
+		EquipRanged()
+		AttackReevaluate(SecondNearest([PC]),30)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	CanEquipRanged()
+	See(ThirdNearest([PC]))
+    CheckStatGT(ThirdNearest([PC]),20,TICKSTOFINISHCASTINGDANGEROUSSPELL)
+    OR(2)
+	    CheckStatLT(ThirdNearest([PC]),100,RESISTMISSILE)
+	    CheckStatLT(ThirdNearest([PC]),100,RESISTELECTRICITY)
+    CheckStat(ThirdNearest([PC]),0,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC]),MISSILE_IMMUNITY)
+    OR(2)
+	    CheckStatLT(ThirdNearest([PC]),100,RESISTELECTRICITY)
+	    !CheckStatGT(ThirdNearest([PC]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobal("IaInterrupting","LOCALS",1)
+		SetGlobalTimer("IaInterruptingTimer","LOCALS",2)
+		EquipRanged()
+		AttackReevaluate(ThirdNearest([PC]),30)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	CanEquipRanged()
+	See(FourthNearest([PC]))
+    CheckStatGT(FourthNearest([PC]),20,TICKSTOFINISHCASTINGDANGEROUSSPELL)
+    OR(2)
+	    CheckStatLT(FourthNearest([PC]),100,RESISTMISSILE)
+	    CheckStatLT(FourthNearest([PC]),100,RESISTELECTRICITY)
+    CheckStat(FourthNearest([PC]),0,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC]),MISSILE_IMMUNITY)
+    OR(2)
+	    CheckStatLT(FourthNearest([PC]),100,RESISTELECTRICITY)
+	    !CheckStatGT(FourthNearest([PC]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobal("IaInterrupting","LOCALS",1)
+		SetGlobalTimer("IaInterruptingTimer","LOCALS",2)
+		EquipRanged()
+		AttackReevaluate(FourthNearest([PC]),30)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	CanEquipRanged()
+	See(FifthNearest([PC]))
+    CheckStatGT(FifthNearest([PC]),20,TICKSTOFINISHCASTINGDANGEROUSSPELL)
+    OR(2)
+	    CheckStatLT(FifthNearest([PC]),100,RESISTMISSILE)
+	    CheckStatLT(FifthNearest([PC]),100,RESISTELECTRICITY)
+    CheckStat(FifthNearest([PC]),0,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC]),MISSILE_IMMUNITY)
+    OR(2)
+	    CheckStatLT(FifthNearest([PC]),100,RESISTELECTRICITY)
+	    !CheckStatGT(FifthNearest([PC]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobal("IaInterrupting","LOCALS",1)
+		SetGlobalTimer("IaInterruptingTimer","LOCALS",2)
+		EquipRanged()
+		AttackReevaluate(FifthNearest([PC]),30)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	CanEquipRanged()
+	See(SixthNearest([PC]))
+    CheckStatGT(SixthNearest([PC]),20,TICKSTOFINISHCASTINGDANGEROUSSPELL)
+    OR(2)
+	    CheckStatLT(SixthNearest([PC]),100,RESISTMISSILE)
+	    CheckStatLT(SixthNearest([PC]),100,RESISTELECTRICITY)
+    CheckStat(SixthNearest([PC]),0,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC]),MISSILE_IMMUNITY)
+    OR(2)
+	    CheckStatLT(SixthNearest([PC]),100,RESISTELECTRICITY)
+	    !CheckStatGT(SixthNearest([PC]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobal("IaInterrupting","LOCALS",1)
+		SetGlobalTimer("IaInterruptingTimer","LOCALS",2)
+		EquipRanged()
+		AttackReevaluate(SixthNearest([PC]),30)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	CanEquipRanged()
+	See([PC])
+    CheckStatGT([PC],20,TICKSTOFINISHCASTINGHIGHPRIORITYSPELL)
+    OR(2)
+	    CheckStatLT([PC],100,RESISTMISSILE)
+	    CheckStatLT([PC],100,RESISTELECTRICITY)
+    CheckStat([PC],0,SCRIPTINGSTATE6)
+	!CheckSpellState([PC],MISSILE_IMMUNITY)
+    OR(2)
+	    CheckStatLT([PC],100,RESISTELECTRICITY)
+	    !CheckStatGT([PC],0,STONESKINS)
+	!StateCheck([PC],STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobal("IaInterrupting","LOCALS",1)
+		SetGlobalTimer("IaInterruptingTimer","LOCALS",2)
+		EquipRanged()
+		AttackReevaluate([PC],30)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	CanEquipRanged()
+	See(SecondNearest([PC]))
+    CheckStatGT(SecondNearest([PC]),20,TICKSTOFINISHCASTINGHIGHPRIORITYSPELL)
+    OR(2)
+	    CheckStatLT(SecondNearest([PC]),100,RESISTMISSILE)
+	    CheckStatLT(SecondNearest([PC]),100,RESISTELECTRICITY)
+    CheckStat(SecondNearest([PC]),0,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC]),MISSILE_IMMUNITY)
+    OR(2)
+	    CheckStatLT(SecondNearest([PC]),100,RESISTELECTRICITY)
+	    !CheckStatGT(SecondNearest([PC]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobal("IaInterrupting","LOCALS",1)
+		SetGlobalTimer("IaInterruptingTimer","LOCALS",2)
+		EquipRanged()
+		AttackReevaluate(SecondNearest([PC]),30)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	CanEquipRanged()
+	See(ThirdNearest([PC]))
+    CheckStatGT(ThirdNearest([PC]),20,TICKSTOFINISHCASTINGHIGHPRIORITYSPELL)
+    OR(2)
+	    CheckStatLT(ThirdNearest([PC]),100,RESISTMISSILE)
+	    CheckStatLT(ThirdNearest([PC]),100,RESISTELECTRICITY)
+    CheckStat(ThirdNearest([PC]),0,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC]),MISSILE_IMMUNITY)
+    OR(2)
+	    CheckStatLT(ThirdNearest([PC]),100,RESISTELECTRICITY)
+	    !CheckStatGT(ThirdNearest([PC]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobal("IaInterrupting","LOCALS",1)
+		SetGlobalTimer("IaInterruptingTimer","LOCALS",2)
+		EquipRanged()
+		AttackReevaluate(ThirdNearest([PC]),30)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	CanEquipRanged()
+	See(FourthNearest([PC]))
+    CheckStatGT(FourthNearest([PC]),20,TICKSTOFINISHCASTINGHIGHPRIORITYSPELL)
+    OR(2)
+	    CheckStatLT(FourthNearest([PC]),100,RESISTMISSILE)
+	    CheckStatLT(FourthNearest([PC]),100,RESISTELECTRICITY)
+    CheckStat(FourthNearest([PC]),0,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC]),MISSILE_IMMUNITY)
+    OR(2)
+	    CheckStatLT(FourthNearest([PC]),100,RESISTELECTRICITY)
+	    !CheckStatGT(FourthNearest([PC]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobal("IaInterrupting","LOCALS",1)
+		SetGlobalTimer("IaInterruptingTimer","LOCALS",2)
+		EquipRanged()
+		AttackReevaluate(FourthNearest([PC]),30)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	CanEquipRanged()
+	See(FifthNearest([PC]))
+    CheckStatGT(FifthNearest([PC]),20,TICKSTOFINISHCASTINGHIGHPRIORITYSPELL)
+    OR(2)
+	    CheckStatLT(FifthNearest([PC]),100,RESISTMISSILE)
+	    CheckStatLT(FifthNearest([PC]),100,RESISTELECTRICITY)
+    CheckStat(FifthNearest([PC]),0,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC]),MISSILE_IMMUNITY)
+    OR(2)
+	    CheckStatLT(FifthNearest([PC]),100,RESISTELECTRICITY)
+	    !CheckStatGT(FifthNearest([PC]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobal("IaInterrupting","LOCALS",1)
+		SetGlobalTimer("IaInterruptingTimer","LOCALS",2)
+		EquipRanged()
+		AttackReevaluate(FifthNearest([PC]),30)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	CanEquipRanged()
+	See(SixthNearest([PC]))
+    CheckStatGT(SixthNearest([PC]),20,TICKSTOFINISHCASTINGHIGHPRIORITYSPELL)
+    OR(2)
+	    CheckStatLT(SixthNearest([PC]),100,RESISTMISSILE)
+	    CheckStatLT(SixthNearest([PC]),100,RESISTELECTRICITY)
+    CheckStat(SixthNearest([PC]),0,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC]),MISSILE_IMMUNITY)
+    OR(2)
+	    CheckStatLT(SixthNearest([PC]),100,RESISTELECTRICITY)
+	    !CheckStatGT(SixthNearest([PC]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC]),STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		SetGlobal("IaInterrupting","LOCALS",1)
+		SetGlobalTimer("IaInterruptingTimer","LOCALS",2)
+		EquipRanged()
+		AttackReevaluate(SixthNearest([PC]),30)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC.0.0.MAGE_ALL])
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT([PC.0.0.MAGE_ALL],50,RESISTMISSILE)
+    CheckStatLT([PC.0.0.MAGE_ALL],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.MAGE_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.MAGE_ALL],1,STONESKINS)
+	!StateCheck([PC.0.0.MAGE_ALL],STATE_MIRRORIMAGE)
+	!Range([PC.0.0.MAGE_ALL],4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC.0.0.MAGE_ALL],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC.0.0.MAGE_ALL]))
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.MAGE_ALL]),1,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+	!Range(SecondNearest([PC.0.0.MAGE_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC.0.0.MAGE_ALL]))
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT(ThirdNearest([PC.0.0.MAGE_ALL]),50,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.MAGE_ALL]),1,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+	!Range(ThirdNearest([PC.0.0.MAGE_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC.0.0.MAGE_ALL]))
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT(FourthNearest([PC.0.0.MAGE_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.MAGE_ALL]),1,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+	!Range(FourthNearest([PC.0.0.MAGE_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC.0.0.MAGE_ALL]))
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT(FifthNearest([PC.0.0.MAGE_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.MAGE_ALL]),1,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+	!Range(FifthNearest([PC.0.0.MAGE_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC.0.0.MAGE_ALL]))
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT(SixthNearest([PC.0.0.MAGE_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.MAGE_ALL]),1,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+	!Range(SixthNearest([PC.0.0.MAGE_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC.0.0.DRUID_ALL])
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT([PC.0.0.DRUID_ALL],50,RESISTMISSILE)
+    CheckStatLT([PC.0.0.DRUID_ALL],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.DRUID_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.DRUID_ALL],1,STONESKINS)
+	!StateCheck([PC.0.0.DRUID_ALL],STATE_MIRRORIMAGE)
+	!Range([PC.0.0.DRUID_ALL],4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC.0.0.DRUID_ALL],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC.0.0.DRUID_ALL]))
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.DRUID_ALL]),1,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+	!Range(SecondNearest([PC.0.0.DRUID_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC.0.0.DRUID_ALL]))
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT(ThirdNearest([PC.0.0.DRUID_ALL]),50,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.DRUID_ALL]),1,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+	!Range(ThirdNearest([PC.0.0.DRUID_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC.0.0.DRUID_ALL]))
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT(FourthNearest([PC.0.0.DRUID_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.DRUID_ALL]),1,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+	!Range(FourthNearest([PC.0.0.DRUID_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC.0.0.DRUID_ALL]))
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT(FifthNearest([PC.0.0.DRUID_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.DRUID_ALL]),1,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+	!Range(FifthNearest([PC.0.0.DRUID_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC.0.0.DRUID_ALL]))
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT(SixthNearest([PC.0.0.DRUID_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.DRUID_ALL]),1,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+	!Range(SixthNearest([PC.0.0.DRUID_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC.0.0.THIEF_ALL])
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT([PC.0.0.THIEF_ALL],50,RESISTMISSILE)
+    CheckStatLT([PC.0.0.THIEF_ALL],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.THIEF_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.THIEF_ALL],1,STONESKINS)
+	!StateCheck([PC.0.0.THIEF_ALL],STATE_MIRRORIMAGE)
+	!Range([PC.0.0.THIEF_ALL],4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC.0.0.THIEF_ALL],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC.0.0.THIEF_ALL]))
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.THIEF_ALL]),1,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+	!Range(SecondNearest([PC.0.0.THIEF_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC.0.0.THIEF_ALL]))
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT(ThirdNearest([PC.0.0.THIEF_ALL]),50,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.THIEF_ALL]),1,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+	!Range(ThirdNearest([PC.0.0.THIEF_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC.0.0.THIEF_ALL]))
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT(FourthNearest([PC.0.0.THIEF_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.THIEF_ALL]),1,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+	!Range(FourthNearest([PC.0.0.THIEF_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC.0.0.THIEF_ALL]))
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT(FifthNearest([PC.0.0.THIEF_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.THIEF_ALL]),1,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+	!Range(FifthNearest([PC.0.0.THIEF_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC.0.0.THIEF_ALL]))
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT(SixthNearest([PC.0.0.THIEF_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.THIEF_ALL]),1,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+	!Range(SixthNearest([PC.0.0.THIEF_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC.0.0.CLERIC_ALL])
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT([PC.0.0.CLERIC_ALL],50,RESISTMISSILE)
+    CheckStatLT([PC.0.0.CLERIC_ALL],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.CLERIC_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.CLERIC_ALL],1,STONESKINS)
+	!StateCheck([PC.0.0.CLERIC_ALL],STATE_MIRRORIMAGE)
+	!Range([PC.0.0.CLERIC_ALL],4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC.0.0.CLERIC_ALL],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC.0.0.CLERIC_ALL]))
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT(SecondNearest([PC.0.0.CLERIC_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.CLERIC_ALL]),1,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+	!Range(SecondNearest([PC.0.0.CLERIC_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC.0.0.CLERIC_ALL]))
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT(ThirdNearest([PC.0.0.CLERIC_ALL]),50,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.CLERIC_ALL]),1,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+	!Range(ThirdNearest([PC.0.0.CLERIC_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC.0.0.CLERIC_ALL]))
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT(FourthNearest([PC.0.0.CLERIC_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.CLERIC_ALL]),1,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+	!Range(FourthNearest([PC.0.0.CLERIC_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC.0.0.CLERIC_ALL]))
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT(FifthNearest([PC.0.0.CLERIC_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.CLERIC_ALL]),1,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+	!Range(FifthNearest([PC.0.0.CLERIC_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC.0.0.CLERIC_ALL]))
+    HPLT(LastSeenBy(Myself),100)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),50)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),75)
+	    Difficulty(HARDEST)
+	CheckStatLT(SixthNearest([PC.0.0.CLERIC_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.CLERIC_ALL]),1,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+	!Range(SixthNearest([PC.0.0.CLERIC_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC.0.0.MAGE_ALL])
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT([PC.0.0.MAGE_ALL],50,RESISTMISSILE)
+    CheckStatLT([PC.0.0.MAGE_ALL],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.MAGE_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.MAGE_ALL],1,STONESKINS)
+	!StateCheck([PC.0.0.MAGE_ALL],STATE_MIRRORIMAGE)
+	!Range([PC.0.0.MAGE_ALL],4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC.0.0.MAGE_ALL],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC.0.0.MAGE_ALL]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.MAGE_ALL]),1,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+	!Range(SecondNearest([PC.0.0.MAGE_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC.0.0.MAGE_ALL]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(ThirdNearest([PC.0.0.MAGE_ALL]),50,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.MAGE_ALL]),1,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+	!Range(ThirdNearest([PC.0.0.MAGE_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC.0.0.MAGE_ALL]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(FourthNearest([PC.0.0.MAGE_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.MAGE_ALL]),1,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+	!Range(FourthNearest([PC.0.0.MAGE_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC.0.0.MAGE_ALL]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(FifthNearest([PC.0.0.MAGE_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.MAGE_ALL]),1,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+	!Range(FifthNearest([PC.0.0.MAGE_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC.0.0.MAGE_ALL]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(SixthNearest([PC.0.0.MAGE_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.MAGE_ALL]),1,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+	!Range(SixthNearest([PC.0.0.MAGE_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC.0.0.DRUID_ALL])
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT([PC.0.0.DRUID_ALL],50,RESISTMISSILE)
+    CheckStatLT([PC.0.0.DRUID_ALL],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.DRUID_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.DRUID_ALL],1,STONESKINS)
+	!StateCheck([PC.0.0.DRUID_ALL],STATE_MIRRORIMAGE)
+	!Range([PC.0.0.DRUID_ALL],4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC.0.0.DRUID_ALL],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC.0.0.DRUID_ALL]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.DRUID_ALL]),1,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+	!Range(SecondNearest([PC.0.0.DRUID_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC.0.0.DRUID_ALL]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(ThirdNearest([PC.0.0.DRUID_ALL]),50,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.DRUID_ALL]),1,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+	!Range(ThirdNearest([PC.0.0.DRUID_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC.0.0.DRUID_ALL]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(FourthNearest([PC.0.0.DRUID_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.DRUID_ALL]),1,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+	!Range(FourthNearest([PC.0.0.DRUID_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC.0.0.DRUID_ALL]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(FifthNearest([PC.0.0.DRUID_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.DRUID_ALL]),1,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+	!Range(FifthNearest([PC.0.0.DRUID_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC.0.0.DRUID_ALL]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(SixthNearest([PC.0.0.DRUID_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.DRUID_ALL]),1,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+	!Range(SixthNearest([PC.0.0.DRUID_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC.0.0.THIEF_ALL])
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT([PC.0.0.THIEF_ALL],50,RESISTMISSILE)
+    CheckStatLT([PC.0.0.THIEF_ALL],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.THIEF_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.THIEF_ALL],1,STONESKINS)
+	!StateCheck([PC.0.0.THIEF_ALL],STATE_MIRRORIMAGE)
+	!Range([PC.0.0.THIEF_ALL],4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC.0.0.THIEF_ALL],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC.0.0.THIEF_ALL]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.THIEF_ALL]),1,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+	!Range(SecondNearest([PC.0.0.THIEF_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC.0.0.THIEF_ALL]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(ThirdNearest([PC.0.0.THIEF_ALL]),50,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.THIEF_ALL]),1,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+	!Range(ThirdNearest([PC.0.0.THIEF_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC.0.0.THIEF_ALL]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(FourthNearest([PC.0.0.THIEF_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.THIEF_ALL]),1,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+	!Range(FourthNearest([PC.0.0.THIEF_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC.0.0.THIEF_ALL]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(FifthNearest([PC.0.0.THIEF_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.THIEF_ALL]),1,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+	!Range(FifthNearest([PC.0.0.THIEF_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC.0.0.THIEF_ALL]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(SixthNearest([PC.0.0.THIEF_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.THIEF_ALL]),1,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+	!Range(SixthNearest([PC.0.0.THIEF_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC.0.0.CLERIC_ALL])
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT([PC.0.0.CLERIC_ALL],50,RESISTMISSILE)
+    CheckStatLT([PC.0.0.CLERIC_ALL],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.CLERIC_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.CLERIC_ALL],1,STONESKINS)
+	!StateCheck([PC.0.0.CLERIC_ALL],STATE_MIRRORIMAGE)
+	!Range([PC.0.0.CLERIC_ALL],4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC.0.0.CLERIC_ALL],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC.0.0.CLERIC_ALL]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(SecondNearest([PC.0.0.CLERIC_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.CLERIC_ALL]),1,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+	!Range(SecondNearest([PC.0.0.CLERIC_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC.0.0.CLERIC_ALL]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(ThirdNearest([PC.0.0.CLERIC_ALL]),50,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.CLERIC_ALL]),1,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+	!Range(ThirdNearest([PC.0.0.CLERIC_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC.0.0.CLERIC_ALL]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(FourthNearest([PC.0.0.CLERIC_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.CLERIC_ALL]),1,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+	!Range(FourthNearest([PC.0.0.CLERIC_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC.0.0.CLERIC_ALL]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(FifthNearest([PC.0.0.CLERIC_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.CLERIC_ALL]),1,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+	!Range(FifthNearest([PC.0.0.CLERIC_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC.0.0.CLERIC_ALL]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(SixthNearest([PC.0.0.CLERIC_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.CLERIC_ALL]),1,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+	!Range(SixthNearest([PC.0.0.CLERIC_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC])
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT([PC],50,RESISTMISSILE)
+    CheckStatLT([PC],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC],MISSILE_IMMUNITY)
+	!CheckStatGT([PC],1,STONESKINS)
+	!StateCheck([PC],STATE_MIRRORIMAGE)
+	!Range([PC],4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(SecondNearest([PC]),50,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC]),1,STONESKINS)
+	!StateCheck(SecondNearest([PC]),STATE_MIRRORIMAGE)
+	!Range(SecondNearest([PC]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(ThirdNearest([PC]),50,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC]),1,STONESKINS)
+	!StateCheck(ThirdNearest([PC]),STATE_MIRRORIMAGE)
+	!Range(ThirdNearest([PC]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(FourthNearest([PC]),50,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC]),1,STONESKINS)
+	!StateCheck(FourthNearest([PC]),STATE_MIRRORIMAGE)
+	!Range(FourthNearest([PC]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(FifthNearest([PC]),50,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC]),1,STONESKINS)
+	!StateCheck(FifthNearest([PC]),STATE_MIRRORIMAGE)
+	!Range(FifthNearest([PC]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC]))
+    HPLT(LastSeenBy(Myself),200)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),100)
+	    DifficultyGT(NORMAL)
+	OR(2)
+	    HPLT(LastSeenBy(Myself),150)
+	    Difficulty(HARDEST)
+	CheckStatLT(SixthNearest([PC]),50,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC]),1,STONESKINS)
+	!StateCheck(SixthNearest([PC]),STATE_MIRRORIMAGE)
+	!Range(SixthNearest([PC]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC.0.0.MAGE_ALL])
+	CheckStatLT([PC.0.0.MAGE_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.MAGE_ALL],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.MAGE_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.MAGE_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.MAGE_ALL],STATE_MIRRORIMAGE)
+	!Range([PC.0.0.MAGE_ALL],4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC.0.0.MAGE_ALL],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+	!Range(SecondNearest([PC.0.0.MAGE_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(ThirdNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+	!Range(ThirdNearest([PC.0.0.MAGE_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(FourthNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+	!Range(FourthNearest([PC.0.0.MAGE_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(FifthNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+	!Range(FifthNearest([PC.0.0.MAGE_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(SixthNearest([PC.0.0.MAGE_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.MAGE_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.MAGE_ALL]),STATE_MIRRORIMAGE)
+	!Range(SixthNearest([PC.0.0.MAGE_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC.0.0.DRUID_ALL])
+	CheckStatLT([PC.0.0.DRUID_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.DRUID_ALL],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.DRUID_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.DRUID_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.DRUID_ALL],STATE_MIRRORIMAGE)
+	!Range([PC.0.0.DRUID_ALL],4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC.0.0.DRUID_ALL],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+	!Range(SecondNearest([PC.0.0.DRUID_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(ThirdNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+	!Range(ThirdNearest([PC.0.0.DRUID_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(FourthNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+	!Range(FourthNearest([PC.0.0.DRUID_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(FifthNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+	!Range(FifthNearest([PC.0.0.DRUID_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(SixthNearest([PC.0.0.DRUID_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.DRUID_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.DRUID_ALL]),STATE_MIRRORIMAGE)
+	!Range(SixthNearest([PC.0.0.DRUID_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC.0.0.THIEF_ALL])
+	CheckStatLT([PC.0.0.THIEF_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.THIEF_ALL],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.THIEF_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.THIEF_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.THIEF_ALL],STATE_MIRRORIMAGE)
+	!Range([PC.0.0.THIEF_ALL],4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC.0.0.THIEF_ALL],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+	!Range(SecondNearest([PC.0.0.THIEF_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(ThirdNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+	!Range(ThirdNearest([PC.0.0.THIEF_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(FourthNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+	!Range(FourthNearest([PC.0.0.THIEF_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(FifthNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+	!Range(FifthNearest([PC.0.0.THIEF_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(SixthNearest([PC.0.0.THIEF_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.THIEF_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.THIEF_ALL]),STATE_MIRRORIMAGE)
+	!Range(SixthNearest([PC.0.0.THIEF_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC.0.0.CLERIC_ALL])
+	CheckStatLT([PC.0.0.CLERIC_ALL],75,RESISTMISSILE)
+    CheckStatLT([PC.0.0.CLERIC_ALL],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.CLERIC_ALL],MISSILE_IMMUNITY)
+	!CheckStatGT([PC.0.0.CLERIC_ALL],0,STONESKINS)
+	!StateCheck([PC.0.0.CLERIC_ALL],STATE_MIRRORIMAGE)
+	!Range([PC.0.0.CLERIC_ALL],4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC.0.0.CLERIC_ALL],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+	!Range(SecondNearest([PC.0.0.CLERIC_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(ThirdNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+	!Range(ThirdNearest([PC.0.0.CLERIC_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(FourthNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+	!Range(FourthNearest([PC.0.0.CLERIC_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(FifthNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+	!Range(FifthNearest([PC.0.0.CLERIC_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(SixthNearest([PC.0.0.CLERIC_ALL]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC.0.0.CLERIC_ALL]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC.0.0.CLERIC_ALL]),STATE_MIRRORIMAGE)
+	!Range(SixthNearest([PC.0.0.CLERIC_ALL]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC])
+	CheckStatLT([PC],75,RESISTMISSILE)
+    CheckStatLT([PC],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC],MISSILE_IMMUNITY)
+	!CheckStatGT([PC],0,STONESKINS)
+	!StateCheck([PC],STATE_MIRRORIMAGE)
+	!Range([PC],4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC]))
+	CheckStatLT(SecondNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(SecondNearest([PC]),0,STONESKINS)
+	!StateCheck(SecondNearest([PC]),STATE_MIRRORIMAGE)
+	!Range(SecondNearest([PC]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC]))
+	CheckStatLT(ThirdNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(ThirdNearest([PC]),0,STONESKINS)
+	!StateCheck(ThirdNearest([PC]),STATE_MIRRORIMAGE)
+	!Range(ThirdNearest([PC]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC]))
+	CheckStatLT(FourthNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(FourthNearest([PC]),0,STONESKINS)
+	!StateCheck(FourthNearest([PC]),STATE_MIRRORIMAGE)
+	!Range(FourthNearest([PC]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC]))
+	CheckStatLT(FifthNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(FifthNearest([PC]),0,STONESKINS)
+	!StateCheck(FifthNearest([PC]),STATE_MIRRORIMAGE)
+	!Range(FifthNearest([PC]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC]))
+	CheckStatLT(SixthNearest([PC]),75,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC]),MISSILE_IMMUNITY)
+	!CheckStatGT(SixthNearest([PC]),0,STONESKINS)
+	!StateCheck(SixthNearest([PC]),STATE_MIRRORIMAGE)
+	!Range(SixthNearest([PC]),4)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC.0.0.MAGE_ALL])
+	CheckStatLT([PC.0.0.MAGE_ALL],50,RESISTMISSILE)
+    CheckStatLT([PC.0.0.MAGE_ALL],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.MAGE_ALL],MISSILE_IMMUNITY)
+	!Range([PC.0.0.MAGE_ALL],5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC.0.0.MAGE_ALL],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!Range(SecondNearest([PC.0.0.MAGE_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(ThirdNearest([PC.0.0.MAGE_ALL]),50,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!Range(ThirdNearest([PC.0.0.MAGE_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(FourthNearest([PC.0.0.MAGE_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!Range(FourthNearest([PC.0.0.MAGE_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(FifthNearest([PC.0.0.MAGE_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!Range(FifthNearest([PC.0.0.MAGE_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(SixthNearest([PC.0.0.MAGE_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!Range(SixthNearest([PC.0.0.MAGE_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC.0.0.DRUID_ALL])
+	CheckStatLT([PC.0.0.DRUID_ALL],50,RESISTMISSILE)
+    CheckStatLT([PC.0.0.DRUID_ALL],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.DRUID_ALL],MISSILE_IMMUNITY)
+	!Range([PC.0.0.DRUID_ALL],5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC.0.0.DRUID_ALL],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!Range(SecondNearest([PC.0.0.DRUID_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(ThirdNearest([PC.0.0.DRUID_ALL]),50,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!Range(ThirdNearest([PC.0.0.DRUID_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(FourthNearest([PC.0.0.DRUID_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!Range(FourthNearest([PC.0.0.DRUID_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(FifthNearest([PC.0.0.DRUID_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!Range(FifthNearest([PC.0.0.DRUID_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(SixthNearest([PC.0.0.DRUID_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!Range(SixthNearest([PC.0.0.DRUID_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC.0.0.THIEF_ALL])
+	CheckStatLT([PC.0.0.THIEF_ALL],50,RESISTMISSILE)
+    CheckStatLT([PC.0.0.THIEF_ALL],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.THIEF_ALL],MISSILE_IMMUNITY)
+	!Range([PC.0.0.THIEF_ALL],5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC.0.0.THIEF_ALL],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!Range(SecondNearest([PC.0.0.THIEF_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(ThirdNearest([PC.0.0.THIEF_ALL]),50,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!Range(ThirdNearest([PC.0.0.THIEF_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(FourthNearest([PC.0.0.THIEF_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!Range(FourthNearest([PC.0.0.THIEF_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(FifthNearest([PC.0.0.THIEF_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!Range(FifthNearest([PC.0.0.THIEF_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(SixthNearest([PC.0.0.THIEF_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!Range(SixthNearest([PC.0.0.THIEF_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC.0.0.CLERIC_ALL])
+	CheckStatLT([PC.0.0.CLERIC_ALL],50,RESISTMISSILE)
+    CheckStatLT([PC.0.0.CLERIC_ALL],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.CLERIC_ALL],MISSILE_IMMUNITY)
+	!Range([PC.0.0.CLERIC_ALL],5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC.0.0.CLERIC_ALL],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.CLERIC_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!Range(SecondNearest([PC.0.0.CLERIC_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(ThirdNearest([PC.0.0.CLERIC_ALL]),50,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!Range(ThirdNearest([PC.0.0.CLERIC_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(FourthNearest([PC.0.0.CLERIC_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!Range(FourthNearest([PC.0.0.CLERIC_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(FifthNearest([PC.0.0.CLERIC_ALL]),50,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!Range(FifthNearest([PC.0.0.CLERIC_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(SixthNearest([PC.0.0.CLERIC_ALL]),50,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!Range(SixthNearest([PC.0.0.CLERIC_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC])
+	CheckStatLT([PC],50,RESISTMISSILE)
+    CheckStatLT([PC],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC],MISSILE_IMMUNITY)
+	!Range([PC],5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC]))
+	CheckStatLT(SecondNearest([PC]),50,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC]),MISSILE_IMMUNITY)
+	!Range(SecondNearest([PC]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC]))
+	CheckStatLT(ThirdNearest([PC]),50,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC]),MISSILE_IMMUNITY)
+	!Range(ThirdNearest([PC]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC]))
+	CheckStatLT(FourthNearest([PC]),50,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC]),MISSILE_IMMUNITY)
+	!Range(FourthNearest([PC]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC]))
+	CheckStatLT(FifthNearest([PC]),50,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC]),MISSILE_IMMUNITY)
+	!Range(FifthNearest([PC]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC]))
+	CheckStatLT(SixthNearest([PC]),50,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC]),MISSILE_IMMUNITY)
+	!Range(SixthNearest([PC]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC.0.0.MAGE_ALL])
+	CheckStatLT([PC.0.0.MAGE_ALL],80,RESISTMISSILE)
+    CheckStatLT([PC.0.0.MAGE_ALL],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.MAGE_ALL],MISSILE_IMMUNITY)
+	!Range([PC.0.0.MAGE_ALL],5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC.0.0.MAGE_ALL],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),80,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!Range(SecondNearest([PC.0.0.MAGE_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(ThirdNearest([PC.0.0.MAGE_ALL]),80,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!Range(ThirdNearest([PC.0.0.MAGE_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(FourthNearest([PC.0.0.MAGE_ALL]),80,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!Range(FourthNearest([PC.0.0.MAGE_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(FifthNearest([PC.0.0.MAGE_ALL]),80,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!Range(FifthNearest([PC.0.0.MAGE_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC.0.0.MAGE_ALL]))
+	CheckStatLT(SixthNearest([PC.0.0.MAGE_ALL]),80,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.MAGE_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.MAGE_ALL]),MISSILE_IMMUNITY)
+	!Range(SixthNearest([PC.0.0.MAGE_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC.0.0.MAGE_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC.0.0.DRUID_ALL])
+	CheckStatLT([PC.0.0.DRUID_ALL],80,RESISTMISSILE)
+    CheckStatLT([PC.0.0.DRUID_ALL],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.DRUID_ALL],MISSILE_IMMUNITY)
+	!Range([PC.0.0.DRUID_ALL],5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC.0.0.DRUID_ALL],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),80,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!Range(SecondNearest([PC.0.0.DRUID_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(ThirdNearest([PC.0.0.DRUID_ALL]),80,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!Range(ThirdNearest([PC.0.0.DRUID_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(FourthNearest([PC.0.0.DRUID_ALL]),80,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!Range(FourthNearest([PC.0.0.DRUID_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(FifthNearest([PC.0.0.DRUID_ALL]),80,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!Range(FifthNearest([PC.0.0.DRUID_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC.0.0.DRUID_ALL]))
+	CheckStatLT(SixthNearest([PC.0.0.DRUID_ALL]),80,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.DRUID_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.DRUID_ALL]),MISSILE_IMMUNITY)
+	!Range(SixthNearest([PC.0.0.DRUID_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC.0.0.DRUID_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC.0.0.THIEF_ALL])
+	CheckStatLT([PC.0.0.THIEF_ALL],80,RESISTMISSILE)
+    CheckStatLT([PC.0.0.THIEF_ALL],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.THIEF_ALL],MISSILE_IMMUNITY)
+	!Range([PC.0.0.THIEF_ALL],5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC.0.0.THIEF_ALL],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),80,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!Range(SecondNearest([PC.0.0.THIEF_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(ThirdNearest([PC.0.0.THIEF_ALL]),80,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!Range(ThirdNearest([PC.0.0.THIEF_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(FourthNearest([PC.0.0.THIEF_ALL]),80,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!Range(FourthNearest([PC.0.0.THIEF_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(FifthNearest([PC.0.0.THIEF_ALL]),80,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!Range(FifthNearest([PC.0.0.THIEF_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC.0.0.THIEF_ALL]))
+	CheckStatLT(SixthNearest([PC.0.0.THIEF_ALL]),80,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.THIEF_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.THIEF_ALL]),MISSILE_IMMUNITY)
+	!Range(SixthNearest([PC.0.0.THIEF_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC.0.0.THIEF_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC.0.0.CLERIC_ALL])
+	CheckStatLT([PC.0.0.CLERIC_ALL],80,RESISTMISSILE)
+    CheckStatLT([PC.0.0.CLERIC_ALL],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC.0.0.CLERIC_ALL],MISSILE_IMMUNITY)
+	!Range([PC.0.0.CLERIC_ALL],5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC.0.0.CLERIC_ALL],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(SecondNearest([PC.0.0.CLERIC_ALL]),80,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!Range(SecondNearest([PC.0.0.CLERIC_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(ThirdNearest([PC.0.0.CLERIC_ALL]),80,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!Range(ThirdNearest([PC.0.0.CLERIC_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(FourthNearest([PC.0.0.CLERIC_ALL]),80,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!Range(FourthNearest([PC.0.0.CLERIC_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(FifthNearest([PC.0.0.CLERIC_ALL]),80,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!Range(FifthNearest([PC.0.0.CLERIC_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC.0.0.CLERIC_ALL]))
+	CheckStatLT(SixthNearest([PC.0.0.CLERIC_ALL]),80,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC.0.0.CLERIC_ALL]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC.0.0.CLERIC_ALL]),MISSILE_IMMUNITY)
+	!Range(SixthNearest([PC.0.0.CLERIC_ALL]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC.0.0.CLERIC_ALL]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC])
+	CheckStatLT([PC],50,RESISTMISSILE)
+    CheckStatLT([PC],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC],MISSILE_IMMUNITY)
+	!Range([PC],5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC]))
+	CheckStatLT(SecondNearest([PC]),50,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC]),MISSILE_IMMUNITY)
+	!Range(SecondNearest([PC]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC]))
+	CheckStatLT(ThirdNearest([PC]),50,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC]),MISSILE_IMMUNITY)
+	!Range(ThirdNearest([PC]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC]))
+	CheckStatLT(FourthNearest([PC]),50,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC]),MISSILE_IMMUNITY)
+	!Range(FourthNearest([PC]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC]))
+	CheckStatLT(FifthNearest([PC]),50,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC]),MISSILE_IMMUNITY)
+	!Range(FifthNearest([PC]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC]))
+	CheckStatLT(SixthNearest([PC]),50,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC]),MISSILE_IMMUNITY)
+	!Range(SixthNearest([PC]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See([PC])
+	CheckStatLT([PC],80,RESISTMISSILE)
+    CheckStatLT([PC],1,SCRIPTINGSTATE6)
+	!CheckSpellState([PC],MISSILE_IMMUNITY)
+	!Range([PC],5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate([PC],45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearest([PC]))
+	CheckStatLT(SecondNearest([PC]),80,RESISTMISSILE)
+    CheckStatLT(SecondNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearest([PC]),MISSILE_IMMUNITY)
+	!Range(SecondNearest([PC]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearest([PC]))
+	CheckStatLT(ThirdNearest([PC]),80,RESISTMISSILE)
+    CheckStatLT(ThirdNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearest([PC]),MISSILE_IMMUNITY)
+	!Range(ThirdNearest([PC]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearest([PC]))
+	CheckStatLT(FourthNearest([PC]),80,RESISTMISSILE)
+    CheckStatLT(FourthNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearest([PC]),MISSILE_IMMUNITY)
+	!Range(FourthNearest([PC]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearest([PC]))
+	CheckStatLT(FifthNearest([PC]),80,RESISTMISSILE)
+    CheckStatLT(FifthNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearest([PC]),MISSILE_IMMUNITY)
+	!Range(FifthNearest([PC]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearest([PC]))
+	CheckStatLT(SixthNearest([PC]),80,RESISTMISSILE)
+    CheckStatLT(SixthNearest([PC]),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearest([PC]),MISSILE_IMMUNITY)
+	!Range(SixthNearest([PC]),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearest([PC]),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(NearestEnemyOf(Myself))
+	CheckStatLT(NearestEnemyOf(Myself),80,RESISTMISSILE)
+    CheckStatLT(NearestEnemyOf(Myself),1,SCRIPTINGSTATE6)
+	!CheckSpellState(NearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!Range(NearestEnemyOf(Myself),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(NearestEnemyOf(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearestEnemyOf(Myself))
+	CheckStatLT(SecondNearestEnemyOf(Myself),80,RESISTMISSILE)
+    CheckStatLT(SecondNearestEnemyOf(Myself),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!Range(SecondNearestEnemyOf(Myself),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearestEnemyOf(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearestEnemyOf(Myself))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),80,RESISTMISSILE)
+    CheckStatLT(ThirdNearestEnemyOf(Myself),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!Range(ThirdNearestEnemyOf(Myself),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearestEnemyOf(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearestEnemyOf(Myself))
+	CheckStatLT(FourthNearestEnemyOf(Myself),80,RESISTMISSILE)
+    CheckStatLT(FourthNearestEnemyOf(Myself),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!Range(FourthNearestEnemyOf(Myself),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearestEnemyOf(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearestEnemyOf(Myself))
+	CheckStatLT(FifthNearestEnemyOf(Myself),80,RESISTMISSILE)
+    CheckStatLT(FifthNearestEnemyOf(Myself),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!Range(FifthNearestEnemyOf(Myself),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearestEnemyOf(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearestEnemyOf(Myself))
+	CheckStatLT(SixthNearestEnemyOf(Myself),80,RESISTMISSILE)
+    CheckStatLT(SixthNearestEnemyOf(Myself),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!Range(SixthNearestEnemyOf(Myself),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearestEnemyOf(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(NearestEnemyOf(Myself))
+	CheckStatLT(NearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(NearestEnemyOf(Myself),1,SCRIPTINGSTATE6)
+	!CheckSpellState(NearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!Range(NearestEnemyOf(Myself),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(NearestEnemyOf(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SecondNearestEnemyOf(Myself))
+	CheckStatLT(SecondNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(SecondNearestEnemyOf(Myself),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!Range(SecondNearestEnemyOf(Myself),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SecondNearestEnemyOf(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(ThirdNearestEnemyOf(Myself))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(ThirdNearestEnemyOf(Myself),1,SCRIPTINGSTATE6)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!Range(ThirdNearestEnemyOf(Myself),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(ThirdNearestEnemyOf(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FourthNearestEnemyOf(Myself))
+	CheckStatLT(FourthNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(FourthNearestEnemyOf(Myself),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FourthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!Range(FourthNearestEnemyOf(Myself),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FourthNearestEnemyOf(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(FifthNearestEnemyOf(Myself))
+	CheckStatLT(FifthNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(FifthNearestEnemyOf(Myself),1,SCRIPTINGSTATE6)
+	!CheckSpellState(FifthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!Range(FifthNearestEnemyOf(Myself),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(FifthNearestEnemyOf(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	CanEquipRanged()
+	HasItem("BOLT03",Myself)
+	See(SixthNearestEnemyOf(Myself))
+	CheckStatLT(SixthNearestEnemyOf(Myself),100,RESISTMISSILE)
+    CheckStatLT(SixthNearestEnemyOf(Myself),1,SCRIPTINGSTATE6)
+	!CheckSpellState(SixthNearestEnemyOf(Myself),MISSILE_IMMUNITY)
+	!Range(SixthNearestEnemyOf(Myself),5)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipRanged()
+		XEquipItem("BOLT03",Myself,SLOT_AMMO0,EQUIP)
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		AttackReevaluate(SixthNearestEnemyOf(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	AreaCheck("AR0530")  // Storehouse
+	See(NearestEnemyOf(Myself))
+	!Range(LastSeenBy(Myself),4)
+	!HasItem("bolt03",Myself)  // Bolt of Lightning
+	Global("Iadoonce","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iadoonce","LOCALS",1)
+		ForceSpell(Myself,GAROCK_TELEPORT)  // SPIN565.SPL (Dimension Door)
+		JumpToPoint([297.576])
+END
+
+
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(NearestEnemyOf(Myself))
+	HPLT(NearestEnemyOf(Myself),40)
+	CheckStatLT(NearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(NearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(NearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(NearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(NearestEnemyOf(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(NearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SecondNearestEnemyOf(Myself))
+	HPLT(SecondNearestEnemyOf(Myself),40)
+	CheckStatLT(SecondNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SecondNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(SecondNearestEnemyOf(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(SecondNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(ThirdNearestEnemyOf(Myself))
+	HPLT(ThirdNearestEnemyOf(Myself),40)
+	CheckStatLT(ThirdNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(ThirdNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(ThirdNearestEnemyOf(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(ThirdNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FourthNearestEnemyOf(Myself))
+	HPLT(FourthNearestEnemyOf(Myself),40)
+	CheckStatLT(FourthNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FourthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(FourthNearestEnemyOf(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(FourthNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FifthNearestEnemyOf(Myself))
+	HPLT(FifthNearestEnemyOf(Myself),40)
+	CheckStatLT(FifthNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FifthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(FifthNearestEnemyOf(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(FifthNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SixthNearestEnemyOf(Myself))
+	HPLT(SixthNearestEnemyOf(Myself),40)
+	CheckStatLT(SixthNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SixthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(SixthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SixthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(SixthNearestEnemyOf(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(SixthNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(NearestEnemyOf(Myself))
+	CheckStatLT(NearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(NearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(NearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(NearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(NearestEnemyOf(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(NearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SecondNearestEnemyOf(Myself))
+	CheckStatLT(SecondNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SecondNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(SecondNearestEnemyOf(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(SecondNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(ThirdNearestEnemyOf(Myself))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(ThirdNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(ThirdNearestEnemyOf(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(ThirdNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FourthNearestEnemyOf(Myself))
+	CheckStatLT(FourthNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FourthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(FourthNearestEnemyOf(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(FourthNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FifthNearestEnemyOf(Myself))
+	CheckStatLT(FifthNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FifthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(FifthNearestEnemyOf(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(FifthNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SixthNearestEnemyOf(Myself))
+	CheckStatLT(SixthNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SixthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(SixthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SixthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(SixthNearestEnemyOf(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(SixthNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(NearestEnemyOf(Myself))
+	CheckStatLT(NearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(NearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(NearestEnemyOf(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(NearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SecondNearestEnemyOf(Myself))
+	CheckStatLT(SecondNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SecondNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(SecondNearestEnemyOf(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(SecondNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(ThirdNearestEnemyOf(Myself))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(ThirdNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(ThirdNearestEnemyOf(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(ThirdNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FourthNearestEnemyOf(Myself))
+	CheckStatLT(FourthNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FourthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(FourthNearestEnemyOf(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(FourthNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FifthNearestEnemyOf(Myself))
+	CheckStatLT(FifthNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FifthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(FifthNearestEnemyOf(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(FifthNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SixthNearestEnemyOf(Myself))
+	CheckStatLT(SixthNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SixthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(SixthNearestEnemyOf(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(SixthNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(NearestEnemyOf(Myself))
+	HPLT(NearestEnemyOf(Myself),40)
+	CheckStatLT(NearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(NearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(NearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(NearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(NearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(NearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SecondNearestEnemyOf(Myself))
+	HPLT(SecondNearestEnemyOf(Myself),40)
+	CheckStatLT(SecondNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SecondNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(SecondNearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(SecondNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(ThirdNearestEnemyOf(Myself))
+	HPLT(ThirdNearestEnemyOf(Myself),40)
+	CheckStatLT(ThirdNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(ThirdNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(ThirdNearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(ThirdNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FourthNearestEnemyOf(Myself))
+	HPLT(FourthNearestEnemyOf(Myself),40)
+	CheckStatLT(FourthNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FourthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(FourthNearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(FourthNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FifthNearestEnemyOf(Myself))
+	HPLT(FifthNearestEnemyOf(Myself),40)
+	CheckStatLT(FifthNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FifthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(FifthNearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(FifthNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SixthNearestEnemyOf(Myself))
+	HPLT(SixthNearestEnemyOf(Myself),40)
+	CheckStatLT(SixthNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SixthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(SixthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SixthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(SixthNearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(SixthNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(NearestEnemyOf(Myself))
+	CheckStatLT(NearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(NearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(NearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(NearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(NearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(NearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SecondNearestEnemyOf(Myself))
+	CheckStatLT(SecondNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SecondNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(SecondNearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(SecondNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(ThirdNearestEnemyOf(Myself))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(ThirdNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(ThirdNearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(ThirdNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FourthNearestEnemyOf(Myself))
+	CheckStatLT(FourthNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FourthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(FourthNearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(FourthNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FifthNearestEnemyOf(Myself))
+	CheckStatLT(FifthNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FifthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(FifthNearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(FifthNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SixthNearestEnemyOf(Myself))
+	CheckStatLT(SixthNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SixthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	!CheckStatGT(SixthNearestEnemyOf(Myself),0,STONESKINS)
+	!StateCheck(SixthNearestEnemyOf(Myself),STATE_MIRRORIMAGE)
+	Range(SixthNearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(SixthNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(NearestEnemyOf(Myself))
+	CheckStatLT(NearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(NearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(NearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(NearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SecondNearestEnemyOf(Myself))
+	CheckStatLT(SecondNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SecondNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(SecondNearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(SecondNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(ThirdNearestEnemyOf(Myself))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(ThirdNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(ThirdNearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(ThirdNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FourthNearestEnemyOf(Myself))
+	CheckStatLT(FourthNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FourthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(FourthNearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(FourthNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FifthNearestEnemyOf(Myself))
+	CheckStatLT(FifthNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FifthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(FifthNearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(FifthNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SixthNearestEnemyOf(Myself))
+	CheckStatLT(SixthNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SixthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(SixthNearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(SixthNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(NearestEnemyOf(Myself))
+	CheckStatLT(NearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(NearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(NearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(NearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SecondNearestEnemyOf(Myself))
+	CheckStatLT(SecondNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SecondNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(SecondNearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(SecondNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(ThirdNearestEnemyOf(Myself))
+	CheckStatLT(ThirdNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(ThirdNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(ThirdNearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(ThirdNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FourthNearestEnemyOf(Myself))
+	CheckStatLT(FourthNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FourthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(FourthNearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(FourthNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(FifthNearestEnemyOf(Myself))
+	CheckStatLT(FifthNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(FifthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(FifthNearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(FifthNearestEnemyOf(Myself),45)
+END
+IF
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See(SixthNearestEnemyOf(Myself))
+	CheckStatLT(SixthNearestEnemyOf(Myself),80,RESISTSLASHING) // PIERCING/CRUSHING/SLASHING
+    !CheckStatGT(SixthNearestEnemyOf(Myself),0,SCRIPTINGSTATE6)
+	Range(SixthNearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("IaAttacking","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(SixthNearestEnemyOf(Myself),45)
+END
+IF
+	ActionListEmpty()
+	See(NearestEnemyOf(Myself))
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		SetGlobal("IaAttacking","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+IF
+	ActionListEmpty()
+	See(SecondNearestEnemyOf(Myself))
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		SetGlobal("IaAttacking","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+IF
+	ActionListEmpty()
+	See(ThirdNearestEnemyOf(Myself))
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		SetGlobal("IaAttacking","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+IF
+	ActionListEmpty()
+	See(FourthNearestEnemyOf(Myself))
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		SetGlobal("IaAttacking","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+IF
+	ActionListEmpty()
+	See(FifthNearestEnemyOf(Myself))
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		SetGlobal("IaAttacking","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+IF
+	ActionListEmpty()
+	See(SixthNearestEnemyOf(Myself))
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		SetGlobal("IaAttacking","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+
+IF
+	!GlobalTimerNotExpired("IaWeaponUnusable","LOCALS")
+	OR(2)
+        !WeaponEffectiveVs(NearestEnemyOf(Myself),MAINHAND)
+        !WeaponCanDamage(NearestEnemyOf(Myself),MAINHAND)
+THEN
+	RESPONSE #100
+	    SetGlobalTimer("IaWeaponUnusable","LOCALS",ONE_ROUND)
+		ClearActions(Myself)
+END
+
+
+IF
+	Allegiance(Myself,ENEMY)
+	AreaCheck("AR0530")  // Storehouse
+	InMyArea(Player1)
+	!See([PC])
+	!See([GOODCUTOFF])
+	!HasItem("bolt03",Myself)  // Bolt of Lightning
+	Global("Iadoonce","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iadoonce","LOCALS",1)
+		ForceSpell(Myself,GAROCK_TELEPORT)  // SPIN565.SPL (Dimension Door)
+		JumpToPoint([297.576])
+END
+
+
+IF
+	Allegiance(Myself,ENEMY)
+    ActionListEmpty()
+	Global("IaChar1Seen","LOCALS",1)
+	!See(Player1)
+	!HPLT(Player1,0)
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    ActionListEmpty()
+	Global("IaChar2Seen","LOCALS",1)
+	!See(Player2)
+	!HPLT(Player2,0)
+	InMyArea(Player2)
+THEN
+	RESPONSE #100
+		MoveToObject(Player2)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    ActionListEmpty()
+	Global("IaChar3Seen","LOCALS",1)
+	!See(Player3)
+	!HPLT(Player3,0)
+	InMyArea(Player3)
+THEN
+	RESPONSE #100
+		MoveToObject(Player3)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    ActionListEmpty()
+	Global("IaChar4Seen","LOCALS",1)
+	!See(Player4)
+	!HPLT(Player4,0)
+	InMyArea(Player4)
+THEN
+	RESPONSE #100
+		MoveToObject(Player4)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    ActionListEmpty()
+	Global("IaChar5Seen","LOCALS",1)
+	!See(Player5)
+	!HPLT(Player5,0)
+	InMyArea(Player5)
+THEN
+	RESPONSE #100
+		MoveToObject(Player5)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+    ActionListEmpty()
+	Global("IaChar6Seen","LOCALS",1)
+	!See(Player6)
+	!HPLT(Player6,0)
+	InMyArea(Player6)
+THEN
+	RESPONSE #100
+		MoveToObject(Player6)
+END
+
+
+IF
+	See(NearestEnemyOf(Myself))
+	ActionListEmpty()
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(SecondNearestEnemyOf(Myself))
+	ActionListEmpty()
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(ThirdNearestEnemyOf(Myself))
+	ActionListEmpty()
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(FourthNearestEnemyOf(Myself))
+	ActionListEmpty()
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(FifthNearestEnemyOf(Myself))
+	ActionListEmpty()
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(SixthNearestEnemyOf(Myself))
+	ActionListEmpty()
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

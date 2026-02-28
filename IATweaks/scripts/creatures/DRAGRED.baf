@@ -73,7 +73,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player1)
 THEN
 	RESPONSE #100
@@ -84,7 +83,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player2)
 THEN
 	RESPONSE #100
@@ -95,7 +93,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player3)
 THEN
 	RESPONSE #100
@@ -106,7 +103,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player4)
 THEN
 	RESPONSE #100
@@ -117,7 +113,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player5)
 THEN
 	RESPONSE #100
@@ -128,21 +123,11 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player6)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("IaChar6SeenTimer","LOCALS",TWO_TURNS)
 		SetGlobal("IaChar6Seen","LOCALS",1)
-		Continue()
-END
-
-IF
-    ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
-THEN
-	RESPONSE #100
-		SetGlobalTimer("IaSeeCharacters","LOCALS",ONE_ROUND)
 		Continue()
 END
 
@@ -1171,7 +1156,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1200,7 +1185,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1229,7 +1214,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1258,7 +1243,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1287,7 +1272,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1316,7 +1301,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1345,7 +1330,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1374,7 +1359,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1403,7 +1388,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1432,7 +1417,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1461,7 +1446,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1490,7 +1475,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1519,7 +1504,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1548,7 +1533,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1577,7 +1562,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1606,7 +1591,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1635,7 +1620,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1664,7 +1649,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1689,7 +1674,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1713,7 +1698,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1737,7 +1722,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1761,7 +1746,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1785,7 +1770,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1809,7 +1794,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -2573,7 +2558,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -2602,7 +2587,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -2631,7 +2616,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -2660,7 +2645,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -2689,7 +2674,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -2718,7 +2703,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -2747,7 +2732,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -2776,7 +2761,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -2805,7 +2790,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -2834,7 +2819,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -2863,7 +2848,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -2892,7 +2877,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -2921,7 +2906,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -2950,7 +2935,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -2979,7 +2964,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -3008,7 +2993,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -3037,7 +3022,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -3066,7 +3051,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -3091,7 +3076,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #150
 	    Continue()
@@ -3115,7 +3100,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #150
 	    Continue()
@@ -3139,7 +3124,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #150
 	    Continue()
@@ -3163,7 +3148,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #150
 	    Continue()
@@ -3187,7 +3172,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #150
 	    Continue()
@@ -3211,7 +3196,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #150
 	    Continue()
@@ -3246,42 +3231,57 @@ END
 
 IF
 	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	See([PC])
-	OR(2)
+	OR(3)
 		CheckStatLT(LastSeenBy(Myself),8,SAVEVSBREATH)
 		CheckStatLT(LastSeenBy(Myself),8,SAVEVSSPELL)
+		CheckStatLT(LastSeenBy(Myself),-8,THAC0)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
 	!GlobalTimerNotExpired("Iagdoom","LOCALS")
 THEN
 	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		SetGlobalTimer("Iagdoom","LOCALS",12)
 		ForceSpellRES("SPINI68",LastSeenBy(Myself))  // Greater Doom
 END
 
 IF
 	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	See(SecondNearest([PC]))
-	OR(2)
+	OR(3)
 		CheckStatLT(LastSeenBy(Myself),8,SAVEVSBREATH)
 		CheckStatLT(LastSeenBy(Myself),8,SAVEVSSPELL)
+		CheckStatLT(LastSeenBy(Myself),-8,THAC0)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
 	!GlobalTimerNotExpired("Iagdoom","LOCALS")
 THEN
 	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		SetGlobalTimer("Iagdoom","LOCALS",12)
 		ForceSpellRES("SPINI68",LastSeenBy(Myself))  // Greater Doom
 END
 
 IF
 	Allegiance(Myself,ENEMY)
-	See(ThirdNearest([PC]))
 	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	See(ThirdNearest([PC]))
+	OR(3)
 		CheckStatLT(LastSeenBy(Myself),8,SAVEVSBREATH)
 		CheckStatLT(LastSeenBy(Myself),8,SAVEVSSPELL)
+		CheckStatLT(LastSeenBy(Myself),-8,THAC0)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE3)
 	!GlobalTimerNotExpired("Iagdoom","LOCALS")
 THEN
 	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		SetGlobalTimer("Iagdoom","LOCALS",12)
 		ForceSpellRES("SPINI68",LastSeenBy(Myself))  // Greater Doom
 END
@@ -4839,650 +4839,6 @@ IF
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(SixthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
-	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-	TriggerOverride(LastSeenBy(Myself), Range([PC], 15))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT([PC],90,MAGICDAMAGERESISTANCE))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT([PC],75,RESISTMAGIC))
-	!TriggerOverride(LastSeenBy(Myself), CheckStat([PC],5,SCRIPTINGSTATE7))
-	!TriggerOverride(LastSeenBy(Myself), HasItemEquiped("S!halb02",[PC]))
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
-		ReallyForceSpellRES("S!SEEREM",Myself)
-		SetInterrupt(TRUE)
-	RESPONSE #50
-	    Continue()
-END
-
-IF
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	OR(2)
-	    CheckStatGT(Myself,0,AURACLEANSING)
-	    !GlobalTimerNotExpired("IaAction","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(SixthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
-	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-	TriggerOverride(LastSeenBy(Myself), Range(SecondNearest([PC]), 15))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(SecondNearest([PC]),90,MAGICDAMAGERESISTANCE))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(SecondNearest([PC]),75,RESISTMAGIC))
-	!TriggerOverride(LastSeenBy(Myself), CheckStat(SecondNearest([PC]),5,SCRIPTINGSTATE7))
-	!TriggerOverride(LastSeenBy(Myself), HasItemEquiped("S!halb02",SecondNearest([PC])))
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
-		ReallyForceSpellRES("S!SEEREM",Myself)
-		SetInterrupt(TRUE)
-	RESPONSE #50
-	    Continue()
-END
-
-IF
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	OR(2)
-	    CheckStatGT(Myself,0,AURACLEANSING)
-	    !GlobalTimerNotExpired("IaAction","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(SixthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
-	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-	TriggerOverride(LastSeenBy(Myself), Range(ThirdNearest([PC]), 15))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(ThirdNearest([PC]),90,MAGICDAMAGERESISTANCE))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(ThirdNearest([PC]),75,RESISTMAGIC))
-	!TriggerOverride(LastSeenBy(Myself), CheckStat(ThirdNearest([PC]),5,SCRIPTINGSTATE7))
-	!TriggerOverride(LastSeenBy(Myself), HasItemEquiped("S!halb02",ThirdNearest([PC])))
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
-		ReallyForceSpellRES("S!SEEREM",Myself)
-		SetInterrupt(TRUE)
-	RESPONSE #50
-	    Continue()
-END
-
-IF
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	OR(2)
-	    CheckStatGT(Myself,0,AURACLEANSING)
-	    !GlobalTimerNotExpired("IaAction","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(FifthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
-	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-	TriggerOverride(LastSeenBy(Myself), Range([PC], 15))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT([PC],90,MAGICDAMAGERESISTANCE))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT([PC],75,RESISTMAGIC))
-	!TriggerOverride(LastSeenBy(Myself), CheckStat([PC],5,SCRIPTINGSTATE7))
-	!TriggerOverride(LastSeenBy(Myself), HasItemEquiped("S!halb02",[PC]))
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
-		ReallyForceSpellRES("S!SEEREM",Myself)
-		SetInterrupt(TRUE)
-	RESPONSE #50
-	    Continue()
-END
-
-IF
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	OR(2)
-	    CheckStatGT(Myself,0,AURACLEANSING)
-	    !GlobalTimerNotExpired("IaAction","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(FifthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
-	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-	TriggerOverride(LastSeenBy(Myself), Range(SecondNearest([PC]), 15))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(SecondNearest([PC]),90,MAGICDAMAGERESISTANCE))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(SecondNearest([PC]),75,RESISTMAGIC))
-	!TriggerOverride(LastSeenBy(Myself), CheckStat(SecondNearest([PC]),5,SCRIPTINGSTATE7))
-	!TriggerOverride(LastSeenBy(Myself), HasItemEquiped("S!halb02",SecondNearest([PC])))
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
-		ReallyForceSpellRES("S!SEEREM",Myself)
-		SetInterrupt(TRUE)
-	RESPONSE #50
-	    Continue()
-END
-
-IF
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	OR(2)
-	    CheckStatGT(Myself,0,AURACLEANSING)
-	    !GlobalTimerNotExpired("IaAction","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(FifthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
-	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-	TriggerOverride(LastSeenBy(Myself), Range(ThirdNearest([PC]), 15))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(ThirdNearest([PC]),90,MAGICDAMAGERESISTANCE))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(ThirdNearest([PC]),75,RESISTMAGIC))
-	!TriggerOverride(LastSeenBy(Myself), CheckStat(ThirdNearest([PC]),5,SCRIPTINGSTATE7))
-	!TriggerOverride(LastSeenBy(Myself), HasItemEquiped("S!halb02",ThirdNearest([PC])))
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
-		ReallyForceSpellRES("S!SEEREM",Myself)
-		SetInterrupt(TRUE)
-	RESPONSE #50
-	    Continue()
-END
-
-IF
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	OR(2)
-	    CheckStatGT(Myself,0,AURACLEANSING)
-	    !GlobalTimerNotExpired("IaAction","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(FourthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
-	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-	TriggerOverride(LastSeenBy(Myself), Range([PC], 15))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT([PC],90,MAGICDAMAGERESISTANCE))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT([PC],75,RESISTMAGIC))
-	!TriggerOverride(LastSeenBy(Myself), CheckStat([PC],5,SCRIPTINGSTATE7))
-	!TriggerOverride(LastSeenBy(Myself), HasItemEquiped("S!halb02",[PC]))
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
-		ReallyForceSpellRES("S!SEEREM",Myself)
-		SetInterrupt(TRUE)
-	RESPONSE #50
-	    Continue()
-END
-
-IF
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	OR(2)
-	    CheckStatGT(Myself,0,AURACLEANSING)
-	    !GlobalTimerNotExpired("IaAction","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(FourthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
-	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-	TriggerOverride(LastSeenBy(Myself), Range(SecondNearest([PC]), 15))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(SecondNearest([PC]),90,MAGICDAMAGERESISTANCE))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(SecondNearest([PC]),75,RESISTMAGIC))
-	!TriggerOverride(LastSeenBy(Myself), CheckStat(SecondNearest([PC]),5,SCRIPTINGSTATE7))
-	!TriggerOverride(LastSeenBy(Myself), HasItemEquiped("S!halb02",SecondNearest([PC])))
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
-		ReallyForceSpellRES("S!SEEREM",Myself)
-		SetInterrupt(TRUE)
-	RESPONSE #50
-	    Continue()
-END
-
-IF
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	OR(2)
-	    CheckStatGT(Myself,0,AURACLEANSING)
-	    !GlobalTimerNotExpired("IaAction","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(FourthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
-	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-	TriggerOverride(LastSeenBy(Myself), Range(ThirdNearest([PC]), 15))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(ThirdNearest([PC]),90,MAGICDAMAGERESISTANCE))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(ThirdNearest([PC]),75,RESISTMAGIC))
-	!TriggerOverride(LastSeenBy(Myself), CheckStat(ThirdNearest([PC]),5,SCRIPTINGSTATE7))
-	!TriggerOverride(LastSeenBy(Myself), HasItemEquiped("S!halb02",ThirdNearest([PC])))
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
-		ReallyForceSpellRES("S!SEEREM",Myself)
-		SetInterrupt(TRUE)
-	RESPONSE #50
-	    Continue()
-END
-
-IF
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	OR(2)
-	    CheckStatGT(Myself,0,AURACLEANSING)
-	    !GlobalTimerNotExpired("IaAction","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(ThirdNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
-	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-	TriggerOverride(LastSeenBy(Myself), Range([PC], 15))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT([PC],90,MAGICDAMAGERESISTANCE))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT([PC],75,RESISTMAGIC))
-	!TriggerOverride(LastSeenBy(Myself), CheckStat([PC],5,SCRIPTINGSTATE7))
-	!TriggerOverride(LastSeenBy(Myself), HasItemEquiped("S!halb02",[PC]))
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
-		ReallyForceSpellRES("S!SEEREM",Myself)
-		SetInterrupt(TRUE)
-	RESPONSE #50
-	    Continue()
-END
-
-IF
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	OR(2)
-	    CheckStatGT(Myself,0,AURACLEANSING)
-	    !GlobalTimerNotExpired("IaAction","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(ThirdNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
-	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-	TriggerOverride(LastSeenBy(Myself), Range(SecondNearest([PC]), 15))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(SecondNearest([PC]),90,MAGICDAMAGERESISTANCE))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(SecondNearest([PC]),75,RESISTMAGIC))
-	!TriggerOverride(LastSeenBy(Myself), CheckStat(SecondNearest([PC]),5,SCRIPTINGSTATE7))
-	!TriggerOverride(LastSeenBy(Myself), HasItemEquiped("S!halb02",SecondNearest([PC])))
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
-		ReallyForceSpellRES("S!SEEREM",Myself)
-		SetInterrupt(TRUE)
-	RESPONSE #50
-	    Continue()
-END
-
-IF
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	OR(2)
-	    CheckStatGT(Myself,0,AURACLEANSING)
-	    !GlobalTimerNotExpired("IaAction","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(ThirdNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
-	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-	TriggerOverride(LastSeenBy(Myself), Range(ThirdNearest([PC]), 15))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(ThirdNearest([PC]),90,MAGICDAMAGERESISTANCE))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(ThirdNearest([PC]),75,RESISTMAGIC))
-	!TriggerOverride(LastSeenBy(Myself), CheckStat(ThirdNearest([PC]),5,SCRIPTINGSTATE7))
-	!TriggerOverride(LastSeenBy(Myself), HasItemEquiped("S!halb02",ThirdNearest([PC])))
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
-		ReallyForceSpellRES("S!SEEREM",Myself)
-		SetInterrupt(TRUE)
-	RESPONSE #50
-	    Continue()
-END
-
-IF
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	OR(2)
-	    CheckStatGT(Myself,0,AURACLEANSING)
-	    !GlobalTimerNotExpired("IaAction","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(SecondNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
-	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-	TriggerOverride(LastSeenBy(Myself), Range([PC], 15))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT([PC],90,MAGICDAMAGERESISTANCE))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT([PC],75,RESISTMAGIC))
-	!TriggerOverride(LastSeenBy(Myself), CheckStat([PC],5,SCRIPTINGSTATE7))
-	!TriggerOverride(LastSeenBy(Myself), HasItemEquiped("S!halb02",[PC]))
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
-		ReallyForceSpellRES("S!SEEREM",Myself)
-		SetInterrupt(TRUE)
-	RESPONSE #50
-	    Continue()
-END
-
-IF
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	OR(2)
-	    CheckStatGT(Myself,0,AURACLEANSING)
-	    !GlobalTimerNotExpired("IaAction","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(SecondNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
-	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-	TriggerOverride(LastSeenBy(Myself), Range(SecondNearest([PC]), 15))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(SecondNearest([PC]),90,MAGICDAMAGERESISTANCE))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(SecondNearest([PC]),75,RESISTMAGIC))
-	!TriggerOverride(LastSeenBy(Myself), CheckStat(SecondNearest([PC]),5,SCRIPTINGSTATE7))
-	!TriggerOverride(LastSeenBy(Myself), HasItemEquiped("S!halb02",SecondNearest([PC])))
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
-		ReallyForceSpellRES("S!SEEREM",Myself)
-		SetInterrupt(TRUE)
-	RESPONSE #50
-	    Continue()
-END
-
-IF
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	OR(2)
-	    CheckStatGT(Myself,0,AURACLEANSING)
-	    !GlobalTimerNotExpired("IaAction","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(SecondNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
-	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-	TriggerOverride(LastSeenBy(Myself), Range(ThirdNearest([PC]), 15))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(ThirdNearest([PC]),90,MAGICDAMAGERESISTANCE))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(ThirdNearest([PC]),75,RESISTMAGIC))
-	!TriggerOverride(LastSeenBy(Myself), CheckStat(ThirdNearest([PC]),5,SCRIPTINGSTATE7))
-	!TriggerOverride(LastSeenBy(Myself), HasItemEquiped("S!halb02",ThirdNearest([PC])))
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
-		ReallyForceSpellRES("S!SEEREM",Myself)
-		SetInterrupt(TRUE)
-	RESPONSE #50
-	    Continue()
-END
-
-IF
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	OR(2)
-	    CheckStatGT(Myself,0,AURACLEANSING)
-	    !GlobalTimerNotExpired("IaAction","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See([PC])
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
-	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-	TriggerOverride(LastSeenBy(Myself), Range([PC], 15))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT([PC],90,MAGICDAMAGERESISTANCE))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT([PC],75,RESISTMAGIC))
-	!TriggerOverride(LastSeenBy(Myself), CheckStat([PC],5,SCRIPTINGSTATE7))
-	!TriggerOverride(LastSeenBy(Myself), HasItemEquiped("S!halb02",[PC]))
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
-		ReallyForceSpellRES("S!SEEREM",Myself)
-		SetInterrupt(TRUE)
-	RESPONSE #50
-	    Continue()
-END
-
-IF
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	OR(2)
-	    CheckStatGT(Myself,0,AURACLEANSING)
-	    !GlobalTimerNotExpired("IaAction","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See([PC])
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
-	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-	TriggerOverride(LastSeenBy(Myself), Range(SecondNearest([PC]), 15))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(SecondNearest([PC]),90,MAGICDAMAGERESISTANCE))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(SecondNearest([PC]),75,RESISTMAGIC))
-	!TriggerOverride(LastSeenBy(Myself), CheckStat(SecondNearest([PC]),5,SCRIPTINGSTATE7))
-	!TriggerOverride(LastSeenBy(Myself), HasItemEquiped("S!halb02",SecondNearest([PC])))
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
-		ReallyForceSpellRES("S!SEEREM",Myself)
-		SetInterrupt(TRUE)
-	RESPONSE #50
-	    Continue()
-END
-
-IF
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	OR(2)
-	    CheckStatGT(Myself,0,AURACLEANSING)
-	    !GlobalTimerNotExpired("IaAction","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See([PC])
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(LastSeenBy(Myself),50,MAGICDAMAGERESISTANCE)
-	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-	!CheckStat(LastSeenBy(Myself),5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-	TriggerOverride(LastSeenBy(Myself), Range(ThirdNearest([PC]), 15))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(ThirdNearest([PC]),90,MAGICDAMAGERESISTANCE))
-	TriggerOverride(LastSeenBy(Myself), CheckStatLT(ThirdNearest([PC]),75,RESISTMAGIC))
-	!TriggerOverride(LastSeenBy(Myself), CheckStat(ThirdNearest([PC]),5,SCRIPTINGSTATE7))
-	!TriggerOverride(LastSeenBy(Myself), HasItemEquiped("S!halb02",ThirdNearest([PC])))
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
-		ReallyForceSpellRES("S!SEEREM",Myself)
-		SetInterrupt(TRUE)
-	RESPONSE #50
-	    Continue()
-END
-
-
-IF
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	OR(2)
-	    CheckStatGT(Myself,0,AURACLEANSING)
-	    !GlobalTimerNotExpired("IaAction","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See([PC])
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT([PC],50,MAGICDAMAGERESISTANCE)
-	CheckStatLT([PC],50,RESISTMAGIC)
-	!CheckStat([PC],5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
-		ReallyForceSpellRES("S!SEEREM",Myself)
-		SetInterrupt(TRUE)
-	RESPONSE #100
-	    Continue()
-END
-
-IF
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	OR(2)
-	    CheckStatGT(Myself,0,AURACLEANSING)
-	    !GlobalTimerNotExpired("IaAction","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(SecondNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(SecondNearest([PC]),50,MAGICDAMAGERESISTANCE)
-	CheckStatLT(SecondNearest([PC]),50,RESISTMAGIC)
-	!CheckStat(SecondNearest([PC]),5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
-		ReallyForceSpellRES("S!SEEREM",Myself)
-		SetInterrupt(TRUE)
-	RESPONSE #100
-	    Continue()
-END
-
-IF
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	OR(2)
-	    CheckStatGT(Myself,0,AURACLEANSING)
-	    !GlobalTimerNotExpired("IaAction","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(ThirdNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(ThirdNearest([PC]),50,MAGICDAMAGERESISTANCE)
-	CheckStatLT(ThirdNearest([PC]),50,RESISTMAGIC)
-	!CheckStat(ThirdNearest([PC]),5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
-		ReallyForceSpellRES("S!SEEREM",Myself)
-		SetInterrupt(TRUE)
-	RESPONSE #100
-	    Continue()
-END
-
-IF
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	OR(2)
-	    CheckStatGT(Myself,0,AURACLEANSING)
-	    !GlobalTimerNotExpired("IaAction","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(FourthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(FourthNearest([PC]),50,MAGICDAMAGERESISTANCE)
-	CheckStatLT(FourthNearest([PC]),50,RESISTMAGIC)
-	!CheckStat(FourthNearest([PC]),5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
-		ReallyForceSpellRES("S!SEEREM",Myself)
-		SetInterrupt(TRUE)
-	RESPONSE #100
-	    Continue()
-END
-
-IF
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	OR(2)
-	    CheckStatGT(Myself,0,AURACLEANSING)
-	    !GlobalTimerNotExpired("IaAction","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(FifthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	CheckStatLT(FifthNearest([PC]),50,MAGICDAMAGERESISTANCE)
-	CheckStatLT(FifthNearest([PC]),50,RESISTMAGIC)
-	!CheckStat(FifthNearest([PC]),5,SCRIPTINGSTATE7)
-	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
-		ReallyForceSpellRES("S!SEEREM",Myself)
-		SetInterrupt(TRUE)
-	RESPONSE #100
-	    Continue()
-END
-
-IF
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	OR(2)
-	    CheckStatGT(Myself,0,AURACLEANSING)
-	    !GlobalTimerNotExpired("IaAction","LOCALS")
-	Allegiance(Myself,ENEMY)
-	See(SixthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	CheckStatLT(SixthNearest([PC]),50,MAGICDAMAGERESISTANCE)
 	CheckStatLT(SixthNearest([PC]),50,RESISTMAGIC)
 	!CheckStat(SixthNearest([PC]),5,SCRIPTINGSTATE7)
@@ -5492,7 +4848,561 @@ THEN
 		SetInterrupt(FALSE)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC]))
+	CheckStatLT(SixthNearest([PC]),50,MAGICDAMAGERESISTANCE)
+	CheckStatLT(SixthNearest([PC]),50,RESISTMAGIC)
+	!CheckStat(SixthNearest([PC]),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC]))
+	CheckStatLT(SixthNearest([PC]),50,MAGICDAMAGERESISTANCE)
+	CheckStatLT(SixthNearest([PC]),50,RESISTMAGIC)
+	!CheckStat(SixthNearest([PC]),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC]))
+	CheckStatLT(FifthNearest([PC]),50,MAGICDAMAGERESISTANCE)
+	CheckStatLT(FifthNearest([PC]),50,RESISTMAGIC)
+	!CheckStat(FifthNearest([PC]),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC]))
+	CheckStatLT(FifthNearest([PC]),50,MAGICDAMAGERESISTANCE)
+	CheckStatLT(FifthNearest([PC]),50,RESISTMAGIC)
+	!CheckStat(FifthNearest([PC]),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC]))
+	CheckStatLT(FifthNearest([PC]),50,MAGICDAMAGERESISTANCE)
+	CheckStatLT(FifthNearest([PC]),50,RESISTMAGIC)
+	!CheckStat(FifthNearest([PC]),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC]))
+	CheckStatLT(FourthNearest([PC]),50,MAGICDAMAGERESISTANCE)
+	CheckStatLT(FourthNearest([PC]),50,RESISTMAGIC)
+	!CheckStat(FourthNearest([PC]),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC]))
+	CheckStatLT(FourthNearest([PC]),50,MAGICDAMAGERESISTANCE)
+	CheckStatLT(FourthNearest([PC]),50,RESISTMAGIC)
+	!CheckStat(FourthNearest([PC]),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC]))
+	CheckStatLT(FourthNearest([PC]),50,MAGICDAMAGERESISTANCE)
+	CheckStatLT(FourthNearest([PC]),50,RESISTMAGIC)
+	!CheckStat(FourthNearest([PC]),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC]))
+	CheckStatLT(ThirdNearest([PC]),50,MAGICDAMAGERESISTANCE)
+	CheckStatLT(ThirdNearest([PC]),50,RESISTMAGIC)
+	!CheckStat(ThirdNearest([PC]),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC]))
+	CheckStatLT(ThirdNearest([PC]),50,MAGICDAMAGERESISTANCE)
+	CheckStatLT(ThirdNearest([PC]),50,RESISTMAGIC)
+	!CheckStat(ThirdNearest([PC]),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC]))
+	CheckStatLT(ThirdNearest([PC]),50,MAGICDAMAGERESISTANCE)
+	CheckStatLT(ThirdNearest([PC]),50,RESISTMAGIC)
+	!CheckStat(ThirdNearest([PC]),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC]))
+	CheckStatLT(SecondNearest([PC]),50,MAGICDAMAGERESISTANCE)
+	CheckStatLT(SecondNearest([PC]),50,RESISTMAGIC)
+	!CheckStat(SecondNearest([PC]),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC]))
+	CheckStatLT(SecondNearest([PC]),50,MAGICDAMAGERESISTANCE)
+	CheckStatLT(SecondNearest([PC]),50,RESISTMAGIC)
+	!CheckStat(SecondNearest([PC]),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC]))
+	CheckStatLT(SecondNearest([PC]),50,MAGICDAMAGERESISTANCE)
+	CheckStatLT(SecondNearest([PC]),50,RESISTMAGIC)
+	!CheckStat(SecondNearest([PC]),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	CheckStatLT([PC],50,MAGICDAMAGERESISTANCE)
+	CheckStatLT([PC],50,RESISTMAGIC)
+	!CheckStat([PC],5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	CheckStatLT([PC],50,MAGICDAMAGERESISTANCE)
+	CheckStatLT([PC],50,RESISTMAGIC)
+	!CheckStat([PC],5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+IF
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	CheckStatLT([PC],50,MAGICDAMAGERESISTANCE)
+	CheckStatLT([PC],50,RESISTMAGIC)
+	!CheckStat([PC],5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #50
+	    Continue()
+END
+
+
+IF
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	CheckStatLT([PC],50,MAGICDAMAGERESISTANCE)
+	CheckStatLT([PC],50,RESISTMAGIC)
+	!CheckStat([PC],5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #100
+	    Continue()
+END
+
+IF
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SecondNearest([PC]))
+	CheckStatLT(SecondNearest([PC]),50,MAGICDAMAGERESISTANCE)
+	CheckStatLT(SecondNearest([PC]),50,RESISTMAGIC)
+	!CheckStat(SecondNearest([PC]),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #100
+	    Continue()
+END
+
+IF
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(ThirdNearest([PC]))
+	CheckStatLT(ThirdNearest([PC]),50,MAGICDAMAGERESISTANCE)
+	CheckStatLT(ThirdNearest([PC]),50,RESISTMAGIC)
+	!CheckStat(ThirdNearest([PC]),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #100
+	    Continue()
+END
+
+IF
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FourthNearest([PC]))
+	CheckStatLT(FourthNearest([PC]),50,MAGICDAMAGERESISTANCE)
+	CheckStatLT(FourthNearest([PC]),50,RESISTMAGIC)
+	!CheckStat(FourthNearest([PC]),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #100
+	    Continue()
+END
+
+IF
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(FifthNearest([PC]))
+	CheckStatLT(FifthNearest([PC]),50,MAGICDAMAGERESISTANCE)
+	CheckStatLT(FifthNearest([PC]),50,RESISTMAGIC)
+	!CheckStat(FifthNearest([PC]),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		ReallyForceSpellRES("S!SEEREM",Myself)
+		SetInterrupt(TRUE)
+	RESPONSE #100
+	    Continue()
+END
+
+IF
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(SixthNearest([PC]))
+	CheckStatLT(SixthNearest([PC]),50,MAGICDAMAGERESISTANCE)
+	CheckStatLT(SixthNearest([PC]),50,RESISTMAGIC)
+	!CheckStat(SixthNearest([PC]),5,SCRIPTINGSTATE7)
+	!HasItemEquiped("S!halb02",LastSeenBy(Myself))  // Poseidon's Wrath +5
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		ReallyForceSpellRES("S!SEEAOE",Myself)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
 		ReallyForceSpellRES("S!SEEREM",Myself)
 		SetInterrupt(TRUE)
 	RESPONSE #100
@@ -5507,7 +5417,6 @@ IF
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See([PC])
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	CheckStatLT([PC],90,MAGICDAMAGERESISTANCE)
 	CheckStatLT([PC],60,RESISTMAGIC)
 	!CheckStat([PC],5,SCRIPTINGSTATE7)
@@ -5517,7 +5426,8 @@ THEN
 		SetInterrupt(FALSE)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
 		ReallyForceSpellRES("S!SEEREM",Myself)
 		SetInterrupt(TRUE)
 	RESPONSE #300
@@ -5531,7 +5441,6 @@ IF
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(SecondNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	CheckStatLT(SecondNearest([PC]),90,MAGICDAMAGERESISTANCE)
 	CheckStatLT(SecondNearest([PC]),60,RESISTMAGIC)
 	!CheckStat(SecondNearest([PC]),5,SCRIPTINGSTATE7)
@@ -5541,7 +5450,8 @@ THEN
 		SetInterrupt(FALSE)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
 		ReallyForceSpellRES("S!SEEREM",Myself)
 		SetInterrupt(TRUE)
 	RESPONSE #300
@@ -5555,7 +5465,6 @@ IF
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(ThirdNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	CheckStatLT(ThirdNearest([PC]),90,MAGICDAMAGERESISTANCE)
 	CheckStatLT(ThirdNearest([PC]),60,RESISTMAGIC)
 	!CheckStat(ThirdNearest([PC]),5,SCRIPTINGSTATE7)
@@ -5565,7 +5474,8 @@ THEN
 		SetInterrupt(FALSE)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
 		ReallyForceSpellRES("S!SEEREM",Myself)
 		SetInterrupt(TRUE)
 	RESPONSE #300
@@ -5579,7 +5489,6 @@ IF
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(FourthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	CheckStatLT(FourthNearest([PC]),90,MAGICDAMAGERESISTANCE)
 	CheckStatLT(FourthNearest([PC]),60,RESISTMAGIC)
 	!CheckStat(FourthNearest([PC]),5,SCRIPTINGSTATE7)
@@ -5589,7 +5498,8 @@ THEN
 		SetInterrupt(FALSE)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
 		ReallyForceSpellRES("S!SEEREM",Myself)
 		SetInterrupt(TRUE)
 	RESPONSE #300
@@ -5603,7 +5513,6 @@ IF
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(FifthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	CheckStatLT(FifthNearest([PC]),90,MAGICDAMAGERESISTANCE)
 	CheckStatLT(FifthNearest([PC]),60,RESISTMAGIC)
 	!CheckStat(FifthNearest([PC]),5,SCRIPTINGSTATE7)
@@ -5613,7 +5522,8 @@ THEN
 		SetInterrupt(FALSE)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
 		ReallyForceSpellRES("S!SEEREM",Myself)
 		SetInterrupt(TRUE)
 	RESPONSE #300
@@ -5627,7 +5537,6 @@ IF
 	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	Allegiance(Myself,ENEMY)
 	See(SixthNearest([PC]))
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	CheckStatLT(SixthNearest([PC]),90,MAGICDAMAGERESISTANCE)
 	CheckStatLT(SixthNearest([PC]),60,RESISTMAGIC)
 	!CheckStat(SixthNearest([PC]),5,SCRIPTINGSTATE7)
@@ -5637,7 +5546,8 @@ THEN
 		SetInterrupt(FALSE)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		ReallyForceSpellRES("S!SEEAOE",Myself)
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
+		RemoveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)  // SPWI812.SPL (Abi-Dalzim's Horrid Wilting)
 		ReallyForceSpellRES("S!SEEREM",Myself)
 		SetInterrupt(TRUE)
 	RESPONSE #300
@@ -7271,6 +7181,16 @@ IF
 	InMyArea(Player1)
 	Allegiance(Myself,ENEMY)
 	Global("partyfled","LOCALS",1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	!Detect([PC])
+	!Detect([GOODCUTOFF])
+	InMyArea(Player1)
+	Allegiance(Myself,ENEMY)
 THEN
 	RESPONSE #100
 		MoveToObject(Player1)

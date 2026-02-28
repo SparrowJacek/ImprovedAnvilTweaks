@@ -8,6 +8,14 @@ THEN
 		DestroySelf()
 END
 
+IF
+	!Dead("GAROCK")  // Garock
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("S!INVTEL","GAROCK")  // No such index
+		Continue()
+END
+
 
 IF
 	!GlobalTimerNotExpired("IaPushGarock","LOCALS")
@@ -18,7 +26,7 @@ IF
 	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
 THEN
 	RESPONSE #100
-		SetGlobalTimer("IaShouldStopGarock","LOCALS",1)
+		SetGlobalTimer("IaShouldStopGarock","LOCALS",2)
 		SetGlobal("IaStoppingGarock","LOCALS",1)
 END
 
@@ -31,7 +39,6 @@ IF
 	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
 THEN
 	RESPONSE #100
-		SetGlobalTimer("IaPushGarock","LOCALS",2)
 		ReallyForceSpellRES("S!WHRWN2","GAROCK")
 		ClearActions("GAROCK")
 END
@@ -39,7 +46,7 @@ END
 IF
 	Global("IaStoppingGarock","LOCALS",1)
 	!Dead("GAROCK")
-	TriggerOverride("GAROCK",Global("IaWhrwnd","LOCALS",1))
+	!GlobalTimerNotExpired("IaShouldStopGarock","LOCALS")
 THEN
 	RESPONSE #100
 		SetGlobal("IaStoppingGarock","LOCALS",0)

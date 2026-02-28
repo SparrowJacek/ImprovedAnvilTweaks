@@ -107,7 +107,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player1)
 THEN
 	RESPONSE #100
@@ -118,7 +117,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player2)
 THEN
 	RESPONSE #100
@@ -129,7 +127,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player3)
 THEN
 	RESPONSE #100
@@ -140,7 +137,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player4)
 THEN
 	RESPONSE #100
@@ -151,7 +147,6 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player5)
 THEN
 	RESPONSE #100
@@ -162,21 +157,11 @@ END
 
 IF
     ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
 	See(Player6)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("IaChar6SeenTimer","LOCALS",TWO_TURNS)
 		SetGlobal("IaChar6Seen","LOCALS",1)
-		Continue()
-END
-
-IF
-    ActionListEmpty()
-	!GlobalTimerNotExpired("IaSeeCharacters","LOCALS")
-THEN
-	RESPONSE #100
-		SetGlobalTimer("IaSeeCharacters","LOCALS",ONE_ROUND)
 		Continue()
 END
 
@@ -905,7 +890,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(SixthNearest([PC]), CheckStatLT([PC],50,RESISTFIRE))
-	TriggerOverride(SixthNearest([PC]), CheckSpellState([PC],SI_EVOCATION))
+	!TriggerOverride(SixthNearest([PC]), CheckSpellState([PC],SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -938,7 +923,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(SixthNearest([PC]), CheckStatLT(SecondNearest([PC]),50,RESISTFIRE))
-	TriggerOverride(SixthNearest([PC]), CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
+	!TriggerOverride(SixthNearest([PC]), CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -971,7 +956,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(SixthNearest([PC]), CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE))
-	TriggerOverride(SixthNearest([PC]), CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
+	!TriggerOverride(SixthNearest([PC]), CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -1004,7 +989,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(FifthNearest([PC]), CheckStatLT([PC],50,RESISTFIRE))
-	TriggerOverride(FifthNearest([PC]), CheckSpellState([PC],SI_EVOCATION))
+	!TriggerOverride(FifthNearest([PC]), CheckSpellState([PC],SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -1037,7 +1022,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(FifthNearest([PC]), CheckStatLT(SecondNearest([PC]),50,RESISTFIRE))
-	TriggerOverride(FifthNearest([PC]), CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
+	!TriggerOverride(FifthNearest([PC]), CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -1070,7 +1055,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(FifthNearest([PC]), CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE))
-	TriggerOverride(FifthNearest([PC]), CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
+	!TriggerOverride(FifthNearest([PC]), CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -1103,7 +1088,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(FourthNearest([PC]), CheckStatLT([PC],50,RESISTFIRE))
-	TriggerOverride(FourthNearest([PC]), CheckSpellState([PC],SI_EVOCATION))
+	!TriggerOverride(FourthNearest([PC]), CheckSpellState([PC],SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -1136,7 +1121,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(FourthNearest([PC]), CheckStatLT(SecondNearest([PC]),50,RESISTFIRE))
-	TriggerOverride(FourthNearest([PC]), CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
+	!TriggerOverride(FourthNearest([PC]), CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -1169,7 +1154,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(FourthNearest([PC]), CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE))
-	TriggerOverride(FourthNearest([PC]), CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
+	!TriggerOverride(FourthNearest([PC]), CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -1202,7 +1187,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(ThirdNearest([PC]), CheckStatLT([PC],50,RESISTFIRE))
-	TriggerOverride(ThirdNearest([PC]), CheckSpellState([PC],SI_EVOCATION))
+	!TriggerOverride(ThirdNearest([PC]), CheckSpellState([PC],SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -1235,7 +1220,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(ThirdNearest([PC]), CheckStatLT(SecondNearest([PC]),50,RESISTFIRE))
-	TriggerOverride(ThirdNearest([PC]), CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
+	!TriggerOverride(ThirdNearest([PC]), CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -1268,7 +1253,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(ThirdNearest([PC]), CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE))
-	TriggerOverride(ThirdNearest([PC]), CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
+	!TriggerOverride(ThirdNearest([PC]), CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -1301,7 +1286,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(SecondNearest([PC]), CheckStatLT([PC],50,RESISTFIRE))
-	TriggerOverride(SecondNearest([PC]), CheckSpellState([PC],SI_EVOCATION))
+	!TriggerOverride(SecondNearest([PC]), CheckSpellState([PC],SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -1334,7 +1319,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(SecondNearest([PC]), CheckStatLT(SecondNearest([PC]),50,RESISTFIRE))
-	TriggerOverride(SecondNearest([PC]), CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
+	!TriggerOverride(SecondNearest([PC]), CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -1367,7 +1352,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(SecondNearest([PC]), CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE))
-	TriggerOverride(SecondNearest([PC]), CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
+	!TriggerOverride(SecondNearest([PC]), CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -1400,7 +1385,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride([PC], CheckStatLT([PC],50,RESISTFIRE))
-	TriggerOverride([PC], CheckSpellState([PC],SI_EVOCATION))
+	!TriggerOverride([PC], CheckSpellState([PC],SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -1433,7 +1418,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride([PC], CheckStatLT(SecondNearest([PC]),50,RESISTFIRE))
-	TriggerOverride([PC], CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
+	!TriggerOverride([PC], CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -1466,7 +1451,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),50,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride([PC], CheckStatLT(ThirdNearest([PC]),50,RESISTFIRE))
-	TriggerOverride([PC], CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
+	!TriggerOverride([PC], CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -3292,8 +3277,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -3315,8 +3300,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -3338,8 +3323,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -3361,8 +3346,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -3384,8 +3369,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -3407,8 +3392,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -3913,8 +3898,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -3939,8 +3924,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -3965,8 +3950,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -3991,8 +3976,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -4017,8 +4002,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -4043,8 +4028,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -4066,8 +4051,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -4089,8 +4074,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -4112,8 +4097,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -4135,8 +4120,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -4158,8 +4143,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -4181,8 +4166,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -5552,8 +5537,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #200
 	    Continue()
 END
@@ -5579,8 +5564,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #200
 	    Continue()
 END
@@ -5606,8 +5591,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #200
 	    Continue()
 END
@@ -5633,8 +5618,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #200
 	    Continue()
 END
@@ -5660,8 +5645,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #200
 	    Continue()
 END
@@ -5687,8 +5672,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #200
 	    Continue()
 END
@@ -5711,7 +5696,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),70,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(SixthNearest([PC]), CheckStatLT([PC],70,RESISTFIRE))
-	TriggerOverride(SixthNearest([PC]), CheckSpellState([PC],SI_EVOCATION))
+	!TriggerOverride(SixthNearest([PC]), CheckSpellState([PC],SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -5744,7 +5729,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),70,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(SixthNearest([PC]), CheckStatLT(SecondNearest([PC]),70,RESISTFIRE))
-	TriggerOverride(SixthNearest([PC]), CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
+	!TriggerOverride(SixthNearest([PC]), CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -5777,7 +5762,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),70,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(SixthNearest([PC]), CheckStatLT(ThirdNearest([PC]),70,RESISTFIRE))
-	TriggerOverride(SixthNearest([PC]), CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
+	!TriggerOverride(SixthNearest([PC]), CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -5810,7 +5795,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),70,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(FifthNearest([PC]), CheckStatLT([PC],70,RESISTFIRE))
-	TriggerOverride(FifthNearest([PC]), CheckSpellState([PC],SI_EVOCATION))
+	!TriggerOverride(FifthNearest([PC]), CheckSpellState([PC],SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -5843,7 +5828,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),70,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(FifthNearest([PC]), CheckStatLT(SecondNearest([PC]),70,RESISTFIRE))
-	TriggerOverride(FifthNearest([PC]), CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
+	!TriggerOverride(FifthNearest([PC]), CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -5876,7 +5861,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),70,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(FifthNearest([PC]), CheckStatLT(ThirdNearest([PC]),70,RESISTFIRE))
-	TriggerOverride(FifthNearest([PC]), CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
+	!TriggerOverride(FifthNearest([PC]), CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -5909,7 +5894,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),70,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(FourthNearest([PC]), CheckStatLT([PC],70,RESISTFIRE))
-	TriggerOverride(FourthNearest([PC]), CheckSpellState([PC],SI_EVOCATION))
+	!TriggerOverride(FourthNearest([PC]), CheckSpellState([PC],SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -5942,7 +5927,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),70,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(FourthNearest([PC]), CheckStatLT(SecondNearest([PC]),70,RESISTFIRE))
-	TriggerOverride(FourthNearest([PC]), CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
+	!TriggerOverride(FourthNearest([PC]), CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -5975,7 +5960,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),70,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(FourthNearest([PC]), CheckStatLT(ThirdNearest([PC]),70,RESISTFIRE))
-	TriggerOverride(FourthNearest([PC]), CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
+	!TriggerOverride(FourthNearest([PC]), CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -6008,7 +5993,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),70,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(ThirdNearest([PC]), CheckStatLT([PC],70,RESISTFIRE))
-	TriggerOverride(ThirdNearest([PC]), CheckSpellState([PC],SI_EVOCATION))
+	!TriggerOverride(ThirdNearest([PC]), CheckSpellState([PC],SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -6041,7 +6026,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),70,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(ThirdNearest([PC]), CheckStatLT(SecondNearest([PC]),70,RESISTFIRE))
-	TriggerOverride(ThirdNearest([PC]), CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
+	!TriggerOverride(ThirdNearest([PC]), CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -6074,7 +6059,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),70,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(ThirdNearest([PC]), CheckStatLT(ThirdNearest([PC]),70,RESISTFIRE))
-	TriggerOverride(ThirdNearest([PC]), CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
+	!TriggerOverride(ThirdNearest([PC]), CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -6107,7 +6092,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),70,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(SecondNearest([PC]), CheckStatLT([PC],70,RESISTFIRE))
-	TriggerOverride(SecondNearest([PC]), CheckSpellState([PC],SI_EVOCATION))
+	!TriggerOverride(SecondNearest([PC]), CheckSpellState([PC],SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -6140,7 +6125,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),70,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(SecondNearest([PC]), CheckStatLT(SecondNearest([PC]),70,RESISTFIRE))
-	TriggerOverride(SecondNearest([PC]), CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
+	!TriggerOverride(SecondNearest([PC]), CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -6173,7 +6158,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),70,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride(SecondNearest([PC]), CheckStatLT(ThirdNearest([PC]),70,RESISTFIRE))
-	TriggerOverride(SecondNearest([PC]), CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
+	!TriggerOverride(SecondNearest([PC]), CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -6206,7 +6191,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),70,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride([PC], CheckStatLT([PC],70,RESISTFIRE))
-	TriggerOverride([PC], CheckSpellState([PC],SI_EVOCATION))
+	!TriggerOverride([PC], CheckSpellState([PC],SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -6239,7 +6224,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),70,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride([PC], CheckStatLT(SecondNearest([PC]),70,RESISTFIRE))
-	TriggerOverride([PC], CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
+	!TriggerOverride([PC], CheckSpellState(SecondNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -6272,7 +6257,7 @@ IF
 	CheckStatLT(LastSeenBy(Myself),70,RESISTFIRE)
     !CheckSpellState(LastSeenBy(Myself),SI_EVOCATION)
 	TriggerOverride([PC], CheckStatLT(ThirdNearest([PC]),70,RESISTFIRE))
-	TriggerOverride([PC], CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
+	!TriggerOverride([PC], CheckSpellState(ThirdNearest([PC]),SI_EVOCATION))
 	Global("IaSpellTrigger","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -7403,8 +7388,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_SECRET_WORD)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #150
 	    Continue()
 END
@@ -7432,8 +7417,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_SECRET_WORD)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #150
 	    Continue()
 END
@@ -7461,8 +7446,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_SECRET_WORD)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #150
 	    Continue()
 END
@@ -7490,8 +7475,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_SECRET_WORD)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #150
 	    Continue()
 END
@@ -7519,8 +7504,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_SECRET_WORD)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #150
 	    Continue()
 END
@@ -7548,8 +7533,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_SECRET_WORD)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #150
 	    Continue()
 END
@@ -7572,8 +7557,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -7597,8 +7582,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -7622,8 +7607,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -7647,8 +7632,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -7672,8 +7657,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -7697,8 +7682,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -9874,8 +9859,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -9900,8 +9885,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -9926,8 +9911,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -9952,8 +9937,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -9978,8 +9963,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -10004,8 +9989,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_RUBY_RAY_OF_REVERSAL)  // SPWI704.SPL (Ruby Ray of Reversal)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -10618,8 +10603,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -10644,8 +10629,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -10670,8 +10655,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -10696,8 +10681,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -10722,8 +10707,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -10748,8 +10733,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #50
 	    Continue()
 END
@@ -10771,8 +10756,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -10794,8 +10779,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -10817,8 +10802,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -10840,8 +10825,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -10863,8 +10848,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END
@@ -10886,8 +10871,8 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("IaFourSeconds","LOCALS",4)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
-		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
+		SetGlobalTimer("IaProtRemovalWait","LOCALS",1)
 	RESPONSE #100
 	    Continue()
 END

@@ -7,15 +7,19 @@ IF
 	Global("Iagpmage01","LOCALS",0)
 THEN
 	RESPONSE #100
+		SetInterrupt(FALSE)
 		SetGlobal("Iagpmage01","LOCALS",1)
-		ReallyForceSpell(Myself,WIZARD_MELF_METEOR)  // SPWI325.SPL (Melf's Minute Meteors)
 		ReallyForceSpell(Myself,WIZARD_FIRE_SHIELD_BLUE)  // SPWI403.SPL (Fire Shield (Blue))
 		ReallyForceSpell(Myself,WIZARD_STONE_SKIN)  // SPWI408.SPL (Stoneskin)
 		ReallyForceSpell(Myself,WIZARD_SPELL_TURNING)  // SPWI701.SPL (Spell Turning)
 		ReallyForceSpell(Myself,WIZARD_PROTECTION_FROM_ELECTRICITY)  // SPWI512.SPL (Protection From Electricity)
 		ReallyForceSpell(Myself,WIZARD_SPELL_IMMUNITY_ABJURATION)  // SPWI590.SPL (Immunity: Abjuration)
+		ReallyForceSpell(Myself,WIZARD_IMPROVED_HASTE)
+		ReallyForceSpell(Myself,WIZARD_HASTE)
 		ReallyForceSpell(Myself,WIZARD_GLOBE_OF_INVULNERABILITY)  // SPWI602.SPL (Globe of Invulnerability)
-		ReallyForceSpell(Myself,WIZARD_BLACK_BLADE_OF_DISASTER)
+		ForceSpell(Myself,WIZARD_BLACK_BLADE_OF_DISASTER)
+		EquipItem("BLAKBLAD")
+		SetInterrupt(TRUE)
 END
 
 IF
@@ -71,7 +75,7 @@ IF
 	See(NearestEnemyOf(Myself))
 	CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
 	!CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
-	GlobalLT("Iagpmage03","LOCALS",3)
+	GlobalLT("Iagpmage03","LOCALS",2)
 THEN
 	RESPONSE #100
 		IncrementGlobal("Iagpmage03","LOCALS",1)
@@ -87,7 +91,7 @@ IF
 	See(SecondNearestEnemyOf(Myself))
 	CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
 	!CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
-	GlobalLT("Iagpmage03","LOCALS",3)
+	GlobalLT("Iagpmage03","LOCALS",2)
 THEN
 	RESPONSE #100
 		IncrementGlobal("Iagpmage03","LOCALS",1)
@@ -103,7 +107,7 @@ IF
 	See(ThirdNearestEnemyOf(Myself))
 	CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
 	!CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
-	GlobalLT("Iagpmage03","LOCALS",3)
+	GlobalLT("Iagpmage03","LOCALS",2)
 THEN
 	RESPONSE #100
 		IncrementGlobal("Iagpmage03","LOCALS",1)
@@ -119,7 +123,7 @@ IF
 	See(FourthNearestEnemyOf(Myself))
 	CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
 	!CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
-	GlobalLT("Iagpmage03","LOCALS",3)
+	GlobalLT("Iagpmage03","LOCALS",2)
 THEN
 	RESPONSE #100
 		IncrementGlobal("Iagpmage03","LOCALS",1)
@@ -135,7 +139,7 @@ IF
 	See(FifthNearestEnemyOf(Myself))
 	CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
 	!CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
-	GlobalLT("Iagpmage03","LOCALS",3)
+	GlobalLT("Iagpmage03","LOCALS",2)
 THEN
 	RESPONSE #100
 		IncrementGlobal("Iagpmage03","LOCALS",1)
@@ -151,7 +155,7 @@ IF
 	See(SixthNearestEnemyOf(Myself))
 	CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE)
 	!CheckStatGT(LastSeenBy(Myself),1,SCRIPTINGSTATE6)
-	GlobalLT("Iagpmage03","LOCALS",3)
+	GlobalLT("Iagpmage03","LOCALS",2)
 THEN
 	RESPONSE #100
 		IncrementGlobal("Iagpmage03","LOCALS",1)
@@ -223,12 +227,10 @@ IF
 	Global("Iapcastts","GLOBAL",0)
 THEN
 	RESPONSE #100
-		SetGlobal("Iaskelgs","LOCALS",1)
 		SetInterrupt(FALSE)
+		SetGlobal("Iaskelgs","LOCALS",1)
 		ReallyForceSpellPointRES("SPINI61",[2066.1045])  // No such index
 		ReallyForceSpellPointRES("SPINI61",[1987.1010])  // No such index
-		ReallyForceSpellPointRES("SPINI61",[2051.1172])  // No such index
-		ReallyForceSpellPointRES("SPINI61",[1975.1211])  // No such index
 		SetInterrupt(TRUE)
 		Continue()
 END
@@ -369,25 +371,6 @@ END
 IF
 	Allegiance(Myself,ENEMY)
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	HasItem("scrl9m",Myself)  // Spellstrike
-	See(Player1)
-	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(Player1,STATE_INVISIBLE)
-	GlobalLT("Iaspellstrike","LOCALS",2)
-	GlobalGT("Iap1nr","GLOBAL",1)
-	!CheckStat(Player1,1,SCRIPTINGSTATE7)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iaspellstrike","LOCALS",1)
-		SetGlobal("Iap1nr","GLOBAL",0)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
-		DisplayStringHead(Myself,46153)  // *uses a scroll*
-		UseItem("scrl9m",Player1)  // Spellstrike
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	See(Player1)
 	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(Player1,STATE_INVISIBLE)
@@ -440,25 +423,6 @@ THEN
 		SetGlobalTimer("Iafmbreach","LOCALS",TWO_ROUNDS)
 		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
 		SpellNoDec(Player1,WIZARD_BREACH)  // SPWI513.SPL (Breach)
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	HasItem("scrl9m",Myself)  // Spellstrike
-	See(Player2)
-	!StateCheck(Player2,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(Player2,STATE_INVISIBLE)
-	GlobalLT("Iaspellstrike","LOCALS",2)
-	GlobalGT("Iap2nr","GLOBAL",1)
-	!CheckStat(Player2,1,SCRIPTINGSTATE7)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iaspellstrike","LOCALS",1)
-		SetGlobal("Iap2nr","GLOBAL",0)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
-		DisplayStringHead(Myself,46153)  // *uses a scroll*
-		UseItem("scrl9m",Player2)  // Spellstrike
 END
 
 IF
@@ -521,25 +485,6 @@ END
 IF
 	Allegiance(Myself,ENEMY)
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	HasItem("scrl9m",Myself)  // Spellstrike
-	See(Player3)
-	!StateCheck(Player3,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(Player3,STATE_INVISIBLE)
-	GlobalLT("Iaspellstrike","LOCALS",2)
-	GlobalGT("Iap3nr","GLOBAL",1)
-	!CheckStat(Player3,1,SCRIPTINGSTATE7)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iaspellstrike","LOCALS",1)
-		SetGlobal("Iap3nr","GLOBAL",0)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
-		DisplayStringHead(Myself,46153)  // *uses a scroll*
-		UseItem("scrl9m",Player3)  // Spellstrike
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	See(Player3)
 	!StateCheck(Player3,STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(Player3,STATE_INVISIBLE)
@@ -592,25 +537,6 @@ THEN
 		SetGlobalTimer("Iafmbreach","LOCALS",TWO_ROUNDS)
 		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
 		SpellNoDec(Player3,WIZARD_BREACH)  // SPWI513.SPL (Breach)
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	HasItem("scrl9m",Myself)  // Spellstrike
-	See(Player4)
-	!StateCheck(Player4,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(Player4,STATE_INVISIBLE)
-	GlobalLT("Iaspellstrike","LOCALS",2)
-	GlobalGT("Iap4nr","GLOBAL",1)
-	!CheckStat(Player4,1,SCRIPTINGSTATE7)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iaspellstrike","LOCALS",1)
-		SetGlobal("Iap4nr","GLOBAL",0)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
-		DisplayStringHead(Myself,46153)  // *uses a scroll*
-		UseItem("scrl9m",Player4)  // Spellstrike
 END
 
 IF
@@ -673,25 +599,6 @@ END
 IF
 	Allegiance(Myself,ENEMY)
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	HasItem("scrl9m",Myself)  // Spellstrike
-	See(Player5)
-	!StateCheck(Player5,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(Player5,STATE_INVISIBLE)
-	GlobalLT("Iaspellstrike","LOCALS",2)
-	GlobalGT("Iap5nr","GLOBAL",1)
-	!CheckStat(Player5,1,SCRIPTINGSTATE7)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iaspellstrike","LOCALS",1)
-		SetGlobal("Iap5nr","GLOBAL",0)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
-		DisplayStringHead(Myself,46153)  // *uses a scroll*
-		UseItem("scrl9m",Player5)  // Spellstrike
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	See(Player5)
 	!StateCheck(Player5,STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(Player5,STATE_INVISIBLE)
@@ -744,25 +651,6 @@ THEN
 		SetGlobalTimer("Iafmbreach","LOCALS",TWO_ROUNDS)
 		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
 		SpellNoDec(Player5,WIZARD_BREACH)  // SPWI513.SPL (Breach)
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	!GlobalTimerNotExpired("Iaspell","LOCALS")
-	HasItem("scrl9m",Myself)  // Spellstrike
-	See(Player6)
-	!StateCheck(Player6,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(Player6,STATE_INVISIBLE)
-	GlobalLT("Iaspellstrike","LOCALS",2)
-	GlobalGT("Iap6nr","GLOBAL",1)
-	!CheckStat(Player6,1,SCRIPTINGSTATE7)
-THEN
-	RESPONSE #100
-		IncrementGlobal("Iaspellstrike","LOCALS",1)
-		SetGlobal("Iap6nr","GLOBAL",0)
-		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
-		DisplayStringHead(Myself,46153)  // *uses a scroll*
-		UseItem("scrl9m",Player6)  // Spellstrike
 END
 
 IF
@@ -1158,6 +1046,134 @@ THEN
 		SetGlobalTimer("truesight","LOCALS",TEN_ROUNDS)
 		SetGlobalTimer("Iaspell","LOCALS",ONE_ROUND)
 		SpellNoDec(Myself,WIZARD_TRUE_SIGHT)  // SPWI609.SPL (True Sight)
+END
+
+
+IF
+	HasItem("SCRL9M",Myself)
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaLowerResWait","LOCALS")
+	See([PC])
+	CheckStatGT(LastSeenBy(Myself),70,RESISTMAGIC)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+    !CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaLowerResWait","LOCALS",2)
+		DisplayStringHead(Myself,46153)  // *uses a scroll*
+		UseItem("SCRL9M",LastSeenBy(Myself))
+	RESPONSE #150
+	    Continue()
+END
+IF
+	HasItem("SCRL9M",Myself)
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaLowerResWait","LOCALS")
+	See(SecondNearest([PC]))
+	CheckStatGT(LastSeenBy(Myself),70,RESISTMAGIC)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+    !CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaLowerResWait","LOCALS",2)
+		DisplayStringHead(Myself,46153)  // *uses a scroll*
+		UseItem("SCRL9M",LastSeenBy(Myself))
+	RESPONSE #150
+	    Continue()
+END
+IF
+	HasItem("SCRL9M",Myself)
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaLowerResWait","LOCALS")
+	See(ThirdNearest([PC]))
+	CheckStatGT(LastSeenBy(Myself),70,RESISTMAGIC)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+    !CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaLowerResWait","LOCALS",2)
+		DisplayStringHead(Myself,46153)  // *uses a scroll*
+		UseItem("SCRL9M",LastSeenBy(Myself))
+	RESPONSE #150
+	    Continue()
+END
+IF
+	HasItem("SCRL9M",Myself)
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaLowerResWait","LOCALS")
+	See(FourthNearest([PC]))
+	CheckStatGT(LastSeenBy(Myself),70,RESISTMAGIC)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+    !CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaLowerResWait","LOCALS",2)
+		DisplayStringHead(Myself,46153)  // *uses a scroll*
+		UseItem("SCRL9M",LastSeenBy(Myself))
+	RESPONSE #150
+	    Continue()
+END
+IF
+	HasItem("SCRL9M",Myself)
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaLowerResWait","LOCALS")
+	See(FifthNearest([PC]))
+	CheckStatGT(LastSeenBy(Myself),70,RESISTMAGIC)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+    !CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaLowerResWait","LOCALS",2)
+		DisplayStringHead(Myself,46153)  // *uses a scroll*
+		UseItem("SCRL9M",LastSeenBy(Myself))
+	RESPONSE #150
+	    Continue()
+END
+IF
+	HasItem("SCRL9M",Myself)
+	Allegiance(Myself,ENEMY)
+    !GlobalTimerNotExpired("IaAction","LOCALS")
+    !GlobalTimerNotExpired("IaLowerResWait","LOCALS")
+	See(SixthNearest([PC]))
+	CheckStatGT(LastSeenBy(Myself),70,RESISTMAGIC)
+	OR(2)
+        CheckStatGT(Myself,0,SEEINVISIBLE)
+        !StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+    !CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE7)
+	!CheckSpellState(LastSeenBy(Myself),WIZARD_SPELL_TURNING)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
+		SetGlobalTimer("IaLowerResWait","LOCALS",2)
+		DisplayStringHead(Myself,46153)  // *uses a scroll*
+		UseItem("SCRL9M",LastSeenBy(Myself))
+	RESPONSE #150
+	    Continue()
 END
 
 IF

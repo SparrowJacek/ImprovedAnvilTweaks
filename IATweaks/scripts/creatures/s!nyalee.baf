@@ -1,0 +1,162 @@
+IF
+	Global("IaCutscene","LOCALS",0)
+	HasItem("HGHEART2",Player1)  // Yaga-Shura's Heart
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		CutSceneId("HGNYA01")  // Nyalee
+		FadeToColor([10.0],0)
+		SmallWait(12)
+		ReallyForceSpellRES("S!CLRFOG",Myself)  // No such index
+		JumpToPoint([1000.1008])
+		MoveViewObject(Myself,INSTANT)
+		FadeFromColor([10.0],0)
+		IncrementGlobal("IaCutscene","LOCALS",1)
+		Wait(3)
+		CreateCreatureEffect("S!YAGAYO","SPPORTAL",[960.1048],N)  // Yaga-Shura
+		ActionOverride("s!yagayoung",DisplayStringHead(Myself,@5153))  // (Young Yaga-Shura stands beside Nyalee, slightly trembling)
+		Wait(4)
+		ActionOverride("s!yagayoung",DisplayStringHead(Myself,@5154))  // Mother... the night was loud again. The shadows called my name. I tried to be brave, but they said you wouldn't come back.
+		Wait(8)
+		DisplayStringHead(Myself,@5155)  // Hush now, boy. The shadows try to frighten the strong. They lie because they fear you.
+		Wait(6)
+		ActionOverride("s!yagayoung",DisplayStringHead(Myself,@5156))  // But what if... what if you left? Like the others?
+		Wait(5)
+		DisplayStringHead(Myself,@5157)  // (Nyalee raises her voice, firm but warm) I am your mother in all but blood. I do not leave my own.
+		Wait(7)
+		ActionOverride("s!yagayoung",DisplayStringHead(Myself,@5158))  // (Yaga-Shura slowly relaxes, shoulders lowering) ...Thank you, Mother.
+		Wait(3)
+		FadeToColor([10.0],0)
+		SmallWait(12)
+		ActionOverride("s!yagayoung",DestroySelf())
+		ReallyForceSpellRES("S!CLRFO2",Myself)  // No such index
+		FadeFromColor([30.0],0)
+		EndCutSceneMode()
+END
+
+IF
+	Global("IaCutscene","LOCALS",1)
+	HasItem("HGHEART2",Player1)  // Yaga-Shura's Heart
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		CutSceneId("HGNYA01")  // Nyalee
+		FadeToColor([10.0],0)
+		SmallWait(12)
+		ReallyForceSpellRES("S!CLRFOG",Myself)  // No such index
+		ReallyForceSpellRES("S!SLEEPC",Myself)  // No such index
+		JumpToPoint([1000.1008])
+		MoveViewObject(Myself,INSTANT)
+		FadeFromColor([12.0],0)
+		IncrementGlobal("IaCutscene","LOCALS",1)
+		CreateCreatureEffect("S!YAGAYO","SPPORTAL",[900.1048],N)  // Yaga-Shura
+		Wait(3)
+		ActionOverride("s!yagayoung",MoveToObject("HGNYA01"))
+		Wait(3)
+		ActionOverride("s!yagayoung",DisplayStringHead(Myself,@5159))
+		Wait(6)
+		ActionOverride("s!yagayoung",DisplayStringHead(Myself,@5160))
+		Wait(3)
+		ActionOverride("s!yagayoung",Swing())
+		Wait(1)
+		ActionOverride("s!yagayoung",Swing())
+		Wait(6)
+		ActionOverride("s!yagayoung",DisplayStringHead(Myself,@5161))
+		Wait(8)
+		DisplayStringHead(Myself,@5162)
+		Wait(5)
+		ActionOverride("s!yagayoung",DisplayStringHead(Myself,@5163))
+		Wait(3)
+		FadeToColor([10.0],0)
+		SmallWait(12)
+		ActionOverride("s!yagayoung",DestroySelf())
+		ReallyForceSpellRES("S!CLRFO2",Myself)  // No such index
+		FadeFromColor([30.0],0)
+		EndCutSceneMode()
+END
+
+IF
+	Global("IaCutscene","LOCALS",2)
+	HasItem("HGHEART2",Player1)  // Yaga-Shura's Heart
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		CutSceneId("HGNYA01")  // Nyalee
+		FadeToColor([10.0],0)
+		SmallWait(12)
+		ReallyForceSpellRES("S!CLRFOG",Myself)  // No such index
+		JumpToPoint([1000.1008])
+		MoveViewObject(Myself,INSTANT)
+		Face(S)
+		FadeFromColor([10.0],0)
+		IncrementGlobal("IaCutscene","LOCALS",1)
+		CreateCreature("S!YAGAOL",[1533.1406],N)  // Yaga-Shura
+		ActionOverride("s!yagaolder",MoveToPoint([1093.1138]))
+		Wait(5)
+		ActionOverride("s!yagaolder",Face(NNW))
+		Face(S)
+		Wait(1)
+		DisplayStringHead(Myself,@5164)
+		Wait(6)
+		ActionOverride("s!yagaolder",DisplayStringHead(Myself,@5165))
+		Wait(5)
+		DisplayStringHead(Myself,@5166)
+		Wait(5)
+		ActionOverride("s!yagaolder",DisplayStringHead(Myself,@5167))
+		Wait(3)
+		ActionOverride("s!yagaolder",MoveToPoint([1533.1406]))
+		DisplayStringHead(Myself,@5168)
+		Wait(2)
+		FadeToColor([10.0],0)
+		SmallWait(12)
+		ActionOverride("s!yagaolder",DestroySelf())
+		ReallyForceSpellRES("S!CLRFO2",Myself)  // No such index
+		FadeFromColor([30.0],0)
+		EndCutSceneMode()
+END
+
+IF
+	Global("IaCutscene","LOCALS",3)
+	HasItem("HGHEART2",Player1)  // Yaga-Shura's Heart
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		CutSceneId("HGNYA01")  // Nyalee
+		FadeToColor([10.0],0)
+		SmallWait(12)
+		ReallyForceSpellRES("S!CLRFOG",Myself)  // No such index
+		JumpToPoint([1000.1008])
+		MoveViewObject(Myself,INSTANT)
+		Face(S)
+		FadeFromColor([15.0],0)
+		SetSequence(SEQ_DIE)
+		IncrementGlobal("IaCutscene","LOCALS",1)
+		CreateCreatureEffect("S!YAGAOL","SPPORTAL",[1180.920],SWW)  // Yaga-Shura
+		ActionOverride("s!yagaolder",DisplayStringHead(Myself,@5169))
+		Wait(6)
+		ActionOverride("s!yagaolder",DisplayStringHead(Myself,@5170))
+		Wait(6)
+		DisplayStringHead(Myself,@5171)
+		Wait(8)
+		ActionOverride("s!yagaolder",DisplayStringHead(Myself,@5172))
+		Wait(3)
+		DisplayStringHead(Myself,@5173)
+		Wait(7)
+		ActionOverride("s!yagaolder",DisplayStringHead(Myself,@5174))
+		Wait(3)
+		DisplayStringHead(Myself,@5175)
+		Wait(3)
+		ActionOverride("s!yagaolder",MoveToPoint([1029.1025]))
+		Wait(2)
+		ActionOverride("s!yagaolder",Face(N))
+		ActionOverride("s!yagaolder",SetSequence(SEQ_DIE))
+		Wait(2)
+		ActionOverride("s!yagaolder",DisplayStringHead(Myself,@5176))
+		Wait(5)
+		FadeToColor([10.0],0)
+		SmallWait(12)
+		ActionOverride("s!yagaolder",DestroySelf())
+		ReallyForceSpellRES("S!CLRFO2",Myself)  // No such index
+		FadeFromColor([30.0],0)
+		EndCutSceneMode()
+END

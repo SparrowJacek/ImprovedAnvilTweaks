@@ -59,7 +59,7 @@ THEN
 END
 
 IF
-	!GlobalTimerNotExpired("IaNextMeleePhase","LOCALS",TWO_ROUNDS)
+	!GlobalTimerNotExpired("IaNextMeleePhase","LOCALS")
 THEN
 	RESPONSE #100
 		SetGlobalTimer("IaNextMeleePhase","LOCALS",TWO_ROUNDS)
@@ -1420,7 +1420,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1449,7 +1449,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1478,7 +1478,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1507,7 +1507,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1536,7 +1536,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1565,7 +1565,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1594,7 +1594,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1623,7 +1623,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1652,7 +1652,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1681,7 +1681,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1710,7 +1710,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1739,7 +1739,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1768,7 +1768,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1797,7 +1797,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1826,7 +1826,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1855,7 +1855,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1884,7 +1884,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1913,7 +1913,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1938,7 +1938,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1962,7 +1962,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -1986,7 +1986,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -2010,7 +2010,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -2034,7 +2034,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -2058,7 +2058,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #50
 	    Continue()
@@ -3301,7 +3301,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -3330,7 +3330,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -3359,7 +3359,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -3388,7 +3388,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -3417,7 +3417,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -3446,7 +3446,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -3475,7 +3475,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -3504,7 +3504,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -3533,7 +3533,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -3562,7 +3562,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -3591,7 +3591,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -3620,7 +3620,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -3649,7 +3649,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -3678,7 +3678,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -3707,7 +3707,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -3736,7 +3736,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -3765,7 +3765,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -3794,7 +3794,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #100
 	    Continue()
@@ -3819,7 +3819,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #150
 	    Continue()
@@ -3843,7 +3843,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #150
 	    Continue()
@@ -3867,7 +3867,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #150
 	    Continue()
@@ -3891,7 +3891,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #150
 	    Continue()
@@ -3915,7 +3915,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #150
 	    Continue()
@@ -3939,7 +3939,7 @@ THEN
 		SetGlobalTimer("IaRemoveMagicWait","LOCALS",24)
 		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		RemoveSpell(WIZARD_REMOVE_MAGIC)
-		ReallyForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
+		ForceSpell(LastSeenBy(Myself),WIZARD_REMOVE_MAGIC)  // SPWI302.SPL (Remove Magic)
 		SetInterrupt(TRUE)
 	RESPONSE #150
 	    Continue()
@@ -4114,6 +4114,9 @@ END
 
 IF
 	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	See([PC])
 	OR(3)
 		CheckStatLT(LastSeenBy(Myself),8,SAVEVSBREATH)
@@ -4123,12 +4126,16 @@ IF
 	!GlobalTimerNotExpired("Iagdoom","LOCALS")
 THEN
 	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		SetGlobalTimer("Iagdoom","LOCALS",15)
 		ForceSpellRES("SPINI68",LastSeenBy(Myself))  // Greater Doom
 END
 
 IF
 	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	See(SecondNearest([PC]))
 	OR(3)
 		CheckStatLT(LastSeenBy(Myself),8,SAVEVSBREATH)
@@ -4138,12 +4145,16 @@ IF
 	!GlobalTimerNotExpired("Iagdoom","LOCALS")
 THEN
 	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		SetGlobalTimer("Iagdoom","LOCALS",15)
 		ForceSpellRES("SPINI68",LastSeenBy(Myself))  // Greater Doom
 END
 
 IF
 	Allegiance(Myself,ENEMY)
+	OR(2)
+	    CheckStatGT(Myself,0,AURACLEANSING)
+	    !GlobalTimerNotExpired("IaAction","LOCALS")
 	See(ThirdNearest([PC]))
 	OR(3)
 		CheckStatLT(LastSeenBy(Myself),8,SAVEVSBREATH)
@@ -4153,6 +4164,7 @@ IF
 	!GlobalTimerNotExpired("Iagdoom","LOCALS")
 THEN
 	RESPONSE #100
+		SetGlobalTimer("IaAction","LOCALS",ONE_ROUND)
 		SetGlobalTimer("Iagdoom","LOCALS",15)
 		ForceSpellRES("SPINI68",LastSeenBy(Myself))  // Greater Doom
 END

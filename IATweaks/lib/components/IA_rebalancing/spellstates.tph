@@ -112,6 +112,9 @@ OUTER_SET psionics_immunity_splstate = %new_state_index%
 LAF resolve_state STR_VAR new_state_id = ~INSECTS~ RET new_state_index END
 OUTER_SET insects_splstate = %new_state_index%
 
+LAF resolve_state STR_VAR new_state_id = ~UNSILENCABLE~ RET new_state_index END
+OUTER_SET unsilencable_splstate = %new_state_index%
+
 // Beast Master
 LAF resolve_state STR_VAR new_state_id = ~UNIFIED_MINDS~ RET new_state_index END
 OUTER_SET unified_minds_state = %new_state_index%
@@ -135,6 +138,9 @@ OUTER_SET hide_in_shadows_fail_state = %new_state_index%
 
 LAF resolve_state STR_VAR new_state_id = ~TRAP_IMMUNITY~ RET new_state_index END
 OUTER_SET trap_immunity_state = %new_state_index%
+
+LAF resolve_state STR_VAR new_state_id = ~SUCCESSFULLY_BACKSTABBED~ RET new_state_index END
+OUTER_SET successfully_backstabbed = %new_state_index%
 
 // Mage
 LAF resolve_state STR_VAR new_state_id = ~NON_DETECTION~ RET new_state_index END

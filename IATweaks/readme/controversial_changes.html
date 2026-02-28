@@ -1,0 +1,230 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Improved Anvil Tweaks 1.1</title>
+<link rel="stylesheet" type="text/css" href="style/css/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="style/css/view.css" media="all" />
+<link rel="stylesheet" type="text/css" href="style/type/marketdeco.css" media="all" />
+<link rel="stylesheet" type="text/css" href="style/type/merriweather.css" media="all" />
+<link rel="stylesheet" type="text/css" href="style/css/queries.css" media="all" />
+<link rel="stylesheet" type="text/css" href="style/css/items.css" media="all" />
+<!--[if IE 8]>
+<link rel="stylesheet" type="text/css" href="style/css/ie8.css" media="all" />
+<![endif]-->
+<!--[if IE 9]>
+<link rel="stylesheet" type="text/css" href="style/css/ie9.css" media="all" />
+<![endif]-->
+<script type="text/javascript" src="style/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="style/js/ddsmoothmenu.js"></script>
+<script type="text/javascript" src="style/js/html5.js"></script>
+<script type="text/javascript" src="style/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="style/js/selectnav.js"></script>
+</head>
+
+<body class="singular page">
+<div id="page" class="hfeed">
+<div id="wrapper">
+<header id="branding" role="banner">
+  <h1 id="site-title">
+  	<a href="index.html" rel="home">Improved Anvil Tweaks 1.1</a>
+  </h1>
+  <nav id="access" class="access" role="navigation">
+    <div id="menu" class="menu">
+    	<ul id="tiny">
+            <li><a href="#">Content</a>
+				<ul>
+                    <li><a href="simplified_economy.html">Simplified economy</a></li>
+		        </ul>
+			</li>
+            <li><a href="#">IA Rebalancing</a>
+				<ul>
+                    <li><a href="IA_rebalancing.html">IA Rebalancing</a></li>
+                    <li><a href="controversial_changes.html">Controversial Changes</a></li>
+                    <li><a href="reworked_items.html">New/Reworked Item Recipes</a></li>
+                    <li><a href="dex_thieving_skills.html">Dexterity bonuses to Thieving Skills</a></li>
+                    <li><a href="race_thieving_skills.html">Race bonuses to Thieving Skills</a></li>
+		        </ul>
+			</li>
+            <li><a href="http://forums.blackwyrmlair.net/index.php?showforum=99" target="_blank">Forum</a></li>
+		</ul>
+	</div>
+	<div class="triangle-l"></div>
+	<div class="triangle-r"></div>
+  </nav>
+  <!-- #access -->
+</header>
+<!-- #branding -->
+
+<div id="main">
+    <div id="primary">
+      <div id="content" role="main">
+          <!-- begin article -->
+          <article class="page hentry">
+            <div class="entry-content">
+                <h4>Controversial Changes</h4>
+				<p>Controversial Changes is a huge component, that introduces changes, which might change the way you play Improved Anvil on a larger scale. Sometimes it's about a fight that was already rebalanced in IA, but I reworked it completely, sometimes it's about some mechanics, that were core to IA, but I wanted to implement them differently, but mostly, I wanted to address a few aspects of the game, that - if changed - would encourage, or even force players to use different spells, abilities and party compositions. I decided to separate this component, so that most of the content I provide in IA-Rebalancing is available to those, who want to have them, but still want to experience most of the good old Improved Anvil. It is highly recommended to install this subcomponent, as many spells, items and encounteres were balanced around Controversial Changes and might be less enjoyable without it.</p>
+
+            </div>
+
+			<div class="toggle">
+				<h4 class="title">1. Resistance Spells Rework</h4>
+				<div class="togglebox">
+					<div>
+						<ul>
+							<li>All "Resist X" spells will now set those resistances to 75%, instead of increasing them by 75 or 100, and will last for 5 turns</li>
+							<li>Rework of Resist Cold/Fire and move it to 4th level spell</li>
+							<li>Increase projectile speed of some common projectiles</li>
+							<li>Slight improvements to Armor and Shield spells</li>
+						</ul>
+						<p>It made little sense that a 3rd level spell Resist Fire would be better than a 7th level spell Resist Elements. Also, having such free access to spells that grant immunity to an element diminished usefulness of items and abilities that grant such resistances.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="toggle">
+				<h4 class="title">2. Reworked APR Progression</h4>
+				<div class="togglebox">
+					<div>
+						<ul>
+							<li>Rework of Improved Haste spell from all sources (including Wish, Champion's Might and items)</li>
+							<li>Rework of (Greater) Whirlwind HLAs</li>
+							<li>Rework of Warcry HLA</li>
+							<li>Rework of Acrobatic Combat HLA</li>
+							<li>Rework of Flurry of Blows ability</li>
+							<li>Rework of (Improved) Boots of Ranger Lord</li>
+							<li>Additional APR for Swashbucklers</li>
+							<li>Changed APR-changing abilities gained by Riskbreakers</li>
+						</ul>
+						<p>It always bothered me that a 6th (not 9th!) arcane spell is actually the best spell in the entire game and warriors can't reach their full potential without an arcane caster. Now this is changed and the progression of APR should be smoother. IH should still be useful, but not mandatory to win the game.</p>
+					</div>
+				</div>
+			</div>
+			<div class="toggle">
+				<h4 class="title">3. Non-Stackable Bonuses from Rings and Cloaks</h4>
+				<div class="togglebox">
+					<div>
+						<ul>
+							<li>Rework standard +X rings and cloaks, so that only the largest bonus is applied (if you wear a +2 and a +4 ring, then you get +4 to AC and ST)</li>
+							<li>Remove standard restrictions that prevent from wearing magical cloaks/jewelry and armors</li>
+							<li>Add proper info in the description of rings/cloaks that can stack with standard +X rings and cloaks</li>
+							<li>Make Master of High Forest into a +3 cloak</li>
+						</ul>
+						<p>In most of my IA runs, and from what I got, most of IA runs in general, the party was mostly equipped with +2 rings and cloaks. There was little space for other items, if they did not grant that +2 ST/AC, so to introduce a new item of such type, we had to ensure that it's at least a +2 item with something extra. Some new items were introduced with this component in mind and will hopefully introduce some variety to what each character is wearing.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="toggle">
+				<h4 class="title">4. Reworked Golem Fights</h4>
+				<div class="togglebox">
+					<div>
+						<ul>
+							<li>Gem, Coin and Amber Golems are once again susceptible to Polymorph effect</li>
+							<li>Remove immunity to Dragon Breath/Comet from Ice Golems</li>
+							<li>Hand of Undoing and Ray of Fragmentation are improved and work on more Golems</li>
+							<li>Some Golems have more APR, but deal less damage with each hit to prevent 100HP hits in chapters 2-3</li>
+							<li>(Greater) Elemental Golems now spawn other creatures and the spawns are dependent on Golem HP, not time</li>
+							<li>(Greater) Elemental Golems might become susceptible to elemental damage at some point of the fight</li>
+						</ul>
+						<p>IA loves Golems, but gives too few means of dealing with them. Since we have specialized anti-Golem spells, they should really help when fighting Golems. And if we're talking about Elemental Golems, the most rewarding way of dealing with them was to prolong the fight till all lesser Golems spawn, which was tedious, but gave a huge advantage; this is not the case any more, Golems can die in 1 round and the reward will still be the same now.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="toggle">
+				<h4 class="title">5. Elemental Damage Blocked by Magic Resistance</h4>
+				<div class="togglebox">
+					<div>
+						<p>Melee combatants were always superior damage dealers in IA, but the fact that they could deal 100 elemental damage that bypasses MR, while casters could do nothing was just unfair, especially since so many weapons have that chance for additional damage.</p>
+					</div>
+				</div>
+			</div>
+			<div class="toggle">
+				<h4 class="title">6. Rework Critical Strike HLA</h4>
+				<div class="togglebox">
+					<div>
+						<p>Critical Strike was a weird ability, it was powerful, but what bothered me the most was the fact that while the ability was active, it made a few aspects of the game completely irrelevant: any bonuses to critical hit, like weapon specializations or items, Armor Class and Thac0. With current implementation all three of these stats are still important, critical hit bonuses synergize well with CS and good AC can still partially protect from a creature using CS.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="toggle">
+				<h4 class="title">7. Rework Overpowered Kits</h4>
+				<div class="togglebox">
+					<div>
+						<ul>
+							<li>Worse PDR progression for Dwarven Defender</li>
+							<li>Reworked AC progression for Riskbreaker</li>
+							<li>Lower range and HP regenerated from Risk Decrement ability</li>
+							<li>Reworked resistance progression for Vagrant</li>
+							<li>Reworked Swanmay progression for Vagrant</li>
+							<li>Slightly toned down Clan Spirit</li>
+						</ul>
+						<p>Some kits were just too powerful when compared to others, I hope that these changes will make the difference less apparent, while still keeping the kits competitive.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="toggle">
+				<h4 class="title">8. Rework of Greater Forms of Silence</h4>
+				<div class="togglebox">
+					<div>
+						<ul>
+							<li>Greater Silence will now become a single target spell, it will apply silence only for 3 rounds, but will apply other debuffs</li>
+							<li>Greater Silence will be a Transmutation spell</li>
+							<li>Heal, Mend Body and Natural Restoral will now remove the penalties from Greater Silence</li>
+							<li>Grave Silence will last for 5 rounds and allow a saving throw with a huge penalty to negate the effect</li>
+							<li>Rework of Sense of Limbo</li>
+						</ul>
+						<p>The difference between a party with Necro and Cernd, who could get immunity to Silence, and any other party was just too huge. Silence is a terrible effect that couldn't be removed and made casters useless for far too long in some fights. Now it still is a dangerous effect, but there are some ways to deal with it without the need for permanent immunity to silence effect.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="toggle">
+				<h4 class="title">9. Reworked Fights</h4>
+				<div class="togglebox">
+					<div>
+						<ul>
+							<li>Dracolich fight will now become a multi-stage battle with much fewer PFMW spells cast by him to make it more dynamic</li>
+							<li>Orcus will hopefully be the main enemy of the fight, not his minions, he will also have much fewer PFMW spells</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="toggle">
+				<h4 class="title">10. Other Changes</h4>
+				<div class="togglebox">
+					<div>
+						<ul>
+							<li>Some projectiles are now faster</li>
+							<li>Regeneration clerical spell no longer stacks with itself and with Recast Vital Energy Regen</li>
+							<li>Slight rework/improvement of Potion of Invulnerability</li>
+							<li>Barbarians can no longer use Gauntlets of Blessed Might</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+    		<div class="clear"></div>
+          </article>
+          <!-- end article -->
+
+      </div><!-- #content -->
+    </div><!-- #primary -->
+</div><!-- #main -->
+
+<footer id="colophon" role="contentinfo">
+	<div id="site-generator">
+		Improved Anvil Tweaks 1.1
+	</div>
+</footer><!-- #colophon -->
+
+	</div><!-- #wrapper -->
+</div><!-- #page -->
+
+<script type="text/javascript" src="style/js/scripts.js"></script>
+</body>
+</html>

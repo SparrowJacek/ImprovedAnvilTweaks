@@ -1,0 +1,387 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Improved Anvil Tweaks 1.1</title>
+<link rel="stylesheet" type="text/css" href="style/css/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="style/css/view.css" media="all" />
+<link rel="stylesheet" type="text/css" href="style/type/marketdeco.css" media="all" />
+<link rel="stylesheet" type="text/css" href="style/type/merriweather.css" media="all" />
+<link rel="stylesheet" type="text/css" href="style/css/queries.css" media="all" />
+<link rel="stylesheet" type="text/css" href="style/css/items.css" media="all" />
+<!--[if IE 8]>
+<link rel="stylesheet" type="text/css" href="style/css/ie8.css" media="all" />
+<![endif]-->
+<!--[if IE 9]>
+<link rel="stylesheet" type="text/css" href="style/css/ie9.css" media="all" />
+<![endif]-->
+<script type="text/javascript" src="style/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="style/js/ddsmoothmenu.js"></script>
+<script type="text/javascript" src="style/js/html5.js"></script>
+<script type="text/javascript" src="style/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="style/js/selectnav.js"></script>
+</head>
+
+<body class="singular page">
+<div id="page" class="hfeed">
+<div id="wrapper">
+<header id="branding" role="banner">
+  <h1 id="site-title">
+  	<a href="index.html" rel="home">Improved Anvil Tweaks 1.1</a>
+  </h1>
+  <nav id="access" class="access" role="navigation">
+    <div id="menu" class="menu">
+    	<ul id="tiny">
+            <li><a href="#">Content</a>
+				<ul>
+                    <li><a href="simplified_economy.html">Simplified economy</a></li>
+		        </ul>
+			</li>
+            <li><a href="#">IA Rebalancing</a>
+				<ul>
+                    <li><a href="IA_rebalancing.html">IA Rebalancing</a></li>
+                    <li><a href="controversial_changes.html">Controversial Changes</a></li>
+                    <li><a href="reworked_items.html">New/Reworked Item Recipes</a></li>
+                    <li><a href="dex_thieving_skills.html">Dexterity bonuses to Thieving Skills</a></li>
+                    <li><a href="race_thieving_skills.html">Race bonuses to Thieving Skills</a></li>
+		        </ul>
+			</li>
+            <li><a href="http://forums.blackwyrmlair.net/index.php?showforum=99" target="_blank">Forum</a></li>
+		</ul>
+	</div>
+	<div class="triangle-l"></div>
+	<div class="triangle-r"></div>
+  </nav>
+  <!-- #access -->
+</header>
+<!-- #branding -->
+
+<div id="main">
+    <div id="primary">
+      <div id="content" role="main">
+          <!-- begin article -->
+          <article class="page hentry">
+            <div class="entry-content">
+                <h4>IA Rebalancing</h4>
+				<p>IA Rebalancing is a large-scale balance component for Improved Anvil that refines encounters, spells, abilities, items and kits to increase build diversity and make more tactical options viable, while (hopefully) preserving the original spirit and difficulty of IA.</p>
+				<p>For those that play with Sibel Mod installed, but consider the items created by Lady Elowen to be too powerful, I also introduced a small component that attempts to rebalance the items she can create, either by toning them down, or by heavily increasing their price. Items belonging to Sibel remain untouched.</p>
+				<p>Since IA Rebalancing looks through all files and patches them when needed, mods that change/introduce new items/spells/creatures should be installed before IA Rebalancing.</p>
+
+            </div>
+			<div>
+				<h4>IA Rebalancing content:</h4>
+				<div class="toggle">
+					<h4 class="title">Core System & Global Mechanics</h4>
+					<div class="togglebox">
+						<div>
+							<ul>
+								<li>rework of all Weapon Styles, increase max number of points to 3 for all of them</li>
+								<li>reworked implementation of summon limit, casting (limited) Wish/RVE and any such spells should not fail with info regarding summon limit</li>
+								<li>Potions will be harder to dispel, applying their effects at levels 10 to 20, depending on potion's strength</li>
+								<li>Scrolls and Wands won't allow targetting of partially invisible creatures any more</li>
+								<li>Scrolls won't be usable if a character is silenced (they will be used up without providing any effects)</li>
+								<li>Greater forms of Silence won't disable some buttons any more</li>
+								<li>Most summons won't follow Player1, when no commands are issued</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="toggle">
+					<h4 class="title">Divine Casters – Clerics & Druids</h4>
+					<div class="togglebox">
+						<div>
+							<ul>
+								<li>new kitPriestess of Shar, that is assigned and only available to Viconia</li>
+								<li>increase stats for Viconia</li>
+								<li>remove Holy Symbols from non-kitted Clerics</li>
+								<li>Cleric kits gain Holy Symbols at level 20</li>
+								<li>Clerics can put 2 points into Sword and Shield style</li>
+								<li>Clerics can use and put 1 point into Daggers</li>
+								<li>Cleric kit rebalance, heavily reliant on IA v6.6 changes, but more powerful</li>
+								<li>Introduce many new/reworked spells and abilities for Cleric kits</li>
+								<li>Rework how Defensive Harmony applies its effects</li>
+								<li>Change Repulse Undead to Weaken Undead spell</li>
+								<li>Add Heavenly Shield spell</li>
+								<li>Clerical spells that set Strength won't do so if target's Strength is already higher</li>
+								<li>Improve Poison spell</li>
+								<li>Extend duration of Negative Plane Protection spell</li>
+								<li>Remove some druidic spells from Clerics</li>
+								<li>Blade Barrier will hit only enemies</li>
+								<li>7th level clerical spell Confusion is removed, 6th level spell Chaos is introduced</li>
+								<li>Complete rework of Nature's Beauty spell</li>
+								<li>Rework of Earthquake spell</li>
+								<li>Rework of Globe of Blades HLA</li>
+								<li>Rework of Aura of Flaming Death HLA</li>
+								<li>Improve Cure X Wounds spells</li>
+								<li>Rework Mend spells</li>
+								<li>Improve Sunray and False Dawn</li>
+								<li>Improve clerical version of Disrupt Undead</li>
+								<li>Rework Cause Serious/Critical Wounds spells</li>
+								<li>Rework Slay Living and Harm spells</li>
+								<li>Introduce Demon Hunt clerical spell</li>
+								<li>Rework Magical Stone spell</li>
+								<li>Introduce new clerical spell Wisdom of the Ages</li>
+								<li>Rework Aid and Chant spells</li>
+								<li>Rework Draw Upon Holy Might</li>
+								<li>Rework Champion's Strength, move it to level 6 and rename to Champion's Might</li>
+								<li>Make Unholy Blight affect good and neutral creatures</li>
+								<li>Rework Greater Restoration</li>
+								<li>Introduce new HLA Divine Intervention</li>
+								<li>Rework Fist of Nature HLA</li>
+								<li>Cleric/Mage multiclass can now pick Improved Alacrity as a HLA</li>
+								<li>Auramasters will not have access to Nature's Beauty spell</li>
+								<li>better spell progression for Shamans</li>
+								<li>Reworked spells for summoned Nymph</li>
+								<li>Rework creatures summoned by Animal Summoning X spells</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="toggle">
+					<h4 class="title">Paladins & Rangers</h4>
+					<div class="togglebox">
+						<div>
+							<ul>
+								<li>Improve Keldorn's stats</li>
+								<li>Remove Smite, Deathblow and Greater Deathblow from Paladin HLAs (apart from Blackguard)</li>
+								<li>Rework Paladin and all of good Paladin kits</li>
+								<li>Allow Paladins to put 3 points into Sword and Shield style</li>
+								<li>Improve Lay on Hands ability</li>
+								<li>Introduce Plate Armor Mastery ability/HLA available to Paladins</li>
+								<li>Allow Inquisitors to cast divine spells of level 1-3</li>
+								<li>Grant access to 4th level divine spells to Rangers</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="toggle">
+					<h4 class="title">Thieves & Rogues</h4>
+					<div class="togglebox">
+						<div>
+							<ul>
+								<li>Improve thac0 table for Thieves</li>
+								<li>Rework Assassin kit, add new spells and abilities</li>
+								<li>Slight rework of Thief class and its other kits</li>
+								<li>Rework Thieving Abilities and their progression for all classes and kits</li>
+								<li>Disable backstab from staves</li>
+								<li>Rework racial bonuses to Thieving Skills</li>
+								<li>Lower Backstab to x2</li>
+								<li>Rework Avoid Death, Evasion, Extend Lifespan, Assassination, Scribe Scrolls (Rogue) HLAs</li>
+								<li>Rework bonuses from most items that grant bonuses to Stealth Strike(Move Silently) and Hide in Shadows</li>
+								<li>Randomize Ring of Duplication</li>
+								<li>Move Grave Binder dagger</li>
+								<li>No stacking for potions that grant Thieving Abilities</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="toggle">
+					<h4 class="title">Warriors, Kits & HLAs</h4>
+					<div class="togglebox">
+						<div>
+							<ul>
+								<li>Kensai dmg/thac0 bonuses work only with melee weapons</li>
+								<li>Riskbreaker critical chance bonuses work only with melee weapons</li>
+								<li>Rework of Defensive Stance of Dwarven Defender</li>
+								<li>Tireless Rage will now protect from any forms of fatigue increase</li>
+								<li>Archer Called Shot ability won't lower strength to 0</li>
+								<li>Deathblow and Greater Deathblow High Level Abilities are reworked</li>
+								<li>Wish will now only grant Deathblow to all party (was Greater Deathblow previously)</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="toggle">
+					<h4 class="title">Arcane Magic</h4>
+					<div class="togglebox">
+						<div>
+							<ul>
+								<li>Extend spell progression for Mages and Sorcerers past level 30</li>
+								<li>Introduce some variety to spells that enemies have in their Contingencies</li>
+								<li>Rework Luck, Web, increase range of Cone of Cold</li>
+								<li>Rework how Nishruu and Hakeshar work</li>
+								<li>Rework PW:Silence</li>
+								<li>Improve damage of Chain Lightning</li>
+								<li>Rework Prismatic Spray</li>
+								<li>Introduce Shield Mind and Body arcane spell</li>
+								<li>Rework Bigby's Hand spells</li>
+								<li>Allow all kits to use Sequencers and Contingencies</li>
+								<li>Improve Absolute Immunity</li>
+								<li>Make PFMW and Absolute Immunity protect from some physical effects, like Swanmay Wing Buffet</li>
+								<li>Rework Black Blade of Disaster</li>
+								<li>Make Wish:Hardiness weaker</li>
+								<li>Rework of all Mage kits apart from Necro and Wild Mage, introduce new spells and mechanics</li>
+								<li>Complete rework of Non-detection spell, move it to 1st level</li>
+								<li>Remove +4 Saving Throw bonus from Improved Invisibility</li>
+								<li>Improved Chain Lightning is now an Evocation spell</li>
+								<li>Fireshield type spells will now have a chance to remove Web and Insects effects</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="toggle">
+					<h4 class="title">Items, Crafting & Equipment</h4>
+					<div class="togglebox">
+						<div>
+							<ul>
+								<li>Reworked items: Treefolk clubs, Flail of Ages, Ravager</li>
+								<li>Rework of Ancient Elven Expertise items</li>
+								<li>Rework of Cloak of Atonement</li>
+								<li>Rework of Dagger +4 and +5 that can be forged by Cromwell/Cespenar</li>
+								<li>New items: Wardring, Blood Red Ioun Stone, Symbol of Sehanine Moonbow, (Improved) Snow Leopard Charm, Night Club, Sure Strike Club, Backwhacker, Blightwood +5, Girdle of Beatification, Bracers of Brute Force, Insulated Arcs of Disredain, Lucky Coin of Tymora, Cloverleaf, Cloak of Mystra, Stalker Gauntlets, Ring of Vitality, Silent Gale Treads, Ring of Enduring Heart, Cloak of the Second Strike, The Martyr's Answer +4</li>
+								<li>New recipes for Cromwell, Maheer and Cespenar</li>
+								<li>Katana +2 added to one of early shops</li>
+								<li>Ammo Belts added to 2 early shops</li>
+								<li>Hammer of Thunderbolts location is swapped with Crom Faeyr scroll</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="toggle">
+					<h4 class="title">Creatures & AI</h4>
+					<div class="togglebox">
+						<div>
+							<ul>
+								<li>Introduce new creatures: Paraelementals, Truly Horrid Umber Hulks, Abishai, Corrupted Tree of Life Branches</li>
+								<li>Rework Vampires and their AI (now they focus more on injured characters, not those without PFLD)</li>
+								<li>Lower elemental resistances of most early-game enemies that had all of them at 100</li>
+								<li>All Golems are immune to Insects spells now</li>
+								<li>Mithril Golem is now susceptible to piercing damage</li>
+								<li>Slight improvements to standard Beholders</li>
+								<li>All Dragons have vastly increased HP</li>
+								<li>New animation for Dracolich and Orcus (big thanks to Morpheus for providing the animations)</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="toggle">
+					<h4 class="title">Fixes & Mechanical Adjustments</h4>
+					<div class="togglebox">
+						<div>
+							<ul>
+								<li>Thac0 bonuses from Potion of Heroism and Potion of Power are now static</li>
+								<li>Swanmays now have real wings (though barely visible due to blur effect)</li>
+								<li>Potion of Icedust and Horn of Blasting have fixed projectiles now</li>
+								<li>Fix a potential issue with interaction between Mystery of 3rd Color and Deirex's Gems quests</li>
+								<li>0exp Golems won't spawn during Chromatic Demon fight</li>
+								<li>Fix Wing Buffet to properly work on characters that have Magic Resistance</li>
+								<li>Increase duration of all Horns of Valhalla (affects those introduced by Sibel mod, if installed)</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="toggle">
+					<h4 class="title">Encounters & Enemies</h4>
+					<div class="togglebox">
+						<div>
+							<ul>
+								<li>Some enemies will have non-magical weapons in their EQ and switch weapons if you use PFMW</li>
+								<li>Slight rework of Suna Seni fight</li>
+								<li>Slight rework of Mae'Var fight</li>
+								<li>Slight rework of Slaver Ship fight</li>
+								<li>Slight rework of Torgal</li>
+								<li>Slight rework of Elite Bounty Huntress</li>
+								<li>Slight rework of Sewer Party fight</li>
+								<li>Slight rework of Turmish Barbarians fight</li>
+								<li>Rework of Drow Priestesses</li>
+								<li>Huge changes to Underdark Party fight (can be much harder now)</li>
+								<li>Huge changes to Jae'llat House fight (can be much harder now)</li>
+								<li>Huge changes to Illithid "Egg" encounter (with Insane Dward, can be much harder now)</li>
+								<li>Huge changes to Guarded Compound party</li>
+								<li>Slight rework of Samia fight</li>
+								<li>Changes to dominated party in Illithid Compound from Athkatla sewers</li>
+								<li>Huge changes in Final Seals fight of Watcher's Keep (can be much harder now)</li>
+								<li>Slight rework of Mencar party fight</li>
+								<li>Slight rework of Conster</li>
+								<li>Rework of Pirates fight in the Docks</li>
+								<li>Rework of Tolgerias fight</li>
+								<li>Slight changes to Perth, Lonk and Vadek</li>
+								<li>Slight changes to Drow Mages</li>
+								<li>Rework of Vithal</li>
+								<li>Slight rework of Umar Witch</li>
+								<li>Huge changes to Kangaxx (the fight might be much harder)</li>
+								<li>Rework Rune Assassins</li>
+								<li>Slight rework of Galvarey fight</li>
+								<li>Slight rework of Borinall fight</li>
+								<li>Rework Elite Rune Assassins, Master Assassin, Guildmaster and Grandfather of Assassins</li>
+								<li>Rework Illasera fight</li>
+								<li>Slight rework of Gromnir fight</li>
+								<li>Slight rework of Yaga-Shura fight</li>
+								<li>Slight rework of Tazok</li>
+								<li>Slight rework of Cat'o'Nine Lives fight</li>
+								<li>Slight rework of Crystal fight in Asylum</li>
+								<li>Slight rework of Noble Trolls</li>
+								<li>Slight rework of Drow Ambushes in the Underdark (partially restore their difficulty from v6.6)</li>
+								<li>Complete rework of Mind Flayers and their abilities (they are much more deadly now)</li>
+								<li>Rework Master Brain fight</li>
+								<li>Rework of Troll Mound fight (big shoutout to Berzerkerzz, most files taken 1:1 from his work)</li>
+								<li>North Forest party rework</li>
+								<li>Changes to Firkraag fight</li>
+								<li>Rework of Alhoon fight</li>
+								<li>Rework of Twisted Rune fight</li>
+								<li>Slight rework of Squirreled Away fights</li>
+								<li>All Dragons have vastly increased HP</li>
+								<li>Slight improvements to standard Beholders</li>
+								<li>Changes in enemies from "Why is it so cold down there" quest</li>
+								<li>Huge changes to final fight of WK level 4 against Rock and Garock (the fight is much harder now)</li>
+								<li>Reworked Golem spawns in WK level 4 and 5</li>
+								<li>Illithid part of WK level 4 is reworked</li>
+								<li>Reworked Ancient Dragon fight</li>
+								<li>Complete rework of Nyalee fight with additional storytelling</li>
+								<li>Abazigal Dragon phase is now heavily reworked</li>
+								<li>Slight change to Asylum Tome fight</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="toggle">
+					<h4 class="title">Potion Effect Levels</h4>
+					<div class="togglebox">
+						<div>
+							<ul>
+								<li>Stone Giant – level 12</li>
+								<li>Frost Giant – level 14</li>
+								<li>Fire Giant – level 16</li>
+								<li>Cloud Giant – level 18</li>
+								<li>Storm Giant – level 20</li>
+								<li>Heroism – level 15</li>
+								<li>Invulnerability – level 15</li>
+								<li>Magic Protection – level 12</li>
+								<li>Magic Shielding – level 20</li>
+								<li>Master Thievery – level 12</li>
+								<li>Resurgence – level 16</li>
+								<li>Power – level 20</li>
+								<li>All other potions not mentioned – level 10</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+    		<div class="clear"></div>
+          </article>
+          <!-- end article -->
+
+      </div><!-- #content -->
+    </div><!-- #primary -->
+</div><!-- #main -->
+
+<footer id="colophon" role="contentinfo">
+	<div id="site-generator">
+		Improved Anvil Tweaks 1.1
+	</div>
+</footer><!-- #colophon -->
+
+	</div><!-- #wrapper -->
+</div><!-- #page -->
+
+<script type="text/javascript" src="style/js/scripts.js"></script>
+</body>
+</html>

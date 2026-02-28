@@ -104,6 +104,25 @@ COPY_EXISTING ~RENGAA.cre~ ~override~
 
 //////////// Backwhacker
 
+COPY ~IATweaks\resources\eff\s!staba1.eff~ ~override\s!backwh.eff~
+  WRITE_ASCII 0x30 ~S!BACKWH1~ #8
+
+COPY ~IATweaks\resources\spl\S!backstab_146_base.SPL~ ~override\s!backw1.spl~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 146
+    STR_VAR
+      resource = ~S!BACKW2~
+  END
+COPY ~IATweaks\resources\spl\S!backstab_326_base.SPL~ ~override\s!backw2.spl~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 326
+      parameter1 = %successfully_backstabbed%
+    STR_VAR
+      resource = ~S!BACKWH~
+  END
+
 COPY ~IATweaks\resources\spl\s!backwh.spl~ ~override~
 COPY ~IATweaks\resources\bam\s!backwh.bam~ ~override~
 COPY ~IATweaks\resources\itm\s!backwh.itm~ ~override~
@@ -127,7 +146,28 @@ LAF ~S!ADD_SPLPROT_2DA_ENTRY~
     area_type = new_line_number
 END
 
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~CRUSHING_RES>=100~
+    stat                  = ~22~
+    value                 = ~100~
+    relation              = ~4~
+  RET
+    crushing_no_less_than_100 = new_line_number
+END
+
 COPY ~IATweaks\resources\spl\s!bligh1.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 318
+      match_parameter2 = 0
+      parameter2 = crushing_no_less_than_100
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = RESOLVE_STR_REF (@5190)
+  END
 COPY ~IATweaks\resources\spl\s!bligh2.spl~ ~override~
 COPY ~IATweaks\resources\spl\s!bligh3.spl~ ~override~
   LPF ~ALTER_EFFECT~
@@ -138,6 +178,25 @@ COPY ~IATweaks\resources\spl\s!bligh3.spl~ ~override~
       parameter2 = area_type
   END
 COPY ~IATweaks\resources\spl\s!bligh4.spl~ ~override~
+
+COPY ~IATweaks\resources\eff\s!staba1.eff~ ~override\s!blight.eff~
+  WRITE_ASCII 0x30 ~S!BLIGH1~ #8
+
+COPY ~IATweaks\resources\spl\S!backstab_146_base.SPL~ ~override\s!bligh5.spl~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 146
+    STR_VAR
+      resource = ~S!BLIGH6~
+  END
+COPY ~IATweaks\resources\spl\S!backstab_326_base.SPL~ ~override\s!bligh6.spl~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 326
+      parameter1 = %successfully_backstabbed%
+    STR_VAR
+      resource = ~S!BLIGH1~
+  END
 COPY ~IATweaks\resources\bam\s!blight.bam~ ~override~
 COPY ~IATweaks\resources\itm\s!blight.itm~ ~override~
   SAY NAME2 @7040

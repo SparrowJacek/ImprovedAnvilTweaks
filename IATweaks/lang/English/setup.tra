@@ -341,6 +341,7 @@ Advantages:
 - May put up to 200 points into Stealth Strike and Hide in Shadows.
 - May become Specialized (two slots) in Short Sword and Dagger.
 - May become Master (three slots) in Single Weapon Style.
+- Each successful backstab has 10% chance to disable regeneration of the target for 3 seconds, this value increases by 5% every 5 levels up till 50% att level 40.
 
 Disadvantages:
 - Only 10 points to distribute at level 1.

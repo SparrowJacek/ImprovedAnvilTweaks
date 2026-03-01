@@ -2,7 +2,7 @@ PRINT @5087
 
 SILENT
 
-INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
+INCLUDE "IATweaks/lib/components/IA_rebalancing/helper_functions.tph"
 
 // Grant level 4 spells to Rangers
 

@@ -1,5 +1,5 @@
 
-INCLUDE ~%MOD_FOLDER%/lib/components/IA_rebalancing/ClassSpellTool.TPA~
+INCLUDE ~IATweaks/lib/components/IA_rebalancing/ClassSpellTool.TPA~
 LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR509~ class_include=~{'CLERIC_ALL', 'DRUID_ALL', 'RANGER_ALL', 'PALADIN_ALL'}~ kit_exclude=~{'SHAR'}~ END
 LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR609~ class_include=~{'CLERIC_ALL', 'PALADIN_ALL'}~ kit_exclude=~{'SHAR'}~ END
 LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR614~ class_include=~{'CLERIC_ALL', 'DRUID_ALL', 'RANGER_ALL', 'PALADIN_ALL'}~ kit_exclude=~{'SHAR'}~ END

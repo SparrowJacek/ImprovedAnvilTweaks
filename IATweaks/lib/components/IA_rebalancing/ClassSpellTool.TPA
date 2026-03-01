@@ -5,15 +5,15 @@ DEFINE_ACTION_FUNCTION INITIALIZE_SPELL_LISTS
 BEGIN
 
 ACTION_IF !(FILE_EXISTS_IN_GAME ~MEWI1.txt~) BEGIN
-	COPY ~%MOD_FOLDER%/no_overwrite/MEWI1.txt~ ~override~
-	COPY ~%MOD_FOLDER%/no_overwrite/MEWI2.txt~ ~override~
-	COPY ~%MOD_FOLDER%/no_overwrite/MEWI3.txt~ ~override~
-	COPY ~%MOD_FOLDER%/no_overwrite/MEWI4.txt~ ~override~
-	COPY ~%MOD_FOLDER%/no_overwrite/MEWI5.txt~ ~override~
-	COPY ~%MOD_FOLDER%/no_overwrite/MEWI6.txt~ ~override~
-	COPY ~%MOD_FOLDER%/no_overwrite/MEWI7.txt~ ~override~
-	COPY ~%MOD_FOLDER%/no_overwrite/MEWI8.txt~ ~override~
-	COPY ~%MOD_FOLDER%/no_overwrite/MEWI9.txt~ ~override~
+	COPY ~IATweaks/no_overwrite/MEWI1.txt~ ~override~
+	COPY ~IATweaks/no_overwrite/MEWI2.txt~ ~override~
+	COPY ~IATweaks/no_overwrite/MEWI3.txt~ ~override~
+	COPY ~IATweaks/no_overwrite/MEWI4.txt~ ~override~
+	COPY ~IATweaks/no_overwrite/MEWI5.txt~ ~override~
+	COPY ~IATweaks/no_overwrite/MEWI6.txt~ ~override~
+	COPY ~IATweaks/no_overwrite/MEWI7.txt~ ~override~
+	COPY ~IATweaks/no_overwrite/MEWI8.txt~ ~override~
+	COPY ~IATweaks/no_overwrite/MEWI9.txt~ ~override~
 
 	OUTER_FOR (i = 1; i <= 8; ++i) BEGIN
 		OUTER_FOR (j = 0; j <= 3; ++j) BEGIN
@@ -33,13 +33,13 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~MEWI1.txt~) BEGIN
 		END
 	END
 
-	COPY ~%MOD_FOLDER%/no_overwrite/MEPR1.txt~ ~override~
-	COPY ~%MOD_FOLDER%/no_overwrite/MEPR2.txt~ ~override~
-	COPY ~%MOD_FOLDER%/no_overwrite/MEPR3.txt~ ~override~
-	COPY ~%MOD_FOLDER%/no_overwrite/MEPR4.txt~ ~override~
-	COPY ~%MOD_FOLDER%/no_overwrite/MEPR5.txt~ ~override~
-	COPY ~%MOD_FOLDER%/no_overwrite/MEPR6.txt~ ~override~
-	COPY ~%MOD_FOLDER%/no_overwrite/MEPR7.txt~ ~override~
+	COPY ~IATweaks/no_overwrite/MEPR1.txt~ ~override~
+	COPY ~IATweaks/no_overwrite/MEPR2.txt~ ~override~
+	COPY ~IATweaks/no_overwrite/MEPR3.txt~ ~override~
+	COPY ~IATweaks/no_overwrite/MEPR4.txt~ ~override~
+	COPY ~IATweaks/no_overwrite/MEPR5.txt~ ~override~
+	COPY ~IATweaks/no_overwrite/MEPR6.txt~ ~override~
+	COPY ~IATweaks/no_overwrite/MEPR7.txt~ ~override~
 
 	OUTER_FOR (i = 1; i <= 7; ++i) BEGIN
 		OUTER_FOR (j = 0; j <= 5; ++j) BEGIN
@@ -135,13 +135,13 @@ BEGIN
 LAF INITIALIZE_SPELL_LISTS END
 
 ACTION_IF !(FILE_EXISTS_IN_GAME ~MECS0.spl~) BEGIN
-	COPY ~%MOD_FOLDER%/no_overwrite/MECS0.spl~ ~override~
-	COPY ~%MOD_FOLDER%/no_overwrite/MECS0.eff~ ~override~
+	COPY ~IATweaks/no_overwrite/MECS0.spl~ ~override~
+	COPY ~IATweaks/no_overwrite/MECS0.eff~ ~override~
 END
 
 ACTION_IF !(FILE_EXISTS_IN_GAME ~M_MEEXSP.lua~) BEGIN
-	COPY ~%MOD_FOLDER%/no_overwrite/M_MEEXSP.lua~ ~override~
-	COPY ~%MOD_FOLDER%/ClassSpellTool_overwrite~ ~override~
+	COPY ~IATweaks/no_overwrite/M_MEEXSP.lua~ ~override~
+	COPY ~IATweaks/ClassSpellTool_overwrite~ ~override~
 
 	COPY_EXISTING ~hidespl.2da~ ~override~
 		REPLACE_TEXTUALLY ~\(IS_HIDDEN[ %TAB%]+IS_FINAL\)~ ~\1   IS_REMOVED~

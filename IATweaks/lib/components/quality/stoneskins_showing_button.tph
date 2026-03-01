@@ -1,7 +1,7 @@
 SILENT
 
-INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
-INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions_GUI.tph"
+INCLUDE "IATweaks/lib/components/IA_rebalancing/helper_functions.tph"
+INCLUDE "IATweaks/lib/components/IA_rebalancing/helper_functions_GUI.tph"
 
 COPY ~IATweaks\resources\bam\GUILS10.bam~ ~override~
 

@@ -38,7 +38,7 @@ COPY_EXISTING ~SPKLARBK.pro~ ~override~
 			  ~SPARSTPA.pro~ ~override~
   WRITE_SHORT 0xa THIS + 10 
 
-INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
+INCLUDE "IATweaks/lib/components/IA_rebalancing/helper_functions.tph"
 
 // Add condition for checking if magic damage resistance is less than n
 

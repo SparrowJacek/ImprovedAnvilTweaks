@@ -1,7 +1,7 @@
 
 SILENT
 
-INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
+INCLUDE "IATweaks/lib/components/IA_rebalancing/helper_functions.tph"
 
 // Patch all shields to set shield_equipped state when worn
 

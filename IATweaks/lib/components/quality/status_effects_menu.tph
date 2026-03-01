@@ -1,6 +1,6 @@
 SILENT
 
-INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions_GUI.tph"
+INCLUDE "IATweaks/lib/components/IA_rebalancing/helper_functions_GUI.tph"
 
 COPY_EXISTING ~UI.MENU~ ~override~
   LPF ~S!MOVE_STATUS_EFFECTS_BAR_RIGHT~

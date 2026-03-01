@@ -2,7 +2,7 @@ PRINT @5099
 
 SILENT
 
-INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
+INCLUDE "IATweaks/lib/components/IA_rebalancing/helper_functions.tph"
 
 COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
 // Charm and Domination immunity

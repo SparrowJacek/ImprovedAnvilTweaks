@@ -2,7 +2,7 @@ PRINT @5086
 
 SILENT
 
-INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
+INCLUDE "IATweaks/lib/components/IA_rebalancing/helper_functions.tph"
 
 // More spells at higher levels for Mage and Sorcerer
 

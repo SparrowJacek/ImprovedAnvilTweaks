@@ -15,7 +15,7 @@ COPY_EXISTING_REGEXP ~.*\.cre~ ~override~
 
 // Increase real summon limit to 100
 
-INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
+INCLUDE "IATweaks/lib/components/IA_rebalancing/helper_functions.tph"
 
 COPY_EXISTING ~summlimt.2da~  ~override~
   REPLACE_TEXTUALLY ~NORMAL[ %TAB%]+5~ ~NORMAL 100~

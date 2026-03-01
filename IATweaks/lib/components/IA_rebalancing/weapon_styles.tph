@@ -2,7 +2,7 @@ PRINT @5082
 
 SILENT
 
-INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
+INCLUDE "IATweaks/lib/components/IA_rebalancing/helper_functions.tph"
 
 // change weapon style bonus descriptions
 COPY_EXISTING ~weapprof.2da~  ~override/weapprof.2da~

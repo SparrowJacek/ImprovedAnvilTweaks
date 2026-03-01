@@ -1,4 +1,4 @@
-INCLUDE "%MOD_FOLDER%/lib/components/IA_rebalancing/helper_functions.tph"
+INCLUDE "IATweaks/lib/components/IA_rebalancing/helper_functions.tph"
 
 DEFINE_ACTION_FUNCTION ~S!EXTRACT_LUA_TABLE_FROM_2DA~
   INT_VAR

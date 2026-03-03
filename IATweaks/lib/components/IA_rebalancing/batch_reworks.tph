@@ -47,8 +47,8 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
         target = 1
         parameter1 = 3
         parameter2 = two_handed_style
-        timing = 10
-        duration = 1
+        timing = 0
+        duration = 0
       STR_VAR
         resource = EVAL ~%SOURCE_RES%~
     END
@@ -84,8 +84,8 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
         target = 1
         parameter1 = 3
         parameter2 = single_weapon_style_less_than
-        timing = 10
-        duration = 2
+        timing = 0
+        duration = 0
       STR_VAR
         resource = EVAL ~%SOURCE_RES%~
     END

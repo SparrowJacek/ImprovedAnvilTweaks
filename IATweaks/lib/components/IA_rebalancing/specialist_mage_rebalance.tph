@@ -1190,6 +1190,23 @@ COPY_EXISTING ~SPWI908.spl~ ~override~
 
 // Improve Energy Drain
 
+// Ensure the traps use the old version of the spell, otherwise the game will prevent any further opcodes from being applied, when HP drain is caused by a trap and not a creature
+COPY_EXISTING ~SPWI914.spl~ ~override/s!enedrn.spl~
+
+COPY_EXISTING ~GT018.BCS~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    REPLACE_TEXTUALLY
+      ~ForceSpell(LastTrigger,WIZARD_ENERGY_DRAIN)~
+      ~ForceSpellRES("S!ENEDRN",LastTrigger)~
+  END
+
+COPY_EXISTING ~GT023.BCS~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    REPLACE_TEXTUALLY
+      ~ForceSpell(LastTrigger,WIZARD_ENERGY_DRAIN)~
+      ~ForceSpellRES("S!ENEDRN",LastTrigger)~
+  END
+
 COPY_EXISTING ~SPWI914.spl~ ~override~
   SAY UNIDENTIFIED_DESC @6270
   LPF ~ALTER_SPELL_HEADER~

@@ -4057,6 +4057,14 @@ COPY_EXISTING ~S!RUNE1.cre~ ~override~
 
 COMPILE ~IATweaks\scripts\creatures\S!RUNE1.baf~
 
+ACTION_IF MOD_IS_INSTALLED ~IATweaks.tp2~ 301 BEGIN
+  // Guildmaster of Assassins note, AI script
+  COPY_EXISTING ~S!rune1.BCS~ ~override\S!rune1.BCS~
+    DECOMPILE_AND_PATCH BEGIN
+      REPLACE_TEXTUALLY ~Class(Player1,RANGER_ALL)~ ~~
+    END
+END
+
 // Grandfather of Assassins
 
 COPY_EXISTING ~S!RUNEF.cre~ ~override~

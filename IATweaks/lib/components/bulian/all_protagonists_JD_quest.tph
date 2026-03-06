@@ -1,0 +1,146 @@
+/// Remove class restrictions from the JD items, forging and demon lord encounter ///
+
+SILENT
+
+// WK demon lord fight
+<<<<<<<< .../inlined/wk-demon-lord-old.baf
+IF
+	Global("Iacreature","AR3000",0)
+	!Class(Player1,THIEF_ALL)
+	!Class(Player1,BARD_ALL)
+	!Class(Player1,CLERIC_ALL)
+	!Class(Player1,MAGE_ALL)
+	!Class(Player1,DRUID_ALL)
+	!Class(Player1,MONK)
+	Alignment(Player1,MASK_GOOD)
+	PartyHasItem("sw1h60")
+	Dead("gorgit")
+	Global("IaGorgitDead","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iacreature","AR3000",1)
+		CreateCreature("S!dlord",[2361.1207],S)
+END
+>>>>>>>>
+<<<<<<<< .../inlined/wk-demon-lord-new.baf
+IF
+	Global("Iacreature","AR3000",0)
+	PartyHasItem("sw1h60")
+	Dead("gorgit")
+	Global("IaGorgitDead","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Iacreature","AR3000",1)
+		CreateCreature("S!dlord",[2361.1207],S)
+END
+>>>>>>>>
+COPY_EXISTING ~AR3000.BCS~ ~override~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/wk-demon-lord-old.baf~ ~.../inlined/wk-demon-lord-new.baf~
+  BUT_ONLY
+
+// WK JD Essence (Mage Part)
+<<<<<<<< .../inlined/wk-ancient-dragon-old.baf
+IF
+	Detect([PC])
+	!Class(Player1,THIEF_ALL)
+	!Class(Player1,BARD_ALL)
+	!Class(Player1,CLERIC_ALL)
+	!Class(Player1,MAGE_ALL)
+	!Class(Player1,DRUID_ALL)
+	!Class(Player1,MONK)
+	Alignment(Player1,MASK_GOOD)
+	Global("Iatreasure4","LOCALS",0)
+	!GlobalGT("Iap1notgood","GLOBAL",0)
+	Global("Iapcastts","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatreasure4","LOCALS",1)
+		GiveItemCreate("S!misc08",Myself,0,0,0)
+END
+>>>>>>>>
+<<<<<<<< .../inlined/wk-ancient-dragon-new.baf
+IF
+  Detect([PC])
+  Global("Iatreasure4","LOCALS",0)
+  Global("Iapcastts","GLOBAL",0)
+THEN
+  RESPONSE #100
+    SetGlobal("Iatreasure4","LOCALS",1)
+    GiveItemCreate("S!misc08",Myself,0,0,0)
+END
+>>>>>>>>
+COPY_EXISTING ~S!FSDRAG.BCS~ ~override~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/wk-ancient-dragon-old.baf~ ~.../inlined/wk-ancient-dragon-new.baf~
+  BUT_ONLY
+
+// WK JD variable after Ancient Dragon is dead
+<<<<<<<< .../inlined/wk-JD-variable-old.baf
+IF
+	OR(2)
+		Dead("fsdragon")
+		Global("Iaancientdead","GLOBAL",1)
+	!Class(Player1,THIEF_ALL)
+	!Class(Player1,BARD_ALL)
+	!Class(Player1,CLERIC_ALL)
+	!Class(Player1,MAGE_ALL)
+	!Class(Player1,DRUID_ALL)
+	!Class(Player1,MONK)
+	Alignment(Player1,MASK_GOOD)
+	Global("Iajdmage","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iajdmage","GLOBAL",1)
+END
+>>>>>>>>
+<<<<<<<< .../inlined/wk-JD-variable-new.baf
+IF
+	OR(2)
+		Dead("fsdragon")
+		Global("Iaancientdead","GLOBAL",1)
+	Global("Iajdmage","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iajdmage","GLOBAL",1)
+END
+>>>>>>>>
+COPY_EXISTING ~AR3024.BCS~ ~override~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/wk-JD-variable-old.baf~ ~.../inlined/wk-JD-variable-new.baf~
+  BUT_ONLY
+
+// WK JD Essence (Barbarian Part)
+<<<<<<<< .../inlined/wk-torgal-old.baf
+IF
+	Allegiance(Myself,ENEMY)
+	Detect([PC])
+	!Class(Player1,THIEF_ALL)
+	!Class(Player1,BARD_ALL)
+	!Class(Player1,CLERIC_ALL)
+	!Class(Player1,MAGE_ALL)
+	!Class(Player1,DRUID_ALL)
+	!Class(Player1,MONK)
+	Alignment(Player1,MASK_GOOD)
+	!GlobalGT("Iap1notgood","GLOBAL",0)
+	Global("Iatreasure2","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatreasure2","LOCALS",1)
+		GiveItemCreate("S!misc07",Myself,0,0,0)
+END
+>>>>>>>>
+<<<<<<<< .../inlined/wk-torgal-new.baf
+IF
+	Allegiance(Myself,ENEMY)
+	Detect([PC])
+	Global("Iatreasure2","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Iatreasure2","LOCALS",1)
+		GiveItemCreate("S!misc07",Myself,0,0,0)
+END
+>>>>>>>>
+COPY_EXISTING ~S!TORGAL.BCS~ ~override~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/wk-torgal-old.baf~ ~.../inlined/wk-torgal-new.baf~
+  BUT_ONLY
+
+// No class/alignment restritctions for forging
+COMPILE ~IATweaks/resources/dlg/jd_forging.d~

@@ -389,8 +389,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("Iatreasure4","LOCALS",1)
-		GiveItemCreate("S!misc08",Myself,0,0,0)  // Judgement Day Essence (Mage half)
-		Continue()
+		GiveItemCreate("S!misc08",Myself,0,0,0)
 END
 
 IF

@@ -263,6 +263,13 @@ REQUIRE_PREDICATE (MOD_IS_INSTALLED ~ImprovedAnvil/Setup-ImprovedAnvil.tp2~ ~0~)
 
 INCLUDE "IATweaks/lib/components/bulian/stat_books.tph"
 
+BEGIN @67 DESIGNATED 306
+GROUP @3
+
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~ImprovedAnvil/Setup-ImprovedAnvil.tp2~ ~0~) @0
+
+INCLUDE "IATweaks/lib/components/bulian/all_protagonists_JD_quest.tph"
+
 // IA Rebalance
 
 BEGIN @5194 DESIGNATED 400
@@ -270,6 +277,7 @@ GROUP @5000 SUBCOMPONENT @5000
 
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~ImprovedAnvil/Setup-ImprovedAnvil.tp2~ ~0~) @0
 FORBID_COMPONENT "IATweaks.tp2" 102 "This component has to be installed before Simplified Economy"
+FORBID_COMPONENT "IATweaks.tp2" 306 "This component has to be installed before The Judgement Day plot and sword are available for all protagonists"
 
 INCLUDE "IATweaks/lib/components/IA_rebalancing/spellstates.tph"
 INCLUDE "IATweaks/lib/components/IA_rebalancing/animations.tph"

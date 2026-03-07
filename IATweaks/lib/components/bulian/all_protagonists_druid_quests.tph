@@ -1,0 +1,175 @@
+/// Remove class restrictions from Buried Ambitions. ///
+
+SILENT
+
+// Great Druid challenge //
+
+COPY_EXISTING ~CECHALLE.DLG~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    REPLACE_TEXTUALLY ~OR(2)[ %TAB%%LNL%%MNL%%WNL%]XPLT(Player1,2500000)[ %TAB%%LNL%%MNL%%WNL%]!Class(Player1,DRUID_ALL)~ ~False()~
+    REPLACE_TEXTUALLY ~XPGT(Player1,2499999)[ %TAB%%LNL%%MNL%%WNL%]Global("GreatDruid","GLOBAL",0)~ ~Global("GreatDruid","GLOBAL",0)~
+    REPLACE_TEXTUALLY ~Class(Player1,DRUID_ALL)[ %TAB%%LNL%%MNL%%WNL%]XPLT(Player1,2500000)~ ~~
+  END
+
+// Yeti Hide reward //
+
+COPY_EXISTING ~TRCUT07.DLG~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    REPLACE_TEXTUALLY ~!Class(Player1,DRUID_ALL)[ %TAB%%LNL%%MNL%%WNL%]!Class(Player1,SHAMAN)~ ~False()~
+    REPLACE_TEXTUALLY ~OR(2)[ %TAB%%LNL%%MNL%%WNL%]Class(Player1,DRUID_ALL)[ %TAB%%LNL%%MNL%%WNL%]Class(Player1,SHAMAN)~ ~True()~
+  END
+
+// Grancor's Note
+
+<<<<<<<< .../inlined/grancor-old.baf
+IF
+	InMyArea(Player1)
+	Global("IADruidGrancorNote","GLOBAL",0)
+	Global("IAItemCheck","AR1202",0)
+	Exists("firwlf01")
+	!Dead("firwlf01")
+	!PartyHasItem("S!misc77")
+	OR(2)
+		Class(Player1,DRUID_ALL)
+		Class(Player1,SHAMAN)
+THEN
+	RESPONSE #100
+		SetGlobal("IAItemCheck","AR1202",1)
+		GiveItemCreate("S!misc77","firwlf01",0,0,0)
+END
+>>>>>>>>
+<<<<<<<< .../inlined/grancor-new.baf
+IF
+	InMyArea(Player1)
+	Global("IADruidGrancorNote","GLOBAL",0)
+	Global("IAItemCheck","AR1202",0)
+	Exists("firwlf01")
+	!Dead("firwlf01")
+	!PartyHasItem("S!misc77")
+THEN
+	RESPONSE #100
+		SetGlobal("IAItemCheck","AR1202",1)
+		GiveItemCreate("S!misc77","firwlf01",0,0,0)
+END
+>>>>>>>>
+
+COPY_EXISTING ~AR1202.BCS~ ~override~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/grancor-old.baf~ ~.../inlined/grancor-new.baf~
+  BUT_ONLY
+
+// Merella after Shade Lord
+
+COPY_EXISTING ~UHRANG01.DLG~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    REPLACE_TEXTUALLY ~!Class(Player1,DRUID_ALL)[ %TAB%%LNL%%MNL%%WNL%]!Class(Player1,SHAMAN)~ ~False()~
+    REPLACE_TEXTUALLY ~OR(2)[ %TAB%%LNL%%MNL%%WNL%]Class(Player1,DRUID_ALL)[ %TAB%%LNL%%MNL%%WNL%]Class(Player1,SHAMAN)~ ~~
+  END
+
+// Wolfwere Hideout
+
+<<<<<<<< .../inlined/wolfwere-cave-old.baf
+IF
+	Global("IADruidAnathNote","GLOBAL",0)
+	Global("IAItemCheck","AR1403",0)
+	Exists("rngwlf01")
+	!Dead("rngwlf01")
+	!PartyHasItem("S!misc76")
+	OR(2)
+		Class(Player1,DRUID_ALL)
+		Class(Player1,SHAMAN)
+THEN
+	RESPONSE #100
+		SetGlobal("IAItemCheck","AR1403",1)
+		ActionOverride("Container 2",CreateItem("S!misc76",0,0,0))
+END
+>>>>>>>>
+<<<<<<<< .../inlined/wolfwere-cave-new.baf
+IF
+	Global("IADruidAnathNote","GLOBAL",0)
+	Global("IAItemCheck","AR1403",0)
+	Exists("rngwlf01")
+	!Dead("rngwlf01")
+	!PartyHasItem("S!misc76")
+THEN
+	RESPONSE #100
+		SetGlobal("IAItemCheck","AR1403",1)
+		ActionOverride("Container 2",CreateItem("S!misc76",0,0,0))
+END
+>>>>>>>>
+
+COPY_EXISTING ~AR1403.BCS~ ~override~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/wolfwere-cave-old.baf~ ~.../inlined/wolfwere-cave-new.baf~
+  BUT_ONLY
+
+// Druid Grove IADruidPlot variable
+
+<<<<<<<< .../inlined/druid-grove-old.baf
+IF
+	InMyArea(Player1)
+	Global("DruidFight","AR1901",10)
+	Global("IADruidPlot","GLOBAL",0)
+	Global("GrovePoisoned","GLOBAL",0)
+	OR(2)
+		Global("Chapter","GLOBAL",2)
+		Global("Chapter","GLOBAL",3)
+	OR(2)
+		Class(Player1,DRUID_ALL)
+		Class(Player1,SHAMAN)
+	!Class(Player1,FIGHTER_ALL)
+THEN
+	RESPONSE #100
+		SetGlobal("IADruidPlot","GLOBAL",1)
+END
+>>>>>>>>
+<<<<<<<< .../inlined/druid-grove-new.baf
+IF
+	InMyArea(Player1)
+	Global("DruidFight","AR1901",10)
+	Global("IADruidPlot","GLOBAL",0)
+	Global("GrovePoisoned","GLOBAL",0)
+	OR(2)
+		Global("Chapter","GLOBAL",2)
+		Global("Chapter","GLOBAL",3)
+THEN
+	RESPONSE #100
+		SetGlobal("IADruidPlot","GLOBAL",1)
+END
+>>>>>>>>
+
+COPY_EXISTING ~AR1901.BCS~ ~override~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/druid-grove-old.baf~ ~.../inlined/druid-grove-new.baf~
+  BUT_ONLY
+
+// EDE Helper
+
+<<<<<<<< .../inlined/ede-helper-old.baf
+IF
+	Global("Iaspirit","AR4500",0)
+	Global("Iaepicbattle","AR4500",1)
+	OR(2)
+		Class(Player1,DRUID_ALL)
+		Class(Player1,SHAMAN)
+	!Class(Player1,FIGHTER_ALL)
+	Global("IADruidPlot","GLOBAL",15)
+THEN
+	RESPONSE #100
+		SetGlobal("Iaspirit","AR4500",1)
+		CreateCreatureObjectDoor("S!spiede",Player1,0,0,0)
+END
+>>>>>>>>
+<<<<<<<< .../inlined/ede-helper-new.baf
+IF
+	Global("Iaspirit","AR4500",0)
+	Global("Iaepicbattle","AR4500",1)
+	Global("IADruidPlot","GLOBAL",15)
+THEN
+	RESPONSE #100
+		SetGlobal("Iaspirit","AR4500",1)
+		CreateCreatureObjectDoor("S!spiede",Player1,0,0,0)
+END
+>>>>>>>>
+
+COPY_EXISTING ~AR4500.BCS~ ~override~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/ede-helper-old.baf~ ~.../inlined/ede-helper-new.baf~
+  BUT_ONLY
+

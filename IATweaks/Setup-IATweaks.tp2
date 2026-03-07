@@ -270,6 +270,13 @@ REQUIRE_PREDICATE (MOD_IS_INSTALLED ~ImprovedAnvil/Setup-ImprovedAnvil.tp2~ ~0~)
 
 INCLUDE "IATweaks/lib/components/bulian/all_protagonists_JD_quest.tph"
 
+BEGIN @68 DESIGNATED 307
+GROUP @3
+
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~ImprovedAnvil/Setup-ImprovedAnvil.tp2~ ~0~) @0
+
+INCLUDE "IATweaks/lib/components/bulian/all_protagonists_druid_quests.tph"
+
 // IA Rebalance
 
 BEGIN @5194 DESIGNATED 400

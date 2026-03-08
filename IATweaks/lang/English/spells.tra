@@ -1853,7 +1853,7 @@ Casting Time: 5
 Area of Effect: Target Creature
 Saving Throw: None
 
-When this spell is cast at a target creature, it strips away all of the target's magic resistance, even if that creature is immune all other effects that would lower its magic resistance. Additionally, the target's resistances to fire, cold, electricity, acid and magic damage are lowered by 10%, unless the creature is completely immune to that damage type (i.e., has resistance of 100% or higher). Creatures immune to spells of level 9, or protected by Spell Immunity: Abjuration are still unaffected by this spell. This effect will last for 5 rounds or till 5 hostile attacks are performed against the target, be it a hit from a weapon, or a spell applying damage or negative effects. The effects of this spell are not cumulative. The target's magic resistance, if any, does not affect this spell.~
+When this spell is cast at a target creature, it strips away all of the target's magic resistance, even if that creature is immune to all other effects that would lower its magic resistance. Additionally, the target's resistances to fire, cold, electricity, acid and magic damage are lowered by 10%, unless the creature is completely immune to that damage type (i.e., has resistance of 100% or higher). Creatures immune to spells of level 9, or protected by Spell Immunity: Abjuration are still unaffected by this spell. This effect will last for 5 rounds or till 5 hostile attacks are performed against the target, be it a hit from a weapon, or a spell applying damage or negative effects. The effects of this spell are not cumulative. The target's magic resistance, if any, does not affect this spell.~
 
 @6247 = ~Spellstrike effect ended.~
 

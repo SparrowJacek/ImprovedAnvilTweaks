@@ -2,7 +2,7 @@
 IF
 	Allegiance(Myself,ENEMY)
 	See(NearestEnemyOf(Myself))
-	Global("Prep","LOCALS",0)
+	Global("IaPrep","LOCALS",0)
 THEN
 	RESPONSE #100
 	    ReallyForceSpellRES("S!CNT01A",Myself)
@@ -18,7 +18,7 @@ END
 IF
 	Allegiance(Myself,ENEMY)
 	See(NearestEnemyOf(Myself))
-	Global("Prep","LOCALS",0)
+	Global("IaPrep","LOCALS",0)
 THEN
 	RESPONSE #100
 	    ReallyForceSpellRES("S!CNT02A",Myself)
@@ -28,10 +28,11 @@ END
 IF
 	Allegiance(Myself,ENEMY)
 	See(NearestEnemyOf(Myself))
-	Global("Prep","LOCALS",0)
+	Global("IaPrep","LOCALS",0)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
+		SetGlobal("IaPrep","LOCALS",1)
 		ReallyForceSpellRES("PTN34X",Myself)  // No such index
 		ReallyForceSpellRES("PTN33X",Myself)  // No such index
 		ReallyForceSpellRES("PTN33X",Myself)  // No such index
@@ -87,15 +88,7 @@ THEN
 		ReallyForceSpell(Myself,WIZARD_HASTE)  // SPWI305.SPL (Haste)
 		RemoveSpell(WIZARD_HASTE)  // SPWI305.SPL (Haste)
 		SetInterrupt(TRUE)
-END
-
-IF
-	Allegiance(Myself,ENEMY)
-	See(NearestEnemyOf(Myself))
-	Global("IaPrep","LOCALS",0)
-THEN
-	RESPONSE #100
-		SetGlobal("IaPrep","LOCALS",1)
+		Continue()
 END
 
 IF

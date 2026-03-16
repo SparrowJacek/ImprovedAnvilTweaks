@@ -79,3 +79,34 @@ COPY_EXISTING ~WSMITH01.DLG~ ~override\WSMITH01.DLG~
 
     REPLACE_TEXTUALLY ~Global("Iaamul06forged","GLOBAL",0)[ %TAB%%LNL%%MNL%%WNL%]+Class(Player1,MAGE_ALL)[ %TAB%%LNL%%MNL%%WNL%]+Kit(Player1,MAGESCHOOL_NECROMANCER)[ %TAB%%LNL%%MNL%%WNL%]+!Class(Player1,THIEF_ALL)[ %TAB%%LNL%%MNL%%WNL%]+!Class(Player1,FIGHTER_ALL)[ %TAB%%LNL%%MNL%%WNL%]+!Class(Player1,CLERIC_ALL)[ %TAB%%LNL%%MNL%%WNL%]+!Class(Player1,SORCERER)~ ~Global("Iaamul06forged","GLOBAL",0)~
   END
+
+// Remove code that destroys MotA when forged by non-Mage protagonist
+
+<<<<<<<< .../inlined/ia-empty.baf
+>>>>>>>>
+
+<<<<<<<< .../inlined/ia-mota.baf
+IF
+	OR(7)
+		!Class(Player1,MAGE_ALL)
+		Class(Player1,CLERIC_ALL)
+		Class(Player1,BARD_ALL)
+		Class(Player1,FIGHTER_ALL)
+		Class(Player1,THIEF_ALL)
+		Global("Iarobeforged","GLOBAL",0)
+		Global("Ianomemory","GLOBAL",1)
+	PartyHasItem("S!robe01")
+THEN
+	RESPONSE #100
+		TakePartyItem("S!robe01")
+		DestroyItem("S!robe01")
+END
+>>>>>>>>
+
+COPY_EXISTING ~BALDUR.BCS~ ~override~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/ia-mota.baf~ ~.../inlined/ia-empty.baf~
+  BUT_ONLY
+
+COPY_EXISTING ~BALDUR25.BCS~ ~override~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/ia-mota.baf~ ~.../inlined/ia-empty.baf~
+  BUT_ONLY

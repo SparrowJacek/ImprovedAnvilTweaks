@@ -23,6 +23,12 @@ COPY_EXISTING ~AR1514.BCS~ ~override\AR1514.BCS~
       ~SetGlobal("Iaitem1","AR1514",1) GiveItemCreate("S!clck03",Player1,0,0,0)~
   END
 
+// Enable it for all Ranger kits
+
+COPY_EXISTING ~s!clck03.itm~ ~override~
+  WRITE_BYTE 0x2b (THIS BAND 0b11111101)
+  WRITE_BYTE 0x2d (THIS BAND 0b01111111)
+
 // Armor of Stamina in the Brynnlaw brothel
 COPY_EXISTING ~pirmur01.BCS~ ~override\pirmur01.BCS~
   DECOMPILE_AND_PATCH BEGIN

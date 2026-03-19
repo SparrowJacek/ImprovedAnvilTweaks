@@ -98,14 +98,14 @@ GROUP @2 SUBCOMPONENT @21
 
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~ImprovedAnvil/Setup-ImprovedAnvil.tp2~ ~0~) @0
 
-INCLUDE "IATweaks/lib/components/custom_kits/minsc_beastmaster.tph"
+INCLUDE "IATweaks/lib/components/custom_kits/minsc_protector.tph"
 
 BEGIN @5183 DESIGNATED 220
 GROUP @2 SUBCOMPONENT @21
 
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~ImprovedAnvil/Setup-ImprovedAnvil.tp2~ ~0~) @0
 
-INCLUDE "IATweaks/lib/components/custom_kits/minsc_protector.tph"
+INCLUDE "IATweaks/lib/components/custom_kits/minsc_beastmaster.tph"
 
 BEGIN @44 DESIGNATED 204
 GROUP @2 SUBCOMPONENT @22

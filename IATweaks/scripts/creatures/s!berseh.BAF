@@ -1,13 +1,5 @@
 IF
 	!Allegiance(Myself,ENEMY)
-	AttackedBy([GOODCUTOFF],DEFAULT)
-THEN
-	RESPONSE #100
-		Enemy()
-END
-
-IF
-	!Allegiance(Myself,ENEMY)
 	Global("Iamoving","LOCALS",1)
 	OR(2)
 		See(NearestEnemyOf(Myself))

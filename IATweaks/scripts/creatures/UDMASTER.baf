@@ -209,6 +209,15 @@ THEN
 END
 
 IF
+	Allegiance(Myself,ENEMY)
+	GlobalGT("IaBrainGolems","LOCALS",4)
+	HasItem("minhp1",Myself)  // No such index
+THEN
+	RESPONSE #100
+		DestroyItem("minhp1")  // No such index
+END
+
+IF
 	!GlobalTimerNotExpired("Iaspell","LOCALS")
 	!GlobalTimerNotExpired("Iapurge","LOCALS")
 	!HPLT(Myself,1)

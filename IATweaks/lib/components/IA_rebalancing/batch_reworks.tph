@@ -1,4 +1,3 @@
-
 SILENT
 
 INCLUDE "IATweaks/lib/components/IA_rebalancing/helper_functions.tph"
@@ -266,3 +265,64 @@ COPY_EXISTING_REGEXP GLOB ~.+\.cre~ ~override~
     END
   END
 BUT_ONLY
+
+// Make all actions performed against summoned creatures to also check if they can be unsummoned
+
+COPY_EXISTING_REGEXP GLOB ~.+\.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    REPLACE_TEXTUALLY ~0.0.0.SUMMONED~ ~0.0.CAN_BE_UNSUMMONED.SUMMONED~
+  END
+  BUT_ONLY
+
+// Make all summoned creatures have Specific set to CAN_BE_UNSUMMONED
+
+COPY_EXISTING_REGEXP GLOB ~.+\.cre~ ~override~
+  READ_BYTE 0x275 gender
+  PATCH_IF (gender = 6) BEGIN // summoned 
+    WRITE_BYTE 0x274 can_be_unsummoned_index
+  END
+BUT_ONLY
+
+// Make all spells and items that work on summoned creatures work on those with Specific set to CAN_BE_UNSUMMONED instead
+
+COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      silent = 1
+      match_opcode = 55
+      match_parameter1 = 6
+      match_parameter2 = 7
+      parameter1 = can_be_unsummoned_index
+      parameter2 = 6
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      silent = 1
+      match_opcode = 177
+      match_parameter1 = 6
+      match_parameter2 = 7
+      parameter1 = can_be_unsummoned_index
+      parameter2 = 6
+  END
+  BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~.+\.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      silent = 1
+      match_opcode = 55
+      match_parameter1 = 6
+      match_parameter2 = 7
+      parameter1 = can_be_unsummoned_index
+      parameter2 = 6
+  END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      silent = 1
+      match_opcode = 177
+      match_parameter1 = 6
+      match_parameter2 = 7
+      parameter1 = can_be_unsummoned_index
+      parameter2 = 6
+  END
+  BUT_ONLY

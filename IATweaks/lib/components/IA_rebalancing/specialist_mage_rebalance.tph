@@ -970,7 +970,28 @@ ACTION_FOR_EACH summoned_monster IN ~OGRELESU~ ~OGRESU~ ~ETTERCSU~ ~S!MINOSU~ ~S
     WRITE_ASCII 0x248 ~S!CONJUR~ #8
 END
 
+LAF ~APPEND_TO_IDS~
+  STR_VAR
+    file = ~SPECIFIC.IDS~
+    name = ~CAN_BE_UNSUMMONED~
+  RET
+    can_be_unsummoned_index = index
+END
+
+LAF ~APPEND_TO_IDS~
+  STR_VAR
+    file = ~SPECIFIC.IDS~
+    name = ~CANNOT_BE_UNSUMMONED~
+  RET
+    cannot_be_unsummoned_index = index
+END
+
 COPY ~IATweaks\resources\spl\s!smbuf3.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 72
+      parameter1 = cannot_be_unsummoned_index
+  END
 
 // 6 summons instead of 5
 

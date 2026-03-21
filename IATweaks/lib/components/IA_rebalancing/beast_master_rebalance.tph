@@ -130,6 +130,11 @@ COPY ~IATweaks\resources\spl\s!anfort.spl~ ~override~
     INT_VAR
       resist_dispel = 3
   END
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 72
+      parameter1 = cannot_be_unsummoned_index
+  END
 COPY ~IATweaks\resources\spl\s!anifor.spl~ ~override~
   SAY NAME1 @6087
   SAY UNIDENTIFIED_DESC @6088

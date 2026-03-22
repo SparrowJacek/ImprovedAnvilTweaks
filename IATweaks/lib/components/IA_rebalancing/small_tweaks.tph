@@ -1348,3 +1348,58 @@ END
 
 COPY_EXISTING ~AR2207.BCS~ ~override~
   REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/ar2207-viper-old.baf~ ~.../inlined/ar2207-viper-new.baf~
+
+///////// Nishruu and Hakeshar will heal using opcode 201, not SCRIPT_STYLE
+
+COPY ~IATweaks\resources\spl\S!NISHR5.spl~ ~override~
+
+ACTION_FOR_EACH nishruu_cre IN ~HAKSU~ ~NISHRUSU~ ~S!NISHRU~ BEGIN
+  COPY_EXISTING ~%nishruu_cre%.cre~ ~override~
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 146
+        target = 1
+        parameter2 = 1
+        timing = 9
+        resist_dispel = 0
+      STR_VAR
+        resource = ~S!NISHR5~
+    END
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 291
+        target = 1
+        parameter2 = 1
+        timing = 9
+    END
+END
+
+<<<<<<<< .../inlined/nishru-old.baf
+IF
+	OR(2)
+		SpellCastOnMe([GOODCUTOFF],0)
+		SpellCastOnMe([EVILCUTOFF],0)
+THEN
+	RESPONSE #100
+		ApplySpell(Myself,CLERIC_CURE_LIGHT_WOUNDS)
+END
+>>>>>>>>
+<<<<<<<< .../inlined/elite-nishru-old.baf
+IF
+	OR(2)
+		SpellCastOnMe([GOODCUTOFF],0)
+		SpellCastOnMe([PC],0)
+	!Kit(LastAttackerOf(Myself),RISKBREAKER)
+THEN
+	RESPONSE #100
+		ApplySpell(Myself,CLERIC_CURE_LIGHT_WOUNDS)
+END
+>>>>>>>>
+<<<<<<<< .../inlined/nishru-none.baf
+>>>>>>>>
+
+COPY_EXISTING ~NISHRU01.BCS~ ~override~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/nishru-old.baf~ ~.../inlined/nishru-none.baf~
+
+COPY_EXISTING ~S!NISHRU.BCS~ ~override~
+  REPLACE_BCS_BLOCK EVALUATE_BUFFER ~.../inlined/elite-nishru-old.baf~ ~.../inlined/nishru-none.baf~

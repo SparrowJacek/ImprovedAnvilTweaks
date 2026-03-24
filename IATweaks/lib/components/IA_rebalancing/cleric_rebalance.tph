@@ -3924,6 +3924,42 @@ COPY_EXISTING ~hidespl.2da~ ~override~
   INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR735 1 0 0~
   PRETTY_PRINT_2DA
 
+// Move Shaman spells to new files so SPPRX49 are not blocked
+
+COPY_EXISTING ~sppr449.spl~ ~override/sppr444.spl~
+
+COPY_EXISTING ~SPPR445.2da~ ~override~
+  REPLACE_TEXTUALLY ~SpPr449~ ~SpPr444~
+
+COPY_EXISTING ~sppr549.spl~ ~override/sppr544.spl~
+
+COPY_EXISTING ~sppr545.2da~ ~override~
+  REPLACE_TEXTUALLY ~SpPr549~ ~SpPr544~
+
+COPY_EXISTING ~spell.ids~ ~override~
+  REPLACE_TEXTUALLY ~1549 CLERIC_ENTROPY_SHIELD_SLASHING~ ~1544 CLERIC_ENTROPY_SHIELD_SLASHING~
+
+COPY_EXISTING ~sppr649.spl~ ~override/sppr648.spl~
+
+COPY_EXISTING ~spell.ids~ ~override~
+  REPLACE_TEXTUALLY ~1649 CLERIC_IMPERVIOUS_SANCTITY_OF_MIND~ ~1648 CLERIC_IMPERVIOUS_SANCTITY_OF_MIND~
+
+COPY_EXISTING ~sppr749.spl~ ~override/sppr748.spl~
+
+COPY_EXISTING ~spell.ids~ ~override~
+  REPLACE_TEXTUALLY ~1749 CLERIC_STORM_SHELL~ ~1748 CLERIC_STORM_SHELL~
+
+COPY_EXISTING ~hidespl.2da~ ~override/hidespl.2da~
+  COUNT_2DA_COLS ~colcount~
+  COUNT_2DA_ROWS ~colcount~ ~rowcount~
+  INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR444 1 0 0~
+  INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR544 1 0 0~
+  INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR648 1 0 0~
+  INSERT_2DA_ROW ~rowcount~ ~colcount~ ~SPPR748 1 0 0~
+
+COPY_EXISTING ~clabsh01.2da~ ~override~
+  REPLACE_TEXTUALLY ~SPPR649~ ~SPPR648~
+  REPLACE_TEXTUALLY ~SPPR749~ ~SPPR748~
 
 ///////// Creatures //////////
 

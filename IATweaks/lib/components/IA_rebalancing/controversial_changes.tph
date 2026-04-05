@@ -1036,6 +1036,28 @@ ACTION_FOR_EACH lesser_golem_weapon IN ~S!GEM.itm~ ~S!AMBER.itm~ BEGIN
     END 
 END
 
+COPY_EXISTING ~S!AMBER.itm~ ~override~
+  LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = 206
+      STR_VAR
+        match_resource = ~SPWI415~
+  END
+
+ACTION_FOR_EACH golem_cre IN ~S!SPOOL1~ ~S!SLEAT1~ ~S!SLEAT2~ ~S!SLEAT3~ ~S!SLEAT4~ BEGIN
+  COPY_EXISTING ~%golem_cre%.cre~ ~override~
+    LPF ~ADD_CRE_EFFECT~
+      INT_VAR
+        opcode = 206
+        target = 1
+        timing = 9
+      STR_VAR
+        resource = ~SPWI415~
+    END
+  BUT_ONLY
+  IF_EXISTS
+END
+
 // Lower Amber Golem capabilities of lowering electricity resistance on hit
 
 COPY_EXISTING ~S!AMBER.itm~ ~override~

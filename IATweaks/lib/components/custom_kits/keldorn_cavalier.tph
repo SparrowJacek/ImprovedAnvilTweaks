@@ -8,8 +8,8 @@ COPY_EXISTING ~keldor8.CRE~ ~override/keldor8.CRE~
   SPRINT ~opcode_to_delete~ ~233~
   LAUNCH_PATCH_MACRO ~DELETE_CRE_EFFECT~
 
-  // dual-wielding, flail, long sword
-  PATCH_FOR_EACH ~prof_code~ IN ~114~ ~100~ ~90~ BEGIN
+  // sword-and-shield, flail, long sword
+  PATCH_FOR_EACH ~prof_code~ IN ~112~ ~100~ ~90~ BEGIN
     LPF ~ADD_CRE_EFFECT~ INT_VAR
       opcode = 233
       timing = 9
@@ -17,6 +17,7 @@ COPY_EXISTING ~keldor8.CRE~ ~override/keldor8.CRE~
       parameter2 = ~prof_code~
     END
   END
+  ADD_CRE_ITEM ~SHLD04~ #0 #0 #0 ~NONE~ ~SHIELD~
 
 COPY_EXISTING ~keldor14.CRE~ ~override/keldor14.CRE~
   WRITE_SHORT 0x246 0x4004 // kit
@@ -26,3 +27,12 @@ COPY_EXISTING ~keldor8.cre~ ~Override/keldor9.cre~
 COPY_EXISTING ~keldor8.cre~ ~Override/keldor10.cre~
 
 COPY_EXISTING ~keldor8.cre~ ~Override/keldor12.cre~
+
+// Change his weapon to a Long sword_and_shield_row
+
+COPY_EXISTING ~NPSW03.itm~ ~override~
+  SAY IDENTIFIED_DESC @7130
+  WRITE_BYTE 0x18 (THIS BAND 0b11111101) // remove 2-handed flag
+  WRITE_ASCII 0x22 ~S1~ #2 // Long Sword animation
+  WRITE_BYTE 0x31 90 // Long Sword proficiency
+

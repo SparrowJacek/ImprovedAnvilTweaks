@@ -6,7 +6,9 @@ README ~IATweaks/readme/index.html~
 LANGUAGE "English"
   ~IATweaks/lang/English/~
   ~IATweaks/lang/English/setup.tra~
-
+LANGUAGE "Simplified Chinese"
+  ~IATweaks/lang/SChinese/~
+  ~IATweaks/lang/SChinese/setup.tra~
 /// Reputation patch ///
 
 BEGIN @10 DESIGNATED 100

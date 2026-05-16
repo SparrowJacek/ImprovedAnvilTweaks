@@ -8,6 +8,11 @@ LANGUAGE "English"
   ~IATweaks/lang/English/setup.tra~
   ~IATweaks/lang/English/spells.tra~
   ~IATweaks/lang/English/items.tra~
+LANGUAGE "Simplified Chinese"
+  ~IATweaks/lang/SChinese/~
+  ~IATweaks/lang/SChinese/setup.tra~
+  ~IATweaks/lang/SChinese/spells.tra~
+  ~IATweaks/lang/SChinese/items.tra~
 
 /// Reputation patch ///
 

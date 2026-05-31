@@ -455,9 +455,16 @@ LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
     kitlist_rows = 2da_rows_to_ids_mapping
 END
 
+ // Lack of spells is hardcoded to usability flags, SET_2DA_ENTRY automatically evaluates hex value to 32, which is interpreted as hex 32, imposing weird restrictions to the kit
 COPY_EXISTING ~kitlist.2da~ ~override/kitlist.2da~
   COUNT_2DA_COLS ~colcount~
-  SET_2DA_ENTRY $kitlist_rows("INQUISITOR") $kitlist_cols("UNUSABLE") ~colcount~ ~0x00000020~ // Lack of spells is hardcoded to usability flags
+  SET_2DA_ENTRY $kitlist_rows("INQUISITOR") $kitlist_cols("UNUSABLE") ~colcount~ ~ia_inquisitor_usability~
+  REPLACE_EVALUATE
+    ~ia_inquisitor_usability~
+    BEGIN
+    END
+    ~0x00000020~
+  PRETTY_PRINT_2DA
 
 // Ability version of Weaken Undead for Undead Hunters
 

@@ -129,3 +129,23 @@ ACTION_FOR_EACH bard_clab IN ~CLABBA01.2da~ ~CLABBA02.2da~ ~CLABBA03.2da~ ~CLABB
   END
 END
 
+//////////////////// SONGS ///////////////////
+
+// Base ability that triggers sequencer with name S!SONG every 6s, if Bard is conscious and not silenced
+
+COPY ~IATweaks\resources\spl\s!songin.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!song00.spl~ ~override~
+COPY ~IATweaks\resources\eff\s!song00.eff~ ~override~
+COPY ~IATweaks\resources\bam\s!sngaab.bam~ ~override~
+COPY ~IATweaks\resources\bam\s!sngbab.bam~ ~override~
+
+// Add it to all Bard kits
+
+ACTION_FOR_EACH bard_clab IN ~CLABBA01.2da~ ~CLABBA02.2da~ ~CLABBA03.2da~ ~CLABBA04.2da~ BEGIN
+  LAF ~S!ADD_CLAB_ROW~
+    STR_VAR
+      filename = ~%bard_clab%~
+      row_desc = ~AUTOMATIC_SONG_TRIGGER~
+      level1 = ~AP_S!SONG00~
+  END
+END

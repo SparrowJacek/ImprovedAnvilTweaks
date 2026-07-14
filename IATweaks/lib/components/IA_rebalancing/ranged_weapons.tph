@@ -1,0 +1,6 @@
+PRINT @5207
+
+SILENT
+
+INCLUDE "IATweaks/lib/components/IA_rebalancing/helper_functions.tph"
+INCLUDE "IATweaks/lib/components/IA_rebalancing/helper_functions_GUI.tph"

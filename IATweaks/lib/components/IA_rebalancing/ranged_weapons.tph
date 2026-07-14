@@ -380,3 +380,10 @@ LAF ~S!ADD_SPLPROT_2DA_ENTRY~
     ranged_style_bit_nand = new_line_number
 END
 
+COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
+// Patch all bows to use (short)bow proficiency
+  READ_LONG 0x08 unidentified_name
+  READ_SHORT 0x1c item_category
+  READ_BYTE 0x31 proficiency_type
+  PATCH_IF (proficiency_type = 104) BEGIN WRITE_BYTE 0x31 105 END
+

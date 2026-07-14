@@ -380,6 +380,8 @@ LAF ~S!ADD_SPLPROT_2DA_ENTRY~
     ranged_style_bit_nand = new_line_number
 END
 
+COPY ~IATweaks\resources\eff\s!-thcxb.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!-thcxb.spl~ ~override~
 COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
 // Patch all bows to use (short)bow proficiency
   READ_LONG 0x08 unidentified_name
@@ -387,3 +389,21 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
   READ_BYTE 0x31 proficiency_type
   PATCH_IF (proficiency_type = 104) BEGIN WRITE_BYTE 0x31 105 END
 
+  SET num_patched = 0
+  GET_OFFSET_ARRAY headers ITM_V10_HEADERS
+  PHP_EACH headers AS header_id => head_off BEGIN
+    READ_BYTE head_off header_type
+    READ_BYTE head_off + 0x10 launcher_required
+
+    PATCH_IF (((header_type = 2 AND launcher_required = 0) OR header_type = 4) AND num_patched = 0) BEGIN
+      SET num_patched = num_patched + 1
+      LPF ~ADD_ITEM_EQEFFECT~
+        INT_VAR
+          opcode = 321
+          target = 1
+          timing = 0
+        STR_VAR
+          resource = ~S!-THCXB~
+      END
+    END
+  END

@@ -113,3 +113,19 @@ COPY_EXISTING ~weapprof.2da~  ~override/weapprof.2da~
   SET_2DA_ENTRIES_NOW ~_#_#_#weapprof~ ~colcount~
   PRETTY_PRINT_2DA
 
+//////////////////// Abilities //////////////////
+
+// Cast while wearing Armor
+
+COPY ~IATweaks\resources\spl\s!leathe.spl~ ~override~
+COPY ~IATweaks\resources\eff\s!leathe.eff~ ~override~
+
+ACTION_FOR_EACH bard_clab IN ~CLABBA01.2da~ ~CLABBA02.2da~ ~CLABBA03.2da~ ~CLABBA04.2da~ BEGIN
+  LAF ~S!ADD_CLAB_ROW~
+    STR_VAR
+      filename = ~%bard_clab%~
+      row_desc = ~CAST_IN_LEATHER~
+      level1 = ~AP_S!LEATHE~
+  END
+END
+

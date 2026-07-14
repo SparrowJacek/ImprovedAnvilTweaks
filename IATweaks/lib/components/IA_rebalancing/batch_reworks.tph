@@ -233,6 +233,17 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
   READ_ASCII 0x22 equipped_appearance (2)
   PATCH_IF (~%equipped_appearance%~ STR_EQ ~2A~) BEGIN
     WRITE_SHORT 0x1c 60 // Leather Armor
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        silent = 1
+        check_headers = 0
+        match_opcode = 145
+        match_parameter2 = 0
+        opcode = 177
+        parameter2 = 2
+      STR_VAR
+        resource = ~S!LEATHE~
+    END
   END
   PATCH_IF (~%equipped_appearance%~ STR_EQ ~3A~) BEGIN
     WRITE_SHORT 0x1c 62 // Chain Armor

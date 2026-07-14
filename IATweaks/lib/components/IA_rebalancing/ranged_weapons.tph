@@ -110,3 +110,273 @@ COPY_EXISTING ~weapprof.2da~  ~override/weapprof.2da~
   SET_2DA_ENTRIES_NOW ~_#_#_#weapprof~ ~colcount~
   PRETTY_PRINT_2DA
 
+/////////// Batch changes to ranged weapons
+
+// Add condition for checking stat range for dex/str bonuses
+
+// dex
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~DEX_LESS_THAN_13~
+    stat                  = ~40~
+    value                 = ~13~
+    relation              = ~2~
+  RET
+    dex_less_than_13 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~DEX_GREATER_THAN_15~
+    stat                  = ~40~
+    value                 = ~16~
+    relation              = ~3~
+  RET
+    dex_greater_than_15 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~DEX_BETWEEN_13_15~
+    stat                  = ~0x104~
+    value                 = EVAL ~%dex_less_than_13%~
+    relation              = EVAL ~%dex_greater_than_15%~
+  RET
+    dex_between_13_15 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~DEX_LESS_THAN_16~
+    stat                  = ~40~
+    value                 = ~16~
+    relation              = ~2~
+  RET
+    dex_less_than_16 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~DEX_GREATER_THAN_18~
+    stat                  = ~40~
+    value                 = ~18~
+    relation              = ~3~
+  RET
+    dex_greater_than_18 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~DEX_BETWEEN_16_18~
+    stat                  = ~0x104~
+    value                 = EVAL ~%dex_less_than_16%~
+    relation              = EVAL ~%dex_greater_than_18%~
+  RET
+    dex_between_16_18 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~DEX_LESS_THAN_19~
+    stat                  = ~40~
+    value                 = ~19~
+    relation              = ~2~
+  RET
+    dex_less_than_19 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~DEX_GREATER_THAN_21~
+    stat                  = ~40~
+    value                 = ~21~
+    relation              = ~3~
+  RET
+    dex_greater_than_21 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~DEX_BETWEEN_19_21~
+    stat                  = ~0x104~
+    value                 = EVAL ~%dex_less_than_19%~
+    relation              = EVAL ~%dex_greater_than_21%~
+  RET
+    dex_between_19_21 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~DEX_LESS_THAN_22~
+    stat                  = ~40~
+    value                 = ~22~
+    relation              = ~2~
+  RET
+    dex_less_than_22 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~DEX_GREATER_THAN_24~
+    stat                  = ~40~
+    value                 = ~24~
+    relation              = ~3~
+  RET
+    dex_greater_than_24 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~DEX_BETWEEN_22_24~
+    stat                  = ~0x104~
+    value                 = EVAL ~%dex_less_than_22%~
+    relation              = EVAL ~%dex_greater_than_24%~
+  RET
+    dex_between_22_24 = new_line_number
+END
+
+// str
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~STR_LESS_THAN_13~
+    stat                  = ~36~
+    value                 = ~13~
+    relation              = ~2~
+  RET
+    str_less_than_13 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~STR_GREATER_THAN_15~
+    stat                  = ~36~
+    value                 = ~16~
+    relation              = ~3~
+  RET
+    str_greater_than_15 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~STR_BETWEEN_13_15~
+    stat                  = ~0x104~
+    value                 = EVAL ~%str_less_than_13%~
+    relation              = EVAL ~%str_greater_than_15%~
+  RET
+    str_between_13_15 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~STR_LESS_THAN_16~
+    stat                  = ~36~
+    value                 = ~16~
+    relation              = ~2~
+  RET
+    str_less_than_16 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~STR_GREATER_THAN_18~
+    stat                  = ~36~
+    value                 = ~18~
+    relation              = ~3~
+  RET
+    str_greater_than_18 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~STR_BETWEEN_16_18~
+    stat                  = ~0x104~
+    value                 = EVAL ~%str_less_than_16%~
+    relation              = EVAL ~%str_greater_than_18%~
+  RET
+    str_between_16_18 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~STR_LESS_THAN_19~
+    stat                  = ~36~
+    value                 = ~19~
+    relation              = ~2~
+  RET
+    str_less_than_19 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~STR_GREATER_THAN_21~
+    stat                  = ~36~
+    value                 = ~21~
+    relation              = ~3~
+  RET
+    str_greater_than_21 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~STR_BETWEEN_19_21~
+    stat                  = ~0x104~
+    value                 = EVAL ~%str_less_than_19%~
+    relation              = EVAL ~%str_greater_than_21%~
+  RET
+    str_between_19_21 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~STR_LESS_THAN_22~
+    stat                  = ~36~
+    value                 = ~22~
+    relation              = ~2~
+  RET
+    str_less_than_22 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~STR_GREATER_THAN_24~
+    stat                  = ~36~
+    value                 = ~24~
+    relation              = ~3~
+  RET
+    str_greater_than_24 = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~STR_BETWEEN_22_24~
+    stat                  = ~0x104~
+    value                 = EVAL ~%str_less_than_22%~
+    relation              = EVAL ~%str_greater_than_24%~
+  RET
+    str_between_22_24 = new_line_number
+END
+
+// Add condition for checking Ranged Weapon Style value in splprot.2da
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~RANGED_STYLE=n~
+    stat                  = ~104~
+    value                 = ~-1~
+    relation              = ~1~
+  RET
+    ranged_style_equal_row = new_line_number
+END
+
+LAF ~S!ADD_SPLPROT_2DA_ENTRY~
+  STR_VAR
+    condition_description = ~RANGED_STYLE_NAND_n~
+    stat                  = ~104~
+    value                 = ~-1~
+    relation              = ~11~
+  RET
+    ranged_style_bit_nand = new_line_number
+END
+

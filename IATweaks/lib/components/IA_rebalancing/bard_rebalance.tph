@@ -55,3 +55,14 @@ COPY_EXISTING ~kitlist.2da~ ~override/kitlist.2da~
   SET_2DA_ENTRY_LATER ~s!bard_desc~ $kitlist_rows("SKALD") description_col RESOLVE_STR_REF (@5105)
   SET_2DA_ENTRIES_NOW ~s!bard_desc~ ~colcount~
   PRETTY_PRINT_2DA
+
+// Improve thac0 table for Bards
+
+COPY_EXISTING ~thac0.2da~ ~override~
+  REPLACE_EVALUATE
+    ~BARD.*~
+    BEGIN
+    END
+    ~BARD 20 19 18 18 17 16 16 15 14 14 13 12 12 11 10 10 9 8 8 7 6 6 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5~
+  PRETTY_PRINT_2DA
+

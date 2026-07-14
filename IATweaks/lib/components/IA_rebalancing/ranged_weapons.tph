@@ -4,3 +4,33 @@ SILENT
 
 INCLUDE "IATweaks/lib/components/IA_rebalancing/helper_functions.tph"
 INCLUDE "IATweaks/lib/components/IA_rebalancing/helper_functions_GUI.tph"
+
+// Merge Shortbows and Longbows into Bows category, update description
+
+COPY_EXISTING ~weapprof.2da~ ~override~
+  SET bow_weapontype_desc = RESOLVE_STR_REF (@5204)
+  SET ranged_style_name = RESOLVE_STR_REF (@5205)
+  SET ranged_style_desc = RESOLVE_STR_REF (@5206)
+  REPLACE_TEXTUALLY ~34164~ ~%bow_weapontype_desc%~
+  REPLACE_TEXTUALLY ~31129~ ~8733~
+  REPLACE_TEXTUALLY ~31128~ ~%ranged_style_name%~
+  REPLACE_TEXTUALLY ~34163~ ~%ranged_style_desc%~
+  REPLACE_TEXTUALLY ~SHORTBOW~ ~BOW_MERGED~
+  REPLACE_TEXTUALLY ~LONGBOW~ ~RANGEDPROF~
+  PRETTY_PRINT_2DA
+
+COPY_EXISTING ~weapprof.2da~ ~override~
+
+  // Capture the entire row starting with our known string
+  TEXT_SPRINT captured_row ~~
+  REPLACE_EVALUATE CASE_INSENSITIVE ~RANGEDPROF[ 0-9A-Za-z_-]*~ BEGIN
+      TEXT_SPRINT captured_row ~%MATCH0%~
+  END ~~
+
+  // Insert it at the target position
+  COUNT_2DA_COLS num_cols
+  INSERT_2DA_ROW 27 num_cols ~%captured_row%~
+  PRETTY_PRINT_2DA
+
+BUT_ONLY_IF_IT_CHANGES
+

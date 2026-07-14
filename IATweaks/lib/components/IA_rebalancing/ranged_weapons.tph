@@ -686,3 +686,222 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
       END
     END
   END
+
+// Ensure 3rd Quiver slot is occupied
+
+COPY ~IATweaks\resources\bam\s!quivex.bam~ ~override~
+COPY ~IATweaks\resources\itm\s!quivex.itm~ ~override~
+  SAY NAME1 @7135
+  SAY NAME2 @7135
+  SAY UNIDENTIFIED_DESC @7136
+  SAY IDENTIFIED_DESC @7136
+
+<<<<<<<<.../IATweaks-inlined/quiver_slot_fill.baf
+IF
+  !HasItem("S!QUIVEX",Player1)
+  OR(8)
+    CheckStat(Player1,0,PROFICIENCYLONGBOW)
+    CheckStat(Player1,1,PROFICIENCYLONGBOW)
+    CheckStat(Player1,8,PROFICIENCYLONGBOW)
+    CheckStat(Player1,9,PROFICIENCYLONGBOW)
+    CheckStat(Player1,16,PROFICIENCYLONGBOW)
+    CheckStat(Player1,17,PROFICIENCYLONGBOW)
+    CheckStat(Player1,24,PROFICIENCYLONGBOW)
+    CheckStat(Player1,25,PROFICIENCYLONGBOW)
+THEN
+    RESPONSE #100
+                GiveItemCreate("S!QUIVEX",Player1,0,0,0)
+                XEquipItem("S!QUIVEX",Player1,SLOT_AMMO2,EQUIP)
+    Continue()
+END
+
+IF
+  HasItem("S!QUIVEX",Player1)
+  OR(8)
+    CheckStat(Player1,2,PROFICIENCYLONGBOW)
+    CheckStat(Player1,3,PROFICIENCYLONGBOW)
+    CheckStat(Player1,10,PROFICIENCYLONGBOW)
+    CheckStat(Player1,11,PROFICIENCYLONGBOW)
+    CheckStat(Player1,18,PROFICIENCYLONGBOW)
+    CheckStat(Player1,19,PROFICIENCYLONGBOW)
+    CheckStat(Player1,26,PROFICIENCYLONGBOW)
+    CheckStat(Player1,27,PROFICIENCYLONGBOW)
+THEN
+        RESPONSE #100
+                ActionOverride(Player1, DestroyItem("S!QUIVEX"))
+    Continue()
+END
+IF
+  !HasItem("S!QUIVEX",Player2)
+  OR(8)
+    CheckStat(Player2,0,PROFICIENCYLONGBOW)
+    CheckStat(Player2,1,PROFICIENCYLONGBOW)
+    CheckStat(Player2,8,PROFICIENCYLONGBOW)
+    CheckStat(Player2,9,PROFICIENCYLONGBOW)
+    CheckStat(Player2,16,PROFICIENCYLONGBOW)
+    CheckStat(Player2,17,PROFICIENCYLONGBOW)
+    CheckStat(Player2,24,PROFICIENCYLONGBOW)
+    CheckStat(Player2,25,PROFICIENCYLONGBOW)
+THEN
+        RESPONSE #100
+                GiveItemCreate("S!QUIVEX",Player2,0,0,0)
+                XEquipItem("S!QUIVEX",Player2,SLOT_AMMO2,EQUIP)
+    Continue()
+END
+
+IF
+  HasItem("S!QUIVEX",Player2)
+  OR(8)
+    CheckStat(Player2,2,PROFICIENCYLONGBOW)
+    CheckStat(Player2,3,PROFICIENCYLONGBOW)
+    CheckStat(Player2,10,PROFICIENCYLONGBOW)
+    CheckStat(Player2,11,PROFICIENCYLONGBOW)
+    CheckStat(Player2,18,PROFICIENCYLONGBOW)
+    CheckStat(Player2,19,PROFICIENCYLONGBOW)
+    CheckStat(Player2,26,PROFICIENCYLONGBOW)
+    CheckStat(Player2,27,PROFICIENCYLONGBOW)
+THEN
+        RESPONSE #100
+                ActionOverride(Player2, DestroyItem("S!QUIVEX"))
+    Continue()
+END
+IF
+  !HasItem("S!QUIVEX",Player3)
+  OR(8)
+    CheckStat(Player3,0,PROFICIENCYLONGBOW)
+    CheckStat(Player3,1,PROFICIENCYLONGBOW)
+    CheckStat(Player3,8,PROFICIENCYLONGBOW)
+    CheckStat(Player3,9,PROFICIENCYLONGBOW)
+    CheckStat(Player3,16,PROFICIENCYLONGBOW)
+    CheckStat(Player3,17,PROFICIENCYLONGBOW)
+    CheckStat(Player3,24,PROFICIENCYLONGBOW)
+    CheckStat(Player3,25,PROFICIENCYLONGBOW)
+THEN
+        RESPONSE #100
+                GiveItemCreate("S!QUIVEX",Player3,0,0,0)
+                XEquipItem("S!QUIVEX",Player3,SLOT_AMMO2,EQUIP)
+    Continue()
+END
+
+IF
+  HasItem("S!QUIVEX",Player3)
+  OR(8)
+    CheckStat(Player3,2,PROFICIENCYLONGBOW)
+    CheckStat(Player3,3,PROFICIENCYLONGBOW)
+    CheckStat(Player3,10,PROFICIENCYLONGBOW)
+    CheckStat(Player3,11,PROFICIENCYLONGBOW)
+    CheckStat(Player3,18,PROFICIENCYLONGBOW)
+    CheckStat(Player3,19,PROFICIENCYLONGBOW)
+    CheckStat(Player3,26,PROFICIENCYLONGBOW)
+    CheckStat(Player3,27,PROFICIENCYLONGBOW)
+THEN
+        RESPONSE #100
+                ActionOverride(Player3, DestroyItem("S!QUIVEX"))
+    Continue()
+END
+IF
+  !HasItem("S!QUIVEX",Player4)
+  OR(8)
+    CheckStat(Player4,0,PROFICIENCYLONGBOW)
+    CheckStat(Player4,1,PROFICIENCYLONGBOW)
+    CheckStat(Player4,8,PROFICIENCYLONGBOW)
+    CheckStat(Player4,9,PROFICIENCYLONGBOW)
+    CheckStat(Player4,16,PROFICIENCYLONGBOW)
+    CheckStat(Player4,17,PROFICIENCYLONGBOW)
+    CheckStat(Player4,24,PROFICIENCYLONGBOW)
+    CheckStat(Player4,25,PROFICIENCYLONGBOW)
+THEN
+        RESPONSE #100
+                GiveItemCreate("S!QUIVEX",Player4,0,0,0)
+                XEquipItem("S!QUIVEX",Player4,SLOT_AMMO2,EQUIP)
+    Continue()
+END
+
+IF
+  HasItem("S!QUIVEX",Player4)
+  OR(8)
+    CheckStat(Player4,2,PROFICIENCYLONGBOW)
+    CheckStat(Player4,3,PROFICIENCYLONGBOW)
+    CheckStat(Player4,10,PROFICIENCYLONGBOW)
+    CheckStat(Player4,11,PROFICIENCYLONGBOW)
+    CheckStat(Player4,18,PROFICIENCYLONGBOW)
+    CheckStat(Player4,19,PROFICIENCYLONGBOW)
+    CheckStat(Player4,26,PROFICIENCYLONGBOW)
+    CheckStat(Player4,27,PROFICIENCYLONGBOW)
+THEN
+        RESPONSE #100
+                ActionOverride(Player4, DestroyItem("S!QUIVEX"))
+    Continue()
+END
+IF
+  !HasItem("S!QUIVEX",Player5)
+  OR(8)
+    CheckStat(Player5,0,PROFICIENCYLONGBOW)
+    CheckStat(Player5,1,PROFICIENCYLONGBOW)
+    CheckStat(Player5,8,PROFICIENCYLONGBOW)
+    CheckStat(Player5,9,PROFICIENCYLONGBOW)
+    CheckStat(Player5,16,PROFICIENCYLONGBOW)
+    CheckStat(Player5,17,PROFICIENCYLONGBOW)
+    CheckStat(Player5,24,PROFICIENCYLONGBOW)
+    CheckStat(Player5,25,PROFICIENCYLONGBOW)
+THEN
+        RESPONSE #100
+                GiveItemCreate("S!QUIVEX",Player5,0,0,0)
+                XEquipItem("S!QUIVEX",Player5,SLOT_AMMO2,EQUIP)
+    Continue()
+END
+
+IF
+  HasItem("S!QUIVEX",Player5)
+  OR(8)
+    CheckStat(Player5,2,PROFICIENCYLONGBOW)
+    CheckStat(Player5,3,PROFICIENCYLONGBOW)
+    CheckStat(Player5,10,PROFICIENCYLONGBOW)
+    CheckStat(Player5,11,PROFICIENCYLONGBOW)
+    CheckStat(Player5,18,PROFICIENCYLONGBOW)
+    CheckStat(Player5,19,PROFICIENCYLONGBOW)
+    CheckStat(Player5,26,PROFICIENCYLONGBOW)
+    CheckStat(Player5,27,PROFICIENCYLONGBOW)
+THEN
+        RESPONSE #100
+                ActionOverride(Player5, DestroyItem("S!QUIVEX"))
+    Continue()
+END
+IF
+  !HasItem("S!QUIVEX",Player6)
+  OR(8)
+    CheckStat(Player6,0,PROFICIENCYLONGBOW)
+    CheckStat(Player6,1,PROFICIENCYLONGBOW)
+    CheckStat(Player6,8,PROFICIENCYLONGBOW)
+    CheckStat(Player6,9,PROFICIENCYLONGBOW)
+    CheckStat(Player6,16,PROFICIENCYLONGBOW)
+    CheckStat(Player6,17,PROFICIENCYLONGBOW)
+    CheckStat(Player6,24,PROFICIENCYLONGBOW)
+    CheckStat(Player6,25,PROFICIENCYLONGBOW)
+THEN
+        RESPONSE #100
+                GiveItemCreate("S!QUIVEX",Player6,0,0,0)
+                XEquipItem("S!QUIVEX",Player6,SLOT_AMMO2,EQUIP)
+    Continue()
+END
+
+IF
+  HasItem("S!QUIVEX",Player6)
+  OR(8)
+    CheckStat(Player6,2,PROFICIENCYLONGBOW)
+    CheckStat(Player6,3,PROFICIENCYLONGBOW)
+    CheckStat(Player6,10,PROFICIENCYLONGBOW)
+    CheckStat(Player6,11,PROFICIENCYLONGBOW)
+    CheckStat(Player6,18,PROFICIENCYLONGBOW)
+    CheckStat(Player6,19,PROFICIENCYLONGBOW)
+    CheckStat(Player6,26,PROFICIENCYLONGBOW)
+    CheckStat(Player6,27,PROFICIENCYLONGBOW)
+THEN
+        RESPONSE #100
+                ActionOverride(Player6, DestroyItem("S!QUIVEX"))
+    Continue()
+END
+>>>>>>>>
+
+EXTEND_TOP "baldur.bcs" ".../IATweaks-inlined/quiver_slot_fill.baf"
+EXTEND_TOP "baldur25.bcs" ".../IATweaks-inlined/quiver_slot_fill.baf"

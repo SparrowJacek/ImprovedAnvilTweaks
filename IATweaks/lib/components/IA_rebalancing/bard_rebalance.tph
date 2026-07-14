@@ -277,6 +277,31 @@ ACTION_FOR_EACH bard_clab IN ~CLABBA01.2da~ ~CLABBA02.2da~ ~CLABBA03.2da~ ~CLABB
   END
 END
 
+// Allow Bards to get APR from levels and specialization
+
+LAF ~S!MAP_COLUMN_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~clswpbon.2da~
+  RET_ARRAY
+    clswpbon_cols = 2da_columns_to_ids_mapping
+END
+
+LAF ~S!MAP_ROW_NAMES_TO_IDS_IN_2DA_FILE~
+  STR_VAR
+    2da_table_name = ~clswpbon.2da~
+  RET_ARRAY
+    clswpbon_rows = 2da_rows_to_ids_mapping
+END
+
+COPY_EXISTING ~clswpbon.2da~ ~override/clswpbon.2da~
+  COUNT_2DA_COLS ~colcount~
+  SET description_col = $clswpbon_cols("GETS_PROF_APR")
+  SET_2DA_ENTRY_LATER ~s!bard_apr~ $clswpbon_rows("BARD") description_col 1
+  SET_2DA_ENTRY_LATER ~s!bard_apr~ $clswpbon_rows("BLADE") description_col 1
+  SET_2DA_ENTRY_LATER ~s!bard_apr~ $clswpbon_rows("JESTER") description_col 1
+  SET_2DA_ENTRY_LATER ~s!bard_apr~ $clswpbon_rows("SKALD") description_col 1
+  SET_2DA_ENTRIES_NOW ~s!bard_apr~ ~colcount~
+  PRETTY_PRINT_2DA
 
 ///////////////// Bard ///////////////////
 

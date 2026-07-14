@@ -149,3 +149,95 @@ ACTION_FOR_EACH bard_clab IN ~CLABBA01.2da~ ~CLABBA02.2da~ ~CLABBA03.2da~ ~CLABB
       level1 = ~AP_S!SONG00~
   END
 END
+
+COPY ~IATweaks\resources\spl\s!song01.spl~ ~override~
+COPY ~IATweaks\resources\eff\s!song01.eff~ ~override~
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY bard_song_trigger_to_effect_mapping BEGIN
+  "S!SONGBA"=>"S!SONG02"
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY bard_song_trigger_bam_mapping BEGIN
+  "S!SONGBA"=>"S!SNGBAB"
+END
+
+ACTION_PHP_EACH bard_song_trigger_to_effect_mapping AS _ => song_effect BEGIN
+  COPY_EXISTING ~s!song01.eff~ ~override/%song_effect%.eff~
+    WRITE_ASCIIE 0x30 EVAL ~%song_effect%~
+END
+
+COPY ~IATweaks\resources\spl\s!songaa.spl~ ~override~
+  PHP_EACH bard_song_trigger_to_effect_mapping AS song_trigger => _ BEGIN
+    LPF ~CLONE_EFFECT~
+      INT_VAR
+        match_opcode = 321
+        multi_match = 1
+      STR_VAR
+        match_resource = ~S!SONGAA~
+        resource = EVAL ~%song_trigger%~
+    END
+  END
+
+ACTION_PHP_EACH bard_song_trigger_to_effect_mapping AS song_trigger => song_effect BEGIN
+  COPY_EXISTING ~s!songaa.spl~ ~override/%song_trigger%.spl~
+    SPRINT song_bam $bard_song_trigger_bam_mapping(~%song_trigger%~)
+    WRITE_ASCIIE 0x3a ~%song_bam%~
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        match_opcode = 177
+      STR_VAR
+        resource = EVAL ~%song_effect%~
+    END
+    LPF ~ALTER_EFFECT~
+      INT_VAR
+        check_headers = 0
+      STR_VAR
+        match_resource = ~S!SONGAA~
+        resource = EVAL ~%song_trigger%~
+    END
+    LPF ~ALTER_SPELL_HEADER~
+      STR_VAR
+        icon = EVAL ~%song_bam%~
+    END
+END
+
+ACTION_FOR_EACH standard_duration_song IN ~S!SONG01~ ~S!SONG02~ BEGIN
+  
+  COPY ~IATweaks\resources\spl\%standard_duration_song%.spl~ ~override~
+    SET song_duration = 7
+    PATCH_FOR_EACH song_level IN 10 12 14 16 18 20 BEGIN
+      LPF ~S!CLONE_SPELL_HEADER~
+        INT_VAR
+          level_req = song_level
+      END
+      LPF ~ALTER_EFFECT~
+        INT_VAR
+          header = song_duration - 6
+          duration = song_duration
+      END
+      SET song_duration = song_duration + 1
+    END
+END
+
+OUTER_SET song_name_strref = RESOLVE_STR_REF (@6302)
+COPY_EXISTING ~S!SONGAA.spl~ ~override~
+  SAY NAME1 @6302
+  SAY UNIDENTIFIED_DESC @6303
+COPY_EXISTING ~S!SONG01.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = song_name_strref
+  END
+
+OUTER_SET song_name_strref = RESOLVE_STR_REF (@6304)
+COPY_EXISTING ~S!SONGBA.spl~ ~override~
+  SAY NAME1 @6304
+  SAY UNIDENTIFIED_DESC @6305
+COPY_EXISTING ~S!SONG02.spl~ ~override~
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 139
+      parameter1 = song_name_strref
+  END
+

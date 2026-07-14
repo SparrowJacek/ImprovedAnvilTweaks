@@ -66,3 +66,7 @@ COPY_EXISTING ~thac0.2da~ ~override~
     ~BARD 20 19 18 18 17 16 16 15 14 14 13 12 12 11 10 10 9 8 8 7 6 6 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5~
   PRETTY_PRINT_2DA
 
+// Vastly improve Bard spell progression
+
+COPY ~IATweaks\resources\2da\mxsplbrd.2da~ ~override~
+

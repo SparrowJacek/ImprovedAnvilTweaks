@@ -618,5 +618,71 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
             resource = "S!STRDMG"
         END
       END
+      PATCH_IF (unidentified_name = 6881 AND item_category = 27) BEGIN // light crossbow
+        LPF ~ADD_ITEM_EQEFFECT~ // AC penalty
+          INT_VAR
+            insert_point = ~-1~
+            opcode = 0
+            target = 1
+            parameter1 = 1
+            timing = 2
+        END
+        LPF ~S!ALTER_EFFECT~ // AC penalty
+          INT_VAR
+            match_opcode = 0
+            match_target = 1
+            match_parameter1 = 1
+            match_timing = 2
+            parameter1 = ~-1~
+        END
+      END
+      PATCH_IF (unidentified_name = 6873 AND item_category = 27) BEGIN // heavy crossbow
+        LPF ~ADD_ITEM_EQEFFECT~ // - lack of thac0 bonuses from dexterity
+          INT_VAR
+            insert_point = ~-1~
+            opcode = 146
+            target = 1
+            parameter2 = 1
+            duration = 0
+          STR_VAR
+            resource = "S!-THCXB"
+        END
+        LPF ~ADD_ITEM_EQEFFECT~ 
+          INT_VAR
+            insert_point = ~-1~
+            opcode = 272
+            target = 1
+            parameter1 = 1
+            parameter2 = 2
+            timing = 2
+          STR_VAR
+            resource = "S!-THCXB"
+        END
+        LPF ~ADD_ITEM_EQEFFECT~ // AC penalty
+          INT_VAR
+            insert_point = ~-1~
+            opcode = 0
+            target = 1
+            parameter1 = 1
+            timing = 2
+        END
+        LPF ~S!ALTER_EFFECT~ // AC penalty
+          INT_VAR
+            match_opcode = 0
+            match_target = 1
+            match_parameter1 = 1
+            match_timing = 2
+            parameter1 = ~-2~
+        END
+        LPF ~ADD_ITEM_EQEFFECT~ // critical hit bonus
+          INT_VAR
+            insert_point = ~-1~
+            opcode = 301
+            target = 1
+            parameter1 = 2
+            parameter2 = 1
+            timing = 2
+        END
+      END
     END
   END

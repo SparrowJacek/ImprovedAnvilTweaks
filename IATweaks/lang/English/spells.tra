@@ -2099,9 +2099,13 @@ For 1 turn, the Dwarven Defender gains +20% resistance to all forms of physical 
 
 @6298 = ~White Dragon Breath~
 
-@6299 = ~Shield Bash~
+@6299 = ~The Scholar's Verse~
 
-@6300 = ~Shield Bash~
+@6300 = ~Every spell has a story, every enchantment a creator, every incantation a history. Through mastery of magical lore, the bard can reconstruct any known spell from memory and cast it anew.
+
+Usable once every 2 turns.~
+
+@6301 = ~Can't use The Scholar's Verse~
 
 @6302 = ~Ballad of Three Heroes~
 

@@ -241,6 +241,42 @@ COPY_EXISTING ~S!SONG02.spl~ ~override~
       parameter1 = song_name_strref
   END
 
+///////////// General
+
+// Scholar's Verse (Nahal for Bards)
+
+COPY ~IATweaks\resources\bam\s!brd01d.bam~ ~override~
+
+OUTER_SET scholar_verse_desc_str_ref = RESOLVE_STR_REF (@6301)
+LAF ~S!ADD_PORTRAIT_ICON~
+  INT_VAR
+    description_str_ref = %scholar_verse_desc_str_ref%
+  STR_VAR
+    bam_file = ~S!BRD01D~
+  RET
+    scholar_verse_icon_id = portrait_icon_id
+END
+
+COPY ~IATweaks\resources\spl\s!brd01.spl~ ~override~
+  SAY NAME1 @6299
+  SAY UNIDENTIFIED_DESC @6300
+  LPF ~ALTER_EFFECT~
+    INT_VAR
+      match_opcode = 142
+      parameter2 = %scholar_verse_icon_id%
+  END
+
+// Add Scholar's Verse to all Bards
+
+ACTION_FOR_EACH bard_clab IN ~CLABBA01.2da~ ~CLABBA02.2da~ ~CLABBA03.2da~ ~CLABBA04.2da~ BEGIN
+  LAF ~S!ADD_CLAB_ROW~
+    STR_VAR
+      filename = ~%bard_clab%~
+      row_desc = ~SCHOLARS_VERSE~
+      level19 = ~GA_S!BRD01~
+  END
+END
+
 
 ///////////////// Bard ///////////////////
 

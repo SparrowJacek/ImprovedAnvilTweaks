@@ -323,6 +323,17 @@ END
 
 ///////////////// Skald ///////////////////
 
+// Cast in chain mail
+
+COPY ~IATweaks\resources\spl\s!chainm.spl~ ~override~
+COPY ~IATweaks\resources\eff\s!chainm.eff~ ~override~
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABBA04.2da~
+    row_desc = ~CAST_IN_CHAIN~
+    level12 = ~AP_S!CHAINM~
+END
 
 // Base song assignment
 

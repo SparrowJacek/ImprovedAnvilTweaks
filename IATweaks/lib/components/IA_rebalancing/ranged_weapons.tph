@@ -905,3 +905,16 @@ END
 
 EXTEND_TOP "baldur.bcs" ".../IATweaks-inlined/quiver_slot_fill.baf"
 EXTEND_TOP "baldur25.bcs" ".../IATweaks-inlined/quiver_slot_fill.baf"
+
+////////////////////////// Kiting tracking attempt
+
+COPY ~IATweaks\resources\spl\s!move00.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!move01.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!move02.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!move03.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!move04.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!move05.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!move06.spl~ ~override~
+
+COPY ~IATweaks\resources\eff\s!move05.eff~ ~override~
+COPY ~IATweaks\resources\eff\s!move06.eff~ ~override~

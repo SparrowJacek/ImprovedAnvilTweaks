@@ -6,26 +6,42 @@ INCLUDE "IATweaks/lib/components/IA_rebalancing/helper_functions.tph"
 INCLUDE "IATweaks/lib/components/IA_rebalancing/helper_functions_GUI.tph"
 
 // Merge Shortbows and Longbows into Bows category, update description
+// Merge Shortbows and Longbows into Bows category, merge Darts and Slings into Missile Weapons category, update description
 
 COPY_EXISTING ~weapprof.2da~ ~override~
   SET bow_weapontype_desc = RESOLVE_STR_REF (@5204)
+  SET missile_weapontype_desc = RESOLVE_STR_REF (@5208)
   SET ranged_style_name = RESOLVE_STR_REF (@5205)
   SET ranged_style_desc = RESOLVE_STR_REF (@5206)
   REPLACE_TEXTUALLY ~34164~ ~%bow_weapontype_desc%~
+  REPLACE_TEXTUALLY ~34165~ ~%missile_weapontype_desc%~
   REPLACE_TEXTUALLY ~31129~ ~8733~
+  REPLACE_TEXTUALLY ~31130~ ~9403~
   REPLACE_TEXTUALLY ~31128~ ~%ranged_style_name%~
   REPLACE_TEXTUALLY ~34163~ ~%ranged_style_desc%~
   REPLACE_TEXTUALLY ~SHORTBOW~ ~BOW_MERGED~
   REPLACE_TEXTUALLY ~LONGBOW~ ~RANGEDPROF~
+  REPLACE_TEXTUALLY ~DART~ ~MISSILE_MERGED~
   PRETTY_PRINT_2DA
 
 COPY_EXISTING ~weapprof.2da~ ~override~
 
   // Capture the entire row starting with our known string
-  TEXT_SPRINT captured_row ~~
+  // TEXT_SPRINT captured_row ~~
   REPLACE_EVALUATE CASE_INSENSITIVE ~RANGEDPROF[ 0-9A-Za-z_-]*~ BEGIN
-      TEXT_SPRINT captured_row ~%MATCH0%~
+      // TEXT_SPRINT captured_row ~%MATCH0%~
+    INNER_PATCH_SAVE captured_row ~%MATCH0%~ BEGIN
+      REPLACE_TEXTUALLY ~ \([0-9]\) ~ ~  0 ~   // single digit between spaces
+      REPLACE_TEXTUALLY ~ \([0-9]\)$~ ~  0~    // single digit at end of row
+    END
   END ~~
+  // 
+  REPLACE_EVALUATE ~SLING[ 0-9A-Za-z_-]*~ BEGIN
+    INNER_PATCH_SAVE result ~%MATCH0%~ BEGIN
+      REPLACE_TEXTUALLY ~ \([0-9]\) ~ ~  0 ~   // single digit between spaces
+      REPLACE_TEXTUALLY ~ \([0-9]\)$~ ~  0~    // single digit at end of row
+    END
+  END ~%result%~
 
   // Insert it at the target position
   COUNT_2DA_COLS num_cols
@@ -500,11 +516,13 @@ COPY ~IATweaks\resources\eff\s!dexdmg.eff~ ~override~
 COPY ~IATweaks\resources\eff\s!strdmg.eff~ ~override~
 
 COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
-// Patch all bows to use (short)bow proficiency
   READ_LONG 0x08 unidentified_name
   READ_SHORT 0x1c item_category
   READ_BYTE 0x31 proficiency_type
+// Patch all bows to use (short)bow proficiency
   PATCH_IF (proficiency_type = 104) BEGIN WRITE_BYTE 0x31 105 END
+// Patch all slings to use missile weapon proficiency
+  PATCH_IF (proficiency_type = 107) BEGIN WRITE_BYTE 0x31 106 END
 
   SET num_patched = 0
   GET_OFFSET_ARRAY headers ITM_V10_HEADERS

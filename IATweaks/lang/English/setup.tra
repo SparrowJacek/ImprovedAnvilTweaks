@@ -1581,17 +1581,17 @@ Disadvantages:
 
 @5202 = ~~
 
-@5203 = ~~
+@5206 = ~RANGED WEAPON STYLE: Success in ranged combat depends on careful aim, practiced technique, and proper preparation. Those who dedicate themselves to this style become deadlier marksmen and learn to make better use of the ammunition they carry.
 
-@5204 = ~~
+Proficient (1 slot): The wielder gains a +2 bonus to THAC0 when using ranged weapons.
 
-@5205 = ~~
+Specialized (2 slots): The wielder can keep three types of ammunition readily available for immediate use, rather than the usual two.
 
-@5206 = ~~
+Master (3 slots): In addition to the THAC0 bonus, the wielder gains a +2 bonus to damage with ranged weapons.~
 
 @5207 = ~Installing reworked_ranged_weapons component~
 
-@5208 = ~~
+@5208 = ~MISSILE WEAPONS: This weapon class allows the character to use Slings and Darts. Clerics can choose this proficiency but are restricted to Slings alone.~
 
 @5209 = ~~
 

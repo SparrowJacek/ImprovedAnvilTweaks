@@ -358,5 +358,16 @@ LAF ~S!ADD_CLAB_ROW~
     level1 = ~AP_S!SONGBA~
 END
 
+// 20% longer song
+
+COPY ~IATweaks\resources\spl\s!brd02.spl~ ~override~
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABBA04.2da~
+    row_desc = ~LONGER_BARD_SONG~
+    level1 = ~AP_S!BRD02~
+END
+
 ///////////////// Blade ///////////////////
 ///////////////// Jester ///////////////////

@@ -126,6 +126,23 @@ COPY_EXISTING ~weapprof.2da~  ~override/weapprof.2da~
   SET_2DA_ENTRIES_NOW ~_#_#_#weapprof~ ~colcount~
   PRETTY_PRINT_2DA
 
+// Remove old proficiencies, move them to new ones if needed
+COPY_EXISTING_REGEXP GLOB ~.*\.CRE~ ~override~
+  PATCH_IF NOT (~%SOURCE_RES%~ STR_EQ ~S!SMARCE~) BEGIN
+    LPF ~S!MERGE_PROFICIENCIES~
+      INT_VAR
+        prof_to_remove = 107
+        prof_to_keep = 106
+    END
+    LPF ~S!MERGE_PROFICIENCIES~
+      INT_VAR
+        prof_to_remove = 104
+        prof_to_keep = 105
+    END
+  END
+
+BUT_ONLY_IF_IT_CHANGES
+
 /////////// Batch changes to ranged weapons
 
 // Add condition for checking stat range for dex/str bonuses

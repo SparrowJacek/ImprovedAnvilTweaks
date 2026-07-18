@@ -2813,3 +2813,71 @@ BEGIN
 		END
 	END
 END
+
+
+/**
+ * For 2 proficiency types, removes one and adds/changes the second to max value of those 2.
+ */
+DEFINE_PATCH_FUNCTION ~S!MERGE_PROFICIENCIES~
+INT_VAR
+  prof_to_remove = "-1"
+  prof_to_keep = "-1"
+BEGIN
+
+  SET prof_to_keep_val  = 0
+  SET prof_to_remove_val = 0
+  SET prof_to_keep_found  = 0
+  SET prof_to_remove_found = 0
+
+  // ── PASS 1: read both proficiency values ──────────────────────────────────
+
+  GET_OFFSET_ARRAY fx_array CRE_V10_EFFECTS
+  PHP_EACH fx_array AS _ => fx_offset BEGIN
+    READ_SHORT fx_offset + 0x8 fx_opcode
+    PATCH_IF fx_opcode = 233 BEGIN
+      READ_LONG (fx_offset + 0x18) fx_param2
+      READ_LONG (fx_offset + 0x14) fx_param1
+      PATCH_IF fx_param2 = prof_to_keep BEGIN
+        SET prof_to_keep_val = fx_param1
+        SET prof_to_keep_found = 1
+      END
+      PATCH_IF fx_param2 = prof_to_remove BEGIN
+        SET prof_to_remove_val = fx_param1
+        SET prof_to_remove_found = 1
+      END
+    END
+  END
+
+  // ── PASS 2: compute merged value and apply ────────────────────────────────
+
+  PATCH_IF prof_to_keep_found OR prof_to_remove_found BEGIN
+
+    SET merged = (prof_to_keep_val > prof_to_remove_val) ? prof_to_keep_val : prof_to_remove_val
+
+    PATCH_IF prof_to_keep_found AND prof_to_remove_found BEGIN
+      // Both exist
+      LPF ~S!ALTER_EFFECT~
+        INT_VAR
+          match_opcode  = 233
+          match_parameter2  = prof_to_keep
+          parameter1    = merged
+      END
+      LPF ~DELETE_EFFECT~
+        INT_VAR
+          match_opcode  = 233
+          match_parameter2  = prof_to_remove
+      END
+    END
+
+    PATCH_IF NOT prof_to_keep_found AND prof_to_remove_found BEGIN
+      LPF ~S!ALTER_EFFECT~
+        INT_VAR
+          match_opcode  = 233
+          match_parameter2  = prof_to_remove
+          parameter1    = merged
+          parameter2    = prof_to_keep
+      END
+    END
+
+  END
+END

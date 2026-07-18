@@ -612,7 +612,7 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
             insert_point = ~-1~
             opcode = 146
             target = 1
-            parameter2 = 1
+            parameter2 = 2
             duration = 0
           STR_VAR
             resource = "S!DEXDMG"
@@ -636,7 +636,7 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
             insert_point = ~-1~
             opcode = 146
             target = 1
-            parameter2 = 1
+            parameter2 = 2
             duration = 0
           STR_VAR
             resource = "S!STRDMG"
@@ -677,7 +677,7 @@ COPY_EXISTING_REGEXP GLOB ~.+\.itm~ ~override~
             insert_point = ~-1~
             opcode = 146
             target = 1
-            parameter2 = 1
+            parameter2 = 2
             duration = 0
           STR_VAR
             resource = "S!-THCXB"

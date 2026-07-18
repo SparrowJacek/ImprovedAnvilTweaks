@@ -678,7 +678,7 @@ Risk Decrement:
 When surrounded by lots of enemies and when most other warriors may fall or surrender in despair, a high level riskbreaker is more than capable to break the risk involved in the toughest situations.
 
 Risk Decrement has the following effects:
-- Heals the riskbreaker for 10HP for every enemy hit with this ability.
+- Heals the riskbreaker for 20HP and additional 20 for every enemy hit with this ability.
 - Applies a massive attack to all enemies around the riskbreaker inflicting 8D10 crushing damage with no saving throw.
 - Has a good chance to throw back all or some of the enemies.
 - Does not work on enemies under Protection From Magical Weapons or Absolute Immunity.~

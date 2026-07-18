@@ -1765,8 +1765,14 @@ COPY_EXISTING ~SPINI34.spl~ ~override~ // Risk Decrement
     INT_VAR
       match_opcode = 17
       target = 9 // original caster
-      parameter1 = 10
+      parameter1 = 20
       parameter2 = 0
+  END
+  LPF ~CLONE_EFFECT~
+    INT_VAR
+      match_opcode = 17
+      multi_match = 1
+      target = 1
   END
   LPF ~DELETE_EFFECT~
     INT_VAR

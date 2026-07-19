@@ -303,6 +303,16 @@ COPY_EXISTING ~clswpbon.2da~ ~override/clswpbon.2da~
   SET_2DA_ENTRIES_NOW ~s!bard_apr~ ~colcount~
   PRETTY_PRINT_2DA
 
+// Effects lowering number of spells
+
+COPY ~IATweaks\resources\spl\s!brd03a.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!brd03b.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!brd03c.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!brd03d.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!brd03e.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!brd03f.spl~ ~override~
+COPY ~IATweaks\resources\spl\s!brd03g.spl~ ~override~
+
 ///////////////// Bard ///////////////////
 
 // Base song assignment
@@ -367,6 +377,21 @@ LAF ~S!ADD_CLAB_ROW~
     filename = ~CLABBA04.2da~
     row_desc = ~LONGER_BARD_SONG~
     level1 = ~AP_S!BRD02~
+END
+
+// One less spell per level
+
+LAF ~S!ADD_CLAB_ROW~
+  STR_VAR
+    filename = ~CLABBA04.2da~
+    row_desc = ~FEWER_SPELLS~
+    level3 = ~AP_S!BRD03A~
+    level6 = ~AP_S!BRD03B~
+    level9 = ~AP_S!BRD03C~
+    level12 = ~AP_S!BRD03D~
+    level14 = ~AP_S!BRD03E~
+    level17 = ~AP_S!BRD03F~
+    level19 = ~AP_S!BRD03G~
 END
 
 ///////////////// Blade ///////////////////

@@ -2117,3 +2117,5 @@ Usable once every 2 turns.~
 
 @6306 = ~The Blade abandons speed in favor of perfect control, carefully watching every movement of the opponent and turning defense into an art. While this ability is active, the Blade moves at half speed and the casting time of all spells is increased by 1. Whenever a hostile creature within 5 ft. successfully damages the Blade, the Blade gains 3% resistance to all damage types for 10 seconds (or until Defensive Spin ends), while the attacker suffers 3 points of slashing damage.~
 
+@6307 = ~The Blade abandons caution and turns combat into a deadly performance of speed and precision. Every successful strike strengthens the momentum of the assault, improving the Blade's thac0 and damage by. Additionally each hit has a 50% chance to increase movement speed by 1. These bonuses last for 6 seconds and are lost whenever the Blade is successfully damaged or when Offensive Spin ends. The intense focus required for this technique increases spell casting time by 1.~
+

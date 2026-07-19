@@ -431,4 +431,36 @@ COPY_EXISTING ~spcl522.spl~ ~override~
       resource = ~S!BRD04~
   END
 
+// Offensive Spin
+
+COPY ~IATweaks\resources\spl\s!brd05.spl~ ~override~
+COPY ~IATweaks\resources\eff\s!brd05.eff~ ~override~
+COPY ~IATweaks\resources\spl\s!brd06.spl~ ~override~
+COPY ~IATweaks\resources\eff\s!brd06.eff~ ~override~
+
+COPY_EXISTING ~spcl521.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @6307
+
+  PATCH_FOR_EACH opcode_to_remove IN 16 54 73 250 240 206 BEGIN
+    LPF ~DELETE_EFFECT~
+      INT_VAR
+        match_opcode = opcode_to_remove
+    END
+  END
+  LPF ~ALTER_SPELL_EFFECT~
+    INT_VAR
+      duration_high = 30
+  END
+  PATCH_FOR_EACH spell_to_remove IN ~S!BRD04~ ~SPCL522~ ~SPCL521~ BEGIN
+    LPF ~ADD_SPELL_EFFECT~
+      INT_VAR
+        opcode = 321
+        target = 1
+        timing = 0
+        insert_point = 0
+      STR_VAR
+        resource = EVAL ~%spell_to_remove%~
+    END
+  END
+
 ///////////////// Jester ///////////////////

@@ -370,3 +370,20 @@ COPY ~IATweaks\resources\ini\young_yaga_shura.INI~ ~override\%hexNumber%.ini~
 ACTION_IF (NOT FILE_EXISTS_IN_GAME ~s!ysa1.BAM~) BEGIN
 	COPY ~IATweaks\resources\bam\animations\young_yaga_shura~ ~override~
 END
+
+// Invisible Flying Creature (Doom Guard animation but with shadow turned off in .ini file)
+// INI not included in BG2EE
+// resref: None
+// requires patching during mod install because of dynamic allocation
+// WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ANVIL_FLYING_INVISIBLE~))
+
+LAF FIND_FREE_ANIM_SLOT INT_VAR slotMin = 0xd000 slotMax = 0xdfff RET slot END
+ACTION_IF (slot <= 0) BEGIN
+  FAIL ~No free creature animation slot found.~
+END
+
+LAF TO_HEX_NUMBER INT_VAR value = slot minDigits = 4 RET hexNumber END
+APPEND ~animate.ids~ ~0x%hexNumber% ANVIL_FLYING_INVISIBLE~ UNLESS ~ANVIL_FLYING_INVISIBLE~
+CLEAR_IDS_MAP
+
+COPY ~IATweaks\resources\ini\invisible_flying_creature.INI~ ~override\%hexNumber%.ini~

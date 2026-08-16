@@ -33,7 +33,7 @@ GiveItemCreate("S!srobe1",Player1,1,1,1)
 CreateVisualEffectObject("spcrtwpn","S!selow")~
 END
 
-REPLACE_SAY BOTSMITH 48 @12000
+REPLACE_SAY ~S!SELOW~ 48 @12000
 
 // Red Coral Armor
 
@@ -63,7 +63,7 @@ GiveItemCreate("S!slea04",Player1,1,1,1)
 CreateVisualEffectObject("spcrtwpn","S!selow")~
 END
 
-REPLACE_SAY BOTSMITH 52 @12001
+REPLACE_SAY ~S!SELOW~ 52 @12001
 
 // Boots of Riskbreaker Lord
 
@@ -96,7 +96,7 @@ GiveItemCreate("S!sboo03",Player1,1,1,1)
 CreateVisualEffectObject("spcrtwpn","S!selow")~
 END
 
-REPLACE_SAY BOTSMITH 44 @12002
+REPLACE_SAY ~S!SELOW~ 44 @12002
 
 // Boots of Wizard Slayer
 
@@ -123,7 +123,7 @@ GiveItemCreate("S!sboo04",Player1,1,1,1)
 CreateVisualEffectObject("spcrtwpn","S!selow")~
 END
 
-REPLACE_SAY BOTSMITH 54 @12003
+REPLACE_SAY ~S!SELOW~ 54 @12003
 
 // Reinforced Amber Ioun Stone
 
@@ -147,7 +147,7 @@ GiveItemCreate("S!sioun2",Player1,1,1,1)
 CreateVisualEffectObject("spcrtwpn","S!selow")~
 END
 
-REPLACE_SAY BOTSMITH 26 @12004
+REPLACE_SAY ~S!SELOW~ 26 @12004
 
 // Shield of Missionaire +5
 
@@ -177,7 +177,7 @@ GiveItemCreate("S!sshld1",Player1,1,1,1)
 CreateVisualEffectObject("spcrtwpn","S!selow")~
 END
 
-REPLACE_SAY BOTSMITH 42 @12005
+REPLACE_SAY ~S!SELOW~ 42 @12005
 
 // Fruitful Attempt
 
@@ -204,4 +204,4 @@ GiveItemCreate("S!srin01",Player1,1,1,1)
 CreateVisualEffectObject("spcrtwpn","S!selow")~
 END
 
-REPLACE_SAY BOTSMITH 30 @12006
+REPLACE_SAY ~S!SELOW~ 30 @12006
